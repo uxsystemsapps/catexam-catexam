@@ -1,0 +1,2673 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 2: Asset Security",
+ "questions": [
+  {
+   "id": "DUMP-0003",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following represents the GREATEST risk to data confidentiality?",
+   "options": [
+    "Network redundancies are not implemented",
+    "Security awareness training is not completed",
+    "Backup tapes are generated unencrypted",
+    "Users have administrative privileges"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Unencrypted backup tapes leave the site and expose bulk data directly if lost or stolen, the greatest confidentiality risk listed.",
+   "optionNotes": [
+    "Redundancy is an availability concern, not confidentiality.",
+    "Weakens human controls but no direct data exposure.",
+    "Correct: offsite unencrypted tapes expose bulk data if lost.",
+    "Risky, but limited to the user's system and needs misuse."
+   ]
+  },
+  {
+   "id": "DUMP-0010",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST describes the responsibilities of a data owner?",
+   "options": [
+    "Ensuring quality and validation through periodic audits for ongoing data integrity",
+    "Maintaining fundamental data availability, including data storage and archiving",
+    "Ensuring accessibility to appropriate users, maintaining appropriate levels of data security",
+    "Determining the impact the information has on the mission of the organization"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The data owner is the business manager who determines the information's value and impact on the mission.",
+   "optionNotes": [
+    "Integrity auditing is a data steward/custodian task.",
+    "Storage and archiving is the custodian's job.",
+    "Day-to-day access and security is custodial.",
+    "Correct: owner determines value and mission impact."
+   ]
+  },
+  {
+   "id": "DUMP-0011",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "When implementing a data classification program, why is it important to avoid too much granularity?",
+   "options": [
+    "The process will require too many resources",
+    "It will be difficult to apply to both hardware and software",
+    "It will be difficult to assign ownership to the data",
+    "The process will be perceived as having value"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Excessive classification levels make the program expensive and resource-hungry to administer.",
+   "optionNotes": [
+    "Correct: too many levels is costly to administer.",
+    "Classification applies to data, not hardware/software.",
+    "Ownership is unaffected by granularity.",
+    "Being perceived as valuable is not a problem."
+   ]
+  },
+  {
+   "id": "DUMP-0013",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "In a data classification scheme, the data is owned by the",
+   "options": [
+    "system security managers",
+    "business managers",
+    "Information Technology (IT) managers",
+    "end users"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Business managers own data and decide its classification.",
+   "optionNotes": [
+    "Security managers implement, not own.",
+    "Correct: business managers own the data.",
+    "IT managers are custodians.",
+    "End users are users, not owners."
+   ]
+  },
+  {
+   "id": "DUMP-0015",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following is MOST important when assigning ownership of an asset to a department?",
+   "options": [
+    "The department should report to the business owner",
+    "Ownership of the asset should be periodically reviewed",
+    "Individual accountability should be ensured",
+    "All members should be trained on their responsibilities"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Ownership must ensure individual accountability for the asset.",
+   "optionNotes": [
+    "Reporting structure doesn't ensure accountability.",
+    "Review is useful but secondary.",
+    "Correct: accountability to a named individual is essential.",
+    "Training helps but doesn't assign accountability."
+   ]
+  },
+  {
+   "id": "DUMP-0017",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which one of the following affects the classification of data?",
+   "options": [
+    "Assigned security label",
+    "Multilevel Security (MLS) architecture",
+    "Minimum query size",
+    "Passage of time"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Data sensitivity typically declines over time, so time affects classification (declassification).",
+   "optionNotes": [
+    "Labels reflect classification rather than affecting it.",
+    "MLS enforces classification, doesn't change it.",
+    "Query size is an inference control.",
+    "Correct: sensitivity declines over time."
+   ]
+  },
+  {
+   "id": "DUMP-0019",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Who in the organization is accountable for classification of data information assets?",
+   "options": [
+    "Data owner",
+    "Data architect",
+    "Chief Information Security Officer (CISO)",
+    "Chief Information Officer (CIO)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The data owner is accountable for classifying information assets.",
+   "optionNotes": [
+    "Correct: data owner is accountable for classification.",
+    "Architect designs data structures.",
+    "CISO advises/oversees, not accountable for classification.",
+    "CIO manages IT, not data classification."
+   ]
+  },
+  {
+   "id": "DUMP-0069",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Why is a system's criticality classification important in large organizations?",
+   "options": [
+    "It provides for proper prioritization and scheduling of security and maintenance tasks.",
+    "It reduces critical system support workload and reduces the time required to apply patches.",
+    "It allows for clear systems status communications to executive management.",
+    "It provides for easier determination of ownership, reducing confusion as to the status of the asset."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Criticality classification lets the organization prioritize and schedule security and maintenance work. Status reporting (C) and ownership (D) are side benefits at most. In large estates, criticality tells teams which systems to secure and patch first and when maintenance windows are acceptable.",
+   "optionNotes": [
+    "Right: criticality drives the priority and scheduling of security and maintenance work.",
+    "Classification does not by itself reduce workload or patch time.",
+    "Status reporting is a minor side benefit.",
+    "Ownership is defined separately from criticality."
+   ]
+  },
+  {
+   "id": "DUMP-0076",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is an effective practice when returning electronic storage media to third parties for repair?",
+   "options": [
+    "Ensuring the media is not labeled in any way that indicates the organization's name.",
+    "Disassembling the media and removing parts that may contain sensitive data.",
+    "Physically breaking parts of the media that may contain sensitive data.",
+    "Establishing a contract with the third party regarding the secure handling of the media."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A contract binding the third party to secure handling protects media while still allowing repair. Repair is still required, so destroying or dismantling the media (B, C) is self-defeating, and removing labels gives little protection. A contract with secure-handling and confidentiality terms protects the data.",
+   "optionNotes": [
+    "Removing labels gives little protection of the data itself.",
+    "Disassembly may void repair and is impractical.",
+    "Breaking the media defeats the purpose of repair.",
+    "Right: a contract obligates the vendor to protect the media and data."
+   ]
+  },
+  {
+   "id": "DUMP-0115",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "To prevent inadvertent disclosure of restricted information, which of the following would be the LEAST effective process for eliminating data prior to the media being discarded?",
+   "options": [
+    "Multiple-pass overwriting",
+    "Degaussing",
+    "High-level formatting",
+    "Physical destruction"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "High-level formatting only rebuilds file system structures, so data remains recoverable with simple tools. Overwriting, degaussing and destruction all remove or destroy the data.",
+   "optionNotes": [
+    "Overwriting is an accepted clearing method",
+    "Degaussing purges magnetic media",
+    "Right: data stays on the media",
+    "Destruction is the most effective"
+   ]
+  },
+  {
+   "id": "DUMP-0140",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "In a financial institution, who has the responsibility for assigning the classification to a piece of information?",
+   "options": [
+    "Chief Financial Officer (CFO)",
+    "Chief Information Security Officer (CISO)",
+    "Originator or nominated owner of the information",
+    "Department head responsible for ensuring the protection of the information"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The information owner, usually the originator or a nominated owner, is accountable for classifying data. Custodians and security staff protect it but do not decide its classification.",
+   "optionNotes": [
+    "The CFO is not the owner of all information",
+    "The CISO advises on classification and controls",
+    "Right: the owner classifies",
+    "Protection responsibility suggests custodian or management, not classifier"
+   ]
+  },
+  {
+   "id": "DUMP-0145",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is the ultimate objective of information classification?",
+   "options": [
+    "To assign responsibility for mitigating the risk to vulnerable systems",
+    "To ensure that information assets receive an appropriate level of protection",
+    "To recognize that the value of any item of information may change over time",
+    "To recognize the optimal number of classification categories and the benefits to be gained from their use"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Classification exists so each asset gets protection proportional to its value and sensitivity.",
+   "optionNotes": [
+    "Responsibility assignment is a separate activity",
+    "Value changing over time is a consideration, not the objective",
+    "Right: appropriate protection level",
+    "Choosing the number of levels is a design detail"
+   ]
+  },
+  {
+   "id": "DUMP-0170",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following is an effective method for avoiding magnetic media data remanence?",
+   "options": [
+    "Degaussing",
+    "Encryption",
+    "Data Loss Prevention (DLP)",
+    "Authentication"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Degaussing removes magnetic domains on magnetic media, eliminating remanence.",
+   "optionNotes": [
+    "Degaussing scrambles magnetic domains, removing remanent data",
+    "Encryption protects but leaves remanent ciphertext",
+    "DLP stops exfiltration, not remanence",
+    "Authentication controls access, not residual data"
+   ]
+  },
+  {
+   "id": "DUMP-0176",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following methods protects Personally Identifiable Information (PII) by use of a full replacement of the data element?",
+   "options": [
+    "Transparent Database Encryption (TDE)",
+    "Column level database encryption",
+    "Volume encryption",
+    "Data tokenization"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Tokenization fully replaces the sensitive value with a surrogate token mapped in a secure vault.",
+   "optionNotes": [
+    "TDE encrypts database files; values stay in place",
+    "Column encryption transforms the value rather than replacing it",
+    "Volume encryption protects the whole disk",
+    "Tokenization substitutes a surrogate token for the value"
+   ]
+  },
+  {
+   "id": "DUMP-0181",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "When transmitting information over public networks, the decision to encrypt it should be based on",
+   "options": [
+    "the estimated monetary value of the information.",
+    "whether there are transient nodes relaying the transmission.",
+    "the level of confidentiality of the information.",
+    "the volume of the information."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Encryption decisions follow the data's classification/confidentiality level.",
+   "optionNotes": [
+    "Monetary value matters, but classification/confidentiality drives protection",
+    "Relay nodes exist on all public networks; not a decision basis",
+    "Confidentiality level dictates encryption need",
+    "Data volume has no bearing on sensitivity"
+   ]
+  },
+  {
+   "id": "DUMP-0196",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An online retail company has formulated a record retention schedule for customer transactions. Which of the following is a valid reason a customer transaction is kept beyond the retention schedule?",
+   "options": [
+    "Pending legal hold",
+    "Long term data mining needs",
+    "Customer makes request to retain",
+    "Useful for future business initiatives"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A legal hold suspends normal destruction schedules because records may be needed for litigation or investigation. Business wishes or customer requests do not override an approved retention schedule.",
+   "optionNotes": [
+    "Correct: legal holds legally override retention schedules.",
+    "Data mining desire is not a valid reason to exceed the schedule.",
+    "Customer requests do not justify deviating from policy; privacy favours deletion.",
+    "Speculative future use conflicts with data minimisation."
+   ]
+  },
+  {
+   "id": "DUMP-0200",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Refer to the information below to answer the question. Desktop computers in an organization were sanitized for re-use in an equivalent security environment. The data was destroyed in accordance with organizational policy and all marking and other external indications of the sensitivity of the data that was formerly stored on the magnetic drives were removed. Organizational policy requires the deletion of user data from Personal Digital Assistant (PDA) devices before disposal. It may not be possible to delete the user data if the device is malfunctioning. Which destruction method below provides the BEST assurance that the data has been removed?",
+   "options": [
+    "Knurling",
+    "Grinding",
+    "Shredding",
+    "Degaussing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "If a PDA is malfunctioning, its flash memory cannot be wiped logically, so physical destruction is needed. Shredding destroys the storage media and gives the best assurance; degaussing does not reliably affect solid-state memory.",
+   "optionNotes": [
+    "Knurling is a machining texture process, not media destruction.",
+    "Grinding can work but is less standard/complete for whole devices.",
+    "Correct: shredding physically destroys the device's memory chips.",
+    "Degaussing is ineffective on flash/solid-state memory."
+   ]
+  },
+  {
+   "id": "DUMP-0229",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following MUST system and database administrators be aware of and apply when configuring systems used for storing personal employee data?",
+   "options": [
+    "Secondary use of the data by business users",
+    "The organization's security policies and standards",
+    "The business purpose for which the data is to be used",
+    "The overall protection of corporate resources and data"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Administrators implement controls according to the organization's security policies and standards, which already reflect privacy requirements for personal data. Business use decisions belong to data owners.",
+   "optionNotes": [
+    "Business users' use is the owner's concern.",
+    "Correct: admins must apply the policies and standards when configuring.",
+    "Purpose limitation is set by owners, not configured by admins.",
+    "Too general to guide configuration."
+   ]
+  },
+  {
+   "id": "DUMP-0236",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is a critical factor for implementing a successful data classification program?",
+   "options": [
+    "Executive sponsorship",
+    "Information security sponsorship",
+    "End-user acceptance",
+    "Internal audit acceptance"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Data classification needs authority to assign ownership and enforce handling across business units, which requires senior executive sponsorship.",
+   "optionNotes": [
+    "Correct: executive sponsorship drives adoption and enforcement.",
+    "Security sponsorship alone lacks business authority.",
+    "Helpful but follows from sponsorship.",
+    "Audit should stay independent."
+   ]
+  },
+  {
+   "id": "DUMP-0261",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "With data labeling, which of the following MUST be the key decision maker?",
+   "options": [
+    "Information security",
+    "Departmental management",
+    "Data custodian",
+    "Data owner"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The data owner is accountable for classifying and labeling data; custodians implement the owner's decisions.",
+   "optionNotes": [
+    "Security advises; it isn't accountable for the data.",
+    "Department managers aren't necessarily the data owner.",
+    "Custodians apply labels; they don't decide them.",
+    "Right: the data owner decides classification and labeling."
+   ]
+  },
+  {
+   "id": "DUMP-0264",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.7,
+   "stem": "An organization's data policy MUST include a data retention period which is based on",
+   "options": [
+    "application dismissal.",
+    "business procedures.",
+    "digital certificates expiration.",
+    "regulatory compliance."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Retention periods are driven mainly by legal and regulatory requirements.",
+   "optionNotes": [
+    "Application dismissal isn't a retention driver.",
+    "Business needs matter but law sets the mandatory minimums.",
+    "Certificate expiry has nothing to do with retention.",
+    "Right: laws and regulations set required retention periods."
+   ]
+  },
+  {
+   "id": "DUMP-0271",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following is the PRIMARY benefit of a formalized information classification program?",
+   "options": [
+    "It drives audit processes.",
+    "It supports risk assessment.",
+    "It reduces asset vulnerabilities.",
+    "It minimizes system logging requirements."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said A] Classification establishes the value and sensitivity of information, which feeds directly into risk assessment and the selection of proportionate controls.",
+   "optionNotes": [
+    "Audits use classification but aren't the main benefit.",
+    "Right: classification sets value and sensitivity for risk decisions.",
+    "Classification guides controls; it doesn't reduce vulnerabilities by itself.",
+    "Classification can increase logging needs, not minimize them."
+   ]
+  },
+  {
+   "id": "DUMP-0279",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is the MAIN goal of a data retention policy?",
+   "options": [
+    "Ensure that data is destroyed properly.",
+    "Ensure that data recovery can be done on the data.",
+    "Ensure the integrity and availability of data for a predetermined amount of time.",
+    "Ensure the integrity and confidentiality of data for a predetermined amount of time."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said D] A retention policy ensures required data stays intact and available for the defined period, after which it is disposed of.",
+   "optionNotes": [
+    "Destruction happens at the end of retention but isn't the main goal.",
+    "Recoverability is a backup goal.",
+    "Right: keep data intact and available for the required period.",
+    "Confidentiality comes from classification/handling policy, not retention."
+   ]
+  },
+  {
+   "id": "DUMP-0284",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following is required to determine classification and ownership?",
+   "options": [
+    "System and data resources are properly identified",
+    "Access violations are logged and audited",
+    "Data file references are identified and linked",
+    "System security controls are fully integrated"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "You can only classify data and assign owners once the system and data resources have been identified/inventoried.",
+   "optionNotes": [
+    "Right: you must inventory resources before you classify them or assign owners.",
+    "Logging violations comes after classification.",
+    "Linking file references is technical detail.",
+    "Control integration follows classification."
+   ]
+  },
+  {
+   "id": "DUMP-0295",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following provides the MOST protection against data theft of sensitive information when a laptop is stolen?",
+   "options": [
+    "Set up a BIOS and operating system password",
+    "Encrypt the virtual drive where confidential files can be stored",
+    "Implement a mandatory policy in which sensitive data cannot be stored on laptops, but only on the corporate network",
+    "Encrypt the entire disk and delete contents after a set number of failed access attempts"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Full-disk encryption protects every file, including temp and swap data, if the device is stolen. Wiping after repeated failed attempts further defeats brute-force attempts, so this offers the most protection.",
+   "optionNotes": [
+    "BIOS/OS passwords are bypassed by removing the disk",
+    "Encrypting only a virtual drive leaves data elsewhere (temp, cache) exposed",
+    "A policy alone cannot technically prevent users storing data locally",
+    "Whole-disk encryption plus wipe protects all data even with physical possession"
+   ]
+  },
+  {
+   "id": "DUMP-0308",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST avoids data reminisce disclosure for cloud hosted resources?",
+   "options": [
+    "Strong encryption and deletion of the keys after data is deleted.",
+    "Strong encryption and deletion of the virtual host after data is deleted.",
+    "Software based encryption with two factor authentication.",
+    "Hardware based encryption on dedicated physical servers."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said B] In the cloud, physical media can't be sanitized by the customer. Encrypting the data and destroying the keys (crypto-shredding) makes any remnants unreadable.",
+   "optionNotes": [
+    "Crypto-shredding makes remnant data unrecoverable",
+    "Deleting a VM leaves underlying storage remnants",
+    "2FA doesn't address remanence",
+    "Dedicated hardware is costly and still needs sanitization"
+   ]
+  },
+  {
+   "id": "DUMP-0310",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which security approach will BEST minimize Personally Identifiable Information (PII) loss from a data breach?",
+   "options": [
+    "A strong breach notification process",
+    "Limited collection of individuals' confidential data",
+    "End-to-end data encryption for data in transit",
+    "Continuous monitoring of potential vulnerabilities"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Data minimization limits what can be lost: data never collected cannot be breached. Collecting less PII reduces breach impact more than any other option.",
+   "optionNotes": [
+    "Notification happens after loss and does not reduce it",
+    "Collecting less PII minimizes exposure in any breach",
+    "Transit encryption doesn't protect stored data that is breached",
+    "Monitoring helps detection but does not limit what is lost"
+   ]
+  },
+  {
+   "id": "DUMP-0321",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the process called when impact values are assigned to the security objectives for information types?",
+   "options": [
+    "Qualitative analysis",
+    "Quantitative analysis",
+    "Remediation",
+    "System security categorization"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Assigning impact levels (low/moderate/high) to confidentiality, integrity and availability for information types is security categorization (FIPS 199/NIST SP 800-60).",
+   "optionNotes": [
+    "Qualitative risk analysis rates risk, not CIA impact for info types",
+    "Quantitative analysis assigns monetary values to risk",
+    "Remediation fixes weaknesses",
+    "Security categorization assigns impact values to CIA objectives"
+   ]
+  },
+  {
+   "id": "DUMP-0322",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "For privacy protected data, which of the following roles has the highest authority for establishing dissemination rules for the data?",
+   "options": [
+    "Information Systems Security Officer",
+    "Data Owner",
+    "System Security Architect",
+    "Security Requirements Analyst"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The data owner is accountable for the data and sets its classification and dissemination rules. Security staff implement those rules.",
+   "optionNotes": [
+    "ISSO implements and oversees security, not dissemination rules",
+    "Data owner has authority over use and dissemination",
+    "Architect designs controls",
+    "Analyst defines requirements, not authority"
+   ]
+  },
+  {
+   "id": "DUMP-0332",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "While inventorying storage equipment, it is found that there are unlabeled, disconnected, and powered off devices. Which of the following is the correct procedure for handling such equipment?",
+   "options": [
+    "They should be recycled to save energy.",
+    "They should be recycled according to NIST SP 800-88.",
+    "They should be inspected and sanitized following the organizational policy.",
+    "They should be inspected and categorized properly to sell them for reuse."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Unknown devices may hold sensitive data. They should be inspected and handled/sanitized according to organizational policy rather than disposed of blindly.",
+   "optionNotes": [
+    "Energy saving ignores data remanence",
+    "SP 800-88 may guide sanitization, but policy must direct it first",
+    "Inspect and sanitize per organizational policy",
+    "Selling without sanitization risks disclosure"
+   ]
+  },
+  {
+   "id": "DUMP-0344",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "An organization lacks a data retention policy. Of the following, who is the BEST person to consult for such requirement?",
+   "options": [
+    "Application Manager",
+    "Database Administrator",
+    "Privacy Officer",
+    "Finance Manager"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Retention requirements are driven largely by privacy and legal obligations, which the privacy officer is responsible for interpreting.",
+   "optionNotes": [
+    "Application managers own app function, not retention obligations",
+    "DBAs implement retention, they do not define requirements",
+    "Privacy officer understands legal/privacy obligations that drive retention",
+    "Finance covers financial records only, not overall retention"
+   ]
+  },
+  {
+   "id": "DUMP-0351",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following would BEST describe the role directly responsible for data within an organization?",
+   "options": [
+    "Data custodian",
+    "Information owner",
+    "Database administrator",
+    "Quality control"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The information owner is accountable and directly responsible for the data, including classification and protection decisions.",
+   "optionNotes": [
+    "Custodians implement protection delegated by the owner",
+    "Owner is directly accountable and responsible for the data",
+    "DBA is a custodian-type technical role",
+    "Quality control is unrelated to data responsibility"
+   ]
+  },
+  {
+   "id": "DUMP-0373",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 1.1,
+   "stem": "Which of the following is the MOST important goal of information asset valuation?",
+   "options": [
+    "Developing a consistent and uniform method of controlling access on information assets",
+    "Developing appropriate access control policies and guidelines",
+    "Assigning a financial value to an organization's information assets",
+    "Determining the appropriate level of protection"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said C] Asset valuation's main purpose is determining how much protection an asset warrants, so controls are cost-justified.",
+   "optionNotes": [
+    "Uniform access control is a downstream activity",
+    "Policies follow, not the goal of valuation",
+    "Financial value is a means toward deciding protection",
+    "Valuation determines the appropriate protection level"
+   ]
+  },
+  {
+   "id": "DUMP-0387",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following controls is the FIRST step in protecting privacy in an information system?",
+   "options": [
+    "Data Redaction",
+    "Data Minimization",
+    "Data Encryption",
+    "Data Storage"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Collecting only the minimum data needed is the first privacy control; less data means less exposure.",
+   "optionNotes": [
+    "Redaction protects data already held",
+    "Minimizing collection is the first privacy step",
+    "Encryption protects data after collection",
+    "Storage is not a privacy control"
+   ]
+  },
+  {
+   "id": "DUMP-0389",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "A mobile device application that restricts the storage of user information to just that which is needed to accomplish lawful business goals adheres to what privacy principle?",
+   "options": [
+    "Onward transfer",
+    "Collection Limitation",
+    "Collector Accountability",
+    "Individual Participation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Collection limitation restricts personal data collected to what is necessary and lawful.",
+   "optionNotes": [
+    "Onward transfer concerns sharing with third parties",
+    "Collection limitation restricts data to what is needed",
+    "Accountability concerns compliance responsibility",
+    "Participation gives individuals access/correction rights"
+   ]
+  },
+  {
+   "id": "DUMP-0398",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following roles has the obligation to ensure that a third party provider is capable of processing and handling data in a secure manner and meeting the standards set by the organization?",
+   "options": [
+    "Data Custodian",
+    "Data Owner",
+    "Data Creator",
+    "Data User"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The data owner is accountable for the data wherever it is processed, so the owner must confirm a third-party provider can protect it to the organization's standards. Custodians and users act on the owner's direction.",
+   "optionNotes": [
+    "Custodian implements controls but does not carry this accountability.",
+    "Right: owner remains accountable when processing is outsourced.",
+    "Creator role carries no oversight obligation.",
+    "Users only consume data under granted rights."
+   ]
+  },
+  {
+   "id": "DUMP-0401",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "What is the GREATEST challenge to identifying data leaks?",
+   "options": [
+    "Available technical tools that enable user activity monitoring.",
+    "Documented asset classification policy and clear labeling of assets.",
+    "Senior management cooperation in investigating suspicious behavior.",
+    "Law enforcement participation to apprehend and interrogate suspects."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "You cannot recognise a leak of sensitive data unless you know which data is sensitive. Without documented classification and labeling, monitoring and DLP have nothing meaningful to detect against.",
+   "optionNotes": [
+    "Monitoring tools are widely available; they depend on classification.",
+    "Right: classification and labeling are prerequisites for detection.",
+    "Management cooperation matters for investigation, not identification.",
+    "Law enforcement acts after detection, not in identifying leaks."
+   ]
+  },
+  {
+   "id": "DUMP-0403",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following entities is ultimately accountable for data remanence vulnerabilities with data replicated by a cloud service provider?",
+   "options": [
+    "Data owner",
+    "Data steward",
+    "Data custodian",
+    "Data processor"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Accountability for data stays with the data owner even when a cloud provider stores and replicates it. The provider may be responsible operationally, but the owner remains ultimately accountable for remanence risk.",
+   "optionNotes": [
+    "Right: owners retain ultimate accountability.",
+    "Steward manages data quality, not ultimate accountability.",
+    "Custodian handles storage duties but is not accountable.",
+    "Processor acts on behalf of the controller/owner."
+   ]
+  },
+  {
+   "id": "DUMP-0405",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Who is ultimately responsible to ensure that information assets are categorized and adequate measures are taken to protect them?",
+   "options": [
+    "Data Custodian",
+    "Executive Management",
+    "Chief Information Security Officer",
+    "Data/Information/Business Owners"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Information owners are responsible for classifying their assets and ensuring suitable protection is applied. Custodians implement and the CISO advises, but categorization is the owner's duty.",
+   "optionNotes": [
+    "Custodian implements controls defined by the owner.",
+    "Executive management sets overall direction but delegates asset classification to owners.",
+    "CISO advises and manages the program, not asset categorization.",
+    "Right: owners classify and ensure protection."
+   ]
+  },
+  {
+   "id": "DUMP-0409",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following is the MOST likely cause of a non-malicious data breach when the source of the data breach was an un-marked file cabinet containing sensitive documents?",
+   "options": [
+    "Ineffective data classification",
+    "Lack of data access controls",
+    "Ineffective identity management controls",
+    "Lack of Data Loss Prevention (DLP) tools"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Sensitive documents ended up exposed because nothing indicated they were sensitive. That is a failure of classification and marking, which would have driven proper handling.",
+   "optionNotes": [
+    "Right: unmarked sensitive data points to classification failure.",
+    "Access controls follow from classification; the root cause is earlier.",
+    "Identity management is unrelated to physical document handling.",
+    "DLP tools are for electronic data, not file cabinets."
+   ]
+  },
+  {
+   "id": "DUMP-0422",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.4,
+   "stem": "Data remanence refers to which of the following?",
+   "options": [
+    "The remaining photons left in a fiber optic cable after a secure transmission.",
+    "The retention period required by law or regulation.",
+    "The magnetic flux created when removing the network connection from a server or personal computer.",
+    "The residual information left on magnetic storage media after a deletion or erasure."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Data remanence is data left behind on media after deletion or erasure attempts. It is why proper sanitization methods are required.",
+   "optionNotes": [
+    "Not a recognised remanence concept.",
+    "That is retention, not remanence.",
+    "Not related to residual data.",
+    "Right: residual data after deletion."
+   ]
+  },
+  {
+   "id": "DUMP-0434",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A company has decided that they need to begin maintaining assets deployed in the enterprise. What approach should be followed to determine and maintain ownership information to bring the company into compliance?",
+   "options": [
+    "Enterprise asset management framework",
+    "Asset baseline using commercial off the shelf software",
+    "Asset ownership database using domain login records",
+    "A script to report active user logins on assets"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An enterprise asset management framework defines processes, roles and records for tracking assets and their owners across their lifecycle. The other options are ad hoc technical fragments.",
+   "optionNotes": [
+    "Right: formal, sustainable ownership tracking.",
+    "A baseline tool is not an ownership process.",
+    "Login records do not establish ownership.",
+    "Logins show use, not ownership."
+   ]
+  },
+  {
+   "id": "DUMP-0474",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Regarding asset security and appropriate retention, which of the following INITIAL top three areas are important to focus on?",
+   "options": [
+    "Security control baselines, access controls, employee awareness and training",
+    "Human resources, asset management, production management",
+    "Supply chain lead-time, inventory control, and encryption",
+    "Polygraphs, crime statistics, forensics"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "For asset security and retention, the first focus should be baseline controls, access control and staff awareness. These underpin protecting data throughout its lifecycle.",
+   "optionNotes": [
+    "Correct: baselines, access control and awareness come first.",
+    "HR and production management are not the core asset security areas.",
+    "Supply chain and inventory are logistics concerns.",
+    "Polygraphs and crime statistics are irrelevant here."
+   ]
+  },
+  {
+   "id": "DUMP-0478",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following is the PRIMARY benefit of implementing data-in-use controls?",
+   "options": [
+    "If the data is lost, it must be decrypted to be opened.",
+    "If the data is lost, it will not be accessible to unauthorized users.",
+    "When the data is being viewed, it can only be printed by authorized users.",
+    "When the data is being viewed, it must be accessed using secure protocols."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said B] Data-in-use controls, such as DRM and DLP, enforce what users can do while data is open, for example limiting printing to authorized users. Protecting lost data is an at-rest encryption function.",
+   "optionNotes": [
+    "Decryption-on-open protects data at rest.",
+    "Inaccessibility when lost is also an at-rest control.",
+    "Correct: controlling printing while data is viewed is a data-in-use control.",
+    "Secure protocols protect data in transit."
+   ]
+  },
+  {
+   "id": "DUMP-0479",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "What is the difference between media marking and media labeling?",
+   "options": [
+    "Media marking refers to the use of human-readable security attributes, while media labeling refers to the use of security attributes in internal data structures",
+    "Media labeling refers to the use of human-readable security attributes, while media marking refers to the use of security attributes in internal data structures",
+    "Media labeling refers to security attributes required by public policy/law, while media marking refers to security required by internal organizational policy",
+    "Media marking refers to security attributes required by public policy/law, while media labeling refers to security attributes required by internal organizational policy"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said B] NIST SP 800-53 (MP-3 and AC-16) defines marking as applying human-readable security attributes. Labeling is binding security attributes to internal data structures.",
+   "optionNotes": [
+    "Correct: marking is human-readable; labeling is internal data attributes.",
+    "Reverses the NIST definitions.",
+    "Neither term is defined by legal versus internal origin.",
+    "Same incorrect legal/internal distinction."
+   ]
+  },
+  {
+   "id": "DUMP-0484",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following media sanitization techniques is MOST likely to be effective for an organization using public cloud services?",
+   "options": [
+    "Low-level formatting",
+    "Secure-grade overwrite erasure",
+    "Cryptographic erasure",
+    "Drive degaussing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Cloud customers cannot physically reach or wipe the provider's media. Destroying the encryption keys (crypto-shredding) makes the data unrecoverable.",
+   "optionNotes": [
+    "Low-level formatting needs physical access and is unreliable.",
+    "Overwriting cannot be assured on shared, virtualized cloud storage.",
+    "Correct: cryptographic erasure works without physical access.",
+    "Degaussing needs physical media."
+   ]
+  },
+  {
+   "id": "DUMP-0488",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the MOST effective method of mitigating data theft from an active user workstation?",
+   "options": [
+    "Implement full-disk encryption",
+    "Enable multifactor authentication",
+    "Deploy file integrity checkers",
+    "Disable use of portable devices"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "On an active, logged-in workstation the data is already decrypted and the user is authenticated. Blocking portable devices stops easy exfiltration.",
+   "optionNotes": [
+    "Full-disk encryption does not help while the system is running and unlocked.",
+    "MFA happens at login and does not stop theft afterwards.",
+    "Integrity checkers detect changes, not theft.",
+    "Correct: disabling portable devices blocks a major theft channel."
+   ]
+  },
+  {
+   "id": "DUMP-0489",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following explains why record destruction requirements are included in a data retention policy?",
+   "options": [
+    "To comply with legal and business requirements",
+    "To save cost for storage and backup",
+    "To meet destruction guidelines",
+    "To validate data ownership"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Retention policies define how long data is kept and when it must be destroyed, according to legal, regulatory and business needs. Destruction rules ensure data is not kept longer than permitted.",
+   "optionNotes": [
+    "Correct: legal and business requirements drive destruction rules.",
+    "Cost saving is a side benefit.",
+    "Circular: destruction guidelines are part of the requirement itself.",
+    "Ownership is not validated by destruction."
+   ]
+  },
+  {
+   "id": "DUMP-0506",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "When building a data classification scheme, which of the following is the PRIMARY concern?",
+   "options": [
+    "Purpose",
+    "Cost effectiveness",
+    "Availability",
+    "Authenticity"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A classification scheme must start from its purpose — why data is classified and what protection needs it supports — before defining levels and handling.",
+   "optionNotes": [
+    "Correct: purpose drives the design of the scheme.",
+    "Cost matters but follows from purpose.",
+    "Availability is one protection objective, not the primary design concern.",
+    "Authenticity is a protection property, not a scheme design driver."
+   ]
+  },
+  {
+   "id": "DUMP-0516",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is MOST appropriate for protecting confidentiality of data stored on a hard drive?",
+   "options": [
+    "Triple Data Encryption Standard (3DES)",
+    "Advanced Encryption Standard (AES)",
+    "Message Digest 5 (MD5)",
+    "Secure Hash Algorithm 2 (SHA-2)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "AES is the current strong symmetric standard for encrypting data at rest; 3DES is legacy and hashes do not provide confidentiality.",
+   "optionNotes": [
+    "3DES is deprecated and slower.",
+    "Correct: AES is best for confidentiality of stored data.",
+    "MD5 is a broken hash, no confidentiality.",
+    "SHA-2 is a hash, providing integrity only."
+   ]
+  },
+  {
+   "id": "DUMP-0547",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the process of removing sensitive data from a system or storage device with the intent that the data cannot be reconstructed by any known technique?",
+   "options": [
+    "Purging",
+    "Encryption",
+    "Destruction",
+    "Clearing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Purging removes data so it cannot be recovered by any known technique while leaving the media reusable.",
+   "optionNotes": [
+    "Correct: purging.",
+    "Encryption protects, not removes.",
+    "Destruction destroys media.",
+    "Clearing resists only casual recovery."
+   ]
+  },
+  {
+   "id": "DUMP-0558",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is a responsibility of a data steward?",
+   "options": [
+    "Ensure alignment of the data governance effort to the organization.",
+    "Conduct data governance interviews with the organization.",
+    "Document data governance requirements.",
+    "Ensure that data decisions and impacts are communicated to the organization."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Data stewards carry out data governance day to day, including telling the organization about data decisions and their impacts.",
+   "optionNotes": [
+    "Alignment with the organization is the data governance council's or owner's role",
+    "Interviews are a project or consultant activity",
+    "Requirements documentation is an analyst task",
+    "Correct: stewards communicate data decisions and their impacts"
+   ]
+  },
+  {
+   "id": "DUMP-0559",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Who is responsible for the protection of information when it is shared with or provided to other organizations?",
+   "options": [
+    "Systems owner",
+    "Authorizing Official (AO)",
+    "Information owner",
+    "Security officer"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The information owner stays accountable for protecting their information even when it is shared with external parties.",
+   "optionNotes": [
+    "The system owner handles the system, not the information's sharing terms",
+    "The AO authorizes systems to operate",
+    "Correct: the information owner sets the rules for sharing and protection",
+    "The security officer advises but is not accountable"
+   ]
+  },
+  {
+   "id": "DUMP-0565",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Even though a particular digital watermark is difficult to detect, which of the following represents a way it might still be inadvertently removed?",
+   "options": [
+    "Truncating parts of the data",
+    "Applying Access Control Lists (ACL) to the data",
+    "Appending non-watermarked data to watermarked data",
+    "Storing the data in a database"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "If the part of the data that carries the watermark is truncated, the mark can be lost by accident.",
+   "optionNotes": [
+    "Correct: cutting away the marked portion can remove the watermark",
+    "ACLs restrict access and leave the content unchanged",
+    "Appending data leaves the existing watermark intact",
+    "Storage location doesn't change the content"
+   ]
+  },
+  {
+   "id": "DUMP-0571",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What MUST each information owner do when a system contains data from multiple information owners?",
+   "options": [
+    "Provide input to the Information System (IS) owner regarding the security requirements of the data",
+    "Review the Security Assessment report (SAR) for the Information System (IS) and authorize the IS to operate.",
+    "Develop and maintain the System Security Plan (SSP) for the Information System (IS) containing the data",
+    "Move the data to an Information System (IS) that does not contain data owned by other information owners"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Each information owner gives the IS owner security requirements for their data; the IS owner builds the SSP.",
+   "optionNotes": [
+    "Correct: owners provide security requirements for their data to the IS owner",
+    "The AO, not each owner, authorizes operation",
+    "The IS owner develops the SSP",
+    "Moving data is impractical and not required"
+   ]
+  },
+  {
+   "id": "DUMP-0597",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which factors MUST be considered when classifying information and supporting assets for risk management, legal discovery, and compliance?",
+   "options": [
+    "System owner roles and responsibilities, data handling standards, storage and secure development lifecycle requirements",
+    "Data stewardship roles, data handling and storage standards, data lifecycle requirements",
+    "Compliance office roles and responsibilities, classified material handling standards, storage system lifecycle requirements",
+    "System authorization roles and responsibilities, cloud computing standards, lifecycle requirements"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Classification must consider who stewards the data, how it is handled and stored, and its full lifecycle requirements; these drive risk, discovery and compliance treatment.",
+   "optionNotes": [
+    "Secure development lifecycle is irrelevant to classification",
+    "Correct: stewardship, handling/storage, lifecycle",
+    "Narrowly tied to classified material/storage systems",
+    "Cloud standards not a required factor"
+   ]
+  },
+  {
+   "id": "DUMP-0611",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is a responsibility of the information owner?",
+   "options": [
+    "Ensure that users and personnel complete the required security training to access the Information System (IS)",
+    "Defining proper access to the Information System (IS), including privileges or access rights",
+    "Managing identification, implementation, and assessment of common security controls",
+    "Ensuring the Information System (IS) is operated according to agreed upon security requirements"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The information owner decides who may access the information and with what privileges.",
+   "optionNotes": [
+    "Ensuring training is a manager/ISSO function",
+    "Correct: the owner defines who has access and what rights",
+    "Managing common controls is the common control provider's role",
+    "Operating to agreed requirements is the system owner's role"
+   ]
+  },
+  {
+   "id": "DUMP-0613",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Who is accountable for the information within an Information System (IS)?",
+   "options": [
+    "Security manager",
+    "System owner",
+    "Data owner",
+    "Data processor"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The data owner is accountable for the information itself.",
+   "optionNotes": [
+    "The security manager implements controls but is not accountable for the data",
+    "The system owner is accountable for the system, not the information in it",
+    "Correct: the data owner is ultimately accountable for the information",
+    "A processor handles data on the controller's behalf without ownership"
+   ]
+  },
+  {
+   "id": "DUMP-0625",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the MOST appropriate action when reusing media that contains sensitive data?",
+   "options": [
+    "Erase",
+    "Sanitize",
+    "Encrypt",
+    "Degauss"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Sanitization removes data so it cannot be recovered before reuse.",
+   "optionNotes": [
+    "A simple erase leaves data recoverable",
+    "Correct: sanitization prevents recovery before reuse",
+    "Encryption hides but does not remove data",
+    "Degaussing may render media unusable and is only one method"
+   ]
+  },
+  {
+   "id": "DUMP-0669",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Data remanence is the biggest threat in which of the following scenarios?",
+   "options": [
+    "A physical disk drive has been overwritten and reused within a datacenter.",
+    "A physical disk drive has been degaussed, verified, and released to a third party for dest…….",
+    "A flash drive has been overwritten, verified, and reused within a datacenter.",
+    "A flash drive has been overwritten and released to a third party for destruction."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Overwriting flash is unreliable due to wear leveling, and it leaves the organization unverified. Releasing it to a third party without verification adds exposure.",
+   "optionNotes": [
+    "Overwriting magnetic disk is generally effective and it stays in-house.",
+    "Degaussed and verified disk has little remanence.",
+    "Verified overwrite in-house lowers risk.",
+    "Flash overwrite is unreliable (wear leveling), unverified, and leaves custody."
+   ]
+  },
+  {
+   "id": "DUMP-0675",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Which of the following is the MOST appropriate control for asset data labeling procedures?",
+   "options": [
+    "Logging data media to provide a physical inventory control",
+    "Reviewing audit trails of logging records",
+    "Categorizing the types of media being used",
+    "Reviewing off-site storage access controls"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Logging media provides inventory control supporting labeling. An inventory log ties each labeled medium to accountability and tracking.",
+   "optionNotes": [
+    "Logging media provides physical inventory control for labeled assets.",
+    "Reviewing audit trails is detective, not labeling.",
+    "Categorizing media types isn't a labeling control.",
+    "Off-site access control is storage security."
+   ]
+  },
+  {
+   "id": "DUMP-0697",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "A company is enrolled in a hard drive reuse program where decommissioned equipment is sold back to the vendor when it is no longer needed. The vendor pays more money for functioning drives than equipment that is no longer operational. Which method of data sanitization would provide the most secure means of preventing unauthorized data loss, while also receiving the most money from the vendor?",
+   "options": [
+    "Pinning",
+    "Single-pass wipe",
+    "Degaussing",
+    "Multi-pass wipes"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Overwriting keeps the drive working, so it keeps its resale value, unlike degaussing, which destroys the drive's firmware. Of the overwrite choices, multiple passes give stronger assurance that residual data can't be recovered.",
+   "optionNotes": [
+    "Pinning is not a data sanitization method.",
+    "A single-pass wipe keeps the drive working but gives less assurance than multiple passes.",
+    "Degaussing renders modern hard drives inoperable, losing the higher resale value.",
+    "Right: multiple overwrite passes sanitize the drive while keeping it functional."
+   ]
+  },
+  {
+   "id": "DUMP-0704",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What should an auditor do when conducting a periodic audit on media retention?",
+   "options": [
+    "Check electronic storage media to ensure records are not retained past their destruction date.",
+    "Ensure authorized personnel are in possession of paper copies containing Personally Identifiable Information….",
+    "Check that hard disks containing backup data that are still within a retention cycle are being destroyed….",
+    "Ensure that data shared with outside organizations is no longer on a retention schedule."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A media retention audit checks that records are kept as long as required and disposed of once their retention period ends. Finding records kept past their destruction date shows non-compliance and unnecessary liability.",
+   "optionNotes": [
+    "Right: it verifies records are disposed of on schedule rather than kept too long.",
+    "Who holds paper PII copies is an access/handling question, not retention.",
+    "Destroying backups that are still in their retention cycle would itself be a violation; the auditor doesn't ensure it.",
+    "Shared data is still subject to retention requirements."
+   ]
+  },
+  {
+   "id": "DUMP-0706",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "How does Radio-Frequency Identification (RFID) assist with asset management?",
+   "options": [
+    "It uses biometric information for system identification.",
+    "It uses two-factor authentication (2FA) for system identification.",
+    "It transmits unique Media Access Control (MAC) addresses wirelessly.",
+    "It transmits unique serial numbers wirelessly."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "RFID tags broadcast a unique identifier wirelessly to a reader, so assets can be inventoried and tracked without line of sight. That identifier is a serial number, not a network MAC address or a biometric.",
+   "optionNotes": [
+    "RFID tags carry no biometric data.",
+    "RFID is not a 2FA mechanism for asset tracking.",
+    "Tags do not use network MAC addresses.",
+    "Right: tags transmit unique serial numbers for tracking."
+   ]
+  },
+  {
+   "id": "DUMP-0708",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is the BEST way to protect an organization's data assets?",
+   "options": [
+    "Monitor and enforce adherence to security policies.",
+    "Encrypt data in transit and at rest using up-to-date cryptographic algorithms.",
+    "Create the Demilitarized Zone (DMZ) with proxies, firewalls and hardened bastion hosts.",
+    "Require Multi-Factor Authentication (MFA) and Separation of Duties (SoD)."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said B] ISC2 favours governance over individual technologies: security policies define how all data assets are protected, and monitoring and enforcing them makes every control operate as intended. Encryption, DMZs and MFA are specific controls that each cover only part of the problem.",
+   "optionNotes": [
+    "Right: enforcing policy is the overarching, most complete protection.",
+    "Encryption is strong but is only one technical control.",
+    "A DMZ protects the network perimeter, not all data assets.",
+    "MFA and separation of duties address access only."
+   ]
+  },
+  {
+   "id": "DUMP-0710",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "A firm within the defense industry has been directed to comply with contractual requirements for encryption of a government client's Controlled Unclassified Information (CUI). What encryption strategy represents how to protect data at rest in the MOST efficient and cost-effective manner?",
+   "options": [
+    "Perform physical separation of program information and encrypt only information deemed critical by the defense client",
+    "Perform logical separation of program information, using virtualized storage solutions with built-in encryption at the virtualization layer",
+    "Perform logical separation of program information, using virtualized storage solutions with encryption management in the back-end disk systems",
+    "Implement data at rest encryption across the entire storage area network (SAN)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Logically separating the CUI and using virtualized storage with encryption built into the virtualization layer protects the regulated data without encrypting everything or building separate physical infrastructure. That makes it the most efficient and cost-effective way to meet the requirement.",
+   "optionNotes": [
+    "Physical separation is costly, and encrypting only 'critical' data may miss CUI.",
+    "Right: logical separation with built-in virtualization-layer encryption is efficient.",
+    "Back-end disk encryption management adds complexity and doesn't scope protection to the program data.",
+    "Encrypting the whole SAN is more costly and broader than needed."
+   ]
+  },
+  {
+   "id": "DUMP-0756",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following media is least problematic with data remanence?",
+   "options": [
+    "Magnetic disk",
+    "Electrically Erasable Programming read-only Memory (EEPROM)",
+    "Dynamic Random Access Memory (DRAM)",
+    "Flash memory"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "DRAM is volatile and loses contents shortly after power loss, so remanence is least problematic. Magnetic disks, EEPROM and flash all retain data without power and need specific sanitization.",
+   "optionNotes": [
+    "Magnetic remanence persists",
+    "Non-volatile by design",
+    "Correct: volatile, decays quickly",
+    "Non-volatile and wear-leveled"
+   ]
+  },
+  {
+   "id": "DUMP-0764",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In an IDEAL encryption system, who has sole access to the decryption key?",
+   "options": [
+    "System owner",
+    "Data owner",
+    "Data custodian",
+    "System administrator"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Ideally only the data owner, who is accountable for the data, controls the decryption key. Custodians and administrators handle the systems but should not have sole access, which preserves separation of duties.",
+   "optionNotes": [
+    "Owns the platform, not the data",
+    "Correct: accountable for the data",
+    "Custodian implements controls",
+    "Admins should not have sole key access"
+   ]
+  },
+  {
+   "id": "DUMP-0804",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the FIRST step that should be considered in a Data Loss Prevention (DLP) program?",
+   "options": [
+    "Configuration management (CM)",
+    "Information Rights Management (IRM)",
+    "Policy creation",
+    "Data classification"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A DLP tool can only protect what the organization has identified as sensitive. Classifying data (what it is, how sensitive it is, where it lives) therefore comes first, and DLP policies and rules are then built on those classifications.",
+   "optionNotes": [
+    "Configuration management does not tell DLP which data is sensitive",
+    "IRM is a protection technology applied after data is classified",
+    "DLP rules refer to data classes, so classification must come before them",
+    "Right: classification is the foundation of DLP"
+   ]
+  },
+  {
+   "id": "DUMP-0805",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the BEST approach to anonymizing personally identifiable information (PII) in a test environment?",
+   "options": [
+    "Randomizing data",
+    "Swapping data",
+    "Encrypting data",
+    "Encoding data"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Test environments need realistic data that cannot be traced back to real people. Randomizing replaces identifying values with generated ones, so the data cannot be re-identified, while formats are kept for testing.",
+   "optionNotes": [
+    "Right: random substitution breaks the link to real individuals",
+    "Swapping moves real values between records, so the real PII is still present and inference is possible",
+    "Encrypted data can be decrypted by anyone with the key, so this is pseudonymization, not anonymization",
+    "Encoding such as Base64 is trivially reversible and protects nothing"
+   ]
+  },
+  {
+   "id": "DUMP-0823",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "What is the FIRST step required in establishing a records retention program?",
+   "options": [
+    "Identify and inventory all records storage locations.",
+    "Classify records based on sensitivity.",
+    "Identify and inventory all records.",
+    "Draft a records retention policy."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "You cannot set retention rules for records you do not know you have. A retention program therefore starts with an inventory of all records, which then supports classification and the retention schedule.",
+   "optionNotes": [
+    "Storage locations are a subset of the inventory, not the starting point itself",
+    "Classification needs the inventory first",
+    "Right: identify and inventory the records first",
+    "A meaningful retention policy or schedule depends on knowing what records exist"
+   ]
+  },
+  {
+   "id": "DUMP-0851",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An organization has been collecting a large amount of redundant and unusable data and filling up the storage area network (SAN). Management has requested the identification of a solution that will address ongoing storage problems. Which is the BEST technical solution?",
+   "options": [
+    "Deduplication",
+    "Compression",
+    "Replication",
+    "Caching"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Deduplication removes redundant copies, directly addressing redundant data filling storage. It addresses the root cause, redundant data, on an ongoing basis.",
+   "optionNotes": [
+    "Removes redundant copies, directly reclaiming SAN capacity.",
+    "Shrinks data but leaves the redundant copies in place.",
+    "Creates more copies and worsens storage use.",
+    "A performance technique, not a capacity one."
+   ]
+  },
+  {
+   "id": "DUMP-0855",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "What is a common mistake in records retention?",
+   "options": [
+    "Having the organization legal department create a retention policy",
+    "Adopting a retention policy based on applicable organization requirements",
+    "Having the Human Resource (HR) department create a retention policy",
+    "Adopting a retention policy with the longest requirement period"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Keeping everything for the longest period raises cost and legal exposure; retention should follow specific requirements. Retention should match each record type's specific requirement, then require disposal.",
+   "optionNotes": [
+    "Legal input is appropriate when creating retention policy.",
+    "Basing retention on applicable requirements is correct practice.",
+    "HR involvement is normal for personnel records.",
+    "Keeping everything for the longest period adds cost and e-discovery liability."
+   ]
+  },
+  {
+   "id": "DUMP-0864",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is MOST critical in a contract for data disposal on a hard drive with a third party?",
+   "options": [
+    "Authorized destruction times",
+    "Allowed unallocated disk space",
+    "Amount of overwrites required",
+    "Frequency of recovered media"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The contract must specify the sanitization standard, such as number of overwrites required. The contract must state the sanitization standard the vendor must meet.",
+   "optionNotes": [
+    "Destruction timing is less critical than assurance of sanitization.",
+    "Not a meaningful sanitization term.",
+    "The required overwrite standard determines whether the data is truly unrecoverable.",
+    "Not a contract-relevant sanitization requirement."
+   ]
+  },
+  {
+   "id": "DUMP-0865",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is the MOST appropriate technique for destroying magnetic platter style hard disk drives (HDD) containing data with a \"HIGH\" security categorization?",
+   "options": [
+    "Drill through the device and platters.",
+    "Mechanically shred the entire HDD.",
+    "Remove the control electronics.",
+    "Process the HDD through a degaussing device."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Shredding the whole drive is the destroy method suitable for high-categorization media. Destruction to small particles is preferred for high categorization.",
+   "optionNotes": [
+    "Drilling can leave readable platter fragments.",
+    "Shredding the entire drive physically destroys the platters.",
+    "Removing electronics leaves the platters intact and readable.",
+    "Degaussing purges but does not destroy; destruction is better for HIGH."
+   ]
+  },
+  {
+   "id": "DUMP-0875",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "What is the term used to define where data is geographically stored in the cloud?",
+   "options": [
+    "Data warehouse",
+    "Data privacy rights",
+    "Data subject rights",
+    "Data sovereignty"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Data sovereignty concerns where data physically resides and the governing laws. Location determines which jurisdiction's laws apply.",
+   "optionNotes": [
+    "An analytics repository.",
+    "Individual privacy entitlements.",
+    "GDPR data subject rights.",
+    "Data sovereignty: location and the jurisdiction that applies."
+   ]
+  },
+  {
+   "id": "DUMP-0884",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which media sanitization methods should be used for data with a high security categorization?",
+   "options": [
+    "Clear or destroy",
+    "Clear or purge",
+    "Destroy or delete",
+    "Purge or destroy"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "NIST 800-88: high categorization requires purge or destroy. Clear protects only against non-invasive recovery.",
+   "optionNotes": [
+    "Clear is insufficient for high.",
+    "Clear is insufficient for high.",
+    "Delete is not sanitization.",
+    "NIST 800-88: purge or destroy for high."
+   ]
+  },
+  {
+   "id": "DUMP-0899",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following is a MAJOR concern when there is a need to preserve or retain information for future retrieval?",
+   "options": [
+    "Laws and regulations may change in the interim, making it unnecessary to retain the information.",
+    "The expense of retaining the information could become untenable for the organization.",
+    "The organization may lose track of the information and not dispose of it securely.",
+    "The technology needed to retrieve the information may not be available in the future."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Long-term preservation is threatened by technological obsolescence of media formats, readers and software. If retrieval technology disappears, retained data becomes useless.",
+   "optionNotes": [
+    "Changing laws do not make retention a major concern",
+    "Cost matters but is manageable",
+    "Disposal tracking is a retention-end issue",
+    "Right: obsolescence of retrieval technology"
+   ]
+  },
+  {
+   "id": "DUMP-0904",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "The application owner of a system that handles confidential data leaves an organization. It is anticipated that a replacement will be hired in approximately six months. During that time, which of the following should the organization do?",
+   "options": [
+    "Grant temporary access to the former application owner's account",
+    "Assign a temporary application owner to the system.",
+    "Restrict access to the system until a replacement application owner is hired.",
+    "Prevent changes to the confidential data until a replacement application owner is hired."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Ownership and accountability for the system must continue, so a temporary owner should be designated until the replacement arrives.",
+   "optionNotes": [
+    "Using a departed person's account breaks accountability",
+    "Right: Ownership and accountability for the system must continue, so a temporary owner should be designated until the replacement arrives.",
+    "Restricting access disrupts business",
+    "Freezing data changes disrupts business"
+   ]
+  },
+  {
+   "id": "DUMP-0914",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following poses the GREATEST privacy risk to personally identifiable information (PII) when disposing of an office printer or copier?",
+   "options": [
+    "The device could contain a document with PII on the platen glass",
+    "Organizational network configuration information could still be present within the device",
+    "A hard disk drive (HDD) in the device could contain PII",
+    "The device transfer roller could contain imprints of PII"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Copiers and printers often contain hard drives that store images of scanned and printed documents, which can expose large amounts of PII if not sanitized.",
+   "optionNotes": [
+    "A single page is a minor risk",
+    "Network configuration is not PII",
+    "Right: Copiers and printers often contain hard drives that store images of scanned and printed documents, which can expose large amounts of PII if not sanitized.",
+    "Roller imprints are negligible"
+   ]
+  },
+  {
+   "id": "DUMP-0917",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "A security practitioner has been tasked with establishing organizational asset handling procedures. What should be considered that would have the GREATEST impact to the development of these procedures?",
+   "options": [
+    "Media handling procedures",
+    "User roles and responsibilities",
+    "Acceptable Use Policy (AUP)",
+    "Information classification scheme"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Handling requirements are defined per classification level, so the classification scheme most shapes asset handling procedures.",
+   "optionNotes": [
+    "Media handling derives from classification",
+    "Roles matter less",
+    "AUP addresses user behaviour",
+    "Right: Handling requirements are defined per classification level, so the classification scheme most shapes asset handling procedures."
+   ]
+  },
+  {
+   "id": "DUMP-0920",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A new Chief Information Officer (CIO) created a group to write a data retention policy based on applicable laws. Which of the following is the PRIMARY motivation for the policy?",
+   "options": [
+    "To back up data that is used on a daily basis",
+    "To dispose of data in order to limit liability",
+    "To reduce costs by reducing the amount of retained data",
+    "To classify data according to what it contains"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A retention policy based on legal requirements defines how long to keep data and when to destroy it, so data isn't kept beyond need and liability is limited.",
+   "optionNotes": [
+    "Backups are a different topic",
+    "Right: A retention policy based on legal requirements defines how long to keep data and when to destroy it, so data isn't kept beyond need and liability is limited.",
+    "Cost is secondary",
+    "Classification is a separate policy"
+   ]
+  },
+  {
+   "id": "DUMP-0921",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "An organization has discovered that organizational data is posted by employees to data storage accessible to the general public. What is the PRIMARY step an organization must take to ensure data is properly protected from public release?",
+   "options": [
+    "Implement a data classification policy.",
+    "Implement a data encryption policy.",
+    "Implement a user training policy.",
+    "Implement a user reporting policy."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Data must first be classified so its sensitivity and allowed handling (including publication) are defined; other controls depend on it.",
+   "optionNotes": [
+    "Right: Data must first be classified so its sensitivity and allowed handling (including publication) are defined; other controls depend on it.",
+    "Encryption is selected based on classification",
+    "Training follows defined policy",
+    "Reporting is after the fact"
+   ]
+  },
+  {
+   "id": "DUMP-0944",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "While classifying credit card data related to Payment Card Industry Data Security Standards (PCI-DSS), which of the following is a PRIMARY security requirement?",
+   "options": [
+    "Processor agreements with card holders",
+    "Three-year retention of data",
+    "Encryption of data",
+    "Specific card disposal methodology"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "PCI DSS requires protecting stored cardholder data, with encryption being the primary mechanism.",
+   "optionNotes": [
+    "Not a security requirement",
+    "No fixed three-year retention",
+    "Right: PCI DSS requires protecting stored cardholder data, with encryption being the primary mechanism.",
+    "Disposal is secondary"
+   ]
+  },
+  {
+   "id": "DUMP-0993",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the below strategies would MOST comprehensively address the risk of malicious insiders leaking sensitive information?",
+   "options": [
+    "Data Loss Protection (DLP), firewalls, data classification",
+    "Least privilege access, Data Loss Protection (DLP), physical access controls",
+    "Staff vetting, least privilege access, Data Loss Protection (DLP)",
+    "Background checks, data encryption, web proxies"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Insider leakage needs people, access and data controls together: vetting reduces malicious hires, least privilege limits reach, and DLP detects/blocks exfiltration.",
+   "optionNotes": [
+    "Firewalls do little against insiders.",
+    "Lacks a personnel control against malicious intent.",
+    "Correct: covers people, access and data leakage.",
+    "Encryption does not stop authorised insiders."
+   ]
+  },
+  {
+   "id": "DUMP-1004",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "How should the retention period for an organization's social media content be defined?",
+   "options": [
+    "By the retention policies of each social media service",
+    "By the records retention policy of the organization",
+    "By the Chief Information Officer (CIO)",
+    "By the amount of available storage space"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Social media content is a business record, so its retention is governed by the organization's records retention policy.",
+   "optionNotes": [
+    "Wrong: Provider policy does not meet organizational obligations",
+    "Right: the organization's records policy covers all its records, social media included",
+    "Wrong: An individual does not define it; policy does",
+    "Wrong: Storage is not a retention driver"
+   ]
+  },
+  {
+   "id": "DUMP-1061",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A company wants to store data related to users on an offsite server. What method can be deployed to protect the privacy of the user's information while maintaining the field-level configuration of the database?",
+   "options": [
+    "Encryption",
+    "Encoding",
+    "Tokenization",
+    "Hashing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Tokenization swaps sensitive values for format-preserving tokens, so the database fields and their structure stay the same while the real data is protected.",
+   "optionNotes": [
+    "Encryption usually changes the field length and format",
+    "Encoding is reversible and provides no protection",
+    "Correct: format-preserving tokens keep the field structure",
+    "Hashing is irreversible and the data cannot be recovered"
+   ]
+  },
+  {
+   "id": "DUMP-1067",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A Chief Information Officer (CIO) has delegated responsibility of their system security to the head of the information technology (IT) department. While corporate policy dictates that only the CIO can make decisions on the level of data protection required, technical implementation decisions are done by the head of the IT department. Which of the following BEST describes the security role filled by the head of the IT department?",
+   "options": [
+    "System analyst",
+    "System security officer",
+    "System processor",
+    "System custodian"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The CIO acts as owner and sets protection levels; the IT head who implements and maintains the technical protections is the custodian.",
+   "optionNotes": [
+    "An analyst designs or analyses systems; this is not a data security role",
+    "A security officer oversees policy rather than holding delegated custody",
+    "'Processor' is a privacy-law role, not this one",
+    "Correct: the custodian implements the protections the owner decides"
+   ]
+  },
+  {
+   "id": "DUMP-1092",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following MUST be considered when developing business rules for a data loss prevention (DLP) solution?",
+   "options": [
+    "Data availability",
+    "Data sensitivity",
+    "Data ownership",
+    "Data integrity"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "DLP rules are driven by the classification or sensitivity of the data being protected.",
+   "optionNotes": [
+    "Availability does not drive DLP rules",
+    "Correct: sensitivity determines what DLP protects",
+    "Ownership assigns responsibility but does not define rules",
+    "Integrity is not the focus of DLP"
+   ]
+  },
+  {
+   "id": "DUMP-1112",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following criteria ensures information is protected relative to its importance to the organization?",
+   "options": [
+    "The value of the data to the organization's senior management",
+    "Legal requirements, value, criticality, and sensitivity to unauthorized disclosure or modification",
+    "Legal requirements determined by the organization headquarters' location",
+    "Organizational stakeholders, with classification approved by the management board"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Classification criteria combine legal requirements, value, criticality and sensitivity to unauthorised disclosure or modification. Together they make protection proportionate to the information's importance.",
+   "optionNotes": [
+    "Senior managers' view alone is subjective and incomplete.",
+    "Correct: these are the standard classification criteria.",
+    "Headquarters location ignores value and sensitivity.",
+    "This describes who approves classification, not the criteria."
+   ]
+  },
+  {
+   "id": "DUMP-1114",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following examples is BEST to minimize the attack surface for a customer's private information?",
+   "options": [
+    "Obfuscation",
+    "Collection limitation",
+    "Authentication",
+    "Data masking"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Data you never collect cannot be exposed. Collection limitation (data minimisation) shrinks the attack surface for private information at the source.",
+   "optionNotes": [
+    "Obfuscation still keeps the data.",
+    "Authentication protects access but the data still exists.",
+    "Correct: collecting less data reduces exposure.",
+    "Masking protects displayed data, but the full data is still stored."
+   ]
+  },
+  {
+   "id": "DUMP-1119",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following is the PRIMARY security consideration for how an organization should handle Information Technology (IT) assets?",
+   "options": [
+    "The monetary value of the asset",
+    "The controls implemented on the asset",
+    "The physical form factor of the asset",
+    "The classification of the data on the asset"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "How an asset must be handled depends on the sensitivity of the data it holds. Classification drives labelling, storage, transport and disposal requirements.",
+   "optionNotes": [
+    "Monetary value of the hardware is secondary to the data.",
+    "Controls follow from classification; they don't decide it.",
+    "Form factor doesn't determine sensitivity.",
+    "Correct: data classification drives asset handling."
+   ]
+  },
+  {
+   "id": "DUMP-1123",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "If traveling abroad and a customs official demands to examine a personal computer, which of the following should be assumed?",
+   "options": [
+    "The hard drive has been stolen.",
+    "The Internet Protocol (IP) address has been copied.",
+    "The hard drive has been copied.",
+    "The Media Access Control (MAC) address was stolen"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Once a device is out of your control at a border, assume its contents have been imaged. Treat the data and credentials as compromised.",
+   "optionNotes": [
+    "The drive is returned, so it wasn't stolen.",
+    "An IP address is not sensitive and changes between networks.",
+    "Correct: assume the disk was copied.",
+    "A MAC address is trivial information."
+   ]
+  },
+  {
+   "id": "DUMP-1133",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is the FIRST requirement a data owner should consider before implementing a data retention policy?",
+   "options": [
+    "Training",
+    "Legal",
+    "Business",
+    "Storage"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Retention periods are set first by legal and regulatory obligations. Business needs and storage are considered within those constraints.",
+   "optionNotes": [
+    "Training comes later.",
+    "Correct: legal requirements come first.",
+    "Business needs are second to legal requirements.",
+    "Storage is an implementation detail."
+   ]
+  },
+  {
+   "id": "DUMP-1145",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "From an asset security perspective, what is the BEST countermeasure to prevent data theft due to data remanence when a sensitive data storage media is no longer needed?",
+   "options": [
+    "Return the media to the system owner.",
+    "Delete the sensitive data from the media.",
+    "Physically destroy the retired media.",
+    "Encrypt data before it is stored on the media."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Destroying retired media is the only option that removes any chance of recovering remanent data. Deleting files leaves the data recoverable, and handing the media back does nothing to sanitise it. Encryption helps, but on media being retired, destruction is the definitive control.",
+   "optionNotes": [
+    "Handing media back does not sanitise it; the remanence stays.",
+    "Deleting only removes pointers; the data can still be recovered.",
+    "Destruction removes remanence completely; best for media being retired.",
+    "Helps if keys stay safe, but weaker than destruction at end of life."
+   ]
+  },
+  {
+   "id": "DUMP-1149",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is the most effective form of media sanitization to ensure residual data cannot be retrieved?",
+   "options": [
+    "Clearing",
+    "Destroying",
+    "Purging",
+    "Disposal"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Physical destruction (shredding, disintegration, incineration) leaves nothing to recover. Purging resists lab attacks but can still leave residual risk on some media, and clearing only stops simple recovery. 'Disposal' just means discarding the media, with no sanitisation implied.",
+   "optionNotes": [
+    "Clearing protects only against basic keyboard-level recovery.",
+    "Correct: destruction is the most effective sanitisation.",
+    "Purging is strong but less certain than destruction.",
+    "Disposal means discarding the media and does not sanitise it."
+   ]
+  },
+  {
+   "id": "DUMP-1189",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Write Once, Read Many (WORM) data storage devices are designed to BEST support which of the following core security concepts?",
+   "options": [
+    "Integrity",
+    "Scalability",
+    "Availability",
+    "Confidentiality"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "WORM media lets data be written once and never changed, which preserves integrity. It is used for audit logs and records that must not be altered. It does not provide confidentiality or scalability.",
+   "optionNotes": [
+    "Correct: data cannot be modified, which preserves integrity.",
+    "WORM does not provide scalability.",
+    "Availability is not WORM's purpose.",
+    "WORM offers no confidentiality."
+   ]
+  },
+  {
+   "id": "DUMP-1207",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following should be included in a hardware retention policy?",
+   "options": [
+    "The use of encryption technology to encrypt sensitive data prior to retention",
+    "Retention of data for only one week and outsourcing the retention to a third-party vendor",
+    "Retention of all sensitive data on media and hardware",
+    "A plan to retain data required only for business purposes and a retention schedule"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Retention policy should keep only data needed for business/legal purposes on a defined schedule.",
+   "optionNotes": [
+    "Encryption is a protection control, not a retention policy element.",
+    "Arbitrary one-week period and outsourcing ignore requirements.",
+    "Retaining everything increases risk and cost.",
+    "Correct: retain only what business needs, on a defined schedule."
+   ]
+  },
+  {
+   "id": "DUMP-1210",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "An organization is preparing to achieve General Data Protection Regulation (GDPR) compliance. The Chief Information Security Officer (CISO) is reviewing data protection methods. Which of the following is the BEST data protection method?",
+   "options": [
+    "Encryption",
+    "Backups",
+    "Data obfuscation",
+    "Strong authentication"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "GDPR explicitly cites encryption as a key protection measure, protecting confidentiality at rest and in transit.",
+   "optionNotes": [
+    "Correct: GDPR names encryption as a key safeguard of confidentiality.",
+    "Backups support availability, not privacy protection.",
+    "Obfuscation is weaker and less general than encryption.",
+    "Authentication controls access but doesn't protect the data itself."
+   ]
+  },
+  {
+   "id": "DUMP-1223",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The threat modeling identifies a man-in-the-middle (MITM) exposure. Which countermeasure should the information system security officer (ISSO) select to mitigate the risk of a protected Health information (PHI) data leak?",
+   "options": [
+    "Auditing",
+    "Anonymization",
+    "Privacy monitoring",
+    "Data retention"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Anonymising PHI means intercepted data cannot be linked to individuals, limiting the leak's impact.",
+   "optionNotes": [
+    "Auditing is detective; doesn't stop leaks.",
+    "Correct: anonymised data has no PHI value if intercepted.",
+    "Monitoring detects but doesn't prevent disclosure.",
+    "Retention limits volume but doesn't protect transit data."
+   ]
+  },
+  {
+   "id": "DUMP-1249",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST describes the responsibilities of data owner?",
+   "options": [
+    "Ensuring quality and validation through periodic audits for ongoing data integrity",
+    "Determining the impact the information has on the mission of the organization",
+    "Maintaining fundamental data availability, including data storage and archiving",
+    "Ensuring accessibility to appropriate users, maintaining appropriate levels of data security"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The data owner is a senior business role accountable for the data; they determine its value and impact on the mission, which drives classification. Day-to-day storage, availability and access handling are custodian duties.",
+   "optionNotes": [
+    "Auditor/steward activity",
+    "Right: owner judges value and mission impact",
+    "Custodian duty",
+    "Custodian/administrator duty"
+   ]
+  },
+  {
+   "id": "DUMP-1255",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the MOST effective countermeasure against data remanence?",
+   "options": [
+    "Destruction",
+    "Clearing",
+    "Purging",
+    "Encryption"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Physical destruction leaves no media from which residual data could be recovered, so it is the most effective remedy.",
+   "optionNotes": [
+    "Right: removes media entirely",
+    "Clearing can be recovered in a lab",
+    "Purging is strong but still leaves the media",
+    "Protects data but keys or crypto may fail; not remanence removal"
+   ]
+  },
+  {
+   "id": "DUMP-1309",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following will have the MOST influence on the definition and creation of data classification and data ownership policies?",
+   "options": [
+    "Data access control policies",
+    "Threat modeling",
+    "Common Criteria (CC)",
+    "Business Impact Analysis (BIA)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The BIA shows which data supports critical business functions and how much harm its loss would cause. That value judgement drives classification levels and who should own the data.",
+   "optionNotes": [
+    "Access policies are derived from classification, not the other way round.",
+    "Threat modeling targets attacks on systems.",
+    "Common Criteria evaluates products.",
+    "Correct: business impact determines data value and classification."
+   ]
+  },
+  {
+   "id": "DUMP-1321",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "What steps can be taken to prepare personally identifiable information (PII) for processing by a third party?",
+   "options": [
+    "It is not necessary to protect PII as long as it is in the hands of the provider.",
+    "A security agreement with a Cloud Service Provider (CSP) was required so there is no concern.",
+    "The personal information should be maintained separately connected with a one-way reference.",
+    "The personal information can be hashed and then the data can be sent to an outside processor."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Pseudonymisation keeps the identifiers in a separate store linked by a one-way reference, so the third party processes the data without seeing who it belongs to. Plain hashing of PII is open to dictionary attacks and can break processing.",
+   "optionNotes": [
+    "Responsibility for PII stays with the controller.",
+    "A contract does not remove the need for protection.",
+    "Correct: separating identifiers (pseudonymisation) protects PII.",
+    "Hashing is reversible by brute force for low-entropy PII and limits usefulness."
+   ]
+  },
+  {
+   "id": "DUMP-1323",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "How long should the records on a project be retained?",
+   "options": [
+    "For the duration of the project, or at the discretion of the record owner",
+    "Until they are no longer useful or required by policy",
+    "Until five years after the project ends, then move to archives",
+    "For the duration of the organization fiscal year"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Records should be kept as long as they have business value or as policy and legal requirements dictate, then disposed of. Fixed arbitrary periods ignore retention policy.",
+   "optionNotes": [
+    "Owner discretion ignores the retention policy.",
+    "Correct: retention follows need and policy.",
+    "An arbitrary five years is not policy-based.",
+    "A fiscal year is arbitrary."
+   ]
+  },
+  {
+   "id": "DUMP-1346",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following would be the BEST guideline to follow when attempting to avoid the exposure of sensitive data?",
+   "options": [
+    "Store sensitive data only when necessary.",
+    "Educate end-users on methods of attacks on sensitive data.",
+    "Establish report parameters for sensitive data.",
+    "Monitor mail servers for sensitive data being exfiltrated."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Data minimization: data never stored cannot be exposed, so storing sensitive data only when necessary is the strongest preventive guideline.",
+   "optionNotes": [
+    "Right: minimization removes data that could otherwise be exposed.",
+    "Awareness helps but does not reduce the data at risk.",
+    "Report parameters control output, not exposure of stored data.",
+    "Detective control after the fact, not avoidance."
+   ]
+  },
+  {
+   "id": "DUMP-1352",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "What is the MAIN reason to ensure the appropriate retention periods are enforced for data stored on electronic media?",
+   "options": [
+    "To reduce the carbon footprint by eliminating paper",
+    "To create an inventory of data assets stored on disk for backup and recovery",
+    "To declassify information that has been improperly classified",
+    "To reduce the risk of loss, unauthorized access, use, modification, and disclosure"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Enforcing retention limits keeps data no longer than needed, reducing exposure to loss, misuse and disclosure.",
+   "optionNotes": [
+    "Environmental benefit is not the security reason.",
+    "Inventory is a separate asset-management task.",
+    "Declassification is unrelated to retention.",
+    "Right: holding data only as long as required reduces exposure."
+   ]
+  },
+  {
+   "id": "DUMP-1364",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is a key responsibility for a data steward assigned to manage an enterprise data lake?",
+   "options": [
+    "Ensure proper business definition, value, and usage of data collected and stored within the enterprise data lake.",
+    "Ensure proper and identifiable data owners for each data element stored within an enterprise data lake.",
+    "Ensure adequate security controls applied to the enterprise data lake.",
+    "Ensure that any data passing within remit is being used in accordance with the rules and regulations of the business."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Data stewards handle business definition, quality and proper usage of data; ownership and security controls sit with owners and custodians.",
+   "optionNotes": [
+    "Right: business meaning, quality and usage are stewardship duties.",
+    "Owners are appointed by management, not by the steward.",
+    "Security controls are a custodian duty.",
+    "Overall regulatory compliance belongs to owners and compliance staff."
+   ]
+  },
+  {
+   "id": "DUMP-1388",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Organization A is adding a large collection of confidential data records that it received when it acquired Organization B to its data store. Many of the users and staff from Organization B are no longer available. Which of the following MUST Organization A do to properly classify and secure the acquired data?",
+   "options": [
+    "Assign data owners from Organization A to the acquired data.",
+    "Create placeholder accounts that represent former users from Organization B.",
+    "Archive audit records that refer to users from Organization A.",
+    "Change the data classification for data acquired from Organization B."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Acquired data needs accountable data owners who will classify it and set protection requirements.",
+   "optionNotes": [
+    "Right: owners classify the data and set its protection.",
+    "Fake accounts create risk and add no accountability.",
+    "Unrelated to classifying the acquired data.",
+    "Classification cannot be changed before owners assess it."
+   ]
+  },
+  {
+   "id": "DUMP-1392",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Why is data classification control important to an organization?",
+   "options": [
+    "To ensure its integrity, confidentiality and availability",
+    "To enable data discovery",
+    "To control data retention in alignment with organizational policies and regulation",
+    "To ensure security controls align with organizational risk appetite"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Classification ensures protection is proportionate to value and sensitivity, aligning controls with risk appetite.",
+   "optionNotes": [
+    "CIA is the general goal, not why classification is used.",
+    "Discovery comes before classification.",
+    "Retention is one result of classification.",
+    "Right: proportional controls aligned to risk appetite."
+   ]
+  },
+  {
+   "id": "DUMP-1400",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "An employee's home address should be categorized according to which of the following references?",
+   "options": [
+    "The consent form terms and conditions signed by employees",
+    "The organization's data classification model",
+    "Existing employee data classifications",
+    "An organization security plan for human resources"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Every data item, including HR personal data, is labelled by applying the organization's data classification model. The model defines the categories and handling rules, so it is the reference to use.",
+   "optionNotes": [
+    "Consent terms govern use, not the classification category.",
+    "Correct: the classification model is the authoritative scheme for labelling data.",
+    "Existing classifications may be inconsistent and derive from the model anyway.",
+    "An HR security plan applies controls but does not define classification levels."
+   ]
+  },
+  {
+   "id": "DUMP-1403",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following statements is MOST accurate regarding information assets?",
+   "options": [
+    "International Organization for Standardization (ISO) 27001 compliance specifies which information assets must be included in asset inventory.",
+    "Information assets include any information that is valuable to the organization,",
+    "Building an information assets register is a resource-intensive job.",
+    "Information assets inventory is not required for risk assessment."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "An information asset is any information that has value to the organization, whatever its form. The other statements are false or are only incidental.",
+   "optionNotes": [
+    "ISO 27001 requires an inventory but does not prescribe which assets go in it.",
+    "Correct: value to the organization is what makes information an asset.",
+    "It can take effort, but that is not the most accurate defining statement.",
+    "An asset inventory is a prerequisite for risk assessment."
+   ]
+  },
+  {
+   "id": "DUMP-1407",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is an example of a vulnerability of full-disk encryption (FDE)?",
+   "options": [
+    "Data at rest has been compromised when the user has authenticated to the device.",
+    "Data on the device cannot be restored from backup.",
+    "Data in transit has been compromised when the user has authenticated to the device.",
+    "Data on the device cannot be backed up."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Full-disk encryption protects data only while the device is powered off or locked. Once the user authenticates, the volume is decrypted and data at rest is exposed to malware or an attacker on the running system.",
+   "optionNotes": [
+    "Correct: FDE offers no protection once the device is unlocked.",
+    "FDE does not stop restoring from backups.",
+    "FDE has nothing to do with data in transit.",
+    "Backups remain possible on FDE devices."
+   ]
+  },
+  {
+   "id": "DUMP-1412",
+   "domain": 2,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Once the types of information have been identified, who should an information security practitioner work with to ensure that the information is properly categorized?",
+   "options": [
+    "Information Owner (IO)",
+    "System Administrator",
+    "Business Continuity (BC) Manager",
+    "Chief Information Officer (CIO)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The information owner is accountable for the data and decides its classification. The practitioner advises, but categorization is the owner's call.",
+   "optionNotes": [
+    "Correct: the data owner determines classification.",
+    "Administrators are custodians who implement controls.",
+    "The BC manager handles continuity, not classification.",
+    "The CIO is too far removed; ownership sits with the business owner."
+   ]
+  },
+  {
+   "id": "DUMP-1446",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Why would a system be structured to isolate different classes of information from one another and segregate them by user jurisdiction?",
+   "options": [
+    "The organization can avoid e-discovery processes in the event of litigation.",
+    "The organization's infrastructure is clearly arranged and scope of responsibility is simplified.",
+    "The organization can vary its system policies to comply with conflicting national laws.",
+    "The organization is required to provide different services to various third-party organizations."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Segregating data by jurisdiction lets the organization apply different policies to meet differing or conflicting national laws, such as privacy and data residency rules.",
+   "optionNotes": [
+    "Segregation does not avoid e-discovery.",
+    "A side benefit, not the reason.",
+    "Correct: supports per-jurisdiction legal compliance.",
+    "Not linked to legal jurisdiction."
+   ]
+  },
+  {
+   "id": "DUMP-1466",
+   "domain": 2,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization is required to comply with the Payment Card Industry Data Security Standard (PCI-DSS), what is the MOST effective approach to safeguard digital and paper media that contains cardholder data?",
+   "options": [
+    "Use and regularly update antivirus software.",
+    "Maintain strict control over storage of media",
+    "Mandate encryption of cardholder data.",
+    "Configure firewall rules to protect the data."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said C] PCI DSS requires strict physical control over storage and accessibility of all media containing cardholder data; this covers both paper and digital media, which encryption alone cannot.",
+   "optionNotes": [
+    "Does not protect paper media",
+    "Correct: covers digital and paper media",
+    "Cannot protect paper media",
+    "Network control only"
+   ]
+  }
+ ]
+}

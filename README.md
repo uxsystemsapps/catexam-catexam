@@ -43,7 +43,9 @@ Electron + TypeScript.
 
 ## Question bank
 
-`questions/domain-*.json` holds 198 original starter questions across all 8 domains. Use **Import a
+The app ships 2,821 questions in `questions/`: 198 original starter questions (`domain-*.json`), the
+reviewed CISSP dump per domain (`dump-domain*.json`, 1,307) and the OPT4 chapter and practice-test banks
+(`opt4-*.json`, 1,316). Use **Import a
 folder of question banks** to add more: every `.json` file in the chosen folder is validated, and the
 valid ones are copied into the profile (`banks/`). One summary then lists how many files and questions
 were added, the files skipped because a bank with the same `name` is already loaded, and the files that

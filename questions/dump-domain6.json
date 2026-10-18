@@ -1,0 +1,2742 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 6: Security Assessment and Testing",
+ "questions": [
+  {
+   "id": "DUMP-0023",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which component of the Security Content Automation Protocol (SCAP) specification contains the data required to estimate the severity of vulnerabilities identified in automated vulnerability assessments?",
+   "options": [
+    "Common Vulnerabilities and Exposures (CVE)",
+    "Common Vulnerability Scoring System (CVSS)",
+    "Asset Reporting Format (ARF)",
+    "Open Vulnerability and Assessment Language (OVAL)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "CVSS provides the scoring data used to estimate vulnerability severity.",
+   "optionNotes": [
+    "CVE names vulnerabilities but gives no severity.",
+    "Correct: CVSS scores severity.",
+    "ARF formats assessment results.",
+    "OVAL describes how to test for system states."
+   ]
+  },
+  {
+   "id": "DUMP-0039",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "A Virtual Machine (VM) environment has five guest Operating Systems (OS) and provides strong isolation. What MUST an administrator review to audit a user's access to data files?",
+   "options": [
+    "Host VM monitor audit logs",
+    "Guest OS access controls",
+    "Host VM access controls",
+    "Guest OS audit logs"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "File access occurs within each guest, so the guest OS audit logs record user data access.",
+   "optionNotes": [
+    "Host monitor doesn't see guest file accesses.",
+    "Access controls show permissions, not activity.",
+    "Host controls govern VM admin, not guest files.",
+    "Correct: guest logs record file access."
+   ]
+  },
+  {
+   "id": "DUMP-0040",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following is a PRIMARY benefit of using a formalized security testing report format and structure?",
+   "options": [
+    "Executive audiences will understand the outcomes of testing and most appropriate next steps for corrective actions to be taken",
+    "Technical teams will understand the testing objectives, testing strategies applied, and business risk associated with each vulnerability",
+    "Management teams will understand the testing objectives and reputational risk to the organization",
+    "Technical and management teams will better understand the testing objectives, results of each test phase, and potential impact levels"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A formal report structure helps both technical and management audiences understand objectives, results and impact.",
+   "optionNotes": [
+    "Executives only; too narrow.",
+    "Technical only; too narrow.",
+    "Management/reputation only; too narrow.",
+    "Correct: serves both audiences comprehensively."
+   ]
+  },
+  {
+   "id": "DUMP-0041",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "In which of the following programs is it MOST important to include the collection of security process data?",
+   "options": [
+    "Quarterly access reviews",
+    "Security continuous monitoring",
+    "Business continuity testing",
+    "Annual security training"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Continuous monitoring depends on collecting security process data to assess control effectiveness.",
+   "optionNotes": [
+    "Access reviews are periodic snapshots.",
+    "Correct: ISCM depends on process data.",
+    "BC testing measures recoverability.",
+    "Training data is participation, not process."
+   ]
+  },
+  {
+   "id": "DUMP-0042",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is of GREATEST assistance to auditors when reviewing system configurations?",
+   "options": [
+    "Change management processes",
+    "User administration procedures",
+    "Operating System (OS) baselines",
+    "System backup documentation"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "OS baselines give auditors a documented standard to compare configurations against.",
+   "optionNotes": [
+    "Change management helps but isn't the comparison point.",
+    "User admin isn't configuration.",
+    "Correct: baselines are the reference standard.",
+    "Backups unrelated to configuration review."
+   ]
+  },
+  {
+   "id": "DUMP-0047",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "With what frequency should monitoring of a control occur when implementing Information Security Continuous Monitoring (ISCM) solutions?",
+   "options": [
+    "Continuously without exception for all security controls",
+    "Before and after each change of the control",
+    "At a rate concurrent with the volatility of the security control",
+    "Only during system implementation and decommissioning"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "ISCM monitoring frequency should match how volatile each control is.",
+   "optionNotes": [
+    "Not all controls need continuous monitoring.",
+    "Change-based only misses drift.",
+    "Correct: frequency based on control volatility.",
+    "Far too infrequent."
+   ]
+  },
+  {
+   "id": "DUMP-0064",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "The three PRIMARY requirements for a penetration test are",
+   "options": [
+    "A defined goal, limited time period, and approval of management",
+    "A general objective, unlimited time, and approval of the network administrator",
+    "An objective statement, disclosed methodology, and fixed cost",
+    "A stated objective, liability waiver, and disclosed methodology"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A pen test needs a defined goal, defined time window, and management approval. Testing without management approval is unauthorized, and an open-ended time window is unsafe. A clear goal, a bounded window and senior management sign-off are the core of the rules of engagement.",
+   "optionNotes": [
+    "Right: defined goal, defined time window and management approval are essential.",
+    "Unlimited time and admin-only approval are wrong; management must approve.",
+    "Fixed cost is not a primary requirement.",
+    "Liability waivers and methodology disclosure are secondary to approval."
+   ]
+  },
+  {
+   "id": "DUMP-0101",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Following the completion of a network security assessment, which of the following can BEST be demonstrated?",
+   "options": [
+    "The effectiveness of controls can be accurately measured",
+    "A penetration test of the network will fail",
+    "The network is compliant to industry standards",
+    "All unpatched vulnerabilities have been identified"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A network security assessment evaluates existing controls against threats and vulnerabilities, so its main output is a measure of control effectiveness. It cannot promise future test outcomes, prove compliance, or find every unpatched flaw.",
+   "optionNotes": [
+    "Right: assessment measures how well controls work",
+    "No assessment can guarantee a future pentest will fail",
+    "Compliance requires an audit against the specific standard",
+    "Scans miss unknown or unreachable vulnerabilities"
+   ]
+  },
+  {
+   "id": "DUMP-0120",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following statements is TRUE of black box testing?",
+   "options": [
+    "Only the functional specifications are known to the test planner.",
+    "Only the source code and the design documents are known to the test planner.",
+    "Only the source code and functional specifications are known to the test planner.",
+    "Only the design documents and the functional specifications are known to the test planner."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Black-box testers see only external behaviour as defined by functional specifications. Source code and design knowledge mean white-box or grey-box testing.",
+   "optionNotes": [
+    "Right: only functional specs known",
+    "Source and design knowledge means white-box",
+    "Source knowledge means white-box",
+    "Design documents imply grey-box"
+   ]
+  },
+  {
+   "id": "DUMP-0125",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What would be the PRIMARY concern when designing and coordinating a security assessment for an Automatic Teller Machine (ATM) system?",
+   "options": [
+    "Physical access to the electronic hardware",
+    "Regularly scheduled maintenance process",
+    "Availability of the network connection",
+    "Processing delays"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "ATMs sit in public, often unattended locations where skimmers and tampering are the main threat. Physical access to the hardware is the primary assessment concern.",
+   "optionNotes": [
+    "Right: physical tampering is the dominant risk",
+    "Maintenance scheduling is operational",
+    "Network availability is secondary to tampering risk",
+    "Processing delay is performance"
+   ]
+  },
+  {
+   "id": "DUMP-0151",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following assessment metrics is BEST used to understand a system's vulnerability to potential exploits?",
+   "options": [
+    "Determining the probability that the system functions safely during any time period",
+    "Quantifying the system's available services",
+    "Identifying the number of security flaws within the system",
+    "Measuring the system's integrity in the presence of failure"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Exposure to exploits is gauged by the flaws (vulnerabilities) present; the other metrics measure safety, availability or reliability.",
+   "optionNotes": [
+    "Probability of safe operation is a safety/reliability metric",
+    "Counting available services measures availability",
+    "The number of flaws present reflects exposure to exploits",
+    "Integrity under failure is a fault-tolerance metric"
+   ]
+  },
+  {
+   "id": "DUMP-0152",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "The BEST method of demonstrating a company's security level to potential customers is",
+   "options": [
+    "a report from an external auditor.",
+    "responding to a customer's security questionnaire.",
+    "a formal report from an internal auditor.",
+    "a site visit by a customer's security team."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An independent external audit report (e.g., SOC 2) is the most credible, objective evidence for customers.",
+   "optionNotes": [
+    "Independent external attestation (e.g., SOC 2) is most credible to customers",
+    "Self-answered questionnaires are unverified claims",
+    "Internal auditors lack independence from the customer's view",
+    "Site visits are costly, narrow snapshots and not scalable"
+   ]
+  },
+  {
+   "id": "DUMP-0161",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A vulnerability test on an Information System (IS) is conducted to",
+   "options": [
+    "exploit security weaknesses in the IS.",
+    "measure system performance on systems with weak security controls.",
+    "evaluate the effectiveness of security controls.",
+    "prepare for Disaster Recovery (DR) planning."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Vulnerability testing identifies weaknesses to evaluate how effective the existing controls are; exploitation is penetration testing.",
+   "optionNotes": [
+    "Exploiting weaknesses describes penetration testing",
+    "Performance measurement is not a vulnerability test goal",
+    "Finding weaknesses shows how effective existing controls are",
+    "DR planning is a separate continuity activity"
+   ]
+  },
+  {
+   "id": "DUMP-0164",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the FIRST step of a penetration test plan?",
+   "options": [
+    "Analyzing a network diagram of the target network",
+    "Notifying the company's customers",
+    "Obtaining the approval of the company's management",
+    "Scheduling the penetration test during a period of least impact"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Pen testing must start with written management authorization before any planning or activity.",
+   "optionNotes": [
+    "Network analysis is planning done after authorization",
+    "Customers are not notified of a pen test",
+    "Written management authorization must come first",
+    "Scheduling is a later logistics step"
+   ]
+  },
+  {
+   "id": "DUMP-0165",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An auditor carrying out a compliance audit requests passwords that are encrypted in the system to verify that the passwords are compliant with policy. Which of the following is the BEST response to the auditor?",
+   "options": [
+    "Provide the encrypted passwords and analysis tools to the auditor for analysis.",
+    "Analyze the encrypted passwords for the auditor and show them the results.",
+    "Demonstrate that non-compliant passwords cannot be created in the system.",
+    "Demonstrate that non-compliant passwords cannot be encrypted in the system."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Never hand over password data; show the auditor that system enforcement prevents non-compliant passwords, which proves compliance.",
+   "optionNotes": [
+    "Handing over password hashes exposes them to cracking",
+    "Analyzing for the auditor still exposes secrets and isn't independent",
+    "Showing the system rejects non-compliant passwords proves enforcement",
+    "Encryption has no bearing on password policy compliance"
+   ]
+  },
+  {
+   "id": "DUMP-0166",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The stringency of an Information Technology (IT) security assessment will be determined by the",
+   "options": [
+    "system's past security record.",
+    "size of the system's database.",
+    "sensitivity of the system's data.",
+    "age of the system."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Assessment rigor scales with the sensitivity/criticality of the data the system processes.",
+   "optionNotes": [
+    "History may inform scope but doesn't set rigor",
+    "Database size doesn't define assessment depth",
+    "Data sensitivity/criticality drives the level of assurance needed",
+    "Age may raise risk but isn't the determinant"
+   ]
+  },
+  {
+   "id": "DUMP-0180",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "The overall goal of a penetration test is to determine a system's",
+   "options": [
+    "ability to withstand an attack.",
+    "capacity management.",
+    "error recovery capabilities.",
+    "reliability under stress."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A penetration test determines how well a system withstands real attack attempts.",
+   "optionNotes": [
+    "Simulated attacks show resistance to real attackers",
+    "Capacity planning is a performance topic",
+    "Error recovery is a resilience/DR test",
+    "Stress testing measures performance under load"
+   ]
+  },
+  {
+   "id": "DUMP-0185",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the FIRST step in developing a security test and its evaluation?",
+   "options": [
+    "Determine testing methods",
+    "Develop testing procedures",
+    "Identify all applicable security requirements",
+    "Identify people, processes, and products not in compliance"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Testing starts by identifying applicable security requirements, which drive methods and procedures.",
+   "optionNotes": [
+    "Methods are chosen after requirements are known",
+    "Procedures derive from requirements and methods",
+    "Requirements define what to test, so they come first",
+    "Non-compliance is a test result, not a first step"
+   ]
+  },
+  {
+   "id": "DUMP-0186",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following is the FIRST action that a system administrator should take when it is revealed during a penetration test that everyone in an organization has unauthorized access to a server holding sensitive data?",
+   "options": [
+    "Immediately document the finding and report to senior management.",
+    "Use system privileges to alter the permissions to secure the server",
+    "Continue the testing to its completion and then inform IT management",
+    "Terminate the penetration test and pass the finding to the server management team"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The tester should not change systems; document the critical finding and escalate to senior management who own the risk.",
+   "optionNotes": [
+    "Document and escalate to senior management who own the risk",
+    "Changing permissions mid-test is unauthorized and alters the test",
+    "Waiting leaves a critical exposure unreported",
+    "Bypasses management escalation and halts the test needlessly"
+   ]
+  },
+  {
+   "id": "DUMP-0212",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "According to best practice, which of the following groups is the MOST effective in performing an information security compliance audit?",
+   "options": [
+    "In-house security administrators",
+    "In-house Network Team",
+    "Disaster Recovery (DR) Team",
+    "External consultants"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Compliance audits should be performed by parties independent of the systems being audited. External consultants provide that independence and objectivity.",
+   "optionNotes": [
+    "Administrators would audit their own work.",
+    "Network staff lack independence over their own systems.",
+    "DR team is not an audit function.",
+    "Correct: external parties provide independence."
+   ]
+  },
+  {
+   "id": "DUMP-0213",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "The amount of data that will be collected during an audit is PRIMARILY determined by the",
+   "options": [
+    "audit scope.",
+    "auditor's experience level.",
+    "availability of the data.",
+    "integrity of the data."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The audit scope defines which systems, periods and controls are examined, and therefore drives how much evidence must be collected. Data availability constrains collection but does not determine the requirement.",
+   "optionNotes": [
+    "Correct: scope dictates which and how much evidence is needed.",
+    "Experience affects efficiency, not volume required.",
+    "Availability limits collection but does not set it.",
+    "Integrity concerns the reliability of evidence, not its quantity."
+   ]
+  },
+  {
+   "id": "DUMP-0234",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the MOST crucial for a successful audit plan?",
+   "options": [
+    "Defining the scope of the audit to be performed",
+    "Identifying the security controls to be implemented",
+    "Working with the system owner on new controls",
+    "Acquiring evidence of systems that are not compliant"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An audit plan depends on clearly defined scope, which determines objectives, resources and evidence.",
+   "optionNotes": [
+    "Correct: scope is the foundation of the audit plan.",
+    "Implementing controls is not an audit task.",
+    "Auditors should remain independent of control design.",
+    "An audit result, not a planning element."
+   ]
+  },
+  {
+   "id": "DUMP-0304",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When planning a penetration test, the tester will be MOST interested in which information?",
+   "options": [
+    "Places to install back doors",
+    "The main network access points",
+    "Job application handouts and tours",
+    "Exploits that can attack weaknesses"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A penetration test aims to demonstrate whether weaknesses can actually be exploited, so the tester is most interested in exploits that target found vulnerabilities. Access points and back doors are steps toward that goal.",
+   "optionNotes": [
+    "Installing back doors is not the aim of an authorized test",
+    "Access points are reconnaissance, a means to exploitation",
+    "Job handouts/tours are minor social engineering info",
+    "Exploitable weaknesses show real risk, the core of a pen test"
+   ]
+  },
+  {
+   "id": "DUMP-0319",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "As a best practice, the Security Assessment Report (SAR) should include which of the following sections?",
+   "options": [
+    "Data classification policy",
+    "Software and hardware inventory",
+    "Remediation recommendations",
+    "Names of participants"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "An assessment report documents findings and should give recommendations for fixing them so management can act. The other items belong in other documents.",
+   "optionNotes": [
+    "Classification policy is a separate governance document",
+    "Inventory belongs in asset management records",
+    "Remediation recommendations make findings actionable",
+    "Participant names are not a key section"
+   ]
+  },
+  {
+   "id": "DUMP-0343",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following is an essential step before performing Structured Query Language (SQL) penetration tests on a production system?",
+   "options": [
+    "Verify countermeasures have been deactivated.",
+    "Ensure firewall logging has been activated.",
+    "Validate target systems have been backed up.",
+    "Confirm warm site is ready to accept connections."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Penetration tests on production can damage data or availability, so a verified backup must exist first to allow recovery.",
+   "optionNotes": [
+    "Disabling countermeasures is not a prerequisite and weakens production protection",
+    "Logging helps but does not enable recovery if the test damages data",
+    "A verified backup allows restoration if SQL injection testing corrupts data",
+    "A warm site is for disasters, not a routine pre-test step"
+   ]
+  },
+  {
+   "id": "DUMP-0350",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following is the PRIMARY reason to perform regular vulnerability scanning of an organization network?",
+   "options": [
+    "Provide vulnerability reports to management.",
+    "Validate vulnerability remediation activities.",
+    "Prevent attackers from discovering vulnerabilities.",
+    "Remediate known vulnerabilities."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Scanning finds known vulnerabilities so they can be remediated before exploitation.",
+   "optionNotes": [
+    "Reporting is an output, not the primary purpose",
+    "Validating fixes is a secondary benefit",
+    "Scanning cannot stop attackers from finding flaws",
+    "Finding vulnerabilities so they can be remediated is the core purpose"
+   ]
+  },
+  {
+   "id": "DUMP-0358",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following types of security testing is the MOST effective in providing a better indication of the everyday security challenges of an organization when performing a security risk assessment?",
+   "options": [
+    "External",
+    "Overt",
+    "Internal",
+    "Covert"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said C] The question asks which test gives the most realistic picture of everyday security. In a covert test, staff and defenders do not know the test is happening, so their normal practices, detection and response are what get measured. In an overt test, people know about the test and may behave better than usual. Internal and external testing describe the attacker's position, not how realistic the observed behavior is.",
+   "optionNotes": [
+    "Wrong: external testing shows only the perimeter attacker's view, not everyday behavior inside the organization.",
+    "Wrong: in an overt test staff are aware and may change their behavior, so the result is less representative.",
+    "Wrong: internal testing describes the tester's position. Staff may still know about it, so it does not ensure realistic everyday conditions.",
+    "Correct: in an unannounced covert test, staff act as they normally would, which shows real day-to-day security challenges."
+   ]
+  },
+  {
+   "id": "DUMP-0359",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which type of security testing is being performed when an ethical hacker has no knowledge about the target system but the testing target is notified before the test?",
+   "options": [
+    "Reversal",
+    "Gray box",
+    "Blind",
+    "White box"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In a blind test the tester has no knowledge but the target's staff are informed; double-blind would keep them unaware.",
+   "optionNotes": [
+    "Reversal is not a standard test type",
+    "Gray box gives the tester partial knowledge",
+    "Blind: tester has no knowledge, target is notified",
+    "White box gives full knowledge to the tester"
+   ]
+  },
+  {
+   "id": "DUMP-0382",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An organization has hired a security services firm to conduct a penetration test. Which of the following will the organization provide to the tester?",
+   "options": [
+    "Limits and scope of the testing.",
+    "Physical location of server room and wiring closet.",
+    "Logical location of filters and concentrators.",
+    "Employee directory and organizational chart."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Scope and rules of engagement (limits) must be agreed and provided before testing.",
+   "optionNotes": [
+    "Scope and limits define authorized testing",
+    "Physical locations may be discovered or out of scope",
+    "Filter locations are for the tester to find if in scope",
+    "Staff directories are not a required deliverable"
+   ]
+  },
+  {
+   "id": "DUMP-0383",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the BEST method to assess the effectiveness of an organization's vulnerability management program?",
+   "options": [
+    "Review automated patch deployment reports",
+    "Periodic third party vulnerability assessment",
+    "Automated vulnerability scanning",
+    "Perform vulnerability scan by security team"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "An independent third-party assessment gives an unbiased view of whether the program actually reduces vulnerabilities.",
+   "optionNotes": [
+    "Patch reports show activity, not effectiveness",
+    "Independent assessment gives unbiased effectiveness view",
+    "Automated scans by the program are self-assessment",
+    "Internal team scans lack independence"
+   ]
+  },
+  {
+   "id": "DUMP-0393",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "How should an organization determine the priority of its remediation efforts after a vulnerability assessment has been conducted?",
+   "options": [
+    "Use an impact-based approach.",
+    "Use a risk-based approach.",
+    "Use a criticality-based approach.",
+    "Use a threat-based approach."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Remediation is prioritized by risk, combining likelihood and impact.",
+   "optionNotes": [
+    "Impact alone ignores likelihood",
+    "Risk combines likelihood and impact",
+    "Criticality ignores threat likelihood",
+    "Threat alone ignores asset impact"
+   ]
+  },
+  {
+   "id": "DUMP-0415",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following is a strategy of grouping requirements in developing a Security Test and Evaluation (ST&E)?",
+   "options": [
+    "Tactical, strategic, and financial",
+    "Management, operational, and technical",
+    "Documentation, observation, and manual",
+    "Standards, policies, and procedures"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "NIST groups security controls and requirements into management, operational and technical classes, and ST&E plans are organised the same way. The other groupings are not used for requirements.",
+   "optionNotes": [
+    "Financial is not a control class.",
+    "Right: the NIST management/operational/technical grouping.",
+    "Mixes evidence-gathering methods, not requirement groups.",
+    "Governance document types, not requirement grouping."
+   ]
+  },
+  {
+   "id": "DUMP-0431",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "When designing a vulnerability test, which one of the following is likely to give the BEST indication of what components currently operate on the network?",
+   "options": [
+    "Topology diagrams",
+    "Mapping tools",
+    "Asset register",
+    "Ping testing"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Mapping tools discover what actually runs on the network right now. Diagrams and registers may be outdated, and ping finds only hosts that respond.",
+   "optionNotes": [
+    "Diagrams often stale.",
+    "Right: active discovery of current components.",
+    "Register may not reflect reality.",
+    "Ping misses filtered hosts and services."
+   ]
+  },
+  {
+   "id": "DUMP-0435",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "When writing security assessment procedures, what is the MAIN purpose of the test outputs and reports?",
+   "options": [
+    "To force the software to fail and document the process",
+    "To find areas of compromise in confidentiality and integrity",
+    "To allow for objective pass or fail decisions",
+    "To identify malware or hidden code within the test results"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said B] Assessment procedures define expected outputs so assessors can objectively judge whether a control passed. The reports are the evidence for that decision.",
+   "optionNotes": [
+    "Forcing failure is a test technique, not report purpose.",
+    "Too narrow; tests cover more than C and I.",
+    "Right: objective pass/fail criteria.",
+    "Malware detection is not the purpose."
+   ]
+  },
+  {
+   "id": "DUMP-0450",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following BEST describes the purpose of performing security certification?",
+   "options": [
+    "To identify system threats, vulnerabilities, and acceptable level of risk",
+    "To formalize the confirmation of compliance to security policies and standards",
+    "To formalize the confirmation of completed risk mitigation and risk analysis",
+    "To verify that system architecture and interconnections with other systems are effectively implemented"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Certification is the technical evaluation that formally confirms a system meets its security policies and standards. It feeds accreditation, where management accepts the risk.",
+   "optionNotes": [
+    "Identifying threats and vulnerabilities is risk assessment, not certification.",
+    "Correct: certification formally confirms compliance with security requirements.",
+    "Mitigation confirmation is narrower and is not the defined purpose.",
+    "Checking the architecture is only part of the evaluation, not its purpose."
+   ]
+  },
+  {
+   "id": "DUMP-0454",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "During the Security Assessment and Authorization process, what is the PRIMARY purpose for conducting a hardware and software inventory?",
+   "options": [
+    "Calculate the value of assets being accredited.",
+    "Create a list to include in the Security Assessment and Authorization package.",
+    "Identify obsolete hardware and software.",
+    "Define the boundaries of the information system."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In Assessment and Authorization (RMF), the inventory sets the authorization boundary, meaning which components the authorization covers. Every later step depends on that boundary.",
+   "optionNotes": [
+    "Asset valuation is not the purpose of the A&A inventory.",
+    "Being listed in the package is a by-product, not the purpose.",
+    "Finding obsolete items is incidental.",
+    "Correct: the inventory defines the system boundary."
+   ]
+  },
+  {
+   "id": "DUMP-0470",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following command line tools can be used in the reconnaissance phase of a network vulnerability assessment?",
+   "options": [
+    "dig",
+    "ifconfig",
+    "ipconfig",
+    "nbtstat"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "dig queries DNS to enumerate hosts and records about a target, which is classic reconnaissance. ifconfig and ipconfig only show local interface settings.",
+   "optionNotes": [
+    "Correct: dig gathers DNS information about the target.",
+    "ifconfig shows local interface settings.",
+    "ipconfig shows local Windows IP settings.",
+    "nbtstat shows NetBIOS information, mostly local or LAN, so it is less suited to recon."
+   ]
+  },
+  {
+   "id": "DUMP-0486",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "The PRIMARY purpose of accreditation is to:",
+   "options": [
+    "comply with applicable laws and regulations.",
+    "allow senior management to make an informed decision regarding whether to accept the risk of operating the system.",
+    "protect an organization's sensitive data.",
+    "verify that all security controls have been implemented properly and are operating in the correct manner."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Accreditation (authorization) is senior management formally accepting the residual risk of operating the system. It is based on the certification results.",
+   "optionNotes": [
+    "Compliance may be a factor but is not the purpose.",
+    "Correct: management makes an informed risk-acceptance decision.",
+    "Protecting data is a general goal, not accreditation's purpose.",
+    "Verifying controls is certification/assessment."
+   ]
+  },
+  {
+   "id": "DUMP-0519",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A security compliance manager of a large enterprise wants to reduce the time it takes to perform network, system, and application security compliance audits while increasing quality and effectiveness of the results. What should be implemented to BEST achieve the desired results?",
+   "options": [
+    "Configuration Management Database (CMDB)",
+    "Source code repository",
+    "Configuration Management Plan (CMP)",
+    "System performance monitoring application"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A CMDB holds the authoritative inventory and configuration of systems, enabling fast automated compliance comparisons across networks, systems and applications.",
+   "optionNotes": [
+    "Correct: the CMDB provides configuration data for audits.",
+    "A code repository covers only source code.",
+    "A CMP is a plan, not an audit data source.",
+    "Performance monitoring does not address compliance."
+   ]
+  },
+  {
+   "id": "DUMP-0523",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the BEST reason for the use of security metrics?",
+   "options": [
+    "They ensure that the organization meets its security objectives.",
+    "They provide an appropriate framework for Information Technology (IT) governance.",
+    "They speed up the process of quantitative risk assessment.",
+    "They quantify the effectiveness of security processes."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Metrics measure how well security processes perform, giving objective evidence of effectiveness for decision-making.",
+   "optionNotes": [
+    "Metrics do not ensure objectives are met.",
+    "Governance frameworks are separate.",
+    "Metrics are not about speeding risk assessment.",
+    "Correct: they quantify effectiveness."
+   ]
+  },
+  {
+   "id": "DUMP-0541",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "It is MOST important to perform which of the following to minimize potential impact when implementing a new vulnerability scanning tool in a production environment?",
+   "options": [
+    "Negotiate schedule with the Information Technology (IT) operation's team",
+    "Log vulnerability summary reports to a secured server",
+    "Enable scanning during off-peak hours",
+    "Establish access for Information Technology (IT) management"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Coordinating the schedule with IT operations prevents disruptions to production and allows them to prepare.",
+   "optionNotes": [
+    "Correct: negotiate with operations.",
+    "Logging reports does not reduce impact.",
+    "Off-peak is part of negotiation but unilateral.",
+    "Management access is unrelated."
+   ]
+  },
+  {
+   "id": "DUMP-0545",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "When conducting a security assessment of access controls, which activity is part of the data analysis phase?",
+   "options": [
+    "Present solutions to address audit exceptions.",
+    "Conduct statistical sampling of data transactions.",
+    "Categorize and identify evidence gathered during the audit.",
+    "Collect logs and reports."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Analysis organizes and categorizes collected evidence before conclusions are drawn.",
+   "optionNotes": [
+    "Presenting solutions is reporting.",
+    "Sampling is collection.",
+    "Correct: categorizing evidence.",
+    "Collecting logs is collection."
+   ]
+  },
+  {
+   "id": "DUMP-0557",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a characteristic of an internal audit?",
+   "options": [
+    "An internal audit is typically shorter in duration than an external audit.",
+    "The internal audit schedule is published to the organization well in advance.",
+    "The internal auditor reports to the Information Technology (IT) department",
+    "Management is responsible for reading and acting upon the internal audit results"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Internal audit results go to management, which must read them and act on them; the internal auditor stays independent of IT.",
+   "optionNotes": [
+    "Duration is not a defining characteristic",
+    "Schedules are not necessarily published in advance",
+    "Reporting to IT would compromise independence; internal audit reports to the audit committee/management",
+    "Correct: management owns the findings and must act on them"
+   ]
+  },
+  {
+   "id": "DUMP-0583",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Access to which of the following is required to validate web session management?",
+   "options": [
+    "Log timestamp",
+    "Live session traffic",
+    "Session state variables",
+    "Test scripts"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Validating session management requires inspecting the session state variables (tokens, timeouts).",
+   "optionNotes": [
+    "Timestamps alone can't validate session handling",
+    "Traffic helps but the state is what gets tested",
+    "Correct: tokens, timeouts and state must be examined",
+    "Scripts are tools, not the object being validated"
+   ]
+  },
+  {
+   "id": "DUMP-0587",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following is the MOST important security goal when performing application interface testing?",
+   "options": [
+    "Confirm that all platforms are supported and function properly",
+    "Evaluate whether systems or components pass data and control correctly to one another",
+    "Verify compatibility of software, hardware, and network connections",
+    "Examine error conditions related to external interfaces to prevent application details leakage"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "From a security view, interface testing should check that error handling does not leak application details.",
+   "optionNotes": [
+    "Platform support is a functional/compatibility goal",
+    "Data passing is a functional integration goal",
+    "Compatibility is not a security goal",
+    "Correct: error handling must not leak internal details"
+   ]
+  },
+  {
+   "id": "DUMP-0602",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which type of test would an organization perform in order to locate and target exploitable defects?",
+   "options": [
+    "Penetration",
+    "System",
+    "Performance",
+    "Vulnerability"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Penetration testing goes beyond finding weaknesses to actually exploiting them.",
+   "optionNotes": [
+    "Correct: pen testing actively exploits the defects it finds",
+    "System testing checks functional requirements, not exploitability",
+    "Performance testing measures load and response, not security flaws",
+    "A vulnerability scan identifies weaknesses but stops short of exploiting them"
+   ]
+  },
+  {
+   "id": "DUMP-0618",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "An organization adopts a new firewall hardening standard. How can the security professional verify that the technical staff correctly implemented the new standard?",
+   "options": [
+    "Perform a compliance review",
+    "Perform a penetration test",
+    "Train the technical staff",
+    "Survey the technical staff"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A compliance review checks configurations against the adopted standard.",
+   "optionNotes": [
+    "Correct: compares actual settings to the new standard",
+    "A pen test checks exploitability, not conformity",
+    "Training does not verify implementation",
+    "Surveys are self-reported and unreliable"
+   ]
+  },
+  {
+   "id": "DUMP-0628",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "As part of the security assessment plan, the security professional has been asked to use a negative testing strategy on a new website. Which of the following actions would be performed?",
+   "options": [
+    "Use a web scanner to scan for vulnerabilities within the website.",
+    "Perform a code review to ensure that the database references are properly addressed.",
+    "Establish a secure connection to the web server to validate that only the approved ports are open.",
+    "Enter only numbers in the web form and verify that the website prompts the user to enter a valid input."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Negative testing feeds invalid input to confirm the application rejects it.",
+   "optionNotes": [
+    "A vulnerability scan is not negative testing",
+    "Code review is static analysis",
+    "Port check is a configuration test",
+    "Correct: submitting invalid input to confirm rejection"
+   ]
+  },
+  {
+   "id": "DUMP-0639",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A vulnerability assessment report has been submitted to a client. The client indicates that one third of the hosts that were in scope are missing from the report. In which phase of the assessment was this error MOST likely made?",
+   "options": [
+    "Enumeration",
+    "Reporting",
+    "Detection",
+    "Discovery"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Missing hosts point to failure discovering hosts.",
+   "optionNotes": [
+    "Enumeration probes hosts already found",
+    "A reporting error is possible but less likely than missed hosts",
+    "Detection identifies vulns on known hosts only",
+    "Correct: hosts not discovered never appear downstream"
+   ]
+  },
+  {
+   "id": "DUMP-0650",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is true of Service Organization Control (SOC) reports?",
+   "options": [
+    "SOC 1 Type 2 reports assess the security, confidentiality, integrity, and availability of an organization's controls",
+    "SOC 2 Type 2 reports include information of interest to the service organization's management",
+    "SOC 2 Type 2 reports assess internal controls for financial reporting",
+    "SOC 3 Type 2 reports assess internal controls for financial reporting"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SOC 2 reports address trust services criteria and are restricted-use reports aimed at management and informed stakeholders; the other statements misattribute financial controls. SOC 1 is the report on financial-reporting controls; SOC 3 is a public summary.",
+   "optionNotes": [
+    "SOC 1 covers financial reporting controls, not CIA.",
+    "SOC 2 reports are restricted-use, aimed at management and informed stakeholders.",
+    "SOC 2 covers trust services criteria, not financial reporting.",
+    "SOC 3 is a general-use summary of trust services, not financial controls."
+   ]
+  },
+  {
+   "id": "DUMP-0651",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following activities is MOST likely to be performed during a vulnerability assessment?",
+   "options": [
+    "Establish caller authentication procedures to verify the identities of users.",
+    "Analyze the environment by conducting interview sessions with relevant parties.",
+    "Document policy exceptions required to access systems in non-compliant areas.",
+    "Review professorial credentials of the vulnerability assessment team or vendor."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Vulnerability assessments include gathering information, including interviews with system owners. Interviews alongside scanning confirm asset context and the configurations in place.",
+   "optionNotes": [
+    "Caller authentication is an operational control, not assessment.",
+    "Interviews with relevant parties gather environment information for the assessment.",
+    "Documenting exceptions is policy governance.",
+    "Credential review is procurement due diligence, not an assessment activity."
+   ]
+  },
+  {
+   "id": "DUMP-0667",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "When assessing the audit capability of an application, which of the following activities is MOST important?",
+   "options": [
+    "Determine if audit records contain sufficient information.",
+    "Review security plan for actions to be taken in the event of audit failure.",
+    "Verify if sufficient storage is allocated for audit records.",
+    "Identify procedures to investigate suspicious activity."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Audit records are only useful if they contain enough information to reconstruct events. Storage and procedures matter only once the content is adequate.",
+   "optionNotes": [
+    "Records lacking sufficient detail make auditing useless.",
+    "Audit-failure response is secondary.",
+    "Storage matters only if records are useful.",
+    "Investigation procedures follow from good records."
+   ]
+  },
+  {
+   "id": "DUMP-0677",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An organization is outsourcing its payroll system and is requesting to conduct a full audit on the third-party information technology (IT) systems. During the due diligence process, the third party provides previous audit report on its IT system. Which of the following MUST be considered by the organization in order for the audit reports to be acceptable?",
+   "options": [
+    "The audit assessment has been conducted by an independent assessor.",
+    "The audit reports have been signed by the third-party senior management.",
+    "The audit reports have been issued in the last six months.",
+    "The audit assessment has been conducted by an international audit firm."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Third-party audit reports are only reliable if performed by an independent assessor. An attestation by the provider's own staff lacks the objectivity needed for reliance.",
+   "optionNotes": [
+    "Independence is what makes third-party reports trustworthy.",
+    "Self-signed management attestation is not independent.",
+    "Recency helps but is not a must.",
+    "International firm size is irrelevant."
+   ]
+  },
+  {
+   "id": "DUMP-0679",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Before allowing a web application into the production environment, the security practitioner performs multiple types of tests to confirm that the web application performs as expected. To test the username field, the security practitioner creates a test that enters more characters into the field than is allowed. Which of the following BEST describes the type of test performed?",
+   "options": [
+    "Misuse case testing",
+    "Penetration testing",
+    "Web session testing",
+    "Interface testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Entering overlong input is misuse case testing of abuse behavior. It tests how the application handles input an attacker might supply.",
+   "optionNotes": [
+    "Deliberately abusing input length is misuse case testing.",
+    "Pen testing is broader attack simulation.",
+    "Session testing targets session management.",
+    "Interface testing checks component interactions."
+   ]
+  },
+  {
+   "id": "DUMP-0687",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is considered the FIRST step when designing an internal security control assessment?",
+   "options": [
+    "Create a plan based on recent vulnerability scans of the systems in question.",
+    "Create a plan based on comprehensive knowledge of known breaches.",
+    "Create a plan based on a recognized framework of known controls.",
+    "Create a plan based on reconnaissance of the organization's infrastructure."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Assessments should be planned against a recognized control framework. A framework ensures complete, repeatable coverage of the controls.",
+   "optionNotes": [
+    "Scans are inputs, not the basis.",
+    "Breach knowledge is ad hoc.",
+    "A recognized control framework gives a structured basis.",
+    "Reconnaissance is a pen test activity."
+   ]
+  },
+  {
+   "id": "DUMP-0703",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An organization is planning to have an IT audit of its Software as a Service (SaaS) application to demonstrate to external parties that the security controls around availability are designed. The audit report must also cover a certain period of time to show the operational effectiveness of the controls. Which Service Organization Control (SOC) report would BEST fit their needs?",
+   "options": [
+    "SOC 1 Type 1",
+    "SOC 1 Type 2",
+    "SOC 2 Type 1",
+    "SOC 2 Type 2"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SOC 2 reports cover the Trust Services Criteria such as availability, while SOC 1 addresses internal control over financial reporting. A Type 2 report tests operating effectiveness over a period of time, which is what's required here.",
+   "optionNotes": [
+    "SOC 1 covers financial reporting controls and Type 1 is a single point in time.",
+    "SOC 1 does not address availability criteria.",
+    "SOC 2 Type 1 covers design only, at a point in time.",
+    "Right: SOC 2 Type 2 covers availability and operating effectiveness over a period."
+   ]
+  },
+  {
+   "id": "DUMP-0715",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "A federal agency has hired an auditor to perform penetration testing on a critical system as part of the mandatory, annual Federal Information Security Management Act (FISMA) security assessments. The auditor is new to this system but has extensive experience with all types of penetration testing. The auditor has decided to begin with sniffing network traffic. What type of penetration testing is the auditor conducting?",
+   "options": [
+    "White box testing",
+    "Black box testing",
+    "Gray box testing",
+    "Red box testing"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The auditor doesn't know the system and starts by sniffing traffic to discover it, which is how an attacker with no prior knowledge works. That is black box testing.",
+   "optionNotes": [
+    "White box testing gives the tester full knowledge of the system.",
+    "Right: no prior knowledge plus discovery by sniffing is black box testing.",
+    "Gray box testing gives partial knowledge.",
+    "'Red box' is not a recognised penetration testing type."
+   ]
+  },
+  {
+   "id": "DUMP-0719",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following statements is TRUE regarding equivalence class testing?",
+   "options": [
+    "Test inputs are obtained from the derived boundaries of the given functional specifications.",
+    "It is characterized by the stateless behavior of a process implemented in a function.",
+    "An entire partition can be covered by considering only one representative value from that partition.",
+    "It is useful for testing communications protocols and graphical user interfaces."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Equivalence partitioning divides inputs into classes the program should treat the same way, so testing one representative value covers the whole class. Deriving tests from boundaries is boundary value analysis.",
+   "optionNotes": [
+    "This describes boundary value analysis.",
+    "Statelessness isn't a defining trait of equivalence testing.",
+    "Right: one representative value covers an entire partition.",
+    "Protocols and GUIs are better suited to state-based testing."
+   ]
+  },
+  {
+   "id": "DUMP-0727",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "Which of the following is the PRIMARY consideration when determining the frequency an automated control should be assessed or monitored?",
+   "options": [
+    "The complexity of the automated control",
+    "The level of automation of the control",
+    "The range of values of the automated control",
+    "The volatility of the automated control"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said C] Under information security continuous monitoring (NIST SP 800-137), how often a control is assessed depends mainly on how volatile it is, meaning how often it or its environment changes. Volatile controls need more frequent assessment.",
+   "optionNotes": [
+    "Complexity affects assessment effort, not primarily frequency.",
+    "The level of automation affects how, not how often.",
+    "The range of values is not a frequency driver.",
+    "Right: control volatility drives monitoring frequency."
+   ]
+  },
+  {
+   "id": "DUMP-0729",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is a common term for log reviews, synthetic transactions, and code reviews?",
+   "options": [
+    "Security control testing",
+    "Application development",
+    "Spiral development functional testing",
+    "DevOps Integrated Product Team (IPT) development"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Log reviews, synthetic transactions and code reviews are all techniques for testing and verifying security controls, as covered in Domain 6.",
+   "optionNotes": [
+    "Right: these are security control testing methods.",
+    "These are not application development activities.",
+    "Not specific to spiral-model functional testing.",
+    "Not an IPT development concept."
+   ]
+  },
+  {
+   "id": "DUMP-0735",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "A cloud hosting provider would like to provide a Service Organization Control (SOC) report relevant to its security program. This report should be an abbreviated report that can be freely distributed. Which type of report BEST meets this requirement?",
+   "options": [
+    "SOC 1",
+    "SOC 2 Type I",
+    "SOC 2 Type II",
+    "SOC 3"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SOC 3 is a general-use summary of SOC 2 that can be freely distributed, for example on a website. SOC 2 reports are restricted-use and detailed.",
+   "optionNotes": [
+    "SOC 1 covers financial reporting and is restricted.",
+    "SOC 2 Type I is detailed and restricted.",
+    "SOC 2 Type II is detailed and restricted.",
+    "Right: SOC 3 is abbreviated and freely distributable."
+   ]
+  },
+  {
+   "id": "DUMP-0743",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following frameworks provides vulnerability metrics and characteristics to support the National Vulnerability Database (NVD)?",
+   "options": [
+    "Center for Internet Security (CIS)",
+    "Common Vulnerabilities and Exposures (CVE)",
+    "Open Web Application Security Project (OWASP)",
+    "Common Vulnerability Scoring System (CVSS)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The NVD uses CVSS to give each CVE severity metrics and characteristics. CVE supplies the identifiers, while CVSS supplies the scoring.",
+   "optionNotes": [
+    "CIS publishes benchmarks and controls.",
+    "CVE provides identifiers, not metrics.",
+    "OWASP focuses on web application security guidance.",
+    "Right: CVSS provides vulnerability metrics for the NVD."
+   ]
+  },
+  {
+   "id": "DUMP-0755",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is the PRIMARY purpose of auditing, as it relates to the security review cycle?",
+   "options": [
+    "To ensure the organization's controls and policies are working as intended",
+    "To ensure the organization can still be publicly traded",
+    "To ensure the organization's executive team won't be sued",
+    "To ensure the organization meets contractual requirements"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Auditing verifies that controls and policies are in place and operating as intended. The other options are business side effects, not the purpose of auditing within the security review cycle.",
+   "optionNotes": [
+    "Correct: verifies that controls operate effectively",
+    "Stock listing status is not the audit purpose",
+    "Avoiding lawsuits is a side effect",
+    "Contract compliance is only part of it"
+   ]
+  },
+  {
+   "id": "DUMP-0799",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following is a term used to describe maintaining ongoing awareness of information security, vulnerabilities, and threats to support organizational risk management decisions?",
+   "options": [
+    "Information Security Management System (ISMS)",
+    "Information Sharing & Analysis Centers (ISAC)",
+    "Risk Management Framework (RMF)",
+    "Information Security Continuous Monitoring (ISCM)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "NIST SP 800-137 defines Information Security Continuous Monitoring as maintaining ongoing awareness of information security, vulnerabilities and threats to support risk management decisions. The stem quotes that definition almost word for word.",
+   "optionNotes": [
+    "An ISMS (ISO 27001) is the whole management system, not the ongoing-awareness activity",
+    "ISACs are sector bodies that share threat intelligence between organizations",
+    "The RMF is the full seven-step process; continuous monitoring is just one step within it",
+    "Right: this is the NIST definition of ISCM"
+   ]
+  },
+  {
+   "id": "DUMP-0828",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "In setting expectations when reviewing the results of a security test, which of the following statements is MOST important to convey to reviewers?",
+   "options": [
+    "The target's security posture cannot be further compromised.",
+    "The results of the tests represent a point-in-time assessment of the target(s).",
+    "The accuracy of testing results can be greatly improved if the target(s) are properly hardened.",
+    "The deficiencies identified can be corrected immediately"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A security test captures conditions at one moment. New vulnerabilities, configuration changes and new threats appear later, so reviewers must understand that the results do not guarantee future security.",
+   "optionNotes": [
+    "Claiming the target cannot be compromised further gives false assurance",
+    "Right: the results reflect a single point in time",
+    "Hardening changes the posture, not the accuracy of the test",
+    "Remediation usually needs planning and time"
+   ]
+  },
+  {
+   "id": "DUMP-0835",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following will an organization's network vulnerability testing process BEST enhance?",
+   "options": [
+    "Firewall log review processes",
+    "Asset management procedures",
+    "Server hardening processes",
+    "Code review procedures"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Network vulnerability scanning finds missing patches, open services and misconfigurations on hosts. These findings feed directly into server hardening.",
+   "optionNotes": [
+    "Firewall log review is a separate monitoring activity",
+    "A scan may discover assets, but its main value is not asset management",
+    "Right: findings drive host and server hardening",
+    "Code review covers application source, which a network scan does not test"
+   ]
+  },
+  {
+   "id": "DUMP-0838",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What requirement MUST be met during internal security audits to ensure that all information provided is expressed as an objective assessment without risk of retaliation?",
+   "options": [
+    "The auditor must be independent and report directly to the management.",
+    "The auditor must utilize automated tools to back their findings.",
+    "The auditor must work closely with both the information Technology (IT) and security sections of an organization.",
+    "The auditor must perform manual reviews of systems and processes."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Objectivity requires independence from the area being audited. A reporting line to management protects the auditor from retaliation by the people whose work is examined.",
+   "optionNotes": [
+    "Right: independence and a direct line to management",
+    "Automated tools add evidence but do not protect against retaliation",
+    "Working closely with IT and security can reduce independence",
+    "Manual review is a technique and does not guarantee objectivity"
+   ]
+  },
+  {
+   "id": "DUMP-0841",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.6,
+   "stem": "Which testing method requires very limited or no information about the network infrastructure?",
+   "options": [
+    "White box",
+    "Static",
+    "Black box",
+    "Stress"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In black-box testing the tester starts with little or no knowledge of the target, as an external attacker would. White-box testing gives full knowledge.",
+   "optionNotes": [
+    "White box gives the tester full internal knowledge",
+    "Static testing analyses code without running it and says nothing about how much the tester knows",
+    "Right: zero or minimal prior knowledge",
+    "Stress testing measures performance under load"
+   ]
+  },
+  {
+   "id": "DUMP-0846",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "During a penetration test, what are the three PRIMARY objectives of the planning phase?",
+   "options": [
+    "Determine testing goals, identify rules of engagement, and conduct an initial discovery scan.",
+    "Finalize management approval, determine testing goals, and gather port and service information.",
+    "Identify rules of engagement, finalize management approval, and determine testing goals.",
+    "Identify rules of engagement, document management approval, and collect system and application information."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Planning sets rules of engagement, management approval, and goals before any scanning. Scanning or information gathering begins only after the plan is signed off.",
+   "optionNotes": [
+    "Starts discovery scanning, which belongs to the discovery phase, not planning.",
+    "Port/service gathering is discovery work, not planning.",
+    "Rules of engagement, management approval and goals are the planning outputs.",
+    "Collecting system information is discovery; 'document approval' is narrower than finalizing it."
+   ]
+  },
+  {
+   "id": "DUMP-0858",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "An organization's internal audit team performed a security audit on the company's system and reported that the manufacturing application is rarely updated along with other issues categorized as minor. Six months later, an external audit team reviewed the same system with the same scope, but identified severe weaknesses in the manufacturing application's security controls. What is MOST likely to be the root cause of the internal audit team's failure in detecting these security issues?",
+   "options": [
+    "Inadequate test coverage analysis",
+    "Inadequate security patch testing",
+    "Inadequate log reviews",
+    "Inadequate change control procedures"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Internal audit missed severe weaknesses because its testing coverage was inadequate. Same scope with different findings points to how thoroughly each audit tested.",
+   "optionNotes": [
+    "The internal audit's test coverage missed the areas that held severe weaknesses.",
+    "Patch testing would not explain why the audits found different things.",
+    "Log review gaps would not make audit results diverge on the same scope.",
+    "Change control issues would be visible to both audits."
+   ]
+  },
+  {
+   "id": "DUMP-0861",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which is the BEST control to meet the Statement on Standards for Attestation Engagements 18 (SSAE-18) confidentiality category?",
+   "options": [
+    "Data processing",
+    "Storage encryption",
+    "File hashing",
+    "Data retention policy"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Encrypting stored data directly supports the confidentiality trust services criterion. Encryption at rest is a direct technical control for that category.",
+   "optionNotes": [
+    "Processing integrity is a different trust services criterion.",
+    "Encryption at rest directly protects confidentiality.",
+    "Hashing supports integrity, not confidentiality.",
+    "Retention is a policy matter; it does not directly protect confidentiality."
+   ]
+  },
+  {
+   "id": "DUMP-0866",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which security audit standard provides the BEST way for an organization to understand a vendor's Information Systems (IS) in relation to confidentiality, integrity, and availability?",
+   "options": [
+    "Statement on Auditing Standards (SAS) 70",
+    "Service Organization Control (SOC) 2",
+    "Service Organization Control (SOC) 1",
+    "Statement on Standards for Attestation Engagements (SSAE) 18"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SOC 2 reports on controls relevant to security, availability, integrity, confidentiality, privacy. SOC 2 Type II is commonly requested from vendors.",
+   "optionNotes": [
+    "SAS 70 is the superseded standard.",
+    "SOC 2 covers security, availability, processing integrity, confidentiality and privacy.",
+    "SOC 1 covers financial reporting controls.",
+    "SSAE 18 is the attestation standard; SOC 2 is the report type that fits."
+   ]
+  },
+  {
+   "id": "DUMP-0870",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following are the BEST characteristics of security metrics?",
+   "options": [
+    "They are generalized and provide a broad overview",
+    "They use acronyms and abbreviations to be concise",
+    "They use bar charts and Venn diagrams",
+    "They are consistently measured and quantitatively expressed"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Good metrics are consistently measured and quantitative. Good metrics are repeatable and objective.",
+   "optionNotes": [
+    "Overly general metrics are not actionable.",
+    "Acronyms reduce clarity.",
+    "Presentation format is not a defining characteristic.",
+    "Consistent, quantitative measurement makes metrics comparable and actionable."
+   ]
+  },
+  {
+   "id": "DUMP-0881",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Dumpster diving is a technique used in which stage of penetration testing methodology?",
+   "options": [
+    "Attack",
+    "Discovery",
+    "Reporting",
+    "Planning"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Dumpster diving is information gathering in the discovery phase. Reconnaissance belongs to discovery.",
+   "optionNotes": [
+    "The attack phase exploits vulnerabilities.",
+    "Discovery gathers information, including dumpster diving.",
+    "Reporting documents results.",
+    "Planning sets the rules."
+   ]
+  },
+  {
+   "id": "DUMP-0892",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is a PRIMARY challenge when running a penetration test?",
+   "options": [
+    "Determining the cost",
+    "Establishing a business case",
+    "Remediating found vulnerabilities",
+    "Determining the depth of coverage"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Scoping the depth of coverage is a primary pentest challenge. Scope balances thoroughness against risk.",
+   "optionNotes": [
+    "Cost is secondary.",
+    "The business case precedes testing.",
+    "Remediation follows the test.",
+    "Determining depth of coverage within scope and time is the key challenge."
+   ]
+  },
+  {
+   "id": "DUMP-0918",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which reporting type requires a service organization to describe its system and define its control objectives and controls that are relevant to users internal control over financial reporting?",
+   "options": [
+    "Statement on Auditing Standards (SAS)70",
+    "Service Organization Control 1 (SOC1)",
+    "Service Organization Control 2 (SOC2)",
+    "Service Organization Control 3 (SOC3)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SOC 1 reports address controls relevant to user entities' internal control over financial reporting.",
+   "optionNotes": [
+    "SAS 70 was superseded",
+    "Right: SOC 1 reports address controls relevant to user entities' internal control over financial reporting.",
+    "SOC 2 covers trust services criteria",
+    "SOC 3 is a general-use summary"
+   ]
+  },
+  {
+   "id": "DUMP-0926",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the PRIMARY reason for selecting the appropriate level of detail for audit record generation?",
+   "options": [
+    "Lower costs throughout the System Development Life Cycle (SDLC)",
+    "Facilitate a root cause analysis (RCA)",
+    "Enable generation of corrective action reports",
+    "Avoid lengthy audit reports"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Audit records need enough detail to reconstruct events and determine root cause, without excessive volume.",
+   "optionNotes": [
+    "Cost is not the primary driver",
+    "Right: Audit records need enough detail to reconstruct events and determine root cause, without excessive volume.",
+    "Corrective reports follow RCA",
+    "Report length is not the goal"
+   ]
+  },
+  {
+   "id": "DUMP-0929",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "The Chief Executive Officer (CEO) wants to implement an internal audit of the company's information security posture. The CEO wants to avoid any bias in the audit process; therefore, has assigned the Sales Director to conduct the audit. After significant interaction over a period of weeks the audit concludes that the company's policies and procedures are sufficient, robust and well established. The CEO then moves on to engage an external penetration testing company in order to showcase the organization's robust information security stance. This exercise reveals significant failings in several critical security controls and shows that the incident response processes remain undocumented. What is the MOST likely reason for this disparity in the results of the audit and the external penetration test?",
+   "options": [
+    "The external penetration testing company used custom zero-day attacks that could not have been predicted.",
+    "The information technology (IT) and governance teams have failed to disclose relevant information to the internal audit team leading to an incomplete assessment being formulated.",
+    "The scope of the penetration test exercise and the internal audit were significantly different.",
+    "The audit team lacked the technical experience and training to make insightful and objective assessments of the data provided to them."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A Sales Director lacks the security knowledge to judge controls, so the internal audit missed failings the competent pen testers found.",
+   "optionNotes": [
+    "Zero-days don't explain undocumented IR",
+    "Withholding is speculative",
+    "Scope differences don't explain missing documentation",
+    "Right: A Sales Director lacks the security knowledge to judge controls, so the internal audit missed failings the competent pen testers found."
+   ]
+  },
+  {
+   "id": "DUMP-0941",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following vulnerabilities can be BEST detected using automated analysis?",
+   "options": [
+    "Valid cross-site request forgery (CSRF) vulnerabilities",
+    "Multi-step process attack vulnerabilities",
+    "Business logic flaw vulnerabilities",
+    "Typical source code vulnerabilities"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Automated tools reliably find common, pattern-based source code flaws; logic, multi-step and valid CSRF issues need human analysis.",
+   "optionNotes": [
+    "CSRF validity needs human review",
+    "Multi-step attacks need manual testing",
+    "Logic flaws need human understanding",
+    "Right: Automated tools reliably find common, pattern-based source code flaws; logic, multi-step and valid CSRF issues need human analysis."
+   ]
+  },
+  {
+   "id": "DUMP-0951",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "What is the PRIMARY consideration when testing industrial control systems (ICS) for security weaknesses?",
+   "options": [
+    "ICS often do not have availability requirements.",
+    "ICS are often isolated and difficult to access.",
+    "ICS often run on UNIX operating systems.",
+    "ICS are often sensitive to unexpected traffic."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "ICS/SCADA devices are fragile and availability-critical; scans or unexpected packets can crash controllers and disrupt physical processes. Testing must therefore be carefully planned and often passive.",
+   "optionNotes": [
+    "False: ICS have very high availability requirements.",
+    "Isolation is a logistical issue, not the primary safety concern.",
+    "OS type is irrelevant and often not UNIX.",
+    "Correct: unexpected traffic can crash ICS and affect safety/operations."
+   ]
+  },
+  {
+   "id": "DUMP-0985",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following factors is a PRIMARY reason to drive changes in an Information Security Continuous Monitoring (ISCM) strategy?",
+   "options": [
+    "Testing and Evaluation (TE) personnel changes",
+    "Changes to core missions or business processes",
+    "Increased Cross-Site Request Forgery (CSRF) attacks",
+    "Changes in Service Organization Control (SOC) 2 reporting requirements"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Per NIST SP 800-137, changes to core missions or business processes alter risk and therefore drive changes to the ISCM strategy.",
+   "optionNotes": [
+    "Staff changes do not drive strategy changes.",
+    "Correct: mission/business changes alter risk tolerance and monitoring needs.",
+    "A specific attack trend is handled tactically, not strategically.",
+    "SOC 2 reporting is an external audit concern."
+   ]
+  },
+  {
+   "id": "DUMP-0988",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the FIRST step when developing an Information Security Continuous Monitoring (ISCM) program?",
+   "options": [
+    "Establish an ISCM technical architecture.",
+    "Collect the security-related information required for metrics, assessments, and reporting.",
+    "Establish an ISCM program determining metrics, status monitoring frequencies, and control assessment frequencies.",
+    "Define an ISCM strategy based on risk tolerance."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "NIST SP 800-137 starts ISCM by defining a strategy based on organisational risk tolerance; program, architecture and data collection follow.",
+   "optionNotes": [
+    "Architecture comes after strategy and program definition.",
+    "Collection is an implementation step.",
+    "Program establishment is step two.",
+    "Correct: define strategy first."
+   ]
+  },
+  {
+   "id": "DUMP-0989",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the BEST methof a security practitioner can use to ensure that systems and sub-systems gracefully handle invalid input?",
+   "options": [
+    "Unit testing",
+    "Integration testing",
+    "Negative testing",
+    "Acceptance testing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Negative testing feeds invalid, unexpected inputs to confirm the system fails gracefully.",
+   "optionNotes": [
+    "Unit testing checks components, mainly expected behaviour.",
+    "Integration testing checks interfaces between components.",
+    "Correct: negative tests target invalid input handling.",
+    "Acceptance testing confirms user requirements."
+   ]
+  },
+  {
+   "id": "DUMP-1001",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the MOST important consideration in selecting a security testing method based on different Radio-Frequency Identification (RFID) vulnerability types?",
+   "options": [
+    "The performance and resource utilization of tools",
+    "The quality of results and usability of tools",
+    "An understanding of the attack surface",
+    "Adaptability of testing tools to multiple technologies"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Choosing a test method for different vulnerability types first requires understanding the attack surface those vulnerabilities expose.",
+   "optionNotes": [
+    "Wrong: Secondary tool attribute",
+    "Wrong: Secondary tool attribute",
+    "Right: the attack surface decides which RFID tests apply",
+    "Wrong: Secondary tool attribute"
+   ]
+  },
+  {
+   "id": "DUMP-1028",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A company hired an external vendor to perform a penetration test of a new payroll system. The company's internal test team had already performed an in-depth application and security test of the system and determined that it met security requirements. However, the external vendor uncovered significant security weaknesses where sensitive personal data was being sent unencrypted to the tax processing systems. What is the MOST likely cause of the security issues?",
+   "options": [
+    "Failure to perform interface testing",
+    "Failure to perform negative testing",
+    "Inadequate performance testing",
+    "Inadequate application level testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The flaw was in data sent between the payroll and tax systems, which is what interface testing covers.",
+   "optionNotes": [
+    "Right: data moving between systems is what interface testing checks",
+    "Wrong: Negative testing checks invalid input",
+    "Wrong: Performance is not the issue",
+    "Wrong: The application itself was tested in depth"
+   ]
+  },
+  {
+   "id": "DUMP-1033",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following System and Organization Controls (SOC) report types should an organization request if they require a period of time report covering security and availability for a particular system?",
+   "options": [
+    "SOC 1 Type 1",
+    "SOC 1 Type 2",
+    "SOC 2 Type 1",
+    "SOC 2 Type 2"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SOC 2 covers the Trust Services Criteria (security, availability); Type 2 covers a period of time.",
+   "optionNotes": [
+    "Wrong: Financial, point in time",
+    "Wrong: Financial",
+    "Wrong: Point in time",
+    "Right: SOC 2 covers security and availability; Type 2 covers a period of time"
+   ]
+  },
+  {
+   "id": "DUMP-1037",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the PRIMARY benefit of relying on Security Content Automation Protocol (SCAP)?",
+   "options": [
+    "Save security costs for the organization.",
+    "Improve vulnerability assessment capabilities.",
+    "Standardize specifications between software security products.",
+    "Achieve organizational compliance with international standards."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "SCAP standardizes how security tools exchange and express vulnerability and configuration data.",
+   "optionNotes": [
+    "Wrong: Indirect benefit",
+    "Wrong: A consequence of the standardization",
+    "Right: common formats such as CVE, CPE and XCCDF let tools interoperate",
+    "Wrong: Not its purpose"
+   ]
+  },
+  {
+   "id": "DUMP-1041",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "To comply with industry requirements, a security assessment on the cloud server should identify which protocols and weaknesses are being exposed to attackers on the Internet. Which of the following tools is the MOST appropriate to complete the assessment?",
+   "options": [
+    "Use tcpdump and parse the output file in a protocol analyzer.",
+    "Use an IP scanner and target the cloud WAN network addressing",
+    "Run netstat in each cloud server and retrieve the running processes.",
+    "Use nmap and set the servers' public IPs as the targets."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Port scanning the servers' public IPs with nmap shows what is exposed to the Internet.",
+   "optionNotes": [
+    "Wrong: Passive capture",
+    "Wrong: Too vague; finds hosts, not services",
+    "Wrong: Internal view, not exposure",
+    "Right: scanning the public IPs shows what is exposed to the Internet"
+   ]
+  },
+  {
+   "id": "DUMP-1053",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following would an internal technical security audit BEST validate?",
+   "options": [
+    "Whether managerial controls are in place",
+    "Support for security programs by executive management",
+    "Appropriate third-party system hardening",
+    "Implementation of changes to a system"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A technical audit examines systems directly, so it is best at validating that technical changes were actually implemented as approved.",
+   "optionNotes": [
+    "Managerial controls are administrative and are validated by other audits",
+    "Executive support is a governance matter, not a technical audit target",
+    "Third-party hardening is outside the scope of an internal audit",
+    "Correct: technical audits verify system changes directly"
+   ]
+  },
+  {
+   "id": "DUMP-1060",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "When reviewing vendor certifications for handling and processing of company data, which of the following is the BEST Service Organization Controls (SOC) certification for the vendor to possess?",
+   "options": [
+    "SOC 1 Type 1",
+    "SOC 2 Type 1",
+    "SOC 2 Type 2",
+    "SOC 3"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "SOC 2 reports on security, availability, confidentiality, and related controls, and Type 2 confirms that the controls operated effectively over a period of time.",
+   "optionNotes": [
+    "SOC 1 covers financial reporting controls only, at a single point in time",
+    "Type 1 assesses design at a point in time, not operating effectiveness",
+    "Correct: security controls with operating effectiveness over a period",
+    "SOC 3 is a public summary with little detail"
+   ]
+  },
+  {
+   "id": "DUMP-1086",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the PRIMARY objective for conducting an internal security audit?",
+   "options": [
+    "Verify that all systems and Standard Operating Procedures (SOP) are properly documented.",
+    "Verify that all personnel supporting a system are knowledgeable of their responsibilities.",
+    "Verify that security controls are established following best practices.",
+    "Verify that applicable security controls are implemented and effective."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The primary objective of an audit is to confirm that the applicable controls are in place and working effectively.",
+   "optionNotes": [
+    "Documentation is a narrow subset of audit scope",
+    "Staff knowledge is a narrow subset of audit scope",
+    "Following best practice does not prove effectiveness",
+    "Correct: controls are implemented and effective"
+   ]
+  },
+  {
+   "id": "DUMP-1089",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An Internet software application requires authentication before a user is permitted to utilize the resource. Which testing scenario BEST validates the functionality of the application?",
+   "options": [
+    "Reasonable data testing",
+    "Input validation testing",
+    "Web session testing",
+    "Allowed data bounds and limits testing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Because access is gated by authentication, testing session establishment and handling best validates that the application works as intended.",
+   "optionNotes": [
+    "Reasonable data testing does not exercise authentication",
+    "Input validation is a security test, not authenticated functionality",
+    "Correct: tests authenticated session handling",
+    "Bounds testing is a data-level test"
+   ]
+  },
+  {
+   "id": "DUMP-1099",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is a characteristic of covert security testing?",
+   "options": [
+    "Induces less risk than overt testing",
+    "Tests staff knowledge and Implementation of the organization's security policy",
+    "Focuses on identifying vulnerabilities",
+    "Tests and validates all security controls in the organization"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Covert (unannounced) testing is done without staff knowing, so it shows how employees actually follow and implement security policy under real conditions. It carries more risk than overt testing, not less.",
+   "optionNotes": [
+    "Wrong: covert testing carries more risk, not less.",
+    "Correct: it measures real staff behaviour and how policy is applied in practice.",
+    "Finding vulnerabilities is the aim of vulnerability scanning generally, not what sets covert testing apart.",
+    "No single test validates every control."
+   ]
+  },
+  {
+   "id": "DUMP-1108",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.7,
+   "stem": "Which of the following BEST obtains an objective audit of security controls?",
+   "options": [
+    "The security audit is measured against a known standard.",
+    "The security audit is performed by a certified internal auditor.",
+    "The security audit is performed by an independent third-party.",
+    "The security audit produces reporting metrics for senior leadership."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Objectivity comes from independence. An independent third party has no stake in the result and doesn't report to the area being audited.",
+   "optionNotes": [
+    "Using a standard gives consistency, not objectivity.",
+    "Internal auditors can still have conflicts of interest.",
+    "Correct: an independent external party provides objectivity.",
+    "Metrics for leadership are an output, not a guarantee of objectivity."
+   ]
+  },
+  {
+   "id": "DUMP-1153",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the MOST important first step in preparing for a security audit?",
+   "options": [
+    "Identify team members.",
+    "Define the scope.",
+    "Notify system administrators.",
+    "Collect evidence."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Every other audit activity depends on scope: who is on the team, whom to notify and what evidence to collect. Defining the scope is therefore the first step.",
+   "optionNotes": [
+    "Team members are chosen to fit the scope.",
+    "Who gets notified depends on what is in scope.",
+    "Correct: scope comes first and drives the rest.",
+    "Evidence collection happens during fieldwork, after scoping."
+   ]
+  },
+  {
+   "id": "DUMP-1160",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "When testing password strength, which of the following is the BEST method for brute forcing passwords?",
+   "options": [
+    "Conduct an offline attack on the hashed password information.",
+    "Conduct an online password attack until the account being used is locked.",
+    "Use a comprehensive list of words to attempt to guess the password.",
+    "Use social engineering methods to attempt to obtain the password."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An offline attack on captured hashes can try huge numbers of guesses with no lockout and no network delay. That makes it the most effective way to brute force passwords when testing strength. Online attacks are throttled, a word list is a dictionary attack, and social engineering is not brute force.",
+   "optionNotes": [
+    "Correct: offline hash attacks are fast and unrestricted.",
+    "Lockout ends the test quickly and disrupts users.",
+    "That is a dictionary attack, not brute force.",
+    "Social engineering is not a brute-force method."
+   ]
+  },
+  {
+   "id": "DUMP-1172",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "An application is used for funds transfer between an organization and a third-party. During a security audit, an issue was found with the business continuity/disaster recovery policy and procedures for this application. Which of the following reports should the audit file with the organization?",
+   "options": [
+    "Service Organization Control (SOC) 1",
+    "Statement on Auditing Standards (SAS) 70",
+    "Service Organization Control (SOC) 2",
+    "Statement on Auditing Standards (SAS) 70-1"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The problem is with BC/DR, which falls under the availability criterion in the Trust Services Criteria. Controls relevant to security and availability are reported in SOC 2. SOC 1 covers internal control over financial reporting, and SAS 70 has been retired.",
+   "optionNotes": [
+    "SOC 1 covers financial-reporting controls, not availability.",
+    "SAS 70 was replaced by SSAE 16/18 (SOC 1).",
+    "Correct: SOC 2 covers availability (BC/DR) controls.",
+    "Not a real report type."
+   ]
+  },
+  {
+   "id": "DUMP-1178",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "During a Disaster Recovery (DR) assessment, additional coverage for assurance is required. What should an assessor do?",
+   "options": [
+    "Increase the number and type of relevant staff to interview.",
+    "Conduct a comprehensive examination of the Disaster Recovery Plan (DRP).",
+    "Increase the level of detail of the interview questions.",
+    "Conduct a detailed review of the organization's DR policy."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said B] NIST SP 800-53A defines assessment coverage as the number and types of objects or people assessed, and depth as how detailed and rigorous the assessment is. Interviewing more people, and more types of staff, increases coverage. A comprehensive examination or more detailed questions increase depth instead.",
+   "optionNotes": [
+    "Correct: more and different interviewees increase coverage.",
+    "Comprehensive examination increases depth, not coverage.",
+    "More detailed questions increase depth.",
+    "Reviewing the policy in detail is depth on a single object."
+   ]
+  },
+  {
+   "id": "DUMP-1216",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "When conducting a third-party risk assessment of a new supplier, which of the following reports should be reviewed to confirm the operating effectiveness of the security, availability, confidentiality, and privacy trust principles?",
+   "options": [
+    "Service Organization Control (SOC) 1, Type 2",
+    "Service Organization Control (SOC) 2, Type 2",
+    "International Organization for Standardization (ISO) 27001",
+    "International Organization for Standardization (ISO) 27002"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SOC 2 Type 2 reports operating effectiveness of trust services criteria over a period.",
+   "optionNotes": [
+    "SOC 1 covers financial reporting controls.",
+    "Correct: SOC 2 Type 2 tests trust principles over time.",
+    "ISO 27001 certification doesn't report control operating effectiveness by trust principle.",
+    "ISO 27002 is a code of practice, not an assessment report."
+   ]
+  },
+  {
+   "id": "DUMP-1217",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following should exist in order to perform a security audit?",
+   "options": [
+    "Industry framework to audit against",
+    "External (third-party) auditor",
+    "Internal certified auditor",
+    "Neutrality of the auditor"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An audit needs a defined standard or framework of criteria to measure against.",
+   "optionNotes": [
+    "Correct: an audit requires criteria/framework to measure against.",
+    "Internal audits are valid; third party not required.",
+    "Certification of internal staff isn't a prerequisite.",
+    "Independence matters but criteria are fundamentally required."
+   ]
+  },
+  {
+   "id": "DUMP-1220",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Vulnerability scanners may allow for the administrator to assign which of the following in order to assist in prioritizing remediation activities?",
+   "options": [
+    "Definitions for each exposure type",
+    "Vulnerability attack vectors",
+    "Asset values for networks",
+    "Exploit code metrics"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Assigning asset values lets scanners weight findings by business importance for prioritisation.",
+   "optionNotes": [
+    "Exposure definitions come from the vendor, not prioritisation input.",
+    "Attack vectors are scanner output, not admin-assigned.",
+    "Correct: asset values weight findings by business importance.",
+    "Exploit metrics come from feeds, not admin assignment."
+   ]
+  },
+  {
+   "id": "DUMP-1221",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -1.3,
+   "stem": "Which of the following phases involves researching a target's configuration from public sources when performing a penetration test?",
+   "options": [
+    "Information gathering",
+    "Social engineering",
+    "Target selection",
+    "Traffic enumeration"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Information gathering/reconnaissance uses public sources (OSINT) to learn about the target.",
+   "optionNotes": [
+    "Correct: reconnaissance from public sources.",
+    "Social engineering is an attack technique, not OSINT research.",
+    "Target selection is scoping.",
+    "Enumeration actively probes systems, not public sources."
+   ]
+  },
+  {
+   "id": "DUMP-1233",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the MAIN purpose of a security assessment plan?",
+   "options": [
+    "Provide guidance on security requirements, to ensure the identified security risks are properly addressed based on the recommendation",
+    "Provide the objectives for the security and privacy control assessments and a detailed roadmap of how to conduct such assessments.",
+    "Provide technical information to executives to help them understand information security postures and secure funding.",
+    "Provide education to employees on security and privacy, to ensure their awareness on policies and procedures"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "An assessment plan sets the objectives, scope and detailed procedures for control assessments (NIST SP 800-53A).",
+   "optionNotes": [
+    "Describes risk response guidance, not assessment planning.",
+    "Correct: plan defines objectives and procedures for control assessments.",
+    "Executive reporting is a report's role.",
+    "Awareness training is a different activity."
+   ]
+  },
+  {
+   "id": "DUMP-1256",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following findings would MOST likely indicate a high risk in a vulnerability assessment report?",
+   "options": [
+    "Transmission control protocol (TCP) port 443 open",
+    "Non-standard system naming convention used",
+    "Unlicensed software installed",
+    "End of life system detected"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "End-of-life systems no longer receive security patches, so known and future vulnerabilities stay open, which is a high risk.",
+   "optionNotes": [
+    "443 open is normal for HTTPS",
+    "Cosmetic/administrative issue",
+    "Licensing/legal issue, lower security risk",
+    "Right: unpatchable system"
+   ]
+  },
+  {
+   "id": "DUMP-1272",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The security team has been tasked with performing an interface test against a frontend external facing application and needs to verify that all input fields protect against invalid input. Which of the following BEST assists this process?",
+   "options": [
+    "Application fuzzing",
+    "Instruction set simulation",
+    "Regression testing",
+    "Sanity testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Fuzzing sends large volumes of malformed and unexpected input to every field to check that the application handles invalid input safely.",
+   "optionNotes": [
+    "Right: invalid-input testing",
+    "CPU emulation",
+    "Checks that changes did not break existing function",
+    "Quick basic function check"
+   ]
+  },
+  {
+   "id": "DUMP-1280",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following vulnerability assessment activities BEST exemplifies the Examine method of assessment?",
+   "options": [
+    "Ensuring that system audit logs capture all relevant data fields required by the security controls baseline",
+    "Performing Port Scans of selected network hosts to enumerate active services",
+    "Asking the Information System Security Officer (ISSO) to describe the organization's patch management processes",
+    "Logging into a web server using the default administrator account and a default password"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said C] In NIST SP 800-53A, Examine means reviewing or analyzing objects such as logs, configurations and documents; asking the ISSO is Interview, and scans or logins are Test.",
+   "optionNotes": [
+    "Right: examining audit logs/specifications",
+    "Test method",
+    "Interview method",
+    "Test method"
+   ]
+  },
+  {
+   "id": "DUMP-1298",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Upon commencement of an audit within an organization, which of the following actions is MOST important for the auditor(s) to take?",
+   "options": [
+    "Understand circumstances which may delay the overall audit timelines.",
+    "Review all prior audit results to remove all areas of potential concern from the audit scope.",
+    "Meet with stakeholders to review methodology, people to be interviewed, and audit scope.",
+    "Meet with stakeholders to understand which types of audits have been completed."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "An audit begins with an opening meeting where the auditors agree methodology, scope and interviewees with stakeholders. That sets expectations and access, and the rest of the audit depends on it.",
+   "optionNotes": [
+    "Delay factors matter but are not the first priority.",
+    "Prior results inform scope; they do not justify removing areas of concern.",
+    "Correct: the kickoff meeting aligns scope, methodology and interviewees.",
+    "Knowing past audit types is background, not the key opening action."
+   ]
+  },
+  {
+   "id": "DUMP-1315",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which audit type is MOST appropriate for evaluating the effectiveness of a security program?",
+   "options": [
+    "Threat",
+    "Assessment",
+    "Analysis",
+    "Validation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Judging whether a security program is effective calls for an assessment: a broad review of controls against objectives. Threat and analysis are not audit types, and validation is narrower.",
+   "optionNotes": [
+    "Threat is not an audit type.",
+    "Correct: assessments evaluate program effectiveness.",
+    "Analysis is a technique, not an audit type.",
+    "Validation confirms specific requirements, not the whole program."
+   ]
+  },
+  {
+   "id": "DUMP-1324",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "An international organization has decided to use a Software as a Service (SaaS) solution to support its business operations. Which of the following compliance standards should the organization use to assess the international code security and data privacy of the solution?",
+   "options": [
+    "Health Insurance Portability and Accountability Act (HIPAA)",
+    "Service Organization Control (SOC) 2",
+    "Payment Card Industry (PCI)",
+    "Information Assurance Technical Framework (IATF)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A SOC 2 report assesses a service organization against the Trust Services Criteria (security, availability, confidentiality, privacy). That is the right assurance for a general SaaS provider.",
+   "optionNotes": [
+    "HIPAA covers only US health data.",
+    "Correct: SOC 2 evaluates service-provider security and privacy.",
+    "PCI covers only cardholder data.",
+    "IATF is a US DoD engineering framework."
+   ]
+  },
+  {
+   "id": "DUMP-1343",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following BEST describes when an organization should conduct a black box security audit on a new software product?",
+   "options": [
+    "When the organization wishes to check for non-functional compliance",
+    "When the organization wants to enumerate known security vulnerabilities across their infrastructure",
+    "When the organization has experienced a security incident",
+    "When the organization is confident the final source code is complete"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A black-box test exercises the finished product from the outside, so it is most meaningful once the code is complete and stable. Testing earlier just retests a moving target.",
+   "optionNotes": [
+    "Non-functional compliance is not the defining trigger.",
+    "Enumerating infrastructure vulnerabilities is a scan, not a product audit.",
+    "Post-incident work is investigation.",
+    "Correct: test the complete product as an attacker would see it."
+   ]
+  },
+  {
+   "id": "DUMP-1351",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "When assessing web vulnerabilities, how can navigating the dark web add value to a penetration test?",
+   "options": [
+    "The actual origin and tools used for the test can be hidden.",
+    "Information may be found on related breaches and hacking.",
+    "Vulnerabilities can be tested without impact on the tested environment.",
+    "Information may be found on hidden vendor patches."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Dark web sources can reveal leaked credentials, breach data and attacker tooling relevant to the target.",
+   "optionNotes": [
+    "Hiding origin is not the value of dark-web research.",
+    "Right: leaked data and attacker chatter inform the test.",
+    "Browsing the dark web does not test the environment.",
+    "Vendor patches are not hidden on the dark web."
+   ]
+  },
+  {
+   "id": "DUMP-1353",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "During testing, where are the requirements to inform parent organizations, law enforcement, and a computer incident response team documented?",
+   "options": [
+    "Unit test results",
+    "Security assessment plan",
+    "System integration plan",
+    "Security Assessment Report (SAR)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The security assessment plan sets rules of engagement, including who must be notified (parent org, law enforcement, CIRT) during testing.",
+   "optionNotes": [
+    "Unit test results record code-level testing only.",
+    "Right: the assessment plan defines rules of engagement and notifications.",
+    "Integration plan covers combining components.",
+    "The SAR reports results after testing."
+   ]
+  },
+  {
+   "id": "DUMP-1356",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What industry-recognized document could be used as a baseline reference that is related to data security and business operations for conducting a security assessment?",
+   "options": [
+    "Service Organization Control (SOC) 1 Type 2",
+    "Service Organization Control (SOC) 2 Type 1",
+    "Service Organization Control (SOC) 1 Type 1",
+    "Service Organization Control (SOC) 2 Type 2"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SOC 2 covers security-related trust services criteria and Type 2 tests operating effectiveness over a period, making it the best baseline.",
+   "optionNotes": [
+    "SOC 1 covers financial reporting controls.",
+    "Type 1 assesses design at a point in time only.",
+    "SOC 1 Type 1: financial focus and point in time.",
+    "Right: security criteria with operating effectiveness over time."
+   ]
+  },
+  {
+   "id": "DUMP-1409",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Who determines the required level of independence for security control Assessors (SCA)?",
+   "options": [
+    "Business owner",
+    "Authorizing Official (AO)",
+    "Chief Information Security Officer (CISC)",
+    "System owner"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Under NIST RMF the authorizing official decides how independent the assessors must be, because the AO accepts the risk and must be able to trust the assessment.",
+   "optionNotes": [
+    "Business owners do not set assessor independence in RMF.",
+    "Correct: the AO determines the required level of assessor independence.",
+    "The CISO supports the AO but does not make this decision.",
+    "The system owner should not choose how independent its own assessors are."
+   ]
+  },
+  {
+   "id": "DUMP-1441",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is an accurate statement when an assessment results in the discovery of vulnerabilities in a critical network component?",
+   "options": [
+    "The fact that every other host is sufficiently hardened does not change the fact frat the network is placed at risk of attack.",
+    "There is little likelihood that the entire network is being placed at a significant risk of attack.",
+    "A second assessment should immediately be performed after all vulnerabilities are corrected.",
+    "There is a low possibility that any adjacently connected components have been compromised by an attacker"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A critical component is a single point of risk. Its weakness exposes the whole network no matter how well the other hosts are hardened.",
+   "optionNotes": [
+    "Correct: one critical weakness puts the network at risk.",
+    "Understates the risk.",
+    "Reassessment is sensible but is not the accurate statement here.",
+    "Adjacent compromise cannot be ruled out."
+   ]
+  },
+  {
+   "id": "DUMP-1443",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Following a penetration test, what should an organization do FIRST?",
+   "options": [
+    "Review all security policies and procedures.",
+    "Ensure staff is trained in security.",
+    "Determine if you need to conduct a full security assessment.",
+    "Evaluate the problems identified in the test result."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "After a pen test the first step is to analyze and evaluate the findings, then prioritize remediation. Policy, training or further assessments follow from that analysis.",
+   "optionNotes": [
+    "Comes later, if the findings point to it.",
+    "Comes later, if the findings point to it.",
+    "Decided after reviewing the results.",
+    "Correct: evaluate the findings first."
+   ]
+  },
+  {
+   "id": "DUMP-1451",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the MOST important goal of conducting security assessments?",
+   "options": [
+    "To prepare the organization for an external audit, particularly by a regulatory entity",
+    "To discover unmitigated security vulnerabilities, and propose paths for mitigating them",
+    "To align the security program with organizational risk appetite",
+    "To demonstrate proper function of security controls and processes to senior management"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Assessments exist to find weaknesses that controls have not addressed and drive remediation; other outcomes are secondary.",
+   "optionNotes": [
+    "Secondary by-product",
+    "Correct: find and remediate vulnerabilities",
+    "Program alignment is governance, not assessment goal",
+    "Demonstration is secondary"
+   ]
+  },
+  {
+   "id": "DUMP-1468",
+   "domain": 6,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization contracts with a consultant to perform a System Organization Control (SOC) 2 audit on their internal security controls. An auditor documents a finding related to an Application Programming Interface (API) performing an action that is not aligned with the scope or objective of the system. Which trust service principle would be MOST applicable in this situation?",
+   "options": [
+    "Processing Integrity",
+    "Availability",
+    "Confidentiality",
+    "Security"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Processing integrity covers whether system processing is complete, valid, accurate, timely and authorized, which fits an API doing actions outside the system's objectives.",
+   "optionNotes": [
+    "Correct: processing not aligned with system objectives is processing integrity",
+    "Uptime",
+    "Disclosure",
+    "General protection; less specific"
+   ]
+  },
+  {
+   "id": "DUMP-1484",
+   "domain": 6,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "While reviewing the financial reporting risks of a third-party application, which of the following Service Organization Control (SOC) reports will be the MOST useful?",
+   "options": [
+    "SOC 1",
+    "SOC 2",
+    "SOC 3",
+    "SOC for cybersecurity"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "SOC 1 reports address controls relevant to financial reporting.",
+   "optionNotes": [
+    "Correct: SOC 1 covers internal control over financial reporting",
+    "Security/trust services",
+    "Public summary",
+    "Cyber risk program"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2403 @@
+{
+  "name": "OPT4 Chapter 5: Identity and Access Management (Domain 5)",
+  "questions": [
+    {
+      "id": "OPT4-C05-001",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Henry uses his organizationally provided credentials to log into his workstation and is then able to use services across the organization and in the cloud. What identity solution has his organization implemented?",
+      "options": [
+        "An access control list",
+        "Single sign-on",
+        "Multifactor authentication",
+        "Role-based access control"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Single sign-on provides a single authentication process to allow authorization to multiple services. An access control list, or ACL, is a ruleset used to determine if a subject can gain access to a service or system. Multifactor requires multiple factors, and the specifics of how Henry logged in were not discussed in the question. Finally, role-based access control uses a subject's role(s) to determine if they can access a service or system, and no mention of roles was made.",
+      "optionNotes": [
+        "Incorrect. An ACL is a ruleset deciding whether a subject may access a particular object or system. It doesn't let one login carry over to many services.",
+        "Correct. Single sign-on means one authentication event (logging into the workstation) gives Henry authorized access to multiple services across the organization and the cloud.",
+        "Incorrect. MFA means using multiple types of authentication factors. The question never describes how Henry authenticated, only that one login reached many services.",
+        "Incorrect. RBAC grants access based on a subject's assigned roles. The scenario never mentions roles, and RBAC is an authorization model, not a single-login solution."
+      ]
+    },
+    {
+      "id": "OPT4-C05-002",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 2.21,
+      "stem": "Jim's organization-wide implementation of IDaaS offers broad support for cloud-based applications. Jim's company does not have internal identity management staff and does not use centralized identity services. Instead, they rely upon Active Directory for AAA services. Which of the following options should Jim recommend to best handle the company's on-site identity needs?",
+      "options": [
+        "Integrate on-site systems using OAuth.",
+        "Use an on-premises third-party identity service.",
+        "Integrate on-site systems using SAML.",
+        "Design an internal solution to handle the organization's unique needs."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Since Jim's organization is using a cloud-based identity as a service solution, a third-party, on-premises identity service can provide the ability to integrate with the IDaaS solution, and the company's use of Active Directory is widely supported by third-party vendors. OAuth is used to log in to third-party websites using existing credentials and would not meet the needs described. SAML is a markup language and would not meet the full set of AAA needs. Since the organization is using Active Directory, a custom in-house solution is unlikely to be as effective as a preexisting third-party solution and may take far more time and expense to implement.",
+      "optionNotes": [
+        "Incorrect. OAuth is an authorization framework that lets users sign in to third-party websites with existing credentials. It doesn't give on-site systems the full set of identity and AAA services they need.",
+        "Correct. An on-premises third-party identity service can integrate with the cloud IDaaS solution, and third-party vendors widely support Active Directory. That makes it a good fit for a company with no internal identity staff.",
+        "Incorrect. SAML is an XML-based markup language for exchanging authentication and authorization assertions. On its own it doesn't cover all of the company's on-site AAA needs.",
+        "Incorrect. A custom in-house solution would likely work worse than an existing third-party product that already supports Active Directory. It would also cost more and take longer, especially with no identity staff."
+      ]
+    },
+    {
+      "id": "OPT4-C05-003",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "What role does a policy enforcement point play in a zero trust environment?",
+      "options": [
+        "It makes decisions for the policy engine.",
+        "It is the workstation or mobile device used by the end user.",
+        "It deploys role-based access controls based on local policy.",
+        "It receives authorization requests and sends them to the policy decision point."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "A policy enforcement point in a zero trust environment receives authorization requests and then sends them to the policy decision point. They are used anywhere that authorization controls are needed. They do not make decisions for the policy engine, can exist beyond workstations and mobile devices, and use policies set at the zero trust control layer rather than just at the endpoint device.",
+      "optionNotes": [
+        "Incorrect. The PEP doesn't make decisions for the policy engine. Decisions come from the policy decision point (the policy engine plus the policy administrator), and the PEP only carries them out.",
+        "Incorrect. The user's workstation or mobile device is the subject or endpoint asking for access. PEPs are placed wherever authorization controls are needed, not only on end-user devices.",
+        "Incorrect. PEPs apply policies set centrally at the zero trust control layer, not local endpoint policies, and they don't set up RBAC on their own.",
+        "Correct. The PEP takes in authorization requests, passes them to the policy decision point, and then enforces the decision by allowing or blocking the connection to the resource."
+      ]
+    },
+    {
+      "id": "OPT4-C05-004",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "Voice pattern recognition is what type of authentication factor?",
+      "options": [
+        "Something you know",
+        "Something you have",
+        "Something you are",
+        "Somewhere you are"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Voice pattern recognition is “something you are,” a biometric authentication factor, because it measures a physical characteristic of the individual authenticating.",
+      "optionNotes": [
+        "Incorrect. Something you know covers secrets you've memorized, like passwords or PINs. Voice recognition checks how you sound, not what you know, so it isn't a knowledge factor.",
+        "Incorrect. Something you have means a physical object the user carries, such as a smartcard, hardware token or authenticator app on a phone. Your voice isn't an object you possess.",
+        "Correct. Voice pattern recognition is a biometric: it measures a physical characteristic of the person, so it is a 'something you are' (Type 3) factor.",
+        "Incorrect. Somewhere you are is a location-based factor, using things like GPS or IP address. Voice recognition measures the person, not where they are."
+      ]
+    },
+    {
+      "id": "OPT4-C05-005",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "If Susan's organization requires her to log in with her username, a PIN, a password, and a retina scan, how many distinct authentication factor types has she used?",
+      "options": [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Susan has used two distinct types of factors: the PIN and password are both Type 1 factors, and the retina scan is a Type 3 factor. Her username is not a factor.",
+      "optionNotes": [
+        "Incorrect. Too few. The PIN and password count as one factor type (something you know), but the retina scan is a separate Type 3 factor (something you are), which makes two types.",
+        "Correct. The PIN and password are both Type 1 (something you know) and the retina scan is Type 3 (something you are). The username only identifies her and is not an authentication factor.",
+        "Incorrect. This answer counts the PIN and password as separate factors. Both are something you know, so together they add no new factor type, and the username is identification, not authentication.",
+        "Incorrect. This answer counts every item as its own factor. The username is only an identity claim, and the PIN and password share the something-you-know type, so only two distinct types are used."
+      ]
+    },
+    {
+      "id": "OPT4-C05-006",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.89,
+      "stem": "Charles wants to deploy a credential management system (CMS). He wants to keep the keys as secure as possible. Which of the following is the best design option for his CMS implementation?",
+      "options": [
+        "Use AES-256 instead of 3DES.",
+        "Use long keys.",
+        "Use an HSM.",
+        "Change passphrases regularly."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Hardware Security Modules, or HSMs, are the most secure way to store keys associated with a CMS. They provide enhanced key management capabilities and are often required to be FIPS certified. In addition to these advantages, an HSM can improve cryptographic performance for the organization due to dedicated hardware designed for just that purpose. Long keys and using AES-256 are good practices, but an HSM provides greater security and will require appropriate cryptographic controls already. Changing passphrases can be challenging across an organization; instead, securing the passphrases and keys is more important and reasonable for most organizations.",
+      "optionNotes": [
+        "Incorrect. Picking AES-256 over 3DES is a sound algorithm choice, but it only makes the encryption stronger. It does nothing to protect how the keys are stored, and an HSM gives the CMS more security than an algorithm choice can.",
+        "Incorrect. Long keys make brute-force attacks harder. They don't protect the stored keys from theft or misuse, though. The book says an HSM gives more security and already requires appropriate cryptographic controls.",
+        "Correct. An HSM is the most secure place to store CMS keys. It is dedicated, tamper-resistant hardware, often FIPS certified, that adds stronger key management and can also speed up cryptographic operations.",
+        "Incorrect. Changing passphrases regularly is hard to manage across an organization. The book says securing the passphrases and keys themselves matters more and is more practical than frequent changes."
+      ]
+    },
+    {
+      "id": "OPT4-C05-007",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Brian is a researcher at a major university. As part of his research, he logs into a computing cluster hosted at another institution using his own university's credentials. Once logged in, he is able to access the cluster and use resources based on his role in a research project, as well as using resources and services in his home organization. What has Brian's home university implemented to make this happen?",
+      "options": [
+        "Domain stacking",
+        "Federated identity management",
+        "Domain nesting",
+        "Hybrid login"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Brian's organization is using a federated identity management approach where multiple organizations allow identities to be used across the organizations. Each organization needs to conduct identity proofing of their own staff members' identities and provide them with rights and role information that will allow them to use resources within the federated identity environment.",
+      "optionNotes": [
+        "Incorrect. Domain stacking isn't a recognized identity management model. Letting a user log in at another institution with home credentials requires a federation agreement to share identity information.",
+        "Correct. In federated identity management, several organizations agree to trust each other's identities. Each one proofs its own users and supplies their rights and role information, so Brian's home credentials work on the partner institution's cluster.",
+        "Incorrect. Domain nesting isn't a standard CISSP identity concept. It's a distractor that loosely suggests nested trust within one directory, not sharing identities between separate organizations.",
+        "Incorrect. Hybrid login isn't a defined identity management model. Cross-organization access with home credentials and role-based rights is federation. A 'hybrid' setup usually means mixing on-premises and cloud identity inside one organization."
+      ]
+    },
+    {
+      "id": "OPT4-C05-008",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "When Sally attempts to authenticate to her organization's services, she knows that the organization uses a mobile device management tool to check her location and whether she's logging in from her company-issued mobile device. What type of authentication is this?",
+      "options": [
+        "Context-aware",
+        "Knowledge-based",
+        "Identity factoring",
+        "Zero trust"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Authentication that takes attributes such as location, device, and time of day into account is context-aware authentication. This allows organizations to make choices about whether the authentication is appropriate and allowed in addition to the use of credentials. The decision is based on contextual information, not user knowledge or identity factors, which are used only to authenticate. Zero trust may leverage context information, but context-aware authentication alone does not indicate zero trust.",
+      "optionNotes": [
+        "Correct. Context-aware authentication looks at attributes such as location, device, and time of day to decide whether a login is allowed, on top of normal credentials. That matches the MDM checks in this scenario.",
+        "Incorrect. Knowledge-based authentication depends on something the user knows, like a password or security questions. Checking location and device uses contextual data, not anything Sally knows.",
+        "Incorrect. 'Identity factoring' isn't a standard authentication type. Identity or authentication factors only verify who the user is, while this decision is based on context such as location and device.",
+        "Incorrect. Zero trust is a broader architecture that may use contextual information. However, context-aware checks alone don't show that zero trust is in place."
+      ]
+    },
+    {
+      "id": "OPT4-C05-009",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "What major issue often results from decentralized access control?",
+      "options": [
+        "Access outages may occur.",
+        "Control is not consistent.",
+        "Control is too granular.",
+        "Training costs are high."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Decentralized access control can result in less consistency because the individuals tasked with control may interpret policies and requirements differently and may perform their roles in different ways. Access outages, overly granular control, and training costs may occur, depending on specific implementations, but they are not commonly identified issues with decentralized access control.",
+      "optionNotes": [
+        "Incorrect. Access outages can happen under some implementations, but the book says they aren't a commonly identified problem with decentralized access control. Inconsistency is the typical issue.",
+        "Correct. When control is decentralized, different people interpret policies and requirements differently and do their jobs in different ways. The result is inconsistent access control.",
+        "Incorrect. How granular control is depends on the specific implementation, not on whether administration is decentralized. The book says it's not a typical drawback.",
+        "Incorrect. Training costs can be high in some setups, but the book says they aren't the commonly identified problem with decentralized access control."
+      ]
+    },
+    {
+      "id": "OPT4-C05-010",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Callback to a landline phone number is an example of what type of factor?",
+      "options": [
+        "Something you know",
+        "Somewhere you are",
+        "Something you have",
+        "Something you are"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A callback to a landline phone number is an example of a “somewhere you are” factor because of the fixed physical location of a wired phone. A callback to a mobile phone would be a “something you have” factor.",
+      "optionNotes": [
+        "Incorrect. Something you know is a memorized secret like a password or PIN. A callback checks where the user is, not what they remember.",
+        "Correct. This is correct. A landline is wired to a fixed physical place, so a callback to it confirms the user's location. That makes it a 'somewhere you are' factor.",
+        "Incorrect. A callback to a mobile phone would count as something you have, because the phone is a portable device. A landline is tied to a location instead.",
+        "Incorrect. Something you are means biometrics, such as fingerprints or iris scans. A phone callback does not measure any physical trait of the user."
+      ]
+    },
+    {
+      "id": "OPT4-C05-011",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "What common behavior drives the NIST recommendation that passwords should not expire?",
+      "options": [
+        "Attackers would not have enough time to compromise passwords if they expired.",
+        "Users often make minimal changes to passwords to handle change requirements.",
+        "Password expiration leads to too little support overhead.",
+        "Re-hashing passwords when changes are required is computationally intensive."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The NIST recommendation to not expire passwords recognizes that users often make minimal changes to their passwords when they are required to change them. In addition, password changes drive significant support overhead as users forget their passwords or otherwise face challenges with them. Longer password lives do create the potential for attackers to have longer to compromise them, but modern password recommendations look for multifactor authentication, which means a compromised password is less of a threat. Hashing new passwords does require computation, but not a significant amount using modern hardware.",
+      "optionNotes": [
+        "Incorrect. This gets it backwards. Expiration limits how long a stolen password stays useful, so it isn't why NIST drops expiration. NIST relies on MFA to reduce the risk of a compromised password instead.",
+        "Correct. When forced to change passwords, users tend to make small, predictable tweaks (e.g., incrementing a digit). That adds little security, so NIST SP 800-63B recommends against routine expiration.",
+        "Incorrect. This is the reverse of what happens. Forced password changes create a lot of support overhead because users forget new passwords, which is another reason NIST dislikes expiration.",
+        "Incorrect. Hashing a new password takes very little computing power on modern hardware, so the cost of re-hashing is not what drives NIST's guidance."
+      ]
+    },
+    {
+      "id": "OPT4-C05-012",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.74,
+      "stem": "What three functions make up the AAA model?",
+      "options": [
+        "Access control, authentication, and authorization",
+        "Access, administration, and authorization",
+        "Authentication, authorization, and accounting",
+        "Accounting, auditing, and assessment"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "AAA refers to a set of security protocols that are used to identify and authorize users and record their activities. The acronym stands for authentication, authorization, and accounting.",
+      "optionNotes": [
+        "Incorrect. This lists access control itself as one of the three, but AAA is the set of functions that make up access control. It keeps authentication and authorization and leaves out accounting, the audit trail of user activity.",
+        "Incorrect. Access and administration are not AAA functions. The model is authenticating subjects, authorizing their actions, and accounting for activity through audit trails.",
+        "Correct. AAA stands for authentication (identifying users), authorization (granting their permissions), and accounting (recording what they do).",
+        "Incorrect. Only accounting belongs to AAA. Auditing is sometimes swapped in for accounting, but assessment is never part of the model, and this option leaves out authentication and authorization."
+      ]
+    },
+    {
+      "id": "OPT4-C05-013",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.02,
+      "stem": "What directory-based technology underlies Microsoft Active Directory single sign-on?",
+      "options": [
+        "LDAP",
+        "zero trust",
+        "Shibboleth",
+        "RADIUS"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Active Directory relies on the Lightweight Directory Access Protocol (LDAP) as part of its single sign-on (SSO) implementation. Zero trust is not a SSO implementation, and Shibboleth is an open-source identity management system. RADIUS is not a single sign-on implementation, although some vendors use it behind the scenes to provide authentication for proprietary SSO.",
+      "optionNotes": [
+        "Correct. Active Directory is built on LDAP, the directory protocol it uses as part of its single sign-on implementation.",
+        "Incorrect. Zero trust is a security model that assumes no implicit trust and verifies every access request. It is not a directory technology and not an SSO implementation.",
+        "Incorrect. Shibboleth is an open-source, SAML-based federated identity management system. Active Directory SSO is not built on it.",
+        "Incorrect. RADIUS is an AAA protocol for authenticating remote and network access, not a directory or an SSO implementation. Some vendors do use it behind the scenes in proprietary SSO products."
+      ]
+    },
+    {
+      "id": "OPT4-C05-014",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.89,
+      "stem": "Sameer's organization needs to perform identity proofing for new customers. What type of authentication is best suited to identity proofing in this scenario?",
+      "options": [
+        "Cognitive passwords",
+        "Knowledge-based authentication",
+        "Palm scans",
+        "USB tokens"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Knowledge-based authentication relies on information that only the individual who wants to prove their identity is likely to know. This might include a mortgage payment amount, vehicle information, or driver's license number among many options. Cognitive passwords, or security questions, are created by users, which means they aren't suited to this type of identity proofing. Palm scans and USB tokens both require prior engagement with the user as well and thus aren't suited for identity proofing with users who are new customers.",
+      "optionNotes": [
+        "Incorrect. Cognitive passwords (security questions) are answers the user sets up in advance. A brand-new customer has never registered any, so they can't be used to prove identity at onboarding.",
+        "Correct. Knowledge-based authentication asks about facts only the real person is likely to know, such as a mortgage payment, vehicle details or a driver's license number. These come from outside records, so it works for new customers who have no prior relationship with the organization.",
+        "Incorrect. A palm scan only works after the user's biometric template has been enrolled. That means prior engagement with the user is required, which a new customer doesn't have.",
+        "Incorrect. USB tokens have to be issued to the user and registered first. That requires an existing relationship, so they can't verify the identity of a new customer."
+      ]
+    },
+    {
+      "id": "OPT4-C05-015",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "What type of access controls allow the owner of a file to grant other users access to it using an access control list?",
+      "options": [
+        "Role-based",
+        "Nondiscretionary",
+        "Rule-based",
+        "Discretionary"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "When the owner of a file makes the decisions about who has rights or access privileges to it, they are using discretionary access control. Role-based access controls would grant access based on a subject's role, while rule-based controls would base the decision on a set of rules or requirements. Nondiscretionary access controls apply a fixed set of rules to an environment to manage access. Nondiscretionary access controls include rule-, role-, and lattice-based access controls.",
+      "optionNotes": [
+        "Incorrect. Role-based access control grants access according to the subject's assigned role or job function, not because a file owner decides who gets in through an ACL.",
+        "Incorrect. Nondiscretionary access control applies a fixed set of rules across the whole environment, which means owners can't hand out access at their own discretion. It includes rule-based, role-based and lattice-based models.",
+        "Incorrect. Rule-based access control decides access from a set of rules or requirements, such as firewall rules, that apply to everyone. It does not let an owner choose who gets access.",
+        "Correct. Under discretionary access control (DAC), the owner of a file decides who has rights to it, usually by editing the file's access control list."
+      ]
+    },
+    {
+      "id": "OPT4-C05-016",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Alex's job requires him to see protected health information (PHI) to ensure proper treatment of patients. His access to their medical records does not provide access to patient addresses or billing information. What access control concept best describes this control?",
+      "options": [
+        "Separation of duties",
+        "Constrained interfaces",
+        "Context-dependent control",
+        "Need to know"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Need to know is applied when subjects like Alex have access to only the data they need to accomplish their job. Separation of duties is used to limit fraud and abuse by having multiple employees perform parts of a task. Constrained interfaces restrict what a user can see or do and would be a reasonable answer if need to know did not describe his access more completely in this scenario. Context-dependent control relies on the activity being performed to apply controls, and this question does not specify a workflow or process.",
+      "optionNotes": [
+        "Incorrect. Separation of duties splits a task among several employees to limit fraud and abuse. Alex isn't sharing a task with anyone here; his data access is just being limited.",
+        "Incorrect. Constrained interfaces limit what a user can see or do in an application. That would be a reasonable answer, but need to know describes Alex's job-based access more completely.",
+        "Incorrect. Context-dependent control applies controls based on the activity or workflow step being performed. The scenario doesn't describe any workflow or process.",
+        "Correct. Need to know gives Alex only the data his job requires (PHI for treatment) and keeps addresses and billing information out of his reach."
+      ]
+    },
+    {
+      "id": "OPT4-C05-017",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.96,
+      "stem": "For questions 17–19, please use your knowledge of password policies and their application.\n\nIfemoa wants to ensure that users in her organization cannot change their password to a previously used password. What setting should she configure?",
+      "options": [
+        "Password length",
+        "Maximum password age",
+        "An MFA requirement",
+        "Password history"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Password history tracks what passwords have been set previously and will not allow reuse. A specific number of past passwords is typically set, and passwords themselves should not be retained. Instead, properly secured hashes are retained and compared to hashes of the new passwords. Length, maximum age, and MFA do not solve the issue of password reuse.",
+      "optionNotes": [
+        "Incorrect. Password length sets how many characters a password must have, which makes it harder to guess. It does nothing to stop a user from setting a password they used before.",
+        "Incorrect. Maximum password age forces users to change their password after a set time. It doesn't block reuse, so a user could switch back to an old password.",
+        "Incorrect. MFA requires a second authentication factor at login. It adds security but has no effect on which passwords a user is allowed to choose.",
+        "Correct. Password history keeps secure hashes of a set number of previous passwords and rejects a new password whose hash matches one of them, which prevents reuse."
+      ]
+    },
+    {
+      "id": "OPT4-C05-018",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.24,
+      "stem": "For questions 17–19, please use your knowledge of password policies and their application.\n\nWith a password history set, Ifeoma wants to prevent users from resetting their password multiple times to allow them to return to their original password. What setting should she apply?",
+      "options": [
+        "A password complexity requirement",
+        "A maximum password age",
+        "A minimum password age",
+        "A password length requirement"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Ifeoma knows that a minimum password age of one day will discourage users from resetting their passwords to attempt to return to their original password. Length and complexity do not prevent this if the original password met these requirements, and a maximum age is set in organizations that require password changes on a recurring basis.",
+      "optionNotes": [
+        "Incorrect. Complexity rules control which characters a password must contain. If the original password already met those rules, the user can still cycle back to it, so complexity doesn't stop the reset trick.",
+        "Incorrect. Maximum password age makes users change passwords on a regular schedule. It does nothing to stop several quick changes in a row that work through the history list.",
+        "Correct. A minimum password age, such as one day, stops users from changing their password over and over in one sitting to push the original out of the history list and reuse it.",
+        "Incorrect. Length requirements only set how long a password must be. If the original password was long enough, the user can still return to it after cycling through new passwords."
+      ]
+    },
+    {
+      "id": "OPT4-C05-019",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.12,
+      "stem": "For questions 17–19, please use your knowledge of password policies and their application.\n\nWith her organization's password behavior under control, Ifeoma wants to ensure that a lost password will not result in easy compromise of her company's accounts. Which of the following controls provides the best protection against password loss or exposure-related compromise?",
+      "options": [
+        "MFA",
+        "SSO",
+        "Federation",
+        "Password rotation"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Requiring multifactor authentication (MFA) is a common security measure used to prevent unauthorized access to an account in case of password loss or exposure. SSO allows the use of an account throughout systems or services. Federation connects different organizations together, allowing the use of credentials between trusted partners, and password rotation can help, but lost passwords remain dangerous until the rotation happens allowing days, weeks, or even months of potential vulnerable time.",
+      "optionNotes": [
+        "Correct. MFA requires another factor besides the password, such as a token or biometric. A lost or exposed password alone is no longer enough to get into the account.",
+        "Incorrect. SSO lets one account work across many systems or services. It does nothing to protect a lost password, and it can actually widen what that password exposes.",
+        "Incorrect. Federation lets trusted partner organizations accept each other's credentials. It is about trust between organizations, not about stopping someone from using a stolen password.",
+        "Incorrect. Rotation helps some, but a lost password stays usable until the next change. That can leave days, weeks, or even months of exposure."
+      ]
+    },
+    {
+      "id": "OPT4-C05-020",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Jacob is planning his organization's biometric authentication system and is considering retina scans. What concern may be raised about retina scans by others in his organization?",
+      "options": [
+        "Retina scans can reveal information about medical conditions.",
+        "Retina scans are painful because they require a puff of air in the user's eye.",
+        "Retina scanners are the most expensive type of biometric device.",
+        "Retina scanners have a high false positive rate and will cause support issues."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Retina scans can reveal additional information, including high blood pressure and pregnancy, causing privacy concerns. Newer retina scans don't require a puff of air, and retina scanners are not the most expensive biometric factor. Their false positive rate can typically be adjusted in software, allowing administrators to adjust their acceptance rate as needed to balance usability and security.",
+      "optionNotes": [
+        "Correct. Retina scans image the blood vessel pattern at the back of the eye, which can reveal conditions such as high blood pressure or pregnancy. That raises privacy concerns among employees.",
+        "Incorrect. The puff of air is linked to older devices, and newer retina scanners don't use it. Discomfort is not the main concern raised; privacy is.",
+        "Incorrect. Retina scanners are not the most expensive type of biometric device, so cost isn't the concern that sets them apart.",
+        "Incorrect. Retina scans are among the most accurate biometrics. Their false positive rate can be tuned in software to balance usability and security, so high false positives are not an inherent problem."
+      ]
+    },
+    {
+      "id": "OPT4-C05-021",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Mandatory access control is based on what type of model?",
+      "options": [
+        "Discretionary",
+        "Group-based",
+        "Lattice-based",
+        "Rule-based"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Mandatory access control systems are based on a lattice-based model. Lattice-based models use a matrix of classification labels to compartmentalize data. Discretionary access models allow object owners to determine access to the objects they control, role-based access controls are often group-based, and rule-based access controls like firewall ACLs apply rules to all subjects they apply to.",
+      "optionNotes": [
+        "Incorrect. In a discretionary model the object owner decides who gets access. MAC is the opposite: the system enforces access based on classification labels, and users can't override it.",
+        "Incorrect. Grouping users is typical of role-based access control, where permissions come from group or role membership. MAC instead compares subject clearances against object labels.",
+        "Correct. MAC is built on a lattice-based model, which uses a matrix of classification labels to divide data into compartments and set upper and lower access bounds.",
+        "Incorrect. Rule-based access control, like firewall ACLs, applies the same global rules to every subject it covers. It doesn't use the classification-label lattice that defines MAC."
+      ]
+    },
+    {
+      "id": "OPT4-C05-022",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Greg wants to control access to iPads used throughout his organization as point-of-sale terminals. Which of the following methods should he use to allow logical access control for the devices in a shared environment?",
+      "options": [
+        "Use a shared PIN for all point-of-sale terminals to make them easier to use.",
+        "Use OAuth to allow cloud logins for each user.",
+        "Issue a unique PIN to each user for the iPad they are issued.",
+        "Use Active Directory and user accounts for logins to the iPads using the AD user ID and password."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Using an enterprise authentication system like Active Directory that requires individuals to log in with their credentials provides the ability to determine who was logged in if a problem occurs and also allows Greg to quickly and easily remove users who are terminated or switch roles. Using a shared PIN provides no accountability, while unique PINs per user on specifically issued iPads mean that others will not be able to log in. OAuth alone does not provide the services and features Greg needs—it is an authorization service, not an authentication service.",
+      "optionNotes": [
+        "Incorrect. A single shared PIN gives no individual accountability, so nobody can tell who used a terminal when a problem occurs. It also means the PIN has to change for everyone whenever one staff member leaves.",
+        "Incorrect. OAuth is an authorization framework, not an authentication service. On its own it doesn't give Greg the centralized user logins and accountability he needs on shared devices.",
+        "Incorrect. Tying a unique PIN to the one iPad issued to each user doesn't work when the devices are shared. Other staff couldn't log in to that terminal.",
+        "Correct. Enterprise authentication through Active Directory gives each person their own login on any shared iPad, so Greg can see who was logged in. He can also quickly disable users who leave or change roles."
+      ]
+    },
+    {
+      "id": "OPT4-C05-023",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.3,
+      "stem": "What is the best way to provide accountability for the use of identities?",
+      "options": [
+        "Logging",
+        "Authorization",
+        "Digital signatures",
+        "Type 1 authentication"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Logging systems can provide accountability for identity systems by tracking the actions, changes, and other activities a user or account performs. Authorization does not provide accountability because it validates that a person can perform an action, not who is using the identity. Digital signatures can be used to validate an identity, not to provide accountability by proving who is using it, and Type 1 authentication is something you know. Again, logging is the best way to provide accountability for the use of an identity.",
+      "optionNotes": [
+        "Correct. Logging gives accountability because it records the actions, changes, and other activities each user or account performs, so what was done can be traced back to the identity.",
+        "Incorrect. Authorization decides whether an authenticated subject is allowed to perform an action. It does not record or prove what an identity actually did, so it provides no accountability.",
+        "Incorrect. Digital signatures can confirm an identity or the origin of a message. They do not keep an ongoing record of what an identity does, so they do not provide accountability for its use.",
+        "Incorrect. Type 1 authentication is something you know, such as a password. It proves a claimed identity at login but does not track what that identity does afterward."
+      ]
+    },
+    {
+      "id": "OPT4-C05-024",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Jim has worked in human relations, payroll, and customer service roles in his company over the past few years. What type of process should his company perform to ensure that he has appropriate rights?",
+      "options": [
+        "Re-provisioning",
+        "Account review",
+        "Privilege creep",
+        "Account revocation"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "As an employee's role changes, they often experience privilege creep, which is the accumulation of old rights and roles. Account review is the process of reviewing accounts and ensuring that their rights match their owners' role and job requirements. Account revocation removes accounts, while re-provisioning might occur if an employee was terminated and returned or took a leave of absence and returned.",
+      "optionNotes": [
+        "Incorrect. Re-provisioning fits an employee who was terminated and rehired, or who comes back from a leave of absence. Jim has stayed employed and changed roles, so the job is to check the rights he has piled up, not to set up his access again.",
+        "Correct. An account review compares an account's rights against its owner's current role and job requirements. That makes it the process that finds and removes access left over from Jim's earlier HR and payroll jobs.",
+        "Incorrect. Privilege creep is the problem itself: old rights building up as someone moves between roles. It's what the company needs to fix, not a process the company performs.",
+        "Incorrect. Account revocation removes the account entirely, which is appropriate when someone leaves. Jim is still working there and needs access for his current role."
+      ]
+    },
+    {
+      "id": "OPT4-C05-025",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.02,
+      "stem": "Biba is what type of access control model?",
+      "options": [
+        "MAC",
+        "DAC",
+        "Role BAC",
+        "ABAC"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Biba uses a lattice to control access and is a form of the mandatory access control (MAC) model. It does not use rules, roles, or attributes, nor does it allow user discretion. Users can create content at their level or lower but cannot decide who gets access, levels are not roles, and attributes are not used to make decisions on access control.",
+      "optionNotes": [
+        "Correct. Biba enforces integrity across a lattice of system-assigned levels, so it is a form of mandatory access control. The system decides access, not users.",
+        "Incorrect. DAC lets data owners decide who gets access. In Biba, users can create content at their own level or lower, but they cannot choose who accesses it.",
+        "Incorrect. RBAC gives permissions to roles or groups based on job function. Biba's integrity levels are lattice levels, not roles.",
+        "Incorrect. ABAC uses rules that evaluate multiple attributes. Biba doesn't use attributes to make access decisions. It compares integrity levels within a lattice."
+      ]
+    },
+    {
+      "id": "OPT4-C05-026",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Which of the following is a client-server protocol designed to allow network access servers to authenticate remote users by sending access request messages to a central server?",
+      "options": [
+        "Kerberos",
+        "EAP",
+        "RADIUS",
+        "OAuth"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "RADIUS is an AAA protocol used to provide authentication and authorization; it's often used for modems, wireless networks, and network devices. It uses network access servers to send access requests to central RADIUS servers. Kerberos is a ticket-based authentication protocol; OAuth is an open standard for authentication allowing the use of credentials from one site on third-party sites; and EAP is the Extensible Authentication Protocol, an authentication framework often used for wireless networks.",
+      "optionNotes": [
+        "Incorrect. Kerberos authenticates users with tickets from a KDC. It doesn't have network access servers send access request messages to a central AAA server.",
+        "Incorrect. EAP is an authentication framework, often used on wireless networks. It's not a client-server AAA protocol that carries access requests from network access servers to a central server.",
+        "Correct. RADIUS is an AAA protocol. Network access servers, such as modem pools, wireless gear and network devices, send access requests to a central RADIUS server for authentication and authorization.",
+        "Incorrect. The book describes OAuth as an open standard that lets credentials from one site be used on third-party sites. It isn't used by network access servers to authenticate remote users."
+      ]
+    },
+    {
+      "id": "OPT4-C05-027",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.18,
+      "stem": "Henry is working with a web application development team on their authentication and authorization process for his company's new application. The team wants to make session IDs as secure as possible. Which of the following is not a best practice that Henry should recommend?",
+      "options": [
+        "The session ID token should be predictable.",
+        "The session ID should have at least 64 bits of entropy.",
+        "The session length should be at least 128 bits.",
+        "The session ID should be meaningless."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Session identifiers should not be predictable to ensure that attackers can't simply guess or easily brute force session IDS. Web application development best practices currently recommend the use of long session IDs (128 bits or longer) that have sufficient entropy (randomness) to ensure that they will not be easily duplicated or brute-forced. It is also a best practice to make sure the session ID itself is meaningless to prevent information disclosure attacks. Session IDs should expire, however, because a session that never expires could eventually be brute-forced even if all of these recommendations were met.",
+      "optionNotes": [
+        "Correct. Correct choice because this is NOT a best practice. A predictable session ID lets attackers guess or brute-force valid tokens and hijack sessions, so IDs must be unpredictable.",
+        "Incorrect. This is a real best practice. Enough entropy (randomness), at least 64 bits, keeps session IDs from being duplicated or brute-forced, so it isn't the answer.",
+        "Incorrect. This is a real best practice. Current guidance calls for long session IDs of 128 bits or more to resist brute force, so it isn't the answer.",
+        "Incorrect. This is a real best practice. A meaningless ID doesn't encode user or system data, which prevents information disclosure attacks, so it isn't the answer."
+      ]
+    },
+    {
+      "id": "OPT4-C05-028",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Angela uses her smartphone's built-in biometric authentication and an application provided by her employer to log into her account. What type of authentication has she used?",
+      "options": [
+        "Extended",
+        "Passwordless",
+        "Alternative",
+        "SPOT"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Passwordless authentication leverages applications and capabilities such as built-in biometric authentication mechanisms. Extended and alternative authentication are not terms used on the exam. The Fast Identity Online Alliance (FIDO) is an open industry association that provides frameworks for passwordless authentication, but SPOT is not a type of passwordless authentication.",
+      "optionNotes": [
+        "Incorrect. \"Extended authentication\" isn't a recognized authentication category on the exam. Nothing in the scenario points to an extended scheme; the clue is that she logs in without a password.",
+        "Correct. Passwordless authentication uses built-in device features like biometrics, along with authenticator apps, so the user can log in without a password. This is what Angela did with her phone and her employer's app.",
+        "Incorrect. \"Alternative authentication\" is not an exam term. It vaguely suggests something other than passwords, but the recognized name for biometric- and app-based login is passwordless.",
+        "Incorrect. SPOT is not a type of passwordless authentication. It may be a distractor modeled on FIDO, the industry alliance that publishes frameworks for passwordless authentication."
+      ]
+    },
+    {
+      "id": "OPT4-C05-029",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.65,
+      "stem": "What type of access control best describes NAC's posture assessment capability?",
+      "options": [
+        "A mandatory access control",
+        "A risk-based access control",
+        "A discretionary access control",
+        "A role-based access control"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The posturing capability of network access control (NAC) determines if a system is sufficiently secure and compliant enough to connect to a network. This is a form of risk-based access control, as systems that are not compliant are considered higher risk and either are placed in a quarantine and remediation network or zone or are prohibited from connecting to the network until they are compliant.",
+      "optionNotes": [
+        "Incorrect. MAC grants access by comparing classification labels on subjects and objects; NAC posture checks evaluate device compliance and health, not security labels.",
+        "Correct. NAC posture assessment checks whether a device is secure and compliant enough to connect. Devices that fail are treated as higher risk, so they are quarantined for remediation or blocked.",
+        "Incorrect. With DAC, the owner of an object decides who can access it. NAC posture decisions are made automatically by checking a device's compliance, not by an owner's choice.",
+        "Incorrect. RBAC grants access based on a user's job role or group membership. Posture assessment looks at an endpoint's security state, such as patches and antivirus, not at roles."
+      ]
+    },
+    {
+      "id": "OPT4-C05-030",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "When an application or system allows a logged-in user to perform specific actions, it is an example of what?",
+      "options": [
+        "Roles",
+        "Group management",
+        "Logins",
+        "Authorization"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Authorization provides a user with capabilities or rights. Roles and group management are both methods that could be used to match users with rights. Logins are used to validate a user.",
+      "optionNotes": [
+        "Incorrect. Roles are a way of grouping rights so they can be assigned to users. They are a method for granting permissions, not the act of allowing a logged-in user to perform actions.",
+        "Incorrect. Group management is a way to match users with rights by putting them into groups. It supports authorization, but it is not the act of granting a user the ability to perform actions.",
+        "Incorrect. Logins validate who a user is (authentication). The question describes what a user can do after logging in, so logins don't fit.",
+        "Correct. Authorization gives an authenticated user specific capabilities or rights. That matches letting a logged-in user perform specific actions."
+      ]
+    },
+    {
+      "id": "OPT4-C05-031",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "Alex has been employed by his company for more than a decade and has held a number of positions in the company. During an audit, it is discovered that he has access to shared folders and applications because of his former roles. What issue has Alex's company encountered?",
+      "options": [
+        "Excessive provisioning",
+        "Unauthorized access",
+        "Privilege creep",
+        "Account review"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Privilege creep occurs when users retain rights they do not need to accomplish their current job from roles they held previously. Unauthorized access occurs when an unauthorized user accesses files. Excessive provisioning is not a term used to describe permissions issues, and account review would help find issues like this.",
+      "optionNotes": [
+        "Incorrect. Excessive provisioning isn't a recognized term for permission problems. Alex's extra rights come from roles he held before, not from being given too much access at setup.",
+        "Incorrect. Unauthorized access means someone opens files they aren't authorized to use. Alex's rights were properly granted for earlier roles, and he simply kept them after moving on.",
+        "Correct. Privilege creep is when a user keeps rights from earlier roles that their current job doesn't need, which is exactly what the audit found with Alex.",
+        "Incorrect. Account review is the control that finds problems like this one. It isn't the problem itself."
+      ]
+    },
+    {
+      "id": "OPT4-C05-032",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.97,
+      "stem": "Geoff wants to prevent privilege escalation attacks in his organization. Which of the following practices is most likely to prevent horizontal privilege escalation?",
+      "options": [
+        "Multifactor authentication",
+        "Limiting permissions for groups and accounts",
+        "Disabling unused ports and services",
+        "Sanitizing user inputs to applications"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Multifactor authentication is most likely to limit horizontal privilege escalation by making it difficult to access user accounts and to authenticate to a compromised account. Limiting permissions for groups and accounts can also help, but disabling unused ports and services and sanitizing user inputs both address threats that are most frequently associated with vertical privilege escalation attacks.",
+      "optionNotes": [
+        "Correct. Horizontal escalation means taking over other accounts at the same privilege level. MFA makes it hard to log in to those accounts, even when a password has been stolen.",
+        "Incorrect. Limiting group and account permissions helps somewhat because it reduces what a compromised account can reach. It does not stop an attacker from logging in to peer accounts, so MFA is the better answer.",
+        "Incorrect. Disabling unused ports and services shrinks the attack surface. The book links these exploits mostly to vertical escalation (gaining higher privileges), not to taking over peer accounts.",
+        "Incorrect. Input sanitization blocks injection and similar application exploits. The book links these mostly to vertical privilege escalation, not to moving across accounts at the same level."
+      ]
+    },
+    {
+      "id": "OPT4-C05-033",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Jim's Microsoft Exchange environment includes servers that are located in local data centers at multiple business offices around the world as well as an Office 365 deployment for employees who are not located at one of those offices. Identities are created and used in both environments and will work in both. What type of federated system is Jim running?",
+      "options": [
+        "A primary cloud system",
+        "A primary on-premises system",
+        "A hybrid system",
+        "A multitenant system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Hybrid systems use both on-premises and cloud identity and services to provide resources and tools in both environments. While they can be complex, hybrid systems also provide a migration path to a full cloud deployment or for a fault-tolerant design that can handle on-premises or cloud outages while remaining functional.",
+      "optionNotes": [
+        "Incorrect. A cloud-primary federation keeps identity and services mostly in the cloud (e.g., Office 365 alone). Jim also runs on-premises Exchange servers in local data centers, so his setup is not cloud-primary.",
+        "Incorrect. An on-premises-primary design keeps identity in local infrastructure and makes little use of the cloud. Here, identities are created and used in Office 365 too, and they work equally in both places.",
+        "Correct. A hybrid system uses both on-premises and cloud identity and services, so it provides resources in both environments. That matches Jim's local Exchange servers plus Office 365, with identities that work in both.",
+        "Incorrect. Multitenancy means many customers share the same infrastructure, as in a shared data center or cloud. It describes how resources are hosted, not a type of federated identity design spanning on-premises and cloud."
+      ]
+    },
+    {
+      "id": "OPT4-C05-034",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "What type of access control scheme is shown in the following table?\nHighly Sensitive Red\nBlue\nGreen\nConfidential\nPurple Orange Yellow\nInternal Use\nBlack Gray\nWhite\nPublic\nClear Clear\nClear",
+      "options": [
+        "RBAC",
+        "DAC",
+        "MAC",
+        "TBAC"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Mandatory access controls (MAC) use a lattice or matrix to describe how classification labels relate to each other. In this image, classification levels are set for each of the labels shown. A discretionary access control (DAC) system would show how the owner of the objects allows access. RBAC could be either rule- or role-based access control and would use either system-wide rules or roles. Task-based access control (TBAC) would list tasks for users.",
+      "optionNotes": [
+        "Incorrect. RBAC (role- or rule-based) grants access through job roles or system-wide rules. The table shows tiers of classification labels, not roles or rules.",
+        "Incorrect. In DAC, the object owner decides who gets access. A table of classification levels says nothing about owner-granted permissions.",
+        "Correct. MAC uses a lattice of classification labels, such as Highly Sensitive, Confidential, Internal Use and Public, each with its own compartments. That is exactly what the table shows.",
+        "Incorrect. TBAC (task-based access control) would list the tasks users are allowed to do. This table lists labels and their classification levels, not tasks."
+      ]
+    },
+    {
+      "id": "OPT4-C05-035",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.3,
+      "stem": "Michelle's company is creating a new division by splitting the marketing and communications departments into two separate groups. She wants to create roles that provide access to resources used by each group. What should she do to maintain the appropriate security and rights for each group?",
+      "options": [
+        "Put both the marketing and communications teams into the existing group because they will have similar access requirements.",
+        "Keep the marketing team in the existing group and create a new communications group based on their specific needs.",
+        "Keep the communications' team in the existing group and create a new marketing group based on their specific needs.",
+        "Create two new groups, assess which rights they need to perform their roles, and then add additional rights if required."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Copying existing rights to new groups that have different needs will often result in overly broad privileges. Michelle should create new groups, move all staff into the appropriate groups, and then ensure that they have the access and permissions they need.",
+      "optionNotes": [
+        "Incorrect. Leaving both teams in the existing combined group gives each team access the other team needed. Their needs are no longer the same, so this keeps privileges overly broad and breaks least privilege.",
+        "Incorrect. The marketing team would keep the old group's combined rights, including access that only communications needed. Reusing existing rights for a group with different needs leads to overly broad privileges.",
+        "Incorrect. This makes the same mistake as B in the other direction. The communications team keeps rights left over from the old combined group, which it may not need, so it ends up over-privileged.",
+        "Correct. Creating two new groups, working out what each one actually needs, and adding rights only when required avoids copying broad existing permissions. This follows least privilege and proper role-based access control."
+      ]
+    },
+    {
+      "id": "OPT4-C05-036",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "When a subject claims an identity, what process is occurring?",
+      "options": [
+        "Login",
+        "Identification",
+        "Authorization",
+        "Token presentation"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The process of a subject claiming or professing an identity is known as identification. Authorization verifies the identity of a subject by checking a factor like a password. Logins typically include both identification and authorization, and token presentation is a type of authentication.",
+      "optionNotes": [
+        "Incorrect. A login is a whole process that usually includes both claiming an identity and proving it. It is more than the single step of claiming an identity.",
+        "Correct. Identification is when a subject claims or professes an identity, for example by entering a username. Proving that identity comes in a later, separate step.",
+        "Incorrect. Authorization happens only after an identity has been claimed. It acts on that claimed identity, so it is not the act of claiming the identity.",
+        "Incorrect. Presenting a token is a form of authentication, since it proves an identity that was already claimed. It is not the act of claiming the identity."
+      ]
+    },
+    {
+      "id": "OPT4-C05-037",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Which of the following is a common account setting for a service account?",
+      "options": [
+        "Disable password expiration.",
+        "Set maximum password age to 90 days.",
+        "Set minimum password age to 1 day.",
+        "Disable complexity requirements."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Service accounts are commonly set to not have expiring passwords to prevent service outages. Organizations may choose to rotate passwords on a regular basis using automation tools as part of their password management strategy to help avoid issues with exposed or compromised service passwords. Disabling complexity requirements and setting a minimum password age are not commonly done for service accounts.",
+      "optionNotes": [
+        "Correct. Service account passwords are usually set to never expire so the services that depend on them don't go down. Rotation is handled separately, often with automation tools.",
+        "Incorrect. A 90-day maximum age makes the password expire, and an unexpected expiry can cause a service outage. Expiring passwords is a user-account practice, not a typical service-account setting.",
+        "Incorrect. A minimum password age stops users from cycling quickly back to an old password. The book says it is not commonly set for service accounts.",
+        "Incorrect. Turning off complexity requirements would weaken a privileged, non-interactive account. The book says this is not a common service-account setting."
+      ]
+    },
+    {
+      "id": "OPT4-C05-038",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.3,
+      "stem": "Susan's organization is updating its password policy and wants to use the strongest possible passwords. What password requirement will have the highest impact in preventing brute-force attacks?",
+      "options": [
+        "Change the maximum age from 1 year to 180 days.",
+        "Increase the minimum password length from 8 characters to 16 characters.",
+        "Increase the password complexity so that at least three character classes (such as uppercase, lowercase, numbers, and symbols) are required.",
+        "Retain a password history of at least four passwords to prevent reuse."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Password complexity is driven by length, and a longer password will be more effective against brute-force attacks than a shorter password. Each character of additional length increases the difficulty by the size of the potential character set (for example, a single lowercase character makes the passwords 26 times more difficult to crack). While each of the other settings is useful for a strong password policy, they won't have the same impact on brute-force attacks.",
+      "optionNotes": [
+        "Incorrect. A shorter maximum age only limits how long a cracked password stays usable. It does nothing to make each password harder to brute-force, so the effect is minor compared with adding length.",
+        "Correct. Password strength is driven mostly by length. Each extra character multiplies the search space by the size of the character set, so going from 8 to 16 characters makes a brute-force attack vastly harder.",
+        "Incorrect. Requiring three character classes enlarges the character set, but the gain is small. Doubling the length grows the search space exponentially and has a far bigger effect on brute-force resistance.",
+        "Incorrect. Password history only stops users from reusing old passwords. It does not shrink or expand the keyspace an attacker has to search, so it has little effect on brute-force attacks."
+      ]
+    },
+    {
+      "id": "OPT4-C05-039",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.65,
+      "stem": "Alaina is performing a regularly scheduled review for service accounts. Which of the following events should she be most concerned about?",
+      "options": [
+        "An interactive login for the service account",
+        "A password change for the service account",
+        "Limitations placed on the service account's rights",
+        "Local use of the service account"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Interactive login for a service account is a critical warning sign, either of compromise or bad administrative practices. In either case, Alaina should immediately work to determine why the account logged in, what occurred, and if the interactive login was done remotely or locally. A remote interactive login for a service account in any professionally maintained environment is an almost guaranteed sign of compromise. Password changes for service accounts may be done as part of ongoing password expiration processes, limitations should always be placed on service accounts rights to ensure that they are only those required, and a local use of the service account as part of the service is a normal event.",
+      "optionNotes": [
+        "Correct. Service accounts should never log in interactively. An interactive login points to compromise or bad admin practice, and a remote one almost certainly means compromise, so it needs investigation right away.",
+        "Incorrect. Password changes on service accounts can be part of normal password expiration processes, so on their own they aren't a critical warning sign.",
+        "Incorrect. Restricting a service account's rights to only what it needs is least privilege. That's expected good practice, not something to worry about.",
+        "Incorrect. A service account being used locally as part of the service it supports is a normal event and doesn't suggest compromise."
+      ]
+    },
+    {
+      "id": "OPT4-C05-040",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "When might an organization using biometrics choose to allow a higher FRR instead of a higher FAR?",
+      "options": [
+        "When security is more important than usability",
+        "When false rejection is not a concern due to data quality",
+        "When the CER of the system is not known",
+        "When the CER of the system is very high"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Organizations that have very strict security requirements that don't have a tolerance for false acceptance want to lower the false acceptance rate, or FAR, to be as near to zero as possible. That often means that the false rejection rate, or FRR, increases. Different biometric technologies or a better registration method can help improve biometric performance, but false rejections due to data quality are not typically a concern with modern biometric systems. In this case, knowing the crossover error rate, or CER, or having a very high CER doesn't help the decision.",
+      "optionNotes": [
+        "Correct. When security matters more than convenience, the organization pushes FAR toward zero so impostors are never accepted, and accepts that more legitimate users will be falsely rejected (higher FRR).",
+        "Incorrect. Data quality is not what drives this tradeoff. Modern biometric systems don't usually have data-quality false-rejection problems, and better enrollment or a different technology is how you'd address that anyway.",
+        "Incorrect. The CER is a metric for comparing the overall accuracy of different devices. Whether or not it's known has no bearing on choosing to favor FRR over FAR, which is a security-versus-usability decision.",
+        "Incorrect. A high CER only means the device is less accurate overall. It doesn't tell the organization whether to tune toward false rejections or false acceptances, so it doesn't help the decision."
+      ]
+    },
+    {
+      "id": "OPT4-C05-041",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "After recent reports of undesired access to workstations after hours, Derek has been asked to find a way to ensure that maintenance staff cannot log into workstations in business offices. The maintenance staff members do have systems in their break rooms and their offices for the organization, which they still need access to. What should Derek do to meet this need?",
+      "options": [
+        "Require multifactor authentication and allow only office staff to have multifactor tokens.",
+        "Use rule-based access control to prevent logins after hours in the business area.",
+        "Use role-based access control by setting up a group that contains all maintenance staff and then give that group rights to log into only the designated workstations.",
+        "Use geofencing to only allow logins in maintenance areas."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The most efficient use of Derek's time would be to create a group that is populated with all maintenance staff and then to give that group login rights only to the designated PCs. While time-based constraints might help, in this case, it would continue to allow maintenance staff to log in to PCs that are not intended for use during business hours, leaving a gap in the control. Multifactor authentication, as described, does not meet the requirements of the scenario but may be a good idea overall for greater security for authentication across the organization. Geofencing is typically not accurate enough to rely on inside buildings for specific PCs.",
+      "optionNotes": [
+        "Incorrect. Handing out MFA tokens only to office staff doesn't meet the requirement. Maintenance staff still need to log in to their own systems, and MFA controls how users prove who they are, not which workstations they can use.",
+        "Incorrect. A time-based rule against after-hours logins leaves a gap: maintenance staff could still log in to business-office PCs during the day, and those machines aren't meant for them at any hour.",
+        "Correct. Putting all maintenance staff in one group and giving that group login rights only to the designated break-room and office PCs blocks access to business workstations while keeping the access they need. It is also the most efficient option to manage.",
+        "Incorrect. Geofencing usually isn't accurate enough inside a building to tie logins to specific workstations, so it can't reliably keep maintenance staff off the business-office PCs."
+      ]
+    },
+    {
+      "id": "OPT4-C05-042",
+      "domain": 5,
+      "type": "multi",
+      "difficulty": 1.85,
+      "stem": "Nick wants to do session management for his web application. Which of the following are common web application session management techniques or methods? (Select all that apply.)",
+      "options": [
+        "IP tracking",
+        "Cookies",
+        "URL rewriting",
+        "TLS tokens"
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "Common session management techniques include the use of cookies, hidden form fields, URL rewriting, and built-in frameworks like Java's HTTPS session. IP tracking may be included in session information but is not itself a complete session identifier, and TLS token binding is used to make TLS sessions more secure, not to provide session identification.",
+      "optionNotes": [
+        "Incorrect. An IP address can be stored as part of the session information, but it isn't a full session identifier. Many users can share one IP through NAT, and one user's IP can change, so IP tracking isn't a session management method on its own.",
+        "Correct. Cookies are the most common way to manage web sessions. They hold a session identifier that the browser sends back with each request. They should only be sent over encrypted channels.",
+        "Correct. URL rewriting is a recognized session management technique. It puts the session identifier in the URL, so sessions can be tracked even when the browser doesn't use cookies.",
+        "Incorrect. TLS token binding makes TLS sessions more secure by tying tokens to a specific connection. It doesn't identify or manage application sessions."
+      ]
+    },
+    {
+      "id": "OPT4-C05-043",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.83,
+      "stem": "For questions 43–45, please use your knowledge of SAML integrations and security architecture design and refer to the following scenario and diagram:\nAlex is in charge of SAML integration with a major third-party partner that provides a variety of business productivity services for his organization.\n[Figure, described in text: a SAML flow between the Home Organization Identity Provider, the User's web browser and a SAML Integrated Third-Party Service: 1. User attempts to access application. 2. Redirect to SSO URL. 3. Browser accesses SSO URL. 4. Home organization authenticates user and sends SAML response. 5. SAML response sent to browser. 6. Browser sends SAML response to third party. 7. SAML response verified, user logged into third-party application.]\n\nAlex is concerned about eavesdropping on the SAML traffic and also wants to ensure that forged assertions will not be successful. What should he do to prevent these potential attacks?",
+      "options": [
+        "Use SAML's secure mode to provide secure authentication.",
+        "Implement TLS using a strong cipher suite, which will protect against both types of attacks.",
+        "Implement TLS using a strong cipher suite and use digital signatures.",
+        "Implement TLS using a strong cipher suite and message hashing."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "TLS provides message confidentiality and integrity, which can prevent eavesdropping. When paired with digital signatures, which provide integrity and authentication, forged assertions can also be defeated. SAML does not have a security mode and relies on TLS and digital signatures to ensure security if needed. Message hashing without a signature would help prevent modification of the message but won't necessarily provide authentication.",
+      "optionNotes": [
+        "Incorrect. SAML has no \"secure mode.\" For security it relies on outside mechanisms: TLS for the transport and digital signatures on the assertions.",
+        "Incorrect. TLS stops eavesdropping in transit, but it does not authenticate where an assertion came from. A forged assertion sent over a valid TLS session would still be accepted unless it is signed.",
+        "Correct. TLS gives confidentiality and integrity in transit, which defeats eavesdropping. Digital signatures add integrity and origin authentication to the assertions, so forged assertions are rejected.",
+        "Incorrect. A hash without a signature can show that a message was modified, but it doesn't prove who created it. An attacker can forge an assertion and simply compute a matching hash."
+      ]
+    },
+    {
+      "id": "OPT4-C05-044",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.83,
+      "stem": "For questions 43–45, please use your knowledge of SAML integrations and security architecture design and refer to the following scenario and diagram:\nAlex is in charge of SAML integration with a major third-party partner that provides a variety of business productivity services for his organization.\n[Figure, described in text: a SAML flow between the Home Organization Identity Provider, the User's web browser and a SAML Integrated Third-Party Service: 1. User attempts to access application. 2. Redirect to SSO URL. 3. Browser accesses SSO URL. 4. Home organization authenticates user and sends SAML response. 5. SAML response sent to browser. 6. Browser sends SAML response to third party. 7. SAML response verified, user logged into third-party application.]\n\nIf Alex's organization is one that is primarily made up of off-site, traveling users, what availability risk does integration of critical business applications to on-site authentication create, and how could he solve it?",
+      "options": [
+        "Third-party integration may not be trustworthy; use SSL and digital signatures.",
+        "If the home organization is offline, traveling users won't be able to access third-party applications; implement a hybrid cloud/local authentication system.",
+        "Local users may not be properly redirected to the third-party services; implement a local gateway.",
+        "Browsers may not properly redirect; use host files to ensure that issues with redirects are resolved."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Integration with cloud-based third parties that rely on local authentication can fail if the local organization's Internet connectivity or servers are offline. Adopting a hybrid cloud and local authentication system can ensure that Internet or server outages are handled, allowing authentication to work regardless of where the user is or if their home organization is online. Using encrypted and signed communication does not address availability, redirects are a configuration issue with the third party, and a local gateway won't handle remote users. Also, host files don't help with availability issues with services other than DNS.",
+      "optionNotes": [
+        "Incorrect. SSL and digital signatures protect the confidentiality and integrity of SAML exchanges. They do nothing for availability if the home IdP is offline.",
+        "Correct. If the on-site IdP or its Internet link goes down, remote users can't authenticate to third-party apps. A hybrid cloud/local authentication setup keeps sign-on working wherever users are and even when the home site is offline.",
+        "Incorrect. A local gateway only helps on-site users. This organization is mostly traveling users, and redirect behavior is configured on the third-party side, so this isn't the availability risk.",
+        "Incorrect. Hosts files only affect name resolution (the DNS-like lookup). They can't fix an outage of the home organization's authentication servers, and redirects are a third-party configuration issue."
+      ]
+    },
+    {
+      "id": "OPT4-C05-045",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "For questions 43–45, please use your knowledge of SAML integrations and security architecture design and refer to the following scenario and diagram:\nAlex is in charge of SAML integration with a major third-party partner that provides a variety of business productivity services for his organization.\n[Figure, described in text: a SAML flow between the Home Organization Identity Provider, the User's web browser and a SAML Integrated Third-Party Service: 1. User attempts to access application. 2. Redirect to SSO URL. 3. Browser accesses SSO URL. 4. Home organization authenticates user and sends SAML response. 5. SAML response sent to browser. 6. Browser sends SAML response to third party. 7. SAML response verified, user logged into third-party application.]\n\nWhat solution can best help address concerns about third parties that control SSO redirects as shown in step 2 in the diagram?",
+      "options": [
+        "An awareness campaign about trusted third parties",
+        "TLS",
+        "Handling redirects at the local site",
+        "Implementing an IPS to capture SSO redirect attacks"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "While many solutions are technical, if a trusted third party redirects to an unexpected authentication site, awareness is often the best defense. Using TLS would keep the transaction confidential but would not prevent the redirect. Handling redirects locally works only for locally hosted sites, and using a third-party service requires off-site redirects. An IPS might detect an attacker's redirect, but tracking the multitude of load-balanced servers most large providers use can be challenging, if not impossible. In addition, an IPS relies on visibility into the traffic, and SAML integrations should be encrypted for security, which would require a man-in-the-middle type of IPS to be configured.",
+      "optionNotes": [
+        "Correct. Off-site redirects to the third party's SSO URL are unavoidable, so teaching users to recognize trusted partners and spot an unexpected authentication site is often the best defense.",
+        "Incorrect. TLS keeps the SAML exchange confidential, but it does nothing to stop a third party, or an attacker, from redirecting users to an unexpected site.",
+        "Incorrect. Handling redirects locally only works for sites you host yourself. A third-party service requires redirects to an off-site location.",
+        "Incorrect. An IPS needs to see the traffic, but SAML traffic should be encrypted, so the IPS would have to act as a man-in-the-middle. Large providers also spread traffic across many load-balanced servers, which makes redirects hard to track."
+      ]
+    },
+    {
+      "id": "OPT4-C05-046",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "Susan has been asked to recommend whether her organization should use a MAC scheme or a DAC scheme. If flexibility and scalability are important requirements for implementing access controls, which scheme should she recommend and why?",
+      "options": [
+        "MAC, because it provides greater scalability and flexibility because you can simply add more labels as needed",
+        "DAC, because allowing individual administrators to make choices about the objects they control provides scalability and flexibility",
+        "MAC, because compartmentalization is well suited to flexibility and adding compartments will allow it to scale well",
+        "DAC, because a central decision process allows quick responses and will provide scalability by reducing the number of decisions required and flexibility by moving those decisions to a central authority"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Discretionary access control (DAC) can provide greater scalability by leveraging many administrators, and those administrators can add flexibility by making decisions about access to their objects without fitting into an inflexible mandatory access control system (MAC). MAC is more secure due to the strong set of controls it provides, but it does not scale as well as DAC and is relatively inflexible in comparison.",
+      "optionNotes": [
+        "Incorrect. MAC is the rigid, centrally enforced label model. Adding labels means policy changes and relabeling every subject and object, so MAC scales worse and is less flexible than DAC, even though it is more secure.",
+        "Correct. DAC lets many owners and administrators make access decisions about their own objects. Spreading the work across many people gives scalability, and not being bound to a mandatory label system gives flexibility.",
+        "Incorrect. Compartments in MAC enforce need to know through strict labels set by a central authority. That adds rigidity and administrative overhead, so it doesn't make MAC more flexible or scalable.",
+        "Incorrect. This describes nondiscretionary access control, where a central authority decides access. DAC puts decisions with the object owners. Central decision-making also creates a bottleneck, which works against both flexibility and scalability."
+      ]
+    },
+    {
+      "id": "OPT4-C05-047",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Which of the following tools is not typically used to verify that a provisioning process was followed in a way that ensures that the organization's security policy is being followed?",
+      "options": [
+        "Log review",
+        "Manual review of permissions",
+        "Signature-based detection",
+        "Review the audit trail"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "While signature-based detection is used to detect attacks, review of provisioning processes typically involves checking logs, reviewing the audit trail, or performing a manual review of permissions granted during the provisioning process.",
+      "optionNotes": [
+        "Incorrect. Log review is one of the usual ways to confirm provisioning happened correctly. Logs show which accounts were created and which privileges were granted, so you can check them against policy.",
+        "Incorrect. Manually reviewing the permissions granted during provisioning checks directly that each account got only the access its approved request and policy allow. It's a normal verification tool.",
+        "Correct. Signature-based detection is an IDS/anti-malware method that matches known attack patterns. It finds attacks and doesn't check whether account provisioning followed policy.",
+        "Incorrect. Reviewing the audit trail shows who requested, approved and created each account and its privileges. That makes it a standard way to verify the provisioning process was followed."
+      ]
+    },
+    {
+      "id": "OPT4-C05-048",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Jessica wants to adopt an open standard to provide authentication, authorization, and attribute information as part of her cloud identity federation efforts. What standard should she adopt to leverage the flexibility of XML as part of her efforts?",
+      "options": [
+        "SAML",
+        "SOAP",
+        "OAuth",
+        "OpenID Connect"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "SAML is an open, XML-based standard used to provide authorization, attribute information, and authentication data. SOAP, or Simple Object Access Protocol, is a messaging protocol and could be used for any XML messaging but is not a markup language itself. OAuth is an authorization framework that exchanges information using APIs, and OpenID Connect is an authentication layer using OAuth that provides both authentication and authorization, but not attribute information.",
+      "optionNotes": [
+        "Correct. SAML is an open XML-based standard that carries authentication assertions, authorization decisions, and attribute information. That makes it the right fit for XML-based identity federation.",
+        "Incorrect. SOAP is a messaging protocol that can carry any XML message. It isn't a markup language and doesn't define identity assertions for authentication, authorization, or attributes.",
+        "Incorrect. OAuth is an authorization framework that passes information through APIs, usually as tokens, not XML. It doesn't provide authentication or attribute information.",
+        "Incorrect. OpenID Connect is an authentication layer built on OAuth that handles authentication and authorization. It doesn't provide the attribute information the question asks for, and it isn't based on XML."
+      ]
+    },
+    {
+      "id": "OPT4-C05-049",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.65,
+      "stem": "During a penetration test, Chris recovers a file containing hashed passwords for the system he is attempting to access. What type of attack is most likely to succeed against the hashed passwords?",
+      "options": [
+        "A brute-force attack",
+        "A pass-the-hash attack",
+        "A rainbow table attack",
+        "A salt recovery attack"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Rainbow tables are databases of pre-hashed passwords paired with high-speed lookup functions. Since they can quickly compare known hashes against those in a file, using rainbow tables is the fastest way to quickly determine passwords from hashes. A brute-force attack may eventually succeed but will be very slow against most hashes. Pass-the-hash attacks rely on sniffed or otherwise acquired NTLM or LanMan hashes being sent to a system to avoid the need to know a user's password. Salts are data added to a hash to avoid the use of tools like rainbow tables. A salt added to a password means the hash won't match a rainbow table generated without the same salt.",
+      "optionNotes": [
+        "Incorrect. Brute force tries every possible password and hashes each one. It could eventually work, but against most hashes it is very slow, so it is less likely to succeed than a precomputed lookup.",
+        "Incorrect. Pass-the-hash sends a captured NTLM or LanMan hash to a system to log in without knowing the password. It does not recover passwords from a file of hashes.",
+        "Correct. Rainbow tables are precomputed hash-to-password databases with fast lookup, so they are the quickest way to find passwords from recovered hashes.",
+        "Incorrect. A salt is extra data added before hashing to defeat rainbow tables. It is not an attack, and recovering a salt does not crack the passwords by itself."
+      ]
+    },
+    {
+      "id": "OPT4-C05-050",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Google's identity integration with a variety of organizations and applications across domains is an example of which of the following?",
+      "options": [
+        "PKI",
+        "Federation",
+        "Single sign-on",
+        "Provisioning"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Google's federation with other applications and organizations allows single sign-on as well as management of their electronic identity and its related attributes. While this is an example of SSO, it goes beyond simple single sign-on. Provisioning provides accounts and rights, and a public key infrastructure is used for certificate management.",
+      "optionNotes": [
+        "Incorrect. A public key infrastructure issues and manages digital certificates. It doesn't link identities across organizations and applications.",
+        "Correct. Federation shares and manages a user's electronic identity and attributes across domains and organizations. That is what Google's cross-domain identity integration does, and it goes beyond simple SSO.",
+        "Incorrect. Google's integration does give users SSO, but SSO is only one benefit. Federation also covers managing the identity and its attributes across organizations, so it is the better answer.",
+        "Incorrect. Provisioning is the process of creating accounts and granting rights. It isn't about integrating identities across domains."
+      ]
+    },
+    {
+      "id": "OPT4-C05-051",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Amanda starts at her new job and finds that she has access to a variety of systems that she does not need to accomplish her job. What problem has she encountered?",
+      "options": [
+        "Privilege creep",
+        "Rights collision",
+        "Least privilege",
+        "Excessive privileges"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "When users have more rights than they need to accomplish their job, they have excessive privileges. This is a violation of the concept of least privilege. Unlike privilege creep, this is a provisioning or rights management issue rather than a problem of retention of rights the user needed but no longer requires. Rights collision is a made-up term and thus is not an issue here.",
+      "optionNotes": [
+        "Incorrect. Privilege creep is when someone builds up rights over time and keeps ones they used to need. Amanda is brand new, so this is a provisioning problem, not leftover rights from an earlier role.",
+        "Incorrect. 'Rights collision' isn't a real access-management term. It's a made-up distractor and doesn't describe Amanda's situation.",
+        "Incorrect. Least privilege is the principle that's being broken here, not the problem itself. Giving her only the access she needs would follow least privilege.",
+        "Correct. Amanda has more access than her job requires, which is the definition of excessive privileges. It comes from bad provisioning when she started and violates least privilege."
+      ]
+    },
+    {
+      "id": "OPT4-C05-052",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "When Chris verifies an individual's identity and adds a unique identifier like a user ID to an identity system, what process has occurred?",
+      "options": [
+        "Identity proofing",
+        "Registration",
+        "Directory management",
+        "Session management"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Registration is the process of adding a user to an identity management system. This includes creating their unique identifier and adding any attribute information that is associated with their identity. Proofing occurs when the user provides information to prove who they are. Directories are managed to maintain lists of users, services, and other items. Session management tracks application and user sessions.",
+      "optionNotes": [
+        "Incorrect. Identity proofing is only the step where the user supplies information proving who they are. Creating the user ID and adding the identity to the system goes beyond proofing.",
+        "Correct. Registration adds the user to the identity management system: it creates their unique identifier and attaches their identity attributes, which is exactly what Chris did.",
+        "Incorrect. Directory management is the ongoing upkeep of lists of users, services and other objects. It is not the one-time act of verifying a person and creating their identity entry.",
+        "Incorrect. Session management tracks active application and user sessions after authentication. It has nothing to do with creating identities."
+      ]
+    },
+    {
+      "id": "OPT4-C05-053",
+      "domain": 5,
+      "type": "multi",
+      "difficulty": 2.5,
+      "stem": "Selah wants to provide accountability for actions performed via her organization's main line-of-business application. What controls are most frequently used to provide accountability in a situation like this? (Select all that apply.)",
+      "options": [
+        "Enable audit logging.",
+        "Provide every staff member with a unique account and enable multifactor authentication.",
+        "Enable time- and location-based login requirements.",
+        "Provide every staff member with a unique account and require a self-selected password."
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Audit logging when combined with user accounts that can reliably be expected to be accessible only to a specific user due to the use of multifactor authentication is frequently used to provide strong accountability for actions taken via systems and applications. A password can be shared, making it less reliable, and time and location requirements are useful security controls but do not impact accountability.",
+      "optionNotes": [
+        "Correct. Audit logs record which account performed which action. Tied to identities that can be trusted, they supply the evidence that accountability depends on.",
+        "Correct. Unique accounts protected by MFA make it reasonably certain that only the assigned person used the account, so logged actions can be reliably attributed to that person.",
+        "Incorrect. Time- and location-based login rules are useful access restrictions. However, they only limit when and where someone can log in, not who is accountable, so they do not affect accountability.",
+        "Incorrect. Unique accounts help, but a password alone can be shared or stolen. That makes it less reliable for proving that the account owner performed an action."
+      ]
+    },
+    {
+      "id": "OPT4-C05-054",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Charles wants to provide authorization services as part of his web application. What standard should he use if he wants to integrate easily with other web identity providers?",
+      "options": [
+        "OpenID",
+        "TACACS+",
+        "RADIUS",
+        "OAuth"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "OAuth is the most widely used open standard for authorization and delegation of rights for cloud services. OpenID is used for authentication, and TACACS+ and RADIUS are primarily used on-site for authentication and authorization for network devices.",
+      "optionNotes": [
+        "Incorrect. OpenID is an authentication standard that proves who a user is. It doesn't handle authorization or delegating access rights, and authorization is what Charles needs.",
+        "Incorrect. TACACS+ is a Cisco-developed AAA protocol used mostly on-site to control administrative access to network devices. It isn't a web standard for working with web identity providers.",
+        "Incorrect. RADIUS is an AAA protocol used for network access, such as VPN, Wi-Fi and dial-up, mostly in on-site environments. It isn't designed to integrate web applications with web identity providers.",
+        "Correct. OAuth is the most widely used open standard for authorization and for delegating access rights across web and cloud services. Major web identity providers support it, so integration is easy."
+      ]
+    },
+    {
+      "id": "OPT4-C05-055",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "The company that Cameron works for uses a system that allows users to request privileged access to systems when necessary. Cameron requests access, and the request is pre-approved due to his role. He is then able to access the system to perform the task. Once he is done, the rights are removed. What type of system is he using?",
+      "options": [
+        "Zero trust",
+        "Federated identity management",
+        "Single sign-on",
+        "Just-in-time access"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Cameron is using a just-in-time (JIT) system that provides the access needed when it is needed. A zero trust system requires authentication and authorization when actions are performed but does not necessarily require privileges to be granted and removed when they are needed.",
+      "optionNotes": [
+        "Incorrect. Zero trust demands authentication and authorization for every action. It doesn't inherently grant privileges on request and then strip them once the task is done.",
+        "Incorrect. Federated identity management extends SSO across organizations (for example, by using SAML). It's about sharing identities, not about temporarily granting and revoking privileged rights.",
+        "Incorrect. With SSO, a user authenticates once and can then reach multiple resources. It's a convenience feature for authentication and doesn't grant or remove privileges as needed.",
+        "Correct. Just-in-time access grants privileged rights only when they're requested (here, pre-approved based on Cameron's role) and removes them once the task is finished."
+      ]
+    },
+    {
+      "id": "OPT4-C05-056",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Elle is responsible for building a banking website. She needs proof of the identity of the users who register for the site. How should she validate user identities?",
+      "options": [
+        "Require users to create unique questions that only they will know.",
+        "Require new users to bring their driver's license or passport in person to the bank.",
+        "Use information that both the bank and the user have such as questions pulled from their credit report.",
+        "Call the user on their registered phone number to verify that they are who they claim to be."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Identity proofing can be done by comparing user information that the organization already has, like account numbers or personal information. Requiring users to create unique questions can help with future support by providing a way for them to do password resets. Using a phone call only verifies that the individual who created the account has the phone that they registered and won't prove their identity. In-person verification would not fit the business needs of most websites.",
+      "optionNotes": [
+        "Incorrect. User-created secret questions don't prove who someone is at registration, because the user makes them up. They are useful later as a support mechanism, such as for password resets.",
+        "Incorrect. Checking a passport or driver's license in person is valid identity proofing, as is done for new employees. However, it doesn't fit the business needs of a website where users register online.",
+        "Correct. Identity proofing compares information the organization already has, such as credit-report-based knowledge questions or account details, with what the claimed user knows. This works well for remote online registration.",
+        "Incorrect. A call to the registered phone number only shows that whoever created the account has that phone. It doesn't prove the person's real identity."
+      ]
+    },
+    {
+      "id": "OPT4-C05-057",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Susan's organization is part of a federation that allows users from multiple organizations to access resources and services at other federated sites. When Susan wants to use a service at a partner site, which identity provider is used?",
+      "options": [
+        "Susan's home organization's identity provider.",
+        "The service provider's identity provider.",
+        "Both their identity provider and the service provider's identity provider.",
+        "The service provider creates a new identity."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In federated systems, a user's access to services is authenticated through their own organization's identity provider (IDP). Service providers query those IDPs when the user attempts to authenticate to the service and, if the request is validated, allow access based on the rules and policies set for the service based on attributes that may be relevant that are provided by the IDP.",
+      "optionNotes": [
+        "Correct. In a federation the user authenticates through their own home organization's IdP. The service provider trusts that IdP's assertion and grants access according to its own policies, using the attributes the IdP supplies.",
+        "Incorrect. The service provider doesn't authenticate federated users itself. It sends them to their home IdP and relies on the assertion that comes back. Avoiding separate identities at each partner is the whole point of federation.",
+        "Incorrect. Only one IdP is involved: the user's home IdP. The service provider queries that IdP and then makes its own authorization decision, so there is no second authentication by an SP-side IdP.",
+        "Incorrect. Creating a new identity at each partner site is the separate-account model that federation replaces. Federation reuses the home identity and passes its attributes to the service provider."
+      ]
+    },
+    {
+      "id": "OPT4-C05-058",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "A new customer at a bank that uses fingerprint scanners to authenticate its users is surprised when he scans his fingerprint and is logged into another customer's account. What type of biometric factor error occurred?",
+      "options": [
+        "A registration error",
+        "A Type 1 error",
+        "A Type 2 error",
+        "A time of use, method of use error"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Type 2 errors occur in biometric systems when an invalid subject is incorrectly authenticated as a valid user. In this case, nobody except the actual customer should be validated when fingerprints are scanned. Type 1 errors occur when a valid subject is not authenticated; if the existing customer is rejected, it is a Type 1 error. Registration is the process of adding users, but registration errors and time of use, method of use errors are not specific biometric authentication terms.",
+      "optionNotes": [
+        "Incorrect. Registration (enrollment) is how users get added to the system, but \"registration error\" isn't a standard biometric error term. The problem here is a false acceptance, not an enrollment failure.",
+        "Incorrect. A Type 1 error (false rejection) happens when a valid user is wrongly denied. Here the system let in the wrong person, which is the opposite problem.",
+        "Correct. A Type 2 error (false acceptance) is when an invalid subject is authenticated as a valid user. That is what happened when the new customer's fingerprint opened another customer's account.",
+        "Incorrect. \"Time of use, method of use\" is not a biometric authentication error term. It sounds like TOCTOU, which is a race-condition attack, not a biometric accuracy measure."
+      ]
+    },
+    {
+      "id": "OPT4-C05-059",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "What type of access control is typically used by firewalls?",
+      "options": [
+        "Discretionary access controls",
+        "Rule-based access controls",
+        "Task-based access control",
+        "Mandatory access controls"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Firewalls use rule-based access control, or Rule-BAC, in their access control lists and apply rules created by administrators to all traffic that passes through them. DAC, or discretionary access control, allows owners to determine who can access objects they control, while task-based access control lists tasks for users. MAC, or mandatory access control, uses classifications to determine access.",
+      "optionNotes": [
+        "Incorrect. DAC lets object owners decide who can access the resources they control. A firewall works differently: administrators set the rules and those rules apply to all traffic, so owner discretion doesn't come into it.",
+        "Correct. Firewalls use rule-based access control (Rule-BAC). Administrators write rules into ACLs, and the firewall applies those rules to every packet that passes through it.",
+        "Incorrect. Task-based access control grants access based on the tasks assigned to users. Firewalls filter traffic against ACL rules, not against user tasks.",
+        "Incorrect. MAC decides access by comparing classification labels on subjects and objects. Firewalls match traffic against administrator-written rules, not security labels."
+      ]
+    },
+    {
+      "id": "OPT4-C05-060",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "When you input a user ID and password, you are performing what important identity and access management activity?",
+      "options": [
+        "Authorization",
+        "Validation",
+        "Authentication",
+        "Login"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "When you input a username and password, you are authenticating yourself by providing a unique identifier and a verification that you are the person who should have that identifier (the password). Authorization is the process of determining what a user is allowed to do. Validation and login both describe elements of what is happening in the process; however, they aren't the most important identity and access management activity.",
+      "optionNotes": [
+        "Incorrect. Authorization comes after authentication and decides what an authenticated user is allowed to do. Typing in credentials doesn't grant any permissions.",
+        "Incorrect. Validation describes part of what happens when credentials are checked, but it isn't the formal IAM activity the question is asking for.",
+        "Correct. Entering a user ID (the claimed identity) together with a password (the proof) is authentication: it verifies that you are the person who holds that identifier.",
+        "Incorrect. Login is the everyday name for the process. It describes the mechanics, not the core IAM activity, which is authentication."
+      ]
+    },
+    {
+      "id": "OPT4-C05-061",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.19,
+      "stem": "Kathleen works for a data center hosting facility that provides physical data center space for individuals and organizations. Until recently, each client was given a magnetic-strip-based keycard to access the section of the facility where their servers are located, and they were also given a key to access the cage or rack where their servers reside. In the past month, a number of servers have been stolen, but the logs for the passcards show only valid IDs. What is Kathleen's best option to make sure that the users of the passcards are who they are supposed to be?",
+      "options": [
+        "Add a reader that requires a PIN for passcard users.",
+        "Add a camera system to the facility to observe who is accessing servers.",
+        "Add a biometric factor.",
+        "Replace the magnetic stripe keycards with smartcards."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Kathleen should implement a biometric factor. The cards and keys are an example of a Type 2 factor, or “something you have.” Using a smart card replaces this with another Type 2 factor, but the cards could still be loaned out or stolen. Adding a PIN would address the problem by adding a second authentication factor, but PINs may be written down and are prone to theft or even guessing for shorter PINs, so a biometric factor is preferable if it is available. Adding cameras doesn't prevent access to the facility and thus doesn't solve the immediate problem (but it is a good idea!).",
+      "optionNotes": [
+        "Incorrect. A PIN does add a second factor (something you know), but PINs can be written down, stolen, shared, or guessed if short. So it ties the card to the right person less reliably than a biometric.",
+        "Incorrect. Cameras are a detective control. They record who goes in but don't stop anyone from getting in, so they don't fix the immediate problem of cardholders not being who they claim to be.",
+        "Correct. A biometric adds something you are (Type 3) on top of the card (Type 2). It can't easily be loaned out, written down, or stolen, so it best confirms that the person holding the card is the authorized user.",
+        "Incorrect. A smartcard is still just something you have (Type 2), the same kind of factor as the magnetic-stripe card. It can still be loaned out or stolen, so it doesn't prove who is holding it."
+      ]
+    },
+    {
+      "id": "OPT4-C05-062",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "Theresa wants to allow her staff to securely store and manage passwords for systems including service accounts and other rarely used administrative credentials. What type of tool should she implement to enable this?",
+      "options": [
+        "Single sign-on",
+        "A federated identity system",
+        "A password vault",
+        "A multifactor authentication system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Enterprise credential management tools, often called password vaults, allow passwords to be securely generated, stored, and managed. They can provide logs of who uses passwords, when they were updated, and if they meet complexity and other requirements. Of course, this means the keys to your environment are all in one place, so securing and managing the enterprise password manager is very important!",
+      "optionNotes": [
+        "Incorrect. Single sign-on lets a user log in once and reach many systems in one organization. It doesn't store or manage separate shared credentials like service account and rarely used admin passwords.",
+        "Incorrect. Federated identity management builds trust relationships so one login works across organizations. It handles authentication between parties, not secure storage and management of service or admin account passwords.",
+        "Correct. A password vault (enterprise credential manager) securely generates, stores and manages passwords. It also logs who used each password and when it was updated, and checks complexity, so it fits service and rarely used admin credentials.",
+        "Incorrect. Multifactor authentication makes logins stronger by requiring more than one factor. It doesn't give staff a secure place to store and manage the passwords for service and admin accounts."
+      ]
+    },
+    {
+      "id": "OPT4-C05-063",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.02,
+      "stem": "Olivia wants to limit the commands that a user can run via sudo to limit the potential for privilege escalation attacks. What Linux file should she modify to allow this?",
+      "options": [
+        "The bash .bin configuration file",
+        "The sudoers file",
+        "The bash .allowed configuration file",
+        "The sudont file"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The sudoers file can list the specific users who can use sudo as well as the commands or directories that are allowed for them.",
+      "optionNotes": [
+        "Incorrect. Bash has no \".bin\" configuration file that controls sudo. Bash startup files like .bashrc only set up the shell environment, so they can't stop a user from running privileged commands through sudo.",
+        "Correct. The sudoers file (/etc/sudoers, edited with visudo) lists which users can use sudo and which specific commands or directories each one is allowed, which limits privilege escalation.",
+        "Incorrect. There is no \".allowed\" bash configuration file. Sudo permissions are granted through the sudoers file, not through shell configuration files.",
+        "Incorrect. \"sudont\" is a made-up distractor, not a real Linux file. Both allowing and restricting sudo commands are done in the sudoers file."
+      ]
+    },
+    {
+      "id": "OPT4-C05-064",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Which objects and subjects have a label in a MAC model?",
+      "options": [
+        "Objects and subjects that are classified as Confidential, Secret, or Top Secret have a label.",
+        "All objects have a label, and all subjects have a compartment.",
+        "All objects and subjects have a label.",
+        "All subjects have a label and all objects have a compartment."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In a mandatory access control system, all subjects and objects have a label. Compartments may or may not be used, but there is not a specific requirement for either subjects or objects to be compartmentalized. The specific labels of Confidential, Secret, and Top Secret are not required by MAC.",
+      "optionNotes": [
+        "Incorrect. MAC labels every subject and object, not just ones at certain levels. It also doesn't require the government levels Confidential, Secret, and Top Secret; any labeling scheme works, and unclassified items still carry a label.",
+        "Incorrect. Objects do get labels, but subjects get them too. Compartments are optional in MAC, so subjects aren't required to have one.",
+        "Correct. In mandatory access control, every subject and every object carries a label. The system compares those labels to make access decisions.",
+        "Incorrect. Subjects do get labels, but objects need labels too. Compartments are optional in MAC and can't stand in for labels on objects."
+      ]
+    },
+    {
+      "id": "OPT4-C05-065",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.55,
+      "stem": "Scenario:\nChris is the identity architect for a growing e-commerce website that wants to leverage social identity. To do this, he and his team intend to allow users to use their existing Google accounts as their primary accounts when using the e-commerce site. This means that when a new user initially connects to the e-commerce platform, they are given the choice between using their Google account using OAuth 2.0 or creating a new account on the platform using their own email address and a password of their choice.\n[Figure, described in text: an OAuth flow between the Client, the E-commerce Application Servers and Google Servers: 1. Anti-forgery token created. 2. User login and consent to data release. 3. Token confirmed and authorization code sent. 4. Exchange code for access and ID token. 5. Token response. 6. Call Google API using token.]\n\nWhen the e-commerce application creates an account for a Google user, where should that user's password be stored?",
+      "options": [
+        "The password is stored in the e-commerce application's database.",
+        "The password is stored in memory on the e-commerce application's server.",
+        "The password is stored in Google's account management system.",
+        "The password is never stored; instead, a salted hash is stored in Google's account management system."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Passwords are never stored for web applications in a well-designed environment. Instead, salted hashes are stored and compared to passwords after they are salted and hashed. If the hashes match, the user is authenticated.",
+      "optionNotes": [
+        "Incorrect. With OAuth the e-commerce site never receives the Google user's password; it gets only tokens. A well-designed system also never stores plaintext passwords, it stores salted hashes.",
+        "Incorrect. Keeping the password in server memory still means storing a plaintext credential the relying party should never have. With OAuth, the user types the password only into Google's login page.",
+        "Incorrect. This picks the right location, Google, but the wrong form. Well-designed systems keep a salted hash and compare it against the salted hash of whatever password is entered, not the password itself.",
+        "Correct. Google authenticates the user, and well-designed systems never store the actual password. They store a salted hash and compare it to the salted hash of the password entered at login."
+      ]
+    },
+    {
+      "id": "OPT4-C05-066",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.47,
+      "stem": "Scenario:\nChris is the identity architect for a growing e-commerce website that wants to leverage social identity. To do this, he and his team intend to allow users to use their existing Google accounts as their primary accounts when using the e-commerce site. This means that when a new user initially connects to the e-commerce platform, they are given the choice between using their Google account using OAuth 2.0 or creating a new account on the platform using their own email address and a password of their choice.\n[Figure, described in text: an OAuth flow between the Client, the E-commerce Application Servers and Google Servers: 1. Anti-forgery token created. 2. User login and consent to data release. 3. Token confirmed and authorization code sent. 4. Exchange code for access and ID token. 5. Token response. 6. Call Google API using token.]\n\nWhich of the following is responsible for user authentication for Google users?",
+      "options": [
+        "The e-commerce application.",
+        "Both the e-commerce application and Google servers.",
+        "Google servers.",
+        "The diagram does not provide enough information to determine this."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "When a third-party site integrates via OAuth 2.0, authentication is handled by the service provider's servers. In this case, Google is acting as the service provider for user authentication. Authentication for local users who create their own accounts would occur in the e-commerce application (or a related server), but that is not the question that is asked here.",
+      "optionNotes": [
+        "Incorrect. The e-commerce app only authenticates local users who made their own email/password accounts. For Google users, it receives tokens from Google and never checks their credentials itself.",
+        "Incorrect. Authentication isn't shared here. In OAuth 2.0 the user logs in and gives consent on Google's servers (step 2), and the e-commerce app just trades the authorization code for tokens.",
+        "Correct. With OAuth 2.0 social login, the identity provider's servers handle authentication, and here that is Google. The user logs in to Google, and Google sends an authorization code and ID token back to the site.",
+        "Incorrect. There is enough information. The flow shows the user logging in and consenting on Google's servers, which is the usual OAuth social login pattern (like using 'Log in with Google' on a site Google doesn't own)."
+      ]
+    },
+    {
+      "id": "OPT4-C05-067",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "Scenario:\nChris is the identity architect for a growing e-commerce website that wants to leverage social identity. To do this, he and his team intend to allow users to use their existing Google accounts as their primary accounts when using the e-commerce site. This means that when a new user initially connects to the e-commerce platform, they are given the choice between using their Google account using OAuth 2.0 or creating a new account on the platform using their own email address and a password of their choice.\n[Figure, described in text: an OAuth flow between the Client, the E-commerce Application Servers and Google Servers: 1. Anti-forgery token created. 2. User login and consent to data release. 3. Token confirmed and authorization code sent. 4. Exchange code for access and ID token. 5. Token response. 6. Call Google API using token.]\n\nWhat type of attack is the creation and exchange of state tokens intended to prevent?",
+      "options": [
+        "XSS",
+        "CSRF",
+        "SQL injection",
+        "XACML"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The anti-forgery state token exchanged during OAuth sessions is intended to prevent cross-site request forgery (CSRF). This makes sure that the unique session token with the authentication response from Google's OAuth service is available to verify that the user, not an attacker, is making a request. XSS attacks focus on scripting and would have script tags involved, SQL injection would have SQL code included, and XACML is the eXtensible Access Control Markup Language, not a type of attack.",
+      "optionNotes": [
+        "Incorrect. XSS injects malicious script (script tags) into pages viewed by other users. The OAuth state token doesn't address script injection. It ties the authentication response to the user's session.",
+        "Correct. The anti-forgery state token ties Google's OAuth response to the user's own session. This proves the user, not an attacker, made the request, which defeats cross-site request forgery.",
+        "Incorrect. SQL injection sends SQL code through input fields to manipulate a database. Exchanging state tokens during OAuth does nothing to stop it. Input validation and parameterized queries are the defenses.",
+        "Incorrect. XACML is the eXtensible Access Control Markup Language, an XML-based standard for writing access policies. It isn't an attack at all, so it can't be what the state token prevents."
+      ]
+    },
+    {
+      "id": "OPT4-C05-068",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Questions like “What is your pet's name?” are examples of what type of identity proofing?",
+      "options": [
+        "Knowledge-based authentication",
+        "Dynamic knowledge-based authentication",
+        "Out-of-band identity proofing",
+        "A Type 3 authentication factor"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Knowledge-based authentication relies on preset questions such as “What is your pet's name?” and the answers. It can be susceptible to attacks because of the availability of the answers on social media or other sites. Dynamic knowledge-based authentication relies on facts or data that the user already knows that can be used to create questions they can answer on an as-needed basis (for example, a previous address or a school they attended). Out-of-band identity proofing relies on an alternate channel like a phone call or text message. Finally, Type 3 authentication factors are biometric, or “something you are,” rather than knowledge-based.",
+      "optionNotes": [
+        "Correct. Knowledge-based authentication uses preset questions and answers chosen in advance, like a pet's name. Those answers can often be found on social media, which makes this method weak.",
+        "Incorrect. Dynamic KBA builds questions on demand from facts the user already knows, such as a previous address. A pet-name question is a fixed, preset question.",
+        "Incorrect. Out-of-band identity proofing confirms identity over a separate channel, such as a phone call or text message. A pet-name question uses no second channel.",
+        "Incorrect. A Type 3 factor is biometric (\"something you are\"). A pet-name question tests something you know, which is Type 1."
+      ]
+    },
+    {
+      "id": "OPT4-C05-069",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Madhuri creates a table that includes assigned privileges, objects, and subjects to manage access control for the systems she is responsible for. Each time a subject attempts to access an object, the systems check the table to ensure that the subject has the appropriate rights to the object. What type of access control system is Madhuri using?",
+      "options": [
+        "A capability table",
+        "An access control list",
+        "An access control matrix",
+        "A subject/object rights management system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "An access control matrix is a table that lists objects, subjects, and their privileges. Access control lists focus on objects and which subjects can access them. Capability tables list subjects and what objects they can access. Subject/object rights management systems are not based on an access control model.",
+      "optionNotes": [
+        "Incorrect. A capability table is organized around subjects and lists the objects each one can access. It's only one row of the full picture, not a single table holding subjects, objects, and privileges together.",
+        "Incorrect. An access control list is tied to an object and names the subjects allowed to access it. It's one column of the matrix, not the whole subject-object-privilege table.",
+        "Correct. An access control matrix is a table of subjects, objects, and the privileges each subject has on each object. The system checks it on every access attempt, which matches what Madhuri built.",
+        "Incorrect. A \"subject/object rights management system\" is not a recognized access control model. It's a made-up distractor."
+      ]
+    },
+    {
+      "id": "OPT4-C05-070",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.3,
+      "stem": "During a review of support tickets, Ben's organization discovered that password changes accounted for more than a quarter of its help desk's cases. Which of the following options would be most likely to decrease that number significantly?",
+      "options": [
+        "Two-factor authentication",
+        "Biometric authentication",
+        "Self-service password reset",
+        "Passphrases"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Self-service password reset tools typically have a significant impact on the number of password reset contacts that a help desk has. Two-factor and biometric authentication both add complexity and may actually increase the number of contacts. Passphrases can be easier to remember than traditional complex passwords and may decrease calls, but they don't have the same impact that a self-service system does.",
+      "optionNotes": [
+        "Incorrect. Two-factor authentication adds another factor to manage (tokens, phones), so it makes logins more complex and may actually increase help desk contacts instead of cutting password reset tickets.",
+        "Incorrect. Biometric authentication brings its own enrollment and false-rejection problems. It adds complexity and could raise help desk calls rather than significantly reducing password-change tickets.",
+        "Correct. Self-service password reset lets users reset their own passwords without calling support, so it typically has a large impact on the number of password reset contacts the help desk handles.",
+        "Incorrect. Passphrases can be easier to remember than complex passwords and may reduce some calls. Users still forget them, though, so they don't cut reset volume nearly as much as a self-service system."
+      ]
+    },
+    {
+      "id": "OPT4-C05-071",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.61,
+      "stem": "Brian's large organization has used RADIUS for AAA services for its network devices for years and has recently become aware of security issues with the unencrypted information transferred during authentication. How should Brian implement encryption for RADIUS?",
+      "options": [
+        "Use the built-in encryption in RADIUS.",
+        "Implement RADIUS over its native UDP using TLS for protection.",
+        "Implement RADIUS over TCP using TLS for protection.",
+        "Use an AES256 pre-shared cipher between devices."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "RADIUS supports TLS over TCP. RADIUS does not have a supported TLS mode over UDP. AES pre-shared symmetric ciphers are not a supported solution and would be difficult to both implement and maintain in a large environment, and the built-in encryption in RADIUS only protects passwords.",
+      "optionNotes": [
+        "Incorrect. RADIUS's built-in encryption only obscures the password field. Usernames, attributes, and the rest of the authentication traffic still cross the network in the clear, so it doesn't solve Brian's problem.",
+        "Incorrect. RADIUS normally runs over UDP (ports 1812/1813), but it has no supported TLS mode over UDP. TLS protection for RADIUS is defined over TCP, so this option describes something that isn't available.",
+        "Correct. RADIUS supports TLS over TCP (RadSec), which encrypts the whole authentication exchange instead of just the password. It's the standards-based way to protect RADIUS traffic.",
+        "Incorrect. A custom AES-256 pre-shared cipher isn't a supported RADIUS solution. Distributing and maintaining the shared keys across a large organization's devices would also be very hard."
+      ]
+    },
+    {
+      "id": "OPT4-C05-072",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Jim wants to allow cloud-based applications to act on his behalf to access information from other sites. Which of the following tools can allow that?",
+      "options": [
+        "Kerberos",
+        "OAuth",
+        "OpenID",
+        "LDAP"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "OAuth provides the ability to access resources from another service and would meet Jim's needs. OpenID would allow him to use an account from another service with his application, and Kerberos and LDAP are used more frequently for in-house services.",
+      "optionNotes": [
+        "Incorrect. Kerberos is a ticket-based authentication protocol mostly used for in-house network services. It isn't a way to let cloud apps access other sites for you.",
+        "Correct. OAuth is an authorization framework. It lets an application access resources on another service on the user's behalf, which is exactly what Jim wants.",
+        "Incorrect. OpenID handles authentication: it lets Jim sign in to an application with an account from another service. It doesn't let the app act on his behalf to reach resources elsewhere.",
+        "Incorrect. LDAP is a directory access protocol used mainly for in-house services. It doesn't handle delegated access between cloud services."
+      ]
+    },
+    {
+      "id": "OPT4-C05-073",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.3,
+      "stem": "Ben's organization has had an issue with unauthorized access to applications and workstations during the lunch hour when employees aren't at their desk. What are the best types of session management solutions for Ben to recommend to help prevent this type of access?",
+      "options": [
+        "Use session IDs for all access and verify system IP addresses of all workstations.",
+        "Set session timeouts for applications and use password-protected screensavers with inactivity timeouts on workstations.",
+        "Use session IDs for all applications, and use password-protected screensavers with inactivity timeouts on workstations.",
+        "Set session timeouts for applications and verify system IP addresses of all workstations."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Since physical access to the workstations is part of the problem, setting application timeouts and password-protected screensavers with relatively short inactivity timeouts can help prevent unauthorized access. Using session IDs for all applications and verifying system IP addresses would be helpful for online attacks against applications.",
+      "optionNotes": [
+        "Incorrect. Session IDs and IP verification protect against online attacks such as session hijacking. They don't stop someone sitting down at an unattended, already logged-in workstation.",
+        "Correct. The problem is physical access to unattended machines. Application session timeouts plus password-protected screensavers with short inactivity timeouts lock sessions when users step away.",
+        "Incorrect. The screensaver half helps, but session IDs only address online attacks against applications. An open application session at an unattended desk stays usable unless it times out.",
+        "Incorrect. Application timeouts help, but checking workstation IP addresses does nothing about a person physically using an unlocked workstation. Its IP is already the legitimate one."
+      ]
+    },
+    {
+      "id": "OPT4-C05-074",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.3,
+      "stem": "What type of authentication scenario is shown in the following diagram?\n[Figure, described in text: a laptop authenticates to an on-premises data center and gets service access from a cloud service provider; the on-premises data center and the cloud service provider have a trust relationship.]",
+      "options": [
+        "Hybrid federation",
+        "On-premise federation",
+        "Cloud federation",
+        "Kerberos federation"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "This diagram shows an example of hybrid federation where authentication occurs on-premises and services are provided through a federated identity service in the cloud.",
+      "optionNotes": [
+        "Correct. The user authenticates against on-premises identity infrastructure, and a trust relationship lets the cloud provider grant service access. That split of on-prem authentication plus cloud services is hybrid federation.",
+        "Incorrect. On-premises federation keeps both the identity provider and the services inside the organization's own environment. In this diagram the services come from an external cloud provider, so the scenario isn't purely on-premises.",
+        "Incorrect. In cloud federation, a third-party cloud service handles authentication as well as the services. Here authentication happens in the on-premises data center, not in the cloud.",
+        "Incorrect. Kerberos is a ticket-based authentication protocol, not one of the federation models (on-premises, cloud, hybrid). Nothing in the diagram shows a KDC or tickets."
+      ]
+    },
+    {
+      "id": "OPT4-C05-075",
+      "domain": 5,
+      "type": "multi",
+      "difficulty": 1.85,
+      "stem": "Chris wants to control access to his facility while still identifying individuals. He also wants to ensure that the individuals are the people who are being admitted without significant ongoing costs. Which solutions from the following options would meet all of these requirements? (Select all that apply.)",
+      "options": [
+        "Security guards and photo identification badges",
+        "RFID badges and readers with PIN pads",
+        "Magstripe badges and readers with PIN pads",
+        "Security guards and magstripe readers"
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "The best answers in the scenario that Chris faces are either RFID or magstripe readers and PIN pads. Guards create ongoing expenses, and any solution without a PIN will allow a stolen or cloned badge to be used without validating that the person accessing the building is a legitimate user. While a guard can prevent a stolen badge and PIN combination, this is only used in environments where the cost is justifiable.",
+      "optionNotes": [
+        "Incorrect. Guards can verify a photo badge against the person's face, but staffing guards is an ongoing expense, and that cost is exactly what Chris wants to avoid.",
+        "Correct. RFID badges control entry and identify the holder. The PIN adds a second factor, so a stolen or cloned badge won't work on its own. After installation, ongoing costs are low.",
+        "Correct. Magstripe badges plus a PIN identify the person and confirm they are who they claim to be, since a stolen badge alone isn't enough to get in. This avoids the recurring cost of guards.",
+        "Incorrect. Guards add significant ongoing cost. Without a PIN, a stolen or cloned magstripe badge could be used, so this fails both the cost requirement and the identity-check requirement."
+      ]
+    },
+    {
+      "id": "OPT4-C05-076",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "A device like Yubikey or Titan Security Key is what type of Type 2 authentication factor?",
+      "options": [
+        "A token",
+        "A biometric identifier",
+        "A smart card",
+        "A PIV"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Yubikeys, Titan Security Keys, and similar devices are examples of tokens. PIV stands for personal identity verification and is a full multifactor authentication solution, not a device. Biometric identifiers are something you are, and a smart card is a card with an embedded chip.",
+      "optionNotes": [
+        "Correct. YubiKey and Titan Security Key are hardware tokens, physical devices you possess, which makes them a Type 2 (something you have) factor.",
+        "Incorrect. Biometric identifiers, such as fingerprints, are Type 3 (something you are) factors. A USB key is something you have, not a physical trait.",
+        "Incorrect. A smart card is a card with an embedded chip. A YubiKey or Titan key is a USB or NFC token, not a card.",
+        "Incorrect. PIV (personal identity verification) is a full multifactor authentication solution, not a type of device, so it doesn't describe a YubiKey or Titan key."
+      ]
+    },
+    {
+      "id": "OPT4-C05-077",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "What authentication technology can be paired with OAuth to perform identity verification and obtain user profile information using a RESTful API?",
+      "options": [
+        "SAML",
+        "Shibboleth",
+        "OpenID Connect",
+        "Higgins"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "OpenID Connect is a RESTful, JSON-based authentication protocol that, when paired with OAuth, can provide identity verification and basic profile information. SAML is the Security Assertion Markup Language, Shibboleth is a federated identity solution designed to allow web-based SSO, and Higgins is an open-source project designed to provide users with control over the release of their identity information.",
+      "optionNotes": [
+        "Incorrect. SAML is an XML-based markup language for exchanging authentication/authorization assertions, not the RESTful JSON identity layer built on OAuth.",
+        "Incorrect. Shibboleth is a federated identity solution for web-based SSO (built largely on SAML), not the RESTful identity layer paired with OAuth.",
+        "Correct. OpenID Connect is a RESTful, JSON-based authentication layer on top of OAuth. It verifies identity and returns basic user profile information.",
+        "Incorrect. Higgins is an open-source project that gives users control over releasing their identity information. It is not an OAuth-paired REST authentication protocol."
+      ]
+    },
+    {
+      "id": "OPT4-C05-078",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.18,
+      "stem": "Jim wants to implement an access control scheme that will ensure that users cannot delegate access. He also wants to enforce access control at the operating system level. What access control mechanism best fits these requirements?",
+      "options": [
+        "Role-based access control",
+        "Discretionary access control",
+        "Mandatory access control",
+        "Attribute-based access control"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In a mandatory access control system, the operating system enforces access control, and users cannot delegate rights. Discretionary access control allows users to delegate rights, and neither attribute nor role-based access control specifically meets these requirements.",
+      "optionNotes": [
+        "Incorrect. RBAC grants permissions according to job roles. It doesn't specifically guarantee OS-level enforcement or block delegation, so it doesn't fully meet Jim's requirements.",
+        "Incorrect. DAC lets data owners decide who gets access and pass rights on to others. That delegation is exactly what Jim wants to prevent.",
+        "Correct. Under MAC, the operating system enforces access using labels set by policy, and users cannot delegate or change rights.",
+        "Incorrect. ABAC makes access decisions using policies built on subject, object and environment attributes. It doesn't specifically require OS-level enforcement or prevent delegation."
+      ]
+    },
+    {
+      "id": "OPT4-C05-079",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Jesse wants to access a resource protected by a zero trust solution. What component of the system will he connect through to conduct a transaction?",
+      "options": [
+        "The constrained interface",
+        "The policy engine",
+        "The policy decision point",
+        "A policy enforcement point"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In a zero trust reference model-based design, subjects connect through a policy enforcement point. The policy engine makes policy decisions based on rules that are then acted on by the policy administrator, granting or denying access to enterprise resources. Constrained interfaces limit user actions but are not the component connected through to conduct transactions.",
+      "optionNotes": [
+        "Incorrect. A constrained (restrictive) interface limits the actions a user can take through a program. It isn't the zero trust component that subjects connect through to transact.",
+        "Incorrect. The policy engine makes the access decisions based on rules. Subjects don't connect through it; the policy administrator carries out its decisions.",
+        "Incorrect. The policy decision point (the policy engine plus the policy administrator) decides whether access is granted. It sits behind the scenes, so subjects don't route their transactions through it.",
+        "Correct. In the zero trust reference model, subjects reach enterprise resources through a policy enforcement point, which allows or blocks the session according to what the decision point decides."
+      ]
+    },
+    {
+      "id": "OPT4-C05-080",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Ben uses a software-based token that changes its code every minute. What type of token is he using?",
+      "options": [
+        "Asynchronous",
+        "Smart card",
+        "Synchronous",
+        "Static"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Synchronous soft tokens, such as Google Authenticator, use a time-based algorithm that generates a constantly changing series of codes. Asynchronous tokens typically require a challenge to be entered on the token to allow it to calculate a response, which the server compares to the response it expects. Smartcards typically present a certificate but may have other token capabilities built-in. Static tokens are physical devices that can contain credentials and include smart cards and memory cards.",
+      "optionNotes": [
+        "Incorrect. Asynchronous tokens don't rotate on a clock. A challenge is entered into the token, it calculates a response, and the server compares that response to the one it expects. A code that changes every minute is time-driven, so this doesn't fit.",
+        "Incorrect. A smart card is a physical card with an embedded chip that usually presents a certificate. It isn't a software token that shows a new code every minute.",
+        "Correct. Synchronous soft tokens such as Google Authenticator use a time-based algorithm to generate a constantly changing series of codes, like Ben's code that changes every minute.",
+        "Incorrect. Static tokens are physical devices that hold fixed credentials, such as smart cards and memory cards. Their values don't change over time."
+      ]
+    },
+    {
+      "id": "OPT4-C05-081",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "Which of the following is not a commonly used single sign-on solution for internal networks?",
+      "options": [
+        "Kerberos",
+        "SENTRY",
+        "RADIUS",
+        "TACACS+"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Kerberos, RADIUS, and TACACS+ are all commonly used for internal networks. SENTRY was made up for this question.",
+      "optionNotes": [
+        "Incorrect. Kerberos is a widely deployed ticket-based SSO protocol for internal networks (e.g., Active Directory), so it is a common solution, not the answer.",
+        "Correct. SENTRY is not a real SSO technology; the question made it up as a distractor. The other three options are all commonly used on internal networks.",
+        "Incorrect. RADIUS is a common centralized AAA protocol used on internal networks to authenticate remote and network access users, so it is a real, commonly used solution.",
+        "Incorrect. TACACS+ is Cisco's centralized AAA protocol. It encrypts the whole packet and separates AAA functions, and it is commonly used internally, so it is not the answer."
+      ]
+    },
+    {
+      "id": "OPT4-C05-082",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Michelle works for a financial services company and wants to register customers for her web application. What type of authentication mechanism could she use for the initial login if she wants to quickly and automatically verify that the person is who they claim to be without having a previous relationship with them?",
+      "options": [
+        "Request their Social Security number.",
+        "Use knowledge-based authentication.",
+        "Perform manual identity verification.",
+        "Use a biometric factor."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Knowledge-based authentication is used by some financial institutions to validate the identity of new users. It uses information from tax and financial records that is unlikely to be available to others, allowing new users to provide details like their last credit card payment, mortgage payment, or other information to validate their identity. A Social Security number is somewhat trivial to acquire via paid services or other means, and manually validating identities is neither quick nor automatic. A biometric factor would require a previous enrollment, making this unsuitable for new customers.",
+      "optionNotes": [
+        "Incorrect. An SSN alone is weak proof of identity. Paid services and other routes make it fairly easy for an impostor to get someone's SSN, so it doesn't reliably verify a new customer.",
+        "Correct. Knowledge-based authentication asks questions built from tax and financial records, such as a recent mortgage or credit card payment. It verifies a new user quickly and automatically, with no prior relationship needed.",
+        "Incorrect. Manual identity verification can confirm who someone is, but a person has to do it. That makes it neither quick nor automatic, which the scenario requires.",
+        "Incorrect. A biometric factor only works after the person's template has been enrolled. A brand-new customer with no prior relationship has no enrollment to compare against."
+      ]
+    },
+    {
+      "id": "OPT4-C05-083",
+      "domain": 5,
+      "type": "multi",
+      "difficulty": 0.89,
+      "stem": "Megan's company wants to use Google accounts to allow users to quickly adopt their web application. What common cloud federation technologies will Megan need to implement? (Select all that apply.)",
+      "options": [
+        "Kerberos",
+        "OpenID",
+        "OAuth",
+        "RADIUS"
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "Google accounts, like many cloud identity providers, rely on OpenID and OAuth. Kerberos is used for on-premises environments, and RADIUS is frequently used for authentication and authorization for network devices and services like VPN.",
+      "optionNotes": [
+        "Incorrect. Kerberos is a ticket-based authentication protocol for on-premises environments like Active Directory domains. It isn't what Google uses for cloud web federation.",
+        "Correct. Google and other cloud identity providers use OpenID (OpenID Connect) to authenticate users, so the web app can accept their Google identity.",
+        "Correct. OAuth is the authorization framework Google accounts rely on. It lets the web application get delegated access tokens without ever handling the user's Google password.",
+        "Incorrect. RADIUS is an AAA protocol mostly used to authenticate and authorize access to network devices and services such as VPNs. It isn't used for cloud web federation."
+      ]
+    },
+    {
+      "id": "OPT4-C05-084",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Session ID length and session ID entropy are both important to prevent what type of attack?",
+      "options": [
+        "Denial of service",
+        "Cookie theft",
+        "Session guessing",
+        "Man-in-the-middle attacks"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Best practices for session management involve a long session ID (often 128 bits or longer) and enough randomness or entropy to make it hard to guess session IDs. This makes brute-force or algorithmic guessing attacks unlikely unless there is a flaw in the implementation. These do not prevent denial-of-service or man-in-the-middle attacks, and cookie attacks are focused on acquiring and reading or reusing cookies in most scenarios.",
+      "optionNotes": [
+        "Incorrect. Denial of service tries to stop authorized use of a resource through flooding or exploiting flaws. A long, random session ID doesn't stop that, according to the explanation.",
+        "Incorrect. Cookie theft means stealing and then reading or replaying an existing cookie. A captured session ID works no matter how long or random it is, so ID strength doesn't prevent this.",
+        "Correct. A long session ID (often 128 bits or more) with high entropy makes brute-force or algorithmic guessing of valid IDs impractical, unless the implementation is flawed.",
+        "Incorrect. In a man-in-the-middle attack, the attacker intercepts real traffic and can take the actual session ID. Protecting against that needs encryption and authentication, not stronger IDs."
+      ]
+    },
+    {
+      "id": "OPT4-C05-085",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 2.03,
+      "stem": "Naomi's organization employs an access control system that evaluates the security readiness of a device before granting network access. The system checks whether the device is fully patched, if the latest antimalware scans are clean, and if the firewall is active. If there are potential issues that may indicate a compromise, she is not permitted to connect and must contact support. What type of access control scheme best describes this type of process?",
+      "options": [
+        "MAC",
+        "Rule-based access control",
+        "Role-based access control",
+        "Risk-based access control"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Risk-based access control models risk using information that is available when the access request is created. Information about the request and the risk it may create is calculated based on risk values and compared to access policies. If the risk value is acceptable, access is granted. One of the most common examples of this in organizations is NAC, or network access control, where a system is profiled to determine security risk and compliance before admission to a network. This can be seen as a more specific example of rule-based access control. Role-based access control bases its decisions on the roles of the individuals, whereas mandatory access control is enforced by the operating system.",
+      "optionNotes": [
+        "Incorrect. Mandatory access control is enforced by the operating system using classification labels and clearances. It doesn't assess a device's patch, antimalware or firewall status before letting it connect.",
+        "Incorrect. Rule-based access control applies global rules. The book says risk-based NAC can be seen as a more specific form of it, so the broader rule-based label isn't the best fit for risk scoring of each request.",
+        "Incorrect. Role-based access control grants access based on a user's job role. Here the decision depends on the device's security posture, not on who Naomi is or what her role is.",
+        "Correct. Risk-based access control uses information available when the request is made to calculate risk and compare it to policy. NAC posture checks, such as patch level, antimalware scans and firewall status, are the classic example."
+      ]
+    },
+    {
+      "id": "OPT4-C05-086",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.61,
+      "stem": "Isabelle wants to prevent privilege escalation attacks via her organization's service accounts. Which of the following security practices is best suited to this?",
+      "options": [
+        "Remove unnecessary rights.",
+        "Disable interactive login for service accounts.",
+        "Limit when accounts can log in.",
+        "Use meaningless or randomized names for service accounts."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The most important step in securing service accounts is to ensure that they have only the rights that are absolutely needed to accomplish the task they are designed for. Disabling interactive logins is important as well and would be the next best answer. Limiting when accounts can log in and using randomized or meaningless account names can both be helpful in some circumstances but are far less important.",
+      "optionNotes": [
+        "Correct. Removing unnecessary rights applies least privilege, so a compromised service account has only the rights its task needs. That limits what an attacker can escalate to and is the most important service-account control.",
+        "Incorrect. Disabling interactive login is a useful hardening step and the next-best answer. However, it doesn't reduce the rights the account holds, so excess privileges could still be abused through non-interactive use.",
+        "Incorrect. Time-of-day login limits can help in some cases. Service accounts often need to run all the time, though, and limiting login times doesn't reduce the privileges an attacker could misuse.",
+        "Incorrect. Meaningless or randomized names only hide the account (security through obscurity). The account keeps its rights, so this does little to stop privilege escalation."
+      ]
+    },
+    {
+      "id": "OPT4-C05-087",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "In the NIST zero trust model, what component includes the Policy Engine and the Policy Administrator as shown here?\n[Figure, described in text: the NIST zero trust architecture. In the control plane, a box marked \"?\" contains the Policy Engine and the Policy Administrator. In the data plane, a Subject's device connects (untrusted) to a Policy Enforcement Point, which connects (trusted) to the Enterprise Resource. Inputs around the edge: CDM System, Industry Compliance, Threat Intelligence, Activity Logs, Data Access Policy, PKI, ID Management, SIEM System.]",
+      "options": [
+        "The control plane module",
+        "The policy decision point",
+        "The enterprise management console",
+        "The zero trust engine"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The NIST zero trust reference design includes both the Policy Engine and the Policy Administrator as part of the policy decision point. The terms control plane module, enterprise management console, and zero trust engine are not used in this context.",
+      "optionNotes": [
+        "Incorrect. NIST SP 800-207 does describe a control plane, but it has no \"control plane module.\" The component that holds the Policy Engine and Policy Administrator is the policy decision point.",
+        "Correct. In NIST's zero trust reference design, the Policy Engine (which makes access decisions) and the Policy Administrator (which carries them out) together make up the policy decision point (PDP). The PDP instructs the Policy Enforcement Point.",
+        "Incorrect. \"Enterprise management console\" is not a term used in the NIST zero trust architecture. The Policy Engine and Policy Administrator sit in the policy decision point.",
+        "Incorrect. \"Zero trust engine\" is not a NIST component. The real \"engine\" here is the Policy Engine, which is one part of the policy decision point, not the container for both parts."
+      ]
+    },
+    {
+      "id": "OPT4-C05-088",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Jim's organization has joined a federation and has begun to allow users from other organizations in the federation to use their services. What services will the members of other organizations be able to use?",
+      "options": [
+        "All of the services provided by Jim's company",
+        "Only the services their own organization provides",
+        "Services that Jim's company grants access to on a per-user or per-organization basis",
+        "Only services that they pay for that Jim's company provides"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Federation does not necessarily guarantee that services will be shared or made accessible. Member organizations can choose which services they provide and can use more granular controls like role- or organization-based permissions to grant access to services. Payment may be part of a federation agreement or service access, but simply federating does not create or prevent a financial requirement.",
+      "optionNotes": [
+        "Incorrect. Joining a federation doesn't open up every service automatically. Each member decides which of its resources to share with users from other organizations.",
+        "Incorrect. A federation exists so users can reach resources at other member organizations with their federated identity. Limiting them to their own organization's services defeats the purpose.",
+        "Correct. Federating doesn't guarantee that any service is shared. Jim's company picks which services to offer and can use granular role-, user- or organization-based permissions to grant access.",
+        "Incorrect. A federation agreement may include payment terms, but federating by itself neither creates nor removes a payment requirement. Access depends on the permissions the provider grants."
+      ]
+    },
+    {
+      "id": "OPT4-C05-089",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Kristen wants to control access to an application in her organization based on a combination of staff member's job titles, the permissions each group of titles need for the application, and the time of day and location. What type of control scheme should she select?",
+      "options": [
+        "ABAC",
+        "DAC",
+        "MAC",
+        "Role BAC"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Attributes used for ABAC often fall into one of four categories: subject attributes such as department or title; action attributes such as the ability to view, edit, or delete; object attributes that describe the object that can be impacted; and contextual attributes such as location, time, or elements. Discretionary access control would place these decisions in the hands of trusted subjects, MAC would enforce it at the operating system level, and role BAC would use only roles instead of the full set of criteria Kristen wants to apply.",
+      "optionNotes": [
+        "Correct. ABAC evaluates subject attributes (job title), action attributes (permissions), and contextual attributes (time, location) together, which is exactly the mix of criteria Kristen wants.",
+        "Incorrect. With DAC, the object owner or a trusted subject decides who gets access. It can't enforce policy built from titles, time of day, and location attributes.",
+        "Incorrect. MAC is enforced by the operating system using classification labels and clearances. It doesn't consider job titles, time of day, or location.",
+        "Incorrect. Role BAC grants access based only on roles. It can't also factor in contextual attributes like time and location, which Kristen needs."
+      ]
+    },
+    {
+      "id": "OPT4-C05-090",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "When Alex sets the permissions shown here as one of many users on a Linux server, what type of access control model is he leveraging?\n[Exhibit, transcribed from the book's figure:]\n$ chmod 731 alex.txt\n$ ls -la\ntotal 12\ndrwxr-xr-x 2 alex root 4096 Feb 27 19:26 .\ndrwxr-xr-x 3 root root 4096 Feb 27 19:25 ..\n-rwx-wx--x 1 alex alex   15 Feb 27 19:26 alex.txt",
+      "options": [
+        "Role-based access control",
+        "Rule-based access control",
+        "Mandatory access control (MAC)",
+        "Discretionary access control (DAC)"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Linux filesystem allows the owners of objects to determine the access rights that subjects have to them. This means that it is a discretionary access control. If the system enforced a role-based access control, Alex wouldn't set the controls; they would be set based on the roles assigned to each subject. A rule-based access control system would apply rules throughout the system, and a mandatory access control system uses classification labels.",
+      "optionNotes": [
+        "Incorrect. In role-based access control, permissions come from the roles assigned to subjects. Alex wouldn't be setting them himself on his own file, so the chmod scenario doesn't fit RBAC.",
+        "Incorrect. Rule-based access control applies global rules across the whole system, for example firewall rules. Here an individual owner is choosing permissions on one file, which isn't rule-based.",
+        "Incorrect. MAC grants access by comparing system-enforced classification labels on subjects and objects. Owners can't change those settings, but here Alex changes them freely with chmod.",
+        "Correct. Linux file permissions let the object's owner (Alex) decide what access other subjects get, and that owner control is what defines discretionary access control."
+      ]
+    },
+    {
+      "id": "OPT4-C05-091",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "Joanna leads her organization's identity management team and wants to ensure that roles are properly updated when staff members change to new positions. What issue should she focus on for those staff members to avoid future issues with role definition?",
+      "options": [
+        "Registration",
+        "Privilege creep",
+        "Deprovisioning",
+        "Accountability"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Privilege creep is a constant concern when staff change roles over time. Privileges from previous roles may be easy to forget or to retain during transition because staff may continue to help cover the tasks or processes the individual previously performed. Over time, these forgotten rights and privileges can stack, leaving the staff member with rights that their current role should not have. Registration is a concern for new staff, while de-provisioning is a concern for departing staff. Accountability is typically provided by IAM systems by authenticating and logging access and privilege usage.",
+      "optionNotes": [
+        "Incorrect. Registration happens when a new staff member is enrolled and gets an identity. It matters for onboarding new hires, not for people moving between roles inside the organization.",
+        "Correct. When people change roles, access from earlier roles often stays in place, sometimes because they keep covering old tasks. Over time these leftover rights pile up and go beyond what the current role should have, which is privilege creep.",
+        "Incorrect. Deprovisioning removes accounts and access when staff leave the organization. Someone changing positions still needs an account, so the role-transition risk is leftover rights, not account removal.",
+        "Incorrect. IAM systems already provide accountability by authenticating users and logging their access and use of privileges. It is not the specific problem that builds up when staff change roles."
+      ]
+    },
+    {
+      "id": "OPT4-C05-092",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "What type of authorization mechanism is shown in the following chart?\n[Exhibit, transcribed from the book's figure:]\nGroup | Privileges\nSystem administrators | Superuser on a desktop, domain administrator\nApplication administrators | Sudo privileges on application servers\nDatabase administrators | Sudo privileges on database servers\nUsers | User rights on desktop workstations",
+      "options": [
+        "RBAC",
+        "ABAC",
+        "MAC",
+        "DAC"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "This is a role-based access control (RBAC) chart noting that each group has specific rights by roles. Attribute-based access control (ABAC) would use other attributes including things like location, mandatory access control (MAC) would be enforced by the operating system, and discretionary access control (DAC) allows subjects like users to set rights on objects they control.",
+      "optionNotes": [
+        "Correct. Each group in the chart (system admins, app admins, DBAs, users) gets its privileges because of its job role, and that is how role-based access control works.",
+        "Incorrect. ABAC makes decisions using several attributes, such as location or time of access. The chart assigns privileges only by group or role and shows no other attributes.",
+        "Incorrect. In MAC, the operating system enforces access using security labels and clearances. The chart maps job roles to privileges and shows no labels or classifications.",
+        "Incorrect. DAC lets owners set permissions on objects they control. The chart shows privileges assigned centrally by role, not set by the owners of the objects."
+      ]
+    },
+    {
+      "id": "OPT4-C05-093",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.61,
+      "stem": "Samantha wants to log all sudo activity under individual user accounts. What first step should she take to ensure that she captures privileged use like this?",
+      "options": [
+        "Prevent the use of sudo su -.",
+        "Add all users to the sudoers file.",
+        "Remove all users from the sudoers.",
+        "Disable sudo."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Ensure that users cannot bypass logging by switching to the root user using sudo su -. Instead, users who need the ability to perform privileged actions should be added to the sudoers list and then logged as themselves performing the actions. Adding all users is likely an overly broad action, whereas removing all users would not allow individual logging under their accounts, nor would they have rights to take administrative actions. Disabling sudo doesn't allow administrative tasks except as root, which defeats this requirement as well.",
+      "optionNotes": [
+        "Correct. Running sudo su - starts a full root shell, so later commands are logged as root and not under the user's own account. Blocking it keeps privileged actions tied to each person.",
+        "Incorrect. Adding every user to sudoers grants far broader privilege than needed. It also does nothing to stop users from escaping logging via sudo su -.",
+        "Incorrect. With no one in sudoers, nobody can run privileged commands under their own account. Admin work would then have to be done as root, so per-user logging becomes impossible.",
+        "Incorrect. Turning off sudo leaves direct root login as the only way to administer the system. Root is effectively a shared account, so individual accountability for privileged use is lost."
+      ]
+    },
+    {
+      "id": "OPT4-C05-094",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Brian wants to explain the benefits of an on-premises federation approach for identity to his organization's leadership. Which of the following is not a common benefit of a federated identity system?",
+      "options": [
+        "Ease of account management",
+        "Single sign-on",
+        "Prevention of brute-force attacks",
+        "Increased productivity"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Single sign-on (SSO) is part of identity federation. It also means that account management is simpler since multiple accounts don't have to be maintained for users who need to access systems and resources across the federation. Productivity can increase because staff don't have to remember multiple logins and can use SSO to log in once instead of multiple times. It does not, however, do anything to prevent brute-force attacks, and in fact, a single account with broad access can make it easier for an attacker to gain that broader access unless solutions like multifactor authentication are put in place.",
+      "optionNotes": [
+        "Incorrect. This is a real benefit. With federation, users don't need separate accounts on every system across the federation, so there are fewer accounts to create and maintain.",
+        "Incorrect. SSO is a core part of identity federation, where users log in once and reach resources across the federation. So it is a benefit, not the exception the question asks for.",
+        "Correct. Federation does nothing to stop brute-force attacks. In fact, one account with broad access can be a bigger prize for attackers unless controls like MFA are added.",
+        "Incorrect. This is a common benefit. Staff don't have to remember several logins and only sign in once, which saves time and raises productivity."
+      ]
+    },
+    {
+      "id": "OPT4-C05-095",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.54,
+      "stem": "The bank that Aaron works for wants to allow customers to use a new add-on application from a third-party partner they are working with. Since not every customer will want or need an account, Aaron has suggested that the bank use a SAML-based workflow that creates an account when a user downloads the app and tries to log in. What type of provisioning system has he suggested?",
+      "options": [
+        "JIT",
+        "OpenID",
+        "OAuth",
+        "Kerberos"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A JIT, or just-in-time, provisioning mechanism creates accounts when they are needed rather than creating them in advance. This is an effective method to limit the number of accounts being maintained and can be useful if the number of accounts are part of a licensing agreement that may drive costs higher if users who don't need accounts or are not using them have them. OAuth, OpenID, and Kerberos are not mentioned in the question.",
+      "optionNotes": [
+        "Correct. Just-in-time provisioning creates the account at first login, often from a SAML assertion, and doesn't set it up in advance. This fits Aaron's plan exactly and keeps down the number of unused accounts.",
+        "Incorrect. OpenID is an authentication standard that lets users sign in with an existing identity provider. It is not a way to provision accounts on demand, and the question describes a SAML workflow.",
+        "Incorrect. OAuth is an authorization framework for granting delegated API access through tokens. It does not create accounts when they are first needed, and the question doesn't mention it.",
+        "Incorrect. Kerberos is a ticket-based authentication protocol used inside an enterprise network. It is not a SAML-based method for creating accounts on demand."
+      ]
+    },
+    {
+      "id": "OPT4-C05-096",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "What authentication protocol does Windows use by default for Active Directory systems?",
+      "options": [
+        "RADIUS",
+        "Kerberos",
+        "OAuth",
+        "TACACS+"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Windows uses Kerberos for authentication. RADIUS is typically used for wireless networks, modems, and network devices, while OAuth is primarily used for web applications. TACACS+ is used for network devices.",
+      "optionNotes": [
+        "Incorrect. RADIUS is a centralized AAA protocol typically used for wireless networks, modems/dial-up, and network devices. It isn't the native authentication protocol for Active Directory domains.",
+        "Correct. Active Directory uses Kerberos as its default authentication protocol. Domain controllers act as the KDC and issue tickets so users can sign on once to domain resources.",
+        "Incorrect. OAuth is an authorization framework used mainly by web applications to delegate access, for example through tokens. It isn't how Windows authenticates domain logons.",
+        "Incorrect. TACACS+ is a Cisco-originated AAA protocol used to authenticate administrators on network devices such as routers and switches. It isn't used for Active Directory logons."
+      ]
+    },
+    {
+      "id": "OPT4-C05-097",
+      "domain": 5,
+      "type": "single",
+      "difficulty": 1.97,
+      "stem": "Valerie needs to control access to applications that are deployed to mobile devices in a BYOD environment. What type of solution will best allow her to exercise control over the applications while ensuring that they do not leave remnant data on the devices used by her end users?",
+      "options": [
+        "Deploy the applications to the BYOD devices and require unique PINs on every device.",
+        "Deploy the application to desktop systems and require users to use remote desktop to access them using enterprise authentication.",
+        "Deploy the applications to the BYOD devices using application containers and require unique PINs on every device.",
+        "Use a virtual hosted application environment that requires authentication using enterprise credentials."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "When very high levels of control are needed or when endpoint devices cannot be trusted, using a centralized environment with remote connectivity and enterprise authentication can provide appropriate security.",
+      "optionNotes": [
+        "Incorrect. Installing apps right on untrusted BYOD devices leaves app data stored locally. A PIN only protects access to the device. It neither prevents remnant data nor gives central control over the app.",
+        "Incorrect. Remote desktop to desktop systems does keep data off the endpoint. However, it is clumsy on mobile devices and gives less centralized control than a purpose-built hosted application environment such as VDI/VMI.",
+        "Incorrect. Containers do isolate company apps from personal data. But the app and its data still sit on the BYOD device, so remnant data is possible, and the endpoint can't be fully trusted.",
+        "Correct. A centrally hosted virtual application environment with enterprise authentication keeps the apps and data off the untrusted endpoint. This gives the high level of control needed and leaves no remnant data."
+      ]
+    },
+    {
+      "id": "OPT4-C05-098",
+      "domain": 5,
+      "type": "ordering",
+      "difficulty": 0.77,
+      "stem": "Match the following authorization mechanisms with their descriptions:\n1. Role-BAC\n2. Rule BAC\n3. DAC\n4. ABAC\n5. MAC\n\n(Arrange the options in the order of the numbered items 1–5.)",
+      "options": [
+        "An access control model enforced by the operating system.",
+        "Permissions or rights are granted based on parameters like an IP address, time, or other specific details that match requirements.",
+        "Sometimes called policy-based access control, this model uses information about the subject to assign permissions.",
+        "A model where subjects with the proper rights can assign or pass those rights to other subjects.",
+        "Used to assign permissions based on job or function."
+      ],
+      "answer": [
+        4,
+        1,
+        3,
+        2,
+        0
+      ],
+      "explanation": "1. E\n2. B\n3. D\n4. C\n5. A",
+      "optionNotes": [
+        "Item 5, MAC. The operating system or system enforces access using labels and clearances, and users can't change those permissions.",
+        "Item 2, Rule-BAC. Access depends on whether a request meets set rules, such as a source IP address or time of day, the way firewall rules work.",
+        "Item 4, ABAC. It's sometimes called policy-based access control. Policies look at attributes of the subject (and of the object and environment) to decide on access.",
+        "Item 3, DAC. Owners, or subjects with the right permissions, can grant or pass their rights to other subjects at their own discretion.",
+        "Item 1, Role-BAC. Permissions go to roles that match a job or function, and users get access by being put into those roles."
+      ]
+    },
+    {
+      "id": "OPT4-C05-099-1",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.38,
+      "stem": "Match each of the numbered authentication techniques with the appropriate lettered category. Each technique should be matched with exactly one category. Each category may be used once, more than once, or not at all.\nAuthentication technique:\n1. Password\n2. ID card\n3. Retinal scan\n4. Smartphone token\n5. Fingerprint analysis\n\nWhich of the following matches item 1 (Password)?",
+      "options": [
+        "Something you have",
+        "Something you know",
+        "Something you are"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The security controls match with the categories as follows:\n1. Password: B. Something you know\n2. ID card: A. Something you have\n3. Retinal scan: C. Something you are\n4. Smartphone token: A. Something you have\n5. Fingerprint analysis: C. Something you are",
+      "optionNotes": [
+        "Incorrect. Something you have is for physical items you carry, such as an ID card or smartphone token. A password is memorized, not possessed, so it doesn't belong here.",
+        "Correct. A password is a secret the user memorizes and types in, which makes it a Type 1 factor: something you know.",
+        "Incorrect. Something you are covers biometric traits, such as retinal scans and fingerprints. A password is not a physical characteristic of the user."
+      ]
+    },
+    {
+      "id": "OPT4-C05-099-2",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.02,
+      "stem": "Match each of the numbered authentication techniques with the appropriate lettered category. Each technique should be matched with exactly one category. Each category may be used once, more than once, or not at all.\nAuthentication technique:\n1. Password\n2. ID card\n3. Retinal scan\n4. Smartphone token\n5. Fingerprint analysis\n\nWhich of the following matches item 2 (ID card)?",
+      "options": [
+        "Something you have",
+        "Something you know",
+        "Something you are"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The security controls match with the categories as follows:\n1. Password: B. Something you know\n2. ID card: A. Something you have\n3. Retinal scan: C. Something you are\n4. Smartphone token: A. Something you have\n5. Fingerprint analysis: C. Something you are",
+      "optionNotes": [
+        "Correct. An ID card is a physical object the user carries, so it belongs to the something-you-have (Type 2) factor. The smartphone token falls in the same category.",
+        "Incorrect. Something you know (Type 1) covers memorized secrets like the password (item 1). An ID card is a physical item, not knowledge.",
+        "Incorrect. Something you are (Type 3) covers biometrics such as retinal scans and fingerprints (items 3 and 5). An ID card is not a body trait."
+      ]
+    },
+    {
+      "id": "OPT4-C05-099-3",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.02,
+      "stem": "Match each of the numbered authentication techniques with the appropriate lettered category. Each technique should be matched with exactly one category. Each category may be used once, more than once, or not at all.\nAuthentication technique:\n1. Password\n2. ID card\n3. Retinal scan\n4. Smartphone token\n5. Fingerprint analysis\n\nWhich of the following matches item 3 (Retinal scan)?",
+      "options": [
+        "Something you have",
+        "Something you know",
+        "Something you are"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The security controls match with the categories as follows:\n1. Password: B. Something you know\n2. ID card: A. Something you have\n3. Retinal scan: C. Something you are\n4. Smartphone token: A. Something you have\n5. Fingerprint analysis: C. Something you are",
+      "optionNotes": [
+        "Incorrect. Something you have covers physical items such as the ID card (item 2) and smartphone token (item 4). A retinal scan measures a body trait, so it isn't a possession.",
+        "Incorrect. Something you know covers secrets you memorize, such as the password (item 1). A retinal scan doesn't depend on anything the user remembers.",
+        "Correct. A retinal scan is a biometric that measures the pattern of blood vessels at the back of the eye. That makes it something you are, the same category as fingerprint analysis (item 5)."
+      ]
+    },
+    {
+      "id": "OPT4-C05-099-4",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -0.78,
+      "stem": "Match each of the numbered authentication techniques with the appropriate lettered category. Each technique should be matched with exactly one category. Each category may be used once, more than once, or not at all.\nAuthentication technique:\n1. Password\n2. ID card\n3. Retinal scan\n4. Smartphone token\n5. Fingerprint analysis\n\nWhich of the following matches item 4 (Smartphone token)?",
+      "options": [
+        "Something you have",
+        "Something you know",
+        "Something you are"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The security controls match with the categories as follows:\n1. Password: B. Something you know\n2. ID card: A. Something you have\n3. Retinal scan: C. Something you are\n4. Smartphone token: A. Something you have\n5. Fingerprint analysis: C. Something you are",
+      "optionNotes": [
+        "Correct. A smartphone token is a physical device the user has to carry, and it generates or receives one-time codes. That makes it a Type 2 \"something you have\" factor, the same category as the ID card.",
+        "Incorrect. \"Something you know\" covers memorized secrets such as passwords or PINs. The smartphone token is a device the user owns, not information they remember.",
+        "Incorrect. \"Something you are\" covers biometrics such as retinal scans and fingerprints. A smartphone token is not a physical trait of the user."
+      ]
+    },
+    {
+      "id": "OPT4-C05-099-5",
+      "domain": 5,
+      "type": "single",
+      "difficulty": -1.02,
+      "stem": "Match each of the numbered authentication techniques with the appropriate lettered category. Each technique should be matched with exactly one category. Each category may be used once, more than once, or not at all.\nAuthentication technique:\n1. Password\n2. ID card\n3. Retinal scan\n4. Smartphone token\n5. Fingerprint analysis\n\nWhich of the following matches item 5 (Fingerprint analysis)?",
+      "options": [
+        "Something you have",
+        "Something you know",
+        "Something you are"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The security controls match with the categories as follows:\n1. Password: B. Something you know\n2. ID card: A. Something you have\n3. Retinal scan: C. Something you are\n4. Smartphone token: A. Something you have\n5. Fingerprint analysis: C. Something you are",
+      "optionNotes": [
+        "Incorrect. Something you have covers physical items like the ID card (item 2) and the smartphone token (item 4). A fingerprint is part of your body, not something you carry.",
+        "Incorrect. Something you know covers memorized secrets such as the password (item 1). Fingerprint analysis measures a body trait, not knowledge.",
+        "Correct. Fingerprint analysis is a biometric, so it is Type 3: something you are. The retinal scan (item 3) is in the same category."
+      ]
+    },
+    {
+      "id": "OPT4-C05-100",
+      "domain": 5,
+      "type": "ordering",
+      "difficulty": 2.09,
+      "stem": "Match the following identity and access controls with the asset type they are best suited to protect. Each only has one option.\n1. Information assets\n2. Systems\n3. Mobile devices\n4. Facilities\n5. Partner applications\n\n(Arrange the options in the order of the numbered items 1–5.)",
+      "options": [
+        "Discretionary access controls",
+        "Badge readers",
+        "Federated identity management",
+        "Biometric authentication",
+        "User accounts with multifactor authentication"
+      ],
+      "answer": [
+        0,
+        4,
+        3,
+        1,
+        2
+      ],
+      "explanation": "1. A\n2. E\n3. D\n4. B\n5. C",
+      "optionNotes": [
+        "Item 1 (Information assets). Discretionary access controls let data owners set permissions on files and data directly, so they fit protecting information assets.",
+        "Item 4 (Facilities). Badge readers are physical access controls that govern entry to buildings and rooms, so they protect facilities.",
+        "Item 5 (Partner applications). Federated identity management lets users authenticate across organizational boundaries, which makes it the right control for applications shared with partners.",
+        "Item 3 (Mobile devices). Biometric authentication such as fingerprint or face unlock is the typical control for securing a mobile device the user carries.",
+        "Item 2 (Systems). Systems are protected by user accounts that need multifactor authentication at logon, which ties access to verified individual identities."
+      ]
+    }
+  ]
+}

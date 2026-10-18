@@ -1,0 +1,4743 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 7: Security Operations",
+ "questions": [
+  {
+   "id": "DUMP-0008",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following actions will reduce risk to a laptop before traveling to a high risk area?",
+   "options": [
+    "Examine the device for physical tampering",
+    "Implement more stringent baseline configurations",
+    "Purge or re-image the hard disk drive",
+    "Change access codes"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Wiping or re-imaging the laptop removes sensitive data so nothing is exposed if seized or compromised.",
+   "optionNotes": [
+    "Inspection is for after return, not risk reduction before travel.",
+    "Hardening helps but data still present if seized.",
+    "Correct: removing sensitive data minimizes exposure.",
+    "Changing codes does not protect stored data."
+   ]
+  },
+  {
+   "id": "DUMP-0029",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the BEST network defense against unknown types of attacks or stealth attacks in progress?",
+   "options": [
+    "Intrusion Prevention Systems (IPS)",
+    "Intrusion Detection Systems (IDS)",
+    "Stateful firewalls",
+    "Network Behavior Analysis (NBA) tools"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "NBA detects anomalies in traffic behavior, catching unknown and stealthy attacks that signatures miss.",
+   "optionNotes": [
+    "IPS mostly signature-based; misses unknown attacks.",
+    "IDS signature engines miss novel attacks.",
+    "Stateful firewalls don't detect stealthy behaviour.",
+    "Correct: behaviour analysis detects anomalous/unknown activity."
+   ]
+  },
+  {
+   "id": "DUMP-0038",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following could cause a Denial of Service (DoS) against an authentication system?",
+   "options": [
+    "Encryption of audit logs",
+    "No archiving of audit logs",
+    "Hashing of audit logs",
+    "Remote access audit logs"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said D] If logs are not archived they fill storage, and systems set to stop on full logs will deny authentication.",
+   "optionNotes": [
+    "Encryption doesn't stop logging.",
+    "Correct: full logs can halt the system.",
+    "Hashing doesn't cause DoS.",
+    "Remote logs don't cause DoS."
+   ]
+  },
+  {
+   "id": "DUMP-0043",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "When is a Business Continuity Plan (BCP) considered to be valid?",
+   "options": [
+    "When it has been validated by the Business Continuity (BC) manager",
+    "When it has been validated by the board of directors",
+    "When it has been validated by all threat scenarios",
+    "When it has been validated by realistic exercises"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A BCP is validated only through realistic exercises/testing.",
+   "optionNotes": [
+    "Manager approval isn't validation.",
+    "Board approval isn't validation.",
+    "Testing all scenarios is impossible.",
+    "Correct: realistic exercises validate the plan."
+   ]
+  },
+  {
+   "id": "DUMP-0044",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What would be the MOST cost effective solution for a Disaster Recovery (DR) site given that the organization's systems cannot be unavailable for more than 24 hours?",
+   "options": [
+    "Warm site",
+    "Hot site",
+    "Mirror site",
+    "Cold site"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A warm site can be operational within roughly a day at much lower cost than a hot or mirror site.",
+   "optionNotes": [
+    "Correct: warm site restorable within ~24h affordably.",
+    "Hot site works but costs more.",
+    "Mirror site is the most expensive.",
+    "Cold site takes too long."
+   ]
+  },
+  {
+   "id": "DUMP-0046",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "What is the PRIMARY reason for implementing change management?",
+   "options": [
+    "Certify and approve releases to the environment",
+    "Provide version rollbacks for system changes",
+    "Ensure that all applications are approved",
+    "Ensure accountability for changes to the environment"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Change management primarily ensures changes are controlled and accountable.",
+   "optionNotes": [
+    "Release approval is a mechanism, not the purpose.",
+    "Rollback is a component.",
+    "Application approval is a narrower goal.",
+    "Correct: accountability and control for changes."
+   ]
+  },
+  {
+   "id": "DUMP-0050",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the FIRST step in the incident response process?",
+   "options": [
+    "Determine the cause of the incident",
+    "Disconnect the system involved from the network",
+    "Isolate and contain the system involved",
+    "Investigate all symptoms to confirm the incident"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Incident response starts with detection/verification: confirm an incident actually exists before containment or root-cause work. Containment and disconnection (B, C) are tempting, but acting on an unconfirmed event can disrupt business for a false positive. ISC2 places detection and verification before containment.",
+   "optionNotes": [
+    "Root cause analysis comes later, after containment.",
+    "Disconnecting is a containment action, done after confirmation.",
+    "Containment follows verification of the incident.",
+    "Right: first confirm a real incident exists (detection/verification)."
+   ]
+  },
+  {
+   "id": "DUMP-0052",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the MOST important step during forensic analysis when trying to learn the purpose of an unknown application?",
+   "options": [
+    "Disable all unnecessary services",
+    "Ensure chain of custody",
+    "Prepare another backup of the system",
+    "Isolate the system from the network"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Isolating the system stops the unknown application from communicating or spreading while it is studied. Chain of custody (B) matters for any evidence but does not help learn the application's purpose safely. Isolation lets analysts observe the program without it spreading, beaconing or exfiltrating data.",
+   "optionNotes": [
+    "Disabling services could alter evidence and is not the key step.",
+    "Chain of custody matters for evidence but does not address safe study of the app.",
+    "Backups are useful but not the most important step here.",
+    "Right: isolation stops the unknown app from beaconing, spreading or exfiltrating."
+   ]
+  },
+  {
+   "id": "DUMP-0074",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What technique BEST describes antivirus software that detects viruses by watching anomalous behavior?",
+   "options": [
+    "Signature",
+    "Inference",
+    "Induction",
+    "Heuristic"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Heuristic (behavior-based) detection flags anomalous behavior rather than known signatures. Signature engines match known code patterns and cannot catch new variants. Heuristic or behavior-based engines flag suspicious actions, which is what the stem describes.",
+   "optionNotes": [
+    "Signature detection matches known patterns, not behavior.",
+    "Inference is not an AV detection technique.",
+    "Induction is not an AV detection technique.",
+    "Right: heuristic detection flags suspicious behavior."
+   ]
+  },
+  {
+   "id": "DUMP-0075",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "In Disaster Recovery (DR) and business continuity training, which BEST describes a functional drill?",
+   "options": [
+    "A full-scale simulation of an emergency and the subsequent response functions",
+    "A specific test by response teams of individual emergency response functions",
+    "A functional evacuation of personnel",
+    "An activation of the backup site"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A functional drill tests specific response functions by the teams, not a full-scale exercise. A full-scale simulation (A) is a full-scale exercise, and activating the backup site (D) is a parallel or full test. A functional drill exercises specific response functions by the relevant teams.",
+   "optionNotes": [
+    "Full-scale simulation of all functions is a full-scale exercise.",
+    "Right: a functional drill tests particular response functions by teams.",
+    "Evacuation drill is just one narrow example.",
+    "Activating the backup site is a parallel/full test."
+   ]
+  },
+  {
+   "id": "DUMP-0077",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What should be the INITIAL response to Intrusion Detection System/Intrusion Prevention System (IDS/IPS) alerts?",
+   "options": [
+    "Ensure that the Incident Response Plan is available and current.",
+    "Determine the traffic's initial source and block the appropriate port.",
+    "Disable or disconnect suspected target and source systems.",
+    "Verify the threat and determine the scope of the attack."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Alerts must first be verified and scoped before taking response actions. IDS/IPS alerts include many false positives, so blocking ports or disconnecting systems (B, C) before analysis risks needless outages. First confirm the threat is real and size its scope.",
+   "optionNotes": [
+    "Plan readiness should exist beforehand; not the response to an alert.",
+    "Blocking before verification may be wrong and disruptive.",
+    "Disconnecting before verification could disrupt operations needlessly.",
+    "Right: verify the alert is real and determine its scope first."
+   ]
+  },
+  {
+   "id": "DUMP-0078",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following Disaster Recovery (DR) sites is the MOST difficult to test?",
+   "options": [
+    "Hot site",
+    "Cold site",
+    "Warm site",
+    "Mobile site"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A cold site lacks equipment, so it cannot be realistically tested until equipped. Hot and warm sites contain equipment that can be exercised. A cold site is an empty shell, so a realistic test means first procuring and installing everything.",
+   "optionNotes": [
+    "Hot sites are fully equipped and readily tested.",
+    "Right: cold sites lack equipment, so meaningful testing is very hard.",
+    "Warm sites have some equipment and can be partially tested.",
+    "Mobile sites are equipped units and can be tested."
+   ]
+  },
+  {
+   "id": "DUMP-0079",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "During an audit of system management, auditors find that the system administrator has not been trained. What actions need to be taken at once to ensure the integrity of systems?",
+   "options": [
+    "A review of hiring policies and methods of verification of new employees",
+    "A review of all departmental procedures",
+    "A review of all training procedures to be undertaken",
+    "A review of all systems by an experienced administrator"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Immediate concern is system integrity, so an experienced admin should review all systems now. Hiring, procedure and training reviews (A–C) are valid follow-ups but slow. The urgent concern is whether the untrained admin already damaged system integrity, so an expert review comes at once.",
+   "optionNotes": [
+    "Hiring policy review is a longer-term fix, not immediate.",
+    "Reviewing all procedures is broad and not urgent for integrity.",
+    "Training review is longer-term remediation.",
+    "Right: have an experienced admin check systems now for integrity issues."
+   ]
+  },
+  {
+   "id": "DUMP-0080",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following would be the FIRST step to take when implementing a patch management program?",
+   "options": [
+    "Perform automatic deployment of patches.",
+    "Monitor for vulnerabilities and threats.",
+    "Prioritize vulnerability remediation.",
+    "Create a system inventory."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "You must know what assets exist before monitoring, prioritizing, or deploying patches. Monitoring and prioritizing (B, C) only make sense once you know what exists. An accurate inventory tells you which vulnerabilities apply and where patches must go.",
+   "optionNotes": [
+    "Deployment comes after inventory and prioritization.",
+    "Monitoring needs to know which assets matter.",
+    "Prioritization needs an inventory to work from.",
+    "Right: you cannot patch what you do not know you have."
+   ]
+  },
+  {
+   "id": "DUMP-0087",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the MOST important purpose of testing the Disaster Recovery Plan (DRP)?",
+   "options": [
+    "Evaluating the efficiency of the plan",
+    "Identifying the benchmark required for restoration",
+    "Validating the effectiveness of the plan",
+    "Determining the Recovery Time Objective (RTO)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Testing validates that the plan actually works. Efficiency (A) is secondary, and the RTO (D) is set by the BIA. Testing exists to prove the plan actually works and to expose gaps.",
+   "optionNotes": [
+    "Efficiency is secondary to whether the plan works.",
+    "Benchmarks are set in planning, not testing.",
+    "Right: testing validates the plan actually works.",
+    "RTO is set by the BIA, not determined by tests."
+   ]
+  },
+  {
+   "id": "DUMP-0106",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A system has been scanned for vulnerabilities and has been found to contain a number of communication ports that have been opened without authority. To which of the following might this system have been subjected?",
+   "options": [
+    "Trojan horse",
+    "Denial of Service (DoS)",
+    "Spoofing",
+    "Man-in-the-Middle (MITM)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Trojan horses often install backdoors that open listening ports for remote control. Unexpected, unauthorised open ports are therefore a classic sign of trojan infection.",
+   "optionNotes": [
+    "Right: backdoor listeners open ports",
+    "DoS exhausts resources but does not open listening ports",
+    "Spoofing falsifies identity, it does not open ports",
+    "MITM intercepts traffic in transit, not on the host"
+   ]
+  },
+  {
+   "id": "DUMP-0127",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the best practice for testing a Business Continuity Plan (BCP)?",
+   "options": [
+    "Test before the IT Audit",
+    "Test when environment changes",
+    "Test after installation of security patches",
+    "Test after implementation of system patches"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A BCP must stay aligned with the business, so it should be tested when the environment changes significantly, in addition to scheduled testing.",
+   "optionNotes": [
+    "Audit timing is not a valid test trigger",
+    "Right: changes may invalidate the plan",
+    "Security patches are too narrow a trigger",
+    "System patches are too narrow a trigger"
+   ]
+  },
+  {
+   "id": "DUMP-0133",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A security professional has just completed their organization's Business Impact Analysis (BIA). Following Business Continuity Plan/Disaster Recovery Plan (BCP/DRP) best practices, what would be the professional's NEXT step?",
+   "options": [
+    "Identify and select recovery strategies.",
+    "Present the findings to management for funding.",
+    "Select members for the organization's recovery teams.",
+    "Prepare a plan to test the organization's ability to recover its operations."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The BIA establishes critical functions, MTD, RTO and RPO. The next BCP step is to identify and select recovery strategies that meet those targets.",
+   "optionNotes": [
+    "Right: strategies follow BIA results",
+    "Funding requests follow strategy selection",
+    "Teams are formed during plan development",
+    "Testing comes after the plan exists"
+   ]
+  },
+  {
+   "id": "DUMP-0135",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In the area of disaster planning and recovery, what strategy entails the presentation of information about the plan?",
+   "options": [
+    "Communication",
+    "Planning",
+    "Recovery",
+    "Escalation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Communication is the strategy for presenting plan information to stakeholders, staff and outside parties so everyone knows their role.",
+   "optionNotes": [
+    "Right: presenting plan information",
+    "Planning develops the plan",
+    "Recovery restores operations",
+    "Escalation raises issues to higher authority"
+   ]
+  },
+  {
+   "id": "DUMP-0143",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is TRUE about Disaster Recovery Plan (DRP) testing?",
+   "options": [
+    "Operational networks are usually shut down during testing.",
+    "Testing should continue even if components of the test fail.",
+    "The company is fully prepared for a disaster if all tests pass.",
+    "Testing should not be done until the entire disaster plan can be tested."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A DRP test should continue even if components fail, so the remaining steps are exercised and all gaps are found in one run.",
+   "optionNotes": [
+    "Tests are designed to avoid disrupting production",
+    "Right: continue to uncover further gaps",
+    "Passing tests do not guarantee readiness",
+    "Partial and component tests are valuable and normal"
+   ]
+  },
+  {
+   "id": "DUMP-0149",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which one of the following is a fundamental objective in handling an incident?",
+   "options": [
+    "To restore control of the affected systems",
+    "To confiscate the suspect's computers",
+    "To prosecute the attacker",
+    "To perform full backups of the system"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Incident handling aims to contain the incident and restore control and normal operation of affected systems; prosecution and seizure are secondary.",
+   "optionNotes": [
+    "Containment and restoring control of systems is the core goal",
+    "Seizing equipment is a possible forensic step, not the objective",
+    "Prosecution is an optional management decision",
+    "Backups support recovery but are not the objective"
+   ]
+  },
+  {
+   "id": "DUMP-0150",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "At a MINIMUM, a formal review of any Disaster Recovery Plan (DRP) should be conducted",
+   "options": [
+    "monthly.",
+    "quarterly.",
+    "annually.",
+    "bi-annually."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "DR plans should be formally reviewed at least annually and after significant changes.",
+   "optionNotes": [
+    "Monthly formal review is good practice for some items but not the stated minimum",
+    "Quarterly exceeds the minimum requirement",
+    "Annual review (plus after major change) is the accepted minimum",
+    "Every two years leaves the plan stale"
+   ]
+  },
+  {
+   "id": "DUMP-0159",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is a network intrusion detection technique?",
+   "options": [
+    "Statistical anomaly",
+    "Perimeter intrusion",
+    "Port scanning",
+    "Network spoofing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Statistical anomaly (behaviour-based) detection compares traffic to a baseline and is an IDS technique.",
+   "optionNotes": [
+    "Baseline-deviation detection is a classic IDS method",
+    "Perimeter intrusion is a physical concept, not a detection technique",
+    "Port scanning is reconnaissance the IDS detects",
+    "Spoofing is an attack the IDS detects"
+   ]
+  },
+  {
+   "id": "DUMP-0167",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which one of these risk factors would be the LEAST important consideration in choosing a building site for a new computer facility?",
+   "options": [
+    "Vulnerability to crime",
+    "Adjacent buildings and businesses",
+    "Proximity to an airline flight path",
+    "Vulnerability to natural disasters"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Crime, neighbours and natural disasters are major siting factors; proximity to a flight path is a low-probability concern.",
+   "optionNotes": [
+    "Crime exposure is a major siting factor for asset protection",
+    "Neighbours bring fire, hazmat and access risks",
+    "A flight path is a remote, low-likelihood risk",
+    "Natural disasters are a primary siting concern"
+   ]
+  },
+  {
+   "id": "DUMP-0172",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Contingency plan exercises are intended to do which of the following?",
+   "options": [
+    "Train personnel in roles and responsibilities",
+    "Validate service level agreements",
+    "Train maintenance personnel",
+    "Validate operation metrics"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Exercises train personnel in their roles and responsibilities and validate plan workability.",
+   "optionNotes": [
+    "Exercises build familiarity with roles and responsibilities",
+    "SLAs are validated through monitoring, not plan exercises",
+    "Maintenance staff training is too narrow",
+    "Operational metrics are not the exercise goal"
+   ]
+  },
+  {
+   "id": "DUMP-0179",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following is ensured when hashing files during chain of custody handling?",
+   "options": [
+    "Availability",
+    "Accountability",
+    "Integrity",
+    "Non-repudiation"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Hashes prove evidence has not changed, ensuring integrity.",
+   "optionNotes": [
+    "Hashing doesn't keep evidence accessible",
+    "Accountability comes from custody signatures/logs",
+    "Matching hashes prove the evidence is unchanged",
+    "A hash lacks a private-key signature, so no non-repudiation"
+   ]
+  },
+  {
+   "id": "DUMP-0183",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "How can a forensic specialist exclude from examination a large percentage of operating system files residing on a copy of the target system?",
+   "options": [
+    "Take another backup of the media in question then delete all irrelevant operating system files.",
+    "Create a comparison database of cryptographic hashes of the files from a system with the same operating system and patch level.",
+    "Generate a message digest (MD) or secure hash on the drive image to detect tampering of the media being examined.",
+    "Discard harmless files for the operating system, and known installed programs."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Hashing known-good OS files (e.g., NSRL-style databases) lets the examiner exclude matching files without altering evidence.",
+   "optionNotes": [
+    "Deleting files from evidence copies taints the examination",
+    "Known-file hash sets let matching OS files be excluded safely",
+    "Image hashes verify integrity, not exclude files",
+    "Arbitrarily discarding files is unsound forensics"
+   ]
+  },
+  {
+   "id": "DUMP-0187",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Who must approve modifications to an organization's production infrastructure configuration?",
+   "options": [
+    "Technical management",
+    "Change control board",
+    "System operations",
+    "System users"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Production configuration changes are approved by the change control board.",
+   "optionNotes": [
+    "Technical managers advise but don't own approval",
+    "The CCB formally approves production changes",
+    "Operations implement approved changes",
+    "Users request but don't approve"
+   ]
+  },
+  {
+   "id": "DUMP-0189",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Refer to the information below to answer the question. A new employee is given a laptop computer with full administrator access. This employee does not have a personal computer at home and has a child that uses the computer to send and receive e-mail, search the web, and use instant messaging. The organization's Information Technology (IT) department discovers that a peer-to-peer program has been installed on the computer using the employee's access. Which of the following methods is the MOST effective way of removing the Peer-to-Peer (P2P) program from the computer?",
+   "options": [
+    "Run software uninstall",
+    "Re-image the computer",
+    "Find and remove all installation files",
+    "Delete all cookies stored in the web browser cache"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Re-imaging returns the system to a known-good state, removing the P2P program and any hidden components.",
+   "optionNotes": [
+    "Uninstall may leave files/registry and hidden payloads",
+    "Re-imaging guarantees a known-good baseline",
+    "Manual removal is error-prone and incomplete",
+    "Cookies are unrelated to the installed program"
+   ]
+  },
+  {
+   "id": "DUMP-0198",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Refer to the information below to answer the question. A security practitioner detects client-based attacks on the organization's network. A plan will be necessary to address these concerns. In the plan, what is the BEST approach to mitigate future internal client-based attacks?",
+   "options": [
+    "Block all client side web exploits at the perimeter.",
+    "Remove all non-essential client-side web services from the network.",
+    "Screen for harmful exploits of client-side services before implementation.",
+    "Harden the client image before deployment."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Internal client-based attacks are best prevented by reducing the attack surface of the clients themselves through a hardened standard image before deployment. Perimeter blocking does not stop internal vectors.",
+   "optionNotes": [
+    "Perimeter controls miss internal and encrypted client attacks.",
+    "Impractical and still leaves client software exposed.",
+    "Screening helps but is narrower than hardening the whole build.",
+    "Correct: hardening the client image reduces exploitable surface on every endpoint."
+   ]
+  },
+  {
+   "id": "DUMP-0209",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Refer to the information below to answer the question. A security practitioner detects client-based attacks on the organization's network. A plan will be necessary to address these concerns. What is the BEST reason for the organization to pursue a plan to mitigate client-based attacks?",
+   "options": [
+    "Client privilege administration is inherently weaker than server privilege administration.",
+    "Client hardening and management is easier on clients than on servers.",
+    "Client-based attacks are more common and easier to exploit than server and network based attacks.",
+    "Client-based attacks have higher financial impact."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Clients are the most frequently targeted and easiest-to-exploit entry point through browsing, email and user interaction. That prevalence and ease of exploitation is the best reason to prioritize a plan.",
+   "optionNotes": [
+    "Not necessarily true and not the main driver.",
+    "False; clients are harder to manage at scale.",
+    "Correct: client-based attacks are the most common and easiest avenue.",
+    "Impact varies; not inherently higher."
+   ]
+  },
+  {
+   "id": "DUMP-0217",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Refer to the information below to answer the question. During the investigation of a security incident, it is determined that an unauthorized individual accessed a system which hosts a database containing financial information. Aside from the potential records which may have been viewed, which of the following should be the PRIMARY concern regarding the database information?",
+   "options": [
+    "Unauthorized database changes",
+    "Integrity of security logs",
+    "Availability of the database",
+    "Confidentiality of the incident"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Beyond the viewing of records, an intruder with database access may have altered financial data. Unauthorized changes to financial records undermine their trustworthiness and are the primary concern.",
+   "optionNotes": [
+    "Correct: integrity of financial data is the key concern after unauthorized access.",
+    "Log integrity matters for the investigation, not the database information itself.",
+    "No indication availability was affected.",
+    "Concerns the incident handling, not the database information."
+   ]
+  },
+  {
+   "id": "DUMP-0222",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Refer to the information below to answer the question. A new employee is given a laptop computer with full administrator access. This employee does not have a personal computer at home and has a child that uses the computer to send and receive e-mail, search the web, and use instant messaging. The organization's Information Technology (IT) department discovers that a peer-to-peer program has been installed on the computer using the employee's access. Which of the following solutions would have MOST likely detected the use of peer-to-peer programs when the computer was connected to the office network?",
+   "options": [
+    "Anti-virus software",
+    "Intrusion Prevention System (IPS)",
+    "Anti-spyware software",
+    "Integrity checking software"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Peer-to-peer traffic has distinctive network signatures that a network IPS can detect when the laptop joins the office network. Endpoint malware tools focus on malicious code, not legitimate-but-forbidden applications.",
+   "optionNotes": [
+    "Antivirus targets malicious code, not P2P usage.",
+    "Correct: an IPS inspects traffic and can detect P2P protocols.",
+    "Spyware tools do not detect P2P traffic.",
+    "Integrity checking detects file changes, not network use."
+   ]
+  },
+  {
+   "id": "DUMP-0239",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Refer to the information below to answer the question. A security practitioner detects client-based attacks on the organization's network. A plan will be necessary to address these concerns. What MUST the plan include in order to reduce client-side exploitation?",
+   "options": [
+    "Approved web browsers",
+    "Network firewall procedures",
+    "Proxy configuration",
+    "Employee education"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Client-side exploits commonly rely on user actions like opening attachments or visiting malicious sites. Employee education is required to reduce such exploitation.",
+   "optionNotes": [
+    "Helps but does not address user behaviour.",
+    "Network procedures do not target client behaviour.",
+    "Technical detail, not a must-have.",
+    "Correct: user awareness reduces client-side exploitation."
+   ]
+  },
+  {
+   "id": "DUMP-0256",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the BEST way to determine if a particular system is able to identify malicious software without executing it?",
+   "options": [
+    "Testing with a Botnet",
+    "Testing with an EICAR file",
+    "Executing a binary shellcode",
+    "Run multiple antivirus programs"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The EICAR test file is a harmless standard string that antimalware should detect statically, so it tests detection without executing real malware.",
+   "optionNotes": [
+    "A botnet is live malware and needs execution/infrastructure.",
+    "Right: EICAR is a harmless standard file AV should detect statically.",
+    "Running shellcode means executing code, the opposite of what's asked.",
+    "Running multiple AV products doesn't test this system's detection."
+   ]
+  },
+  {
+   "id": "DUMP-0268",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following BEST describes Recovery Time Objective (RTO)?",
+   "options": [
+    "Time of data validation after disaster",
+    "Time of data restoration from backup after disaster",
+    "Time of application resumption after disaster",
+    "Time of application verification after disaster"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "RTO is the maximum tolerable time to resume the business application/function after a disruption.",
+   "optionNotes": [
+    "Data validation is part of recovery, not the RTO itself.",
+    "Restoring data is a step; RPO concerns data loss.",
+    "Right: RTO is the target time to resume the application/function.",
+    "Verification is a step inside recovery."
+   ]
+  },
+  {
+   "id": "DUMP-0270",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.4,
+   "stem": "Refer to the information below to answer the question. An organization experiencing a negative financial impact is forced to reduce budgets and the number of Information Technology (IT) operations staff performing basic logical access security administration functions. Security processes have been tightly integrated into normal IT operations and are not separate and distinct roles. Which of the following will MOST likely allow the organization to keep risk at an acceptable level?",
+   "options": [
+    "Increasing the amount of audits performed by third parties",
+    "Removing privileged accounts from operational staff",
+    "Assigning privileged functions to appropriate staff",
+    "Separating the security function into distinct roles"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said D] With reduced staff and budget, creating separate security roles is unrealistic. Assigning privileged functions only to appropriate staff applies least privilege and keeps risk acceptable.",
+   "optionNotes": [
+    "More third-party audits costs money during cuts and only detects issues.",
+    "Removing privileges entirely stops admin work from getting done.",
+    "Right: least privilege with the existing staff fits the budget.",
+    "Separate roles need staff the organization no longer has."
+   ]
+  },
+  {
+   "id": "DUMP-0296",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Host-Based Intrusion Protection (HIPS) systems are often deployed in monitoring or learning mode during their initial implementation. What is the objective of starting in this mode?",
+   "options": [
+    "Automatically create exceptions for specific actions or files",
+    "Determine which files are unsafe to access and blacklist them",
+    "Automatically whitelist actions or files known to the system",
+    "Build a baseline of normal or safe system events for review"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said A] Learning mode records normal system events to build a baseline that administrators review before enforcement. This reduces false positives once blocking is turned on.",
+   "optionNotes": [
+    "Exceptions should come from reviewed baselines, not be created automatically",
+    "Learning mode doesn't identify unsafe files",
+    "Automatic whitelisting without review is not the objective",
+    "Builds a reviewed baseline of normal events"
+   ]
+  },
+  {
+   "id": "DUMP-0297",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is the BEST reason to review audit logs periodically?",
+   "options": [
+    "Verify they are operating properly",
+    "Monitor employee productivity",
+    "Identify anomalies in use patterns",
+    "Meet compliance regulations"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The purpose of regular log review is detection: spotting anomalous or suspicious usage that may indicate misuse or attack. Compliance may require it, but detection is the security reason.",
+   "optionNotes": [
+    "Checking logging works is a side benefit, not the main reason",
+    "Productivity monitoring is not a security objective of log review",
+    "Finding anomalies enables detection of incidents and misuse",
+    "Compliance is a driver but not the BEST security reason"
+   ]
+  },
+  {
+   "id": "DUMP-0300",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "What should happen when an emergency change to a system must be performed?",
+   "options": [
+    "The change must be given priority at the next meeting of the change control board.",
+    "Testing and approvals must be performed quickly.",
+    "The change must be performed immediately and then submitted to the change board.",
+    "The change is performed and a notation is made in the system log."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Emergency changes are implemented right away to restore or protect operations, then documented and submitted to the change board for after-the-fact review and approval. Change management still applies, just retroactively.",
+   "optionNotes": [
+    "Waiting for the next board meeting defeats the emergency",
+    "Rushed testing/approval still delays and is not the defined emergency path",
+    "Implement now, then submit to the CAB for retroactive review",
+    "A log note alone bypasses change management review"
+   ]
+  },
+  {
+   "id": "DUMP-0311",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The PRIMARY security concern for handheld devices is the",
+   "options": [
+    "strength of the encryption algorithm.",
+    "spread of malware during synchronization.",
+    "ability to bypass the authentication mechanism.",
+    "strength of the Personal Identification Number (PIN)."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Handheld devices sync with corporate systems, giving malware a path into the network. That propagation risk is the primary concern in this classic question.",
+   "optionNotes": [
+    "Algorithm strength is rarely the weak point",
+    "Synchronization can spread malware between device and network",
+    "Authentication bypass is a concern but less primary",
+    "PIN strength is a narrower concern"
+   ]
+  },
+  {
+   "id": "DUMP-0326",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "While investigating a malicious event, only six days of audit logs from the last month were available. What policy should be updated to address this problem?",
+   "options": [
+    "Retention",
+    "Reporting",
+    "Recovery",
+    "Remediation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The retention policy sets how long logs are kept. Only six days being available shows that policy needs updating.",
+   "optionNotes": [
+    "Retention governs how long logs are kept",
+    "Reporting concerns communicating results",
+    "Recovery concerns restoring systems",
+    "Remediation concerns fixing issues"
+   ]
+  },
+  {
+   "id": "DUMP-0335",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Retaining system logs for six months or longer can be valuable for what activities?",
+   "options": [
+    "Disaster recovery and business continuity",
+    "Forensics and incident response",
+    "Identity and authorization management",
+    "Physical and logical access control"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Breaches are often found long after they happen, so long log retention lets investigators reconstruct events for forensics and incident response.",
+   "optionNotes": [
+    "DR/BC rely on backups, not logs",
+    "Long-retained logs support forensics and IR",
+    "IAM doesn't depend on old logs",
+    "Access control is preventive, not log-based"
+   ]
+  },
+  {
+   "id": "DUMP-0345",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following activities BEST identifies operational problems, security misconfigurations, and malicious attacks?",
+   "options": [
+    "Policy documentation review",
+    "Authentication validation",
+    "Periodic log reviews",
+    "Interface testing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Regular log review reveals operational errors, misconfigurations and attack traces across systems.",
+   "optionNotes": [
+    "Reviewing policy documents finds no live misconfigurations or attacks",
+    "Authentication validation covers one control only",
+    "Log reviews surface operational faults, misconfigurations and attacks",
+    "Interface testing checks functionality, not ongoing operations"
+   ]
+  },
+  {
+   "id": "DUMP-0352",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "What type of test assesses a Disaster Recovery (DR) plan using realistic disaster scenarios while maintaining minimal impact to business operations?",
+   "options": [
+    "Parallel",
+    "Walkthrough",
+    "Simulation",
+    "Tabletop"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A simulation exercises realistic scenarios without activating recovery sites or disrupting operations.",
+   "optionNotes": [
+    "Parallel tests activate recovery systems, more effort and impact",
+    "Walkthroughs only review the plan, no realistic scenario play",
+    "Simulation enacts realistic scenarios without disrupting operations",
+    "Tabletop is discussion-based, less realistic than simulation"
+   ]
+  },
+  {
+   "id": "DUMP-0354",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "What operations role is responsible for protecting the enterprise from corrupt or contaminated media?",
+   "options": [
+    "Information security practitioner",
+    "Information librarian",
+    "Computer operator",
+    "Network administrator"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The media librarian controls media handling and checks media to prevent corrupt or contaminated media from entering the environment.",
+   "optionNotes": [
+    "Practitioner is too general a role",
+    "Media librarian controls and checks media entering use",
+    "Operators run systems but do not own media control",
+    "Network admins manage networks, not media"
+   ]
+  },
+  {
+   "id": "DUMP-0355",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.7,
+   "stem": "How does a Host Based Intrusion Detection System (HIDS) identify a potential attack?",
+   "options": [
+    "Examines log messages or other indications on the system.",
+    "Monitors alarms sent to the system administrator",
+    "Matches traffic patterns to virus signature files",
+    "Examines the Access Control List (ACL)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A HIDS analyses host data such as logs, system files and events to detect attacks.",
+   "optionNotes": [
+    "HIDS inspects host logs, files and events",
+    "Alarms are HIDS output, not its detection method",
+    "Matching virus signatures in traffic describes AV/NIDS",
+    "ACL review is not how HIDS detects attacks"
+   ]
+  },
+  {
+   "id": "DUMP-0365",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following is the MOST important consideration when developing a Disaster Recovery Plan (DRP)?",
+   "options": [
+    "The dynamic reconfiguration of systems",
+    "The cost of downtime",
+    "A recovery strategy for all business processes",
+    "A containment strategy"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A DRP must provide recovery strategies covering the business processes identified by the BIA.",
+   "optionNotes": [
+    "Dynamic reconfiguration is a technical detail",
+    "Downtime cost informs the BIA but is not the DRP focus",
+    "Recovery strategies for business processes are the DRP core",
+    "Containment belongs to incident response"
+   ]
+  },
+  {
+   "id": "DUMP-0368",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "After acquiring the latest security updates, what must be done before deploying to production systems?",
+   "options": [
+    "Use tools to detect missing system patches",
+    "Install the patches on a test system",
+    "Subscribe to notifications for vulnerabilities",
+    "Assess the severity of the situation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Patches must be tested on non-production systems to confirm they do not break functionality before deployment.",
+   "optionNotes": [
+    "Detecting missing patches precedes acquisition",
+    "Testing patches on non-production prevents outages",
+    "Vulnerability notifications precede acquiring patches",
+    "Severity assessment comes before acquiring, not deployment"
+   ]
+  },
+  {
+   "id": "DUMP-0386",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the GREATEST challenge of an agent-based patch management solution?",
+   "options": [
+    "Time to gather vulnerability information about the computers in the program",
+    "Requires that software be installed, running, and managed on all participating computers",
+    "The significant amount of network bandwidth while scanning computers",
+    "The consistency of distributing patches to each participating computer"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Agent-based solutions require agents installed, running and maintained on every managed host.",
+   "optionNotes": [
+    "Agents gather data efficiently; not the challenge",
+    "Installing and managing agents everywhere is the burden",
+    "Agents reduce scanning bandwidth",
+    "Agents improve distribution consistency"
+   ]
+  },
+  {
+   "id": "DUMP-0390",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "To protect auditable information, which of the following MUST be configured to only allow read access?",
+   "options": [
+    "Logging configurations",
+    "Transaction log files",
+    "User account configurations",
+    "Access control lists (ACL)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Log files must be read-only to preserve their integrity as audit evidence.",
+   "optionNotes": [
+    "Logging configs must be changeable by admins",
+    "Log files must be read-only to preserve audit integrity",
+    "Account configs need administrative changes",
+    "ACLs must be modifiable to manage access"
+   ]
+  },
+  {
+   "id": "DUMP-0392",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "In configuration management, what baseline configuration information MUST be maintained for each computer system?",
+   "options": [
+    "Operating system and version, patch level, applications running, and versions.",
+    "List of system changes, test reports, and change approvals",
+    "Last vulnerability assessment report and initial risk assessment report",
+    "Date of last update, test report, and accreditation certificate"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Baselines record OS and version, patch level and installed applications with versions.",
+   "optionNotes": [
+    "OS, patch level, applications and versions define the baseline",
+    "Change records are change management, not baseline",
+    "Assessment reports are not baseline configuration",
+    "Accreditation data is not baseline configuration"
+   ]
+  },
+  {
+   "id": "DUMP-0394",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Disaster Recovery Plan (DRP) training material should be",
+   "options": [
+    "consistent so that all audiences receive the same training.",
+    "stored in a fire proof safe to ensure availability when needed.",
+    "only delivered in paper format.",
+    "presented in a professional looking manner."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Consistent training material ensures everyone gets the same accurate understanding of the plan.",
+   "optionNotes": [
+    "Consistency ensures everyone receives the same accurate content",
+    "Safe storage concerns plan copies, not training",
+    "Paper-only delivery is needlessly restrictive",
+    "Presentation polish does not drive effectiveness"
+   ]
+  },
+  {
+   "id": "DUMP-0402",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Network-based logging has which advantage over host-based logging when reviewing malicious activity about a victim machine?",
+   "options": [
+    "Addresses and protocols of network-based logs are analyzed.",
+    "Host-based system logging has files stored in multiple locations.",
+    "Properly handled network-based logs may be more reliable and valid.",
+    "Network-based systems cannot capture users logging into the console."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Network logs are captured off the victim host, so an attacker who compromises the host cannot easily alter them. Handled with proper chain of custody they are more trustworthy evidence.",
+   "optionNotes": [
+    "Analysis of addresses is possible but not the key advantage.",
+    "Describes a host-log drawback, not a network advantage.",
+    "Right: independent of the compromised host, hence more reliable.",
+    "A limitation of network logging, not an advantage."
+   ]
+  },
+  {
+   "id": "DUMP-0419",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following describes the BEST configuration management practice?",
+   "options": [
+    "After installing a new system, the configuration files are copied to a separate back-up system and hashed to detect tampering.",
+    "After installing a new system, the configuration files are copied to an air-gapped system and hashed to detect tampering.",
+    "The firewall rules are backed up to an air-gapped system.",
+    "A baseline configuration is created and maintained for all relevant systems."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Configuration management centres on establishing and maintaining baselines for systems so deviations are controlled. Backups of configuration files are useful but are narrow measures.",
+   "optionNotes": [
+    "Backup and hashing is one control, not the overall practice.",
+    "Same narrow backup step, just air-gapped.",
+    "Covers only firewall rules.",
+    "Right: baseline configuration is the core of CM."
+   ]
+  },
+  {
+   "id": "DUMP-0427",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A network scan found 50% of the systems with one or more critical vulnerabilities. Which of the following represents the BEST action?",
+   "options": [
+    "Assess vulnerability risk and program effectiveness.",
+    "Assess vulnerability risk and business impact.",
+    "Disconnect all systems with critical vulnerabilities.",
+    "Disconnect systems with the most number of vulnerabilities."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Before acting, management needs to know the actual risk and what the affected systems mean to the business. Mass disconnection without analysis could cause more harm than the vulnerabilities.",
+   "optionNotes": [
+    "Program effectiveness is secondary to immediate risk decisions.",
+    "Right: risk and business impact drive prioritisation.",
+    "Disconnecting half the estate could cripple operations.",
+    "Vulnerability count is not the same as risk."
+   ]
+  },
+  {
+   "id": "DUMP-0432",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is the MAIN reason for using configuration management?",
+   "options": [
+    "To provide centralized administration",
+    "To reduce the number of changes",
+    "To reduce errors during upgrades",
+    "To provide consistency in security controls"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Configuration management keeps systems in known, approved states so controls are applied consistently. Fewer errors or centralisation are side benefits.",
+   "optionNotes": [
+    "Centralisation is a means, not the purpose.",
+    "CM controls changes, not reduces them.",
+    "Fewer upgrade errors is a side benefit.",
+    "Right: consistent, known configurations."
+   ]
+  },
+  {
+   "id": "DUMP-0433",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following disaster recovery test plans will be MOST effective while providing minimal risk?",
+   "options": [
+    "Read-through",
+    "Parallel",
+    "Full interruption",
+    "Simulation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A parallel test activates the recovery site and processes for real while production keeps running. It validates recovery far better than paper tests without the risk of a full interruption.",
+   "optionNotes": [
+    "Read-through tests only documents.",
+    "Right: real recovery test with production unaffected.",
+    "Most effective but highest risk.",
+    "Simulation does not actually process at the recovery site."
+   ]
+  },
+  {
+   "id": "DUMP-0447",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Reciprocal backup site agreements are considered to be",
+   "options": [
+    "a better alternative than the use of warm sites.",
+    "difficult to test for complex systems.",
+    "easy to implement for similar types of organizations.",
+    "easy to test and implement for complex systems."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said C] Reciprocal (mutual assistance) agreements look cheap, but OSG lists their drawbacks: they are hard to enforce and hard to test, and the partner may lack spare capacity. They are especially impractical to test, and often cannot support, complex systems. The dump's claim that they are easy to implement goes against this guidance.",
+   "optionNotes": [
+    "Wrong: warm sites are generally more reliable than an unenforceable MAA.",
+    "Correct: complex systems cannot realistically be tested on another organization's live production setup.",
+    "Wrong: confidentiality, capacity and enforcement problems make MAAs hard to implement even between similar organizations.",
+    "Wrong: complex systems are the hardest case to test and implement."
+   ]
+  },
+  {
+   "id": "DUMP-0455",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following is the MOST important element of change management documentation?",
+   "options": [
+    "List of components involved",
+    "Number of changes being made",
+    "Business case justification",
+    "A stakeholder communication"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Every change has to be justified by business need. The business case is what lets the change advisory board weigh the benefit against the risk and approve or reject the change.",
+   "optionNotes": [
+    "The component list is useful detail but secondary.",
+    "The number of changes is not meaningful on its own.",
+    "Correct: the business justification drives the approval decision.",
+    "Communication matters but comes after the decision."
+   ]
+  },
+  {
+   "id": "DUMP-0466",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which one of the following is a common risk with network configuration management?",
+   "options": [
+    "Patches on the network are difficult to keep current.",
+    "It is the responsibility of the systems administrator.",
+    "User ID and passwords are never set to expire.",
+    "Network diagrams are not up to date."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Configuration management relies on accurate documentation. Outdated network diagrams are a common risk that undermines change management, troubleshooting and incident response.",
+   "optionNotes": [
+    "Patching is patch management, not configuration management.",
+    "Assigning responsibility to an admin is not a risk.",
+    "Password expiry is an identity management issue.",
+    "Correct: stale diagrams are a typical configuration management weakness."
+   ]
+  },
+  {
+   "id": "DUMP-0472",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is a reason to use manual patch installation instead of automated patch management?",
+   "options": [
+    "The cost required to install patches will be reduced.",
+    "The time during which systems will remain vulnerable to an exploit will be decreased.",
+    "The likelihood of system or application incompatibilities will be decreased.",
+    "The ability to cover large geographic areas is increased."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Installing manually allows testing and careful staging, which lowers the risk of incompatibilities breaking systems. Automation wins on cost, speed and scale.",
+   "optionNotes": [
+    "Manual installation costs more.",
+    "Manual installation leaves systems vulnerable for longer.",
+    "Correct: controlled installation reduces incompatibilities.",
+    "Automation covers large areas better."
+   ]
+  },
+  {
+   "id": "DUMP-0481",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following sets of controls should allow an investigation if an attack is not blocked by preventive controls or detected by monitoring?",
+   "options": [
+    "Logging and audit trail controls to enable forensic analysis",
+    "Security incident response lessons learned procedures",
+    "Security event alert triage done by analysts using a Security Information and Event Management (SIEM) system",
+    "Transactional controls focused on fraud prevention"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "If prevention and monitoring both miss an attack, investigators still need logs and audit trails to reconstruct what happened. That is what makes forensic analysis possible.",
+   "optionNotes": [
+    "Correct: logs and audit trails enable after-the-fact investigation.",
+    "Lessons learned follow an investigation; they do not enable it.",
+    "SIEM triage is part of the monitoring that failed.",
+    "Fraud controls are preventive and specific to transactions."
+   ]
+  },
+  {
+   "id": "DUMP-0501",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "How does an organization verify that an information system's current hardware and software match the standard system configuration?",
+   "options": [
+    "By reviewing the configuration after the system goes into production",
+    "By running vulnerability scanning tools on all devices in the environment",
+    "By comparing the actual configuration of the system against the baseline",
+    "By verifying all the approved security patches are implemented"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Configuration verification means comparing the system's actual state against its approved baseline. Any deviation from the baseline is a configuration drift that must be resolved.",
+   "optionNotes": [
+    "Timing of review is irrelevant; it still needs a baseline to compare to.",
+    "Vulnerability scans find weaknesses, not baseline conformance.",
+    "Correct: baseline comparison verifies configuration.",
+    "Patches are only one part of the configuration."
+   ]
+  },
+  {
+   "id": "DUMP-0502",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "The restoration priorities of a Disaster Recovery Plan (DRP) are based on which of the following documents?",
+   "options": [
+    "Service Level Agreement (SLA)",
+    "Business Continuity Plan (BCP)",
+    "Business Impact Analysis (BIA)",
+    "Crisis management plan"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The BIA identifies critical business functions, their impacts and the MTD/RTO values, which set the order in which systems are recovered in the DRP.",
+   "optionNotes": [
+    "SLAs define service levels with providers, not recovery priority.",
+    "The BCP consumes BIA output but is not the source of priorities.",
+    "Correct: BIA determines criticality and recovery priorities.",
+    "The crisis management plan addresses communications and command."
+   ]
+  },
+  {
+   "id": "DUMP-0505",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following is the PRIMARY reason for employing physical security personnel at entry points in facilities where card access is in operation?",
+   "options": [
+    "To verify that only employees have access to the facility.",
+    "To identify present hazards requiring remediation.",
+    "To monitor staff movement throughout the facility.",
+    "To provide a safe environment for employees."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Under ISC2 doctrine, life safety is the overriding purpose of physical security, and guards provide judgement and response that card readers cannot, protecting people at the facility.",
+   "optionNotes": [
+    "Card readers already verify credentials; guards add more than this.",
+    "Hazard identification is a facilities role, not the primary guard purpose.",
+    "Monitoring movement is a secondary function.",
+    "Correct: guards primarily support a safe environment for people."
+   ]
+  },
+  {
+   "id": "DUMP-0511",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following MUST be in place to recognize a system attack?",
+   "options": [
+    "Stateful firewall",
+    "Distributed antivirus",
+    "Log analysis",
+    "Passive honeypot"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Recognizing an attack requires reviewing recorded events; log analysis is the essential detection activity, whatever tools generate the data.",
+   "optionNotes": [
+    "Firewalls block traffic but do not recognize attacks alone.",
+    "Antivirus detects malware only.",
+    "Correct: log analysis is required to recognize attacks.",
+    "Honeypots are optional."
+   ]
+  },
+  {
+   "id": "DUMP-0518",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the MAIN purpose of a change management policy?",
+   "options": [
+    "To assure management that changes to the Information Technology (IT) infrastructure are necessary",
+    "To identify the changes that may be made to the Information Technology (IT) infrastructure",
+    "To verify that changes to the Information Technology (IT) infrastructure are approved",
+    "To determine the necessity of implementing modifications to the Information Technology (IT) infrastructure"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Change management ensures every change is reviewed and approved before implementation, preventing unauthorized changes.",
+   "optionNotes": [
+    "Assuring necessity is part of review, not the main purpose.",
+    "Identifying changes is a step, not the purpose.",
+    "Correct: verify changes are approved.",
+    "Determining necessity is part of review."
+   ]
+  },
+  {
+   "id": "DUMP-0524",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Unused space in a disk cluster is important in media analysis because it may contain which of the following?",
+   "options": [
+    "Residual data that has not been overwritten",
+    "Hidden viruses and Trojan horses",
+    "Information about the File Allocation table (FAT)",
+    "Information about patches and upgrades to the system"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Slack space in a cluster can still hold remnants of previously written files, a key source of recoverable evidence.",
+   "optionNotes": [
+    "Correct: residual data remains in slack.",
+    "Malware may hide but is not the main reason.",
+    "FAT information is stored elsewhere.",
+    "Patch info is not in slack."
+   ]
+  },
+  {
+   "id": "DUMP-0526",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A company receives an email threat informing of an Imminent Distributed Denial of Service (DDoS) attack targeting its web application, unless ransom is paid. Which of the following techniques BEST addresses that threat?",
+   "options": [
+    "Deploying load balancers to distribute inbound traffic across multiple data centers",
+    "Set Up Web Application Firewalls (WAFs) to filter out malicious traffic",
+    "Implementing reverse web-proxies to validate each new inbound connection",
+    "Coordinate with and utilize capabilities within Internet Service Provider (ISP)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A volumetric DDoS can overwhelm the company's own links before any on-premises control acts; the ISP can filter upstream.",
+   "optionNotes": [
+    "Load balancers still saturate under large floods.",
+    "WAFs sit behind the saturated link.",
+    "Reverse proxies also sit downstream.",
+    "Correct: upstream ISP mitigation is most effective."
+   ]
+  },
+  {
+   "id": "DUMP-0535",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "A Security Operations Center (SOC) receives an incident response notification on a server with an active intruder who has planted a backdoor. Initial notifications are sent and communications are established. What MUST be considered or evaluated before performing the next step?",
+   "options": [
+    "Notifying law enforcement is crucial before hashing the contents of the server hard drive",
+    "Identifying who executed the incident is more important than how the incident happened",
+    "Removing the server from the network may prevent catching the intruder",
+    "Copying the contents of the hard drive to another storage device may damage the evidence"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Before containment by disconnecting, the team should weigh that removal may alert the intruder and lose the chance to observe or catch them.",
+   "optionNotes": [
+    "Notification does not have to precede hashing.",
+    "How it happened matters more for recovery.",
+    "Correct: containment trade-off must be evaluated.",
+    "Proper imaging with write blockers does not damage evidence."
+   ]
+  },
+  {
+   "id": "DUMP-0538",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following is the MOST important part of an awareness and training plan to prepare employees for emergency situations?",
+   "options": [
+    "Having emergency contacts established for the general employee population to get information",
+    "Conducting business continuity and disaster recovery training for those who have a direct role in the recovery",
+    "Designing business continuity and disaster recovery training programs for different audiences",
+    "Publishing a corporate business continuity and disaster recovery plan on the corporate website"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Training must be tailored to each audience so everyone knows their role in an emergency.",
+   "optionNotes": [
+    "Contacts help but are not training.",
+    "Training only recovery staff omits others.",
+    "Correct: audience-specific programs.",
+    "Publishing the plan is not training."
+   ]
+  },
+  {
+   "id": "DUMP-0540",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A company seizes a mobile device suspected of being used in committing fraud. What would be the BEST method used by a forensic examiner to isolate the powered-on device from the network and preserve the evidence?",
+   "options": [
+    "Put the device in airplane mode",
+    "Suspend the account with the telecommunication provider",
+    "Remove the SIM card",
+    "Turn the device off"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Airplane mode cuts network connections while keeping the device powered and its volatile data intact.",
+   "optionNotes": [
+    "Correct: isolates without losing state.",
+    "Suspending the account may not stop Wi-Fi.",
+    "SIM removal may alter evidence.",
+    "Powering off loses volatile data and may trigger encryption."
+   ]
+  },
+  {
+   "id": "DUMP-0544",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the BEST way to reduce the impact of an externally sourced flood attack?",
+   "options": [
+    "Have the service provider block the source address.",
+    "Have the source service provider block the address.",
+    "Block the source address at the firewall.",
+    "Block all inbound traffic until the flood ends."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Blocking at the upstream provider stops flood traffic before it saturates the company's link.",
+   "optionNotes": [
+    "Correct: the provider blocks upstream.",
+    "The source's provider is not under your control.",
+    "The firewall is behind the saturated link.",
+    "Blocking all traffic is self-DoS."
+   ]
+  },
+  {
+   "id": "DUMP-0546",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MAIN reason for testing a Disaster Recovery Plan (DRP)?",
+   "options": [
+    "To ensure Information Technology (IT) staff knows and performs roles assigned to each of them",
+    "To validate backup sites' effectiveness",
+    "To find out what does not work and fix it",
+    "To create a high level DRP awareness among Information Technology (IT) staff"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Testing finds weaknesses in the plan so they can be corrected before a real disaster.",
+   "optionNotes": [
+    "Role knowledge is a by-product.",
+    "Validating sites is one part.",
+    "Correct: find and fix what fails.",
+    "Awareness is secondary."
+   ]
+  },
+  {
+   "id": "DUMP-0551",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Why is planning in Disaster Recovery (DR) an interactive process?",
+   "options": [
+    "It details off-site storage plans",
+    "It identifies omissions in the plan",
+    "It defines the objectives of the plan",
+    "It forms part of the awareness process"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "DR planning is iterative: each review and test cycle turns up gaps and omissions that feed back into the plan.",
+   "optionNotes": [
+    "Off-site storage is plan content, not why the process iterates",
+    "Correct: each review/test cycle exposes omissions, which feed back into the plan",
+    "Objectives are set once at the start; this doesn't make planning iterative",
+    "Awareness is a by-product, not the reason for iteration"
+   ]
+  },
+  {
+   "id": "DUMP-0554",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What can happen when an Intrusion Detection System (IDS) is installed inside a firewall-protected internal network?",
+   "options": [
+    "The IDS can detect failed administrator logon attempts from servers.",
+    "The IDS can increase the number of packets to analyze.",
+    "The firewall can increase the number of packets to analyze.",
+    "The firewall can detect failed administrator login attempts from servers"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An internal IDS sees internal host traffic such as failed admin logons that a perimeter firewall never examines.",
+   "optionNotes": [
+    "Correct: an internal IDS sees host-to-host events such as failed admin logons",
+    "Analyzing more packets is a load effect, not a capability",
+    "The firewall's packet load does not change because of an IDS",
+    "Internal server logons never cross the perimeter firewall"
+   ]
+  },
+  {
+   "id": "DUMP-0561",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following would BEST support effective testing of patch compatibility when patches are applied to an organization's systems?",
+   "options": [
+    "Standardized configurations for devices",
+    "Standardized patch testing equipment",
+    "Automated system patching",
+    "Management support for patching"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Standardized configurations make test results representative of production, so patch compatibility testing is reliable.",
+   "optionNotes": [
+    "Correct: uniform baselines mean test results represent production",
+    "Test hardware helps only if it matches production configurations",
+    "Automation deploys patches; it does not test compatibility",
+    "Management support is needed but does not directly enable effective testing"
+   ]
+  },
+  {
+   "id": "DUMP-0570",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following would an attacker BEST be able to accomplish through the use of Remote Access Tools (RAT)?",
+   "options": [
+    "Reduce the probability of identification",
+    "Detect further compromise of the target",
+    "Destabilize the operation of the host",
+    "Maintain and expand control"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "RATs give persistent remote control, so attackers can keep and expand their foothold.",
+   "optionNotes": [
+    "RATs are often detected; stealth is not their main purpose",
+    "Detecting compromise is the defender's goal",
+    "Destabilizing the host is a DoS objective",
+    "Correct: a RAT gives persistent remote control for pivoting"
+   ]
+  },
+  {
+   "id": "DUMP-0581",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A user has infected a computer with malware by connecting a Universal Serial Bus (USB) storage device. Which of the following is MOST effective to mitigate future infections?",
+   "options": [
+    "Develop a written organizational policy prohibiting unauthorized USB devices",
+    "Train users on the dangers of transferring data in USB devices",
+    "Implement centralized technical control of USB port connections",
+    "Encrypt removable USB devices containing data at rest"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A centralized technical control that blocks USB ports enforces the restriction directly, unlike policy or training.",
+   "optionNotes": [
+    "Policy alone is an administrative control and is easily ignored",
+    "Training helps but doesn't enforce anything",
+    "Correct: central technical blocking directly prevents recurrence",
+    "Encryption protects confidentiality, not malware entry"
+   ]
+  },
+  {
+   "id": "DUMP-0598",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "A minimal implementation of endpoint security includes which of the following?",
+   "options": [
+    "Trusted platforms",
+    "Host-based firewalls",
+    "Token-based authentication",
+    "Wireless Access Points (AP)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A host-based firewall is a baseline endpoint control expected on every endpoint.",
+   "optionNotes": [
+    "Desirable but not minimal",
+    "Correct: basic endpoint protection",
+    "Authentication control, not endpoint minimum",
+    "Network infrastructure, not endpoint"
+   ]
+  },
+  {
+   "id": "DUMP-0603",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following management process allows ONLY those services required for users to accomplish their tasks, change default user passwords, and set servers to retrieve antivirus updates?",
+   "options": [
+    "Configuration",
+    "Identity",
+    "Compliance",
+    "Patch"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Disabling unneeded services, changing defaults and setting update sources are hardening tasks under configuration management.",
+   "optionNotes": [
+    "Correct: secure baseline configuration",
+    "Manages identities",
+    "Checks conformity, does not set config",
+    "Applies vendor fixes only"
+   ]
+  },
+  {
+   "id": "DUMP-0614",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "What does electronic vaulting accomplish?",
+   "options": [
+    "It protects critical files.",
+    "It ensures the fault tolerance of Redundant Array of Independent Disks (RAID) systems",
+    "It stripes all database records",
+    "It automates the Disaster Recovery Process (DRP)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Electronic vaulting transfers backups of critical files to an offsite location, protecting them.",
+   "optionNotes": [
+    "Correct: bulk offsite transfer of backups protects critical files",
+    "RAID fault tolerance comes from parity/mirroring, not vaulting",
+    "Striping is a RAID technique, not a vaulting function",
+    "Vaulting supplies recovery data but does not automate the DR process"
+   ]
+  },
+  {
+   "id": "DUMP-0622",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "After following the processes defined within the change management plan, a super user has upgraded a device within an Information system. What step would be taken to ensure that the upgrade did NOT affect the network security posture?",
+   "options": [
+    "Conduct an Assessment and Authorization (A&A)",
+    "Conduct a security impact analysis",
+    "Review the results of the most recent vulnerability scan",
+    "Conduct a gap analysis with the baseline configuration"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A security impact analysis evaluates whether a change affected the security posture.",
+   "optionNotes": [
+    "Full A&A is excessive for one change",
+    "An old scan predates the change",
+    "Correct: SIA examines the change's security effect",
+    "Baseline gap analysis shows drift, not posture impact"
+   ]
+  },
+  {
+   "id": "DUMP-0640",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the MOST efficient mechanism to account for all staff during a speedy nonemergency evacuation from a large security facility?",
+   "options": [
+    "Large mantrap where groups of individuals leaving are identified using facial recognition technology",
+    "Radio Frequency Identification (RFID) sensors worn by each employee scanned by sensors at each exit door",
+    "Emergency exits with push bars with coordinates at each exit checking off the individual against a predefined list",
+    "Card-activated turnstile where individuals are validated upon exit"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "RFID tags read automatically at exits account for staff quickly.",
+   "optionNotes": [
+    "A mantrap with facial recognition creates a bottleneck",
+    "Correct: passive RFID reads count people without slowing exit",
+    "Manual checklists at each exit are slow and error-prone",
+    "Turnstiles slow a mass exit"
+   ]
+  },
+  {
+   "id": "DUMP-0644",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "What is the PRIMARY objective of the post-incident phase of the incident response process in the security operations center (SOC)?",
+   "options": [
+    "Improve the IR process.",
+    "Communicate the IR details to the stakeholders.",
+    "Validate the integrity of the IR.",
+    "Finalize the IR."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The post-incident (lessons learned) phase exists to improve the incident response process: the team reviews what happened, what worked and what did not, and feeds those findings back into plans, controls and training. Communicating with stakeholders and closing out the case happen too, but they serve that improvement goal rather than replace it.",
+   "optionNotes": [
+    "Correct: lessons learned improve the IR process",
+    "Stakeholder communication occurs but is secondary",
+    "Integrity validation is part of evidence handling, not the phase goal",
+    "Closing the ticket is administrative, not the objective"
+   ]
+  },
+  {
+   "id": "DUMP-0649",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Who should formulate conclusions from a particular digital forensics analysis and submit a report of the results?",
+   "options": [
+    "The information security professional's supervisor",
+    "Legal counsel for the information security professional's employer",
+    "The information security professional who conducted the analysis",
+    "A peer reviewer of the information security professional"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The examiner who performed the analysis draws and reports conclusions, since they can testify to them. Conclusions must come from the person with first-hand knowledge of the methods and findings.",
+   "optionNotes": [
+    "The supervisor did not perform the analysis.",
+    "Counsel advises on law, not technical conclusions.",
+    "The examiner who did the work can support and testify to the conclusions.",
+    "Peer review validates, it doesn't author the conclusions."
+   ]
+  },
+  {
+   "id": "DUMP-0674",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What is the MOST important criterion that needs to be adhered to during the data collection process of an active investigation?",
+   "options": [
+    "Capturing an image of the system",
+    "Maintaining the chain of custody",
+    "Complying with the organization's security policy",
+    "Outlining all actions taken during the investigation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Chain of custody preserves evidence admissibility. Without it, the evidence may be inadmissible however well it was collected.",
+   "optionNotes": [
+    "Imaging is a step, not the governing criterion.",
+    "Chain of custody preserves admissibility.",
+    "Policy compliance is secondary to evidentiary integrity.",
+    "Notes support custody but custody is the key criterion."
+   ]
+  },
+  {
+   "id": "DUMP-0676",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following technologies would provide the BEST alternative to anti-malware software?",
+   "options": [
+    "Host-based Intrusion Detection Systems (HIDS)",
+    "Application whitelisting",
+    "Host-based firewalls",
+    "Application sandboxing"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Whitelisting only permits approved code, blocking unknown malware. It is a default-deny approach that doesn't depend on signatures.",
+   "optionNotes": [
+    "HIDS detects rather than prevents.",
+    "Whitelisting allows only approved code, blocking unknown malware.",
+    "Host firewalls filter network traffic, not malicious code.",
+    "Sandboxing contains but still runs unknown code."
+   ]
+  },
+  {
+   "id": "DUMP-0695",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A scan report returned multiple vulnerabilities affecting several production servers that are mission critical. Attempts to apply the patches in the development environment have caused the servers to crash. What is the BEST course of action?",
+   "options": [
+    "Upgrade the software affected by the vulnerability.",
+    "Inform management of possible risks.",
+    "Mitigate the risks with compensating controls.",
+    "Remove the affected software from the servers."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "When patches can't be applied without breaking mission-critical servers, the risk still has to be reduced while a fix is worked out. Compensating controls such as segmentation, IPS rules or tighter access lower the exposure without the outage. Simply informing management doesn't reduce the risk on its own.",
+   "optionNotes": [
+    "Upgrading carries the same instability risk as the failed patches and may not be feasible quickly.",
+    "Management should be informed, but by itself this leaves the vulnerabilities open.",
+    "Right: compensating controls reduce the risk while keeping critical servers running.",
+    "Removing software from mission-critical servers would disrupt the business."
+   ]
+  },
+  {
+   "id": "DUMP-0707",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the MOST important consideration that must be taken into account when deploying an enterprise patching solution that includes mobile devices?",
+   "options": [
+    "Service provider(s) utilized by the organization",
+    "Whether it will impact personal use",
+    "Number of mobile users in the organization",
+    "Feasibility of downloads due to available bandwidth"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Mobile devices often connect over limited or metered cellular links, so pushing large patches may not be possible or may be costly. Bandwidth determines whether patches can actually reach devices.",
+   "optionNotes": [
+    "The carrier matters less than whether patches can be delivered at all.",
+    "Personal-use impact is a secondary user-experience concern.",
+    "User count affects scale but the infrastructure can be sized for it.",
+    "Right: limited mobile bandwidth decides whether patches can be downloaded."
+   ]
+  },
+  {
+   "id": "DUMP-0722",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.8,
+   "stem": "What is maintained by using write blocking devices when forensic evidence is examined?",
+   "options": [
+    "Inventory",
+    "Integrity",
+    "Confidentiality",
+    "Availability"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Write blockers prevent any changes to the evidence media while it is examined. That preserves its integrity and keeps it admissible.",
+   "optionNotes": [
+    "Inventory isn't what write blockers protect.",
+    "Right: they preserve evidence integrity.",
+    "Write blockers don't prevent disclosure.",
+    "They aren't about availability."
+   ]
+  },
+  {
+   "id": "DUMP-0725",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An organization has implemented a new backup process which protects confidential data by encrypting the information stored on backup tapes. Which of the following is a MAJOR data confidentiality concern after the implementation of this new backup process?",
+   "options": [
+    "Tape backup rotation",
+    "Pre-existing backup tapes",
+    "Tape backup compression",
+    "Backup tape storage location"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The new process only encrypts tapes from now on, so tapes created earlier still hold confidential data in clear text. Those pre-existing tapes remain a confidentiality exposure.",
+   "optionNotes": [
+    "Rotation affects availability and retention, not confidentiality of the new encrypted tapes.",
+    "Right: older unencrypted tapes still expose data.",
+    "Compression doesn't affect confidentiality.",
+    "Location matters less once tapes are encrypted; the older tapes are the gap."
+   ]
+  },
+  {
+   "id": "DUMP-0728",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following describes the order in which a digital forensic process is usually conducted?",
+   "options": [
+    "Ascertain legal authority, agree upon examination strategy, conduct examination, and report results",
+    "Ascertain legal authority, conduct investigation, report results, and agree upon examination strategy",
+    "Agree upon examination strategy, ascertain legal authority, conduct examination, and report results",
+    "Agree upon examination strategy, ascertain legal authority, report results, and conduct examination"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Investigators must first confirm they have legal authority, then plan the examination strategy, carry out the examination, and finally report. Starting without authority risks inadmissible evidence.",
+   "optionNotes": [
+    "Right: authority, strategy, examination, report.",
+    "Reporting before agreeing on strategy is out of order.",
+    "Strategy before legal authority is out of order.",
+    "Reporting before examining is illogical."
+   ]
+  },
+  {
+   "id": "DUMP-0741",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the MOST important rule for digital investigations?",
+   "options": [
+    "Ensure event logs are rotated.",
+    "Ensure original data is never modified.",
+    "Ensure individual privacy is protected.",
+    "Ensure systems are powered on."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The core rule of digital forensics is to preserve the original evidence unaltered, working on verified copies. Any modification can make the evidence inadmissible.",
+   "optionNotes": [
+    "Log rotation can destroy evidence.",
+    "Right: never modify original data.",
+    "Privacy matters but is secondary to evidence integrity here.",
+    "Powering systems on can alter evidence."
+   ]
+  },
+  {
+   "id": "DUMP-0747",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "If virus infection is suspected, which of the following is the FIRST step for the user to take?",
+   "options": [
+    "Unplug the computer from the network.",
+    "Save the opened files and shutdown the computer.",
+    "Report the incident to service desk.",
+    "Update the antivirus to the latest version."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Users are not responders; their first action is to report the suspected infection to the service desk so the incident response process can begin. Isolating, shutting down or patching are response decisions that could destroy evidence or bypass the IR process.",
+   "optionNotes": [
+    "Containment decision belongs to the response team",
+    "Shutdown destroys volatile evidence",
+    "Correct: report via proper channel",
+    "Does not address the incident"
+   ]
+  },
+  {
+   "id": "DUMP-0751",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "In fault-tolerant systems, what do rollback capabilities permit?",
+   "options": [
+    "Restoring the system to a previous functional state",
+    "Identifying the error that caused the problem",
+    "Allowing the system to run in a reduced manner",
+    "Isolating the error that caused the problem"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Rollback returns a system to a previously known good state after a failure. It lets operations resume from a consistent checkpoint rather than diagnosing or isolating the fault.",
+   "optionNotes": [
+    "Correct: returns the system to a checkpointed good state",
+    "Root-cause diagnosis is a separate troubleshooting step",
+    "Running degraded is fail-soft, not rollback",
+    "Fault isolation is containment, not rollback"
+   ]
+  },
+  {
+   "id": "DUMP-0754",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "What term is commonly used to describe hardware and software assets that are stored in a configuration management database (CMDB)?",
+   "options": [
+    "Configuration element",
+    "Asset register",
+    "Ledger item",
+    "Configuration item"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Items tracked in a CMDB are configuration items (CIs). Each CI is recorded with its attributes and relationships so changes can be controlled.",
+   "optionNotes": [
+    "Not ITIL/CMDB vocabulary",
+    "An asset register is a financial inventory, not CMDB records",
+    "Ledger items are accounting terms",
+    "Correct: ITIL calls CMDB records configuration items (CIs)"
+   ]
+  },
+  {
+   "id": "DUMP-0759",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the MOST comprehensive Business Continuity (BC) test?",
+   "options": [
+    "Full functional drill",
+    "Full tdue top",
+    "Full simulation",
+    "Full interruption"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A full interruption test actually shuts down primary operations, making it the most comprehensive (and risky) test. Tabletop, simulation and functional drills all leave production running, so they are less complete.",
+   "optionNotes": [
+    "Tests systems but keeps production running",
+    "Discussion-based only",
+    "Walks through a scenario without stopping operations",
+    "Correct: actually fails over from primary operations"
+   ]
+  },
+  {
+   "id": "DUMP-0770",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following processes has the PRIMARY purpose of identifying outdated software versions, missing patches, and lapsed system updates?",
+   "options": [
+    "Penetration testing",
+    "Vulnerability management",
+    "Software Development Life Cycle (SDLC)",
+    "Life cycle management"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Vulnerability management identifies missing patches and outdated software. Penetration testing exploits weaknesses, while SDLC and lifecycle management are broader processes.",
+   "optionNotes": [
+    "Exploits flaws and is periodic, not systematic",
+    "Correct: scans for missing patches and old versions",
+    "Development process",
+    "Broad asset lifecycle"
+   ]
+  },
+  {
+   "id": "DUMP-0772",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following BEST describes botnets?",
+   "options": [
+    "Computer systems on the Internet that are set up to trap people who attempt to penetrate other computer system",
+    "Set of related programs that protects the resources of a private network from other networks",
+    "Small network inserted in a neutral zone between an organization's private network and the outside public network",
+    "Groups of computers that are used to launch destructive attacks"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Botnets are groups of compromised computers used to launch attacks. Honeypots, firewalls and DMZs are defensive constructs, not botnets.",
+   "optionNotes": [
+    "Describes a honeypot",
+    "Describes a firewall",
+    "Describes a DMZ",
+    "Correct: compromised hosts under a C2 controller"
+   ]
+  },
+  {
+   "id": "DUMP-0776",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the MOST common cause of Remote Desktop Protocol (RDP) compromise?",
+   "options": [
+    "Port scan",
+    "Brute force attack",
+    "Remote exploit",
+    "Social engineering"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Exposed RDP is most commonly compromised by credential brute forcing. Attackers scan for exposed port 3389 and then try credential stuffing or guessing against weak passwords.",
+   "optionNotes": [
+    "Reconnaissance, not the compromise itself",
+    "Correct: password guessing against exposed RDP",
+    "Exploits such as BlueKeep exist but are less common",
+    "Plausible but not the dominant cause"
+   ]
+  },
+  {
+   "id": "DUMP-0780",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "When conducting a forensic criminal investigation on a computer hard drive, what should be done PRIOR to analysis?",
+   "options": [
+    "Create a backup copy of all the important files on the drive.",
+    "Power off the computer and wait for assistance.",
+    "Create a forensic image of the hard drive.",
+    "Install forensic analysis software."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Analysis must be performed on a verified forensic image to preserve the original evidence. A bit-for-bit image with hash verification preserves the original; copying files misses slack space and changes metadata.",
+   "optionNotes": [
+    "Logical copy misses slack space and changes metadata",
+    "Pulling the plug may be wrong and analysis still needs an image",
+    "Correct: preserves the original evidence",
+    "Installing software alters the evidence"
+   ]
+  },
+  {
+   "id": "DUMP-0781",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MOST common component of a vulnerability management framework?",
+   "options": [
+    "Risk analysis",
+    "Patch management",
+    "Threat analysis",
+    "Backup management"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Patch management is the most common component of vulnerability management. Most vulnerability programs focus on finding missing patches and deploying them, which makes patching the most common component.",
+   "optionNotes": [
+    "Supports prioritization",
+    "Correct: the most common fix activity",
+    "Feeds prioritization",
+    "Recovery, not vulnerability handling"
+   ]
+  },
+  {
+   "id": "DUMP-0786",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The security team is notified that a device on the network is infected with malware. Which of the following is MOST effective in enabling the device to be quickly located and remediated?",
+   "options": [
+    "Data loss protection (DLP)",
+    "Intrusion detection",
+    "Vulnerability scanner",
+    "Information Technology Asset Management (ITAM)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Asset management records ownership and location of devices, enabling quick location and remediation. Without an accurate inventory, alerts cannot be tied to a physical device, an owner or a location.",
+   "optionNotes": [
+    "Prevents exfiltration but does not locate the device",
+    "Alerts on activity but does not give location",
+    "Finds weaknesses, not ownership",
+    "Correct: inventory gives location and owner"
+   ]
+  },
+  {
+   "id": "DUMP-0794",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization discovers that its secure file transfer protocol (SFTP) server has been accessed by an unauthorized person to download an unreleased game. A recent security audit found weaknesses in some of the organization's general information technology (IT) controls, specifically pertaining to software change control and security patch management, but not in other control areas. Which of the following is the MOST probable attack vector used in the security breach?",
+   "options": [
+    "Buffer overflow",
+    "Weak password due to lack of complexity rules",
+    "Distributed Denial of Service (DDoS)",
+    "Cross-Site Scripting (XSS)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Weak patch management leaves known flaws such as buffer overflows exploitable on the server. Audit findings point to unpatched software, which suggests a technical exploit rather than password guessing.",
+   "optionNotes": [
+    "Correct",
+    "Password controls not flagged",
+    "Availability, not data theft",
+    "Client-side web attack"
+   ]
+  },
+  {
+   "id": "DUMP-0795",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MOST effective response to a hacker who has already gained access to a network and will attempt to pivot to other resources?",
+   "options": [
+    "Reset all passwords.",
+    "Shut down the network.",
+    "Warn users of a breach.",
+    "Segment the network."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Segmentation contains the attacker and prevents lateral movement. Resetting passwords may not remove an existing foothold, and shutting the whole network down is disproportionate.",
+   "optionNotes": [
+    "Does not remove an existing foothold",
+    "Disproportionate disruption",
+    "Does not contain the attacker",
+    "Correct: limits lateral movement"
+   ]
+  },
+  {
+   "id": "DUMP-0809",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "Which is the MOST critical aspect of computer-generated evidence?",
+   "options": [
+    "Objectivity",
+    "Integrity",
+    "Timeliness",
+    "Relevancy"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Digital evidence is easily altered without leaving a trace. For it to be admissible and trusted, it must be shown to be unchanged, using hashes and chain of custody. Integrity is therefore the most critical aspect.",
+   "optionNotes": [
+    "Objectivity matters for analysis but does not establish that the evidence is authentic",
+    "Right: you must prove the evidence was not altered",
+    "Prompt collection helps but is not the defining requirement",
+    "Every type of evidence must be relevant; this is not specific to computer evidence"
+   ]
+  },
+  {
+   "id": "DUMP-0819",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following is the MAIN benefit of off-site storage?",
+   "options": [
+    "Cost effectiveness",
+    "Backup simplicity",
+    "Fast recovery",
+    "Data availability"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Off-site storage keeps backup copies away from the primary site. If that site is destroyed, the data is still available for recovery, which is its main purpose.",
+   "optionNotes": [
+    "Off-site storage adds transport and storage costs",
+    "Backup procedures become more complex, not simpler",
+    "Retrieving media from off site can actually slow recovery",
+    "Right: data stays available if the primary site is lost"
+   ]
+  },
+  {
+   "id": "DUMP-0842",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is the key requirement for test results when implementing forensic procedures?",
+   "options": [
+    "The test results must be cost-effective.",
+    "The test result must be authorized.",
+    "The test results must be quantifiable.",
+    "The test results must be reproducible."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Forensic results must be repeatable: another examiner using the same method should reach the same results. This is what makes findings defensible in court.",
+   "optionNotes": [
+    "Cost does not make a forensic result valid",
+    "Authorization is needed to collect evidence, but it is not a property of the test results",
+    "Not all findings are numeric; repeatability matters more",
+    "Right: reproducibility supports admissibility"
+   ]
+  },
+  {
+   "id": "DUMP-0848",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following would an information security professional use to recognize changes to content, particularly unauthorized changes?",
+   "options": [
+    "File Integrity Checker",
+    "Security information and event management (SIEM) system",
+    "Audit Logs",
+    "Intrusion detection system (IDS)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "File integrity checkers hash files and alert on unauthorized changes. Tripwire-style tools are the classic example.",
+   "optionNotes": [
+    "Hashes baseline files and flags any content change; purpose-built for this.",
+    "Correlates events; relies on other sources to detect file changes.",
+    "Record events but don't directly compare content to a baseline.",
+    "Watches for intrusion patterns, not content integrity."
+   ]
+  },
+  {
+   "id": "DUMP-0859",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "What type of investigation applies when malicious behavior is suspected between two organizations?",
+   "options": [
+    "Regulatory",
+    "Criminal",
+    "Civil",
+    "Operational"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Disputes between organizations are typically handled as civil matters. Civil cases use the preponderance of evidence standard.",
+   "optionNotes": [
+    "Regulatory investigations involve government agencies enforcing rules.",
+    "Criminal matters are brought by the state, not between organizations.",
+    "Disputes between two organizations are civil matters.",
+    "Operational investigations are internal IT issues."
+   ]
+  },
+  {
+   "id": "DUMP-0872",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which event magnitude is defined as deadly, destructive, and disruptive when a hazard interacts with human vulnerability?",
+   "options": [
+    "Disaster",
+    "Catastrophe",
+    "Crisis",
+    "Accident"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A disaster is a hazard interacting with vulnerability causing deadly, destructive disruption. This is from the emergency management magnitude scale.",
+   "optionNotes": [
+    "A disaster is a hazard meeting vulnerability with deadly, destructive, disruptive impact.",
+    "A catastrophe is a larger magnitude than a disaster.",
+    "A crisis is a less severe magnitude.",
+    "An accident is a minor event."
+   ]
+  },
+  {
+   "id": "DUMP-0874",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following security tools monitors devices and records the information in a central database for further analysis?",
+   "options": [
+    "Security orchestration automation and response",
+    "Host-based intrusion detection system (HIDS)",
+    "Antivirus",
+    "Endpoint detection and response (EDR)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "EDR collects endpoint telemetry into a central database for analysis. EDR supports threat hunting and investigations.",
+   "optionNotes": [
+    "SOAR orchestrates responses; it does not do endpoint telemetry recording.",
+    "HIDS alerts locally; central recording is not its defining feature.",
+    "AV blocks malware and does not record telemetry centrally.",
+    "EDR continuously records endpoint activity centrally for analysis."
+   ]
+  },
+  {
+   "id": "DUMP-0879",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following needs to be included in order for High Availability (HA) to continue operations during planned system outages?",
+   "options": [
+    "Redundant hardware, disk spanning, and patching",
+    "Load balancing, power reserves, and disk spanning",
+    "Backups, clustering, and power reserves",
+    "Clustering, load balancing, and fault-tolerant options"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "HA during planned outages relies on clustering, load balancing and fault tolerance. Nodes can be serviced one at a time.",
+   "optionNotes": [
+    "Disk spanning gives no redundancy.",
+    "Spanning again, and it lacks failover.",
+    "Backups support recovery, not continuity during outages.",
+    "Clustering, load balancing and fault tolerance keep service up during maintenance."
+   ]
+  },
+  {
+   "id": "DUMP-0886",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following job functions MUST be separated to maintain data and application integrity?",
+   "options": [
+    "Applications development and systems analysis",
+    "Production control and data control functions",
+    "Scheduling and computer operations",
+    "Systems development and systems maintenance"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Separating production control and data control protects data and application integrity. It prevents one person from altering both data and processing.",
+   "optionNotes": [
+    "These are commonly combined roles.",
+    "Separating production and data control prevents unauthorized data/program changes.",
+    "Compatible operations roles.",
+    "Often handled together."
+   ]
+  },
+  {
+   "id": "DUMP-0887",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization's retail website provides its only source of revenue, so the disaster recovery plan (DRP) must document an estimated time for each step in the plan. Which of the following steps in the DRP will list the GREATEST duration of time for the service to be fully operational?",
+   "options": [
+    "Update the Network Address Translation (NAT) table.",
+    "Update Domain Name System (DNS) server addresses with domain registrar.",
+    "Update the Border Gateway Protocol (BGP) autonomous system number.",
+    "Update the web server network adapter configuration."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "DNS changes at the registrar require propagation, the longest step. TTLs and caching delay global DNS updates.",
+   "optionNotes": [
+    "NAT updates are immediate locally.",
+    "DNS propagation via the registrar can take up to 48 hours.",
+    "An ASN rarely changes and is not part of typical DR.",
+    "An adapter change is quick."
+   ]
+  },
+  {
+   "id": "DUMP-0901",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the PRIMARY benefit of incident reporting and computer crime investigations?",
+   "options": [
+    "Providing evidence to law enforcement",
+    "Repairing the damage and preventing future occurrences",
+    "Appointing a computer emergency response team",
+    "Complying with security policy"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The main value of reporting incidents and investigating them is to limit and repair damage and learn lessons to prevent recurrence. Prosecution and compliance are secondary outcomes.",
+   "optionNotes": [
+    "Evidence to law enforcement is a possible, secondary outcome",
+    "Right: The main value of reporting incidents and investigating them is to limit and repair damage and learn lessons to prevent recurrence.",
+    "Appointing a CERT is a precondition, not a benefit",
+    "Compliance is secondary"
+   ]
+  },
+  {
+   "id": "DUMP-0902",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is the MOST effective corrective control to minimize the effects of a physical intrusion?",
+   "options": [
+    "Automatic videotaping of a possible intrusion",
+    "Rapid response by guards or police to apprehend a possible intruder",
+    "Activating bright lighting to frighten away a possible intruder",
+    "Sounding a loud alarm to frighten away a possible intruder"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A corrective control acts after the event to limit its effects; physically responding to apprehend the intruder actually stops the intrusion. Lights and alarms deter, video is detective.",
+   "optionNotes": [
+    "Video recording is detective",
+    "Right: response corrects the situation",
+    "Lighting is deterrent",
+    "Alarm is deterrent/detective"
+   ]
+  },
+  {
+   "id": "DUMP-0905",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which Redundant Array of Independent Disks (RAID) level is shown here: data blocks A–H are mirrored onto pairs of disks (A,C,E,G mirrored on two disks; B,D,F,H mirrored on two disks), and the two mirrored sets are then striped into one logical disk?",
+   "options": [
+    "RAID 0",
+    "RAID 1",
+    "RAID 5",
+    "RAID 10"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Mirrored pairs that are then striped together form RAID 1+0 (RAID 10), giving both redundancy and performance.",
+   "optionNotes": [
+    "RAID 0 is striping only",
+    "RAID 1 is mirroring only",
+    "RAID 5 uses distributed parity",
+    "Right: stripe of mirrors"
+   ]
+  },
+  {
+   "id": "DUMP-0909",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following types of data would be MOST difficult to detect by a forensic examiner?",
+   "options": [
+    "Slack space data",
+    "Steganographic data",
+    "File system deleted data",
+    "Data stored with a different file type extension"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Steganography hides data inside innocuous carriers so its very existence is concealed, making it the hardest for an examiner to detect.",
+   "optionNotes": [
+    "Slack space is routinely examined",
+    "Right: Steganography hides data inside innocuous carriers so its very existence is concealed, making it the hardest for an examiner to detect.",
+    "Deleted data is routinely recovered",
+    "Signature analysis detects wrong extensions"
+   ]
+  },
+  {
+   "id": "DUMP-0928",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The security organization is looking for a solution that could help them determine with a strong level of confidence that attackers have breached their network. Which solution is MOST effective at discovering a successful network breach?",
+   "options": [
+    "Installing an intrusion prevention system (IPS)",
+    "Deploying a honeypot",
+    "Installing an intrusion detection system (IDS)",
+    "Developing a sandbox"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A honeypot has no legitimate users, so any interaction with it is a high-confidence indicator that an attacker is inside the network.",
+   "optionNotes": [
+    "IPS blocks attempts, not confirm breach",
+    "Right: A honeypot has no legitimate users, so any interaction with it is a high-confidence indicator that an attacker is inside the network.",
+    "IDS has many false positives",
+    "Sandbox analyses files"
+   ]
+  },
+  {
+   "id": "DUMP-0932",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A security practitioner has been asked to model best practices for disaster recovery (DR) and business continuity. The practitioner has decided that a formal committee is needed to establish a business continuity policy. Which of the following BEST describes this stage of business continuity development?",
+   "options": [
+    "Project Initiation and Management",
+    "Risk Evaluation and Control",
+    "Developing and Implementing business continuity plans (BCP)",
+    "Business impact analysis (BIA)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Forming a committee and establishing the BC policy happens in project initiation and management, the first BCP phase.",
+   "optionNotes": [
+    "Right: Forming a committee and establishing the BC policy happens in project initiation and management, the first BCP phase.",
+    "Risk evaluation follows",
+    "Plan development comes later",
+    "BIA follows initiation"
+   ]
+  },
+  {
+   "id": "DUMP-0938",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An analysis finds unusual activity coming from a computer that was thrown away several months prior. Which of the following steps ensures the proper removal of the system?",
+   "options": [
+    "Deactivation",
+    "Decommission",
+    "Deploy",
+    "Procure"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Decommissioning formally retires a system, including removing access and accounts, so discarded equipment cannot keep acting on the network.",
+   "optionNotes": [
+    "Deactivation alone is partial",
+    "Right: Decommissioning formally retires a system, including removing access and accounts, so discarded equipment cannot keep acting on the network.",
+    "Deploy is the opposite",
+    "Procure is acquisition"
+   ]
+  },
+  {
+   "id": "DUMP-0949",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following will help identify the source internet protocol (IP) address of malware being executed on a computer?",
+   "options": [
+    "List of open network connections",
+    "Display Transmission Control Protocol/Internet Protocol (TCP/IP) network configuration information.",
+    "List of running processes",
+    "Display the Address Resolution Protocol (ARP) table."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Active network connections (e.g., netstat) list local and remote IP addresses and owning processes, revealing where a running malware sample is communicating from/to.",
+   "optionNotes": [
+    "Correct: open connections show remote/source IPs tied to processes.",
+    "ipconfig-style output shows only the host's own configuration.",
+    "Process list identifies the malware but not its network peer address.",
+    "ARP table maps local-segment IP to MAC, not remote internet sources."
+   ]
+  },
+  {
+   "id": "DUMP-0955",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following would be considered an incident if reported by a security information and event management (SIEM) system?",
+   "options": [
+    "An administrator is logging in on a server through a virtual private network (VPN).",
+    "A log source has stopped sending data.",
+    "A web resource has reported a 404 error.",
+    "A firewall logs a connection between a client on the Internet and a web server using Transmission Control Protocol (TCP) on port 80."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A log source going silent can indicate tampering, a disabled agent or an attacker covering tracks, and it creates a monitoring blind spot that must be investigated. The other events are normal, expected activity.",
+   "optionNotes": [
+    "Admin VPN login is normal authorised activity.",
+    "Correct: loss of log feed is an adverse event warranting response.",
+    "A 404 is a routine web error.",
+    "HTTP on port 80 to a web server is normal traffic."
+   ]
+  },
+  {
+   "id": "DUMP-0957",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "What is the BEST way to correlate large volumes of disparate data sources in a Security Operations Center (SOC) environment?",
+   "options": [
+    "Implement Intrusion Detection System (IDS).",
+    "Implement a Security Information and Event Management (SIEM) system.",
+    "Hire a team of analysts to consolidate data and generate reports.",
+    "Outsource the management of the SOC."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A SIEM aggregates, normalises and correlates logs from many heterogeneous sources in near real time, which is exactly the SOC need.",
+   "optionNotes": [
+    "IDS is one data source, not a correlation platform.",
+    "Correct: SIEM correlates disparate data at scale.",
+    "Manual analysts cannot scale to large volumes.",
+    "Outsourcing changes who operates it, not how data is correlated."
+   ]
+  },
+  {
+   "id": "DUMP-0958",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "What is the FIRST step prior to executing a test of an organisation's disaster recovery (DR) or business continuity plan (BCP)?",
+   "options": [
+    "Identify key stakeholders",
+    "Develop recommendations for disaster scenarios.",
+    "Identify potential failure points.",
+    "Develop clear evaluation criteria."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Before conducting a DR/BCP test you must define what success looks like; clear evaluation criteria let the results be measured objectively. Scenarios and failure points come from planning already done.",
+   "optionNotes": [
+    "Stakeholders are identified during plan development, earlier.",
+    "Recommendations are an output after testing.",
+    "Failure points are part of BIA/plan design.",
+    "Correct: evaluation criteria must exist before executing the test."
+   ]
+  },
+  {
+   "id": "DUMP-0962",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What is static analysis intended to do when analyzing an executable file?",
+   "options": [
+    "Collect evidence of the executable file's usage, including dates of creation and last use.",
+    "Search the documents and files associated with the executable file.",
+    "Analyze the position of the file in the file system and the executable file's libraries.",
+    "Disassemble the file to gather information about the executable file's function."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Static analysis examines an executable without running it, typically by disassembling/decompiling to understand its functionality.",
+   "optionNotes": [
+    "Usage/timestamps is general forensic artifact analysis.",
+    "Searching related documents is not static code analysis.",
+    "File location and libraries give context but not function.",
+    "Correct: disassembly reveals function without execution."
+   ]
+  },
+  {
+   "id": "DUMP-0965",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following steps is performed during the forensic data analysis phase?",
+   "options": [
+    "Collect known system files",
+    "Search for relevant strings.",
+    "Create file lists",
+    "Recover deleted data."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "During analysis the examiner searches the acquired data for keywords/strings relevant to the case. Collecting files, building file lists and recovering data are acquisition/extraction steps.",
+   "optionNotes": [
+    "Collecting known files is part of collection/acquisition.",
+    "Correct: keyword and string searches are analysis activities.",
+    "File listing is an extraction/preparation step.",
+    "Recovering deleted data is extraction before analysis."
+   ]
+  },
+  {
+   "id": "DUMP-0966",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "During a Disaster Recovery (DR) simulation, it is discovered that the shared recovery site lacks adequate data restoration capabilities to support the implementation of multiple plans simultaneously. What would be impacted by this fact if left unchanged?",
+   "options": [
+    "Recovery Point Objective (RPO)",
+    "Recovery Time Objective (RTO)",
+    "Business Impact Analysis (BIA)",
+    "Return on Investment (ROI)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "If the shared site cannot restore data for several plans at once, restoration will take longer and recovery time objectives will be missed.",
+   "optionNotes": [
+    "RPO depends on backup frequency, not restoration capacity.",
+    "Correct: limited restore capability delays recovery beyond RTO.",
+    "BIA is an analysis input, not affected by site capacity.",
+    "ROI is a financial metric, not the operational impact."
+   ]
+  },
+  {
+   "id": "DUMP-0968",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following BEST describes the purpose of software forensics?",
+   "options": [
+    "To perform cyclic redundancy check (CRC) verification and detect changed applications",
+    "To review program code to determine the existence of backdoors",
+    "To analyze possible malicious intent of malware",
+    "To determine the author and behavior of the code"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Software forensics studies code to work out its author (authorship attribution) and how it behaves, for example in intellectual property or malware cases. That is broader than spotting changes, finding backdoors or judging intent.",
+   "optionNotes": [
+    "CRC verification only detects change.",
+    "Backdoor review is code review, too narrow.",
+    "Malware intent is one use, not the overall purpose.",
+    "Correct: authorship and behaviour of the code."
+   ]
+  },
+  {
+   "id": "DUMP-0978",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Who is essential for developing effective test scenarios for disaster recovery (DR) test plans?",
+   "options": [
+    "Business line management and IT staff members",
+    "Chief Information Officer (CIO) and DR manager",
+    "DR manager and IT staff members",
+    "IT staff members and project managers"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Realistic DR test scenarios need business line managers, who know critical processes and impacts, plus IT staff, who know the technical recovery.",
+   "optionNotes": [
+    "Correct: business plus technical perspectives.",
+    "CIO/DR manager lack operational business detail.",
+    "Lacks business process owners.",
+    "Project managers do not own business processes."
+   ]
+  },
+  {
+   "id": "DUMP-0979",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.9,
+   "stem": "What is the FIRST step in developing a patch management plan?",
+   "options": [
+    "Subscribe to a vulnerability subscription service.",
+    "Develop a patch testing procedure.",
+    "Inventory the hardware and software used.",
+    "Identify unnecessary services installed on systems."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "You cannot patch what you do not know you have; an asset inventory of hardware and software comes first.",
+   "optionNotes": [
+    "Vulnerability feeds are useful only once assets are known.",
+    "Testing procedures follow inventory and prioritisation.",
+    "Correct: inventory is the foundation.",
+    "Hardening unnecessary services is a separate activity."
+   ]
+  },
+  {
+   "id": "DUMP-0980",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST provides for non-repudiation of user account actions?",
+   "options": [
+    "Centralized authentication system",
+    "File auditing system",
+    "Managed Intrusion Detection System (IDS)",
+    "Centralized logging system"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Non-repudiation of user actions needs reliable, tamper-resistant records tying actions to identities; a centralized logging system collects these beyond the reach of local users.",
+   "optionNotes": [
+    "Authentication proves identity at login but does not record actions.",
+    "File auditing covers only file actions on single systems.",
+    "IDS detects attacks, not attribution of all user actions.",
+    "Correct: centralized logs attribute actions and resist tampering."
+   ]
+  },
+  {
+   "id": "DUMP-0983",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "A cloud service provider requires its customer organizations to enable maximum audit logging for its data storage service and to retain the logs for the periof of three months. The audit logging generates extremely high amount of logs. What is the MOST appropriate strategy for the log retention?",
+   "options": [
+    "Keep last week's logs in an online storage and the rest in a near-line storage.",
+    "Keep all logs in an online storage.",
+    "Keep all logs in an offline storage.",
+    "Keep last week's logs in an online storage and the rest in an offline storage."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Recent logs are needed quickly for investigation; older logs still need reasonably accessible yet cheaper storage, so near-line tiering balances cost and retrieval for three-month retention.",
+   "optionNotes": [
+    "Correct: online for recent, near-line for the rest balances cost and access.",
+    "All-online is costly for huge volumes.",
+    "All-offline makes recent logs hard to use.",
+    "Offline delays access to logs that may be needed within the retention window."
+   ]
+  },
+  {
+   "id": "DUMP-0991",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which one of the following can be used to detect an anomaly in a system by keeping track of the state of files that do not normally change?",
+   "options": [
+    "System logs",
+    "Anti-spyware",
+    "Integrity checker",
+    "Firewall logs"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Integrity checkers (e.g., Tripwire) baseline hashes of static files and alert when they change.",
+   "optionNotes": [
+    "System logs record events, not file states.",
+    "Anti-spyware looks for malware signatures.",
+    "Correct: hash baselines detect changes to static files.",
+    "Firewall logs record network traffic."
+   ]
+  },
+  {
+   "id": "DUMP-0995",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "A software developer installs a game on their organization-provided smartphone. Upon installing the game, the software developer is prompted to allow the game access to call logs, Short Message Service (SMS) messaging, and Global Positioning System (GPS) location data. What has the game MOST likely introduced to the smartphone?",
+   "options": [
+    "Alerting",
+    "Vulnerability",
+    "Geo-fencing",
+    "Monitoring"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Granting broad permissions to call logs, SMS and GPS to an untrusted game creates a weakness that can be exploited to leak data.",
+   "optionNotes": [
+    "Wrong: Nothing alerts here",
+    "Right: too many permissions is a weakness that can be exploited",
+    "Wrong: Geo-fencing restricts by location; not introduced",
+    "Wrong: Monitoring is a possible consequence, not the thing introduced"
+   ]
+  },
+  {
+   "id": "DUMP-0996",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the MOST common cause of system or security failures?",
+   "options": [
+    "Lack of system documentation",
+    "Lack of physical security controls",
+    "Lack of change control",
+    "Lack of logging and monitoring"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Uncontrolled changes are the most common source of outages and security failures, which is why change management is a core operational control.",
+   "optionNotes": [
+    "Wrong: Contributes but less common",
+    "Wrong: Not the leading cause",
+    "Right: unmanaged changes cause most outages",
+    "Wrong: Hinders detection, does not cause failures"
+   ]
+  },
+  {
+   "id": "DUMP-0999",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is included in change management?",
+   "options": [
+    "Business continuity testing",
+    "User Acceptance Testing (UAT) before implementation",
+    "Technical review by business owner",
+    "Cost-benefit analysis (CBA) after implementation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Change management includes testing and acceptance of the change before it goes into production.",
+   "optionNotes": [
+    "Wrong: Part of BCP, not change management",
+    "Right: a change is tested and accepted before it goes live",
+    "Wrong: Business owner approves, technical review is by technical staff",
+    "Wrong: CBA is done before, not after"
+   ]
+  },
+  {
+   "id": "DUMP-1020",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "The Industrial Control System (ICS) Computer Emergency Response Team (CERT) has released an alert regarding ICS-focused malware specifically propagating through Windows-based business networks. Technicians at a local water utility note that their dams, canals, and locks controlled by an internal Supervisory Control and Data Acquisition (SCADA) system have been malfunctioning. A digital forensics professional is consulted in the Incident Response (IR) and recovery. Which of the following is the MOST challenging aspect of this investigation?",
+   "options": [
+    "SCADA network latency",
+    "Group policy implementation",
+    "Volatility of data",
+    "Physical access to the system"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "SCADA controllers hold little persistent storage and keep running, so evidence is volatile and easily lost, which makes collection hardest.",
+   "optionNotes": [
+    "Wrong: Not an investigation challenge",
+    "Wrong: Not relevant to ICS forensics",
+    "Right: volatile controller memory and running processes are easily lost",
+    "Wrong: Internal system; access is available"
+   ]
+  },
+  {
+   "id": "DUMP-1024",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following Disaster recovery (DR) testing processes is LEAST likely to disrupt normal business operations?",
+   "options": [
+    "Parallel",
+    "Simulation",
+    "Table-top",
+    "Cut-over"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A tabletop exercise is a discussion only and touches no systems.",
+   "optionNotes": [
+    "Wrong: Runs live systems in parallel",
+    "Wrong: More involved than tabletop",
+    "Right: discussion only, no systems touched",
+    "Wrong: Shuts down primary operations"
+   ]
+  },
+  {
+   "id": "DUMP-1031",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What does the term \"100-year floodplain\" mean to emergency preparedness officials?",
+   "options": [
+    "The area is expected to be safe from flooding for at least 100 years.",
+    "The odds of a flood at this level are 1 in 100 in any given year.",
+    "The odds are that the next significant flood will hit within the next 100 years.",
+    "The last flood of any kind to hit the area was more than 100 years ago."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A 100-year flood has a 1% chance of occurring in any given year.",
+   "optionNotes": [
+    "Wrong: Common misconception",
+    "Right: 1% chance in any year",
+    "Wrong: Misstates probability",
+    "Wrong: Historical, not probabilistic"
+   ]
+  },
+  {
+   "id": "DUMP-1032",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the PRIMARY issue when analyzing detailed log information?",
+   "options": [
+    "Logs may be unavailable when required",
+    "Timely review of the data is potentially difficult",
+    "Most systems and applications do not support logging",
+    "Logs do not provide sufficient details of system and individual activities"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Detailed logs are high volume, so reviewing them in time is the main challenge.",
+   "optionNotes": [
+    "Wrong: Not the primary issue",
+    "Right: there is too much data to review in time",
+    "Wrong: False",
+    "Wrong: Detailed logs do provide detail"
+   ]
+  },
+  {
+   "id": "DUMP-1044",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Why are mobile devices sometimes difficult to investigate in a forensic examination?",
+   "options": [
+    "There are no forensics tools available for examination.",
+    "They may have proprietary software installed to protect them.",
+    "They may contain cryptographic protection.",
+    "They have password-based security at logon."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Device encryption can make data unrecoverable without keys, which hampers mobile forensics.",
+   "optionNotes": [
+    "Wrong: Tools exist",
+    "Wrong: Less significant",
+    "Right: encryption can block extraction without the keys",
+    "Wrong: Passcodes can often be bypassed; encryption is the real barrier"
+   ]
+  },
+  {
+   "id": "DUMP-1047",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which type of fire alarm system sensor is intended to detect fire at its earliest stage?",
+   "options": [
+    "Ionization",
+    "Infrared",
+    "Thermal",
+    "Photoelectric"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Ionization detectors react to invisible combustion particles produced in the incipient stage of a fire, before visible smoke, flame, or heat appear.",
+   "optionNotes": [
+    "Correct: reacts to invisible combustion particles in the incipient stage",
+    "Infrared detectors sense flame, which comes later than incipient particles",
+    "Thermal detectors need heat to build up, so they are the slowest",
+    "Photoelectric detectors need visible smoke, which comes after incipient particles"
+   ]
+  },
+  {
+   "id": "DUMP-1052",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following events prompts a review of the disaster recovery plan (DRP)?",
+   "options": [
+    "New members added to the steering committee",
+    "Completion of the security policy review",
+    "Change in senior management",
+    "Organizational merger"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A merger materially changes the organization's processes, systems, and priorities, so the DRP must be reviewed and updated.",
+   "optionNotes": [
+    "Adding committee members does not change recovery requirements",
+    "A policy review does not itself change DR needs",
+    "A management change may shift priorities but is less material than a merger",
+    "Correct: a merger changes systems, processes and dependencies"
+   ]
+  },
+  {
+   "id": "DUMP-1066",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is MOST appropriate to collect evidence of a zero-day attack?",
+   "options": [
+    "Firewall",
+    "Honeypot",
+    "Antispam",
+    "Antivirus"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A honeypot attracts attackers and records their activity, so it can capture unknown (zero-day) exploits that signature-based tools would miss.",
+   "optionNotes": [
+    "A firewall blocks traffic but captures little attack detail",
+    "Correct: a honeypot records unknown attack behaviour",
+    "Antispam only filters email",
+    "Antivirus relies on signatures that miss zero-day attacks"
+   ]
+  },
+  {
+   "id": "DUMP-1071",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "When designing an Occupant Emergency Plan (OEP) for United States (US) Federal government facilities, what factor must be considered?",
+   "options": [
+    "location of emergency exits in building",
+    "Average age of the agency employees",
+    "Geographical location and structural design of building",
+    "Federal agency for which plan is being drafted"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "An OEP has to reflect the facility's geographic hazards and how the building is constructed, since these drive the evacuation and shelter-in-place procedures.",
+   "optionNotes": [
+    "Exit locations are a detail within the plan, not a design driver",
+    "Employee age is not a required factor",
+    "Correct: location hazards and building structure shape the OEP",
+    "The agency does not change the facility-driven requirements"
+   ]
+  },
+  {
+   "id": "DUMP-1077",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following MUST be done before a digital forensics investigator may acquire digital evidence?",
+   "options": [
+    "Inventory the digital evidence.",
+    "Isolate the digital evidence.",
+    "Verify that the investigator has the appropriate legal authority to proceed.",
+    "Perform hashing to verify the integrity of the digital evidence."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Evidence must be acquired lawfully; without proper legal authority (consent, warrant, or policy) the evidence may be inadmissible.",
+   "optionNotes": [
+    "Inventory comes during or after acquisition",
+    "Isolation happens during handling, after authority is confirmed",
+    "Correct: legal authority must come first",
+    "Hashing happens at acquisition, after authority is confirmed"
+   ]
+  },
+  {
+   "id": "DUMP-1082",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "The adoption of an enterprise-wide business continuity program requires Which of the following?",
+   "options": [
+    "Good communication throughout the organization",
+    "Formation of Disaster Recovery (DP) project team",
+    "A completed Business Impact Analysis (BIA)",
+    "Well-documented information asset classification"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An enterprise-wide BC program depends on good communication throughout the organization to build awareness, buy-in, and coordinated roles.",
+   "optionNotes": [
+    "Correct: communication drives adoption across the enterprise",
+    "A DR team is part of BC, not a prerequisite for adoption",
+    "A BIA is a step within the program, not a precondition for adopting it",
+    "Asset classification is not required for adoption"
+   ]
+  },
+  {
+   "id": "DUMP-1091",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following MUST the administrator of a security information and event management (SIEM) system ensure?",
+   "options": [
+    "All sources are reporting in the exact same Extensible Markup Language (XML) format.",
+    "Data sources do not contain information infringing upon privacy regulations.",
+    "All sources are synchronized with a common time reference.",
+    "Each source uses the same Internet Protocol (IP) address for reporting."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Correlating events from many sources requires synchronized timestamps from a common time source such as NTP.",
+   "optionNotes": [
+    "SIEMs normalize formats, so identical formats are not required",
+    "Privacy filtering is a concern but not the MUST here",
+    "Correct: time sync is needed for correlation",
+    "Using the same IP is impossible and meaningless"
+   ]
+  },
+  {
+   "id": "DUMP-1101",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which type of disaster recovery plan (DRP) testing carries the MOST operational risk?",
+   "options": [
+    "Cutover",
+    "Walkthrough",
+    "Tabletop",
+    "Parallel"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A full-interruption (cutover) test shuts down the primary site and moves operations to the recovery site, so a failure directly disrupts production. That gives it the highest operational risk of any DRP test type.",
+   "optionNotes": [
+    "Correct: real production is switched over, so it carries the most risk.",
+    "A walkthrough is a discussion only, with no operational impact.",
+    "A tabletop is a scenario discussion, with no operational impact.",
+    "A parallel test runs the alternate site while production stays up, so the risk is lower."
+   ]
+  },
+  {
+   "id": "DUMP-1109",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A recent security audit is reporting several unsuccessful login attempts being repeated at specific times during the day on an Internet facing authentication server. No alerts have been generated by the security information and event management (SIEM) system. What PRIMARY action should be taken to improve SIEM performance?",
+   "options": [
+    "Implement role-based system monitoring",
+    "Audit firewall logs to identify the source of login attempts",
+    "Enhance logging detail",
+    "Confirm alarm thresholds"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The SIEM is receiving the events but raised no alert, so its correlation rules or thresholds are set too loosely. Checking and tuning the alarm thresholds is the direct fix.",
+   "optionNotes": [
+    "Role-based monitoring doesn't address the missing alerts.",
+    "Finding the source is investigation, not a SIEM improvement.",
+    "The events are already logged, so more detail isn't the gap.",
+    "Correct: tuning thresholds makes the SIEM alert on these attempts."
+   ]
+  },
+  {
+   "id": "DUMP-1111",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the MOST critical success factor in the security patch management process?",
+   "options": [
+    "Tracking and reporting on inventory",
+    "Supporting documentation",
+    "Management review of reports",
+    "Risk and impact analysis"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Patches can break systems and differ in urgency, so analysing the risk and impact of each patch drives prioritisation and safe deployment. That makes it the critical success factor.",
+   "optionNotes": [
+    "Inventory is necessary but supporting.",
+    "Documentation is supporting.",
+    "Management review is oversight, not the core factor.",
+    "Correct: risk and impact analysis decides what to patch, when and how."
+   ]
+  },
+  {
+   "id": "DUMP-1124",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which one of the following documentation should be included in a Disaster Recovery (DR) package?",
+   "options": [
+    "Source code, compiled code, firmware updates, operational log book and manuals.",
+    "Data encrypted in original format, auditable transaction data, and recovery instructions for future extraction on demand.",
+    "Hardware configuration instructions, hardware configuration software, an operating system image, a data restoration option, media retrieval instructions,…..",
+    "System configuration including hardware, software, hardware, interfaces, software Application Programming Interface (API) configuration, data structure, …."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A DR package must let someone rebuild the system: hardware configuration, the software to configure it, the OS image, data restoration and instructions for retrieving the backup media.",
+   "optionNotes": [
+    "Source code and log books are not the rebuild set.",
+    "Archived encrypted data alone can't rebuild the system.",
+    "Correct: this covers everything needed to rebuild and restore.",
+    "Detailed design specifications are not a recovery package."
+   ]
+  },
+  {
+   "id": "DUMP-1126",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A security engineer is assigned to work with the patch and vulnerability management group. The deployment of a new patch has been approved and needs to be applied. The research is complete, and the security engineer has provided recommendations. Where should the patch be applied FIRST?",
+   "options": [
+    "Server environment",
+    "Desktop environment",
+    "Lower environment",
+    "Production environment"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Even approved patches should go first to a lower (test or staging) environment to check compatibility before production. This follows change management.",
+   "optionNotes": [
+    "'Server environment' is ambiguous and could mean production.",
+    "Desktops are still production systems.",
+    "Correct: test in a lower environment first.",
+    "Production comes last, after testing."
+   ]
+  },
+  {
+   "id": "DUMP-1131",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The Chief Information Security Officer (CISO) is concerned about business application availability. The organization was recently subject to a ransomware attack that resulted in the unavailability of applications and services for 10 working days that required paper-based running of all main business processes. There are now aggressive plans to enhance the Recovery Time Objective (RTO) and cater for more frequent data captures. Which of the following solutions should be implemented to fully comply to the new business requirements?",
+   "options": [
+    "Virtualization",
+    "Antivirus",
+    "Process isolation",
+    "Host-based intrusion prevention system (HIPS)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The goal is faster recovery (RTO) and more frequent data captures (RPO). Virtualisation enables snapshots, replication and quick restoration of whole servers.",
+   "optionNotes": [
+    "Correct: VM snapshots and replication improve RTO and RPO.",
+    "Antivirus is preventive and doesn't improve recovery time.",
+    "Process isolation doesn't help recovery.",
+    "HIPS is preventive and doesn't improve recovery time."
+   ]
+  },
+  {
+   "id": "DUMP-1138",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following should be done at a disaster site before any item is removed, repaired, or replaced?",
+   "options": [
+    "Take photos of the damage",
+    "Notify all of the Board of Directors",
+    "Communicate with the press following the communications plan",
+    "Dispatch personnel to the disaster recovery (DR) site"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Document the damage with photos before disturbing anything. This supports insurance claims and investigation.",
+   "optionNotes": [
+    "Notifying the whole board is not a prerequisite.",
+    "Press communication is not tied to the site.",
+    "Correct: photograph first to preserve evidence.",
+    "Sending staff to the DR site is unrelated to removing items."
+   ]
+  },
+  {
+   "id": "DUMP-1143",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "What are the PRIMARY responsibilities of security operations for handling and reporting violations and incidents?",
+   "options": [
+    "Monitoring and identifying system failures, documenting incidents for future analysis, and scheduling patches for systems",
+    "Scheduling patches for systems, notifying the help desk, and alerting key personnel",
+    "Monitoring and identifying system failures, alerting key personnel, and containing events",
+    "Documenting incidents for future analysis, notifying end users, and containing events"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "For violations and incidents, operations must detect them (monitor and identify), escalate (alert key personnel) and contain the event.",
+   "optionNotes": [
+    "Patch scheduling is not incident handling.",
+    "Patching and help-desk notification are off-task.",
+    "Correct: detect, alert and contain.",
+    "Notifying end users is not a primary step."
+   ]
+  },
+  {
+   "id": "DUMP-1147",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "When deploying an Intrusion Detection System (IDS) on a high-volume network, the need to distribute the load across multiple sensors would create which technical problem?",
+   "options": [
+    "Session continuity",
+    "Proxy authentication failure",
+    "Sensor overload",
+    "Synchronized sensor updates"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "When load is spread across several sensors, packets from one session can land on different sensors. No single sensor then sees the whole stream, so it cannot reassemble the session or detect the attack. That is the session continuity problem.",
+   "optionNotes": [
+    "Correct: split flows break session reassembly across sensors.",
+    "Proxy authentication has nothing to do with distributing IDS load.",
+    "Spreading the load is meant to prevent overload, not cause it.",
+    "Updating signatures is an admin task, not the problem load-splitting creates."
+   ]
+  },
+  {
+   "id": "DUMP-1148",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the MAIN objective of risk analysis in Disaster Recovery (DR) planning?",
+   "options": [
+    "Establish Maximum Tolerable Downtime (MTD) Information Systems (IS).",
+    "Define the variable cost for extended downtime scenarios.",
+    "Identify potential threats to business availability.",
+    "Establish personnel requirements for various downtime scenarios."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Risk analysis in DR planning identifies the threats that could disrupt availability, so the plan can address them. MTD, downtime costs and staffing needs come from the BIA and recovery planning. Without knowing the threats, those later steps have nothing to work from.",
+   "optionNotes": [
+    "MTD is set in the BIA, not by risk analysis.",
+    "Cost modelling is part of the BIA, not the main aim of risk analysis.",
+    "Correct: risk analysis identifies threats to business availability.",
+    "Staffing needs are worked out later in recovery planning."
+   ]
+  },
+  {
+   "id": "DUMP-1156",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the BEST statement for a professional to include as part of business continuity (BC) procedure?",
+   "options": [
+    "A full data backup must be done upon management request.",
+    "An incremental data backup must be done upon management request.",
+    "A full data backup must be done based on the needs of the business.",
+    "An incremental data backup must be done after each system change."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "BC procedures should follow business requirements such as RPO, so 'based on the needs of the business' is the best wording. A backup only when management asks for it is ad hoc, and an incremental after every change is impractical. Business need is the ISC2-preferred basis.",
+   "optionNotes": [
+    "Ad hoc, on-request backups are not a sound BC procedure.",
+    "Also ad hoc, and an incremental alone is incomplete.",
+    "Correct: backups are driven by business needs (RPO).",
+    "Backing up after every change is impractical and not tied to business needs."
+   ]
+  },
+  {
+   "id": "DUMP-1159",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The disaster recovery (DR) process should always include",
+   "options": [
+    "plan maintenance.",
+    "periodic vendor review.",
+    "financial data analysis.",
+    "periodic inventory review."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A DR plan goes stale as systems, people and suppliers change, so the process must always include plan maintenance. Vendor reviews, financial analysis and inventory reviews are supporting inputs, not a required part of every DR process.",
+   "optionNotes": [
+    "Correct: plan maintenance keeps the DR plan valid.",
+    "Useful, but not always part of the DR process.",
+    "Feeds the BIA; not a constant part of DR.",
+    "Supports maintenance, but is narrower than plan maintenance."
+   ]
+  },
+  {
+   "id": "DUMP-1163",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following describes the BEST method of maintaining the inventory of software and hardware within the organization?",
+   "options": [
+    "Maintaining the inventory through a combination of desktop configuration, administration management, and procurement management tools",
+    "Maintaining the inventory through a combination of asset owner interviews, open-source system management, and open-source management tools",
+    "Maintaining the inventory through a combination of on-premise storage configuration, cloud management, and partner management tools",
+    "Maintaining the inventory through a combination of system configuration, network management, and license management tools"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Hardware and software inventory is best kept with tools that discover system configurations, see devices on the network and track software licences. Interviews and partner tools are incomplete or out of scope. Option D gives the fullest and most authoritative picture.",
+   "optionNotes": [
+    "Covers desktops and purchasing, but misses network devices and licences.",
+    "Interviews are manual and unreliable for keeping an inventory.",
+    "Storage and partner tools miss most of the assets.",
+    "Correct: configuration, network and licence tools together cover hardware and software."
+   ]
+  },
+  {
+   "id": "DUMP-1165",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is the BEST approach for a forensic examiner to obtain the greatest amount of relevant information from malicious software?",
+   "options": [
+    "Analyze the behavior of the program.",
+    "Examine the file properties and permissions.",
+    "Review the code to identify its origin.",
+    "Analyze the logs generated by the software."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Behavioural (dynamic) analysis, such as running the sample in a sandbox, shows what the malware actually does: persistence, network calls and payload. That yields the most relevant information. File properties and logs give limited detail, and attributing the code's origin is secondary.",
+   "optionNotes": [
+    "Correct: behaviour shows actual capability and impact.",
+    "Metadata reveals little about functionality.",
+    "Attribution is hard and less useful than knowing what it does.",
+    "Malware rarely writes useful logs of its own."
+   ]
+  },
+  {
+   "id": "DUMP-1168",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An Intrusion Detection System (IDS) is based on the general hypothesis that a security violation is associated with a pattern of system usage which can be",
+   "options": [
+    "differentiated from a normal usage pattern.",
+    "used to detect known violations.",
+    "used to detect a masquerader.",
+    "differentiated to detect all security violations."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Anomaly-based IDS rests on Denning's hypothesis that violations show up as usage that can be told apart from normal behaviour. The other options describe narrower uses, and no IDS detects all violations.",
+   "optionNotes": [
+    "Correct: the core anomaly-detection hypothesis.",
+    "Known violations are found by signatures, which is not the general hypothesis.",
+    "Detecting masqueraders is one application, not the hypothesis.",
+    "No IDS can detect all violations."
+   ]
+  },
+  {
+   "id": "DUMP-1174",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MOST common security risk of a mobile device?",
+   "options": [
+    "Insecure communications link",
+    "Data leakage",
+    "Malware infection",
+    "Data spoofing"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Mobile devices hold a lot of corporate data and are often lost, stolen or loaded with risky apps, so data leakage is the most common risk. Insecure links and malware are real, but less frequent. Data spoofing is not a typical mobile-specific risk.",
+   "optionNotes": [
+    "A real risk, but less common than leakage.",
+    "Correct: data leakage is the most common mobile risk.",
+    "Mobile malware exists, but leakage is more widespread.",
+    "Not a typical mobile risk."
+   ]
+  },
+  {
+   "id": "DUMP-1185",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "A subscription service which provides power, climate control, raised flooring, and telephone wiring but NOT the computer and peripheral equipment is BEST described as a:",
+   "options": [
+    "warm site.",
+    "reciprocal site.",
+    "cold site.",
+    "hot site."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A cold site provides space, power, HVAC, flooring and wiring but no computers. A warm site adds some equipment and a hot site is fully equipped. A reciprocal site is an agreement with another organisation.",
+   "optionNotes": [
+    "A warm site includes some hardware.",
+    "A reciprocal site is a mutual agreement, not a subscription facility.",
+    "Correct: a cold site is infrastructure without equipment.",
+    "A hot site is fully equipped and ready."
+   ]
+  },
+  {
+   "id": "DUMP-1187",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Computer forensics require which of the following are MAIN steps?",
+   "options": [
+    "Announce the incident to responsible sections, analyze the data, and assimilate the data for correlation",
+    "Take action to contain the damage, announce the incident to responsible sections, and analyze the data",
+    "Acquire the data without altering, authenticate the recovered data, and analyze the data",
+    "Access the data before destruction, assimilate the data for correlation, and take action to contain the damage"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The core forensic steps are to acquire evidence without altering it, authenticate it (for example by hashing), and then analyse it. Containment and notification belong to incident response, not to forensics itself.",
+   "optionNotes": [
+    "Notification is an IR step, not forensics.",
+    "Containment is IR, not forensic procedure.",
+    "Correct: acquire, authenticate, analyse.",
+    "Mixes in IR containment and loses integrity steps."
+   ]
+  },
+  {
+   "id": "DUMP-1203",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "A security professional should consider the protection of which of the following elements FIRST when developing a defense-in-depth strategy for a mobile workforce?",
+   "options": [
+    "Network perimeters",
+    "Demilitarized Zones (DMZ)",
+    "Databases and back-end servers",
+    "End-user devices"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Mobile workforces operate outside the perimeter, so the endpoint device is the first layer to protect.",
+   "optionNotes": [
+    "Mobile users work outside the perimeter, so it gives little protection.",
+    "DMZ protects published services, not roaming users.",
+    "Back-end protection matters but the exposed entry point is the device.",
+    "Correct: endpoints are the first, most exposed layer for mobile staff."
+   ]
+  },
+  {
+   "id": "DUMP-1228",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following provides the BEST method to verify that security baseline configurations are maintained?",
+   "options": [
+    "Perform regular system security testing.",
+    "Design security early in the development cycle.",
+    "Analyze logs to determine user activities.",
+    "Perform quarterly risk assessments."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Regular security testing (e.g. configuration scans) verifies systems still match baselines.",
+   "optionNotes": [
+    "Correct: regular testing/scans confirm baselines remain in place.",
+    "Design-time security doesn't verify ongoing config.",
+    "Logs show user activity, not configuration state.",
+    "Risk assessments are not configuration verification."
+   ]
+  },
+  {
+   "id": "DUMP-1232",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A security consultant has been hired by a company to establish its vulnerability management program. The consultant is now in the deployment phase. Which of the following tasks is part of this process?",
+   "options": [
+    "Select and procure supporting technologies.",
+    "Determine a budget and cost analysis for the program.",
+    "Measure effectiveness of the program's stated goals.",
+    "Educate and train key stakeholders."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Deployment involves selecting and procuring the supporting tools; budget is planning, measurement is later.",
+   "optionNotes": [
+    "Correct: deployment selects and procures tools.",
+    "Budget is part of planning.",
+    "Effectiveness measurement is post-deployment.",
+    "Training occurs in later operational stage."
+   ]
+  },
+  {
+   "id": "DUMP-1247",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the MOST important reason for timely installation of software patches?",
+   "options": [
+    "Attackers may be conducting network analysis.",
+    "Patches are only available for a specific time.",
+    "Attackers reverse engineer the exploit from the patch.",
+    "Patches may not be compatible with proprietary software"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Attackers diff patches to build exploits quickly, so unpatched systems become exposed fast.",
+   "optionNotes": [
+    "Generic; doesn't explain urgency.",
+    "Patches don't expire.",
+    "Correct: attackers reverse-engineer patches into exploits quickly.",
+    "Compatibility is a testing concern, not reason for urgency."
+   ]
+  },
+  {
+   "id": "DUMP-1257",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "When recovering from an outage, what is the Recovery Point Objective (RPO), in terms of data recovery?",
+   "options": [
+    "The RPO is the maximum amount of time for which loss of data is acceptable.",
+    "The RPO is the minimum amount of data that needs to be recovered.",
+    "The RPO is a goal to recover a targeted percentage of data lost.",
+    "The RPO is the amount of time it takes to recover an acceptable percentage of data lost."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "RPO is the point in time to which data must be restored; it expresses the maximum tolerable period of data loss.",
+   "optionNotes": [
+    "Right: maximum tolerable data-loss window",
+    "Not a minimum amount",
+    "Not a percentage target",
+    "Describes recovery time, closer to RTO"
+   ]
+  },
+  {
+   "id": "DUMP-1258",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "When would an organization review a Business Continuity Management (BCM) system?",
+   "options": [
+    "When major changes occur on systems",
+    "When personnel changes occur",
+    "Before and after Disaster Recovery (DR) tests",
+    "At planned intervals"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A management system such as BCM (ISO 22301) is reviewed by management at planned intervals, as well as when warranted.",
+   "optionNotes": [
+    "Triggers an update but not the defined review cycle",
+    "Same; a trigger, not the cadence",
+    "Tests feed review but are not the schedule",
+    "Right: planned, periodic management review"
+   ]
+  },
+  {
+   "id": "DUMP-1261",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "In the \"Do\" phase of the Plan-Do-Check-Act model, which of the following is performed?",
+   "options": [
+    "Monitor and review performance against business continuity policy and objectives, report the results to management for review, and determine and authorize actions for remediation and improvement.",
+    "Maintain and improve the Business Continuity Management (BCM) system by taking corrective action, based on the results of management review.",
+    "Ensure the business continuity policy, controls, processes, and procedures have been implemented.",
+    "Ensure that business continuity policy, objectives, targets, controls, processes and procedures relevant to improving business continuity have been established."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In PDCA, Plan establishes the policy and controls, Do implements and operates them, Check monitors and reviews, and Act improves.",
+   "optionNotes": [
+    "Check phase",
+    "Act phase",
+    "Right: implementation and operation",
+    "Plan phase"
+   ]
+  },
+  {
+   "id": "DUMP-1262",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Assume that a computer was powered off when an information security professional arrived at a crime scene. Which of the following actions should be performed after the crime scene is isolated?",
+   "options": [
+    "Turn the computer on and collect volatile data.",
+    "Turn the computer on and collect network information.",
+    "Leave the computer off and prepare the computer for transportation to the laboratory",
+    "Remove the hard drive, prepare it for transportation, and leave the hardware at the scene."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A powered-off computer has no volatile data to capture, and turning it on alters evidence. It should stay off and be packaged for transport to the lab.",
+   "optionNotes": [
+    "Booting changes evidence; volatile data is already gone",
+    "Same problem",
+    "Right: preserve state and transport",
+    "Separating components at the scene risks evidence handling"
+   ]
+  },
+  {
+   "id": "DUMP-1265",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "While dealing with the consequences of a security incident, which of the following security controls are MOST appropriate?",
+   "options": [
+    "Detective and recovery controls",
+    "Corrective and recovery controls",
+    "Preventative and corrective controls",
+    "Recovery and proactive controls"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Once an incident has occurred, corrective controls fix the damage and recovery controls restore operations.",
+   "optionNotes": [
+    "Detection is already done",
+    "Right: deal with consequences",
+    "Prevention is too late",
+    "Proactive controls are preventive"
+   ]
+  },
+  {
+   "id": "DUMP-1266",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Directive controls are a form of change management policy and procedures. Which of the following subsections are recommended as part of the change management process?",
+   "options": [
+    "Build and test",
+    "Implement security controls",
+    "Categorize Information System (IS)",
+    "Select security controls"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Change management includes building and testing the change before implementation. The other options are NIST RMF steps rather than change-process subsections.",
+   "optionNotes": [
+    "Right: build/test is a change-process stage",
+    "RMF step",
+    "RMF step",
+    "RMF step"
+   ]
+  },
+  {
+   "id": "DUMP-1267",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the BEST method to gather evidence from a computer's hard drive?",
+   "options": [
+    "Disk duplication",
+    "Disk replacement",
+    "Forensic signature",
+    "Forensic imaging"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A forensic image is a verified bit-for-bit copy that preserves deleted and slack space, and analysis is done on the copy.",
+   "optionNotes": [
+    "Generic copy may miss slack/unallocated data and lacks forensic verification",
+    "Not evidence collection",
+    "Not a collection method",
+    "Right: bit-stream verified copy"
+   ]
+  },
+  {
+   "id": "DUMP-1271",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the BEST way to determine the success of a patch management process?",
+   "options": [
+    "Analysis and impact assessment",
+    "Auditing and assessment",
+    "Configuration management (CM)",
+    "Change management"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Auditing and assessment check that patches were actually applied and are effective, which measures how well the process works.",
+   "optionNotes": [
+    "Done before patching",
+    "Right: verifies outcome",
+    "Tracks baselines, not success measurement",
+    "Governs approval of changes"
+   ]
+  },
+  {
+   "id": "DUMP-1277",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An audit of an application reveals that the current configuration does not match the configuration of the originally implemented application. Which of the following is the FIRST action to be taken?",
+   "options": [
+    "Recommend an update to the change control process.",
+    "Verify the approval of the configuration change.",
+    "Roll back the application to the original configuration.",
+    "Document the changes to the configuration."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "First determine whether the change went through approved change control; the response depends on whether it was authorized.",
+   "optionNotes": [
+    "Premature",
+    "Right: check authorization first",
+    "Premature rollback may break approved work",
+    "Comes after verification"
+   ]
+  },
+  {
+   "id": "DUMP-1295",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following activities should a forensic examiner perform FIRST when determining the priority of digital evidence collection at a crime scene?",
+   "options": [
+    "Gather physical evidence",
+    "Establish order of volatility.",
+    "Assign responsibilities to personnel on the scene.",
+    "Establish a list of files to examine."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Collection priority is driven by order of volatility, with the most volatile evidence captured first.",
+   "optionNotes": [
+    "Physical evidence matters but does not set the order of digital collection",
+    "Right: volatility ranking (RAM, network state, then disk) sets the order",
+    "Staffing logistics, not evidence prioritization",
+    "File selection happens later, during lab analysis"
+   ]
+  },
+  {
+   "id": "DUMP-1300",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "The Chief Information Security Officer (CISO) of a small organization is making a case for building a security operations center (SOC). While debating between an in-house, fully outsourced, or a hybrid capability, which of the following would be the MAIN consideration, regardless of the model?",
+   "options": [
+    "Skill set and training",
+    "Headcount and capacity",
+    "Tools and technologies",
+    "Scope and service catalog"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Before choosing in-house, outsourced or hybrid, the CISO must define what the SOC will do: its scope and service catalog. Staffing, skills and tools are all sized from that definition, whichever model is chosen.",
+   "optionNotes": [
+    "Skills follow from the services defined.",
+    "Headcount is derived from scope.",
+    "Tools are chosen to deliver the defined services.",
+    "Correct: scope/service catalog is the basis for any SOC model."
+   ]
+  },
+  {
+   "id": "DUMP-1333",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following are all elements of a disaster recovery plan (DRP)?",
+   "options": [
+    "Document the actual location of the DRP, developing an incident notification procedure, evaluating costs of critical components",
+    "Document the actual location of the DRP, developing an incident notification procedure, establishing recovery locations",
+    "Maintain proper documentation of all server logs, developing an incident notification procedure, establishing recovery locations",
+    "Document the actual location of the DRP, recording minutes at all DRP planning sessions, establishing recovery locations"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A DRP documents where the plan is kept, how incidents are reported and escalated, and where recovery will happen. Cost evaluation, server logs and meeting minutes are not DRP elements.",
+   "optionNotes": [
+    "Cost evaluation belongs to the BIA/strategy, not the DRP.",
+    "Correct: all three are DRP components.",
+    "Server log documentation is not a DRP element.",
+    "Meeting minutes are not part of the plan."
+   ]
+  },
+  {
+   "id": "DUMP-1344",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "Which is the RECOMMENDED configuration mode for sensors for an intrusion prevention system (IPS) if the prevention capabilities will be used?",
+   "options": [
+    "Active",
+    "Passive",
+    "Inline",
+    "Span"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "An IPS can only block traffic if it sits inline in the traffic path. Passive or SPAN sensors only detect.",
+   "optionNotes": [
+    "'Active' is not a standard sensor deployment mode.",
+    "Passive sensors cannot block.",
+    "Correct: inline placement enables prevention.",
+    "SPAN copies traffic; detection only."
+   ]
+  },
+  {
+   "id": "DUMP-1347",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the MOST effective measure for dealing with rootkit attacks?",
+   "options": [
+    "Turning off unauthorized services and rebooting the system",
+    "Finding and replacing the altered binaries with legitimate ones",
+    "Restoring the system from the last backup",
+    "Reinstalling the system from trusted sources"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Rootkits subvert the OS so nothing on the host can be trusted; rebuilding from trusted media is the only reliable remediation.",
+   "optionNotes": [
+    "Rootkit persists in the kernel/binaries; a reboot does not remove it.",
+    "Cannot be sure all altered components are found.",
+    "Last backup may already contain the rootkit.",
+    "Right: clean rebuild from trusted media is the only assured fix."
+   ]
+  },
+  {
+   "id": "DUMP-1350",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Information Security Continuous Monitoring (ISCM) is defined as maintaining ongoing awareness of information security, vulnerabilities, and threats to support organizational risk management decisions. Which of the following is the FIRST step in developing an ISCM strategy and implementing an ISCM program?",
+   "options": [
+    "Define a strategy based on risk tolerance that maintains clear visibility into assets, awareness of vulnerabilities, up-to-date threat information, and mission/business impacts.",
+    "Conduct a vulnerability assessment to discover current threats against the environment and incorporate them into the program.",
+    "Respond to findings with technical management, and operational mitigating activities or acceptance, transference/sharing, or avoidance/rejection.",
+    "Analyze the data collected and report findings, determining the appropriate response. It may be necessary to collect additional information to clarify or supplement existing monitoring data."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "NIST SP 800-137 starts ISCM by defining a risk-tolerance-based strategy; establishing, implementing, analyzing and responding follow.",
+   "optionNotes": [
+    "Right: \"Define\" is step one of NIST SP 800-137.",
+    "A vulnerability assessment is an activity within the program, not its first step.",
+    "Responding to findings is a later step.",
+    "Analyzing and reporting is a later step."
+   ]
+  },
+  {
+   "id": "DUMP-1355",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following management processes allots ONLY those services required for users to accomplish their tasks, change default user passwords, and set servers to retrieve antivirus updates?",
+   "options": [
+    "Compliance",
+    "Configuration",
+    "Identity",
+    "Patch"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Disabling unneeded services, changing defaults and setting AV update sources are configuration (hardening/baseline) management tasks.",
+   "optionNotes": [
+    "Compliance checks conformance, it does not set systems up.",
+    "Right: hardening and baselines are configuration management.",
+    "Identity management handles accounts and access, not services or AV settings.",
+    "Patch management covers applying updates only."
+   ]
+  },
+  {
+   "id": "DUMP-1360",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following measures serves as the BEST means for protecting data on computers, smartphones, and external storage devices when traveling to high-risk countries?",
+   "options": [
+    "Review applicable destination country laws, forensically clean devices prior to travel, and only download sensitive data over a virtual private network (VPN) upon arriving at the destination.",
+    "Keep laptops, external storage devices, and smartphones in the hotel room when not in use.",
+    "Leverage a Secure Socket Layer (SSL) connection over a virtual private network (VPN) to download sensitive data upon arriving at the destination.",
+    "Use multi-factor authentication (MFA) to gain access to data stored on laptops or external storage devices and biometric fingerprint access control isms to unlock smartphones."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Knowing local law, carrying clean (minimal-data) devices and pulling sensitive data only over a VPN minimizes exposure in hostile locations.",
+   "optionNotes": [
+    "Right: legal awareness, clean devices and VPN use together.",
+    "Hotel rooms are a known theft/tampering risk.",
+    "Covers transport only and is redundant wording.",
+    "Device controls do not prevent seizure or compelled access."
+   ]
+  },
+  {
+   "id": "DUMP-1363",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "A security professional has reviewed a recent site assessment and has noted that a server room on the second floor of a building has Heating, Ventilation, and Air Conditioning (HVAC) intakes on the ground level that have ultraviolet light filters installed, Aero-K Fire suppression in the server room, and pre-action fire suppression on floors above the server room. Which of the following changes can the security professional recommend to reduce risk associated with these conditions?",
+   "options": [
+    "Remove the ultraviolet light filters on the HVAC intake and replace the fire suppression system on the upper floors with a dry system",
+    "Add additional ultraviolet light filters to the HVAC intake supply and return ducts and change server room fire suppression to FM-200",
+    "Apply additional physical security around the HVAC intakes and update upper floor fire suppression to FM-200.",
+    "Elevate the HVAC intake by constructing a plenum or external shaft over it and convert the server room fire suppression to a pre-action system"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Ground-level intakes are exposed to tampering/contaminants, so elevating them helps; pre-action is the preferred water-based option for the server room.",
+   "optionNotes": [
+    "Removing UV filters and using dry pipe upstairs does not fix the intake exposure.",
+    "Gas changes in the server room are not the issue.",
+    "Physical security alone leaves the intakes low; FM-200 upstairs is impractical.",
+    "Right: elevated intakes plus pre-action in the server room."
+   ]
+  },
+  {
+   "id": "DUMP-1401",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is an important design feature for the outer door of a mantrap?",
+   "options": [
+    "Allow it to be opened by an alarmed emergency button.",
+    "Do not allow anyone to enter it alone.",
+    "Do not allow it to be observed by dosed-circuit television (CCTV) cameras.",
+    "Allow it be opened when the inner door of the mantrap is also open"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said D] Life safety comes first, so a mantrap's outer door must still let people out in an emergency, for example through an alarmed emergency release. Letting the outer door open while the inner door is open defeats the purpose of a mantrap.",
+   "optionNotes": [
+    "Correct: provides emergency egress while the alarm preserves security.",
+    "Mantraps exist to hold one person at a time; this is not a door design feature.",
+    "Mantraps should be monitored by CCTV, not hidden from it.",
+    "Both doors open at once removes the mantrap's interlock control."
+   ]
+  },
+  {
+   "id": "DUMP-1410",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "What is the FINAL step in the waterfall method for contingency planning?",
+   "options": [
+    "Maintenance",
+    "Testing",
+    "Implementation",
+    "Training"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Contingency planning ends with ongoing maintenance, which keeps the plan current as systems and the business change. Testing and training come before it.",
+   "optionNotes": [
+    "Correct: maintenance is the final, ongoing phase.",
+    "Testing comes before the maintenance phase.",
+    "Implementation comes earlier.",
+    "Training comes before maintenance."
+   ]
+  },
+  {
+   "id": "DUMP-1413",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following features is MOST effective in mitigating against theft of data on a corporate mobile device Which has stolen?",
+   "options": [
+    "Whole device encryption with key escrow",
+    "Mobile Device Management (MDMJ with device wipe",
+    "Mobile device tracking with geolocation",
+    "Virtual Private Network (VPN) with traffic encryption"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said B] Once a device is stolen, the thief controls whether it ever connects to a network, so a remote wipe may never arrive. Whole-device encryption keeps the stored data unreadable without the key no matter what happens to the device, and key escrow lets the organization recover its own data. The OSG explicitly warns that remote wipe is not a guarantee of data security.",
+   "optionNotes": [
+    "Correct: encryption protects data at rest whatever the device's connectivity, and escrow keeps corporate recovery possible.",
+    "Remote wipe depends on the device receiving the signal; thieves can pull the SIM, disable Wi-Fi or use a Faraday bag.",
+    "Tracking may help recover the device but does nothing to stop the data being read.",
+    "VPN protects data in transit, not the data stored on a stolen device."
+   ]
+  },
+  {
+   "id": "DUMP-1419",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the PRIMARY reason that a bit-level copy is more desirable than a file-level copy when replicating a hard drive's contents for an e-discovery investigation?",
+   "options": [
+    "Files that have been deleted will be transferred.",
+    "The file and directory structure is retained.",
+    "File-level security settings will be preserved.",
+    "The corruption of files is less likely."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A bit-level (bitstream) image copies every sector, including unallocated space and slack. Deleted files and fragments are therefore captured, which a file copy would miss.",
+   "optionNotes": [
+    "Correct: unallocated and slack space, and so deleted data, are preserved.",
+    "A file copy also keeps the directory structure.",
+    "A file copy can also preserve permissions.",
+    "Copy method does not mainly affect corruption."
+   ]
+  },
+  {
+   "id": "DUMP-1420",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MINIMUM standard for testing a disaster recovery plan (DRP)?",
+   "options": [
+    "Semi-annually and in alignment with a fiscal half-year business cycle",
+    "Annually or less frequently depending upon audit department requirements",
+    "Quarterly or more frequently depending upon the advice of the information security manager",
+    "As often as necessary depending upon the stability of the environment and business requirements"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "There is no fixed calendar for testing a DR plan. It should be tested as often as the environment's rate of change and business requirements demand, and at least whenever significant changes happen.",
+   "optionNotes": [
+    "An arbitrary fiscal schedule is not a standard.",
+    "'Or less' is too weak, and audit does not set the minimum.",
+    "The security manager's advice is not the deciding factor.",
+    "Correct: test frequency follows business need and the rate of change."
+   ]
+  },
+  {
+   "id": "DUMP-1429",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following techniques is MOST useful when dealing with Advanced persistent Threat (APT) intrusions on live virtualized environments?",
+   "options": [
+    "Antivirus operations",
+    "Reverse engineering",
+    "Memory forensics",
+    "Logfile analysis"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "APTs often live in memory and evade disk-based tools. In a live virtualized environment, VM memory can be captured and analyzed to find the hidden implants.",
+   "optionNotes": [
+    "Antivirus is usually evaded by APTs.",
+    "Reverse engineering is useful later but is not the main live technique.",
+    "Correct: memory forensics reveals resident, stealthy code.",
+    "APTs commonly tamper with or evade logs."
+   ]
+  },
+  {
+   "id": "DUMP-1434",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "What would be the BEST action to take in a situation where collected evidence was left unattended overnight in an unlocked vehicle?",
+   "options": [
+    "Report the matter to the local police authorities.",
+    "Move evidence to a climate-controlled environment.",
+    "Re-inventory the evidence and provide it to the evidence custodian.",
+    "Immediately report the matter to the case supervisor."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Chain of custody was broken. The integrity issue must be escalated straight away to the case supervisor, who decides how it affects admissibility. Quietly re-inventorying it would hide the gap.",
+   "optionNotes": [
+    "Police involvement is the supervisor's decision.",
+    "Moving the evidence does not fix the custody break.",
+    "Re-inventorying hides the breach rather than reporting it.",
+    "Correct: prompt escalation of the custody failure."
+   ]
+  },
+  {
+   "id": "DUMP-1447",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following actions should be taken by a security professional when a mission critical computer network attack is suspected?",
+   "options": [
+    "Isolate the network, log an independent report, fix the problem, and redeploy the computer.",
+    "Isolate the network, install patches, and report the occurrence.",
+    "Prioritize, report, and investigate the occurrence.",
+    "Turn the rooter off, perform forensic analysis, apply the appropriate fin, and log incidents."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Incident response starts with triage: prioritize based on impact, report through the proper channels, then investigate. The other options jump to fixes or shutdowns that destroy evidence and skip escalation.",
+   "optionNotes": [
+    "Fixes and redeploys before investigating.",
+    "Patches before analysis, which loses evidence.",
+    "Correct: triage, report, investigate.",
+    "Shutting down destroys volatile evidence."
+   ]
+  },
+  {
+   "id": "DUMP-1448",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the MOST important reason for using a chain of custody from?",
+   "options": [
+    "To document those who were In possession of the evidence at every point In time",
+    "To collect records of all digital forensic professionals working on a case",
+    "To document collected digital evidence",
+    "To ensure that digital evidence is not overlooked during the analysis"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A chain of custody form records every person who held the evidence, plus when and why. That proves the evidence's integrity for admissibility.",
+   "optionNotes": [
+    "Correct: documents possession at every point.",
+    "Records custodians, not all professionals.",
+    "An evidence inventory, not custody.",
+    "Analysis completeness is unrelated."
+   ]
+  },
+  {
+   "id": "DUMP-1458",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the BEST method if an investigator wishes to analyze a hard drive which may be used as evidence?",
+   "options": [
+    "Leave the hard drive in place and use only verified and authenticated Operating Systems (OS) utilities ...",
+    "Log into the system and immediately make a copy of all relevant files to a Write Once, Read Many ...",
+    "Remove the hard drive from the system and make a copy of the hard drive's contents using imaging hardware.",
+    "Use a separate bootable device to make a copy of the hard drive before booting the system and analyzing the hard drive."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Forensic best practice is to remove the drive and create a verified bit-stream image using write-blocking imaging hardware, analyzing only the copy.",
+   "optionNotes": [
+    "Alters live evidence",
+    "Logging in changes evidence",
+    "Correct: hardware imaging",
+    "Booting risks altering evidence"
+   ]
+  },
+  {
+   "id": "DUMP-1464",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In which of the following scenarios is locking server cabinets and limiting access to keys preferable to locking the server room to prevent unauthorized access?",
+   "options": [
+    "Server cabinets are located in an unshared workspace.",
+    "Server cabinets are located in an isolated server farm.",
+    "Server hardware is located in a remote area.",
+    "Server cabinets share workspace with multiple projects."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "When the room is shared with other projects, locking the room does not keep other occupants out, so cabinet-level locks are needed.",
+   "optionNotes": [
+    "Room lock suffices",
+    "Room lock suffices",
+    "Remote location does not imply shared space",
+    "Correct: shared workspace"
+   ]
+  },
+  {
+   "id": "DUMP-1473",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization recently upgraded to a Voice over Internet Protocol (VoIP) phone system. Management is concerned with unauthorized phone usage. Security consultant is responsible for putting together a plan to secure these phones. Administrators have assigned unique personal identification number codes for each person in the organization. What is the BEST solution?",
+   "options": [
+    "Use phone locking software to enforce usage and PIN policies.",
+    "Inform the user to change the PIN regularly. Implement call detail records (CDR) reports to track usage.",
+    "Have the administrator enforce a policy to change the PIN regularly. Implement call detail records (CDR) reports to track usage.",
+    "Have the administrator change the PIN regularly. Implement call detail records (CDR) reports to track usage."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Technical enforcement through phone-locking software applies PIN and usage policy consistently rather than relying on users or admins manually.",
+   "optionNotes": [
+    "Correct: technical enforcement",
+    "Relies on users",
+    "Policy without technical enforcement",
+    "Admin knowing PINs breaks accountability"
+   ]
+  },
+  {
+   "id": "DUMP-1475",
+   "domain": 7,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A vehicle of a private courier company that transports backup data for offsite storage was robbed while. The incident management team is now responsible to estimate the robbery. Which of the following would help the incident management team to MOST effectively analyze the business impact of the robbery?",
+   "options": [
+    "Log of backup administrative actions",
+    "Log of the transported media and its classification marking",
+    "Log of the transported media and its detailed contents",
+    "Log of backed up data and their respective data custodians"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Knowing which media were lost and their classification lets the team quickly gauge the impact.",
+   "optionNotes": [
+    "Not about lost data",
+    "Correct: shows what was lost and how sensitive it is",
+    "Detailed contents rarely tracked; classification suffices",
+    "Custodians do not show impact"
+   ]
+  },
+  {
+   "id": "DUMP-1476",
+   "domain": 7,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "What is a warm site when conducting Business continuity planning (BCP)?",
+   "options": [
+    "A location, other than the normal facility, used to process data on a daily basis",
+    "An area partially equipped with equipment and resources to recover business functions",
+    "A place void of any resources or equipment except air conditioning and raised flooring",
+    "An alternate facility that allows for Immediate cutover to enable continuation of business functions"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A warm site is partially equipped and needs some setup before operations resume.",
+   "optionNotes": [
+    "Not a definition of warm site",
+    "Correct: partially equipped, needs some setup",
+    "Cold site",
+    "Hot site"
+   ]
+  }
+ ]
+}

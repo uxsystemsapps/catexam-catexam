@@ -1,0 +1,3317 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 3: Security Architecture and Engineering",
+ "questions": [
+  {
+   "id": "DUMP-0005",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MOST important consideration from a data security perspective when an organization plans to relocate?",
+   "options": [
+    "Ensure the fire prevention and detection systems are sufficient to protect personnel",
+    "Review the architectural plans to determine how many emergency exits are present",
+    "Conduct a gap analysis of a new facilities against existing security requirements",
+    "Revise the Disaster Recovery and Business Continuity (DR/BC) plan"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Before relocating, compare the new facility against existing security requirements via a gap analysis.",
+   "optionNotes": [
+    "Life safety matters, but the question asks data security.",
+    "Exit count is life safety, not data security.",
+    "Correct: gap analysis checks the new site meets security requirements.",
+    "DR/BC revision follows once the site's security posture is known."
+   ]
+  },
+  {
+   "id": "DUMP-0006",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following types of technologies would be the MOST cost-effective method to provide a reactive control for protecting personnel in public areas?",
+   "options": [
+    "Install mantraps at the building entrances",
+    "Enclose the personnel entry area with polycarbonate plastic",
+    "Supply a duress alarm for personnel exposed to the public",
+    "Hire a guard to protect the public area"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A duress alarm is a low-cost reactive control that summons help when personnel are threatened.",
+   "optionNotes": [
+    "Mantraps are preventive and expensive.",
+    "Barriers are preventive, not reactive, and costly.",
+    "Correct: cheap reactive control that summons help.",
+    "A guard is costly ongoing labor."
+   ]
+  },
+  {
+   "id": "DUMP-0018",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "What is the second phase of Public Key Infrastructure (PKI) key/certificate life-cycle management?",
+   "options": [
+    "Implementation Phase",
+    "Initialization Phase",
+    "Cancellation Phase",
+    "Issued Phase"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said B] The key/certificate lifecycle is Initialization, Issued, then Cancellation; Issued is the second phase.",
+   "optionNotes": [
+    "Not a named phase of the model.",
+    "First phase (registration, key generation).",
+    "Third phase (revocation/expiry).",
+    "Correct: Issued phase is second."
+   ]
+  },
+  {
+   "id": "DUMP-0020",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which technique can be used to make an encryption scheme more resistant to a known plaintext attack?",
+   "options": [
+    "Hashing the data before encryption",
+    "Hashing the data after encryption",
+    "Compressing the data after encryption",
+    "Compressing the data before encryption"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Compressing before encryption removes redundancy and patterns, hindering known-plaintext analysis.",
+   "optionNotes": [
+    "Hashing first loses recoverability of data.",
+    "Hashing ciphertext adds integrity, not plaintext resistance.",
+    "Compressed ciphertext gains nothing; it's random already.",
+    "Correct: compression removes redundancy before encryption."
+   ]
+  },
+  {
+   "id": "DUMP-0021",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which security service is served by the process of encrypting plaintext with the sender's private key and decrypting cipher text with the sender's public key?",
+   "options": [
+    "Confidentiality",
+    "Integrity",
+    "Identification",
+    "Availability"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Encrypting with the private key lets anyone with the public key verify who sent it, providing identification/authentication of origin.",
+   "optionNotes": [
+    "Anyone with the public key can decrypt; no confidentiality.",
+    "Integrity needs a hash/digest, not just private-key encryption.",
+    "Correct: proves the sender's identity (origin authentication).",
+    "Not related to availability."
+   ]
+  },
+  {
+   "id": "DUMP-0024",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The use of private and public encryption keys is fundamental in the implementation of which of the following?",
+   "options": [
+    "Diffie-Hellman algorithm",
+    "Secure Sockets Layer (SSL)",
+    "Advanced Encryption Standard (AES)",
+    "Message Digest 5 (MD5)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SSL/TLS relies on public/private key pairs for server authentication and key exchange.",
+   "optionNotes": [
+    "DH exchanges keys but is not itself a public/private encryption scheme.",
+    "Correct: SSL uses public key pairs and certificates.",
+    "AES is symmetric.",
+    "MD5 is a hash."
+   ]
+  },
+  {
+   "id": "DUMP-0063",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Passive Infrared Sensors (PIR) used in a non-climate controlled environment should",
+   "options": [
+    "reduce the detected object temperature in relation to the background temperature.",
+    "increase the detected object temperature in relation to the background temperature.",
+    "automatically compensate for variance in background temperature.",
+    "detect objects of a specific temperature independent of the background temperature."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "PIR sensors detect heat differences, so in uncontrolled environments they must compensate for changing background temperature. PIR sensors detect a change in infrared energy relative to the background. Where ambient temperature swings, the sensor must adjust its baseline or it will raise false alarms or miss intruders.",
+   "optionNotes": [
+    "Sensors cannot change the object's temperature.",
+    "Sensors cannot change the object's temperature.",
+    "Right: PIR must adapt to shifting ambient heat to avoid false alarms or misses.",
+    "PIR works on differential heat, not absolute temperature."
+   ]
+  },
+  {
+   "id": "DUMP-0085",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The birthday attack is MOST effective against which one of the following cipher technologies?",
+   "options": [
+    "Chaining block encryption",
+    "Asymmetric cryptography",
+    "Cryptographic hash",
+    "Streaming cryptography"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Birthday attacks find collisions, targeting hash functions. The birthday paradox makes it much cheaper than expected to find two inputs with the same digest. That collision property only threatens hash functions.",
+   "optionNotes": [
+    "Block chaining is not the target of collision attacks.",
+    "Asymmetric crypto is attacked differently (factoring etc.).",
+    "Right: birthday attacks find hash collisions.",
+    "Stream ciphers are not primarily vulnerable to birthday collisions."
+   ]
+  },
+  {
+   "id": "DUMP-0088",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "As one component of a physical security system, an Electronic Access Control (EAC) token is BEST known for its ability to",
+   "options": [
+    "overcome the problems of key assignments.",
+    "monitor the opening of windows and doors.",
+    "trigger alarms when intruders are detected.",
+    "lock down a facility during an emergency."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Electronic tokens remove the burden of physical key issuance, revocation and rekeying. Monitoring doors and windows (B) and triggering alarms (C) are sensor functions. Electronic tokens can be issued and revoked centrally, which removes the cost of rekeying when keys are lost.",
+   "optionNotes": [
+    "Right: electronic tokens avoid key issuance, loss and rekeying problems.",
+    "Door/window monitoring is done by contact sensors.",
+    "Intrusion alarms come from sensors, not tokens.",
+    "Lockdown is a system function, not the token's strength."
+   ]
+  },
+  {
+   "id": "DUMP-0097",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the BEST way to verify the integrity of a software patch?",
+   "options": [
+    "Cryptographic checksums",
+    "Version numbering",
+    "Automatic updates",
+    "Vendor assurance"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Cryptographic checksums/hashes verify a patch hasn't been altered. Version numbers and vendor assurances can be spoofed or are just trust. A cryptographic hash or signature proves the patch was not altered.",
+   "optionNotes": [
+    "Right: cryptographic hashes/signatures prove the patch is unaltered.",
+    "Version numbers can be faked.",
+    "Automatic updates are delivery, not verification.",
+    "Vendor assurance is trust, not verification."
+   ]
+  },
+  {
+   "id": "DUMP-0102",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "What principle requires that changes to the plaintext affect many parts of the ciphertext?",
+   "options": [
+    "Diffusion",
+    "Encapsulation",
+    "Obfuscation",
+    "Permutation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Diffusion (Shannon) means a small change in plaintext spreads across many ciphertext bits, hiding statistical patterns. Confusion is its counterpart, obscuring the key-ciphertext relationship.",
+   "optionNotes": [
+    "Right: Shannon's diffusion property",
+    "Encapsulation is a layering/OOP concept",
+    "Obfuscation hides code or meaning, not this crypto property",
+    "Permutation is a technique used to achieve diffusion, not the principle"
+   ]
+  },
+  {
+   "id": "DUMP-0107",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following BEST represents the principle of open design?",
+   "options": [
+    "Disassembly, analysis, or reverse engineering will reveal the security functionality of the computer system.",
+    "Algorithms must be protected to ensure the security and interoperability of the designed system.",
+    "A knowledgeable user should have limited privileges on the system to prevent their ability to compromise security capabilities.",
+    "The security of a mechanism should not depend on the secrecy of its design or implementation."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Open design (Saltzer and Schroeder, Kerckhoffs) holds that a mechanism must stay secure even if its design is public. Security should rest on keys and sound design, not secrecy.",
+   "optionNotes": [
+    "Describes reverse-engineering exposure, not the principle",
+    "Protecting algorithms is security through obscurity, the opposite",
+    "This is least privilege",
+    "Right: no reliance on secrecy of design"
+   ]
+  },
+  {
+   "id": "DUMP-0108",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the MOST effective countermeasure to a malicious code attack against a mobile system?",
+   "options": [
+    "Sandbox",
+    "Change control",
+    "Memory management",
+    "Public-Key Infrastructure (PKI)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A sandbox runs mobile apps or code in isolation so malicious code cannot touch other apps or system resources. It contains the damage regardless of whether the code was detected.",
+   "optionNotes": [
+    "Right: isolation contains malicious code",
+    "Change control governs authorised changes, not malware",
+    "Memory management is a basic OS function, not malware containment",
+    "PKI can sign code but signed code may still be malicious"
+   ]
+  },
+  {
+   "id": "DUMP-0110",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Including a Trusted Platform Module (TPM) in the design of a computer system is an example of a technique to what?",
+   "options": [
+    "Interface with the Public Key Infrastructure (PKI)",
+    "Improve the quality of security software",
+    "Prevent Denial of Service (DoS) attacks",
+    "Establish a secure initial state"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A TPM is a hardware root of trust that measures boot components and protects keys. That supports secure or measured boot, establishing a trusted initial state.",
+   "optionNotes": [
+    "TPM can store keys but is not mainly a PKI interface",
+    "It does not improve software quality",
+    "It provides no DoS protection",
+    "Right: root of trust for a secure start-up state"
+   ]
+  },
+  {
+   "id": "DUMP-0117",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "When building a data center, site location and construction factors that increase the level of vulnerability to physical threats include",
+   "options": [
+    "hardened building construction with consideration of seismic factors.",
+    "adequate distance from and lack of access to adjacent buildings.",
+    "curved roads approaching the data center.",
+    "proximity to high crime areas of the city."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Being close to high-crime areas raises the risk of theft, vandalism and intrusion. The other options are protective design features.",
+   "optionNotes": [
+    "Hardened, seismic-aware construction reduces risk",
+    "Distance from adjacent buildings reduces risk",
+    "Curved approach roads slow vehicles and reduce ramming risk",
+    "Right: high crime nearby increases threat exposure"
+   ]
+  },
+  {
+   "id": "DUMP-0136",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is an attacker MOST likely to target to gain privileged access to a system?",
+   "options": [
+    "Programs that write to system resources",
+    "Programs that write to user directories",
+    "Log files containing sensitive information",
+    "Log files containing system calls"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Programs that write to system resources usually run with elevated privileges. Exploiting them, for example through a buffer overflow, gives the attacker those privileges.",
+   "optionNotes": [
+    "Right: elevated programs yield privilege escalation",
+    "User-directory writers run with user rights",
+    "Sensitive logs give disclosure, not privilege",
+    "System-call logs give information, not privilege"
+   ]
+  },
+  {
+   "id": "DUMP-0137",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The Hardware Abstraction Layer (HAL) is implemented in the",
+   "options": [
+    "system software.",
+    "system hardware.",
+    "application software.",
+    "network hardware."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The HAL is an operating-system (system software) layer. It hides hardware differences from the kernel and drivers.",
+   "optionNotes": [
+    "Right: part of the OS",
+    "It abstracts the hardware rather than residing in it",
+    "Applications sit above the OS",
+    "Network hardware is unrelated"
+   ]
+  },
+  {
+   "id": "DUMP-0156",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "The key benefits of a signed and encrypted e-mail include",
+   "options": [
+    "confidentiality, authentication, and authorization.",
+    "confidentiality, non-repudiation, and authentication.",
+    "non-repudiation, authorization, and authentication.",
+    "non-repudiation, confidentiality, and authorization."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Encryption gives confidentiality; the digital signature gives origin authentication, integrity and non-repudiation. Neither provides authorization.",
+   "optionNotes": [
+    "Signing/encrypting gives no authorization decision",
+    "Encryption=confidentiality, signature=authentication and non-repudiation",
+    "Authorization is not a property of signed mail",
+    "Authorization is not a property of signed mail"
+   ]
+  },
+  {
+   "id": "DUMP-0169",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following wraps the decryption key of a full disk encryption implementation and ties the hard disk drive to a particular device?",
+   "options": [
+    "Trusted Platform Module (TPM)",
+    "Preboot eXecution Environment (PXE)",
+    "Key Distribution Center (KDC)",
+    "Simple Key-Management for Internet Protocol (SKIP)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The TPM seals the FDE key, binding the drive to that specific hardware platform.",
+   "optionNotes": [
+    "TPM seals the FDE key to the platform's measured state",
+    "PXE is a network boot mechanism",
+    "KDC issues Kerberos tickets",
+    "SKIP is an obsolete IPsec keying protocol"
+   ]
+  },
+  {
+   "id": "DUMP-0178",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When implementing controls in a heterogeneous end-point network for an organization, it is critical that",
+   "options": [
+    "hosts are able to establish network communications.",
+    "users can make modifications to their security software configurations.",
+    "common software security components be implemented across all hosts.",
+    "firewalls running on each host are fully customizable by the user."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In heterogeneous environments, consistent common security components across hosts are needed for uniform protection and manageability.",
+   "optionNotes": [
+    "Connectivity is functional, not a security control requirement",
+    "User-modifiable security settings weaken control",
+    "Common security components ensure uniform, manageable protection",
+    "User-customizable firewalls undermine consistent policy"
+   ]
+  },
+  {
+   "id": "DUMP-0215",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the MOST difficult to enforce when using cloud computing?",
+   "options": [
+    "Data access",
+    "Data backup",
+    "Data recovery",
+    "Data disposal"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In multi-tenant cloud storage, customers cannot physically verify that data is destroyed across replicas, backups and reallocated media. Disposal is therefore the hardest to enforce.",
+   "optionNotes": [
+    "Access can be controlled with IAM and encryption.",
+    "Backups are a contracted service and verifiable.",
+    "Recovery can be tested.",
+    "Correct: secure deletion across provider infrastructure is hard to verify."
+   ]
+  },
+  {
+   "id": "DUMP-0223",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -2.0,
+   "stem": "The use of proximity card to gain access to a building is an example of what type of security control?",
+   "options": [
+    "Legal",
+    "Logical",
+    "Physical",
+    "Procedural"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A proximity card controls physical entry to a building, making it a physical access control.",
+   "optionNotes": [
+    "Legal controls are laws or contracts.",
+    "Logical controls protect access to systems and data.",
+    "Correct: it controls physical entry.",
+    "Procedures are administrative; the card mechanism is physical."
+   ]
+  },
+  {
+   "id": "DUMP-0224",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the MOST effective attack against cryptographic hardware modules?",
+   "options": [
+    "Plaintext",
+    "Brute force",
+    "Power analysis",
+    "Man-in-the-middle (MITM)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Cryptographic hardware resists logical attacks but can leak keys through side channels. Power analysis measures consumption to recover key material and is the most effective against hardware modules.",
+   "optionNotes": [
+    "Plaintext attacks target algorithms, not hardware.",
+    "Brute force against strong keys is infeasible.",
+    "Correct: side-channel power analysis extracts keys from hardware.",
+    "MITM targets protocols, not modules."
+   ]
+  },
+  {
+   "id": "DUMP-0235",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An organization decides to implement a partial Public Key Infrastructure (PKI) with only the servers having digital certificates. What is the security benefit of this implementation?",
+   "options": [
+    "Clients can authenticate themselves to the servers.",
+    "Mutual authentication is available between the clients and servers.",
+    "Servers are able to issue digital certificates to the client.",
+    "Servers can authenticate themselves to the client."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "When only servers hold certificates, servers can prove their identity to clients (as in typical TLS), but clients cannot be authenticated by certificate.",
+   "optionNotes": [
+    "Clients lack certificates.",
+    "Mutual authentication needs client certificates.",
+    "Servers are not CAs.",
+    "Correct: server certificates authenticate servers to clients."
+   ]
+  },
+  {
+   "id": "DUMP-0252",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "In a Multilevel Security (MLS) system, the following sensitivity labels are used in increasing levels of sensitivity: restricted, confidential, secret, top secret. Table A lists the clearance levels for four users, while Table B lists the security classes of four different files. Table A (user clearances): User A = Restricted, User B = Confidential, User C = Secret, User D = Top Secret. Table B (file classes): File 1 = Restricted, File 2 = Confidential, File 3 = Secret, File 4 = Top Secret. In a Bell-LaPadula system, which user cannot write to File 3?",
+   "options": [
+    "User A",
+    "User B",
+    "User C",
+    "User D"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Bell-LaPadula's *-property forbids writing down. User D (Top Secret) cannot write to the Secret File 3; the others can write up or at level.",
+   "optionNotes": [
+    "Restricted user writing up to Secret is allowed.",
+    "Confidential user writing up is allowed.",
+    "Secret user writing at level is allowed.",
+    "Right: Top Secret writing to Secret is write-down, forbidden."
+   ]
+  },
+  {
+   "id": "DUMP-0276",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "In a Multilevel Security (MLS) system, the following sensitivity labels are used in increasing levels of sensitivity: restricted, confidential, secret, top secret. Table A lists the clearance levels for four users, while Table B lists the security classes of four different files. Table A (user clearances): User A = Restricted, User B = Confidential, User C = Secret, User D = Top Secret. Table B (file classes): File 1 = Restricted, File 2 = Confidential, File 3 = Secret, File 4 = Top Secret. In a Bell-LaPadula system, which user has the MOST restrictions when writing data to any of the four files?",
+   "options": [
+    "User A",
+    "User B",
+    "User C",
+    "User D"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said A] Bell-LaPadula's *-property prevents writing down. The Top Secret user can write only to the Top Secret file, while the Restricted user can write to all four, so User D is the most restricted.",
+   "optionNotes": [
+    "Restricted user can write to all four files.",
+    "Confidential user can write to three files.",
+    "Secret user can write to two files.",
+    "Right: Top Secret user can write only to File 4."
+   ]
+  },
+  {
+   "id": "DUMP-0281",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "In a Multilevel Security (MLS) system, the following sensitivity labels are used in increasing levels of sensitivity: restricted, confidential, secret, top secret. Table A lists the clearance levels for four users, while Table B lists the security classes of four different files. Table A (user clearances): User A = Restricted, User B = Confidential, User C = Secret, User D = Top Secret. Table B (file classes): File 1 = Restricted, File 2 = Confidential, File 3 = Secret, File 4 = Top Secret. Which of the following is true according to the star property (*property)?",
+   "options": [
+    "User D can write to File 1",
+    "User B can write to File 1",
+    "User A can write to File 1",
+    "User C can write to File 1"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The *-property forbids writing down. User A (Restricted) writing to File 1 (Restricted) is at the same level and allowed; the higher users would be writing down.",
+   "optionNotes": [
+    "Top Secret to Restricted is write-down.",
+    "Confidential to Restricted is write-down.",
+    "Right: same-level write is allowed.",
+    "Secret to Restricted is write-down."
+   ]
+  },
+  {
+   "id": "DUMP-0283",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "For a service provider, which of the following MOST effectively addresses confidentiality concerns for customers using cloud computing?",
+   "options": [
+    "Hash functions",
+    "Data segregation",
+    "File system permissions",
+    "Non-repudiation controls"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In multitenant cloud, segregating each customer's data is the provider's most effective confidentiality control.",
+   "optionNotes": [
+    "Hashes give integrity, not confidentiality between tenants.",
+    "Right: segregation stops tenants seeing each other's data.",
+    "File permissions are weaker and can't fully isolate tenants on shared infrastructure.",
+    "Non-repudiation is unrelated to confidentiality."
+   ]
+  },
+  {
+   "id": "DUMP-0301",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "A Simple Power Analysis (SPA) attack against a device directly observes which of the following?",
+   "options": [
+    "Static discharge",
+    "Consumption",
+    "Generation",
+    "Magnetism"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Simple power analysis examines a device's power consumption traces during cryptographic operations to infer keys or operations. It is a side-channel attack based on consumption.",
+   "optionNotes": [
+    "Static discharge is not measured in SPA",
+    "SPA directly observes power consumption",
+    "Devices do not generate power for analysis",
+    "Magnetism relates to EM side channels, not SPA"
+   ]
+  },
+  {
+   "id": "DUMP-0325",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Knowing the language in which an encrypted message was originally produced might help a cryptanalyst to perform a",
+   "options": [
+    "clear-text attack.",
+    "known cipher attack.",
+    "frequency analysis.",
+    "stochastic assessment."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Each language has characteristic letter and word frequencies. Knowing the language lets a cryptanalyst compare ciphertext frequencies against it.",
+   "optionNotes": [
+    "'Clear-text attack' is not the method this enables",
+    "'Known cipher attack' is not a standard term here",
+    "Frequency analysis relies on language statistics",
+    "Stochastic assessment is not a cryptanalysis method"
+   ]
+  },
+  {
+   "id": "DUMP-0340",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Changes to a Trusted Computing Base (TCB) system that could impact the security posture of that system and trigger a recertification activity are documented in the",
+   "options": [
+    "security impact analysis.",
+    "structured code review.",
+    "routine self assessment.",
+    "cost benefit analysis."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A security impact analysis assesses how a proposed change affects security posture and whether recertification or reauthorization is needed.",
+   "optionNotes": [
+    "SIA documents security effects of changes",
+    "Code review checks code quality",
+    "Self-assessment is routine, not change-driven",
+    "Cost-benefit is financial"
+   ]
+  },
+  {
+   "id": "DUMP-0341",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is needed to securely distribute symmetric cryptographic keys?",
+   "options": [
+    "Officially approved Public-Key Infrastructure (PKI) Class 3 or Class 4 certificates",
+    "Officially approved and compliant key management technology and processes",
+    "An organizationally approved communication protection policy and key management plan",
+    "Hardware tokens that protect the user's private key."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Secure symmetric key distribution depends on approved key management technology and processes. Certificates and tokens are only parts of particular schemes.",
+   "optionNotes": [
+    "Certificate classes are not required for symmetric key distribution",
+    "Approved key management tech and processes are needed",
+    "A policy and plan alone don't distribute keys",
+    "Tokens protect private keys, not symmetric distribution"
+   ]
+  },
+  {
+   "id": "DUMP-0360",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "By carefully aligning the pins in the lock, which of the following defines the opening of a mechanical lock without the proper key?",
+   "options": [
+    "Lock pinging",
+    "Lock picking",
+    "Lock bumping",
+    "Lock bricking"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Lock picking manipulates pins into alignment to open a lock without the key.",
+   "optionNotes": [
+    "'Lock pinging' is not a real technique",
+    "Picking manipulates pins into alignment",
+    "Bumping uses a bump key and impact, not careful alignment",
+    "'Bricking' is not a lock attack"
+   ]
+  },
+  {
+   "id": "DUMP-0361",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "The PRIMARY outcome of a certification process is that it provides documented",
+   "options": [
+    "system weaknesses for remediation.",
+    "standards for security assessment, testing, and process evaluation.",
+    "interconnected systems and their implemented security controls.",
+    "security analyses needed to make a risk-based decision."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Certification produces the documented technical analysis that the authorizing official uses to make the risk-based accreditation decision.",
+   "optionNotes": [
+    "Weaknesses are part of the analysis but not the outcome's purpose",
+    "Standards are inputs, not certification outcomes",
+    "System inventory is part of documentation, not the primary outcome",
+    "Certification documents the analysis for the risk-based accreditation decision"
+   ]
+  },
+  {
+   "id": "DUMP-0363",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST describes a Protection Profile (PP)?",
+   "options": [
+    "A document that expresses an implementation independent set of security requirements for an IT product that meets specific consumer needs.",
+    "A document that is used to develop an IT security product from its security requirements definition.",
+    "A document that expresses an implementation dependent set of security requirements which contains only the security functional requirements.",
+    "A document that represents evaluated products where there is a one-to-one correspondence between a PP and a Security Target (ST)."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A PP is an implementation-independent set of security requirements for a category of products meeting consumer needs; an ST is implementation-specific.",
+   "optionNotes": [
+    "PP is implementation-independent requirements for consumer needs",
+    "Developing a product from requirements describes ST/TOE work",
+    "Implementation-dependent describes a Security Target",
+    "Many products can claim one PP; it is not one-to-one"
+   ]
+  },
+  {
+   "id": "DUMP-0381",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An organization has developed a major application that has undergone accreditation testing. After receiving the results of the evaluation, what is the final step before the application can be accredited?",
+   "options": [
+    "Acceptance of risk by the authorizing official",
+    "Remediation of vulnerabilities",
+    "Adoption of standardized policies and procedures",
+    "Approval of the System Security Plan (SSP)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Accreditation is the authorizing official's formal acceptance of the residual risk.",
+   "optionNotes": [
+    "Authorizing official formally accepts residual risk",
+    "Remediation may occur but is not the final accreditation step",
+    "Policy adoption is unrelated to final authorization",
+    "SSP approval precedes assessment"
+   ]
+  },
+  {
+   "id": "DUMP-0420",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A vulnerability in which of the following components would be MOST difficult to detect?",
+   "options": [
+    "Kernel",
+    "Shared libraries",
+    "Hardware",
+    "System application"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Hardware flaws sit below the operating system and most security tools, and are hard to inspect or patch. Software components are covered by scanners and code review.",
+   "optionNotes": [
+    "Kernel flaws are hard but software tooling still inspects them.",
+    "Libraries are versioned and scanned.",
+    "Right: hardware is least visible to detection tools.",
+    "Applications are routinely scanned and tested."
+   ]
+  },
+  {
+   "id": "DUMP-0441",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "If compromised, which of the following would lead to the exploitation of multiple virtual machines?",
+   "options": [
+    "Virtual device drivers",
+    "Virtual machine monitor",
+    "Virtual machine instance",
+    "Virtual machine file system"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The hypervisor controls every guest it hosts, so compromising it exposes all of those virtual machines. Compromising a single guest affects only that guest unless escape occurs.",
+   "optionNotes": [
+    "Drivers are a narrower component.",
+    "Right: hypervisor controls all guests.",
+    "One instance affects itself.",
+    "File system is one component."
+   ]
+  },
+  {
+   "id": "DUMP-0442",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.4,
+   "stem": "Which of the following are Systems Engineering Life Cycle (SELC) Technical Processes?",
+   "options": [
+    "Concept, Development, Production, Utilization, Support, Retirement",
+    "Stakeholder Requirements Definition, Architectural Design, Implementation, Verification, Operation",
+    "Acquisition, Measurement, Configuration Management, Production, Operation, Support",
+    "Concept, Requirements, Design, Implementation, Production, Maintenance, Support, Disposal"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "ISO/IEC 15288 technical processes include stakeholder requirements definition, architectural design, implementation, verification and operation. The others list lifecycle stages or management processes.",
+   "optionNotes": [
+    "Lifecycle stages, not technical processes.",
+    "Right: 15288 technical processes.",
+    "Mixes management/agreement processes.",
+    "SDLC phases, not SELC technical processes."
+   ]
+  },
+  {
+   "id": "DUMP-0444",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What is an advantage of Elliptic Curve Cryptography (ECC)?",
+   "options": [
+    "Cryptographic approach that does not require a fixed-length key",
+    "Military-strength security that does not depend upon secrecy of the algorithm",
+    "Opportunity to use shorter keys for the same level of security",
+    "Ability to use much longer keys for greater security"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "ECC gives security equivalent to RSA with much shorter keys, saving computation and bandwidth. That is its main advantage.",
+   "optionNotes": [
+    "ECC uses defined key lengths.",
+    "True of all strong public algorithms (Kerckhoffs).",
+    "Right: shorter keys, same strength.",
+    "ECC's point is shorter keys."
+   ]
+  },
+  {
+   "id": "DUMP-0464",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following BEST describes the purpose of the security functional requirements of Common Criteria?",
+   "options": [
+    "Level of assurance of the Target of Evaluation (TOE) in intended operational environment",
+    "Selection to meet the security objectives stated in test documents",
+    "Security behavior expected of a TOE",
+    "Definition of the roles and responsibilities"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Common Criteria security functional requirements describe the security behaviour expected of the TOE. Assurance requirements, captured as EALs, cover confidence in that behaviour.",
+   "optionNotes": [
+    "Level of assurance belongs to the assurance requirements/EAL.",
+    "Objectives are stated in the PP/ST, not in test documents.",
+    "Correct: SFRs define the expected security behaviour of the TOE.",
+    "Roles and responsibilities are not what SFRs are for."
+   ]
+  },
+  {
+   "id": "DUMP-0465",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "Which of the following BEST describes a chosen plaintext attack?",
+   "options": [
+    "The cryptanalyst can generate ciphertext from arbitrary text.",
+    "The cryptanalyst examines the communication being sent back and forth.",
+    "The cryptanalyst can choose the key and algorithm to mount the attack.",
+    "The cryptanalyst is presented with the ciphertext from which the original message is determined."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In a chosen-plaintext attack the analyst can encrypt plaintexts of their choosing and study the resulting ciphertexts. That lets them look for patterns that reveal the key.",
+   "optionNotes": [
+    "Correct: the attacker gets ciphertext for arbitrary chosen plaintext.",
+    "Watching traffic is passive eavesdropping.",
+    "Attackers do not choose the victim's key or algorithm.",
+    "This describes a ciphertext-only attack."
+   ]
+  },
+  {
+   "id": "DUMP-0475",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "A security professional has been asked to evaluate the options for the location of a new data center within a multifloor building. Concerns for the data center include emanations and physical access controls. Which of the following is the BEST location?",
+   "options": [
+    "On the top floor",
+    "In the basement",
+    "In the core of the building",
+    "In an exterior room with windows"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A data center in the core of the building is surrounded by other spaces, which limits emanations escaping and makes physical access easier to control. It also avoids the risks of top floors and basements.",
+   "optionNotes": [
+    "The top floor is exposed to roof leaks and is harder to protect.",
+    "The basement risks flooding.",
+    "Correct: the centre of the building gives the best physical and emanation protection.",
+    "Exterior windows invite observation, emanation leakage and break-ins."
+   ]
+  },
+  {
+   "id": "DUMP-0483",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Which of the following is a characteristic of the initialization vector when using Data Encryption Standard (DES)?",
+   "options": [
+    "It must be known to both sender and receiver.",
+    "It can be transmitted in the clear as a random number.",
+    "It must be retained until the last block is transmitted.",
+    "It can be used to encrypt and decrypt information."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "An IV does not need to be secret, only unpredictable or unique. It is normally sent in the clear with the ciphertext. Its purpose is to randomize the first block, not to act as a key.",
+   "optionNotes": [
+    "Partly true, but the defining characteristic is that it can be public.",
+    "Correct: the IV can be sent in clear as a random value.",
+    "It is used at the start of chaining, not kept until the last block.",
+    "The IV is not a key and does not encrypt or decrypt by itself."
+   ]
+  },
+  {
+   "id": "DUMP-0491",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is MOST important when deploying digital certificates?",
+   "options": [
+    "Validate compliance with X.509 digital certificate standards",
+    "Establish a certificate life cycle management framework",
+    "Use a third-party Certificate Authority (CA)",
+    "Use no less than 256-bit strength encryption when creating a certificate"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Certificates must be managed across their whole lifecycle: issuance, renewal, revocation and expiry. Without that, outages and trust failures follow.",
+   "optionNotes": [
+    "X.509 compliance is a given for any CA product.",
+    "Correct: lifecycle management is the most important factor.",
+    "Internal CAs are often appropriate.",
+    "Key strength depends on the algorithm; '256-bit' is not universally right."
+   ]
+  },
+  {
+   "id": "DUMP-0495",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "A security architect plans to reference a Mandatory Access Control (MAC) model for implementation. This indicates that which of the following properties are being prioritized?",
+   "options": [
+    "Confidentiality",
+    "Integrity",
+    "Availability",
+    "Accessibility"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "MAC models such as Bell-LaPadula enforce clearances and classification labels mainly to protect confidentiality, as in military systems.",
+   "optionNotes": [
+    "Correct: MAC prioritizes confidentiality.",
+    "Integrity models such as Biba exist, but MAC is mainly about confidentiality.",
+    "Availability is not a MAC focus.",
+    "Accessibility is not a security property MAC prioritizes."
+   ]
+  },
+  {
+   "id": "DUMP-0500",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which Radio Frequency Interference (RFI) phenomenon associated with bundled cable runs can create information leakage?",
+   "options": [
+    "Transference",
+    "Covert channel",
+    "Bleeding",
+    "Cross-talk"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Cross-talk is electromagnetic coupling between adjacent conductors in bundled cables, letting signals from one wire be picked up on another and leak information. It is the RFI phenomenon named for cable bundles.",
+   "optionNotes": [
+    "Transference is a risk-response term, not a cable phenomenon.",
+    "A covert channel is an unauthorized communication path, not an RFI effect.",
+    "Bleeding is not the standard term for this coupling.",
+    "Correct: cross-talk couples signals between bundled conductors."
+   ]
+  },
+  {
+   "id": "DUMP-0517",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A chemical plant wants to upgrade the Industrial Control System (ICS) to transmit data using Ethernet instead of RS422. The project manager wants to simplify administration and maintenance by utilizing the office network infrastructure and staff to implement this upgrade. Which of the following is the GREATEST impact on security for the network?",
+   "options": [
+    "The network administrators have no knowledge of ICS",
+    "The ICS is now accessible from the office network",
+    "The ICS does not support the office password policy",
+    "RS422 is more reliable than Ethernet"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Putting the ICS on the office network removes its isolation, exposing control systems to office threats; that exposure is the greatest security impact.",
+   "optionNotes": [
+    "Knowledge gaps are a concern but secondary.",
+    "Correct: the ICS becomes reachable from the office network.",
+    "Password policy mismatch is minor.",
+    "Reliability is not a security impact."
+   ]
+  },
+  {
+   "id": "DUMP-0522",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which security model is MOST commonly used in a commercial environment because it protects the integrity of financial and accounting data?",
+   "options": [
+    "Biba",
+    "Graham-Denning",
+    "Clark-Wilson",
+    "Bell-LaPadula"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Clark-Wilson enforces integrity through well-formed transactions and separation of duties, matching commercial financial processing.",
+   "optionNotes": [
+    "Biba is integrity but lattice-based, less commercial.",
+    "Graham-Denning defines object/subject rights.",
+    "Correct: Clark-Wilson suits commercial integrity.",
+    "Bell-LaPadula is confidentiality."
+   ]
+  },
+  {
+   "id": "DUMP-0534",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following MUST be scalable to address security concerns raised by the integration of third-party identity services?",
+   "options": [
+    "Mandatory Access Controls (MAC)",
+    "Enterprise security architecture",
+    "Enterprise security procedures",
+    "Role Based Access Controls (RBAC)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Integrating third-party identity services affects the whole design, so enterprise security architecture must scale to accommodate it.",
+   "optionNotes": [
+    "MAC is a specific model.",
+    "Correct: architecture must scale.",
+    "Procedures follow architecture.",
+    "RBAC is a specific model."
+   ]
+  },
+  {
+   "id": "DUMP-0555",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following alarm systems is recommended to detect intrusions through windows in a high-noise, occupied environment?",
+   "options": [
+    "Acoustic sensor",
+    "Motion sensor",
+    "Shock sensor",
+    "Photoelectric sensor"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Shock or glass-break vibration sensors on windows are not set off by ambient noise or by occupants moving around, unlike acoustic or motion sensors.",
+   "optionNotes": [
+    "Ambient noise causes constant false alarms on acoustic sensors",
+    "Occupants' movement triggers motion sensors",
+    "Correct: shock sensors on the glass detect window breakage and ignore room noise",
+    "Photoelectric beams cover openings or areas and are triggered by occupants"
+   ]
+  },
+  {
+   "id": "DUMP-0562",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the foundation of cryptographic functions?",
+   "options": [
+    "Encryption",
+    "Cipher",
+    "Hash",
+    "Entropy"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Cryptographic strength depends on unpredictable randomness (entropy) for keys, IVs and nonces.",
+   "optionNotes": [
+    "Encryption is an application of cryptography, not its foundation",
+    "A cipher is an algorithm that depends on good keys",
+    "Hashing is one function that depends on the underlying math",
+    "Correct: randomness (entropy) underpins keys, IVs and nonces"
+   ]
+  },
+  {
+   "id": "DUMP-0563",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is the BEST internationally recognized standard for evaluating security products and systems?",
+   "options": [
+    "Payment Card Industry Data Security Standards (PCI-DSS)",
+    "Common Criteria (CC)",
+    "Health Insurance Portability and Accountability Act (HIPAA)",
+    "Sarbanes-Oxley (SOX)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Common Criteria (ISO/IEC 15408) is the international standard for evaluating security products.",
+   "optionNotes": [
+    "PCI DSS is an industry payment standard, not product evaluation",
+    "Correct: ISO/IEC 15408 Common Criteria evaluates products internationally",
+    "HIPAA is a US healthcare law",
+    "SOX is a US financial-reporting law"
+   ]
+  },
+  {
+   "id": "DUMP-0566",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following methods of suppressing a fire is environmentally friendly and the MOST appropriate for a data center?",
+   "options": [
+    "Inert gas fire suppression system",
+    "Halon gas fire suppression system",
+    "Dry-pipe sprinklers",
+    "Wet-pipe sprinklers"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Inert gas systems (e.g., argon or nitrogen blends) leave no residue, do not harm ozone, and suit data centers; Halon is banned.",
+   "optionNotes": [
+    "Correct: inert gases leave no residue and are ozone-safe",
+    "Halon depletes ozone and has been banned from new installs",
+    "Dry pipe still discharges water onto equipment",
+    "Wet pipe risks water damage and leaks"
+   ]
+  },
+  {
+   "id": "DUMP-0584",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which one of the following data integrity models assumes a lattice of integrity levels?",
+   "options": [
+    "Take-Grant",
+    "Biba",
+    "Harrison-Ruzzo",
+    "Bell-LaPadula"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Biba is the integrity model built on a lattice of integrity levels.",
+   "optionNotes": [
+    "Take-Grant concerns rights transfer",
+    "Correct: Biba applies a lattice to integrity levels",
+    "HRU deals with access rights and safety",
+    "Bell-LaPadula's lattice is for confidentiality, not integrity"
+   ]
+  },
+  {
+   "id": "DUMP-0596",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "What is the MOST significant benefit of an application upgrade that replaces randomly generated session keys with certificate based encryption for communications with backend servers?",
+   "options": [
+    "Non-repudiation",
+    "Efficiency",
+    "Confidentiality",
+    "Privacy"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Moving from random session keys to certificate-based keys binds communications to identified parties, giving non-repudiation; confidentiality already existed with session keys.",
+   "optionNotes": [
+    "Correct: certificates bind keys to identified parties",
+    "Certificates add PKI overhead rather than efficiency",
+    "Confidentiality already existed with random session keys",
+    "Privacy is not the distinctive gain"
+   ]
+  },
+  {
+   "id": "DUMP-0606",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the MOST common method of memory protection?",
+   "options": [
+    "Compartmentalization",
+    "Segmentation",
+    "Error correction",
+    "Virtual Local Area Network (VLAN) tagging"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Operating systems commonly enforce memory protection by segmenting memory and checking access to segments.",
+   "optionNotes": [
+    "Broader information-flow concept",
+    "Correct: segmentation",
+    "Reliability, not protection",
+    "Network segmentation"
+   ]
+  },
+  {
+   "id": "DUMP-0610",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "An organization recently conducted a review of the security of its network applications. One of the vulnerabilities found was that the session key used in encrypting sensitive information to a third party server had been hard-coded in the client and server applications. Which of the following would be MOST effective in mitigating this vulnerability?",
+   "options": [
+    "Diffie-Hellman (DH) algorithm",
+    "Elliptic Curve Cryptography (ECC) algorithm",
+    "Digital Signature algorithm (DSA)",
+    "Rivest-Shamir-Adleman (RSA) algorithm"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Diffie-Hellman lets the parties derive session keys dynamically, eliminating hard-coded keys.",
+   "optionNotes": [
+    "Correct: key agreement",
+    "Could support key exchange but DH is the purpose-built key agreement",
+    "Signature only",
+    "Can transport keys but DH is the key-agreement answer"
+   ]
+  },
+  {
+   "id": "DUMP-0629",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the PRIMARY goal of fault tolerance?",
+   "options": [
+    "Elimination of single point of failure",
+    "Isolation using a sandbox",
+    "Single point of repair",
+    "Containment to prevent propagation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Fault tolerance eliminates single points of failure through redundancy.",
+   "optionNotes": [
+    "Correct: redundancy removes single points of failure",
+    "Sandboxing isolates untrusted code; a security, not availability, concept",
+    "A single point of repair is not a fault tolerance objective",
+    "Containment limits spread of faults but is not the primary goal"
+   ]
+  },
+  {
+   "id": "DUMP-0642",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following combinations would MOST negatively affect availability?",
+   "options": [
+    "Denial of Service (DoS) attacks and outdated hardware",
+    "Unauthorized transactions and outdated hardware",
+    "Fire and accidental changes to data",
+    "Unauthorized transactions and denial of service attacks"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "DoS and failing hardware both make services unavailable.",
+   "optionNotes": [
+    "Correct: both directly cause service outages",
+    "Unauthorized transactions affect integrity",
+    "Accidental data changes affect integrity, not mainly availability",
+    "Unauthorized transactions are an integrity issue"
+   ]
+  },
+  {
+   "id": "DUMP-0658",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "What level of Redundant Array of Independent Disks (RAID) is configured PRIMARILY for high-performance data reads and writes?",
+   "options": [
+    "RAID-0",
+    "RAID-1",
+    "RAID-5",
+    "RAID-6"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "RAID 0 striping maximizes performance with no redundancy. It offers no fault tolerance, so it is chosen purely for speed.",
+   "optionNotes": [
+    "RAID 0 striping maximizes read/write performance.",
+    "RAID 1 mirroring is for redundancy.",
+    "RAID 5 trades write performance for parity.",
+    "RAID 6 has double parity, slower writes."
+   ]
+  },
+  {
+   "id": "DUMP-0661",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A software architect has been asked to build a platform to distribute music to thousands of users on a global scale. The architect has been reading about content delivery networks (CDN). Which of the following is a principal task to undertake?",
+   "options": [
+    "Establish a service-oriented architecture (SOA).",
+    "Establish a media caching methodology.",
+    "Establish relationships with hundreds of Internet service providers (ISP).",
+    "Establish a low-latency wide area network (WAN)."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "CDNs rely on caching content at edge nodes near users. Edge caching lowers latency and origin load for global users.",
+   "optionNotes": [
+    "SOA is an application design style, not CDN specific.",
+    "CDNs work by caching media at edge nodes near users.",
+    "CDN providers handle ISP relationships.",
+    "A private low-latency WAN is not how CDNs work."
+   ]
+  },
+  {
+   "id": "DUMP-0670",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The Rivest-Shamir-Adleman (RSA) algorithm is BEST suited for which of the following operations?",
+   "options": [
+    "Bulk data encryption and decryption",
+    "One-way secure hashing for user and message authentication",
+    "Secure key exchange for symmetric cryptography",
+    "Creating digital checksums for message integrity"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "RSA is slow so it is mainly used to exchange symmetric keys and for signatures. Hybrid systems use RSA to protect a symmetric session key that encrypts the bulk data.",
+   "optionNotes": [
+    "Asymmetric RSA is too slow for bulk data.",
+    "RSA is not a hash.",
+    "RSA is best used to exchange symmetric keys.",
+    "Checksums are produced by hashes."
+   ]
+  },
+  {
+   "id": "DUMP-0672",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which is the MOST effective countermeasure to prevent electromagnetic emanations on unshielded data cable?",
+   "options": [
+    "Move cable are away from exterior facing windows",
+    "Encase exposed cable runs in metal conduit",
+    "Enable Power over Ethernet (PoE) to increase voltage",
+    "Bundle exposed cables together to disguise their signals"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Metal conduit shields cable runs and reduces emanations. Grounded metal shielding acts like a Faraday enclosure for the run.",
+   "optionNotes": [
+    "Distance from windows helps little.",
+    "Metal conduit shields the cable, containing emanations.",
+    "PoE does not affect emanation security.",
+    "Bundling does not shield signals."
+   ]
+  },
+  {
+   "id": "DUMP-0681",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which algorithm gets its security from the difficulty of calculating discrete logarithms in a finite field and is used to distribute keys, but cannot be used to encrypt or decrypt messages?",
+   "options": [
+    "Diffie-Hellman",
+    "Digital Signature Algorithm (DSA)",
+    "Rivest-Shamir-Adleman (RSA)",
+    "Kerberos"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Diffie-Hellman relies on discrete logs and only exchanges keys. It establishes a shared secret over an insecure channel but does not encrypt messages itself.",
+   "optionNotes": [
+    "Diffie-Hellman uses discrete logs and only exchanges keys.",
+    "DSA signs, doesn't distribute keys.",
+    "RSA relies on factoring and can encrypt.",
+    "Kerberos is a protocol using symmetric keys."
+   ]
+  },
+  {
+   "id": "DUMP-0685",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "For the purpose of classification, which of the following is used to divide trust domain and trust boundaries?",
+   "options": [
+    "Network architecture",
+    "Integrity",
+    "Identity Management (IdM)",
+    "Confidentiality management"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Network architecture segments trust domains and boundaries. Zones and segmentation in the network architecture define where trust changes.",
+   "optionNotes": [
+    "Network architecture segments trust domains and boundaries.",
+    "Integrity is a property, not a divider.",
+    "IdM manages identities across domains.",
+    "Not a recognized dividing mechanism."
+   ]
+  },
+  {
+   "id": "DUMP-0686",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following models uses unique groups contained in unique conflict classes?",
+   "options": [
+    "Chinese Wall",
+    "Bell-LaPadula",
+    "Clark-Wilson",
+    "Biba"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Brewer-Nash groups datasets into conflict-of-interest classes. Access to one company's data blocks access to competitors' data in the same class.",
+   "optionNotes": [
+    "Brewer-Nash groups datasets into conflict-of-interest classes.",
+    "BLP is confidentiality levels.",
+    "Clark-Wilson uses well-formed transactions.",
+    "Biba is integrity levels."
+   ]
+  },
+  {
+   "id": "DUMP-0691",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What security principle addresses the issue of \"Security by Obscurity\"?",
+   "options": [
+    "Open design",
+    "Segregation of duties (SoD)",
+    "Role Based Access Control (RBAC)",
+    "Least privilege"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Open design (Kerckhoffs) rejects reliance on secrecy of design. Reviewed, public designs whose security depends only on keys are stronger.",
+   "optionNotes": [
+    "Open design: security should not depend on secrecy of design.",
+    "SoD prevents fraud.",
+    "RBAC is access control.",
+    "Least privilege limits rights."
+   ]
+  },
+  {
+   "id": "DUMP-0698",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "In order to provide dual assurance in a digital signature system, the design MUST include which of the following?",
+   "options": [
+    "The public key must be unique for the signed document.",
+    "signature process must generate adequate authentication credentials.",
+    "The hash of the signed document must be present.",
+    "The encrypted private key must be provided in the signing certificate."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A digital signature gives integrity and origin authentication (non-repudiation) because a hash of the document is encrypted with the signer's private key. Including and checking that hash is what lets the verifier confirm both that the content is unchanged and who signed it.",
+   "optionNotes": [
+    "Public keys are tied to the signer, not unique per document.",
+    "Credentials authenticate the user to the system; they are not what assures the signature.",
+    "Right: the signed hash of the document provides integrity plus origin assurance.",
+    "Private keys must never be placed in a certificate."
+   ]
+  },
+  {
+   "id": "DUMP-0701",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Information security practitioners are in the midst of implementing a new firewall. Which of the following failure methods would BEST prioritize security in the event of failure?",
+   "options": [
+    "Fail-Closed",
+    "Fail-Open",
+    "Fail-Safe",
+    "Failover"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "For a firewall, a security-first failure mode is fail-closed (fail-secure): when the device fails, it blocks all traffic rather than letting traffic through unfiltered. Fail-safe and fail-open favour availability or human safety instead.",
+   "optionNotes": [
+    "Right: fail-closed blocks traffic on failure, so security is preserved.",
+    "Fail-open passes traffic unfiltered and gives up security.",
+    "In ISC2 terms, fail-safe prioritises the safety of people, e.g. doors unlocking.",
+    "Failover is about availability through redundancy, not a security failure state."
+   ]
+  },
+  {
+   "id": "DUMP-0732",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "When selecting a disk encryption technology, which of the following MUST also be assured to be encrypted?",
+   "options": [
+    "Master Boot Record (MBR)",
+    "Pre-boot environment",
+    "Basic Input Output System (BIOS)",
+    "Hibernation file"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The hibernation file holds a copy of RAM, which can include encryption keys and sensitive data, written to disk. If it isn't encrypted, it can undermine full-disk encryption.",
+   "optionNotes": [
+    "The MBR holds boot code, not user data.",
+    "The pre-boot environment must stay accessible in order to unlock the disk.",
+    "BIOS firmware isn't on the encrypted disk.",
+    "Right: hibernation files can expose keys and data."
+   ]
+  },
+  {
+   "id": "DUMP-0750",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In the common criteria (CC) for information technology (IT) security evaluation, increasing Evaluation Assurance Levels (EAL) results in which of the following?",
+   "options": [
+    "Increased functionality",
+    "Increased interoperability",
+    "Increase in resource requirement",
+    "Increase in evaluated systems"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Higher EALs demand more rigorous evaluation and evidence, increasing cost and effort; they do not add functionality. EAL expresses assurance depth, not features or interoperability, so the main effect is more time, documentation and cost.",
+   "optionNotes": [
+    "EAL measures assurance, not features",
+    "Not related",
+    "Correct: more rigor needs more resources",
+    "Not a consequence"
+   ]
+  },
+  {
+   "id": "DUMP-0757",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which area of embedded devices are most commonly attacked?",
+   "options": [
+    "Application",
+    "Firmware",
+    "Protocol",
+    "Physical Interface"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Embedded devices are most often attacked through their firmware, which is often unpatched and weakly protected. Firmware is rarely updated, often lacks code signing, and runs with full device privilege.",
+   "optionNotes": [
+    "Apps are attacked, but less often on embedded devices",
+    "Correct: unsigned or unpatched firmware",
+    "Protocol flaws are less common",
+    "Needs physical access"
+   ]
+  },
+  {
+   "id": "DUMP-0768",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "How is it possible to extract private keys securely stored on a cryptographic smartcard?",
+   "options": [
+    "Bluebugging",
+    "Focused ion-beam",
+    "Bluejacking",
+    "Power analysis"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Focused ion-beam workstations can physically probe and modify a chip to extract keys from smartcards. Focused ion-beam workstations remove the chip's protective layers and edit its circuits to read secrets directly, which is an invasive physical attack. Power analysis is a side channel that infers keys rather than extracting stored ones.",
+   "optionNotes": [
+    "Bluetooth attack",
+    "Correct",
+    "Bluetooth spam",
+    "Side channel that infers keys; dump/source key FIB as direct extraction"
+   ]
+  },
+  {
+   "id": "DUMP-0789",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following implementations will achieve high availability in a website?",
+   "options": [
+    "Multiple Domain Name System (DNS) entries resolving to the same web server and large amounts of bandwidth",
+    "Disk mirroring of the web server with redundant disk drives in a hardened data center",
+    "Disk striping of the web server hard drives and large amounts of bandwidth",
+    "Multiple geographically dispersed web servers that are configured for failover"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Geographically dispersed failover servers remove single points of failure. Disk mirroring and striping protect only one server and one site, and extra DNS names for the same server add no redundancy.",
+   "optionNotes": [
+    "The same single server is a single point of failure",
+    "Protects disks only at one site",
+    "Striping adds no redundancy",
+    "Correct: geographic failover"
+   ]
+  },
+  {
+   "id": "DUMP-0790",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the MOST common use of the Online Certificate Status Protocol (OCSP)?",
+   "options": [
+    "To obtain the expiration date of an X.509 digital certificate",
+    "To obtain the revocation status of an X.509 digital certificate",
+    "To obtain the author name of an X.509 digital certificate",
+    "To verify the validity of an X.509 digital certificate"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "OCSP provides real-time revocation status of certificates. Expiry and subject details are already in the certificate itself; full validation also needs path and signature checks.",
+   "optionNotes": [
+    "Expiry is read from the certificate itself",
+    "Correct: real-time revocation check",
+    "Subject and issuer are in the certificate",
+    "Full validation also needs signature and path checks"
+   ]
+  },
+  {
+   "id": "DUMP-0806",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.9,
+   "stem": "Which of the following encryption types is used in Hash Message Authentication Code (HMAC) for key distribution?",
+   "options": [
+    "Symmetric",
+    "Asymmetric",
+    "Ephemeral",
+    "Permanent"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "HMAC combines a hash function with a secret key shared by sender and receiver. Because both parties use the same key, it is symmetric cryptography, and that key must be distributed securely.",
+   "optionNotes": [
+    "Right: HMAC depends on a shared secret key",
+    "HMAC does not use public/private key pairs (that would be a digital signature)",
+    "'Ephemeral' describes a key's lifetime, not an encryption type",
+    "'Permanent' is not a category of encryption"
+   ]
+  },
+  {
+   "id": "DUMP-0807",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.7,
+   "stem": "A cybersecurity engineer has been tasked to research and implement an ultra-secure communications channel to protect the organization's most valuable intellectual property (IP). The primary directive in this initiative is to ensure there is no possible way the communications can be intercepted without detection. Which of the following is the only way to ensure this outcome?",
+   "options": [
+    "Diffie-Hellman key exchange",
+    "Symmetric key cryptography",
+    "Public key infrastructure (PKI)",
+    "Quantum Key Distribution"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Quantum key distribution encodes key bits in quantum states. Any attempt to measure them disturbs the states and causes detectable errors, so it is the only listed option that guarantees an interception will be noticed.",
+   "optionNotes": [
+    "Unauthenticated Diffie-Hellman can be attacked by a man in the middle without detection",
+    "Symmetric encryption protects secrecy but cannot reveal that ciphertext was copied",
+    "PKI provides authentication and key management but not detection of eavesdropping",
+    "Right: physics makes eavesdropping detectable"
+   ]
+  },
+  {
+   "id": "DUMP-0815",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "As a design principle, which one of the following actors is responsible for identifying and approving data security requirements in a cloud ecosystem?",
+   "options": [
+    "Cloud broker",
+    "Cloud provider",
+    "Cloud consumer",
+    "Cloud auditor"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In the NIST cloud reference architecture, the cloud consumer owns the data and remains accountable for it. The consumer therefore identifies and approves the security requirements, which the provider then implements under the agreed model.",
+   "optionNotes": [
+    "A broker intermediates and aggregates services but does not own the requirements",
+    "The provider implements controls but does not decide what the data owner needs",
+    "Right: the consumer, as data owner, sets and approves the requirements",
+    "An auditor independently assesses controls and does not define them"
+   ]
+  },
+  {
+   "id": "DUMP-0822",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A security professional can BEST mitigate the risk of using a Commercial Off-The-Shelf (COTS) solution by deploying the application with which of the following controls?",
+   "options": [
+    "Whitelisting application",
+    "Network segmentation",
+    "Hardened configuration",
+    "Blacklisting application"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "COTS products often ship with insecure defaults and unneeded features. Deploying them with a hardened configuration (removing unused services, changing defaults, applying a secure baseline) directly reduces the product's own risk.",
+   "optionNotes": [
+    "Whitelisting controls which programs run but does not fix the COTS product's weaknesses",
+    "Segmentation limits the blast radius but leaves the application itself weak",
+    "Right: harden the product's configuration",
+    "Blacklisting is the weakest approach and does not address configuration risk"
+   ]
+  },
+  {
+   "id": "DUMP-0830",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.9,
+   "stem": "Which of the following is the BEST option to reduce the network attack surface of a system?",
+   "options": [
+    "Ensuring that there are no group accounts on the system",
+    "Removing unnecessary system user accounts",
+    "Disabling unnecessary ports and services",
+    "Uninstalling default software on the system"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The network attack surface is made up of reachable listening ports and services. Disabling the ones that are not needed removes remotely reachable entry points.",
+   "optionNotes": [
+    "Group accounts are an accountability problem, not a network exposure",
+    "Removing accounts reduces logon targets but does not close network services",
+    "Right: closing unneeded ports and services shrinks the network surface",
+    "Default software matters only if it listens on the network; disabling services covers that directly"
+   ]
+  },
+  {
+   "id": "DUMP-0837",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the BEST design for securing physical perimeter protection?",
+   "options": [
+    "Crime Prevention through Environmental Design (CPTED)",
+    "Barriers, fences, gates, and walls",
+    "Business continuity planning (BCP)",
+    "Closed-circuit television (CCTV)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "CPTED is a design philosophy: it uses landscaping, lighting, natural surveillance and territorial cues to deter crime at the perimeter. Barriers and CCTV are individual components within such a design.",
+   "optionNotes": [
+    "Right: an overall design approach for perimeter security",
+    "Barriers, fences and gates are components, not a design methodology",
+    "BCP covers continuity, not perimeter design",
+    "CCTV is a single detective control"
+   ]
+  },
+  {
+   "id": "DUMP-0844",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "A system developer has a requirement for an application to check for a secure digital signature before the application is accessed on a user's laptop. Which security mechanism addresses this requirement?",
+   "options": [
+    "Hardware encryption",
+    "Certificate revocation list (CRL) policy",
+    "Trusted Platform Module (TPM)",
+    "Key exchange"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A TPM provides a hardware root of trust for measured or secure boot and for verifying signatures on code before it runs on the laptop. The other options do not perform a local signature check.",
+   "optionNotes": [
+    "Hardware encryption protects stored data but does not verify signatures",
+    "A CRL only lists revoked certificates; it is not the verification mechanism",
+    "Right: the TPM anchors integrity and signature verification",
+    "Key exchange establishes session keys"
+   ]
+  },
+  {
+   "id": "DUMP-0847",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following encryption technologies has the ability to function as a stream cipher?",
+   "options": [
+    "Cipher Feedback (CFB)",
+    "Feistel cipher",
+    "Cipher Block Chaining (CBC) with error propagation",
+    "Electronic Code Book (ECB)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "CFB (like OFB/CTR) lets a block cipher operate as a self-synchronizing stream cipher. OFB and CTR can also do this, but only CFB is offered here.",
+   "optionNotes": [
+    "CFB mode turns a block cipher into a self-synchronizing stream cipher.",
+    "Feistel is a block cipher structure, not a stream mode.",
+    "CBC is a block mode; error propagation does not make it a stream cipher.",
+    "ECB encrypts independent blocks; strictly block mode."
+   ]
+  },
+  {
+   "id": "DUMP-0860",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization wants to define its physical perimeter. What primary device should be used to accomplish this objective if the organization's perimeter MUST cost-efficiently deter casual trespassers?",
+   "options": [
+    "Fences eight or more feet high with three strands of barbed wire",
+    "Fences three to four feet high with a turnstile",
+    "Fences accompanied by patrolling security guards",
+    "Fences six to seven feet high with a painted gate"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said D] Per OSG, 3-4 ft fences deter casual trespassers at low cost; higher fences target determined intruders. OSG maps fence heights to the threats they address.",
+   "optionNotes": [
+    "8 ft plus barbed wire deters determined intruders, so it is overkill and costly.",
+    "3-4 ft fences are the cost-efficient deterrent for casual trespassers.",
+    "Guards add significant recurring cost.",
+    "6-7 ft is meant to be too hard to climb, which exceeds the stated need."
+   ]
+  },
+  {
+   "id": "DUMP-0876",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which security evaluation model assesses a product's Security Assurance Level (SAL) in comparison to similar solutions?",
+   "options": [
+    "Payment Card Industry Data Security Standard (PCI-DSS)",
+    "International Organization for Standardization (ISO) 27001",
+    "Common criteria (CC)",
+    "Control Objectives for Information and Related Technology (COBIT)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Common Criteria evaluates products to assurance levels (EALs) for comparison. Protection profiles allow similar products to be compared.",
+   "optionNotes": [
+    "A compliance standard for card data.",
+    "Certifies an ISMS, not products.",
+    "CC evaluates products to assurance levels for comparison.",
+    "An IT governance framework."
+   ]
+  },
+  {
+   "id": "DUMP-0880",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following minimizes damage to information technology (IT) equipment stored in a data center when a false fire alarm event occurs?",
+   "options": [
+    "A pre-action system is installed.",
+    "An open system is installed.",
+    "A dry system is installed.",
+    "A wet system is installed."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Pre-action requires two triggers before water flows, limiting false-alarm damage. It is the standard recommendation for data centers.",
+   "optionNotes": [
+    "Pre-action needs alarm plus heat before water flows.",
+    "Not a standard sprinkler type.",
+    "Dry pipe still discharges once a head opens.",
+    "Wet pipe discharges immediately when a head opens."
+   ]
+  },
+  {
+   "id": "DUMP-0882",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is a limitation of the Bell-LaPadula model?",
+   "options": [
+    "Segregation of duties (SoD) is difficult to implement as the \"no read-up\" rule limits the ability of an object to access information with a higher classification.",
+    "Mandatory access control (MAC) is enforced at all levels making discretionary access control (DAC) impossible to implement.",
+    "It contains no provision or policy for changing data access control and works well only with access systems that are static in nature.",
+    "It prioritizes integrity over confidentiality which can lead to inadvertent information disclosure."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Bell-LaPadula is static, with no rules for changing access rights. Harrison-Ruzzo-Ullman or Graham-Denning address changing rights.",
+   "optionNotes": [
+    "BLP's rule is no read up for subjects; option misstates it.",
+    "BLP can include a discretionary property.",
+    "BLP is static with no rules for changing rights.",
+    "BLP prioritizes confidentiality, not integrity."
+   ]
+  },
+  {
+   "id": "DUMP-0915",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a secure design principle for a new product?",
+   "options": [
+    "Build in appropriate levels of fault tolerance.",
+    "Utilize obfuscation whenever possible.",
+    "Do not rely on previously used code.",
+    "Restrict the use of modularization."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Designing in appropriate fault tolerance supports availability and failing securely, a recognized secure design principle.",
+   "optionNotes": [
+    "Right: Designing in appropriate fault tolerance supports availability and failing securely, a recognized secure design principle.",
+    "Obfuscation is security through obscurity",
+    "Reusing vetted code is acceptable",
+    "Modularity is encouraged"
+   ]
+  },
+  {
+   "id": "DUMP-0923",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following is the PRIMARY type of cryptography required to support non-repudiation of a digitally signed document?",
+   "options": [
+    "Message digest (MD)",
+    "Asymmetric",
+    "Symmetric",
+    "Hashing"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Digital signatures depend on asymmetric cryptography: only the signer holds the private key, providing non-repudiation.",
+   "optionNotes": [
+    "Digests give integrity only",
+    "Right: Digital signatures depend on asymmetric cryptography: only the signer holds the private key, providing non-repudiation.",
+    "Symmetric keys are shared, so no non-repudiation",
+    "Hashing gives integrity only"
+   ]
+  },
+  {
+   "id": "DUMP-0943",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "In systems security engineering, what does the security principle of modularity provide?",
+   "options": [
+    "Documentation of functions",
+    "Isolated functions and data",
+    "Secure distribution of programs and data",
+    "Minimal access to perform a function"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Modularity divides a system into isolated modules, separating functions and data.",
+   "optionNotes": [
+    "Documentation is unrelated",
+    "Right: Modularity divides a system into isolated modules, separating functions and data.",
+    "Distribution is unrelated",
+    "That is least privilege"
+   ]
+  },
+  {
+   "id": "DUMP-0948",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "What is the correct order of execution for security architecture?",
+   "options": [
+    "Governance, strategy and program management, project delivery, operations",
+    "Strategy and program management, governance, project delivery, operations",
+    "Governance, strategy and program management, operations, project delivery",
+    "Strategy and program management, project delivery, governance, operations"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Security architecture flows top-down: governance sets direction and accountability, strategy and program management translate it into plans, projects deliver the controls, and operations run them. Governance must come first so everything below aligns with business objectives.",
+   "optionNotes": [
+    "Correct: governance first, then strategy/program, delivery, operations.",
+    "Strategy cannot precede the governance that authorises it.",
+    "Operations cannot run before projects deliver the capability.",
+    "Governance after delivery would leave projects without direction."
+   ]
+  },
+  {
+   "id": "DUMP-0961",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Digital non-repudiation requires which of the following?",
+   "options": [
+    "A trusted third-party",
+    "Appropriate corporate policies",
+    "Symmetric encryption",
+    "Multifunction access cards"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Non-repudiation relies on digital signatures bound to identity by a trusted third party (a CA), so a signer cannot credibly deny the signature.",
+   "optionNotes": [
+    "Correct: a trusted CA vouches for the key-to-identity binding.",
+    "Policies support but do not technically provide non-repudiation.",
+    "Symmetric keys are shared, so either party could have produced the data.",
+    "Access cards authenticate but do not prove origin of messages."
+   ]
+  },
+  {
+   "id": "DUMP-0964",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "When designing a Cyber-Physical System (CPS), which of the following should be a security practitioner's first consideration?",
+   "options": [
+    "Detection of sophisticated attackers",
+    "Resiliency of the system",
+    "Topology of the network used for the system",
+    "Risk assessment of the system"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Secure design starts with risk assessment so threats, impacts and safety concerns of the cyber-physical system drive the requirements for resiliency, detection and topology.",
+   "optionNotes": [
+    "Detection is a control chosen after risk is understood.",
+    "Resiliency is a design goal derived from the risk assessment.",
+    "Topology is a design detail later in the process.",
+    "Correct: risk assessment comes first."
+   ]
+  },
+  {
+   "id": "DUMP-0997",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "In supervisory control and data acquisition (SCADA) systems, which of the following controls can be used to reduce device exposure to malware?",
+   "options": [
+    "Disable all command line interfaces.",
+    "Disallow untested code in the execution space of the SCADA device.",
+    "Prohibit the use of unsecure scripting languages.",
+    "Disable Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) port 138 and 139 on the SCADA device."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Allowing only tested, approved code to execute on the SCADA device (application allowlisting) directly limits malware execution.",
+   "optionNotes": [
+    "Wrong: Too broad and operationally impractical",
+    "Right: allowing only tested code stops unknown code from running",
+    "Wrong: Narrow; malware need not be script-based",
+    "Wrong: NetBIOS ports are only one vector"
+   ]
+  },
+  {
+   "id": "DUMP-1005",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the strongest physical access control?",
+   "options": [
+    "Biometrics and badge reader",
+    "Biometrics, a password, and personal identification number (PIN)",
+    "Individual password for each user",
+    "Biometrics, a password, and badge reader"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Biometrics, a password and a badge combine three factor types (something you are, know and have), the strongest combination listed.",
+   "optionNotes": [
+    "Wrong: Two factors",
+    "Wrong: Password and PIN are the same factor type",
+    "Wrong: Single factor",
+    "Right: you are + you know + you have"
+   ]
+  },
+  {
+   "id": "DUMP-1011",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following techniques evaluates the secure design principles of network or software architectures?",
+   "options": [
+    "Risk modeling",
+    "Threat modeling",
+    "Fuzzing",
+    "Waterfall method"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Threat modeling examines an architecture's design to find weaknesses and checks it against secure design principles.",
+   "optionNotes": [
+    "Wrong: Not a design evaluation technique",
+    "Right: checks an architecture's design for threats and weak spots",
+    "Wrong: Tests running code with malformed input",
+    "Wrong: A development lifecycle model"
+   ]
+  },
+  {
+   "id": "DUMP-1023",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the primary advantage of segmenting Virtual Machines (VM) using physical networks?",
+   "options": [
+    "Simplicity of network configuration and network monitoring",
+    "Removes the need for decentralized management solutions",
+    "Removes the need for dedicated virtual security controls",
+    "Simplicity of network configuration and network redundancy"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Separating VMs onto physical networks lets existing physical network configuration and monitoring tools be used simply.",
+   "optionNotes": [
+    "Right: existing physical network tools can be used as they are",
+    "Wrong: Not applicable",
+    "Wrong: Virtual controls may still be needed",
+    "Wrong: Redundancy is not the main benefit"
+   ]
+  },
+  {
+   "id": "DUMP-1036",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is used to detect steganography?",
+   "options": [
+    "Audio analysis",
+    "Statistical analysis",
+    "Reverse engineering",
+    "Cryptanalysis"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Steganalysis uses statistical analysis to detect hidden data in files.",
+   "optionNotes": [
+    "Wrong: Narrow, only for audio files",
+    "Right: steganalysis looks for statistical anomalies",
+    "Wrong: Not the detection method",
+    "Wrong: Attacks ciphers"
+   ]
+  },
+  {
+   "id": "DUMP-1039",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the reason that transposition ciphers are easily recognizable?",
+   "options": [
+    "Key",
+    "Block",
+    "Stream",
+    "Character"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Transposition keeps the original characters and their letter frequencies, which makes it easy to spot.",
+   "optionNotes": [
+    "Wrong: Not distinctive",
+    "Wrong: Not distinctive",
+    "Wrong: Not distinctive",
+    "Right: the letters are unchanged, so letter frequencies show it"
+   ]
+  },
+  {
+   "id": "DUMP-1043",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the BEST approach to implement multiple servers on a virtual system?",
+   "options": [
+    "Implement multiple functions per virtual server and apply the same security configuration for each virtual server.",
+    "Implement one primary function per virtual server and apply high security configuration on the host operating system.",
+    "Implement one primary function per virtual server and apply individual security configuration for each virtual server.",
+    "Implement multiple functions within the same virtual server and apply individual security configurations to each function."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "One primary function per VM, each with its own hardening, limits the impact of a compromise.",
+   "optionNotes": [
+    "Wrong: Mixing functions increases risk",
+    "Wrong: Host hardening alone is not enough",
+    "Right: separating functions and hardening each one limits damage",
+    "Wrong: Mixing functions increases risk"
+   ]
+  },
+  {
+   "id": "DUMP-1049",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A security professional needs to find a secure and efficient method of encrypting data on an endpoint. Which solution includes a root key?",
+   "options": [
+    "Bitlocker",
+    "Trusted Platform Module (TPM)",
+    "Virtual storage array network (VSAN)",
+    "Hardware security module (HSM)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said A] The TPM is a hardware chip whose storage root key (SRK) anchors the protection of keys such as BitLocker's volume keys. BitLocker uses the TPM; an HSM is a separate enterprise appliance, not an endpoint's root of trust.",
+   "optionNotes": [
+    "BitLocker encrypts volumes but relies on the TPM to protect its keys",
+    "Correct: the TPM holds the storage root key (SRK)",
+    "A VSAN is shared storage virtualization; it has no endpoint root key",
+    "An HSM is an enterprise key appliance, not an endpoint encryption solution"
+   ]
+  },
+  {
+   "id": "DUMP-1056",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A hospital's building controls system monitors and operates the environmental equipment to maintain a safe and comfortable environment. Which of the following could be used to minimize the risk of utility supply interruption?",
+   "options": [
+    "Digital devices that can turn equipment off and continuously cycle rapidly in order to increase supplies and conceal activity on the hospital network",
+    "Standardized building controls system software with high connectivity to hospital networks",
+    "Lock out maintenance personnel from the building controls system access that can impact critical utility supplies",
+    "Digital protection and control devices capable of minimizing the adverse impact to critical utility"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Protection and control devices designed to limit the adverse impact on critical utilities directly reduce the risk of supply interruption.",
+   "optionNotes": [
+    "Rapid cycling of equipment is harmful and describes attack behaviour",
+    "High connectivity increases the attack surface",
+    "Locking out maintenance staff hinders needed upkeep",
+    "Correct: protection devices limit the impact on critical utilities"
+   ]
+  },
+  {
+   "id": "DUMP-1059",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "A systems engineer is designing a wide area network (WAN) environment for a new organization. The WAN will connect sites holding information at various levels of sensitivity, from publicly available to highly confidential. The organization requires a high degree of interconnectedness to support existing business processes. What is the BEST design approach to securing this environment?",
+   "options": [
+    "Place firewalls around critical devices, isolating them from the rest of the environment.",
+    "Layer multiple detective and preventative technologies at the environment perimeter.",
+    "Use reverse proxies to create a secondary \"shadow\" environment for critical systems.",
+    "Align risk across all interconnected elements to ensure critical threats are detected and handled."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In a highly interconnected environment, risk in one element affects everything else, so risk must be aligned across all connected elements rather than relying on perimeter or point defenses.",
+   "optionNotes": [
+    "Isolating devices conflicts with the required interconnectedness",
+    "Perimeter layering ignores internal sensitivity differences",
+    "A shadow environment is costly and does not align risk",
+    "Correct: align risk across interconnected elements"
+   ]
+  },
+  {
+   "id": "DUMP-1072",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following are core categories of malicious attack against Internet of Things (IOT) devices?",
+   "options": [
+    "Packet capture and false data injection",
+    "Packet capture and brute force attack",
+    "Node capture and Structured Query Language (SQL) injection",
+    "Node capture and false data injection"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "IoT attack categories commonly listed include physically capturing nodes and injecting false data into the sensor network.",
+   "optionNotes": [
+    "Packet capture is eavesdropping, not a core IoT attack category",
+    "Brute force is generic rather than IoT-specific",
+    "SQL injection is a web attack, not an IoT core category",
+    "Correct: node capture and false data injection"
+   ]
+  },
+  {
+   "id": "DUMP-1076",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "When a flaw in Industrial Control System (ICS) software is discovered, what is the GREATEST impediment to deploying a patch?",
+   "options": [
+    "Many ICS have software that is no longer being maintained by the vendors.",
+    "Compensating controls may impact ICS performance.",
+    "Testing a patch in an ICS may require more resources than the organization can commit.",
+    "Vendors are required to validate the operability of patches."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "ICS environments are availability-critical and hard to replicate, so testing a patch safely before deployment is often too costly in resources.",
+   "optionNotes": [
+    "Unsupported software is a separate problem from deploying an available patch",
+    "Compensating controls are an alternative to patching, not an impediment",
+    "Correct: safe testing in ICS demands heavy resources",
+    "Vendor validation helps rather than impedes deployment"
+   ]
+  },
+  {
+   "id": "DUMP-1083",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is a covert channel type?",
+   "options": [
+    "Storage",
+    "Pipe",
+    "Memory",
+    "Monitoring"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The two classic covert channel types are storage and timing.",
+   "optionNotes": [
+    "Correct: storage (and timing) are the covert channel types",
+    "A pipe is a legitimate IPC mechanism",
+    "Memory is not a channel classification",
+    "Monitoring is not a channel type"
+   ]
+  },
+  {
+   "id": "DUMP-1105",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "The existence of physical barriers, card and personal identification number (PIN) access systems, cameras, alarms, and security guards BEST describes this security approach?",
+   "options": [
+    "Security information and event management (SIEM)",
+    "Security perimeter",
+    "Defense-in-depth",
+    "Access control"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Several overlapping, independent physical and technical layers (barriers, badge plus PIN, cameras, alarms and guards) are the textbook definition of defence in depth. If one layer fails, the others still protect.",
+   "optionNotes": [
+    "A SIEM aggregates logs and is unrelated to this list of controls.",
+    "The perimeter is only one of the layers described.",
+    "Correct: multiple layered controls are defence in depth.",
+    "Access control is too narrow; cameras and alarms are detective controls."
+   ]
+  },
+  {
+   "id": "DUMP-1116",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the PRIMARY mechanism used to limit the range of objects available to a given subject within different execution domains?",
+   "options": [
+    "Process isolation",
+    "Data hiding and abstraction",
+    "Use of discrete layering and Application Programming Interfaces (API)",
+    "Virtual Private Network (VPN)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Process isolation keeps each process in its own memory and object space, which limits the objects a subject can reach within an execution domain. It is the primary enforcement mechanism for this.",
+   "optionNotes": [
+    "Correct: isolation bounds the objects each process can access.",
+    "Data hiding restricts visibility between layers but is not the primary bound.",
+    "Layering structures the design rather than bounding objects per subject.",
+    "A VPN is a network control and doesn't apply here."
+   ]
+  },
+  {
+   "id": "DUMP-1132",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "The MAIN purpose of placing a tamper seal on a computer system's case is to:",
+   "options": [
+    "Raise security awareness.",
+    "Detect efforts to open the case.",
+    "Expedite physical auditing.",
+    "Make it difficult to steal internal components."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Tamper seals are a detective control. A broken seal shows that someone opened the case.",
+   "optionNotes": [
+    "Raising awareness is incidental.",
+    "Correct: seals detect opening.",
+    "Faster auditing is secondary.",
+    "A seal doesn't physically prevent removal."
+   ]
+  },
+  {
+   "id": "DUMP-1135",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "What determines the level of security of a combination lock?",
+   "options": [
+    "Complexity of combination required to open the lock",
+    "Amount of time it takes to brute force the combination",
+    "The number of barrels associated with the internal mechanism",
+    "The hardness score of the metal lock material"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A combination lock's strength is measured by how long it resists an attacker, much like a work factor. The time needed to brute force it is the measure.",
+   "optionNotes": [
+    "Complexity matters only through the time it adds.",
+    "Correct: resistance time is the security measure.",
+    "Barrel count only feeds into the time.",
+    "Hardness affects forced entry, not the combination."
+   ]
+  },
+  {
+   "id": "DUMP-1142",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "Which of the following is a security weakness in the evaluation of common criteria (CC) products?",
+   "options": [
+    "The manufacturer can state what configuration of the product is to be evaluated.",
+    "The product can be evaluated by labs in other countries.",
+    "The Target of Evaluation's (TOE) testing environment is identical to the operating environment",
+    "The evaluations are expensive and time-consuming to perform."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In Common Criteria the vendor defines the security target and evaluated configuration. Real deployments may differ from what was evaluated, which is a known weakness.",
+   "optionNotes": [
+    "Correct: the vendor chooses the evaluated configuration.",
+    "Mutual recognition across countries is a strength.",
+    "Test and real environments are usually not identical; that wording describes a strength, not a weakness.",
+    "Cost is a drawback, but not a security weakness of the evaluation."
+   ]
+  },
+  {
+   "id": "DUMP-1152",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the top barrier for companies to adopt cloud technology?",
+   "options": [
+    "Migration period",
+    "Data integrity",
+    "Cost",
+    "Security"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Industry surveys consistently put security and privacy concerns at the top of the barriers to cloud adoption. Cost is usually a reason to move to the cloud, not a barrier. Migration time and integrity are smaller concerns.",
+   "optionNotes": [
+    "Migration time is a concern, but not the top one.",
+    "Integrity falls under security concerns; it is not the top barrier on its own.",
+    "Cost savings usually drive cloud adoption.",
+    "Correct: security is the most-cited barrier."
+   ]
+  },
+  {
+   "id": "DUMP-1169",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Spyware is BEST described as",
+   "options": [
+    "data mining for advertising.",
+    "a form of cyber-terrorism",
+    "an information gathering technique",
+    "a web-based attack."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said A] Spyware secretly collects information about a user or system, such as keystrokes, browsing and credentials. At heart it is an information-gathering technique. Advertising-driven data mining is only one use of it.",
+   "optionNotes": [
+    "Too narrow: ad tracking is only one purpose of spyware.",
+    "Spyware is not cyber-terrorism.",
+    "Correct: spyware is fundamentally covert information gathering.",
+    "It need not be web-based."
+   ]
+  },
+  {
+   "id": "DUMP-1201",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Compared with hardware cryptography, software cryptography is generally",
+   "options": [
+    "less expensive and slower.",
+    "more expensive and faster.",
+    "more expensive and slower.",
+    "less expensive and faster."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Software crypto avoids dedicated hardware cost but runs on general CPUs, so it is cheaper and slower.",
+   "optionNotes": [
+    "Correct: no dedicated hardware cost, but slower on general CPUs.",
+    "Software is cheaper, not costlier, and slower.",
+    "Software is cheaper, not more expensive.",
+    "Software is not faster than dedicated crypto hardware."
+   ]
+  },
+  {
+   "id": "DUMP-1235",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Asymmetric algorithms are used for which of the following when using Secure Sockets Layer/Transport Layer Security (SSL/TLS) for implementing network security?",
+   "options": [
+    "Peer authentication",
+    "Payload data encryption",
+    "Session encryption",
+    "Hashing digest"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In TLS, asymmetric crypto authenticates peers via certificates and establishes keys; bulk data uses symmetric ciphers.",
+   "optionNotes": [
+    "Correct: asymmetric crypto authenticates peers (certificates) and exchanges keys.",
+    "Payload uses symmetric encryption.",
+    "Session encryption is symmetric.",
+    "Hashing is not asymmetric encryption."
+   ]
+  },
+  {
+   "id": "DUMP-1240",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following threats exists with an implementation of digital signatures?",
+   "options": [
+    "Spoofing",
+    "Substitution",
+    "Content tampering",
+    "Eavesdropping"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Without trusted binding of keys to identities, an attacker can substitute a public key, the main digital signature threat.",
+   "optionNotes": [
+    "Spoofing is mitigated by signatures themselves.",
+    "Correct: substituting a public key undermines signature trust.",
+    "Signatures detect content tampering.",
+    "Signatures don't address confidentiality."
+   ]
+  },
+  {
+   "id": "DUMP-1242",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following is the PRIMARY purpose of installing a mantrap within a facility?",
+   "options": [
+    "Control traffic",
+    "Prevent rapid movement",
+    "Prevent piggybacking",
+    "Control air flow"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A mantrap allows one person through at a time to prevent piggybacking/tailgating.",
+   "optionNotes": [
+    "Traffic control is a side effect, not purpose.",
+    "Not about speed.",
+    "Correct: mantraps stop piggybacking/tailgating.",
+    "Air flow is irrelevant."
+   ]
+  },
+  {
+   "id": "DUMP-1246",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "In the common criteria, which of the following is a formal document that expresses an implementation-independent set of security requirements?",
+   "options": [
+    "Organizational Security Policy",
+    "Security Target (ST)",
+    "Protection Profile (PP)",
+    "Target of Evaluation (TOE)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A Protection Profile is an implementation-independent set of security requirements for a product class.",
+   "optionNotes": [
+    "Policy is organisational, not a CC requirement document.",
+    "ST is implementation-specific.",
+    "Correct: PP is implementation-independent.",
+    "TOE is the product being evaluated."
+   ]
+  },
+  {
+   "id": "DUMP-1250",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Using the cipher text and resultant clear text message to derive the non-alphabetic cipher key is an example of which method of cryptanalytic attack?",
+   "options": [
+    "Frequency analysis",
+    "Ciphertext-only attack",
+    "Probable-plaintext attack",
+    "Known-plaintext attack"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Having both ciphertext and the matching plaintext and working back to the key is the definition of a known-plaintext attack.",
+   "optionNotes": [
+    "Statistical letter analysis, no plaintext needed",
+    "Attacker has only ciphertext",
+    "Guesses likely plaintext rather than knowing it",
+    "Right: ciphertext and plaintext pairs are known"
+   ]
+  },
+  {
+   "id": "DUMP-1252",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "A user downloads a file from the Internet, then applies the Secure Hash Algorithm 3 (SHA-3) to it. What is the purpose of this action?",
+   "options": [
+    "It verifies the integrity of the file.",
+    "It checks the file for malware.",
+    "It ensures the entire file downloaded.",
+    "It encrypts the entire file."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A hash such as SHA-3 creates a fingerprint that can be compared with the published value to detect any change, which verifies integrity.",
+   "optionNotes": [
+    "Right: hash comparison verifies integrity",
+    "Hashing does not scan for malware",
+    "Hashing does not guarantee completeness of the download in itself; it detects alteration",
+    "Hashing is one-way, not encryption"
+   ]
+  },
+  {
+   "id": "DUMP-1263",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "An organization operates a legacy Industrial Control System (ICS) to support its core business service, which cannot be replaced. Its management MUST be performed remotely through an administrative console software, which in turn depends on an old version of the Java Runtime Environment (JRE) known to be vulnerable to a number of attacks. How is this risk BEST managed?",
+   "options": [
+    "Isolate the full ICS by moving it onto its own network segment",
+    "Air-gap and harden the host used for management purposes",
+    "Convince the management to decommission the ICS and migrate to a modern technology",
+    "Deploy a restrictive proxy between all clients and the vulnerable management station"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The vulnerable JRE is on the management host, so air-gapping and hardening that host removes the attack path while the irreplaceable ICS keeps running.",
+   "optionNotes": [
+    "Does not protect the vulnerable console host",
+    "Right: isolate and harden the vulnerable component",
+    "System cannot be replaced",
+    "Proxy still leaves the vulnerable JRE host reachable"
+   ]
+  },
+  {
+   "id": "DUMP-1276",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The security architect has been assigned the responsibility of ensuring integrity of the organization's electronic records. Which of the following methods provides the strongest level of integrity?",
+   "options": [
+    "Time stamping",
+    "Encryption",
+    "Hashing",
+    "Digital signature"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A digital signature combines a hash with the signer's private key, so it gives integrity plus authenticity and non-repudiation, which is stronger than a plain hash.",
+   "optionNotes": [
+    "Proves time, not integrity",
+    "Confidentiality",
+    "Integrity alone can be recomputed by an attacker",
+    "Right: strongest integrity with origin assurance"
+   ]
+  },
+  {
+   "id": "DUMP-1278",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A security architect is developing an information system for a client. One of the requirements is to deliver a platform that mitigates against common vulnerabilities and attacks. What is the MOST efficient option used to prevent buffer overflow attacks?",
+   "options": [
+    "Process isolation",
+    "Address Space Layout Randomization (ASLR)",
+    "Processor states",
+    "Access control mechanisms"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "ASLR randomizes memory locations, so overflow exploits cannot reliably jump to their payload. It is a low-cost, platform-wide mitigation.",
+   "optionNotes": [
+    "General separation, not overflow-specific",
+    "CPU modes do not stop overflows",
+    "Right: randomized memory defeats exploits",
+    "Does not address memory corruption"
+   ]
+  },
+  {
+   "id": "DUMP-1281",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A development operations team would like to start building new applications delegating the cybersecurity responsibility as much as possible to the service provider. Which of the following environments BEST fits their need?",
+   "options": [
+    "Cloud Virtual Machines (VM)",
+    "Cloud application container within a Virtual Machine (VM)",
+    "On premises Virtual Machine (VM)",
+    "Self-hosted Virtual Machine (VM)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Containers delivered by a cloud provider shift more of the stack (OS, runtime, hardware) to the provider than self-managed VMs do.",
+   "optionNotes": [
+    "IaaS VMs leave the OS to the customer",
+    "Right: most responsibility moved to provider",
+    "Fully customer-managed",
+    "Fully customer-managed"
+   ]
+  },
+  {
+   "id": "DUMP-1283",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The security operations center (SOC) has received credible intelligence that a threat actor is planning to attack with multiple variants of a destructive virus. After obtaining a sample set of this virus' variants and reverse engineering them to understand how they work, a commonality was found. All variants are coded to write to a specific memory location. It is determined this virus is of no threat to the organization because they had the foresight to enable what feature on all endpoints?",
+   "options": [
+    "Process isolation",
+    "Trusted Platform Module (TPM)",
+    "Address Space Layout Randomization (ASLR)",
+    "Virtualization"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Malware that writes to a fixed memory address fails when ASLR randomizes address layouts.",
+   "optionNotes": [
+    "Separates processes but does not move addresses",
+    "Hardware root of trust",
+    "Right: fixed addresses become unpredictable",
+    "Does not randomize memory inside the guest"
+   ]
+  },
+  {
+   "id": "DUMP-1286",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is the MOST significant key management problem due to the number of keys created?",
+   "options": [
+    "Keys are more difficult to provision and revoke",
+    "Storage of the keys require increased security",
+    "Exponential growth when using asymmetric keys",
+    "Exponential growth when using symmetric keys"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Symmetric systems need n(n-1)/2 keys, which grows roughly with the square of the number of users and creates a key-management burden; asymmetric needs only 2n.",
+   "optionNotes": [
+    "Generic, not tied to key count",
+    "Generic",
+    "Asymmetric scales linearly",
+    "Right: symmetric key count explodes"
+   ]
+  },
+  {
+   "id": "DUMP-1291",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following security objectives for industrial control systems (ICS) can be adapted to securing any Internet of Things (IoT) system?",
+   "options": [
+    "Prevent unauthorized modification of data.",
+    "Restore the system after an incident.",
+    "Detect security events and incidents.",
+    "Protect individual components from exploitation"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Protecting individual components from exploitation is a general ICS objective that applies directly to IoT devices, which are often weak components.",
+   "optionNotes": [
+    "Narrower objective",
+    "Recovery objective",
+    "Detection objective",
+    "Right: component hardening generalizes"
+   ]
+  },
+  {
+   "id": "DUMP-1305",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which security architecture strategy could be applied to secure an operating system (OS) baseline for deployment within the corporate enterprise?",
+   "options": [
+    "Principle of Least Privilege",
+    "Principle of Separation of Duty",
+    "Principle of Secure Default",
+    "principle of Fail Secure"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Secure defaults means shipping the OS baseline already hardened: unneeded services disabled, secure settings on, default credentials changed. That is exactly what a deployable baseline image provides.",
+   "optionNotes": [
+    "Least privilege is applied to accounts, not the whole baseline.",
+    "Separation of duties concerns people and processes.",
+    "Correct: a hardened baseline embodies secure defaults.",
+    "Fail secure describes behaviour on failure, not baseline configuration."
+   ]
+  },
+  {
+   "id": "DUMP-1318",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "When adopting software as a service (Saas), which security responsibility will remain with the adopting organization?",
+   "options": [
+    "Physical security",
+    "Data classification",
+    "Network control",
+    "Application layer control"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In SaaS the provider runs everything up to the application. The customer still owns its data, so classifying and governing that data remains the customer's job.",
+   "optionNotes": [
+    "The CSP handles physical security.",
+    "Correct: the data owner keeps classification duties.",
+    "The CSP manages the network.",
+    "The SaaS provider controls the application layer."
+   ]
+  },
+  {
+   "id": "DUMP-1322",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following is the weakest form of protection for an application that handles Personally Identifiable Information (PII)?",
+   "options": [
+    "Transport Layer Security (TLS)",
+    "Ron Rivest Cipher 4 (RC4) encryption",
+    "Security Assertion Markup Language (SAML)",
+    "Multifactor authentication"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "RC4 is a broken stream cipher (biased keystream, prohibited in TLS by RFC 7465), so it is the weakest protection listed.",
+   "optionNotes": [
+    "TLS 1.2/1.3 is strong transport protection.",
+    "Correct: RC4 is deprecated and insecure.",
+    "SAML is a sound federation standard.",
+    "MFA greatly strengthens authentication."
+   ]
+  },
+  {
+   "id": "DUMP-1332",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Of the following, which BEST provides non- repudiation with regards to access to a server room?",
+   "options": [
+    "Fob and Personal Identification Number (PIN)",
+    "Locked and secured cages",
+    "Biometric readers",
+    "Proximity readers"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Biometrics tie entry to a specific person, giving non-repudiation. Fobs and PINs can be shared, and cages give no individual attribution.",
+   "optionNotes": [
+    "Fobs and PINs can be shared or lent.",
+    "Cages give no individual record.",
+    "Correct: biometrics bind access to the individual.",
+    "Proximity cards can be shared or cloned."
+   ]
+  },
+  {
+   "id": "DUMP-1341",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What documentation is produced FIRST when performing an effective physical loss control process?",
+   "options": [
+    "Deterrent controls list",
+    "Security standards list",
+    "inventory list",
+    "Asset valuation list"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Physical loss control starts by identifying what you have. The inventory comes first, then valuation, then controls.",
+   "optionNotes": [
+    "Controls are chosen after assets and risks are known.",
+    "Standards come after the assets are known.",
+    "Correct: inventory is the first step.",
+    "Valuation needs the inventory first."
+   ]
+  },
+  {
+   "id": "DUMP-1345",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Internet protocol security (IPSec), point-to-point tunneling protocol (PPTP), and secure sockets Layer (SSL) all use Which of the following to prevent replay attacks?",
+   "options": [
+    "Large Key encryption",
+    "Single integrity protection",
+    "Embedded sequence numbers",
+    "Randomly generated nonces"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said D] IPSec (AH/ESP), SSL/TLS and PPTP/GRE all embed sequence numbers in packets/records; receivers reject repeated or out-of-window numbers.",
+   "optionNotes": [
+    "Key length affects brute-force strength, not replay.",
+    "\"Single integrity protection\" is not a defined anti-replay mechanism.",
+    "Right: AH/ESP, TLS records and PPTP/GRE all carry sequence numbers checked by the receiver.",
+    "Nonces are used in some handshakes but are not the common anti-replay mechanism of all three."
+   ]
+  },
+  {
+   "id": "DUMP-1358",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following system components enforces access controls on an object?",
+   "options": [
+    "Security perimeter",
+    "Access control matrix",
+    "Trusted domain",
+    "Reference monitor"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The reference monitor mediates every subject access to objects; the security kernel implements it.",
+   "optionNotes": [
+    "The perimeter is the boundary of the TCB; it does not enforce access.",
+    "The matrix stores rules; it does not enforce them.",
+    "A trusted domain is a trust scope, not an enforcer.",
+    "Right: the reference monitor mediates all access."
+   ]
+  },
+  {
+   "id": "DUMP-1366",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "An organization is considering partnering with a third-party supplier of cloud services. The organization will only be providing the data and the third-party supplier will be providing the security controls. Which of the following BEST describes this service offering?",
+   "options": [
+    "Platform as a Service (PaaS)",
+    "Infrastructure as a Service (IaaS)",
+    "Software as a Service (SaaS)",
+    "Anything as a Service (XaaS)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In SaaS the customer supplies only data while the provider manages the application, platform and the security controls.",
+   "optionNotes": [
+    "In PaaS the customer secures its own applications.",
+    "In IaaS the customer secures the OS and above.",
+    "Right: the provider runs everything and the customer supplies data.",
+    "XaaS is a generic umbrella term."
+   ]
+  },
+  {
+   "id": "DUMP-1382",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following attributes could be used to describe a protection mechanism of an open design methodology?",
+   "options": [
+    "It must be tamperproof to protect it from malicious attacks.",
+    "It can facilitate independent confirmation of the design security.",
+    "It can facilitate blackbox penetration testing.",
+    "It exposes the design to vulnerabilities and malicious attacks."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Open design (Kerckhoffs) lets security be independently reviewed and confirmed rather than relying on secrecy.",
+   "optionNotes": [
+    "Tamperproofing is a reference monitor property.",
+    "Right: a public design allows independent review.",
+    "Open design supports white-box review, not black-box testing.",
+    "The principle holds that exposure does not weaken a sound design."
+   ]
+  },
+  {
+   "id": "DUMP-1394",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "An organization is implementing data encryption using symmetric ciphers and the Chief Information Officer (CIO) is concerned about the risk of using one key to protect all sensitive data, The security practitioner has been tasked with recommending a solution to address the CIO's concerns, Which of the following is the BEST approach to achieving the objective by encrypting all sensitive data?",
+   "options": [
+    "Use a Secure Hash Algorithm 256 (SHA-256).",
+    "Use a hierarchy of encryption keys.",
+    "Use Hash Message Authentication Code (HMAC) keys.",
+    "Use Rivest-Shamir-Adleman (RSA) keys."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A key hierarchy (KEKs protecting many DEKs) avoids a single key encrypting all data and limits compromise impact.",
+   "optionNotes": [
+    "A hash does not encrypt data.",
+    "Right: DEKs wrapped by KEKs, so there is no single key for everything.",
+    "HMAC gives integrity, not encryption.",
+    "RSA is asymmetric and does not answer the symmetric key-scope concern."
+   ]
+  },
+  {
+   "id": "DUMP-1449",
+   "domain": 3,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "International bodies established a regulatory scheme that defines how weapons are exchanged between the signatories. It also addresses cyber weapons, including malicious software, Command and Control (C2) software, and internet surveillance software. This is a description of which of the following?",
+   "options": [
+    "General Data Protection Regulation (GDPR)",
+    "Palermo convention",
+    "Wassenaar arrangement",
+    "International Traffic in Arms Regulations (ITAR)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The Wassenaar Arrangement is a multilateral export-control regime for conventional arms and dual-use goods, extended in 2013 to cover intrusion software and IP surveillance tools.",
+   "optionNotes": [
+    "EU privacy regulation, not arms control",
+    "UN convention on transnational organized crime",
+    "Correct: multilateral export control incl. cyber tools",
+    "US-only arms export rule, not an international scheme"
+   ]
+  },
+  {
+   "id": "DUMP-1452",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which combination of cryptographic algorithms are compliant with Federal Information Processing Standard (FIPS) Publication 140-2 for non-legacy systems?",
+   "options": [
+    "Diffie-hellman (DH) key exchange: DH (>=2048 bits) Symmetric Key: Advanced Encryption Standard (AES) > 128 bits Digital Signature: Rivest-Shamir-Adleman (RSA) (1024 bits)",
+    "Diffie-hellman (DH) key exchange: DH (>=2048 bits) Symmetric Key: Advanced Encryption Standard (AES) > 128 bits Digital Signature: Digital Signature Algorithm (DSA) (>=2048 bits)",
+    "Diffie-hellman (DH) key exchange: DH (<= 1024 bits) Symmetric Key: Blowfish Digital Signature: Rivest-Shamir-Adleman (RSA) (>=2048 bits)",
+    "Diffie-hellman (DH) key exchange: DH (>=2048 bits) Symmetric Key: Advanced Encryption Standard (AES) < 128 bits Digital Signature: Elliptic Curve Digital Signature Algorithm (ECDSA) (>=256 bits)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Current approved parameters require DH 2048+, AES with at least 128-bit keys and signatures such as DSA 2048+; RSA-1024, Blowfish and short keys are not acceptable.",
+   "optionNotes": [
+    "RSA-1024 too weak",
+    "Correct: all parameters approved",
+    "Small DH and Blowfish not approved",
+    "AES under 128 bits not valid"
+   ]
+  },
+  {
+   "id": "DUMP-1461",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which security feature fully encrypts code and data as it passes to the servers and only decrypts below the hypervisor layer?",
+   "options": [
+    "File-system level encryption",
+    "Transport Layer Security (TLS)",
+    "Key management service",
+    "Trusted execution environments"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Trusted execution environments (confidential computing) keep code and data encrypted in memory and decrypt only inside the protected hardware enclave below the hypervisor.",
+   "optionNotes": [
+    "Protects data at rest only",
+    "Protects in transit only",
+    "Manages keys, does not compute",
+    "Correct: TEE/enclave keeps data encrypted until inside protected hardware"
+   ]
+  },
+  {
+   "id": "DUMP-1462",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which would result in the GREATEST impact following a breach to a cloud environment?",
+   "options": [
+    "The hypervisor host is poorly secured",
+    "The same Logical Unit Number (LUN) is used for all VMs",
+    "Insufficient network segregation",
+    "Insufficient hardening of Virtual Machines (VM)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Compromise of the hypervisor exposes every guest VM on that host, so it has the largest blast radius.",
+   "optionNotes": [
+    "Correct: all guests exposed",
+    "Storage issue, smaller impact",
+    "Limits lateral movement only",
+    "Affects single VMs"
+   ]
+  },
+  {
+   "id": "DUMP-1483",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the benefit of an operating system (OS) feature that is designed to prevent an application from executing code from a non-executable memory region?",
+   "options": [
+    "Identifies which security patches still need to be installed on the system",
+    "Stops memory resident viruses from propagating their payload",
+    "Reduces the risk of polymorphic viruses from encrypting their payload",
+    "Helps prevent certain exploits that store code in buffers"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Data Execution Prevention marks buffers non-executable, blocking exploits that inject code into stack/heap.",
+   "optionNotes": [
+    "Patch management",
+    "Not specifically",
+    "Not related",
+    "Correct: DEP/NX blocks code injected into buffers"
+   ]
+  },
+  {
+   "id": "DUMP-1485",
+   "domain": 3,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST ensures the integrity of transactions to intended recipients?",
+   "options": [
+    "Public key infrastructure (PKI)",
+    "Blockchain technology",
+    "Pre-shared key (PSK)",
+    "Web of trust"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "PKI provides digital signatures and certificates binding keys to identities, ensuring integrity and authenticity to intended recipients at scale.",
+   "optionNotes": [
+    "Correct: signatures plus certificates bind integrity to identities",
+    "Not general solution",
+    "No per-identity assurance",
+    "Decentralised, weaker trust"
+   ]
+  }
+ ]
+}

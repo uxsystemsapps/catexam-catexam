@@ -1,0 +1,3777 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 8: Software Development Security",
+ "questions": [
+  {
+   "id": "DUMP-0022",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following mobile code security models relies only on trust?",
+   "options": [
+    "Code signing",
+    "Class authentication",
+    "Sandboxing",
+    "Type safety"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Code signing relies purely on trusting the signer; it does not constrain code behavior.",
+   "optionNotes": [
+    "Correct: code signing only proves origin; trust in signer.",
+    "Not a recognized trust-only model.",
+    "Sandboxing restricts behaviour technically.",
+    "Type safety is a language enforcement mechanism."
+   ]
+  },
+  {
+   "id": "DUMP-0033",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An input validation and exception handling vulnerability has been discovered on a critical web-based system. Which of the following is MOST suited to quickly implement a control?",
+   "options": [
+    "Add a new rule to the application layer firewall",
+    "Block access to the service",
+    "Install an Intrusion Detection System (IDS)",
+    "Patch the application source code"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A WAF rule can be deployed quickly as a compensating control while code is fixed.",
+   "optionNotes": [
+    "Correct: quick WAF rule as compensating control.",
+    "Blocking a critical system hurts availability.",
+    "IDS only detects.",
+    "Code fixes take time; not quick."
+   ]
+  },
+  {
+   "id": "DUMP-0036",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Users require access rights that allow them to view the average salary of groups of employees. Which control would prevent the users from obtaining an individual employee's salary?",
+   "options": [
+    "Limit access to predefined queries",
+    "Segregate the database into a small number of partitions each with a separate security level",
+    "Implement Role Based Access Control (RBAC)",
+    "Reduce the number of people who have access to the system for statistical purposes"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Restricting users to predefined aggregate queries prevents inference of individual salaries.",
+   "optionNotes": [
+    "Correct: predefined aggregate queries block inference.",
+    "Partitioning doesn't stop aggregation inference.",
+    "Roles still allow ad hoc queries.",
+    "Fewer users reduces exposure, doesn't prevent inference."
+   ]
+  },
+  {
+   "id": "DUMP-0056",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the BEST approach to addressing security issues in legacy web applications?",
+   "options": [
+    "Debug the security issues",
+    "Migrate to newer, supported applications where possible",
+    "Conduct a security assessment",
+    "Protect the legacy application with a web application firewall"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Legacy unsupported apps cannot be fixed sustainably; migrating to supported applications addresses root cause. A WAF (D) is a compensating control and an assessment (C) only finds issues. Replacing unsupported software removes the root cause, which is why it is the BEST approach.",
+   "optionNotes": [
+    "Debugging legacy code is costly and often impossible without vendor support.",
+    "Right: replacing unsupported apps fixes the root cause.",
+    "An assessment identifies issues but does not address them.",
+    "A WAF is a compensating control, not the best long-term fix."
+   ]
+  },
+  {
+   "id": "DUMP-0057",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the BEST method to prevent malware from being introduced into a production environment?",
+   "options": [
+    "Purchase software from a limited list of retailers",
+    "Verify the hash key or certificate key of all updates",
+    "Do not permit programs, patches, or updates from the Internet",
+    "Test all new software in a segregated environment"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Testing in a segregated environment before release catches malicious or harmful code before production. Hash verification (B) proves an update is unaltered but not that it is benign, and blocking all Internet updates is impractical. Testing in an isolated environment reveals malicious behavior before release.",
+   "optionNotes": [
+    "Trusted retailers do not guarantee clean software.",
+    "Hash checks verify integrity of updates but not that the code is benign.",
+    "Banning all Internet updates is impractical and blocks patching.",
+    "Right: testing in a segregated environment catches malicious code before production."
+   ]
+  },
+  {
+   "id": "DUMP-0058",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A Java program is being developed to read a file from computer A and write it to computer B, using a third computer C. The program is not working as expected. What is the MOST probable security feature of Java preventing the program from operating as intended?",
+   "options": [
+    "Least privilege",
+    "Privilege escalation",
+    "Defense in depth",
+    "Privilege bracketing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The Java sandbox enforces least privilege, restricting applets from arbitrary file/network access across hosts. Java's sandbox restricts untrusted code to minimal rights, blocking arbitrary file and network access across hosts. Privilege escalation is an attack and privilege bracketing is a coding practice, not a Java runtime feature.",
+   "optionNotes": [
+    "Right: the Java sandbox limits code to the least privilege, blocking cross-host file access.",
+    "Privilege escalation is an attack, not a protective feature.",
+    "Defense in depth is a layered strategy, not a Java runtime feature.",
+    "Privilege bracketing is a programming practice, not a Java security feature."
+   ]
+  },
+  {
+   "id": "DUMP-0059",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the PRIMARY risk with using open source software in a commercial software construction?",
+   "options": [
+    "Lack of software documentation",
+    "License agreements requiring release of modified code",
+    "Expiration of the license agreement",
+    "Costs associated with support of the software"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Copyleft licences such as GPL can require release of modified source, a major commercial risk. Missing documentation and support costs are manageable nuisances. Copyleft licences such as the GPL can legally force a company to publish its proprietary modifications, which threatens the product itself.",
+   "optionNotes": [
+    "Poor documentation is an inconvenience, not the primary risk.",
+    "Right: copyleft licences can force disclosure of proprietary modified code.",
+    "Open source licences generally do not expire.",
+    "Support cost is an operational concern, not the primary risk."
+   ]
+  },
+  {
+   "id": "DUMP-0060",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "When in the Software Development Life Cycle (SDLC) MUST software security functional requirements be defined?",
+   "options": [
+    "After the system preliminary design has been developed and the data security categorization has been performed",
+    "After the vulnerability analysis has been performed and before the system detailed design begins",
+    "After the system preliminary design has been developed and before the data security categorization begins",
+    "After the business functional analysis and the data security categorization have been performed"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Security functional requirements derive from business functional analysis and security categorization of the data. Requirements cannot be written before the data's security category is known, and design comes after requirements. So they follow the business functional analysis and categorization, as in NIST SDLC guidance.",
+   "optionNotes": [
+    "Preliminary design should follow requirements, not precede them.",
+    "Vulnerability analysis is not the trigger for defining requirements.",
+    "Categorization must come before requirements, not after.",
+    "Right: requirements follow business functional analysis and data categorization."
+   ]
+  },
+  {
+   "id": "DUMP-0061",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is a web application control that should be put into place to prevent exploitation of Operating System (OS) bugs?",
+   "options": [
+    "Check arguments in function calls",
+    "Test for the security patch level of the environment",
+    "Include logging functions",
+    "Digitally sign each application module"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "OS bugs are mitigated by patching; verifying the environment's patch level prevents exploiting known OS flaws. Argument checking (A) defends against application flaws, not operating system flaws. A web application can verify that the underlying OS is at the right patch level, which addresses known OS bugs directly.",
+   "optionNotes": [
+    "Argument checking prevents app bugs like overflows, not OS bugs.",
+    "Right: OS bugs are addressed by confirming the environment is patched.",
+    "Logging is detective and does not prevent exploitation.",
+    "Code signing ensures module integrity, not OS bug protection."
+   ]
+  },
+  {
+   "id": "DUMP-0067",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Multi-threaded applications are more at risk than single-threaded applications to",
+   "options": [
+    "race conditions.",
+    "virus infection.",
+    "packet sniffing.",
+    "database injection."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Concurrent threads sharing resources create timing (race condition) issues. Threads share memory and resources, so timing between them can corrupt state if not synchronized. Viruses, sniffing and injection do not depend on threading.",
+   "optionNotes": [
+    "Right: shared resources across threads create timing/race condition flaws.",
+    "Virus infection risk is unrelated to threading.",
+    "Sniffing is a network risk unrelated to threading.",
+    "Injection is an input validation issue, not threading."
+   ]
+  },
+  {
+   "id": "DUMP-0082",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What maintenance activity is responsible for defining, implementing, and testing updates to application systems?",
+   "options": [
+    "Program change control",
+    "Regression testing",
+    "Export exception control",
+    "User acceptance testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Program change control governs defining, implementing and testing changes to applications. Regression testing (B) and user acceptance testing (D) are only steps within the process. Change control is the overall process that defines, implements, tests and approves application updates.",
+   "optionNotes": [
+    "Right: change control manages defining, implementing and testing app updates.",
+    "Regression testing is only one test step in change.",
+    "Export controls concern cross-border technology.",
+    "UAT is only user validation, not the whole activity."
+   ]
+  },
+  {
+   "id": "DUMP-0084",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The BEST way to check for good security programming practices, as well as auditing for possible backdoors, is to conduct",
+   "options": [
+    "log auditing.",
+    "code reviews.",
+    "impact assessments.",
+    "static analysis."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Manual code review checks programming practices and can reveal backdoors. Static analysis tools (D) find coding flaws but miss deliberate backdoors that look like normal code. A human code review judges both programming practice and intent.",
+   "optionNotes": [
+    "Log audit shows activity, not coding practices.",
+    "Right: manual code review checks practices and can expose backdoors.",
+    "Impact assessment evaluates change effect, not code.",
+    "Static analysis tools find flaws but miss intent-based backdoors and practice issues."
+   ]
+  },
+  {
+   "id": "DUMP-0092",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a potential risk when a program runs in privileged mode?",
+   "options": [
+    "It may serve to create unnecessary code complexity",
+    "It may not enforce job separation duties",
+    "It may create unnecessary application hardening",
+    "It may allow malicious code to be inserted"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Privileged-mode code that is compromised lets malicious code run with full rights. Code running in privileged mode has unrestricted access. If it is subverted, injected malicious code inherits those privileges and can take over the system.",
+   "optionNotes": [
+    "Complexity is not the privileged-mode risk.",
+    "Job separation is an administrative issue.",
+    "Hardening is not a risk.",
+    "Right: compromised privileged code lets malicious code run with full rights."
+   ]
+  },
+  {
+   "id": "DUMP-0094",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A software scanner identifies a region within a binary image having high entropy. What does this MOST likely indicate?",
+   "options": [
+    "Encryption routines",
+    "Random number generator",
+    "Obfuscated code",
+    "Botnet command and control"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "High entropy regions typically indicate packed/obfuscated code, often used by malware. Packers and obfuscators compress or encrypt code, which raises entropy, and malware uses this to hide. Encryption routines (A) are ordinary low-entropy code, so obfuscated code is the MOST likely meaning.",
+   "optionNotes": [
+    "Encryption routines themselves are code; encrypted data/packing is the high entropy.",
+    "RNGs do not create high entropy regions in binaries.",
+    "Right: packed/obfuscated code shows high entropy.",
+    "C2 is behavior, not detectable from entropy."
+   ]
+  },
+  {
+   "id": "DUMP-0105",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.5,
+   "stem": "Which of the following is a limitation of the Common Vulnerability Scoring System (CVSS) as it relates to conducting code review?",
+   "options": [
+    "It has normalized severity ratings.",
+    "It has many worksheets and practices to implement.",
+    "It aims to calculate the risk of published vulnerabilities.",
+    "It requires a robust risk management framework to be put in place."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "CVSS rates the severity of published, catalogued vulnerabilities. Code review finds new, unpublished flaws in custom code, so CVSS does not map well to those findings.",
+   "optionNotes": [
+    "Normalised ratings are a strength, not a limitation",
+    "CVSS is a scoring formula, not a set of worksheets",
+    "Right: scope limited to published vulnerabilities",
+    "CVSS can be used without a full risk management framework"
+   ]
+  },
+  {
+   "id": "DUMP-0118",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The goal of software assurance in application development is to",
+   "options": [
+    "enable the development of High Availability (HA) systems.",
+    "facilitate the creation of Trusted Computing Base (TCB) systems.",
+    "prevent the creation of vulnerable applications.",
+    "encourage the development of open source applications."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Software assurance seeks confidence that software is free of exploitable vulnerabilities and works as intended. Preventing vulnerable applications is its goal.",
+   "optionNotes": [
+    "High availability is a design goal, not assurance",
+    "TCB is a narrower architecture concept",
+    "Right: avoid building vulnerable software",
+    "Open source development is unrelated"
+   ]
+  },
+  {
+   "id": "DUMP-0121",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is an appropriate source for test data?",
+   "options": [
+    "Production data that is secured and maintained only in the production environment.",
+    "Test data that has no similarities to production data.",
+    "Test data that is mirrored and kept up-to-date with production data.",
+    "Production data that has been sanitized before loading into a test environment."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Sanitised (masked or anonymised) production data gives realistic test coverage without exposing sensitive records in a weaker test environment.",
+   "optionNotes": [
+    "Data kept only in production cannot serve testing",
+    "Unrealistic data gives poor test coverage",
+    "Mirrored live data exposes sensitive information in test",
+    "Right: realistic yet sanitised"
+   ]
+  },
+  {
+   "id": "DUMP-0128",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following actions should be performed when implementing a change to a database schema in a production system?",
+   "options": [
+    "Test in development, determine dates, notify users, and implement in production",
+    "Apply change to production, run in parallel, finalize change in production, and develop a back-out strategy",
+    "Perform user acceptance testing in production, have users sign off, and finalize change",
+    "Change in development, perform user acceptance testing, develop a back-out strategy, and implement change"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A controlled change is built in development, validated by user acceptance testing, given a back-out plan, then deployed to production.",
+   "optionNotes": [
+    "Lacks acceptance testing and a back-out plan",
+    "Changes production before testing; back-out plan comes too late",
+    "UAT should not be done in production",
+    "Right: full change-management sequence"
+   ]
+  },
+  {
+   "id": "DUMP-0129",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Alternate encoding such as hexadecimal representations is MOST often observed in which of the following forms of attack?",
+   "options": [
+    "Smurf",
+    "Rootkit exploit",
+    "Denial of Service (DoS)",
+    "Cross site scripting (XSS)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Attackers encode script payloads with hex or other encodings to evade input filters. That is a hallmark of XSS and other web injection attacks.",
+   "optionNotes": [
+    "Smurf is an ICMP broadcast amplification flood",
+    "Rootkits hide on compromised hosts, not via input encoding",
+    "DoS floods resources; encoding is irrelevant",
+    "Right: encoding evades XSS filters"
+   ]
+  },
+  {
+   "id": "DUMP-0132",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following can BEST prevent security flaws occurring in outsourced software development?",
+   "options": [
+    "Contractual requirements for code quality",
+    "Licensing, code ownership and intellectual property rights",
+    "Certification of the quality and accuracy of the work done",
+    "Delivery dates, change management control and budgetary control"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Only the contract can bind an outside developer to specific security and code-quality standards, with acceptance criteria. Setting these up front prevents flaws instead of finding them later.",
+   "optionNotes": [
+    "Right: enforceable quality and security requirements",
+    "IP terms do not address flaws",
+    "Certification after delivery detects, not prevents",
+    "Schedule and budget controls are project management"
+   ]
+  },
+  {
+   "id": "DUMP-0163",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which one of the following is a threat related to the use of web-based client side input validation?",
+   "options": [
+    "Users would be able to alter the input after validation has occurred",
+    "The web server would not be able to validate the input after transmission",
+    "The client system could receive invalid input from the web server",
+    "The web server would not be able to receive invalid input from the client"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Client-side validation can be bypassed: attackers modify data after the browser checks it, so the server must re-validate.",
+   "optionNotes": [
+    "Attackers can tamper with data after browser checks, e.g., via a proxy",
+    "The server can and should still validate input",
+    "Server-to-client content is not the client-validation risk",
+    "The issue is that the server DOES receive invalid input"
+   ]
+  },
+  {
+   "id": "DUMP-0168",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is a method used to prevent Structured Query Language (SQL) injection attacks?",
+   "options": [
+    "Data compression",
+    "Data classification",
+    "Data warehousing",
+    "Data validation"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Validating/sanitizing input (with parameterized queries) prevents SQL injection.",
+   "optionNotes": [
+    "Compression has no effect on injected SQL",
+    "Classification labels data, doesn't filter input",
+    "Warehousing is storage architecture",
+    "Validating/sanitizing input blocks injected SQL"
+   ]
+  },
+  {
+   "id": "DUMP-0205",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "During the procurement of a new information system, it was determined that some of the security requirements were not addressed in the system specification. Which of the following is the MOST likely reason for this?",
+   "options": [
+    "The procurement officer lacks technical knowledge.",
+    "The security requirements have changed during the procurement process.",
+    "There were no security professionals in the vendor's bidding team.",
+    "The description of the security requirements was insufficient."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Requirements omitted from a system specification most often trace back to how the requirements were written and communicated. An insufficient description means vendors and engineers could not translate them into the spec.",
+   "optionNotes": [
+    "Procurement officers are not expected to be technical; the specification is the issue.",
+    "Possible but less likely than a poor initial definition.",
+    "The vendor team composition does not define the buyer's specification.",
+    "Correct: insufficiently described requirements are commonly dropped from specs."
+   ]
+  },
+  {
+   "id": "DUMP-0218",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following is a process within a Systems Engineering Life Cycle (SELC) stage?",
+   "options": [
+    "Requirements Analysis",
+    "Development and Deployment",
+    "Production Operations",
+    "Utilization Support"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In systems engineering life cycle models (e.g., ISO/IEC 15288), requirements analysis is a technical process performed within stages. The other options are stages or phases rather than processes.",
+   "optionNotes": [
+    "Correct: requirements analysis is a process performed within a stage.",
+    "Describes stages, not a process within one.",
+    "Is a stage of the life cycle.",
+    "Is a stage of the life cycle."
+   ]
+  },
+  {
+   "id": "DUMP-0225",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "During an investigation of database theft from an organization's web site, it was determined that the Structured Query Language (SQL) injection technique was used despite input validation with client-side scripting. Which of the following provides the GREATEST protection against the same attack occurring again?",
+   "options": [
+    "Encrypt communications between the servers",
+    "Encrypt the web server traffic",
+    "Implement server-side filtering",
+    "Filter outgoing traffic at the perimeter firewall"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Client-side validation can be bypassed by the attacker. Server-side filtering and validation (with parameterized queries) is the effective defence against SQL injection.",
+   "optionNotes": [
+    "Encryption does not stop malicious input.",
+    "Encrypting traffic does not stop injection.",
+    "Correct: server-side validation cannot be bypassed by the client.",
+    "Outbound filtering does not stop injected queries."
+   ]
+  },
+  {
+   "id": "DUMP-0231",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What do Capability Maturity Models (CMM) serve as a benchmark for in an organization?",
+   "options": [
+    "Experience in the industry",
+    "Definition of security profiles",
+    "Human resource planning efforts",
+    "Procedures in systems development"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Capability Maturity Models assess and benchmark the maturity of the organization's software/system development processes.",
+   "optionNotes": [
+    "Measures process maturity, not experience.",
+    "Not about security profiles.",
+    "Not an HR planning tool.",
+    "Correct: CMM benchmarks development procedures."
+   ]
+  },
+  {
+   "id": "DUMP-0232",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the BEST method to detect the most common improper initialization problems in programming languages?",
+   "options": [
+    "Use and specify a strong character encoding.",
+    "Use automated static analysis tools that target this type of weakness.",
+    "Perform input validation on any numeric inputs by assuring that they are within the expected range.",
+    "Use data flow analysis to minimize the number of false positives."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Improper initialization (CWE-665) is commonly found by automated static analysis tools that look for variables used before initialization.",
+   "optionNotes": [
+    "Encoding addresses injection/representation issues.",
+    "Correct: static analysis tools detect uninitialized variables.",
+    "Range validation addresses input errors, not initialization.",
+    "Reduces false positives but is not the primary detection method."
+   ]
+  },
+  {
+   "id": "DUMP-0241",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "When is security personnel involvement in the Systems Development Life Cycle (SDLC) process MOST beneficial?",
+   "options": [
+    "Testing phase",
+    "Development phase",
+    "Requirements definition phase",
+    "Operations and maintenance phase"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Security is cheapest and most effective when built in at the start. Involvement during requirements definition ensures security requirements are designed in.",
+   "optionNotes": [
+    "Late; fixes are costlier.",
+    "Late for setting requirements.",
+    "Correct: earliest involvement gives the most benefit.",
+    "Retrofitting is costly."
+   ]
+  },
+  {
+   "id": "DUMP-0244",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "According to best practice, which of the following is required when implementing third party software in a production environment?",
+   "options": [
+    "Scan the application for vulnerabilities",
+    "Contract the vendor for patching",
+    "Negotiate end user application training",
+    "Escrow a copy of the software"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Before deploying third-party software into production, best practice is to verify its security by scanning it for vulnerabilities. Escrow, training and patch contracts are useful but not required security gates.",
+   "optionNotes": [
+    "Right: verify third-party code security before production.",
+    "Patch contracts help but are not a deployment gate.",
+    "Training is operational, not a security requirement.",
+    "Escrow protects against vendor failure, not insecure code."
+   ]
+  },
+  {
+   "id": "DUMP-0255",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What is the PRIMARY advantage of using automated application security testing tools?",
+   "options": [
+    "The application can be protected in the production environment.",
+    "Large amounts of code can be tested using fewer resources.",
+    "The application will fail less when tested using these tools.",
+    "Detailed testing of code functions can be performed."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Automated testing tools scale: they can analyze large codebases quickly with fewer human resources, though they miss logic flaws that manual review finds.",
+   "optionNotes": [
+    "Testing tools don't protect production at runtime.",
+    "Right: automation covers large codebases with less effort.",
+    "Tools find defects; they don't make apps fail less.",
+    "Detailed function-level logic checks need manual review."
+   ]
+  },
+  {
+   "id": "DUMP-0258",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Refer to the information below to answer the question. A security practitioner detects client-based attacks on the organization's network. A plan will be necessary to address these concerns. In addition to web browsers, what PRIMARY areas need to be addressed concerning mobile code used for malicious purposes?",
+   "options": [
+    "Text editors, database, and Internet phone applications",
+    "Email, presentation, and database applications",
+    "Image libraries, presentation and spreadsheet applications",
+    "Email, media players, and instant messaging applications"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Malicious mobile code is commonly delivered through email clients, media players and instant messaging, alongside web browsers.",
+   "optionNotes": [
+    "Text editors and databases rarely carry mobile code.",
+    "Presentation and database apps aren't the main vectors.",
+    "Image libraries and spreadsheets are less typical vectors.",
+    "Right: email, media players and IM are the main vectors."
+   ]
+  },
+  {
+   "id": "DUMP-0265",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.3,
+   "stem": "Which of the following are required components for implementing software configuration management systems?",
+   "options": [
+    "Audit control and signoff",
+    "User training and acceptance",
+    "Rollback and recovery processes",
+    "Regression testing and evaluation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Configuration management requires controlled, audited changes with approval/signoff so configurations are tracked and authorized.",
+   "optionNotes": [
+    "Right: audited, signed-off changes are core to CM.",
+    "Training/acceptance belong to deployment, not CM.",
+    "Rollback is valuable but part of change execution.",
+    "Regression testing is QA, not a CM component."
+   ]
+  },
+  {
+   "id": "DUMP-0266",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "What component of a web application that stores the session state in a cookie an attacker can bypass?",
+   "options": [
+    "An initialization check",
+    "An identification check",
+    "An authentication check",
+    "An authorization check"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "If authorization state such as role or privilege is kept in a client-side cookie, an attacker can tamper with it to bypass the authorization check.",
+   "optionNotes": [
+    "Initialization isn't a security check stored in cookies.",
+    "Identification is just the claim of identity.",
+    "Authentication happens once; tampering targets later decisions.",
+    "Right: role/privilege in a cookie lets an attacker bypass authorization."
+   ]
+  },
+  {
+   "id": "DUMP-0269",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following actions MUST be taken if a vulnerability is discovered during the maintenance stage in a System Development Life Cycle (SDLC)?",
+   "options": [
+    "Make changes following principle and design guidelines.",
+    "Stop the application until the vulnerability is fixed.",
+    "Report the vulnerability to product owner.",
+    "Monitor the application and review code."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Vulnerabilities found in maintenance must be fixed through the normal change process, following secure design principles and guidelines.",
+   "optionNotes": [
+    "Right: fix through change control using secure design principles.",
+    "Shutting down is an extreme step, not mandatory.",
+    "Reporting alone doesn't fix anything.",
+    "Monitoring leaves the flaw in place."
+   ]
+  },
+  {
+   "id": "DUMP-0273",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "When using third-party software developers, which of the following is the MOST effective method of providing software development Quality Assurance (QA)?",
+   "options": [
+    "Retain intellectual property rights through contractual wording.",
+    "Perform overlapping code reviews by both parties.",
+    "Verify that the contractors attend development planning meetings.",
+    "Create a separate contractor development environment."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Overlapping code reviews by both the contractor and the organization give independent verification of code quality and security.",
+   "optionNotes": [
+    "IP rights are legal protection, not QA.",
+    "Right: reviews by both parties verify quality independently.",
+    "Attending meetings doesn't verify code quality.",
+    "A separate environment isolates work but doesn't assure quality."
+   ]
+  },
+  {
+   "id": "DUMP-0289",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is critical for establishing an initial baseline for software components in the operation and maintenance of applications?",
+   "options": [
+    "Application monitoring procedures",
+    "Configuration control procedures",
+    "Security audit procedures",
+    "Software patching procedures"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Configuration control establishes and maintains the approved baseline of software components.",
+   "optionNotes": [
+    "Monitoring watches behavior; it doesn't set baselines.",
+    "Right: configuration control sets and maintains the baseline.",
+    "Audits check against a baseline; they don't create it.",
+    "Patching changes the baseline; it doesn't establish it."
+   ]
+  },
+  {
+   "id": "DUMP-0294",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Refer to the information below to answer the question. A large, multinational organization has decided to outsource a portion of their Information Technology (IT) organization to a third-party provider's facility. This provider will be responsible for the design, development, testing, and support of several critical, customer-based applications used by the organization. The third party needs to have",
+   "options": [
+    "processes that are identical to that of the organization doing the outsourcing.",
+    "access to the original personnel that were on staff at the organization.",
+    "the ability to maintain all of the applications in languages they are familiar with.",
+    "access to the skill sets consistent with the programming languages used by the organization."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Outsourced developers will build and maintain the organization's critical applications, so they must have skills in the languages the organization uses. That keeps the code maintainable and compatible with the organization's environment.",
+   "optionNotes": [
+    "Identical processes are unnecessary; outcomes and controls matter, not mirrored procedures",
+    "Access to former staff is not a requirement and may not be possible",
+    "Rewriting in the provider's preferred languages harms maintainability and portability",
+    "Matching language skill sets lets the provider develop and support the existing code base"
+   ]
+  },
+  {
+   "id": "DUMP-0303",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following PRIMARILY contributes to security incidents in web-based applications?",
+   "options": [
+    "Systems administration and operating systems",
+    "System incompatibility and patch management",
+    "Third-party applications and change controls",
+    "Improper stress testing and application interfaces"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Web application incidents commonly result from flawed application interfaces (input handling, APIs) and inadequate testing that misses failures under load or malicious input. These are the application-level weaknesses attackers exploit.",
+   "optionNotes": [
+    "Admin and OS issues affect any system, not specifically web apps",
+    "Incompatibility/patching is a general operations issue",
+    "Third-party apps and change control are contributing but less primary",
+    "Weak interfaces and insufficient testing are the main web app flaw sources"
+   ]
+  },
+  {
+   "id": "DUMP-0323",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Although code using a specific program language may not be susceptible to a buffer overflow attack,",
+   "options": [
+    "most calls to plug-in programs are susceptible.",
+    "most supporting application code is susceptible.",
+    "the graphical images used by the application could be susceptible.",
+    "the supporting virtual machine could be susceptible."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Managed languages such as Java check bounds, but the virtual machine or runtime underneath is usually written in native code. That runtime can still contain buffer overflows.",
+   "optionNotes": [
+    "Plug-ins are not universally susceptible",
+    "Too sweeping a claim",
+    "Images are not the typical overflow concern",
+    "The runtime/VM may itself be overflowable"
+   ]
+  },
+  {
+   "id": "DUMP-0329",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MOST effective method of testing custom application code?",
+   "options": [
+    "Negative testing",
+    "White box testing",
+    "Penetration testing",
+    "Black box testing"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "With full knowledge of the source code, white box testing can exercise internal logic and paths. That makes it the most thorough way to test custom code.",
+   "optionNotes": [
+    "Negative testing is one technique, not comprehensive",
+    "White box testing examines code internals",
+    "Pen testing focuses on exploitable externals",
+    "Black box misses internal logic paths"
+   ]
+  },
+  {
+   "id": "DUMP-0331",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Software Code signing is used as a method of verifying what security concept?",
+   "options": [
+    "Integrity",
+    "Confidentiality",
+    "Availability",
+    "Access Control"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A code signature lets the recipient verify the code has not been altered since signing, and identifies the publisher. Its main security goal is integrity.",
+   "optionNotes": [
+    "Signing verifies integrity of code",
+    "Signing doesn't encrypt code",
+    "Not related to availability",
+    "Not an access control mechanism"
+   ]
+  },
+  {
+   "id": "DUMP-0336",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is one way to mitigate the risk of security flaws in custom software?",
+   "options": [
+    "Include security language in the Earned Value Management (EVM) contract",
+    "Include security assurance clauses in the Service Level Agreement (SLA)",
+    "Purchase only Commercial Off-The-Shelf (COTS) products",
+    "Purchase only software with no open source Application Programming Interfaces (APIs)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Security assurance clauses in the contract or SLA make the developer accountable for delivering secure code, which mitigates flaws in custom software.",
+   "optionNotes": [
+    "EVM tracks cost/schedule, not security",
+    "SLA assurance clauses enforce secure delivery",
+    "COTS isn't custom software and has its own flaws",
+    "Avoiding open-source APIs doesn't ensure security"
+   ]
+  },
+  {
+   "id": "DUMP-0349",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Which of the following statements is TRUE regarding value boundary analysis as a functional software testing technique?",
+   "options": [
+    "It is useful for testing communications protocols and graphical user interfaces.",
+    "It is characterized by the stateless behavior of a process implemented in a function.",
+    "Test inputs are obtained from the derived threshold of the given functional specifications.",
+    "An entire partition can be covered by considering only one representative value from that partition."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Boundary value analysis derives test inputs from the thresholds (edges) of the functional specification.",
+   "optionNotes": [
+    "Describes state-based or protocol testing, not boundary analysis",
+    "Statelessness is unrelated to boundary value analysis",
+    "Inputs are taken at thresholds derived from the specification",
+    "Describes equivalence partitioning, not boundary analysis"
+   ]
+  },
+  {
+   "id": "DUMP-0364",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which methodology is recommended for penetration testing to be effective in the development phase of the life-cycle process?",
+   "options": [
+    "White-box testing",
+    "Software fuzz testing",
+    "Black-box testing",
+    "Visual testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "During development source code and design are available, so white-box testing is most effective.",
+   "optionNotes": [
+    "White box uses available source code during development",
+    "Fuzzing is useful but not the recommended overall method",
+    "Black box suits finished systems without internal knowledge",
+    "Visual testing is not a penetration methodology"
+   ]
+  },
+  {
+   "id": "DUMP-0385",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "In the Software Development Life Cycle (SDLC), maintaining accurate hardware and software inventories is a critical part of",
+   "options": [
+    "systems integration.",
+    "risk management.",
+    "quality assurance.",
+    "change management."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Accurate hardware/software inventories underpin change management by knowing what is changed.",
+   "optionNotes": [
+    "Integration is a narrower activity",
+    "Risk management uses inventories but is not the SDLC process here",
+    "QA tests quality, not inventory control",
+    "Change management relies on accurate inventories"
+   ]
+  },
+  {
+   "id": "DUMP-0424",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What balance MUST be considered when web application developers determine how informative application error messages should be constructed?",
+   "options": [
+    "Risk versus benefit",
+    "Availability versus auditability",
+    "Confidentiality versus integrity",
+    "Performance versus user satisfaction"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Detailed errors help users and debugging but can leak information to attackers. Developers must weigh that risk against the benefit.",
+   "optionNotes": [
+    "Right: informativeness trades benefit against disclosure risk.",
+    "Auditability is not the issue in error messages.",
+    "The concern is disclosure, not a CIA trade-off between these two.",
+    "Performance is not the main concern."
+   ]
+  },
+  {
+   "id": "DUMP-0452",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "What is the MOST efficient way to secure a production program and its data?",
+   "options": [
+    "Disable default accounts and implement access control lists (ACL)",
+    "Harden the application and encrypt the data",
+    "Disable unused services and implement tunneling",
+    "Harden the servers and backup the data"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Hardening the application shrinks its attack surface, and encrypting the data protects it even if other controls fail. Together they cover both the program and its data directly.",
+   "optionNotes": [
+    "ACLs and disabling default accounts are useful but leave the data itself unprotected.",
+    "Correct: this protects both the program (hardening) and the data (encryption).",
+    "Tunneling protects data in transit only, not the program or stored data.",
+    "Backups support availability, not confidentiality or integrity."
+   ]
+  },
+  {
+   "id": "DUMP-0456",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "An application developer is deciding on the amount of idle session time that the application allows before a timeout. The BEST reason for determining the session timeout requirement is",
+   "options": [
+    "organization policy.",
+    "industry best practices.",
+    "industry laws and regulations.",
+    "management feedback."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Developers should implement requirements that come from organizational policy, which already reflects legal and business needs. Policy is the authoritative source for settings like session timeouts.",
+   "optionNotes": [
+    "Correct: organizational policy sets the requirement.",
+    "Best practice is guidance, not a binding requirement.",
+    "Laws seldom set timeout values, and policy already incorporates them.",
+    "Ad hoc management feedback is not a formal requirement source."
+   ]
+  },
+  {
+   "id": "DUMP-0509",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following steps should be performed FIRST when purchasing Commercial Off-The-Shelf (COTS) software?",
+   "options": [
+    "Undergo a security assessment as part of authorization process",
+    "Establish a risk management strategy",
+    "Harden the hosting server, and perform hosting and application vulnerability scans",
+    "Establish policies and procedures on system and services acquisition"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Policy comes first: acquisition policies and procedures govern how COTS is selected, assessed and authorized before any technical activity.",
+   "optionNotes": [
+    "Assessment occurs later in authorization.",
+    "A risk strategy is broader; acquisition policy is the first step for purchasing.",
+    "Hardening and scans are implementation steps.",
+    "Correct: acquisition policies are established first."
+   ]
+  },
+  {
+   "id": "DUMP-0514",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "What is the PRIMARY role of a scrum master in agile development?",
+   "options": [
+    "To choose the primary development language",
+    "To choose the integrated development environment",
+    "To match the software requirements to the delivery plan",
+    "To project manage the software delivery"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said C] OSG10 describes the scrum master as the person in a project-management role who leads the daily scrum, clears blockers, and keeps the team moving toward its sprint goals. Managing the delivery process fits that role. Matching requirements to a plan is backlog work owned by the product owner.",
+   "optionNotes": [
+    "Wrong: the team chooses the language, not the scrum master.",
+    "Wrong: tooling choices belong to the developers.",
+    "Wrong: prioritising requirements against delivery is the product owner's backlog job.",
+    "Right: OSG10 places the scrum master in a project-management role that guides delivery."
+   ]
+  },
+  {
+   "id": "DUMP-0529",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following are important criteria when designing procedures and acceptance criteria for acquired software?",
+   "options": [
+    "Code quality, security, and origin",
+    "Architecture, hardware, and firmware",
+    "Data quality, provenance, and scaling",
+    "Distributed, agile, and bench testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Acceptance of acquired software should check code quality, security and its origin (supply chain trust).",
+   "optionNotes": [
+    "Correct: quality, security and origin.",
+    "Architecture/hardware are not software acceptance focus.",
+    "Data quality relates to data, not software.",
+    "Testing styles are not acceptance criteria."
+   ]
+  },
+  {
+   "id": "DUMP-0530",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "During examination of Internet history records, the following string occurs within a Uniform Resource Locator (URL): http://www.companysite.com/products/products.asp?productid=123 or 1=1 What type of attack does this indicate?",
+   "options": [
+    "Directory traversal",
+    "Structured Query Language (SQL) injection",
+    "Cross-Site Scripting (XSS)",
+    "Shellcode injection"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Appending 'or 1=1' to a parameter creates an always-true SQL condition, the hallmark of SQL injection.",
+   "optionNotes": [
+    "Traversal uses ../ sequences.",
+    "Correct: SQL injection tautology.",
+    "XSS injects script tags.",
+    "Shellcode injects machine code."
+   ]
+  },
+  {
+   "id": "DUMP-0536",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "Assessing a third party's risk by counting bugs in the code may not be the best measure of an attack surface within the supply chain. Which of the following is LEAST associated with the attack surface?",
+   "options": [
+    "Input protocols",
+    "Target processes",
+    "Error messages",
+    "Access rights"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Attack surface is defined by entry points, processes and access rights; error messages are an information-leak issue, not part of the surface itself.",
+   "optionNotes": [
+    "Inputs are entry points.",
+    "Target processes are part of the surface.",
+    "Correct: error messages are least associated.",
+    "Access rights define reachable surface."
+   ]
+  },
+  {
+   "id": "DUMP-0542",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is considered a secure coding practice?",
+   "options": [
+    "Use concurrent access for shared variables and resources",
+    "Use checksums to verify the integrity of libraries",
+    "Use new code for common tasks",
+    "Use dynamic execution functions to pass user supplied data"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Verifying library integrity with checksums ensures components have not been tampered with.",
+   "optionNotes": [
+    "Concurrent access causes race conditions.",
+    "Correct: integrity checks.",
+    "Reuse tested code instead.",
+    "Dynamic execution with user data enables injection."
+   ]
+  },
+  {
+   "id": "DUMP-0543",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the MOST effective method to mitigate Cross-Site Scripting (XSS) attacks?",
+   "options": [
+    "Use Software as a Service (SaaS)",
+    "Whitelist input validation",
+    "Require client certificates",
+    "Validate data output"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Allow-list input validation rejects script content before processing; it is the primary mitigation.",
+   "optionNotes": [
+    "SaaS does not prevent XSS.",
+    "Correct: whitelist validation.",
+    "Certificates authenticate clients, not content.",
+    "Output encoding helps but is secondary here."
+   ]
+  },
+  {
+   "id": "DUMP-0560",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "From a security perspective, which of the following assumptions MUST be made about input to an application?",
+   "options": [
+    "It is tested",
+    "It is logged",
+    "It is verified",
+    "It is untrusted"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Secure coding treats all input as untrusted until it has been validated.",
+   "optionNotes": [
+    "Inputs are never assumed tested",
+    "Logging doesn't establish trust",
+    "Validation must be performed, not assumed",
+    "Correct: all input must be treated as untrusted"
+   ]
+  },
+  {
+   "id": "DUMP-0568",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "As part of an application penetration testing process, session hijacking can BEST be achieved by which of the following?",
+   "options": [
+    "Known-plaintext attack",
+    "Denial of Service (DoS)",
+    "Cookie manipulation",
+    "Structured Query Language (SQL) injection"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Stealing or manipulating session cookies directly hijacks a session.",
+   "optionNotes": [
+    "A cryptanalysis attack, not session theft",
+    "DoS disrupts sessions; it does not take them over",
+    "Correct: stealing or altering session cookies takes over the session",
+    "SQL injection targets the database, not sessions directly"
+   ]
+  },
+  {
+   "id": "DUMP-0574",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following techniques is known to be effective in spotting resource exhaustion problems, especially with resources such as processes, memory, and connections?",
+   "options": [
+    "Automated dynamic analysis",
+    "Automated static analysis",
+    "Manual code review",
+    "Fuzzing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said D] The wording comes from the MITRE CWE-400 (uncontrolled resource consumption) detection guidance. That entry says automated dynamic analysis is effective at spotting resource exhaustion in processes, memory and connections, for example by generating large numbers of requests and watching the system. Fuzzing is aimed at implementation bugs and finds exhaustion only by accident, and static analysis is of limited use for this weakness.",
+   "optionNotes": [
+    "Correct: dynamic analysis runs the code under load and directly shows processes, memory or connections running out.",
+    "Static analysis has limited value here because exhaustion depends on runtime behaviour, not just code structure.",
+    "Manual review can spot obvious leaks but is not the technique known to be effective for runtime exhaustion.",
+    "Fuzzing targets low-level input-handling bugs and finds resource exhaustion only by accident."
+   ]
+  },
+  {
+   "id": "DUMP-0580",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The design review for an application has been completed and is ready for release. What technique should an organization use to assure application integrity?",
+   "options": [
+    "Application authentication",
+    "Input validation",
+    "Digital signing",
+    "Device encryption"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Code signing lets recipients verify the application has not been altered, assuring its integrity.",
+   "optionNotes": [
+    "Authentication verifies identity, not code integrity",
+    "Input validation protects at runtime but does not prove the code is unaltered",
+    "Correct: a code signature proves the code is authentic and unaltered",
+    "Device encryption protects confidentiality"
+   ]
+  },
+  {
+   "id": "DUMP-0592",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Proven application security principles include which of the following?",
+   "options": [
+    "Minimizing attack surface area",
+    "Hardening the network perimeter",
+    "Accepting infrastructure security controls",
+    "Developing independent modules"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Minimizing attack surface is a core application security principle.",
+   "optionNotes": [
+    "Correct: reducing the attack surface is a core secure-design principle",
+    "Network hardening is not an application principle",
+    "Inheriting infrastructure controls is not a principle",
+    "Modularity is good design but not a security principle per se"
+   ]
+  },
+  {
+   "id": "DUMP-0609",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following mechanisms will BEST prevent a Cross-Site Request Forgery (CSRF) attack?",
+   "options": [
+    "parameterized database queries",
+    "whitelist input values",
+    "synchronized session tokens",
+    "use strong ciphers"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Anti-CSRF synchronizer tokens tie each request to the session so forged cross-site requests fail.",
+   "optionNotes": [
+    "Parameterized queries stop SQL injection, not CSRF",
+    "Input whitelisting does not detect forged requests",
+    "Correct: a per-session token that attackers cannot guess",
+    "Strong ciphers protect transport but not request origin"
+   ]
+  },
+  {
+   "id": "DUMP-0617",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "In a change-controlled environment, which of the following is MOST likely to lead to unauthorized changes to production programs?",
+   "options": [
+    "Modifying source code without approval",
+    "Promoting programs to production without approval",
+    "Developers checking out source code without approval",
+    "Developers using Rapid Application Development (RAD) methodologies without approval"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Moving code into production without approval directly introduces unauthorised production changes.",
+   "optionNotes": [
+    "Affects source, not yet production",
+    "Correct",
+    "Checkout alone changes nothing in production",
+    "Methodology choice, not a change"
+   ]
+  },
+  {
+   "id": "DUMP-0620",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which one of the following is an advantage of an effective release control strategy from a configuration control standpoint?",
+   "options": [
+    "Ensures that a trace for all deliverables is maintained and auditable",
+    "Enforces backward compatibility between releases",
+    "Ensures that there is no loss of functionality between releases",
+    "Allows for future enhancements to existing features"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Release control keeps a traceable, auditable record of all deliverables, supporting configuration control.",
+   "optionNotes": [
+    "Correct: release control records every deliverable for audit and traceability",
+    "Backward compatibility is a design goal, not something release control enforces",
+    "Preventing loss of functionality is a testing outcome, not release control",
+    "Future enhancements are a product roadmap matter"
+   ]
+  },
+  {
+   "id": "DUMP-0624",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The security accreditation task of the System Development Life Cycle (SDLC) process is completed at the end of which phase?",
+   "options": [
+    "System acquisition and development",
+    "System operations and maintenance",
+    "System initiation",
+    "System implementation"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Under NIST SDLC guidance, security accreditation (authorization) concludes the implementation phase before operation.",
+   "optionNotes": [
+    "Accreditation needs the implemented system, so it follows development",
+    "Operations relies on continuous monitoring after accreditation",
+    "Initiation is too early; nothing exists to authorize",
+    "Correct: authorization concludes implementation before go-live"
+   ]
+  },
+  {
+   "id": "DUMP-0631",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following could be considered the MOST significant security challenge when adopting DevOps practices compared to a more traditional control framework?",
+   "options": [
+    "Achieving Service Level Agreements (SLA) on how quickly patches will be released when a security flaw is found.",
+    "Maintaining segregation of duties.",
+    "Standardized configurations for logging, alerting, and security metrics.",
+    "Availability of security teams at the end of design process to perform last-minute manual audits and reviews."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "DevOps merges development and operations, which makes segregation of duties harder.",
+   "optionNotes": [
+    "Patch SLAs are an issue in any model, not specific to DevOps",
+    "Correct: the same people build and deploy, weakening separation of duties",
+    "DevOps usually improves standardized logging and metrics",
+    "Late manual audits are a traditional-model practice DevOps abandons"
+   ]
+  },
+  {
+   "id": "DUMP-0632",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following would MINIMIZE the ability of an attacker to exploit a buffer overflow?",
+   "options": [
+    "Memory review",
+    "Code review",
+    "Message division",
+    "Buffer division"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Code review finds missing bounds checks that cause buffer overflows.",
+   "optionNotes": [
+    "'Memory review' is not a recognised secure-coding practice",
+    "Correct: code review finds missing bounds checking",
+    "'Message division' is meaningless here",
+    "'Buffer division' is not a defence against overflows"
+   ]
+  },
+  {
+   "id": "DUMP-0634",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "When developing solutions for mobile devices, in which phase of the Software Development Life Cycle (SDLC) should technical limitations related to devices be specified?",
+   "options": [
+    "Implementation",
+    "Initiation",
+    "Review",
+    "Development"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Device constraints are requirements/constraints defined in initiation.",
+   "optionNotes": [
+    "Implementation is too late to discover device constraints",
+    "Correct: constraints belong in initial requirements",
+    "Review happens after design decisions are made",
+    "Development should build to constraints already specified"
+   ]
+  },
+  {
+   "id": "DUMP-0645",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following is the BEST definition of Cross-Site Request Forgery (CSRF)?",
+   "options": [
+    "An attack which forces an end user to execute unwanted actions on a web application in which they are currently authenticated",
+    "An attack that injects a script into a web page to execute a privileged command",
+    "An attack that makes an illegal request across security zones and thereby forges itself into the security database of the system",
+    "An attack that forges a false Structure Query Language (SQL) command across systems"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "CSRF makes an authenticated user's browser perform unwanted actions.",
+   "optionNotes": [
+    "Correct: forged requests ride on the victim's authenticated session",
+    "This describes cross-site scripting",
+    "Wording is meaningless in CSRF terms",
+    "This describes SQL injection"
+   ]
+  },
+  {
+   "id": "DUMP-0662",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "When developing an external facing web-based system, which of the following would be the MAIN focus of the security assessment prior to implementation and production?",
+   "options": [
+    "Assessing the Uniform Resource Locator (URL)",
+    "Ensuring Secure Sockets Layer (SSL) certificates are signed by a certificate authority",
+    "Ensuring that input validation is enforced",
+    "Ensuring Secure Sockets Layer (SSL) certificates are internally signed"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Input validation addresses the most common web attacks such as injection and XSS. Unvalidated input in internet-facing apps is the root of most OWASP Top 10 flaws.",
+   "optionNotes": [
+    "URL assessment is minor.",
+    "Input validation prevents injection/XSS, the top web risks.",
+    "CA-signed certs matter but are not the main assessment focus.",
+    "Internally signed certs would cause trust errors for external users."
+   ]
+  },
+  {
+   "id": "DUMP-0663",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is the BEST way to protect against Structured Query Language (SQL) injection?",
+   "options": [
+    "Enforce boundary checking.",
+    "Restrict use of SELECT command.",
+    "Restrict Hyper Text Markup Language (HTML) source code access.",
+    "Use stored procedures."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Stored (parameterized) procedures separate code from data, preventing injection. Precompiled statements treat user input as parameters, not executable SQL.",
+   "optionNotes": [
+    "Boundary checking addresses buffer overflows.",
+    "Restricting SELECT breaks functionality and doesn't stop injection.",
+    "HTML source access is unrelated to SQL injection.",
+    "Stored/parameterized procedures separate code from data."
+   ]
+  },
+  {
+   "id": "DUMP-0682",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the BEST technique to facilitate secure software development?",
+   "options": [
+    "Adhere to secure coding practices for the software application under development.",
+    "Conduct penetrating testing for the software application under development.",
+    "Develop a threat modeling review for the software application under development.",
+    "Perform a code review process for the software application under development."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Following secure coding practices builds security in throughout development. The other activities are point-in-time checks within a secure SDLC.",
+   "optionNotes": [
+    "Secure coding practices build security throughout development.",
+    "Pen testing finds issues late.",
+    "Threat modeling is one design activity.",
+    "Code review is one verification activity."
+   ]
+  },
+  {
+   "id": "DUMP-0716",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A secure Software Development Life Cycle (SDLC) expects application code to be written in a consistent manner to allow ease of auditing and which of the following?",
+   "options": [
+    "Protecting",
+    "Executing",
+    "Copying",
+    "Enhancing"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Writing code to consistent standards makes it easier to review and audit, and also easier to maintain and extend later. Enhancing (maintainability) is the matching benefit.",
+   "optionNotes": [
+    "Protection is not the direct result of a consistent coding style.",
+    "Execution doesn't depend on coding consistency.",
+    "Copying code is not a goal of the SDLC.",
+    "Right: consistent code is easier to enhance and maintain."
+   ]
+  },
+  {
+   "id": "DUMP-0717",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A software development company has a short timeline in which to deliver a software product. The software development team decides to use open-source software libraries to reduce the development time. What concept should software developers consider when using open-source software libraries?",
+   "options": [
+    "Open source libraries contain known vulnerabilities, and adversaries regularly exploit those vulnerabilities in the wild.",
+    "Open source libraries can be used by everyone, and there is a common understanding that the vulnerabilities in these libraries will not be exploited.",
+    "Open source libraries are constantly updated, making it unlikely that a vulnerability exists for an adversary to exploit.",
+    "Open source libraries contain unknown vulnerabilities, so they should not be used."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Open-source components often contain publicly known vulnerabilities that attackers actively exploit. Developers should track them through software composition analysis and patching rather than assume they are safe.",
+   "optionNotes": [
+    "Right: known vulnerabilities in open-source libraries are actively exploited.",
+    "No such understanding exists; attackers do exploit them.",
+    "Frequent updates don't mean there are no vulnerabilities.",
+    "Open source is usable with proper management; banning it is unrealistic."
+   ]
+  },
+  {
+   "id": "DUMP-0749",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following value comparisons MOST accurately reflects the agile development approach?",
+   "options": [
+    "Processes and tools over individuals and interactions",
+    "Contract negotiation over customer collaboration",
+    "Following a plan over responding to change",
+    "Working software over comprehensive documentation"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The Agile Manifesto values working software over comprehensive documentation; the other options reverse the manifesto values. Options A, B and C each state the manifesto value pairs backwards, so only D reflects Agile.",
+   "optionNotes": [
+    "Reversed manifesto value",
+    "Reversed manifesto value",
+    "Reversed manifesto value",
+    "Correct: manifesto value"
+   ]
+  },
+  {
+   "id": "DUMP-0752",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "An organization that has achieved a Capability Maturity model Integration (CMMI) level of 4 has done which of the following?",
+   "options": [
+    "Addressed continuous innovative process improvement",
+    "Addressed the causes of common process variance",
+    "Achieved optimized process performance",
+    "Achieved predictable process performance"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "CMMI level 4 (Quantitatively Managed) uses statistical measures to make process performance predictable; level 5 covers continuous optimization. Optimizing (level 5) addresses continuous improvement and root causes of common variance, which is why A, B and C describe level 5.",
+   "optionNotes": [
+    "Level 5",
+    "Level 5 root-cause focus",
+    "Level 5",
+    "Correct: level 4"
+   ]
+  },
+  {
+   "id": "DUMP-0753",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "In software development, developers should use which type of queries to prevent a Structured Query Language (SQL) injection?",
+   "options": [
+    "Parameterised",
+    "Dynamic",
+    "Static",
+    "Controlled"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Parameterized queries separate code from data so user input cannot alter SQL logic. Because the statement structure is fixed before input is bound, injected characters are treated as literal values.",
+   "optionNotes": [
+    "Correct: binds input as data",
+    "Concatenated dynamic SQL is the vulnerable pattern",
+    "Static SQL cannot take runtime input safely",
+    "Not a recognized technique"
+   ]
+  },
+  {
+   "id": "DUMP-0767",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is the overall goal of software security testing?",
+   "options": [
+    "Identifying the key security features of the software",
+    "Ensuring all software functions perform as specified",
+    "Reducing vulnerabilities within a software system",
+    "Making software development more agile"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Security testing aims to find and reduce vulnerabilities in software. Confirming functions work as specified is functional testing, and identifying features is a design activity.",
+   "optionNotes": [
+    "Feature identification is a requirements/design task",
+    "Functional testing, not security",
+    "Correct: find and reduce vulnerabilities",
+    "Agility is unrelated to testing goals"
+   ]
+  },
+  {
+   "id": "DUMP-0783",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which element of software supply chain management has the GREATEST security risk to organizations?",
+   "options": [
+    "New software development skills are hard to acquire.",
+    "Unsupported libraries are often used.",
+    "Applications with multiple contributors are difficult to evaluate.",
+    "Vulnerabilities are difficult to detect."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Use of unsupported third-party libraries introduces unpatched vulnerabilities into the supply chain. Libraries that no longer receive fixes carry known vulnerabilities into many products at once.",
+   "optionNotes": [
+    "A staffing issue, not supply chain",
+    "Correct: unpatched dependencies",
+    "Real but lesser",
+    "Too generic"
+   ]
+  },
+  {
+   "id": "DUMP-0787",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A software engineer uses automated tools to review application code and search for application flaws, back doors, or other malicious code. Which of the following is the FIRST Software Development Life Cycle (SDLC) phase where this takes place?",
+   "options": [
+    "Design",
+    "Test",
+    "Development",
+    "Deployment"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Static code analysis first occurs during the development (coding) phase. Design has no code to scan yet, so automated code review first happens when code is being written.",
+   "optionNotes": [
+    "No code exists yet",
+    "Later than the first opportunity",
+    "Correct: static analysis while coding",
+    "Too late"
+   ]
+  },
+  {
+   "id": "DUMP-0800",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "What Hypertext Transfer Protocol (HTTP) response header can be used to disable the execution of inline JavaScript and the execution of eval()-type functions?",
+   "options": [
+    "Strict-Transport-Security",
+    "X-XSS-Protection",
+    "X-Frame-Options",
+    "Content-Security-Policy"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Content-Security-Policy whitelists the sources the browser may load scripts from. Once a policy is set, inline script and eval()-style functions are blocked unless 'unsafe-inline' or 'unsafe-eval' are explicitly allowed, which greatly reduces XSS impact.",
+   "optionNotes": [
+    "HSTS forces the browser to use HTTPS; it has no effect on script execution",
+    "X-XSS-Protection toggled the legacy browser XSS filter and cannot disable inline scripts or eval",
+    "X-Frame-Options controls framing to prevent clickjacking",
+    "Right: CSP blocks inline script and eval by default"
+   ]
+  },
+  {
+   "id": "DUMP-0801",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Company A is evaluating new software to replace an in-house developed application. During the acquisition process, Company A specified the security requirements, as well as the functional requirements. Company B responded to the acquisition request with their flagship product that runs on an Operating System (OS) that Company A has never used nor evaluated. The flagship product meets all security and functional requirements. What should Company A do NEXT?nd functional requirements as defined by Company A. Based upon Company B's response, what step should Company A take?",
+   "options": [
+    "Move ahead with the acquisition process, and purchase the flagship software",
+    "Conduct a security review of the OS",
+    "Perform functionality testing",
+    "Enter into contract negotiations ensuring Service Level Agreements (SLA) are established to include security patching"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The product meets the stated requirements, but it depends on an operating system the company has never assessed, and that platform brings unknown risk into the environment. The prudent next step is to evaluate that OS before committing to the purchase.",
+   "optionNotes": [
+    "Buying now accepts the risk of an unevaluated platform without assessing it",
+    "Right: assess the unfamiliar OS before going further",
+    "Functional requirements are already met, so more functional testing does not address the new risk",
+    "SLAs on patching do not replace understanding the platform's risk first"
+   ]
+  },
+  {
+   "id": "DUMP-0803",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following steps should be conducted during the FIRST phase of software assurance in a generic acquisition process?",
+   "options": [
+    "Establishing and consenting to the contract work schedule",
+    "Issuing a Request for proposal (RFP) with a work statement",
+    "Developing software requirements to be included in work statement",
+    "Reviewing and accepting software deliverables"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Generic acquisition models (for example DHS/SEI software assurance in acquisition) begin with planning, where the acquirer defines its needs, including security requirements, for the statement of work. The RFP, contracting and acceptance steps all depend on those requirements.",
+   "optionNotes": [
+    "Contract schedules are agreed during contracting, which comes later",
+    "An RFP can only be issued once the work statement and its requirements exist",
+    "Right: requirements are developed in the planning phase",
+    "Reviewing and accepting deliverables happens in the final phase"
+   ]
+  },
+  {
+   "id": "DUMP-0808",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "How can an attacker exploit overflow to execute arbitrary code?",
+   "options": [
+    "Modify a function's return address.",
+    "Alter the address of the stack.",
+    "Substitute elements in the stack.",
+    "Move the stack pointer."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In a classic stack overflow, input overruns a local buffer and overwrites the saved return address in the stack frame. When the function returns, control jumps to the address the attacker supplied, typically shellcode or a ROP chain.",
+   "optionNotes": [
+    "Right: overwriting the return address redirects execution",
+    "The stack's base location is not altered by the overflow",
+    "Vague: substituting arbitrary stack elements is not the control-flow mechanism",
+    "The stack pointer is not moved directly; the attack hijacks the return address"
+   ]
+  },
+  {
+   "id": "DUMP-0810",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.3,
+   "stem": "Which of the following is used to ensure that data mining activities will NOT reveal sensitive data?",
+   "options": [
+    "Implement two-factor authentication on the underlying infrastructure.",
+    "Encrypt data at the field level and tightly control encryption keys.",
+    "Preprocess the databases to see if information can be disclosed from the learned patterns.",
+    "Implement the principle of least privilege on data elements so a reduced number of users can access the database."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said B] The data-mining risk is inference: sensitive facts can emerge from patterns even when every user is authorized. Analyzing (preprocessing) the data to see what the learned patterns could disclose addresses that directly. Encryption and access controls do not, because the mining process itself sees plaintext.",
+   "optionNotes": [
+    "2FA restricts who logs in, not what patterns reveal",
+    "Mining runs on decrypted data, so field encryption does not stop inference",
+    "Right: test what the learned patterns can disclose before releasing them",
+    "Fewer users does not stop the mining output from exposing sensitive facts"
+   ]
+  },
+  {
+   "id": "DUMP-0813",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "In which process MUST security be considered during the acquisition of new software?",
+   "options": [
+    "Contract negotiation",
+    "Request for proposal (RFP)",
+    "Implementation",
+    "Vendor selection"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Security requirements must go into the RFP so that every vendor proposal is measured against them and they become contractual. Adding them later means re-negotiating or accepting gaps.",
+   "optionNotes": [
+    "By contract negotiation, the requirements should already be fixed in the solicitation",
+    "Right: the RFP is where security requirements must be specified",
+    "Implementation is too late to shape what is bought",
+    "Vendor selection relies on responses to the RFP requirements"
+   ]
+  },
+  {
+   "id": "DUMP-0814",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.3,
+   "stem": "Secure coding can be developed by applying which one of the following?",
+   "options": [
+    "Applying the organization's acceptable use guidance",
+    "Applying the industry best practice coding guidelines",
+    "Applying rapid application development (RAD) coding",
+    "Applying the organization's web application firewall (WAF) policy"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Secure coding comes from developers following established secure coding standards such as the OWASP or SEI CERT guidelines. These codify how to avoid injection, overflow and similar flaws in the source code itself.",
+   "optionNotes": [
+    "An acceptable use policy governs user behaviour, not how software is written",
+    "Right: industry secure coding guidelines",
+    "RAD is a fast delivery method and does not make code secure by itself",
+    "A WAF compensates at runtime but does not make the code secure"
+   ]
+  },
+  {
+   "id": "DUMP-0817",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.1,
+   "stem": "Which of the following practices provides the development of security and identification of threats in designing software?",
+   "options": [
+    "Stakeholder review",
+    "Requirements review",
+    "Penetration testing",
+    "Threat modeling"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Threat modeling (for example STRIDE or PASTA) is carried out during design to identify threats against the architecture and define mitigations. Security is built in rather than tested in afterwards.",
+   "optionNotes": [
+    "Stakeholder review gathers needs but does not systematically identify threats",
+    "A requirements review checks completeness, not the threats against the design",
+    "Penetration testing comes after the build and finds flaws late",
+    "Right: threat modeling identifies threats during design"
+   ]
+  },
+  {
+   "id": "DUMP-0854",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "An organization plans to acquire a commercial off-the-shelf (COTS) system to replace their aging home-built reporting system. When should the organization's security team FIRST get involved in this acquisition's life cycle?",
+   "options": [
+    "When the system is being designed, purchased, programmed, developed, or otherwise constructed",
+    "When the system is verified and validated",
+    "When the system is deployed into production",
+    "When the need for a system is expressed and the purpose of the system is documented"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said A] Security must engage at initiation when the need is defined so requirements shape the acquisition. With COTS, security requirements must feed the selection criteria before a product is chosen.",
+   "optionNotes": [
+    "Too late: requirements are already set by the time of purchase or design.",
+    "Verification comes late in the life cycle.",
+    "Deployment is far too late for security input.",
+    "Initiation: security shapes requirements from the moment the need is defined."
+   ]
+  },
+  {
+   "id": "DUMP-0857",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A company is moving from the V model to Agile development. How can the information security department BEST ensure that secure design principles are implemented in the new methodology?",
+   "options": [
+    "All developers receive a mandatory targeted information security training.",
+    "The non-financial information security requirements remain mandatory for the new model.",
+    "The information security department performs an information security assessment after each sprint.",
+    "Information security requirements are captured in mandatory user stories."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Embedding security requirements as mandatory user stories integrates them into Agile backlog work. Agile work flows through the backlog, so security must live there.",
+   "optionNotes": [
+    "Training helps but does not build security into the process.",
+    "Too vague and does not adapt security to Agile.",
+    "Assessing after each sprint is reactive; it finds issues rather than designing them out.",
+    "Mandatory security user stories put requirements in the backlog and Definition of Done."
+   ]
+  },
+  {
+   "id": "DUMP-0883",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which technique helps system designers consider potential security concerns of their systems and applications?",
+   "options": [
+    "Penetration testing",
+    "Threat modeling",
+    "Manual inspections and reviews",
+    "Source code review"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Threat modeling helps designers identify threats during design. It identifies threats early, when fixes are cheapest.",
+   "optionNotes": [
+    "Pentesting comes after building.",
+    "Threat modeling is a design-time analysis.",
+    "Inspections review existing artifacts.",
+    "Code review needs code to exist."
+   ]
+  },
+  {
+   "id": "DUMP-0891",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "A software development company found odd behavior in some recently developed software, creating a need for a more thorough code review. What is the MOST effective argument for a more thorough code review?",
+   "options": [
+    "It will increase flexibility of the applications developed.",
+    "It will increase accountability with the customers.",
+    "It will impede the development process.",
+    "It will reduce the potential for vulnerabilities."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Thorough code review reduces vulnerabilities, the strongest security argument. Odd behavior may indicate flaws.",
+   "optionNotes": [
+    "Not a security argument.",
+    "Secondary benefit.",
+    "An argument against.",
+    "Reducing vulnerabilities is the core security value."
+   ]
+  },
+  {
+   "id": "DUMP-0893",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "In which of the following system life cycle processes should security requirements be developed?",
+   "options": [
+    "Risk management",
+    "Business analysis",
+    "Information management",
+    "System analysis"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Security requirements are developed during system analysis/requirements definition. Requirements are defined before design.",
+   "optionNotes": [
+    "Risk management informs requirements but does not develop them.",
+    "Business analysis defines business needs, not system security requirements.",
+    "Information management is a different process.",
+    "System analysis defines system requirements including security."
+   ]
+  },
+  {
+   "id": "DUMP-0898",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The Open Web Application Security Project's (OWASP) Software Assurance Maturity Model (SAMM) allows organizations to implement a flexible software security strategy to measure organizational impact based on what risk management aspect?",
+   "options": [
+    "Risk tolerance",
+    "Risk exception",
+    "Risk treatment",
+    "Risk response"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "SAMM lets an organization tailor its software assurance program to the level of risk it is willing to accept. Risk tolerance drives which maturity levels and practices are targeted.",
+   "optionNotes": [
+    "Right: strategy is built around organizational risk tolerance",
+    "Exceptions are individual deviations",
+    "Treatment is a generic risk-management step, not SAMM's basis",
+    "Response is too generic"
+   ]
+  },
+  {
+   "id": "DUMP-0900",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following BEST describes why software assurance is critical in helping prevent an increase in business and mission risk for an organization?",
+   "options": [
+    "Software that does not perform as intended may be exploitable which makes it vulnerable to attack.",
+    "Request for proposals (RFP) avoid purchasing software that does not meet business needs.",
+    "Contracting processes eliminate liability for security vulnerabilities for the purchaser.",
+    "Decommissioning of old software reduces long-term costs related to technical debt."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Software assurance aims for software that behaves as intended and is free of exploitable weaknesses. Software that misbehaves can be exploited, directly raising business and mission risk.",
+   "optionNotes": [
+    "Right: Software assurance aims for software that behaves as intended and is free of exploitable weaknesses.",
+    "RFPs address requirements fit, not exploitability",
+    "Contracts do not eliminate liability",
+    "Decommissioning is about cost, not assurance"
+   ]
+  },
+  {
+   "id": "DUMP-0903",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A web-based application known to be susceptible to attacks is now under review by a senior developer. The organization would like to ensure this application is less susceptible to injection attacks specifically. What strategy will work BEST for the organization's situation?",
+   "options": [
+    "Do not store sensitive unencrypted data on the back end.",
+    "Whitelist input and encode or escape output before it is processed for rendering.",
+    "Limit privileged access or hard-coding logon credentials.",
+    "Store sensitive data in a buffer that retains data in operating system (OS) cache or memory."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Injection is countered by validating input against an allow list and encoding or escaping output so data cannot be interpreted as code.",
+   "optionNotes": [
+    "Encryption at rest does not stop injection",
+    "Right: Injection is countered by validating input against an allow list and encoding or escaping output so data cannot be interpreted as code.",
+    "Credential handling addresses access, not injection",
+    "Retaining data in memory is insecure and unrelated"
+   ]
+  },
+  {
+   "id": "DUMP-0906",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "What type of database attack would allow a customer service employee to determine quarterly sales results before they are publicly announced?",
+   "options": [
+    "Polyinstantiation",
+    "Inference",
+    "Aggregation",
+    "Data mining"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Inference is deducing sensitive information from accessible, less-sensitive data, such as guessing sales results from order activity visible to customer service.",
+   "optionNotes": [
+    "Polyinstantiation is a defence",
+    "Right: Inference is deducing sensitive information from accessible, less-sensitive data, such as guessing sales results from order activity visible to customer service.",
+    "Aggregation combines items into a more sensitive whole; inference (deduction) fits better",
+    "Data mining is a legitimate analysis technique"
+   ]
+  },
+  {
+   "id": "DUMP-0912",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A malicious user gains access to unprotected directories on a web server. Which of the following is MOST likely the cause for this information disclosure?",
+   "options": [
+    "Security misconfiguration",
+    "Cross-site request forgery (CSRF)",
+    "Structured Query Language injection (SQLi)",
+    "Broken authentication management"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Unprotected directories exposed on a web server result from security misconfiguration, such as directory listing enabled or missing access controls.",
+   "optionNotes": [
+    "Right: Unprotected directories exposed on a web server result from security misconfiguration, such as directory listing enabled or missing access controls.",
+    "CSRF forces user actions",
+    "SQLi targets databases",
+    "Broken authentication concerns identity/session handling"
+   ]
+  },
+  {
+   "id": "DUMP-0924",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Using Address Space Layout Randomization (ASLR) reduces the potential for which of the following attacks?",
+   "options": [
+    "SQL injection (SQLi)",
+    "Man-in-the-middle (MITM)",
+    "Cross-Site Scripting (XSS)",
+    "Heap overflow"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "ASLR randomizes memory locations, making memory corruption exploits such as heap/buffer overflows much harder to execute reliably.",
+   "optionNotes": [
+    "SQLi is an input issue",
+    "MITM is network",
+    "XSS is web input",
+    "Right: ASLR randomizes memory locations, making memory corruption exploits such as heap/buffer overflows much harder to execute reliably."
+   ]
+  },
+  {
+   "id": "DUMP-0927",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following technologies can be used to monitor and dynamically respond to potential threats on web applications?",
+   "options": [
+    "Security Assertion Markup Language (SAML)",
+    "Web application vulnerability scanners",
+    "Runtime application self-protection (RASP)",
+    "Field-level tokenization"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "RASP is embedded in the running application to detect and block attacks in real time.",
+   "optionNotes": [
+    "SAML is federation",
+    "Scanners find flaws, do not respond",
+    "Right: RASP is embedded in the running application to detect and block attacks in real time.",
+    "Tokenization protects data"
+   ]
+  },
+  {
+   "id": "DUMP-0937",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Who should perform the design review to uncover security design flaws as part of the Software Development Life Cycle (SDLC)?",
+   "options": [
+    "The business owner",
+    "A security subject matter expert (SME)",
+    "The application owner",
+    "A developer subject matter expert (SME)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Security design reviews need security expertise to spot design flaws.",
+   "optionNotes": [
+    "Business owner lacks security expertise",
+    "Right: Security design reviews need security expertise to spot design flaws.",
+    "Application owner is not a security reviewer",
+    "Developer SME lacks independence and focus"
+   ]
+  },
+  {
+   "id": "DUMP-0939",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "An application team is running tests to ensure that user entry fields will not accept invalid input of any length. What type of negative testing is this an example of?",
+   "options": [
+    "Reasonable data",
+    "Population of required fields",
+    "Allowed number of characters",
+    "Session testing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Testing that fields reject input exceeding allowed length is the allowed-number-of-characters negative test.",
+   "optionNotes": [
+    "Reasonable data is about plausible values",
+    "Required fields test emptiness",
+    "Right: Testing that fields reject input exceeding allowed length is the allowed-number-of-characters negative test.",
+    "Session testing is about sessions"
+   ]
+  },
+  {
+   "id": "DUMP-0945",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An organization has determined that its previous waterfall approach to software development is not keeping pace with business demands. To adapt to the rapid changes required for product delivery, the organization has decided to move towards an Agile software development and release cycle. In order to ensure the success of the Agile methodology, who is MOST critical in creating acceptance tests or acceptance criteria for each release?",
+   "options": [
+    "Project managers",
+    "Software developers",
+    "Independent testers",
+    "Business customers"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In Agile, business customers (product owners) define acceptance criteria because they know what value the release must deliver.",
+   "optionNotes": [
+    "PMs coordinate",
+    "Developers implement",
+    "Testers execute tests",
+    "Right: In Agile, business customers (product owners) define acceptance criteria because they know what value the release must deliver."
+   ]
+  },
+  {
+   "id": "DUMP-0953",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "An attacker has intruded into the source code management system and is able to download but not modify the code. Which of the following aspects of the code theft has the HIGHEST security impact?",
+   "options": [
+    "The attacker could publicly share confidential comments found in the stolen code.",
+    "Competitors might be able to steal the organization's ideas by looking at the stolen code.",
+    "A competitor could run their own copy of the organization's website using the stolen code.",
+    "Administrative credentials or keys hard-coded within the stolen code could be used to access sensitive data."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Hard-coded credentials or keys give the attacker direct access to sensitive data and systems, a far greater impact than disclosure of ideas or comments.",
+   "optionNotes": [
+    "Embarrassing comments are low impact compared to credential exposure.",
+    "IP loss to competitors is real but less severe than direct compromise.",
+    "Cloning the site is a business issue with limited security impact.",
+    "Correct: exposed secrets enable direct access to sensitive data."
+   ]
+  },
+  {
+   "id": "DUMP-0974",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the PRIMARY risk associated with Extensible Markup Language (XML) applications?",
+   "options": [
+    "Users can manipulate the code.",
+    "The stack data structure cannot be replicated.",
+    "The stack data structure is repetitive.",
+    "Potential sensitive data leakage."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "XML documents and services frequently expose sensitive data (e.g., via XXE or verbose messages), so data leakage is the primary concern.",
+   "optionNotes": [
+    "Code manipulation is not specific to XML.",
+    "Stack replication is meaningless for XML.",
+    "Stack repetitiveness is not a risk.",
+    "Correct: XML processing can leak sensitive data."
+   ]
+  },
+  {
+   "id": "DUMP-0976",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "When are security requirements the LEAST expensive to implement?",
+   "options": [
+    "When identified by external consultants",
+    "During the application rollout phase",
+    "During each phase of the project cycle",
+    "When built into application design"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Building security in at design is cheapest; retrofitting during rollout or after costs much more.",
+   "optionNotes": [
+    "Consultants do not by themselves reduce cost.",
+    "Rollout is late and expensive to change.",
+    "Spreading across phases is less precise than designing it in.",
+    "Correct: design-phase security is least expensive."
+   ]
+  },
+  {
+   "id": "DUMP-0987",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following phases in the software acquisition process does developing evaluation criteria take place?",
+   "options": [
+    "Follow-On",
+    "Planning",
+    "Contracting",
+    "Monitoring and Acceptance"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In software acquisition, evaluation criteria are developed during planning, before soliciting and contracting.",
+   "optionNotes": [
+    "Follow-on is post-delivery support.",
+    "Correct: criteria are defined during planning.",
+    "Contracting uses criteria already defined.",
+    "Monitoring and acceptance applies them later."
+   ]
+  },
+  {
+   "id": "DUMP-1007",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following addresses requirements of security assessments during software acquisition?",
+   "options": [
+    "Software configuration management (SCM)",
+    "Data loss prevention (DLP) policy",
+    "Continuous monitoring",
+    "Software assurance policy"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A software assurance policy sets the security requirements and assessments applied when software is acquired.",
+   "optionNotes": [
+    "Wrong: Controls versions, not acquisition assessment",
+    "Wrong: Covers data leakage",
+    "Wrong: Operational monitoring",
+    "Right: sets the security checks required when buying software"
+   ]
+  },
+  {
+   "id": "DUMP-1012",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "A database server for a financial application is scheduled for production deployment. Which of the following controls will BEST prevent tampering?",
+   "options": [
+    "Service accounts removal",
+    "Data validation",
+    "Logging and monitoring",
+    "Data sanitization"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Validating data input and integrity stops unauthorized or malformed changes to financial data before they are committed.",
+   "optionNotes": [
+    "Wrong: Reduces attack surface but does not prevent data tampering",
+    "Right: validation blocks unauthorized or malformed changes to data",
+    "Wrong: Detective, not preventive",
+    "Wrong: Done when disposing of media"
+   ]
+  },
+  {
+   "id": "DUMP-1025",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A financial services organization has employed a security consultant to review processes used by employees across various teams. The consultant interviewed a member of the application development practice and found gaps in their threat model. Which of the following correctly represents a trigger for when a threat model should be revised?",
+   "options": [
+    "A new data repository is added.",
+    "After operating system (OS) patches are applied",
+    "After a modification to the firewall rule policy",
+    "A new developer is hired into the team."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Adding a new data repository changes the architecture and attack surface, so the threat model must be revised.",
+   "optionNotes": [
+    "Right: a new data store changes the attack surface",
+    "Wrong: Routine maintenance",
+    "Wrong: Routine operational change",
+    "Wrong: Personnel do not change the design"
+   ]
+  },
+  {
+   "id": "DUMP-1029",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "A web developer is completing a new web application security checklist before releasing the application to production. The task of disabling unnecessary services is on the checklist. Which web application threat is being mitigated by this action?",
+   "options": [
+    "Security misconfiguration",
+    "Sensitive data exposure",
+    "Broken access control",
+    "Session hijacking"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Unneeded services left enabled are a security misconfiguration.",
+   "optionNotes": [
+    "Right: services left enabled are a misconfiguration",
+    "Wrong: Not directly",
+    "Wrong: Not directly",
+    "Wrong: Not related"
+   ]
+  },
+  {
+   "id": "DUMP-1030",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A security engineer is required to integrate security into a software project that is implemented by small groups that quickly, continuously, and independently develop, test, and deploy code to the cloud. The engineer will MOST likely integrate with which software development process?",
+   "options": [
+    "Service-oriented architecture (SOA)",
+    "Spiral Methodology",
+    "Structured Waterfall Programming Development",
+    "Devops Integrated Product Team (IPT)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Small teams that continuously build, test and deploy to the cloud describe DevOps.",
+   "optionNotes": [
+    "Wrong: An architecture, not a process",
+    "Wrong: Iterative but risk-driven, not continuous",
+    "Wrong: Sequential",
+    "Right: DevOps means continuous build, test and deploy by small teams"
+   ]
+  },
+  {
+   "id": "DUMP-1034",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Functional security testing is MOST critical during which phase of the system development life cycle (SDLC)?",
+   "options": [
+    "Operations / Maintenance",
+    "Implementation",
+    "Acquisition / Development",
+    "Initiation"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Functional security testing is done during acquisition/development to confirm the requirements are met before deployment.",
+   "optionNotes": [
+    "Wrong: Too late",
+    "Wrong: Too late for primary testing",
+    "Right: functional tests confirm the security requirements during build/acquisition",
+    "Wrong: Nothing to test yet"
+   ]
+  },
+  {
+   "id": "DUMP-1040",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Where can the Open Web Application Security Project (OWASP) list of associated vulnerabilities be found?",
+   "options": [
+    "OWASP Top 10 Project",
+    "OWASP Software Assurance Maturity Model (SAMM) Project",
+    "OWASP Guide Project",
+    "OWASP Mobile Project"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The OWASP Top 10 lists the most critical web application vulnerabilities.",
+   "optionNotes": [
+    "Right: the list of the most critical web application risks",
+    "Wrong: A maturity model",
+    "Wrong: A development guide",
+    "Wrong: Limited to mobile apps"
+   ]
+  },
+  {
+   "id": "DUMP-1057",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a characteristic of the independent testing of a program?",
+   "options": [
+    "Independent testing increases the likelihood that a test will expose the effect of a hidden feature.",
+    "Independent testing decreases the likelihood that a test will expose the effect of a hidden feature.",
+    "Independent testing teams help decrease the cost of creating test data and system design specification.",
+    "Independent testing teams help identify functional requirements and Service Level Agreements (SLA)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Independent testers do not share the developers' assumptions, so they are more likely to exercise and expose hidden or undocumented functionality.",
+   "optionNotes": [
+    "Correct: outsiders without developer assumptions find hidden features",
+    "The opposite of the real benefit",
+    "Independent testing usually adds cost",
+    "Requirements and SLAs are defined before testing, not by testers"
+   ]
+  },
+  {
+   "id": "DUMP-1065",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which type of test suite should be run for fast feedback during application development?",
+   "options": [
+    "Full regression",
+    "End-to-end",
+    "Smoke",
+    "Specific functionality"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Smoke tests are a small, fast set of checks of core functionality, which gives developers quick feedback on each build.",
+   "optionNotes": [
+    "Full regression is slow and comprehensive",
+    "End-to-end tests are slow and broad",
+    "Correct: fast, shallow checks of core functions",
+    "Targeted functional tests are not designed for quick overall feedback"
+   ]
+  },
+  {
+   "id": "DUMP-1068",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What Is a risk of using commercial off-the-shelf (COTS) products?",
+   "options": [
+    "COTS products may not map directly to an organization's security requirements.",
+    "COTS products are typically more expensive than developing software in-house.",
+    "Cost to implement COTS products is difficult to predict.",
+    "Vendors are often hesitant to share their source code."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "COTS products are built for a general market, so their security features may not match the organization's specific requirements.",
+   "optionNotes": [
+    "Correct: generic products may not fit specific security needs",
+    "COTS is usually cheaper than in-house development",
+    "Implementation cost is generally more predictable for COTS",
+    "Source code secrecy is a property of COTS, not its main risk here"
+   ]
+  },
+  {
+   "id": "DUMP-1081",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "To minimize the vulnerabilities of a web-based application, which of the following FIRST actions will lock down the system and minimize the risk of an attack?",
+   "options": [
+    "Install an antivirus on the server",
+    "Run a vulnerability scanner",
+    "Review access controls",
+    "Apply the latest vendor patches and updates"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Applying current vendor patches removes known vulnerabilities and is the first hardening step for locking down the system.",
+   "optionNotes": [
+    "Antivirus helps but does not fix application vulnerabilities",
+    "Scanning finds problems but does not lock the system down",
+    "Reviewing access controls is valuable but comes after removing known flaws",
+    "Correct: patching removes known vulnerabilities first"
+   ]
+  },
+  {
+   "id": "DUMP-1085",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "At which phase of the software assurance life cycle should risks associated with software acquisition strategies be identified?",
+   "options": [
+    "Follow-on phase",
+    "Planning phase",
+    "Monitoring and acceptance phase",
+    "Contracting phase"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Acquisition strategy risks should be identified in the planning phase, before contracting, so that they can shape requirements and the approach.",
+   "optionNotes": [
+    "The follow-on phase covers sustainment after acquisition",
+    "Correct: acquisition risks are identified during planning",
+    "Acceptance is too late to identify these risks",
+    "Contracting acts on the risks already identified"
+   ]
+  },
+  {
+   "id": "DUMP-1093",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following open source software issues pose the MOST risk to an application?",
+   "options": [
+    "The software is beyond end of life and the vendor is out of business.",
+    "The software is not used or popular in the development community.",
+    "The software has multiple Common Vulnerabilities and Exposures (CVE) and only some are remediated.",
+    "The software has multiple Common Vulnerabilities and Exposures (CVE) but the CVEs are classified as low risks."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Known vulnerabilities that remain unremediated are directly exploitable and so pose the greatest risk.",
+   "optionNotes": [
+    "EOL is risky, but 'vendor' rarely applies to open source; the risk is less direct",
+    "Low popularity is an indirect risk",
+    "Correct: known, unremediated vulnerabilities are exploitable",
+    "Low-severity CVEs pose less risk"
+   ]
+  },
+  {
+   "id": "DUMP-1110",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "An organization is implementing security review as part of system development. Which of the following is the BEST technique to follow?",
+   "options": [
+    "Engage a third-party auditing firm.",
+    "Review security architecture.",
+    "Perform incremental assessments.",
+    "Conduct penetration testing."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Security review integrated into development works best as incremental assessments at each phase or iteration. Problems are found early, when they are cheapest to fix, instead of only at the end.",
+   "optionNotes": [
+    "A third party could do reviews but isn't a technique for integrating them.",
+    "Architecture review is only one point in time.",
+    "Correct: continuous, phase-by-phase review fits the SDLC.",
+    "Penetration testing comes late and misses design flaws."
+   ]
+  },
+  {
+   "id": "DUMP-1113",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What are the roles within a scrum methodology?",
+   "options": [
+    "Scrum master, retirements manager, and development team",
+    "System owner, scrum master, and development team",
+    "Scrum master, quality assurance team, and scrum team",
+    "Product owner, scrum master, and scrum team"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Scrum defines three roles: the product owner, the scrum master and the development (scrum) team.",
+   "optionNotes": [
+    "'Retirements manager' is not a Scrum role.",
+    "'System owner' is not a Scrum role.",
+    "QA is not a separate Scrum role.",
+    "Correct: product owner, scrum master and team."
+   ]
+  },
+  {
+   "id": "DUMP-1117",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Why should Open Web Application Security Project (OWASP) Application Security Verification standards (ASVS) Level 1 be considered a MINIMUM level of protection for any web application?",
+   "options": [
+    "ASVS Level 1 ensures that applications are invulnerable to OWASP top 10 threats.",
+    "Opportunistic attackers will look for any easily exploitable vulnerable applications.",
+    "Most regulatory bodies consider ASVS Level 1 as a baseline set of controls for applications.",
+    "Securing applications at ASVS Level 1 provides adequate protection for sensitive data."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "ASVS Level 1 is the minimum for every application because opportunistic attackers scan widely for easy, known weaknesses. Level 1 covers exactly those low-hanging vulnerabilities.",
+   "optionNotes": [
+    "Nothing makes an application invulnerable.",
+    "Correct: it defends against opportunistic attackers.",
+    "Regulators generally don't mandate ASVS Level 1.",
+    "Sensitive data needs Level 2 or 3."
+   ]
+  },
+  {
+   "id": "DUMP-1125",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.9,
+   "stem": "Which programming methodology allows a programmer to use pre-determined blocks of code and consequently reducing development time and programming costs?",
+   "options": [
+    "Application security",
+    "Object oriented",
+    "Blocked algorithm",
+    "Assembly language"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Object-oriented programming promotes reuse of predefined classes and objects. Reuse shortens development time and lowers cost.",
+   "optionNotes": [
+    "Application security is not a methodology for reusing code.",
+    "Correct: OOP enables reusable code blocks.",
+    "'Blocked algorithm' is not such a methodology.",
+    "Assembly is low-level and doesn't encourage reuse."
+   ]
+  },
+  {
+   "id": "DUMP-1127",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "In order for application developers to detect potential vulnerabilities earlier during the Software Development Life Cycle (SDLC), which of the following safeguards should be implemented FIRST as part of a comprehensive testing framework?",
+   "options": [
+    "Source code review",
+    "Acceptance testing",
+    "Threat modeling",
+    "Automated testing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Threat modelling happens at design time, before code exists, so vulnerabilities are found earliest and cheapest. It also guides the later code review and testing.",
+   "optionNotes": [
+    "Code review comes after coding.",
+    "Acceptance testing is late in the cycle.",
+    "Correct: it is the earliest safeguard, at the design stage.",
+    "Automated testing needs code to exist first."
+   ]
+  },
+  {
+   "id": "DUMP-1129",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "When reviewing the security logs, the password shown for an administrative login event was ' OR ' '1'='1' --. This is an example of which of the following kinds of attack?",
+   "options": [
+    "Brute Force Attack",
+    "Structured Query Language (SQL) Injection",
+    "Cross-Site Scripting (XSS)",
+    "Rainbow Table Attack"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "' OR '1'='1' -- is a classic SQL injection payload. It makes the WHERE clause always true and comments out the rest of the query, bypassing authentication.",
+   "optionNotes": [
+    "Brute force tries many real passwords.",
+    "Correct: this is a SQL tautology injection.",
+    "XSS injects script into pages.",
+    "Rainbow tables crack password hashes."
+   ]
+  },
+  {
+   "id": "DUMP-1151",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A user's credential for an application is stored in a relational database. Which control protects the confidentiality of the credential while it is stored?",
+   "options": [
+    "Validate passwords using a stored procedure.",
+    "Allow only the application to have access to the password field in order to verify user authentication.",
+    "Use a salted cryptographic hash of the password.",
+    "Encrypt the entire database and embed an encryption key in the application."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A salted hash keeps the stored password unreadable even if the database is compromised, and the salt defeats precomputed rainbow tables. Embedding the encryption key in the application exposes it, and a stored procedure or field permissions do not protect the value itself.",
+   "optionNotes": [
+    "A stored procedure controls how passwords are checked, not how they are stored.",
+    "Permission limits fail if the database is breached; the password stays readable.",
+    "Correct: a salted one-way hash protects stored credentials.",
+    "A key embedded in the app can be extracted, which undermines the encryption."
+   ]
+  },
+  {
+   "id": "DUMP-1162",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "In a DevOps environment, which of the following actions is MOST necessary to have confidence in the quality of the changes being made?",
+   "options": [
+    "Prepare to take corrective actions quickly.",
+    "Receive approval from the change review board.",
+    "Review logs for any anomalies.",
+    "Automate functionality testing."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In DevOps, changes ship often through a CI/CD pipeline. Automated functional tests give fast, repeatable assurance that each change works. Manual board approval is too slow for that pace, and reviewing logs or preparing fixes happens after the fact.",
+   "optionNotes": [
+    "Reactive; it does not build confidence before release.",
+    "A change board slows DevOps and does not test quality.",
+    "Log review is detective and happens after deployment.",
+    "Correct: automated testing gives continuous quality assurance."
+   ]
+  },
+  {
+   "id": "DUMP-1183",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The development team has been tasked with collecting data from biometric devices. The application will support a variety of collection data streams. During the testing phase, the team utilizes data from an old production database in a secure testing environment. What principle has the team taken into consideration?",
+   "options": [
+    "biometric data cannot be changed.",
+    "Separate biometric data streams require increased security.",
+    "The biometric devices are unknown.",
+    "Biometric data must be protected from disclosure."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "By using real production biometric data only inside a secured test environment, the team is protecting that data from disclosure. Biometric data is highly sensitive personal data. The other statements do not explain the secure environment.",
+   "optionNotes": [
+    "True of biometrics, but not the principle shown here.",
+    "Multiple streams are not what drives the secure environment.",
+    "The devices are not described as unknown.",
+    "Correct: the sensitive data must be protected from disclosure."
+   ]
+  },
+  {
+   "id": "DUMP-1191",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What testing technique enables the designer to develop mitigation strategies for potential vulnerabilities?",
+   "options": [
+    "Manual inspections and reviews",
+    "Penetration testing",
+    "Threat modeling",
+    "Source code review"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Threat modeling identifies potential threats and vulnerabilities at design time so the designer can plan mitigations. Penetration tests and code reviews find flaws after the code is written.",
+   "optionNotes": [
+    "Inspections catch defects but are not structured for planning mitigations.",
+    "Pen testing happens after build and exploits existing flaws.",
+    "Correct: threat modeling drives mitigation design.",
+    "Code review finds implementation bugs after coding."
+   ]
+  },
+  {
+   "id": "DUMP-1198",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the BEST method to validate secure coding techniques against injection and overflow attacks?",
+   "options": [
+    "Scheduled team review of coding style and techniques for vulnerability patterns",
+    "Using automated programs to test for the latest known vulnerability patterns",
+    "The regular use of production code routines from similar applications already in use",
+    "Ensure code editing tools are updated against known vulnerability patterns"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Automated testing tools such as DAST scanners and fuzzers check code against known injection and overflow patterns consistently and at scale. Manual style reviews are less reliable, reusing code proves nothing, and editor updates are not validation.",
+   "optionNotes": [
+    "Manual review is inconsistent and limited.",
+    "Correct: automated tools validate against known vulnerability patterns.",
+    "Reused code may carry the same flaws.",
+    "Editor updates do not validate the code."
+   ]
+  },
+  {
+   "id": "DUMP-1199",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Commercial off-the-shelf (COTS) software presents which of the following additional security concerns?",
+   "options": [
+    "Vendors take on the liability for COTS software vulnerabilities.",
+    "In-house developed software is inherently less secure.",
+    "Exploits for COTS software are well documented and publicly available.",
+    "COTS software is inherently less secure."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Widely deployed COTS products attract public research, so known exploits are documented and readily available to attackers.",
+   "optionNotes": [
+    "Vendors generally disclaim liability via license terms.",
+    "Not a COTS-specific concern; source of software doesn't make in-house inherently weaker.",
+    "Correct: broad installed base means public, documented exploits.",
+    "Overgeneralisation; COTS isn't inherently less secure."
+   ]
+  },
+  {
+   "id": "DUMP-1204",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following techniques BEST prevents buffer overflows?",
+   "options": [
+    "Boundary and perimeter offset",
+    "Character set encoding",
+    "Code auditing",
+    "Variant type and bit length"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Of the choices, reviewing code for unchecked bounds is the effective preventive technique; other options are meaningless.",
+   "optionNotes": [
+    "Not a real technique; meaningless distractor.",
+    "Encoding doesn't enforce buffer bounds.",
+    "Correct: auditing code finds missing bounds checks.",
+    "Variable typing alone does not prevent overflow."
+   ]
+  },
+  {
+   "id": "DUMP-1211",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "When auditing the Software Development Life Cycle (SDLC) which of the following is one of the high-level audit phases?",
+   "options": [
+    "Requirements",
+    "Risk assessment",
+    "Due diligence",
+    "Planning"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Audits begin with planning, followed by fieldwork and reporting; planning is a high-level audit phase.",
+   "optionNotes": [
+    "Requirements is an SDLC phase, not an audit phase.",
+    "Risk assessment is done within planning, not a top-level phase.",
+    "Due diligence is not an audit phase.",
+    "Correct: audits proceed planning, fieldwork, reporting."
+   ]
+  },
+  {
+   "id": "DUMP-1224",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A developer is creating an application that requires secure logging of all user activity. What is the BEST permission the developer should assign to the log file to ensure requirements are met?",
+   "options": [
+    "Read",
+    "Execute",
+    "Write",
+    "Append"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Append-only permission lets the app add log entries without altering or deleting existing ones.",
+   "optionNotes": [
+    "Read-only cannot record activity.",
+    "Execute is irrelevant for a log.",
+    "Write allows overwriting/deleting entries.",
+    "Correct: append-only adds entries without altering history."
+   ]
+  },
+  {
+   "id": "DUMP-1227",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An application developer receives a report back from the security team showing their automated tools were able to successfully enter unexpected data into the organization's customer service portal, causing the site to crash. This is an example of which type of testing?",
+   "options": [
+    "Non-functional",
+    "Positive",
+    "Performance",
+    "Negative"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Negative testing feeds invalid or unexpected input to check error handling.",
+   "optionNotes": [
+    "Non-functional covers performance/usability, not invalid input.",
+    "Positive testing uses valid inputs.",
+    "Performance testing measures load, not bad input.",
+    "Correct: negative testing uses unexpected input."
+   ]
+  },
+  {
+   "id": "DUMP-1229",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An organization recently suffered from a web-application attack that resulted in stolen user session cookie information. The attacker was able to obtain the information when a user's browser executed a script upon visiting a compromised website. What type of attack MOST likely occurred?",
+   "options": [
+    "Cross-Site Scripting (XSS)",
+    "Extensible Markup Language (XML) external entities",
+    "SQL injection (SQLI)",
+    "Cross-Site Request Forgery (CSRF)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A malicious script executing in the victim's browser and stealing cookies is XSS.",
+   "optionNotes": [
+    "Correct: script running in victim browser stealing cookies is XSS.",
+    "XXE targets XML parsers server-side.",
+    "SQLi targets the database.",
+    "CSRF forges requests, doesn't run scripts to steal cookies."
+   ]
+  },
+  {
+   "id": "DUMP-1245",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following types of web-based attack is happening when an attacker is able to send a well-crafted, malicious request to an authenticated user without the user realizing it?",
+   "options": [
+    "Cross-Site Scripting (XSS)",
+    "Cross-Site request forgery (CSRF)",
+    "Cross injection",
+    "Broken Authentication And Session Management"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "CSRF makes an authenticated user's browser send a forged request without their knowledge.",
+   "optionNotes": [
+    "XSS injects script, not forged requests.",
+    "Correct: CSRF forges requests via the authenticated user.",
+    "Not a standard attack name.",
+    "Concerns weak session handling, not forged requests."
+   ]
+  },
+  {
+   "id": "DUMP-1253",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following should be included in a good defense-in-depth strategy provided by object-oriented programming for software deployment?",
+   "options": [
+    "Polyinstantiation",
+    "Polymorphism",
+    "Encapsulation",
+    "Inheritance"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Encapsulation hides an object's internal data and implementation behind defined interfaces, which limits exposure and supports layered defense.",
+   "optionNotes": [
+    "Database/MLS technique, not an OOP feature",
+    "Lets objects respond differently; not a security layer",
+    "Right: data hiding protects internals",
+    "Reuse mechanism that can spread flaws"
+   ]
+  },
+  {
+   "id": "DUMP-1264",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A financial organization that works according to agile principles has developed a new application for their external customer base to request a line of credit. A security analyst has been asked to assess the security risk of the minimum viable product (MVP). Which is the MOST important activity the analyst should assess?",
+   "options": [
+    "The software has the correct functionality.",
+    "The software has been code reviewed.",
+    "The software had been branded according to corporate standards",
+    "The software has been signed off for release by the product owner."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "For security risk, the key check is whether the code has been reviewed for flaws before customer exposure; functionality, branding and sign-off are not security assurances.",
+   "optionNotes": [
+    "Functional, not security",
+    "Right: code review finds security defects",
+    "Cosmetic",
+    "Business approval, not security assurance"
+   ]
+  },
+  {
+   "id": "DUMP-1270",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the BEST way to protect against Structured Query language (SQL) injection?",
+   "options": [
+    "Enforce boundary checking.",
+    "Restrict use of SELECT command.",
+    "Restrict HyperText Markup Language (HTML) source code",
+    "Use stored procedures."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Parameterized stored procedures separate code from data, so user input cannot change the SQL statement.",
+   "optionNotes": [
+    "Boundary checks address buffer overflows",
+    "Impractical and ineffective",
+    "Unrelated to SQL",
+    "Right: parameterized queries/stored procedures"
+   ]
+  },
+  {
+   "id": "DUMP-1292",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "A security professional recommends that a company integrate threat modeling into its Agile development processes. Which of the following BEST describes the benefits of this approach?",
+   "options": [
+    "Reduce application development costs.",
+    "Potential threats are addressed later in the Software Development Life Cycle (SDLC).",
+    "Improve user acceptance of implemented security controls.",
+    "Potential threats are addressed earlier in the Software Development Life Cycle (SDLC)."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Threat modeling during Agile iterations surfaces threats early, when they are cheapest to fix.",
+   "optionNotes": [
+    "Possible side effect, not the main benefit",
+    "Opposite",
+    "Not the purpose",
+    "Right: shift left"
+   ]
+  },
+  {
+   "id": "DUMP-1314",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "The quality assurance (QA) department is short-staffed and is unable to test all modules before the anticipated release date of an application. What security control is MOST likely to be violated?",
+   "options": [
+    "Separation of environments",
+    "Program management",
+    "Mobile code controls",
+    "Change management"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Releasing modules that have not been tested skips a required approval and testing gate in the change management process, so that is the control violated.",
+   "optionNotes": [
+    "Environments can stay separated even without testing.",
+    "Program management is broader governance, not the specific control.",
+    "Mobile code is irrelevant here.",
+    "Correct: untested changes bypass change control."
+   ]
+  },
+  {
+   "id": "DUMP-1319",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which attack defines a piece of code that is inserted into software to trigger a malicious function?",
+   "options": [
+    "Phishing",
+    "Salami",
+    "Back door",
+    "Logic bomb"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A logic bomb is code planted in software that triggers a malicious action when a condition is met, such as a date or an event.",
+   "optionNotes": [
+    "Phishing is social engineering.",
+    "Salami attacks skim small amounts repeatedly.",
+    "A back door is a hidden access path, not a triggered payload.",
+    "Correct: a logic bomb fires on a trigger condition."
+   ]
+  },
+  {
+   "id": "DUMP-1335",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "In what phase of the System Development Life Cycle (SDLC) should security training for the development team begin?",
+   "options": [
+    "Development/Acquisition",
+    "Initiation",
+    "Implementation/ Assessment",
+    "Disposal"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Security must be built in from the start of the SDLC, and NIST SP 800-64 places security planning, including team awareness, in Initiation.",
+   "optionNotes": [
+    "Training should come before development begins.",
+    "Correct: security starts at Initiation.",
+    "Too late; the code already exists.",
+    "Disposal is the end of life."
+   ]
+  },
+  {
+   "id": "DUMP-1339",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "What is the HIGHEST priority in agile development?",
+   "options": [
+    "Selecting appropriate coding language",
+    "Managing costs of product delivery",
+    "Early and continuous delivery of software",
+    "Maximizing the amount of code delivered"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The first principle of the Agile Manifesto is satisfying the customer through early and continuous delivery of valuable software.",
+   "optionNotes": [
+    "Language choice is a technical detail.",
+    "Cost matters but is not the top agile priority.",
+    "Correct: first Agile Manifesto principle.",
+    "Agile values working software, not code volume."
+   ]
+  },
+  {
+   "id": "DUMP-1365",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "An organization purchased a commercial off-the-shelf (COTS) software several years ago. The information technology (IT) Director has decided to migrate the application into the cloud, but is concerned about the application security of the software in the organization's dedicated environment with a cloud service provider. What is the BEST way to prevent and correct the software's security weaknesses",
+   "options": [
+    "Implement a dedicated COTS sandbox environment",
+    "Follow the software end-of-life schedule",
+    "Transfer the risk to the cloud service provider",
+    "Examine the software updating and patching process"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Security flaws in COTS software are prevented and corrected via the vendor update and patching process, which must be examined before migrating.",
+   "optionNotes": [
+    "A sandbox isolates the software but does not fix its flaws.",
+    "The end-of-life schedule does not correct weaknesses.",
+    "Risk transfer neither prevents nor corrects flaws, and accountability stays.",
+    "Right: vendor patching is how COTS flaws are fixed."
+   ]
+  },
+  {
+   "id": "DUMP-1371",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is fundamentally required to address potential security issues when initiating software development?",
+   "options": [
+    "Implement ongoing security audits in all environments.",
+    "Ensure isolation of development from production.",
+    "Add information security objectives into development.",
+    "Conduct independent source code review."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Security must be built in from the start by including security objectives and requirements in development.",
+   "optionNotes": [
+    "Audits come later, not at initiation.",
+    "Separating environments is good practice but not the fundamental starting point.",
+    "Right: security requirements built in from the start.",
+    "Code review needs code to exist first."
+   ]
+  },
+  {
+   "id": "DUMP-1372",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the MOST effective preventative method to identify security flaws in software?",
+   "options": [
+    "Monitor performance in production environments.",
+    "Perform a structured code review.",
+    "Perform application penetration testing.",
+    "Use automated security vulnerability testing tools."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A structured code review finds flaws early, before deployment, making it the most effective preventive method.",
+   "optionNotes": [
+    "Monitoring production is detective, after release.",
+    "Right: a structured review finds flaws before release.",
+    "Penetration testing happens late and is not preventive.",
+    "Automated tools miss logic flaws and give false positives."
+   ]
+  },
+  {
+   "id": "DUMP-1380",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "A software developer wishes to write code that will execute safely and only as intended. Which of the following programming language types is MOST likely to achieve this goal?",
+   "options": [
+    "Statically typed",
+    "Weakly typed",
+    "Strongly typed",
+    "Dynamically typed"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Strongly typed languages prevent unintended type conversions and operations, so code behaves as intended.",
+   "optionNotes": [
+    "Static typing checks at compile time but can still allow unsafe casts.",
+    "Weak typing allows implicit, unsafe conversions.",
+    "Right: strict type enforcement prevents unintended behavior.",
+    "Dynamic typing defers checks to runtime."
+   ]
+  },
+  {
+   "id": "DUMP-1381",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is the BEST method to identify security controls that should be implemented for a web-based application while in development?",
+   "options": [
+    "Application threat modeling",
+    "Secure software development.",
+    "Agile software development",
+    "Penetration testing"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Threat modeling during design identifies threats and the controls needed to counter them.",
+   "optionNotes": [
+    "Right: threat modeling maps threats to the controls needed.",
+    "Secure development is a general approach, not a way to identify controls.",
+    "Agile is a delivery method.",
+    "Penetration testing comes later and tests controls instead of identifying them."
+   ]
+  },
+  {
+   "id": "DUMP-1414",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "Which of the following will help prevent improper session handling?",
+   "options": [
+    "Ensure that all UlWebView calls do not execute without proper input validation.",
+    "Ensure that tokens are sufficiently long, complex, and pseudo-random.",
+    "Ensure JavaScript and plugin support is disabled.",
+    "Ensure that certificates are valid and fail closed."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Session management depends on session tokens that cannot be predicted. Long, random, high-entropy tokens prevent session guessing and hijacking.",
+   "optionNotes": [
+    "Input validation addresses injection, not session handling.",
+    "Correct: strong random tokens resist session prediction.",
+    "Disabling scripts is a client hardening step, not session management.",
+    "Certificate validation protects transport and the server's identity."
+   ]
+  },
+  {
+   "id": "DUMP-1415",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "At what stage of the Software Development Life Cycle (SDLC) does software vulnerability remediation MOST likely cost the least to implement?",
+   "options": [
+    "Development",
+    "Testing",
+    "Deployme",
+    "Design"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The earlier a flaw is fixed, the cheaper it is. Of the listed phases, design is the earliest, so addressing vulnerabilities there costs least.",
+   "optionNotes": [
+    "Development comes after design, so fixes cost more.",
+    "Fixes in testing cost more still.",
+    "Fixes after deployment are the most expensive.",
+    "Correct: design is the earliest listed phase."
+   ]
+  },
+  {
+   "id": "DUMP-1417",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "The ability to send malicious code, generally in the form of a client side script, to a different end user is categorized as which type of vulnerability?",
+   "options": [
+    "Session hijacking",
+    "Cross-site request forgery (CSRF)",
+    "Cross-Site Scripting (XSS)",
+    "Command injection"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "XSS injects client-side script that runs in another user's browser. That matches the description exactly.",
+   "optionNotes": [
+    "Session hijacking steals sessions; it is not script delivery.",
+    "CSRF forges requests; it does not deliver script to users.",
+    "Correct: XSS delivers malicious script to other users.",
+    "Command injection runs OS commands on the server."
+   ]
+  },
+  {
+   "id": "DUMP-1422",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A retail company is looking to start a development project that will utilize open source components in its code for the first time. The development team has already acquired several 'open source components and utilized them in proof of concept (POC) code. The team recognizes that the legal and operational risks are outweighed by the benefits of open-source software use. What MUST the organization do next?",
+   "options": [
+    "Mandate that all open-source components be approved by the Information Security Manager (ISM).",
+    "Scan all open-source components for security vulnerabilities.",
+    "Establish an open-source compliance policy.",
+    "Require commercial support for all open-source components."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Policy comes before technology. Before using open source, the organization must set a governing policy covering licensing, approval and vulnerability management. Scanning and approvals then follow from that policy.",
+   "optionNotes": [
+    "One person's approval without a policy is ad hoc.",
+    "Scanning is a control that should come from the policy.",
+    "Correct: a compliance policy governs licensing and use.",
+    "Commercial support is optional and not mandated."
+   ]
+  },
+  {
+   "id": "DUMP-1423",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following does the security design process ensure within the System Development Life Cycle (SDLC)?",
+   "options": [
+    "Proper security controls, security goals, and fault mitigation are properly conducted.",
+    "Proper security controls, security objectives, and security goals are properly initiated.",
+    "Security goals, proper security controls, and validation are properly initiated.",
+    "Security objectives, security goals, and system test are properly conducted."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In the SDLC, security design establishes the security objectives and goals and selects the right controls. Validation and testing belong to later phases.",
+   "optionNotes": [
+    "Fault mitigation is not the design deliverable.",
+    "Correct: objectives, goals and controls are established during design.",
+    "Validation is a later phase.",
+    "System testing is a later phase."
+   ]
+  },
+  {
+   "id": "DUMP-1424",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the MOST effective method of detecting vulnerabilities in web-based applications early in the secure Software Development Life Cycle (SDLC)?",
+   "options": [
+    "Web application vulnerability scanning",
+    "Application fuzzing",
+    "Code review",
+    "Penetration testing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Code review can happen during development, before the application runs, so it finds flaws earliest. Scanning, fuzzing and pen testing need a working build.",
+   "optionNotes": [
+    "Needs a running application, so it comes later.",
+    "Needs an executable and comes later.",
+    "Correct: it is the earliest of these and finds flaws in source code.",
+    "Done late, against a deployed or test system."
+   ]
+  },
+  {
+   "id": "DUMP-1426",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the GREATEST risk of relying only on Capability Maturity Models (CMM) for software to guide process improvement and assess capabilities of acquired software?",
+   "options": [
+    "Organizations can only reach a maturity level 3 when using CMMs",
+    "CMMs do not explicitly address safety and security",
+    "CMMs can only be used for software developed in-house",
+    "CMMs are vendor specific and may be biased"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Software CMMs measure how mature a process is, not the security or safety of the product. Relying on them alone leaves security unaddressed.",
+   "optionNotes": [
+    "CMMs go up to level 5.",
+    "Correct: CMMs do not explicitly cover security or safety.",
+    "CMMs can also be used to assess suppliers.",
+    "CMMs are not vendor-specific."
+   ]
+  },
+  {
+   "id": "DUMP-1431",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "What is the BEST control to be implemented at a login page in a web application to mitigate the ability to enumerate users?",
+   "options": [
+    "Implement a generic response for a failed login attempt.",
+    "Implement a strong password during account registration.",
+    "Implement numbers and special characters in the user name.",
+    "Implement two-factor authentication (2FA) to login process."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "User enumeration exploits different error messages, such as 'unknown user' versus 'wrong password'. A single generic failure response removes that signal.",
+   "optionNotes": [
+    "Correct: identical responses stop enumeration.",
+    "Password strength does not hide whether a user exists.",
+    "Username complexity does not stop the oracle.",
+    "2FA protects authentication but the error messages can still reveal users."
+   ]
+  },
+  {
+   "id": "DUMP-1437",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An attack utilizing social engineering and a malicious Uniform Resource Locator (URL) link to take advantage of a victim's existing browser session with a web application is an example of which of the following types of attack?",
+   "options": [
+    "Cross-Site Scripting (XSS)",
+    "Cross-site request forgery (CSRF)",
+    "Injection",
+    "Click jacking"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "CSRF tricks a victim, often via a link, into sending a request that rides on their existing authenticated session. That is exactly the scenario described.",
+   "optionNotes": [
+    "XSS runs injected script; it does not specifically abuse an existing session.",
+    "Correct: CSRF abuses the victim's existing session.",
+    "Injection targets backend interpreters.",
+    "Clickjacking uses hidden UI overlays."
+   ]
+  },
+  {
+   "id": "DUMP-1442",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following objects should be removed FIRST prior to uploading code to public code repositories?",
+   "options": [
+    "Security credentials",
+    "Known vulnerabilities",
+    "Inefficient algorithms",
+    "Coding mistakes"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Hard-coded credentials, keys or tokens in public repositories are harvested within minutes. They must be removed, and rotated, before the code is published.",
+   "optionNotes": [
+    "Correct: secrets exposure is the immediate critical risk.",
+    "Should be fixed but is not the first removal.",
+    "A quality issue.",
+    "A quality issue."
+   ]
+  },
+  {
+   "id": "DUMP-1456",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What high Availability (HA) option of database allows multiple clients to access multiple database servers simultaneously?",
+   "options": [
+    "Non-Structured Query Language (NoSQL) database",
+    "Relational database",
+    "Shadow database",
+    "Replicated database"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Replication keeps copies on multiple servers that clients can use concurrently, providing availability.",
+   "optionNotes": [
+    "Data model, not HA option",
+    "Data model, not HA option",
+    "Shadow is a standby copy",
+    "Correct: multiple active servers"
+   ]
+  },
+  {
+   "id": "DUMP-1457",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A security engineer is designing a Customer Relationship Management (CRM) application for a third-party vendor. In which phase of the System Development Life Cycle (SDLC) will it be MOST beneficial to conduct a data sensitivity assessment?",
+   "options": [
+    "Development / Acquisition",
+    "Initiation",
+    "Enumeration",
+    "Operation / Maintenance"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Data sensitivity and security categorization are performed at initiation so that requirements can be built into the design.",
+   "optionNotes": [
+    "Too late for requirements",
+    "Correct: early categorization",
+    "Not an SDLC phase",
+    "Far too late"
+   ]
+  },
+  {
+   "id": "DUMP-1460",
+   "domain": 8,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "According to the Capability Maturity Model Integration (CMMI), which of the following levels is identified by a managed process that is tailored from the organization's set of standard processes according to the organization's tailoring guidelines?",
+   "options": [
+    "Level 0: Incomplete",
+    "Level 1: Performed",
+    "Level 2: Managed",
+    "Level 3: Defined"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In CMMI, level 3 (Defined) processes are tailored from the organization's standard process set.",
+   "optionNotes": [
+    "Not a tailored process",
+    "Ad hoc",
+    "Project-level, not tailored from standard set",
+    "Correct: Defined level tailors from org standard process set"
+   ]
+  },
+  {
+   "id": "DUMP-1472",
+   "domain": 8,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Limiting the processor, memory, and Input/output (I/O) capabilities of mobile code is known as",
+   "options": [
+    "code restriction.",
+    "on-demand compile.",
+    "sandboxing.",
+    "compartmentalization."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Sandboxing confines mobile code by restricting resources it can use.",
+   "optionNotes": [
+    "Not a standard term",
+    "Compilation technique",
+    "Correct: sandbox limits CPU, memory and I/O of mobile code",
+    "Separation concept, not resource limits"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2483 @@
+{
+  "name": "OPT4 Chapter 2: Asset Security (Domain 2)",
+  "questions": [
+    {
+      "id": "OPT4-C02-001",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.78,
+      "stem": "Angela wants to implement data security controls that are part of the NIST 800-53 Security and Privacy controls. As part of the process, she works to determine which controls are appropriate to her organization's business processes and data handling needs. What term best describes the action that she has performed?",
+      "options": [
+        "Scoping",
+        "Bounds checking",
+        "Data stewardship",
+        "Tailoring"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Scoping is the process of determining which controls are appropriate to an organization, environment, or implementation. Bounds checking is the process of making sure that data does not overflow a variable. Data stewards provide oversight and data governance. Tailoring modifies controls to fit a specific situation or need.",
+      "optionNotes": [
+        "Correct. Scoping means deciding which controls in a baseline such as NIST 800-53 apply to the organization, its environment, or an implementation. Angela is choosing the controls that fit her business processes and data needs, so this is scoping.",
+        "Incorrect. Bounds checking is a secure coding technique that keeps input data from overflowing a variable or buffer. It has nothing to do with choosing framework controls.",
+        "Incorrect. Data stewards handle data oversight and governance. That is a role, not the act of picking which baseline controls apply.",
+        "Incorrect. Tailoring changes the selected controls (for example, adjusting parameters) to fit a specific situation or the organization's mission. Angela is choosing which controls apply, not modifying them, so tailoring is wrong here."
+      ]
+    },
+    {
+      "id": "OPT4-C02-002",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 2.02,
+      "stem": "Control Objectives for Information and Related Technology (COBIT) is a framework for information technology (IT) management and governance. Which data management role is most likely to select and apply COBIT to balance the need for security controls against business requirements?",
+      "options": [
+        "Business owners",
+        "Data processors",
+        "Data owners",
+        "Data stewards"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Business owners have to balance the need to provide value with regulatory, security, and other requirements. This makes the adoption of a common framework like COBIT attractive. Data owners are more likely to ask that those responsible for control selection identify a standard to use. Data processors are required to perform specific actions under regulations like the EU GDPR. Finally, in many organizations, data stewards are internal roles that oversee how data is used.",
+      "optionNotes": [
+        "Correct. Business owners have to deliver business value while also meeting regulatory and security requirements. A common governance framework like COBIT helps them strike that balance, so they are the role most likely to adopt it.",
+        "Incorrect. Data processors handle data on behalf of a controller and carry out specific actions required by regulations like the EU GDPR. They don't choose governance frameworks or weigh controls against business needs.",
+        "Incorrect. Data owners are more likely to ask whoever is responsible for selecting controls to pick a standard. They don't usually choose and apply COBIT themselves.",
+        "Incorrect. In many organizations, data stewards are internal roles that oversee how data is used day to day. They don't select IT governance frameworks to balance security against business requirements."
+      ]
+    },
+    {
+      "id": "OPT4-C02-003",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Nadia's company is operating a hybrid cloud environment with some on-site systems and some cloud-based systems. She has satisfactory monitoring on-site but needs to apply security policies to both the activities her users engage in and to report on exceptions with her growing number of cloud services. What type of tool is best suited to this purpose?",
+      "options": [
+        "A NGFW",
+        "A CASB",
+        "An IDS",
+        "A SOAR"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The best option for Nadia is a cloud access security broker (CASB). A CASB is designed to sit between a cloud environment and the users who use it, and it provides monitoring and policy enforcement capabilities. A next-generation firewall (NGFW), an intrusion detection system (IDS), and a security orchestration, automation, and response (SOAR) tool could each provide some insight into what is going on, but they are not purpose built and designed for this like the CASB is. The NGFW and IDS are most likely to provide insight into traffic patterns and behaviors, while the SOAR is primarily intended to monitor other systems and centralize data for response, making it potentially the least useful in this specific scenario.",
+      "optionNotes": [
+        "Incorrect. An NGFW inspects network traffic and can add application awareness, but it isn't built to enforce policy on user activity across many cloud services. It mostly shows traffic patterns and behaviors.",
+        "Correct. This is correct. A CASB sits between users and cloud services and provides monitoring, policy enforcement and exception reporting. That makes it the tool built for this exact need.",
+        "Incorrect. An IDS detects and alerts on suspicious traffic or behavior. It doesn't enforce policies on how users use cloud services.",
+        "Incorrect. A SOAR tool gathers data from other systems in one place and automates incident response. It doesn't enforce cloud usage policy, so it is probably the least useful option here."
+      ]
+    },
+    {
+      "id": "OPT4-C02-004",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "When media is labeled based on the classification of the data it contains, what rule is typically applied regarding labels?",
+      "options": [
+        "The data is labeled based on its integrity requirements.",
+        "The media is labeled based on the highest classification level of the data it contains.",
+        "The media is labeled with all levels of classification of the data it contains.",
+        "The media is labeled with the lowest level of classification of the data it contains."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Media is typically labeled with the highest classification level of data it contains. This prevents the data from being handled or accessed at a lower classification level. Data integrity requirements may be part of a classification process but don't independently drive labeling in a classification scheme.",
+      "optionNotes": [
+        "Incorrect. Integrity requirements can feed into the classification process, but they don't drive labeling on their own. In a classification scheme, the label reflects the classification level.",
+        "Correct. Media gets the label of the highest classification of any data on it. That way no data on it is handled or accessed below its required level.",
+        "Incorrect. Listing every level on the label adds confusion and nothing useful. The media still has to be protected at its most sensitive level, so the single highest label is what applies.",
+        "Incorrect. A lowest-level label would let the more sensitive data on the media be handled at too low a level. That is exactly what labeling by highest classification is meant to prevent."
+      ]
+    },
+    {
+      "id": "OPT4-C02-005",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "Which one of the following administrative processes assists organizations in assigning appropriate levels of security control to sensitive information?",
+      "options": [
+        "Data classification",
+        "Remanence",
+        "Transmitting data",
+        "Clearing"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The need to protect sensitive data drives data classification. Classifying data allows organizations to focus on data that needs to be protected rather than spending effort on less important data. Remanence describes data left on media after an attempt is made to remove the data. Transmitting data isn't a driver for an administrative process to protect sensitive data, and clearing is a technical process for removing data from media.",
+      "optionNotes": [
+        "Correct. Data classification is the administrative process that labels data by sensitivity so the organization can apply matching security controls and focus protection effort on data that needs it.",
+        "Incorrect. Remanence isn't a process. It is the data left on media after someone tries to remove it, so it doesn't assign control levels.",
+        "Incorrect. Transmitting data is just moving data. It doesn't drive an administrative process for deciding how much protection sensitive data needs.",
+        "Incorrect. Clearing is a technical sanitization process that removes data from media. It doesn't decide what security controls information requires."
+      ]
+    },
+    {
+      "id": "OPT4-C02-006",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "How can a data retention policy help to reduce liabilities?",
+      "options": [
+        "By ensuring that unneeded data isn't retained",
+        "By ensuring that incriminating data is destroyed",
+        "By ensuring that data is securely wiped so it cannot be restored for legal discovery",
+        "By reducing the cost of data storage required by law"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A data retention policy can help to ensure that outdated data is purged, removing potential additional costs for discovery. Many organizations have aggressive retention policies to both reduce the cost of storage and limit the amount of data that is kept on hand and discoverable. Data retention policies are not designed to destroy incriminating data, and legal requirements for data retention must still be met.",
+      "optionNotes": [
+        "Correct. A retention policy purges outdated, unneeded data, which shrinks the amount of data that is discoverable and lowers the cost and exposure of legal discovery.",
+        "Incorrect. Retention policies aren't meant to destroy incriminating data. Deliberately destroying evidence would add liability (spoliation), not reduce it.",
+        "Incorrect. Wiping data specifically to keep it out of legal discovery is improper. Data under legal hold or required retention has to be preserved, and the liability benefit comes only from routinely purging data that is no longer needed.",
+        "Incorrect. Data that the law requires you to keep must still be kept for the required period. A retention policy can't cut that storage, and saving on storage costs isn't a liability reduction anyway."
+      ]
+    },
+    {
+      "id": "OPT4-C02-007",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Staff in an information technology (IT) department who are delegated responsibility for day-to-day tasks hold what data role?",
+      "options": [
+        "Business owner",
+        "User",
+        "Data processor",
+        "Custodian"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Custodians are delegated the role of handling day-to-day tasks by managing and overseeing how data is handled, stored, and protected. Data processors are systems used to process data. Business owners are typically project or system owners who are tasked with making sure systems provide value to their users or customers.",
+      "optionNotes": [
+        "Incorrect. Business owners are usually project or system owners who make sure systems deliver value to their users or customers. They are not IT staff who have been delegated day-to-day data handling.",
+        "Incorrect. Users access and work with data to do their jobs under the rules others set. They are not delegated responsibility for managing, storing and protecting data day to day.",
+        "Incorrect. Data processors are the systems or entities that perform operations on data, often on behalf of a controller. They are not IT staff who are delegated day-to-day custodial duties.",
+        "Correct. Custodians are delegated day-to-day responsibility for managing and overseeing how data is handled, stored and protected. This is the classic role of IT staff, who act on behalf of the data owner."
+      ]
+    },
+    {
+      "id": "OPT4-C02-008",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Helen's company uses a simple data life cycle, as shown here. What stage should come first in the company's data life cycle?\n[Figure, described in text: a life cycle drawn as a chain: ? → Data Analysis → Data Usage → Data Retention → Data Destruction.]",
+      "options": [
+        "Data policy creation",
+        "Data labeling",
+        "Data collection",
+        "Data analysis"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In a typical data life cycle, collection is the first stage, although some may replace collection with creation. Once collected, data can be analyzed, used, stored, and disposed of at the end of its useful life. Policies may be created at any time, and organizations often have data before they have policies. Labels are added to data during the analysis, usage, or retention cycle.",
+      "optionNotes": [
+        "Incorrect. Policies can be written at any point, and organizations often hold data before they have any policy. Policy creation is therefore not a stage in the data life cycle itself.",
+        "Incorrect. Labels are applied during the analysis, usage or retention stages, after the data already exists. Labeling can't come before collection.",
+        "Correct. Collection (sometimes called creation) is the first stage of a typical data life cycle. Data has to be acquired before it can be analyzed, used, retained and destroyed.",
+        "Incorrect. Analysis is already shown as the second stage in the diagram, and it depends on data that has already been collected. It can't be the missing first stage."
+      ]
+    },
+    {
+      "id": "OPT4-C02-009",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Ben has been tasked with identifying security controls for systems covered by his organization's information classification system. Why might Ben choose to use a security baseline?",
+      "options": [
+        "It applies in all circumstances, allowing consistent security controls.",
+        "They are approved by industry standards bodies, preventing liability.",
+        "They provide a good starting point that can be tailored to organizational needs.",
+        "They ensure that systems are always in a secure state."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Security baselines provide a starting point to scope and tailor security controls to your organization's needs. They aren't always appropriate to specific organizational needs, they cannot ensure that systems are always in a secure state, and they do not prevent liability.",
+      "optionNotes": [
+        "Incorrect. Baselines don't fit every situation or every organization's needs. That is why they get scoped and tailored instead of being applied unchanged everywhere.",
+        "Incorrect. Some baselines are published by standards bodies, but adopting one doesn't remove the organization's liability. It still has to apply controls that fit its own risks.",
+        "Correct. A baseline is a minimum set of controls used as a starting point. The organization then scopes and tailors it to its own needs and classification levels.",
+        "Incorrect. No baseline can keep a system secure at all times. Configurations drift and new threats appear, so ongoing monitoring and changes are still needed."
+      ]
+    },
+    {
+      "id": "OPT4-C02-010",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Megan wants to prepare media to allow for its reuse in an environment operating at the same sensitivity level. Which of the following is the best option to meet her needs?",
+      "options": [
+        "Clearing",
+        "Erasing",
+        "Purging",
+        "Sanitization"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Clearing describes preparing media for reuse. When media is cleared, unclassified data is written over all addressable locations on the media. Once that's completed, the media can be reused, although it may be possible to retrieve some of the original data using retrieval tools. Erasing is the deletion of files or media and may not include all of the data on the device or media, making it the worst choice here. Purging is a more intensive form of clearing for reuse in lower-security areas, and sanitization is a series of processes that removes data from a system or media while ensuring that the data is unrecoverable by any means.",
+      "optionNotes": [
+        "Correct. Clearing overwrites every addressable location with unclassified data so the media can be reused at the same sensitivity level. Some original data may still be recoverable with lab tools, which is acceptable here.",
+        "Incorrect. Erasing just deletes files or media and may leave much of the data on the device. That makes it the weakest choice for preparing media for reuse.",
+        "Incorrect. Purging is a more intensive form of clearing meant for reusing media in lower-security environments. Megan's media stays at the same sensitivity level, so purging is more than she needs.",
+        "Incorrect. Sanitization is a series of processes that removes data so it can't be recovered by any means. That's broader and stronger than what reuse at the same level requires."
+      ]
+    },
+    {
+      "id": "OPT4-C02-011",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.28,
+      "stem": "Mikayla wants to identify data that should be classified that already exists in her environment. What type of tool is best suited to identifying data like Social Security numbers, credit card numbers, and similar well-understood data formats?",
+      "options": [
+        "Manual searching",
+        "A sensitive data scanning tool",
+        "An asset metadata search tool",
+        "A SOAR"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Sensitive data scanning tools are designed to scan for and flag sensitive data types using known formatting and structure. Social Security numbers, credit card numbers, and other regularly structured data that follows known rules can be identified and then addressed as needed. Manual searching is a massive undertaking for an organization with even a relatively small amount of data; asset metadata needs to be set first and would have already been identified; and a SOAR is used to automate incident response and orchestrate security actions.",
+      "optionNotes": [
+        "Incorrect. Searching by hand doesn't scale. Even an organization with a fairly small amount of data would face a huge job, and people miss pattern-based data that automated scanners catch reliably.",
+        "Correct. Sensitive data scanning tools look for known formats and structures, such as SSN and credit card number patterns, so they can find and flag existing sensitive data that needs to be classified.",
+        "Incorrect. Metadata search only finds data that has already been tagged. Someone has to set the asset metadata first, which means that data has already been identified, so this can't find unclassified data.",
+        "Incorrect. A SOAR (Security Orchestration, Automation and Response) platform automates incident response and coordinates security actions. It isn't built to find sensitive data patterns in stored data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-012",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.66,
+      "stem": "What issue is common to spare sectors and bad sectors on hard drives as well as overprovisioned space on modern SSDs?",
+      "options": [
+        "They can be used to hide data.",
+        "They can only be degaussed.",
+        "They are not addressable, resulting in data remanence.",
+        "They may not be cleared, resulting in data remanence."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Spare sectors, bad sectors, and space provided for wear leveling on SSDs (overprovisioned space) may all contain data that was written to the space that will not be cleared when the drive is wiped. This is a form of data remanence and is a concern for organizations that do not want data to potentially be accessible. Many wiping utilities deal only with currently addressable space on the drive. SSDs cannot be degaussed, and wear leveling space cannot be reliably used to hide data. These spaces are still addressable by the drive, although they may not be seen by the operating system.",
+      "optionNotes": [
+        "Incorrect. Hiding data isn't the shared issue. The drive controller manages wear-leveling and overprovisioned space, so a user can't reliably store hidden data there. The real concern is leftover data that a wipe never touches.",
+        "Incorrect. Degaussing doesn't work on SSDs because they store data in flash memory, not magnetically. So 'can only be degaussed' can't be the issue these spaces have in common.",
+        "Incorrect. Data remanence is a real concern here, but the stated cause is wrong. The drive can still address these areas even if the operating system can't see them.",
+        "Correct. Many wiping tools only overwrite the space the operating system can currently address. Data left in spare, bad, or overprovisioned areas can survive a wipe, which is data remanence."
+      ]
+    },
+    {
+      "id": "OPT4-C02-013",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Naomi knows that commercial data is typically classified based on different criteria than government data. Which of the following is not a common criterion for commercial data classification?",
+      "options": [
+        "Useful lifespan",
+        "Data value",
+        "Impact to national security",
+        "Regulatory or legal requirements"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Commercial data classification often takes into account the value of the data, any regulatory or legal requirements that may apply to the data, and how long the data is useful—its life span. The impact to national security is more typically associated with government classification schemes.",
+      "optionNotes": [
+        "Incorrect. Useful lifespan is a common commercial criterion. Organizations look at how long data stays useful when they set or lower its classification, so this is not the exception.",
+        "Incorrect. Data value is a core commercial criterion. The classification shows how much the data is worth to the organization and how much protection it needs.",
+        "Correct. Classifying by impact to national security belongs to government schemes (e.g., Top Secret, Secret). Commercial schemes are based on business value, legal requirements and lifespan.",
+        "Incorrect. Regulatory and legal requirements (e.g., HIPAA, PCI DSS) are a common commercial criterion. Data with compliance obligations usually gets a higher classification, so this is not the exception."
+      ]
+    },
+    {
+      "id": "OPT4-C02-014",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Scenario:\nYour organization regularly handles three types of data: information that it shares with customers, information that it uses internally to conduct business, and trade secret information that offers the organization significant competitive advantages. Information shared with customers is used and stored on web servers, while both the internal business data and the trade secret information are stored on internal file servers and employee workstations.\n\nThe organization leverages memory-resident databases to improve system performance for both customer data and internal business data. What term best describes data that is resident in system memory?",
+      "options": [
+        "Data at rest",
+        "Buffered data",
+        "Data in use",
+        "Data in motion"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Data is often considered based on the data state that it is in. Data can be at rest (on a drive or other storage medium), in use and thus in memory or a buffer and often decrypted for use, or in transit over a network. Data that is resident in system memory is considered data in use.",
+      "optionNotes": [
+        "Incorrect. Data at rest sits on a drive or other storage medium. Memory-resident database contents are held in RAM, so this state doesn't fit.",
+        "Incorrect. \"Buffered data\" isn't one of the recognized data states (at rest, in use, in transit). The book counts data held in a buffer as data in use.",
+        "Correct. Data held in system memory or a buffer, and often decrypted so it can be processed, is data in use. That describes memory-resident databases.",
+        "Incorrect. Data in motion, or in transit, is data moving across a network. Data sitting in system memory isn't being transmitted."
+      ]
+    },
+    {
+      "id": "OPT4-C02-015",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.26,
+      "stem": "Scenario:\nYour organization regularly handles three types of data: information that it shares with customers, information that it uses internally to conduct business, and trade secret information that offers the organization significant competitive advantages. Information shared with customers is used and stored on web servers, while both the internal business data and the trade secret information are stored on internal file servers and employee workstations.\n\nWhat technique could you use to mark your trade secret information in case it was released or stolen and you need to identify it?",
+      "options": [
+        "Classification",
+        "Symmetric encryption",
+        "Watermarks",
+        "Metadata"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A watermark is used to digitally label data and can be used to indicate ownership, as well as to assist a digital rights management (DRM) system in identifying data that should be protected. Encryption would have prevented the data from being accessed if it was lost, while classification is part of the set of security practices that can help make sure the right controls are in place. Finally, metadata is used to label data and might help a data loss prevention system flag it before it leaves your organization.",
+      "optionNotes": [
+        "Incorrect. Classification assigns sensitivity levels so the right controls get applied. It is a governance practice and does not put an identifying mark on data that has already leaked or been stolen.",
+        "Incorrect. Symmetric encryption protects confidentiality by making lost data unreadable. It does not add an ownership mark you could use to identify the data after it is released.",
+        "Correct. A watermark digitally labels the data to show ownership. It can identify stolen or released trade secret material and helps DRM systems recognize protected content.",
+        "Incorrect. Metadata labels data mainly so tools like DLP can flag it before it leaves the organization. It is easily stripped and is not an ownership mark for identifying data after theft."
+      ]
+    },
+    {
+      "id": "OPT4-C02-016",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Scenario:\nYour organization regularly handles three types of data: information that it shares with customers, information that it uses internally to conduct business, and trade secret information that offers the organization significant competitive advantages. Information shared with customers is used and stored on web servers, while both the internal business data and the trade secret information are stored on internal file servers and employee workstations.\n\nWhat type of encryption is best suited for use on the file servers for the proprietary data, and how might you secure the data when it is in motion?",
+      "options": [
+        "TLS at rest and AES in motion",
+        "AES at rest and TLS in motion",
+        "VPN at rest and TLS in motion",
+        "DES at rest and AES in motion"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "AES is a strong modern symmetric encryption algorithm that is appropriate for encrypting data at rest. TLS is frequently used to secure data when it is in transit. A virtual private network is not necessarily an encrypted connection and would be used for data in motion, while DES is an outdated algorithm and should not be used for data that needs strong security.",
+      "optionNotes": [
+        "Incorrect. This swaps the two roles. TLS is a transport protocol that protects data in transit, not stored files. AES is the algorithm you would use for data at rest.",
+        "Correct. AES is a strong, modern symmetric algorithm that suits encrypting data at rest on file servers, and TLS is the usual way to secure data in transit.",
+        "Incorrect. A VPN is a network connection for data in motion, so it can't protect data at rest. A VPN also isn't necessarily encrypted.",
+        "Incorrect. DES is an outdated algorithm and shouldn't protect trade secrets at rest. AES is a storage-encryption algorithm, not the usual choice for securing data in motion; TLS is."
+      ]
+    },
+    {
+      "id": "OPT4-C02-017",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "What does labeling data allow a DLP system to do?",
+      "options": [
+        "The DLP system can detect labels and apply appropriate protections based on rules.",
+        "The DLP system can adjust labels based on changes in the classification scheme.",
+        "The DLP system can modify labels to permit requested actions.",
+        "The DLP system can delete unlabeled data."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Data loss prevention (DLP) systems can use labels on data to determine the appropriate controls to apply to the data. Most DLP systems won't modify labels in real time and typically don't work directly with firewalls to stop traffic. Deleting unlabeled data would cause big problems for organizations that haven't labeled every piece of data!",
+      "optionNotes": [
+        "Correct. A DLP system reads data labels and uses its rules to apply the right controls for that classification, such as blocking, encrypting or alerting.",
+        "Incorrect. DLP tools enforce policy based on labels. They don't rewrite labels when the classification scheme changes. Relabeling is a data-governance job for data owners and custodians.",
+        "Incorrect. Most DLP systems don't modify labels in real time. Changing a label just to allow a requested action would defeat the protection the label is there to provide.",
+        "Incorrect. Deleting unlabeled data would cause big problems, because most organizations haven't labeled every piece of data. DLP detects and controls data movement; it doesn't destroy unlabeled data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-018",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Why is it cost effective to purchase high-quality media to contain sensitive data?",
+      "options": [
+        "Expensive media is less likely to fail.",
+        "The value of the data often far exceeds the cost of the media.",
+        "Expensive media is easier to encrypt.",
+        "More expensive media typically improves data integrity."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The value of the data contained on media often exceeds the cost of the media, making more expensive media that may have a longer life span or additional capabilities like encryption support a good choice. While expensive media may be less likely to fail, the reason it makes sense is the value of the data, not just that it is less likely to fail. In general, the cost of the media doesn't have anything to do with the ease of encryption, and data integrity isn't ensured by better media.",
+      "optionNotes": [
+        "Incorrect. Better media may well fail less often, but that isn't the main reason it's cost effective. The justification is the value of the data it protects, not just a lower failure rate.",
+        "Correct. Sensitive data is usually worth far more than the media holding it, so paying more for media with a longer life span or features like encryption support is a good investment.",
+        "Incorrect. How much the media costs generally has nothing to do with how easy it is to encrypt. Some media add encryption support, but that is a feature, not something that comes with a higher price.",
+        "Incorrect. Better media doesn't ensure data integrity. Integrity comes from controls like hashing and access control, not from the quality or price of the media."
+      ]
+    },
+    {
+      "id": "OPT4-C02-019",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.93,
+      "stem": "Chris is responsible for workstations throughout his company and knows that some of the company's workstations are used to handle both proprietary information and highly sensitive trade secrets. Which option best describes what should happen at the end of their life (EOL) for workstations he is responsible for?",
+      "options": [
+        "Erasing",
+        "Clearing",
+        "Sanitization",
+        "Destruction"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Destruction is the most complete method of ensuring that data cannot be exposed, and organizations often opt to destroy either the drive or the entire workstation or device to ensure that data cannot be recovered or exposed. Sanitization is a combination of processes that ensure that data from a system cannot be recovered by any means. Erasing and clearing are both prone to mistakes and technical problems that can result in remnant data and don't make sense for systems that handle proprietary information.",
+      "optionNotes": [
+        "Incorrect. Erasing just deletes files or file pointers, so the data stays on the media and can be recovered. That is not acceptable for workstations that held trade secrets.",
+        "Incorrect. Clearing overwrites the data so normal tools can't read it. It can still go wrong technically and leave data behind, so it is too weak for highly sensitive trade secrets at end of life.",
+        "Incorrect. Sanitization is a set of processes meant to make data unrecoverable before media is reused. Because it combines several steps, mistakes can still leave data behind. Destruction is the more complete choice for trade-secret systems at end of life.",
+        "Correct. Destroying the drive or the whole workstation is the most complete way to make sure proprietary data and trade secrets can't be recovered when the device is retired."
+      ]
+    },
+    {
+      "id": "OPT4-C02-020",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.57,
+      "stem": "Fred wants to classify his organization's data using common labels: private, sensitive, public, and proprietary. Which of the following should he apply to his highest classification level based on common industry practices?",
+      "options": [
+        "Private",
+        "Sensitive",
+        "Public",
+        "Proprietary"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Common practice makes proprietary or confidential data the most sensitive data. Private data is internal business data that shouldn't be exposed but that doesn't meet the threshold for confidential or proprietary data. Sensitive data may help attackers or otherwise create risk and typically refers to any information that isn't public or unclassified, and public data is just that—data that is or can be made public.",
+      "optionNotes": [
+        "Incorrect. Private data is internal business data that shouldn't be exposed, but it falls below the threshold for confidential or proprietary data, so it isn't the top level.",
+        "Incorrect. Sensitive is a broad term for any non-public or unclassified information that could help attackers. It isn't the highest commercial label.",
+        "Incorrect. Public data already is, or can be, released publicly. It is the lowest classification level, not the highest.",
+        "Correct. Common industry practice treats proprietary (confidential) data as the most sensitive commercial data, so it belongs at the top classification level."
+      ]
+    },
+    {
+      "id": "OPT4-C02-021",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "What scenario describes data at rest?",
+      "options": [
+        "Data in an IPsec tunnel",
+        "Data in an e-commerce transaction",
+        "Data stored on a hard drive",
+        "Data stored in RAM"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Data at rest is inactive data that is physically stored. Data in an IPsec tunnel or part of an e-commerce transaction is data in motion. Data in RAM is ephemeral and is not inactive.",
+      "optionNotes": [
+        "Incorrect. Data moving through an IPsec tunnel is data in transit (in motion) between endpoints. It isn't sitting inactive in storage, so it isn't data at rest.",
+        "Incorrect. Data in an e-commerce transaction is being sent between the customer and the merchant, which makes it data in motion. Data at rest is inactive and stored.",
+        "Correct. Data at rest is inactive data kept on physical storage, and data on a hard drive is the textbook example.",
+        "Incorrect. Data in RAM is ephemeral and actively being processed (data in use), so it isn't inactive stored data at rest."
+      ]
+    },
+    {
+      "id": "OPT4-C02-022",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.16,
+      "stem": "If you are selecting a security standard for a Windows 11 system that processes credit cards, what security standard is your best choice?",
+      "options": [
+        "Microsoft's Windows 11 security baseline",
+        "The CIS Windows 11 baseline",
+        "PCI DSS",
+        "The NSA Windows 11 Secure Host Baseline"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Payment Card Industry Data Security Standard (PCI DSS) provides the set of requirements for credit card processing systems. The Microsoft, NSA, and CIS baseline are all useful for building a Windows 11 security standard, but the PCI DSS standard is a better answer.",
+      "optionNotes": [
+        "Incorrect. Microsoft's Windows 11 baseline is a useful hardening guide for the OS. It doesn't cover the payment card requirements this system has to meet, so PCI DSS is the better choice.",
+        "Incorrect. The CIS Windows 11 benchmark is a good general OS-hardening baseline. It doesn't set the mandatory requirements for systems that process credit cards; PCI DSS does.",
+        "Correct. PCI DSS sets the security requirements for systems that store, process or transmit credit card data. That makes it the best standard for this system.",
+        "Incorrect. The NSA Secure Host Baseline helps with Windows hardening. It isn't the industry standard that governs credit card processing, so PCI DSS is the better answer."
+      ]
+    },
+    {
+      "id": "OPT4-C02-023",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.71,
+      "stem": "Scenario:\nThe Center for Internet Security (CIS) works with subject-matter experts from a variety of industries to create lists of security controls for operating systems, mobile devices, server software, and network devices. Your organization has decided to use the CIS benchmarks for your systems. Answer the following questions based on this decision.\n\nThe CIS benchmarks are an example of what practice?",
+      "options": [
+        "Conducting a risk assessment",
+        "Implementing data labeling",
+        "Implementing proper system ownership",
+        "Using security baselines"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The CIS benchmarks are an example of a security baseline. A risk assessment would help identify which controls were needed, and proper system ownership is an important part of making sure baselines are implemented and maintained. Data labeling can help ensure that controls are applied to the right systems and data.",
+      "optionNotes": [
+        "Incorrect. A risk assessment identifies which controls are needed based on threats and impact. It isn't a ready-made list of configuration settings like the CIS benchmarks.",
+        "Incorrect. Data labeling marks data by classification so the right controls get applied to it. The CIS benchmarks are system configuration standards, not labels.",
+        "Incorrect. System ownership assigns who is responsible for making sure baselines are implemented and maintained. It supports baselines but doesn't describe what the CIS benchmarks themselves are.",
+        "Correct. The CIS benchmarks are expert-built lists of security configuration controls for operating systems, devices, and software. An organization adopts them as its security baselines."
+      ]
+    },
+    {
+      "id": "OPT4-C02-024",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Scenario:\nThe Center for Internet Security (CIS) works with subject-matter experts from a variety of industries to create lists of security controls for operating systems, mobile devices, server software, and network devices. Your organization has decided to use the CIS benchmarks for your systems. Answer the following questions based on this decision.\n\nAdjusting the CIS benchmarks to your organization's mission and your specific IT systems would involve what two processes?",
+      "options": [
+        "Scoping and selection",
+        "Scoping and tailoring",
+        "Baselining and tailoring",
+        "Tailoring and selection"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Scoping involves selecting only the controls that are appropriate for your IT systems, while tailoring matches your organization's mission and the controls from a selected baseline. Baselining is the process of configuring a system or software to match a baseline or building a baseline itself. Selection isn't a technical term used for any of these processes.",
+      "optionNotes": [
+        "Incorrect. Scoping fits, since it means picking the controls that apply to your IT systems. \"Selection\" isn't a technical term for adjusting a baseline, though, and this option leaves out tailoring, which is how controls get matched to the mission.",
+        "Correct. Scoping keeps only the controls that apply to your specific IT systems. Tailoring then adjusts the selected baseline's controls to fit your organization's mission.",
+        "Incorrect. Baselining means building a baseline or configuring a system to match one. You've already chosen CIS as the baseline, so baselining isn't the adjustment step. Scoping is missing from this option.",
+        "Incorrect. Tailoring fits, but \"selection\" isn't a recognized term for this process. The other process needed is scoping, which trims the controls down to the systems you actually have."
+      ]
+    },
+    {
+      "id": "OPT4-C02-025",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.63,
+      "stem": "Scenario:\nThe Center for Internet Security (CIS) works with subject-matter experts from a variety of industries to create lists of security controls for operating systems, mobile devices, server software, and network devices. Your organization has decided to use the CIS benchmarks for your systems. Answer the following questions based on this decision.\n\nHow should you determine which controls from the baseline should be applied to a given system or software package?",
+      "options": [
+        "Consult the custodians of the data.",
+        "Select based on the data classification of the data it stores or handles.",
+        "Apply the same controls to all systems.",
+        "Consult the business owner of the process the system or data supports."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The controls implemented from a security baseline should match the data classification of the data used or stored on the system. Custodians are trusted to ensure the day-to-day security of the data and should do so by ensuring that the baseline is met and maintained. Business owners often have a conflict of interest between functionality and data security, and of course, applying the same controls everywhere is expensive and may not meet business needs or be a responsible use of resources.",
+      "optionNotes": [
+        "Incorrect. Custodians handle day-to-day protection of the data. Their job is to make sure the chosen baseline is applied and kept in place, not to decide which controls get selected.",
+        "Correct. The controls you take from a baseline should match the classification of the data the system stores or handles, so the protection fits how sensitive the data is.",
+        "Incorrect. Putting every control on every system costs too much, may not fit business needs, and wastes resources. Scoping and tailoring exist so you only apply the controls that are relevant.",
+        "Incorrect. Business owners often have a conflict of interest, because they tend to favour functionality over data security. That makes them a poor sole basis for choosing controls."
+      ]
+    },
+    {
+      "id": "OPT4-C02-026",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.28,
+      "stem": "The company that Henry works for operates in the EU and collects data about their customers. They send that data to a third party to analyze and provide reports to help the company make better business decisions. What term best describes the third-party analysis company?",
+      "options": [
+        "The data controller",
+        "The data owner",
+        "The data subject",
+        "The data processor"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The third-party company is a data processor—they process data on behalf of Henry's company, which is a data controller. The data is collected about data subjects. Data owners are tasked with making decisions about data, such as who receives access to it and how it is used.",
+      "optionNotes": [
+        "Incorrect. Henry's company is the data controller because it decides why and how the customer data is collected and used. The third party only acts on its behalf.",
+        "Incorrect. Data owners make decisions about data, such as who gets access to it and how it is used. The analysis firm only processes the data it is sent and makes no such decisions.",
+        "Incorrect. The data subjects are the customers the data is about, not the company that analyzes it.",
+        "Correct. The third party processes personal data on behalf of the controller (Henry's company), which makes it a data processor under GDPR."
+      ]
+    },
+    {
+      "id": "OPT4-C02-027",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.26,
+      "stem": "The government defense contractor that Selah works for has recently shut down a major research project and is planning on reusing the hundreds of thousands of dollars of systems and data storage tapes used for the project for other purposes. When Selah reviews the company's internal processes, she finds that she can't reuse the tapes and that the manual says they should be destroyed. Why isn't Selah allowed to degauss and then reuse the tapes to save her employer money?",
+      "options": [
+        "Data permanence may be an issue.",
+        "Data remanence is a concern.",
+        "The tapes may suffer from bitrot.",
+        "Data from tapes can't be erased by degaussing."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Many organizations require the destruction of media that contains data at higher levels of classification. Often the cost of the media is lower than the potential costs of data exposure, and it is difficult to guarantee that reused media doesn't contain remnant data. Tapes can be erased by degaussing, but degaussing is not always fully effective. Bitrot describes the slow loss of data on aging media, while data permanence is a term sometimes used to describe the life span of data and media.",
+      "optionNotes": [
+        "Incorrect. Data permanence is a term sometimes used for the life span of data and media. It doesn't explain why classified tapes must be destroyed rather than degaussed and reused.",
+        "Correct. Degaussing isn't always fully effective, so remnant data may survive on the tapes. For media holding higher-classification data, the cost of exposure is greater than the cost of new media, so the tapes must be destroyed.",
+        "Incorrect. Bitrot is the slow loss of data as media ages. It's a data integrity and longevity problem, not a reason that sanitizing and reusing the tapes would be unsafe.",
+        "Incorrect. This is false. Degaussing can erase tapes. The real problem is that it isn't always fully effective, which leaves a risk of remnant data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-028",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.74,
+      "stem": "Information maintained about an individual that can be used to distinguish or trace their identity is known as what type of information?",
+      "options": [
+        "Personally identifiable information (PII)",
+        "Personal health information (PHI)",
+        "Social Security number (SSN)",
+        "Secure identity information (SII)"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "NIST Special Publication 800-122 defines PII as any information that can be used to distinguish or trace an individual's identity, such as name, Social Security number, date and place of birth, mother's maiden name, biometric records, and other information that is linked or linkable to an individual such as medical, educational, financial, and employment information. PHI is health-related information about a specific person, Social Security numbers are issued to individuals in the United States, and SII is a made-up term.",
+      "optionNotes": [
+        "Correct. NIST SP 800-122 defines PII as any information that can be used to distinguish or trace an individual's identity, such as name, SSN, birth date and place, or biometrics, plus information that can be linked to that person.",
+        "Incorrect. PHI is a narrower category: health-related information about a specific person. The question describes the broad category of identifying data, not health data.",
+        "Incorrect. An SSN is one specific example of PII, issued to individuals in the US. It isn't the name of the overall category of information.",
+        "Incorrect. \"Secure identity information\" is a made-up term. It isn't a recognized data classification."
+      ]
+    },
+    {
+      "id": "OPT4-C02-029",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.69,
+      "stem": "Which of the following information security risks to data at rest would result in the greatest reputational impact on an organization?",
+      "options": [
+        "Improper classification",
+        "Data breach",
+        "Decryption",
+        "An intentional insider threat"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Typically, data breaches cause the greatest reputational damage as a result of threats to data at rest. Data at rest with a high level of sensitivity is often encrypted to help prevent this. Decryption is not as significant of a threat if strong encryption is used and encryption keys are well secured. Insider threats are a risk, but the majority of insider threat issues are unintentional rather than intentional, making this risk less likely in most organizations.",
+      "optionNotes": [
+        "Incorrect. Improper classification is a process weakness. It can lead to underprotected data, and that can end in a breach, but on its own it isn't the event that causes public reputational harm.",
+        "Correct. A data breach exposes stored sensitive data to outsiders, and the public disclosure that follows usually does the most damage to an organization's reputation.",
+        "Incorrect. Decryption is a smaller threat when strong encryption is used and the keys are well protected. That's why sensitive data at rest is usually encrypted in the first place.",
+        "Incorrect. Insider threats are a real risk, but most insider incidents are unintentional. That makes an intentional insider less likely, so it isn't the biggest reputational risk for most organizations."
+      ]
+    },
+    {
+      "id": "OPT4-C02-030",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "Full disk encryption like Microsoft's BitLocker is used to protect data in what state?",
+      "options": [
+        "Data in transit",
+        "Data at rest",
+        "Unlabeled data",
+        "Labeled data"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Full disk encryption only protects data at rest. Since it encrypts the full disk, it does not distinguish between labeled and unlabeled data.",
+      "optionNotes": [
+        "Incorrect. Data in transit is data moving across networks. It's protected with link encryption, end-to-end encryption, or TLS, not by encrypting a stored disk.",
+        "Correct. BitLocker encrypts the whole stored volume, so it protects data at rest, for example on a lost or stolen laptop. Once data leaves the disk, it is no longer covered.",
+        "Incorrect. Full disk encryption encrypts everything on the disk without regard to labels. Unlabeled data is not a data state, so this is not what FDE specifically protects.",
+        "Incorrect. FDE does not tell labeled data apart from unlabeled data; it encrypts the whole disk. Labeling is a classification matter, not a data state."
+      ]
+    },
+    {
+      "id": "OPT4-C02-031",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.66,
+      "stem": "The company that Katie works for provides its staff with mobile phones for employee use, with new phones issued every two years. What scenario best describes this type of practice when the phones themselves are still usable and receiving operating system updates?",
+      "options": [
+        "EOL",
+        "Planned obsolescence",
+        "EOS",
+        "Device risk management"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "This is an example of an end-of-support (EOS) scenario. The company is intentionally ending support and needs to address what happens to the devices next—secure disposal, destruction, or re-sale— depending on data security requirements and policies set by the company. EOL is when a device or software is no longer made or supported, in contrast to end of support, which may be when it is no longer serviced, including via patches, upgrades, or organizational maintenance. Planned obsolescence and device risk management are not terms that are used on the exam.",
+      "optionNotes": [
+        "Incorrect. End of life (EOL) means the vendor no longer makes or sells the device or software. These phones are still current and still getting OS updates, so EOL doesn't fit.",
+        "Incorrect. Planned obsolescence is a manufacturer designing products to wear out. It isn't an exam term, and it doesn't describe the company's own choice to retire working phones.",
+        "Correct. The company is deliberately ending its own support for phones that still work, which makes this end of support (EOS). It must then decide whether to securely dispose of, destroy, or resell the devices, based on its data security policies.",
+        "Incorrect. Device risk management is not a term used on the exam. It is a general idea, not the name for the company deliberately ending support for working devices."
+      ]
+    },
+    {
+      "id": "OPT4-C02-032",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.28,
+      "stem": "What is the primary purpose of data classification?",
+      "options": [
+        "It quantifies the cost of a data breach.",
+        "It prioritizes IT expenditures.",
+        "It allows compliance with breach notification laws.",
+        "It identifies the value of the data to the organization."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Classification identifies the value of data to an organization. This can often help drive IT expenditure prioritization and could help with rough cost estimates if a breach occurred, but that's not the primary purpose. Finally, most breach laws call out specific data types for notification rather than requiring organizations to classify data themselves.",
+      "optionNotes": [
+        "Incorrect. Classification can support rough breach cost estimates as a side benefit, but it doesn't actually quantify breach costs. That isn't its primary purpose.",
+        "Incorrect. Knowing data value can help drive how IT spending is prioritized, but that's a downstream benefit, not the main reason to classify data.",
+        "Incorrect. Most breach notification laws name specific data types that trigger notification. They don't require organizations to run their own classification scheme, so compliance with them isn't the purpose.",
+        "Correct. Classification establishes how valuable and sensitive data is to the organization, and that value then sets the protection controls, handling, and spending decisions."
+      ]
+    },
+    {
+      "id": "OPT4-C02-033",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.66,
+      "stem": "Fred's organization allows downgrading of systems for reuse after projects have been finished and the systems have been purged. What concern should Fred raise about the reuse of the systems from his Top Secret classified project for a future project classified as Secret?",
+      "options": [
+        "The Top Secret data may be commingled with the Secret data, resulting in a need to relabel the system.",
+        "The cost of the sanitization process may exceed the cost of new equipment.",
+        "The data may be exposed as part of the sanitization process.",
+        "The organization's DLP system may flag the new system due to the difference in data labels."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Downgrading systems and media is rare due to the difficulty of ensuring that sanitization is complete. The need to completely wipe (or destroy) the media that systems use means that the cost of reuse is often significant and may exceed the cost of purchasing a new system or media. The goal of purging is to ensure that no data remains, so commingling data should not be a concern, nor should the exposure of the data; only staff with the proper clearance should handle the systems! Finally, a DLP system should flag data based on labels, not on the system it comes from.",
+      "optionNotes": [
+        "Incorrect. The point of purging is that no data remains on the system, so Top Secret data can't end up mixed with Secret data. Commingling, and relabeling because of it, isn't the real concern.",
+        "Correct. Downgrading requires fully wiping or destroying the media and confirming the sanitization worked. That effort is costly and can exceed the price of buying new equipment.",
+        "Incorrect. Exposure during sanitization shouldn't be a concern because only staff with the proper clearance should handle the systems during the process.",
+        "Incorrect. DLP flags data based on its labels, not on the system the data came from. A purged, downgraded system would not trigger DLP because of its earlier classification."
+      ]
+    },
+    {
+      "id": "OPT4-C02-034",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Which of the following concerns should not be part of the decision when classifying data?",
+      "options": [
+        "The cost to classify the data",
+        "The sensitivity of the data",
+        "The amount of harm that exposure of the data could cause",
+        "The value of the data to the organization"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Classification should be conducted based on the value of the data to the organization, its sensitivity, and the amount of harm that could result from exposure of the data. Cost should be considered when implementing controls and is weighed against the damage that exposure would create.",
+      "optionNotes": [
+        "Correct. The cost of classifying isn't a classification criterion. Cost matters later, when you pick controls and weigh their cost against the damage exposure would cause.",
+        "Incorrect. Sensitivity is one of the core criteria for classification, so it should be part of the decision.",
+        "Incorrect. The potential harm from exposure largely sets the classification level (e.g., confidential vs. secret), so it belongs in the decision.",
+        "Incorrect. The data's value to the organization is a main basis for classifying it, so it is a valid concern."
+      ]
+    },
+    {
+      "id": "OPT4-C02-035",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Which of the following is the least effective method of removing data from media?",
+      "options": [
+        "Degaussing",
+        "Purging",
+        "Erasing",
+        "Clearing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Erasing, which describes a typical deletion process in many operating systems, typically removes only the link to the file and leaves the data that makes up the file itself. The data will remain in place but not indexed until the space is needed and it is overwritten. Degaussing works only on magnetic media, but it can be quite effective on it. Purging and clearing both describe more elaborate removal processes.",
+      "optionNotes": [
+        "Incorrect. Degaussing applies a strong magnetic field and is quite effective on magnetic media, though not on SSDs or optical. It is far more thorough than simple erasing.",
+        "Incorrect. Purging is a more elaborate removal process that prepares media for reuse in less secure environments and resists even laboratory recovery, so it is not the least effective.",
+        "Correct. Erasing is ordinary OS deletion: it removes only the file's index/link and leaves the data in place until the space gets overwritten, so the data is easy to recover.",
+        "Incorrect. Clearing overwrites the media (for example, with patterns) so that normal tools can't recover the data. It is a more thorough process than erasing."
+      ]
+    },
+    {
+      "id": "OPT4-C02-036",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Scenario:\nThe healthcare company that Amanda works for handles HIPAA data as well as internal business data, protected health information, and day-to-day business communications. Its internal policy uses the following requirements for securing HIPAA data at rest and in transit:\nClassification\nHandling Requirements\nConfidential\n(HIPAA)\nEncrypt at rest and in transit.\nFull disk encryption is required for all\nworkstations.\nFiles can be sent only in encrypted form, and\npasswords must be transferred under separate\ncover.\nPrinted documents must be labeled with\n“HIPAA handling required.”\nPrivate (PII)\nEncrypt at rest and in transit.\nPHI must be stored on secure servers, and\ncopies should not be kept on local\nworkstations.\nPrinted documents must be labeled with\n“Private.”\nSensitive (business\nconfidential)\nEncryption is recommended but not required.\nPublic\nInformation can be sent unencrypted.\n\nWhat encryption technology would be appropriate for HIPAA documents in transit?",
+      "options": [
+        "BitLocker",
+        "DES",
+        "TLS",
+        "SSL"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "TLS is a modern encryption method used to encrypt and protect data in transit. BitLocker is a full-disk encryption technology used for data at rest. DES and SSL are both outdated encryption methods and should not be used for data that requires high levels of security.",
+      "optionNotes": [
+        "Incorrect. BitLocker is Windows full-disk encryption for data at rest. It matches the workstation FDE requirement, but it doesn't protect HIPAA files while they're being sent.",
+        "Incorrect. DES is an outdated algorithm with a 56-bit key. It shouldn't be used for data that needs strong protection, such as HIPAA files.",
+        "Correct. TLS is the modern protocol for encrypting and protecting data in transit, so it meets the policy's in-transit requirement for HIPAA documents.",
+        "Incorrect. SSL was the protocol that came before TLS and is now deprecated and insecure. It shouldn't be used for highly sensitive data in transit."
+      ]
+    },
+    {
+      "id": "OPT4-C02-037",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.87,
+      "stem": "Scenario:\nThe healthcare company that Amanda works for handles HIPAA data as well as internal business data, protected health information, and day-to-day business communications. Its internal policy uses the following requirements for securing HIPAA data at rest and in transit:\nClassification\nHandling Requirements\nConfidential\n(HIPAA)\nEncrypt at rest and in transit.\nFull disk encryption is required for all\nworkstations.\nFiles can be sent only in encrypted form, and\npasswords must be transferred under separate\ncover.\nPrinted documents must be labeled with\n“HIPAA handling required.”\nPrivate (PII)\nEncrypt at rest and in transit.\nPHI must be stored on secure servers, and\ncopies should not be kept on local\nworkstations.\nPrinted documents must be labeled with\n“Private.”\nSensitive (business\nconfidential)\nEncryption is recommended but not required.\nPublic\nInformation can be sent unencrypted.\n\nAmanda's employer asks Amanda to classify patient data that is not medical data but that includes data such as phone numbers and addresses. The company's data owner believes that exposure of the data could cause damage (but not exceptional damage) to the organization. How should Amanda classify the data?",
+      "options": [
+        "Public",
+        "Sensitive",
+        "Private",
+        "Confidential"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "We know that the data classification will not be the top-level classification of Confidential because the loss of the data would not cause severe damage and is not medical data covered by HIPAA. This means we have to choose between private (PHI) and sensitive (confidential). Calling this private due to the patient's personally identifiable information fits the classification scheme, giving us the correct answer.",
+      "optionNotes": [
+        "Incorrect. Public is for information whose release causes no harm and can be sent unencrypted. Patient phone numbers and addresses are PII, and the data owner expects their exposure to cause damage, so Public doesn't fit.",
+        "Incorrect. Sensitive (business confidential) covers internal business data, and its encryption is only recommended. Patient contact details are personally identifiable information, which the scheme places in the Private level.",
+        "Correct. Phone numbers and addresses are patient PII rather than HIPAA-covered medical data, and exposure would cause damage but not exceptional damage. That matches the Private (PII) level.",
+        "Incorrect. Confidential is the top level, reserved for HIPAA medical data whose loss would cause severe damage. This data isn't medical, and its exposure wouldn't cause exceptional harm."
+      ]
+    },
+    {
+      "id": "OPT4-C02-038",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.95,
+      "stem": "Scenario:\nThe healthcare company that Amanda works for handles HIPAA data as well as internal business data, protected health information, and day-to-day business communications. Its internal policy uses the following requirements for securing HIPAA data at rest and in transit:\nClassification\nHandling Requirements\nConfidential\n(HIPAA)\nEncrypt at rest and in transit.\nFull disk encryption is required for all\nworkstations.\nFiles can be sent only in encrypted form, and\npasswords must be transferred under separate\ncover.\nPrinted documents must be labeled with\n“HIPAA handling required.”\nPrivate (PII)\nEncrypt at rest and in transit.\nPHI must be stored on secure servers, and\ncopies should not be kept on local\nworkstations.\nPrinted documents must be labeled with\n“Private.”\nSensitive (business\nconfidential)\nEncryption is recommended but not required.\nPublic\nInformation can be sent unencrypted.\n\nWhat technology could Amanda's employer implement to help prevent confidential data from being emailed out of the organization?",
+      "options": [
+        "DLP",
+        "IDS",
+        "A firewall",
+        "UDP"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A data loss prevention (DLP) system or software is designed to identify labeled data or data that fits specific patterns and descriptions to help prevent it from leaving the organization. An IDS is designed to identify intrusions. Although some IDS systems can detect specific types of sensitive data using pattern matching, they have no ability to stop traffic. A firewall uses rules to control traffic routing, while UDP is a network protocol.",
+      "optionNotes": [
+        "Correct. DLP spots labeled data, or data matching set patterns, in outbound channels like email and blocks it from leaving the organization.",
+        "Incorrect. An IDS is built to detect intrusions. Some can pattern-match sensitive data, but an IDS can't stop traffic, so it can't keep confidential email from going out.",
+        "Incorrect. A firewall uses rules about addresses, ports and routing to control traffic. It doesn't look at email content for classified data.",
+        "Incorrect. UDP is a connectionless transport-layer network protocol, not a security technology. It can't detect or block data leaving the organization."
+      ]
+    },
+    {
+      "id": "OPT4-C02-039",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Jacob's organization uses the U.S. government's data classification system, which includes Top Secret, Secret, Confidential, and Unclassified ratings (from most sensitive to least). Jacob encounters a system that contains Secret, Confidential, and Top Secret data. How should it be classified?",
+      "options": [
+        "Top Secret",
+        "Confidential",
+        "Secret",
+        "Mixed classification"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "When data is stored in a mixed classification environment, it is typically classified based on the highest classification of data included. In this case, the U.S. government's highest classification is Top Secret. Mixed classification is not a valid classification in this scheme.",
+      "optionNotes": [
+        "Correct. A system holding data at mixed levels takes the classification of its most sensitive data. Top Secret is the highest label present, so the whole system must be classified and protected as Top Secret.",
+        "Incorrect. Confidential is the lowest label present on the system. Using it would under-protect the Secret and Top Secret data, because classification follows the highest level present.",
+        "Incorrect. Secret sits in the middle of the levels present. Classifying the system as Secret would leave the Top Secret data under-protected, so the system must take the highest level, Top Secret.",
+        "Incorrect. \"Mixed classification\" is not a label in the U.S. government scheme. The only valid labels are Top Secret, Secret, Confidential and Unclassified, and a mixed system takes the highest one."
+      ]
+    },
+    {
+      "id": "OPT4-C02-040",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.2,
+      "stem": "Elle is planning her organization's asset retention efforts and wants to establish when the company will remove assets from use. Which of the following is typically the last event in a manufacturer or software provider's life cycle?",
+      "options": [
+        "End of life",
+        "End of support",
+        "End of sales",
+        "General availability"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The end of support of a device or product typically occurs after the end of life and end of sales. Support may continue for a period of months or even years, but eventually support stops too. General availability is found during the main part of a life cycle, rather than at the end, and helps note when the product is out of testing and can be acquired or used by customers or others instead of specific groups like beta testers or early release partners.",
+      "optionNotes": [
+        "Incorrect. End of life signals the vendor is winding a product down, but support usually continues for months or years after EOL. That makes it an earlier milestone, not the final one.",
+        "Correct. End of support usually comes after end of life and end of sales. Once support stops, there are no more patches or help, so it is the vendor's final life-cycle event and the natural point for removing assets.",
+        "Incorrect. End of sales is when the vendor stops selling the product. It comes before support ends, so it isn't the final event.",
+        "Incorrect. General availability marks the product leaving testing and becoming available to all customers, not just beta testers or early partners. It falls in the main part of the life cycle, not at the end."
+      ]
+    },
+    {
+      "id": "OPT4-C02-041",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.93,
+      "stem": "Alice has been asked to ensure that her organization's controls assessment procedures match the specific systems that the company uses. What activity best matches this task?",
+      "options": [
+        "Asset management",
+        "Compliance",
+        "Scoping",
+        "Tailoring"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Tailoring ensures that assessment methods are appropriate to the systems, services, and other assets that are being validated and is the best answer here. Scoping is a related term and involves setting the boundaries of security control implementations. Asset management involves how assets are overseen throughout their life cycle, and compliance is a broad term that describes ensuring that regulations, contractual terms, or other requirements are met.",
+      "optionNotes": [
+        "Incorrect. Asset management covers how assets are overseen across their life cycle. It doesn't adjust assessment procedures to fit particular systems.",
+        "Incorrect. Compliance is a broad term for making sure regulations, contracts, or other requirements are met. It isn't the specific act of fitting assessment methods to the systems in use.",
+        "Incorrect. Scoping is closely related but different. It sets the boundaries of where security controls are implemented, not how assessment methods are adjusted to suit each system.",
+        "Correct. Tailoring adjusts assessment methods so they suit the specific systems, services, and assets being validated, which is exactly Alice's task."
+      ]
+    },
+    {
+      "id": "OPT4-C02-042",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.08,
+      "stem": "Chris is responsible for his organization's security standards and has guided the selection and implementation of a security baseline for Windows PCs in his organization. How can Chris most effectively make sure that the workstations he is responsible for are being checked for compliance and that settings are being applied as necessary?",
+      "options": [
+        "Assign users to spot-check baseline compliance.",
+        "Use Microsoft Group Policy.",
+        "Create start-up scripts to apply policy at system start.",
+        "Periodically review the baselines with the data owner and system owners."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Group Policy provides the ability to monitor and apply settings in a security baseline. Manual checks by users and using start-up scripts provide fewer reviews and may be prone to failure, while periodic review of the baseline won't result in compliance being checked.",
+      "optionNotes": [
+        "Incorrect. Having users spot-check compliance is manual and occasional, so many checks get missed and results are unreliable. It also does nothing to apply settings automatically.",
+        "Correct. Group Policy applies baseline settings automatically across every domain-joined Windows workstation and keeps re-applying them. That handles both checking compliance and enforcing settings, which makes it the most effective choice.",
+        "Incorrect. Start-up scripts only run when a system boots, so settings get reviewed less often and the scripts can fail without anyone noticing. Group Policy offers centralized, continuous enforcement instead.",
+        "Incorrect. Reviewing the baseline with data and system owners keeps the baseline itself up to date. It doesn't check whether workstations actually comply or apply any settings to them."
+      ]
+    },
+    {
+      "id": "OPT4-C02-043",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Frank is reviewing his company's data life cycle and wants to place appropriate controls around the data collection phase. Which of the following ensures that data subjects agree to the processing of their data?",
+      "options": [
+        "Retention",
+        "Consent",
+        "Certification",
+        "Remanence"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Providing consent, or agreeing to data collection and use, is important in many data collection scenarios and may be required by law. Remanence occurs when data remains in place, sometimes inadvertently, after it should have been removed or disposed of. Retention is the intentional process of keeping and managing data. Certification is not a data life-cycle process element.",
+      "optionNotes": [
+        "Incorrect. Retention means deliberately keeping and managing data for a set period. It covers how long data is stored, not whether data subjects agreed to its collection.",
+        "Correct. Consent is the data subject's agreement to the collection and use of their data. It is often legally required at the collection phase, so this is the answer.",
+        "Incorrect. Certification is not part of the data life cycle. It is a formal assessment of a system's controls and has nothing to do with data subjects agreeing to processing.",
+        "Incorrect. Remanence is data left behind, sometimes by accident, after it should have been removed or disposed of. It belongs to the disposal phase, not collection."
+      ]
+    },
+    {
+      "id": "OPT4-C02-044",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.28,
+      "stem": "As a DBA, Amy's data role in her organization includes technical implementations of the data policies and standards, as well as managing the data structures that the data is stored in. What data role best fits what Amy does?",
+      "options": [
+        "Data custodian",
+        "Data owner",
+        "Data processor",
+        "Data user"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Amy is a data custodian and is responsible for the technical environment, including things like database structures and the technical implementations of data policies. Some organizations may overlap other data roles, including data controllers or data stewards, but the best answer here is a data custodian. Amy is not a data user and is not a data processor who uses the data on behalf of a data controller.",
+      "optionNotes": [
+        "Correct. The data custodian runs the technical environment. That covers database structures and the technical implementation of the data policies and standards, which is exactly what Amy does as a DBA.",
+        "Incorrect. The data owner is the person accountable for the data. The owner sets classification, rules and policies and delegates the hands-on technical implementation to custodians like a DBA.",
+        "Incorrect. A data processor handles data on behalf of a data controller. Amy's job is to manage the data structures and implement the policies, not to process data for a controller.",
+        "Incorrect. A data user only accesses data to do their job. They don't manage database structures or implement data policies, so this role doesn't match Amy."
+      ]
+    },
+    {
+      "id": "OPT4-C02-045",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.16,
+      "stem": "The company Jim works for suffered from a major data breach in the past year and now wants to ensure that it knows where data is located and if it is being transferred, is being copied to a thumb drive, or is in a network file share where it should not be. Which of the following solutions is best suited to tagging, monitoring, and limiting where files are transferred to?",
+      "options": [
+        "DRM",
+        "DLP",
+        "A network IPS",
+        "Antivirus"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A data loss prevention (DLP) system can tag, monitor, and limit where files are transferred to. Jim's company may also elect to use digital rights management tools in combination with a data loss prevention system, but DRM controls how data can be used, not where files are transferred to or where they exist at any point in time in most cases. An intrusion prevention system (IPS) may be able to detect files that are being sent across a network but won't stop files from being copied on workstations or thumb drives. Antivirus is not designed for this purpose.",
+      "optionNotes": [
+        "Incorrect. DRM governs how protected content may be used (view, copy, print, expiry), not where files sit or move. It could work alongside DLP but doesn't do location tagging and transfer control.",
+        "Correct. DLP finds and tags sensitive data, watches it at rest, in motion and in use, and can block transfers to USB drives, file shares or network destinations it shouldn't reach.",
+        "Incorrect. A network IPS may spot files moving across the network, but it can't stop files being copied on a workstation or to a thumb drive, and it doesn't tag data.",
+        "Incorrect. Antivirus finds and removes malware. It isn't built to classify, track or restrict where sensitive files move."
+      ]
+    },
+    {
+      "id": "OPT4-C02-046",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "What security measure can provide an additional security control in the event that backup tapes are stolen or lost?",
+      "options": [
+        "Keep multiple copies of the tapes.",
+        "Replace tape media with hard drives.",
+        "Use appropriate security labels.",
+        "Use AES-256 encryption."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Using strong encryption, like AES-256, can help ensure that loss of removable media like tapes doesn't result in a data breach. Security labels may help with handling processes, but they won't help once the media is stolen or lost. Having multiple copies will ensure that you can still access the data but won't increase the security of the media. Finally, using hard drives instead of tape only changes the media type and not the risk from theft or loss.",
+      "optionNotes": [
+        "Incorrect. Keeping multiple copies helps availability, since you can still get to the data. It does nothing to protect the confidentiality of a tape that has been stolen or lost.",
+        "Incorrect. Moving from tapes to hard drives only changes the media type. Drives can be stolen or lost just like tapes, so the theft or loss risk stays the same.",
+        "Incorrect. Security labels help people handle media correctly according to its classification. Once the media is stolen or lost, a label does nothing to stop someone from reading the data.",
+        "Correct. Strong encryption such as AES-256 makes the data on a lost or stolen tape unreadable without the key, so losing the media doesn't turn into a data breach."
+      ]
+    },
+    {
+      "id": "OPT4-C02-047",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.57,
+      "stem": "Joe works at a major pharmaceutical research and development company and has been tasked with writing his organization's data retention policy. As part of its legal requirements, the organization must comply with the U.S. Food and Drug Administration's Code of Federal Regulations Title 21. To do so, it is required to retain records with electronic signatures. Why would a signature be part of a retention requirement?",
+      "options": [
+        "It ensures that someone has reviewed the data.",
+        "It provides confidentiality.",
+        "It ensures that the data has been changed.",
+        "It validates who approved the data."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Electronic signatures, as used in this rule, prove that the signature was provided by the intended signer. Electronic signatures as part of the FDA code are intended to ensure that electronic records are “trustworthy, reliable, and generally equivalent to paper records and handwritten signatures executed on paper.” Signatures cannot provide confidentiality or integrity and don't ensure that someone has reviewed the data.",
+      "optionNotes": [
+        "Incorrect. A signature proves who signed, not that anyone actually reviewed the data. The book says plainly that signatures don't guarantee review took place.",
+        "Incorrect. A signature doesn't hide the record's contents, so it provides no confidentiality. Confidentiality comes from encryption or access controls.",
+        "Incorrect. Signing doesn't change the data and doesn't show that it was changed. The book also says signatures don't provide integrity under this rule.",
+        "Correct. Under 21 CFR Part 11, an electronic signature proves that the intended signer approved the record. This makes electronic records trustworthy and equivalent to handwritten signatures on paper."
+      ]
+    },
+    {
+      "id": "OPT4-C02-048",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.04,
+      "stem": "Susan wants to manage her data's life cycle based on retention rules. What technique can she use to ensure that data that has reached the end of its life cycle can be identified and disposed of based on her organization's disposal processes?",
+      "options": [
+        "Rotation",
+        "DRM",
+        "DLP",
+        "Tagging"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Tags that include information about the life span of the data and when it has expired can help with life-cycle management processes, part of data maintenance for organizations. Tags can be as simple as timestamps, or they can include additional metadata like the data type, creator, or purpose that can help inform the retention and disposal process. Rotation of files like logs is commonly done to limit how much space they take up, but rotation itself does not address disposal requirements and information that would guide the disposal process. DRM, or digital rights management, and DLP, or data loss prevention, both address data security and use but not disposal.",
+      "optionNotes": [
+        "Incorrect. Rotation, as with log files, mainly keeps storage use under control. It doesn't carry the expiration or metadata details needed to drive retention-based disposal.",
+        "Incorrect. Digital rights management (DRM) controls how licensed or protected content is used and copied. It handles data security and use, not identifying expired data for disposal.",
+        "Incorrect. Data loss prevention (DLP) watches for sensitive data leaving the organization and blocks it. It protects data but doesn't flag data that has reached end of life.",
+        "Correct. Tags such as timestamps, data type, creator, or purpose record a record's life span and expiration. That lets retention and disposal processes find expired data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-049",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.69,
+      "stem": "Ben has been asked to scrub data to eliminate any information that is no longer needed by his organization. What phase of the data life cycle is Ben most likely operating in?",
+      "options": [
+        "Data retention",
+        "Data maintenance",
+        "Data remanence",
+        "Data collection"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "During the data maintenance phase of a typical data life cycle, activities like data scrubbing occur to remove unneeded, incorrect, or out-of-date data. Data retention is not a phase; instead, it is a decision that organizations make based on requirements, laws, or their own needs. Data remanence is also not a phase. Data remanence describes the problem of data that remains after data is removed. Finally, in the data collection phase, data is acquired and may be scrubbed, but the question describes a process occurring after data is no longer needed, not during acquisition.",
+      "optionNotes": [
+        "Incorrect. Data retention isn't a life cycle phase. It's a decision organizations make about how long to keep data, based on legal, regulatory, or business requirements.",
+        "Correct. The maintenance phase covers scrubbing, which removes data that is unneeded, incorrect, or out of date while the organization still holds it.",
+        "Incorrect. Data remanence isn't a phase either. It describes the problem of data that's left behind after deletion or removal attempts.",
+        "Incorrect. Data can be scrubbed during collection, when it's acquired. But the question describes removing data the organization no longer needs, which happens after acquisition."
+      ]
+    },
+    {
+      "id": "OPT4-C02-050",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.57,
+      "stem": "Steve wants to ensure that assets in his organization are properly secured. What should he do to make sure security practices match the data security requirements for each device in his organization?",
+      "options": [
+        "Sanitization",
+        "Asset tagging",
+        "Tailoring",
+        "Encryption"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Asset tagging is used to make sure that individuals working with assets can determine the security level or practices they require. Tailoring adjusts security requirements to organizational needs. Other controls, such as sanitization and encryption, may be required by a specific asset classification but are not sufficient to meet a full range of security requirements.",
+      "optionNotes": [
+        "Incorrect. Sanitization removes data from media before it is disposed of or reused. A classification may require it, but it doesn't tell people which security practices each device needs.",
+        "Correct. Asset tagging labels each device with its classification, so anyone handling it can see what security level and practices it needs. This links each device to its data security requirements.",
+        "Incorrect. Tailoring adjusts a baseline of security controls to fit the organization's needs. It works at the policy level and doesn't mark individual devices with their requirements.",
+        "Incorrect. Encryption is one control that a classification might require. On its own it doesn't cover the full range of security requirements or show which practices apply to each device."
+      ]
+    },
+    {
+      "id": "OPT4-C02-051",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.04,
+      "stem": "Alex works for a government agency that is required to meet U.S. federal government requirements for data security. To meet these requirements, Alex has been tasked with making sure data is identifiable by its classification level when it is created to help with data asset inventory processes. What should Alex do to the data?",
+      "options": [
+        "Classify the data.",
+        "Encrypt the data.",
+        "Label the data.",
+        "Apply DRM to the data."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Data labels are crucial to identify the classification level of information contained on the media, and labeling data at creation helps to ensure that it is properly handled throughout its life cycle. Digital rights management (DRM) tools provide ways to control how data is used, while encrypting it can help maintain the confidentiality and integrity of the data. Classifying the data is necessary to label it, but it doesn't automatically place a label on the data.",
+      "optionNotes": [
+        "Incorrect. Classification decides the sensitivity level, and you need it before you can label. It doesn't put a visible marker on the data, so the data still can't be identified by its level during inventory.",
+        "Incorrect. Encryption protects confidentiality and integrity. It doesn't show which classification level the data has, so it doesn't help identify assets for inventory.",
+        "Correct. A label marks the data with its classification level. Labeling at creation makes the level identifiable for inventory and helps the data get handled properly for its whole life cycle.",
+        "Incorrect. DRM tools control how data is used, for example copying, printing or access. They don't mark the data with a classification level that you could use for inventory."
+      ]
+    },
+    {
+      "id": "OPT4-C02-052",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.48,
+      "stem": "Ben is following the National Institute of Standards and Technology (NIST) Special Publication 800-88 guidelines for sanitization and disposition as shown here. He is handling information that his organization classified as sensitive, which is a moderate security categorization in the NIST model. If the media is going to be sold as surplus, what process does Ben need to follow?\n[Figure, described in text: a NIST SP 800-88 flowchart. Low categorization: Leaving org control? No → Clear; Yes → Purge. Moderate: Reuse media? No → Destroy; Yes → Leaving org control? No → Clear; Yes → Purge. High: Reuse media? No → Destroy; Yes → Leaving org control? Yes → Destroy; No → Purge. Every path then goes to Validate → Document → Exit.]",
+      "options": [
+        "Destroy, validate, document",
+        "Clear, purge, document",
+        "Purge, document, validate",
+        "Purge, validate, document"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The NIST SP 800-88 process for sanitization and disposition shows that media that will be reused and was classified at a moderate level should be purged and then that purge should be validated. Finally, it should be documented.",
+      "optionNotes": [
+        "Incorrect. Destroy is the moderate-category path only when the media will not be reused. Selling it as surplus means it will be reused outside the organization, so the flowchart sends it to purge, not destroy.",
+        "Incorrect. Clear is for moderate media that is reused but stays under organizational control. This option also adds an extra purge step and leaves out validation, which the flowchart requires before documentation.",
+        "Incorrect. Purge is the right sanitization step, but the order is wrong. SP 800-88 validates the sanitization first and documents it afterward, so documentation can't come before validation.",
+        "Correct. Moderate media that will be reused and is leaving organizational control (sold as surplus) must be purged. The purge is then validated and finally documented, which matches the SP 800-88 flowchart."
+      ]
+    },
+    {
+      "id": "OPT4-C02-053",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "What methods are often used to protect data in transit?",
+      "options": [
+        "Telnet, ISDN, UDP",
+        "BitLocker, FileVault",
+        "AES, Serpent, IDEA",
+        "TLS, VPN, IPsec"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Data in transit is data that is traversing a network or is otherwise in motion. TLS, VPNs, and IPsec tunnels are all techniques used to protect data in transit. AES, Serpent, and IDEA are all symmetric algorithms, while Telnet, ISDN, and UDP are all protocols. BitLocker and FileVault are both used to encrypt data, but they protect only stored data, not data in transit.",
+      "optionNotes": [
+        "Incorrect. Telnet, ISDN, and UDP are just communication protocols and technologies. None of them protects data in transit; Telnet even sends credentials in cleartext.",
+        "Incorrect. BitLocker and FileVault are full-disk encryption tools. They protect data at rest on stored drives, not data moving across a network.",
+        "Incorrect. AES, Serpent, and IDEA are symmetric encryption algorithms, not protection methods for data in transit. Protocols such as TLS or IPsec may use ciphers like these, but the algorithms alone are not the method.",
+        "Correct. TLS, VPNs, and IPsec tunnels are the standard ways to protect data while it moves across a network. They encrypt traffic between endpoints."
+      ]
+    },
+    {
+      "id": "OPT4-C02-054",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Which one of the following data roles bears ultimate organizational responsibility for data?",
+      "options": [
+        "System owners",
+        "Business owners",
+        "Data owners",
+        "Mission owners"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The data owner has ultimate responsibility for data belonging to an organization and is typically the CEO, president, or another senior employee. Business and mission owners typically own processes or programs. System owners own a system that processes sensitive data.",
+      "optionNotes": [
+        "Incorrect. System owners own a system that processes sensitive data. They don't carry ultimate responsibility for the organization's data itself.",
+        "Incorrect. Business owners usually own processes or programs, not the data. Ultimate accountability for the data sits with the data owner.",
+        "Correct. The data owner, usually the CEO, president, or another senior employee, has ultimate organizational responsibility for the organization's data.",
+        "Incorrect. Mission owners usually own programs or processes tied to the mission. They aren't the role ultimately accountable for organizational data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-055",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.93,
+      "stem": "Shandra wants to secure an encryption key. Which location would be the most difficult to protect, if the key was kept and used in that location?",
+      "options": [
+        "On a local network",
+        "On disk",
+        "In memory",
+        "On a public network"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The most difficult location to secure for encryption keys and similar highly sensitive information is in active memory because the data needs to be decrypted to be used. When data is at rest on a drive or in transit via either a local or public network, it can be encrypted until it reaches its destination, and you can use strong encryption in each of those circumstances.",
+      "optionNotes": [
+        "Incorrect. Data crossing a local network is in transit, so it can stay protected with strong encryption until it arrives. That makes it easier to protect than a key in memory.",
+        "Incorrect. A key stored on disk is at rest, so it can be encrypted or wrapped there. It only has to be decrypted when it is loaded for use.",
+        "Correct. A key in active memory has to be decrypted before it can be used, so it sits in plaintext where encryption can't protect it. That makes memory the hardest place to secure.",
+        "Incorrect. Even on a public network, data in transit can be protected end to end with strong encryption. Unlike a key in active memory, it never has to sit there in plaintext."
+      ]
+    },
+    {
+      "id": "OPT4-C02-056",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "Scenario:\nChris has recently been hired into a new organization. The organization that Chris belongs to uses the following classification process:\n1. Criteria are set for classifying data.\n2. Data owners are established for each type of data.\n3. Data is classified.\n4. Required controls are selected for each classification.\n5. Baseline security standards are selected for the organization.\n6. Controls are scoped and tailored.\n7. Controls are applied and enforced.\n8. Access is granted and managed.\n\nIf Chris is one of the data owners for the organization, what steps in this process is he most likely responsible for?",
+      "options": [
+        "He is responsible for steps 3, 4, and 5.",
+        "He is responsible for steps 1, 2, and 3.",
+        "He is responsible for steps 5, 6, and 7.",
+        "All of the steps are his direct responsibility."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Chris is most likely to be responsible for classifying the data that he owns as well as assisting with or advising the system owners on security requirements and control selection. In an organization with multiple data owners, Chris is unlikely to set criteria for classifying data on his own. As a data owner, Chris will also not typically have direct responsibility for scoping, tailoring, applying, or enforcing those controls.",
+      "optionNotes": [
+        "Correct. A data owner classifies the data he owns (step 3) and advises system owners on which controls each classification needs and on baseline selection (steps 4 and 5).",
+        "Incorrect. When an organization has several data owners, the criteria for classification (step 1) and the assignment of data owners (step 2) are set at the organizational level. One data owner like Chris would not decide them himself.",
+        "Incorrect. Scoping, tailoring, applying and enforcing controls (steps 6 and 7) are operational work for system owners and custodians, who carry out the protections. The data owner does not directly do these tasks.",
+        "Incorrect. Responsibility is split across roles. Senior management sets the criteria, custodians and system owners implement and enforce controls, and administrators handle access. So the data owner is not directly responsible for every step."
+      ]
+    },
+    {
+      "id": "OPT4-C02-057",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "Scenario:\nChris has recently been hired into a new organization. The organization that Chris belongs to uses the following classification process:\n1. Criteria are set for classifying data.\n2. Data owners are established for each type of data.\n3. Data is classified.\n4. Required controls are selected for each classification.\n5. Baseline security standards are selected for the organization.\n6. Controls are scoped and tailored.\n7. Controls are applied and enforced.\n8. Access is granted and managed.\n\nChris manages a team of system administrators. What data role are they fulfilling if they conduct steps 6, 7, and 8 of the classification process?",
+      "options": [
+        "They are system owners and administrators.",
+        "They are administrators and custodians.",
+        "They are data owners and administrators.",
+        "They are custodians and users."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The system administrators are acting in the roles of data administrators who grant access and will also act as custodians who are tasked with the day-to-day application of security controls. They are not acting as data owners who own the data itself. Typically, system administrators are delegated authority by system owners, such as a department head, and of course they are tasked with providing access to users.",
+      "optionNotes": [
+        "Incorrect. System owners, such as a department head, own the systems and delegate authority to sysadmins. The admins here only carry out the delegated duties, so they are not the system owners.",
+        "Correct. Granting and managing access (step 8) is the data administrator's job. Scoping, tailoring, applying and enforcing controls day to day (steps 6–7) is the custodian's job.",
+        "Incorrect. Data owners are accountable for the data itself and set its classification (steps 2–3). The sysadmins don't own the data. They only grant access and apply controls.",
+        "Incorrect. Users are the people who are given access and work with the data. The sysadmins grant access to users rather than act as users, so 'users' is the wrong role here."
+      ]
+    },
+    {
+      "id": "OPT4-C02-058",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.63,
+      "stem": "Scenario:\nChris has recently been hired into a new organization. The organization that Chris belongs to uses the following classification process:\n1. Criteria are set for classifying data.\n2. Data owners are established for each type of data.\n3. Data is classified.\n4. Required controls are selected for each classification.\n5. Baseline security standards are selected for the organization.\n6. Controls are scoped and tailored.\n7. Controls are applied and enforced.\n8. Access is granted and managed.\n\nIf Chris's company operates in the European Union and has been contracted to handle the data for a third party, what role is his company operating in when it uses this process to classify and handle data?",
+      "options": [
+        "Business owners",
+        "Mission owners",
+        "Data processors",
+        "Data administrators"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Third-party organizations that process personal data on behalf of a data controller are known as data processors. The organization that they are contracting with would act in the role of the business or mission owners, and others within Chris's organization would have the role of data administrators, granting access as needed to the data based on their operational procedures and data classification.",
+      "optionNotes": [
+        "Incorrect. The business owner role belongs to the contracting organization that owns the data and its purpose, not to Chris's company, which only handles the data for that third party.",
+        "Incorrect. Mission owners are on the client side and set the goals the data supports. Chris's company is a contractor handling someone else's data, so this role doesn't fit.",
+        "Correct. Under the EU GDPR, a third party that processes personal data on behalf of a data controller is a data processor, which is exactly Chris's company's role here.",
+        "Incorrect. Data administrators are individual staff inside Chris's company who grant and manage access. That is an internal job role, not the role the company holds toward its client."
+      ]
+    },
+    {
+      "id": "OPT4-C02-059",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.96,
+      "stem": "Scenario:\nEric has been put in charge of his organization's IT service management effort, and part of that effort includes creating an inventory of both tangible and intangible assets. As a security professional, you have been asked to provide Eric with security-related guidance on each of the following topics. Your goal is to provide Eric with the best answer from each of the options, knowing that in some cases more than one of the answers could be acceptable.\n\nEric needs to identify all of the active systems and devices on the network. Which of the following techniques will give him the most complete list of connected devices?",
+      "options": [
+        "Query Active Directory for a list of all computer objects.",
+        "Perform a port scan of all systems on the network.",
+        "Ask all staff members to fill out a form listing all of their systems and devices.",
+        "Use network logs to identify all connected devices and track them down from there."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "While it can be a lot of work, the most complete inventory of active systems and devices can be created by determining what is connected to the network and then finding those assets. Port scans can help to find some systems, but firewalls and other security solutions can prevent systems from being discovered. Staff may not know about all of the systems and devices on the network or may presume that someone else will provide information about shared resources such as printers, security cameras, or other devices. Active Directory is unlikely to contain all devices, particularly if an inventory is needed!",
+      "optionNotes": [
+        "Incorrect. Active Directory only lists computer objects joined to the domain. Printers, cameras, IoT devices and unmanaged systems won't show up, so it can't give a complete inventory, which is exactly why an inventory is needed in the first place.",
+        "Incorrect. A port scan finds some systems, but firewalls and host security tools can block or hide devices from discovery. The list will be incomplete.",
+        "Incorrect. Staff surveys are unreliable. Users may not know about every device, and they may assume someone else will report shared resources such as printers or security cameras.",
+        "Correct. Network logs show what has actually connected to the network. Tracking down each of those connections takes effort, but it produces the most complete list of active systems and devices."
+      ]
+    },
+    {
+      "id": "OPT4-C02-060",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.99,
+      "stem": "Scenario:\nEric has been put in charge of his organization's IT service management effort, and part of that effort includes creating an inventory of both tangible and intangible assets. As a security professional, you have been asked to provide Eric with security-related guidance on each of the following topics. Your goal is to provide Eric with the best answer from each of the options, knowing that in some cases more than one of the answers could be acceptable.\n\nEric knows that his inventory is accurate only at the moment it was completed. How can he best ensure that it remains up-to-date?",
+      "options": [
+        "Perform a point-in-time query of network-connected devices and update the list based on what is found.",
+        "Ensure that procurement and acquisition processes add new devices to the inventory before they are deployed.",
+        "Require every employee to provide an updated inventory of devices they are responsible for on a quarterly basis.",
+        "Manually verify every device in service at each organizational location on a yearly basis."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In most organizations, changing processes so that new systems and devices are added to inventory before they are deployed is the first step in making sure asset inventories are current. Yearly or quarterly updates are too infrequent for most organizations and will lead to gaps as devices are forgotten.",
+      "optionNotes": [
+        "Incorrect. A point-in-time network query is just another snapshot. It misses devices that are offline or not connected, and the list starts drifting out of date again right after the scan.",
+        "Correct. If procurement and acquisition must add new systems and devices to the inventory before they are deployed, the inventory gets updated as part of normal work. The book calls this the first step toward keeping asset inventories current.",
+        "Incorrect. Quarterly self-reporting by employees is too infrequent and depends on users remembering. Devices get forgotten between reports, so gaps open up in the inventory.",
+        "Incorrect. A yearly manual check at every location is too infrequent and takes a lot of work. Devices deployed or forgotten between checks leave long gaps in the inventory."
+      ]
+    },
+    {
+      "id": "OPT4-C02-061",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.87,
+      "stem": "Scenario:\nEric has been put in charge of his organization's IT service management effort, and part of that effort includes creating an inventory of both tangible and intangible assets. As a security professional, you have been asked to provide Eric with security-related guidance on each of the following topics. Your goal is to provide Eric with the best answer from each of the options, knowing that in some cases more than one of the answers could be acceptable.\n\nEric knows that his organization has more than just physical assets. In fact, his organization's business involves significant intellectual property assets, including designs and formulas. Eric needs to track and inventory those assets as well. How can he most effectively ensure that he can identify and manage data throughout his organization based on its classification or type?",
+      "options": [
+        "Track file extensions for common data types.",
+        "Ensure that data is collected in specific network share locations based on the data type and group that works with it.",
+        "Use metadata tagging based on data type or security level.",
+        "Automatically tag data by file extension type."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Eric should use metadata tagging to allow him to use technical tools like DLP and DRM to handle and track data based on its type and content. File extensions do not reveal data security or type, and relying on network share locations to secure data or inventory will lead to gaps in security as files are moved, copied, or stored locally.",
+      "optionNotes": [
+        "Incorrect. A file extension only shows the format (.docx, .dwg), not how sensitive the file is or what it contains. Tracking extensions can't separate a confidential formula from an ordinary document of the same type.",
+        "Incorrect. Relying on network share locations leaves gaps in both inventory and security. Files get moved, copied or saved locally, and their classification doesn't go with them.",
+        "Correct. Metadata tags for data type or security level stay with the data. That lets tools such as DLP and DRM find, track and enforce handling based on classification wherever the data goes.",
+        "Incorrect. Automating tags doesn't fix the basic problem: the extension says nothing about classification or content. All files of one type would get the same tag whatever their sensitivity, so the tags would be meaningless."
+      ]
+    },
+    {
+      "id": "OPT4-C02-062",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.71,
+      "stem": "Scenario:\nEric has been put in charge of his organization's IT service management effort, and part of that effort includes creating an inventory of both tangible and intangible assets. As a security professional, you have been asked to provide Eric with security-related guidance on each of the following topics. Your goal is to provide Eric with the best answer from each of the options, knowing that in some cases more than one of the answers could be acceptable.\n\nEric has been tasked with identifying intangible assets but needs to provide his team with a list of the assets they will be inventorying. Which of the following is not an example of an intangible asset?",
+      "options": [
+        "Patents",
+        "Databases",
+        "Formulas",
+        "Employees"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Patents, databases, and formulas are all examples of intangible assets. Tangible assets include things like hardware, cables, and buildings. Personnel assets include employees, and most organizations would be quite concerned if their employees were intangible!",
+      "optionNotes": [
+        "Incorrect. Patents are intellectual property with no physical form, so they count as intangible assets. That makes them a wrong answer to a question asking what is NOT intangible.",
+        "Incorrect. A database is information that has value even though you can't touch it, so it is an intangible asset. The hardware it runs on would be tangible.",
+        "Incorrect. Formulas are trade secrets or intellectual property, which are classic intangible assets. They don't answer a question asking what is NOT intangible.",
+        "Correct. Employees are personnel assets, not intangible assets. They belong in a separate category from IP and information assets like patents, databases, and formulas."
+      ]
+    },
+    {
+      "id": "OPT4-C02-063",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Which of the following is not a common requirement for the collection of data under data privacy laws and statutes?",
+      "options": [
+        "Only data that is needed is collected.",
+        "Data should be obtained lawfully and via fair methods.",
+        "Data should be collected only with the consent of the individual whose data is being collected.",
+        "Data should be collected from all individuals equally."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "There is no requirement that data collection be equal or equivalent. Instead, data collection statutes and other requirements often require that only required data is collected, that individuals are made aware of the data collection, and that they consent to the collection. Similarly, data should be collected only lawfully and via fair methods.",
+      "optionNotes": [
+        "Incorrect. Data minimization, meaning you collect only the data you need, is a common requirement in privacy statutes. Because the question asks for what is NOT required, this is a wrong pick.",
+        "Incorrect. Lawful and fair collection is a core privacy principle that data collection laws commonly require. That makes it a real requirement, so it is not the answer.",
+        "Incorrect. Privacy statutes often require that individuals know about the collection and consent to it. Consent is a standard requirement, so it is not the exception.",
+        "Correct. No privacy law requires collecting data equally from all individuals. The actual requirements are minimization, lawful and fair methods, awareness and consent."
+      ]
+    },
+    {
+      "id": "OPT4-C02-064",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.04,
+      "stem": "Susan works in an organization that labels all removable media with the classification level of the data it contains, including public data. Why would Susan's employer label all media instead of labeling only the media that contains data that could cause harm if it was exposed?",
+      "options": [
+        "It is cheaper to order all prelabeled media.",
+        "It prevents sensitive media from not being marked by mistake.",
+        "It prevents reuse of public media for sensitive data.",
+        "Labeling all media is required by HIPAA."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Requiring all media to have a label means that when unlabeled media is found, it should immediately be considered suspicious. This helps to prevent mistakes that might leave sensitive data unlabeled. Prelabeled media is not necessarily cheaper (nor may it make sense to buy!), while reusing public media simply means that it must be classified based on the data it now contains. HIPAA does not have specific media labeling requirements.",
+      "optionNotes": [
+        "Incorrect. Cost isn't the reason. Prelabeled media isn't necessarily cheaper, and it may not make sense to buy it, because the label has to match the data the media actually ends up holding.",
+        "Correct. When every piece of media carries a label, any unlabeled media stands out as suspicious right away. That prevents sensitive data from being left unmarked by mistake.",
+        "Incorrect. Labeling doesn't stop media from being reused. If public media is reused for sensitive data, it simply has to be reclassified and relabeled to match its new contents.",
+        "Incorrect. HIPAA has no specific media labeling requirements, so it can't be the reason for labeling all media."
+      ]
+    },
+    {
+      "id": "OPT4-C02-065",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Data stored in RAM is best characterized as what type of data?",
+      "options": [
+        "Data at rest",
+        "Data in use",
+        "Data in transit",
+        "Data at large"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Data in use is data that is in a temporary storage location while an application or process is using it. Thus, data in memory is best described as data in use or ephemeral data. Data at rest is in storage, while data in transit is traveling over a network or other channel. Data at large is a made-up term.",
+      "optionNotes": [
+        "Incorrect. Data at rest is data held in persistent storage, such as disks or databases. Data in RAM is held only temporarily while a process is actively using it.",
+        "Correct. Data in use is data held in temporary storage, such as RAM, while an application or process works with it. That makes memory-resident data ephemeral data in use.",
+        "Incorrect. Data in transit is data moving across a network or other communication channel. Data sitting in RAM is not travelling anywhere.",
+        "Incorrect. \"Data at large\" is a made-up term. It is not one of the recognised data states (at rest, in transit, in use)."
+      ]
+    },
+    {
+      "id": "OPT4-C02-066",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.26,
+      "stem": "What issue is the validation portion of the NIST SP 800-88 sample certificate of sanitization (shown here) intended to help prevent?\n[Figure, described in text: the NIST SP 800-88 sample Certificate of Sanitization form, with sections for the person performing sanitization, media information, sanitization details (method type: clear, purge, damage, destruct; method used; verification method: full, quick sampling, other), media destination, a signature attesting the information is accurate, and a final Validation section (name, title, organization, signature, date).]",
+      "options": [
+        "Destruction",
+        "Reuse",
+        "Data remanence",
+        "Attribution"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Validation processes are conducted to ensure that the sanitization process was completed, avoiding data remanence. A form like this one helps to ensure that each device has been checked and that it was properly wiped, purged, or sanitized. This can allow reuse, does not prevent destruction, and does not help with attribution, which is a concept used with encryption to prove who created or sent a file.",
+      "optionNotes": [
+        "Incorrect. Destruction is one of the sanitization methods the form records. Validation doesn't stop destruction; it confirms that whatever method was chosen actually worked.",
+        "Incorrect. Validated sanitization is what makes it safe to reuse media, so the form allows reuse instead of preventing it.",
+        "Correct. Validation means a second person confirms the device really was cleared, purged, or destroyed. That stops leftover data (data remanence) from staying on the media.",
+        "Incorrect. Attribution is an encryption-related idea: proving who created or sent a file. Validating media sanitization does nothing to address it."
+      ]
+    },
+    {
+      "id": "OPT4-C02-067",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.2,
+      "stem": "Why is declassification rarely chosen as an option for media reuse?",
+      "options": [
+        "Purging is sufficient for sensitive data.",
+        "Sanitization is the preferred method of data removal.",
+        "It is more expensive than new media and may still fail.",
+        "Clearing is required first."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Ensuring that data cannot be recovered is difficult, and the time and effort required to securely and completely wipe media as part of declassification can exceed the cost of new media. Sanitization, purging, and clearing may be part of declassification, but they are not reasons that it is not frequently chosen as an option for organizations with data security concerns.",
+      "optionNotes": [
+        "Incorrect. Purging may be one step within declassification, but whether purging suffices doesn't explain why organizations seldom choose declassification; even purging can be incomplete, so many orgs simply destroy the media instead.",
+        "Incorrect. Sanitization is the umbrella term for clearing, purging and destruction, and it can be part of declassification. Saying it is preferred doesn't explain why declassification itself is rarely chosen.",
+        "Correct. Making sure data truly can't be recovered is hard, and fully wiping media for declassification can cost more time and effort than new media. Even then, the wipe may fail.",
+        "Incorrect. Clearing may come before or be part of declassification, but needing a prerequisite step isn't why organizations avoid declassification. The real reasons are cost and the risk of failure."
+      ]
+    },
+    {
+      "id": "OPT4-C02-068",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Incineration, crushing, shredding, and disintegration all describe what stage in the life cycle of media?",
+      "options": [
+        "Sanitization",
+        "Degaussing",
+        "Purging",
+        "Destruction"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Destruction is the final stage in the life cycle of media and can be done via disintegration, incineration, or a variety of other methods that result in the media and data being nonrecoverable. Sanitization is a combination of processes used when data is being removed from a system or media. Purging is an intense form of clearing, and degaussing uses strong magnetic fields to wipe data from magnetic media.",
+      "optionNotes": [
+        "Incorrect. Sanitization is the umbrella term for the combined processes that remove data from media. It isn't specifically the physical destruction stage made up of incineration, crushing, shredding, and disintegration.",
+        "Incorrect. Degaussing wipes data from magnetic media using strong magnetic fields. It isn't a physical method like burning or shredding, and it doesn't work on optical media or SSDs.",
+        "Incorrect. Purging is an intense form of clearing that prepares media for reuse in less secure environments. The media survives, whereas crushing or incinerating destroys it.",
+        "Correct. Destruction is the final stage of the media life cycle. Methods such as incineration, crushing, shredding, and disintegration physically ruin the media so the data cannot be recovered."
+      ]
+    },
+    {
+      "id": "OPT4-C02-069",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "What term is used to describe information like prescriptions and X-rays?",
+      "options": [
+        "PHI",
+        "Proprietary data",
+        "PID",
+        "PII"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "PHI is protected health information. Personally identifiable information (PII) is any information that can identify an individual. Proprietary data is information that helps organizations maintain a competitive edge or that they want to keep to their own organization or a controlled set of individuals. PID is not a term used for data classification.",
+      "optionNotes": [
+        "Correct. Prescriptions and X-rays are health records about an individual, so they're protected health information (PHI). HIPAA governs this kind of data.",
+        "Incorrect. Proprietary data is information an organization keeps to itself to stay ahead of competitors. It doesn't describe a patient's medical records.",
+        "Incorrect. PID isn't a recognized term in data classification. It's a distractor that looks like PII and PHI.",
+        "Incorrect. PII is any information that can identify a person. That category is broader, and PHI is the specific term for health records like prescriptions and X-rays."
+      ]
+    },
+    {
+      "id": "OPT4-C02-070",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Why might an organization use unique screen backgrounds or designs on workstations that deal with data of different classification levels?",
+      "options": [
+        "To indicate the software version in use",
+        "To promote a corporate message",
+        "To promote availability",
+        "To indicate the classification level of the data or system"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Handling requirements and tools include visual indicators like a distinctive screen background and can help employees remember what level of classification they are dealing with and thus the handling requirements that they are expected to follow.",
+      "optionNotes": [
+        "Incorrect. Software version information is a configuration management concern. A classification-specific background is a data-handling marking that shows how sensitive the data is, not which software build is running.",
+        "Incorrect. Corporate messaging is a communications or branding goal. These backgrounds are used for security labeling, so users know the classification and its handling rules.",
+        "Incorrect. Availability depends on redundancy, backups and fault tolerance. A screen background does nothing to keep systems or data accessible. It only supports correct handling of classified data.",
+        "Correct. A distinctive background is a visual marking that reminds users what classification level they are working with, and so which handling requirements they must follow."
+      ]
+    },
+    {
+      "id": "OPT4-C02-071",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.57,
+      "stem": "Charles has been asked to downgrade the media used for storage of private data for his organization. What process should Charles follow?",
+      "options": [
+        "Degauss the drives, and then relabel them with a lower classification level.",
+        "Pulverize the drives, and then reclassify them based on the data they contain.",
+        "Follow the organization's purging process, and then downgrade and replace labels.",
+        "Relabel the media, and then follow the organization's purging process to ensure that the media matches the label."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "If an organization allows media to be downgraded, the purging process should be followed, and then the media should be relabeled. Degaussing may be used for magnetic media but won't handle all types of media. Pulverizing would destroy the media, preventing reuse, while relabeling first could lead to mistakes that result in media that hasn't been purged entering use.",
+      "optionNotes": [
+        "Incorrect. Degaussing only works on magnetic media. It won't sanitize SSDs, flash, or optical media, so it can't be the general downgrade process. The organization's purging procedure should be followed instead.",
+        "Incorrect. Pulverizing physically destroys the drives, so there is nothing left to reuse at a lower classification. Destruction is disposal, not downgrading.",
+        "Correct. Where downgrading is allowed, the media is first purged using the organization's approved process. Only after that is it relabeled at the lower classification, so no remaining data ends up under the wrong label.",
+        "Incorrect. This order is backwards. If media is relabeled before it is purged, mistakes can let media that was never sanitized go into use with a lower-classification label."
+      ]
+    },
+    {
+      "id": "OPT4-C02-072",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.29,
+      "stem": "Which of the following tasks is not performed by a system owner per NIST SP 800-18?",
+      "options": [
+        "Develops a system security plan",
+        "Establishes rules for appropriate use and protection of data",
+        "Identifies and implements security controls",
+        "Ensures that system users receive appropriate security training"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The data owner sets the rules for use and protection of data. The remaining options all describe tasks for the system owner, including implementation of security controls.",
+      "optionNotes": [
+        "Incorrect. Under NIST SP 800-18, the system owner develops the system security plan together with data owners and other stakeholders. That makes it a system owner task, so it is not the answer.",
+        "Correct. NIST SP 800-18 gives this job to the information (data) owner, not the system owner: setting the rules for appropriate use and protection of the data, also called rules of behavior.",
+        "Incorrect. The book says identifying and implementing security controls is a system owner duty. The data owner only provides input on the security requirements.",
+        "Incorrect. Making sure system users and support staff get the right security training is listed as a system owner responsibility in SP 800-18. It is not the exception."
+      ]
+    },
+    {
+      "id": "OPT4-C02-073",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.63,
+      "stem": "NIST SP 800-60 provides a process shown in the following diagram to assess information systems. What process does this diagram show?\n[Figure, described in text: a NIST SP 800-60 process. Process input: Identify Information Systems. Steps: (1) Identify Information Types → (2) Select Provisional Impact Levels → (3) Review Provisional Impact Levels and Adjust/Finalize Information Impact Levels → (4) Assign System Security Category. Process outputs: Security Categorization → FIPS 200 / SP 800-53 Security Control Selection.]",
+      "options": [
+        "Selecting a standard and implementing it",
+        "Categorizing and selecting controls",
+        "Baselining and selecting controls",
+        "Categorizing and sanitizing"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In the NIST SP 800-60 diagram, the process determines appropriate categorization levels resulting in security categorization and then uses that as an input to determine controls. Standard selection would occur at an organizational level, while baselining occurs when systems are configured to meet a baseline. Sanitization would require the intentional removal of data from machines or media.",
+      "optionNotes": [
+        "Incorrect. The organization picks a standard at the organizational level. This diagram categorizes individual information types and systems; it does not adopt a standard.",
+        "Correct. Information types are identified, given impact levels, and then reviewed and adjusted to produce a system security category. That category is then used to select controls under FIPS 200 and SP 800-53.",
+        "Incorrect. Baselining means configuring systems to meet a defined baseline. The diagram assigns impact levels and a security category; it does not configure systems against a baseline.",
+        "Incorrect. Sanitization is the deliberate removal of data from machines or media. The diagram's output is control selection, and nothing in it removes data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-074",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "The following diagram shows a typical workstation and server and their connections to each other and the Internet. For questions 74–76, please refer to this diagram.\n[Figure, described in text: a User workstation (A) connects to the Internet (C) over link B; a Server (E) connects to the Internet over link D; the workstation and the server are also connected directly by link F.]\n\nWhich letters on this diagram are locations where you might find data at rest?",
+      "options": [
+        "A, B, and C",
+        "C and E",
+        "A and E",
+        "B, D, and F"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A and E can both be expected to have data at rest. C, the Internet, is an unknown, and the data can't be guaranteed to be at rest. B, D, and F are all data in transit across network links.",
+      "optionNotes": [
+        "Incorrect. Only A, the workstation, holds stored data. B is a network link carrying data in transit, and C, the Internet, is an unknown where data can't be guaranteed to be at rest.",
+        "Incorrect. E, the server, does store data at rest. C, the Internet, is an unknown, so you can't expect data to be at rest there, and leaving out workstation A makes this option incomplete.",
+        "Correct. A (the workstation) and E (the server) are endpoints with storage, so both can be expected to hold data at rest.",
+        "Incorrect. B, D, and F are all network links. Data on them is in transit, not at rest."
+      ]
+    },
+    {
+      "id": "OPT4-C02-075",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.63,
+      "stem": "The following diagram shows a typical workstation and server and their connections to each other and the Internet. For questions 74–76, please refer to this diagram.\n[Figure, described in text: a User workstation (A) connects to the Internet (C) over link B; a Server (E) connects to the Internet over link D; the workstation and the server are also connected directly by link F.]\n\nWhat would be the best way to secure data at points B, D, and F?",
+      "options": [
+        "AES-256",
+        "SSL",
+        "TLS",
+        "3DES"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "B, D, and F all show network links. Of the answers provided, Transport Layer Security (TLS) provides the best security for data in motion. AES-256 and 3DES are both symmetric ciphers and are more likely to be used for data at rest. SSL has been replaced with TLS and should not be a preferred solution.",
+      "optionNotes": [
+        "Incorrect. AES-256 is a symmetric block cipher that by itself is more often used to protect data at rest. It isn't a complete protocol for securing data moving over the network links at B, D, and F.",
+        "Incorrect. SSL is the deprecated predecessor of TLS. It has been replaced because of known weaknesses, so it shouldn't be the preferred way to protect data in transit.",
+        "Correct. B, D, and F are all network links carrying data in motion, and TLS is the modern protocol built to protect data in transit. It is the best choice among these options.",
+        "Incorrect. 3DES is an older symmetric cipher that is more likely to be used for data at rest. It isn't a transport protocol and is weaker than modern alternatives."
+      ]
+    },
+    {
+      "id": "OPT4-C02-076",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 2.45,
+      "stem": "The following diagram shows a typical workstation and server and their connections to each other and the Internet. For questions 74–76, please refer to this diagram.\n[Figure, described in text: a User workstation (A) connects to the Internet (C) over link B; a Server (E) connects to the Internet over link D; the workstation and the server are also connected directly by link F.]\n\nWhat is the best way to secure files that are sent from workstation A via the Internet service (C) to remote server E?",
+      "options": [
+        "Use AES at rest at point A, and use TLS in transit via B and D.",
+        "Encrypt the data files and send them.",
+        "Use 3DES and TLS to provide double security.",
+        "Use full-disk encryption at A and E, and use SSL at B and D."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Sending a file that is encrypted before it leaves means that exposure of the file in transit will not result in a confidentiality breach, and the file will remain secure until decrypted at location E. Since options A, C, and D do not provide any information about what happens at point C, they should be considered insecure, as the file may be at rest at point C in an unencrypted form.",
+      "optionNotes": [
+        "Incorrect. AES at rest at A plus TLS on links B and D says nothing about point C. TLS ends at the Internet service, so the file could sit there unencrypted.",
+        "Correct. If the file is encrypted before it leaves A, it stays protected the whole way, including at rest at C, until it is decrypted at E. Exposure in transit doesn't breach confidentiality.",
+        "Incorrect. Stacking 3DES and TLS isn't real double security. 3DES is a legacy algorithm, and the option still leaves the file's state at point C unaddressed, so it may be exposed there.",
+        "Incorrect. Full-disk encryption only protects data stored on A and E, and SSL is deprecated and insecure. Neither protects the file while it sits at intermediate point C."
+      ]
+    },
+    {
+      "id": "OPT4-C02-077",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.57,
+      "stem": "Susan needs to provide a set of minimum security requirements for email. What steps should she recommend for her organization to ensure that the email remains secure?",
+      "options": [
+        "All email should be encrypted.",
+        "All email should be encrypted and labeled.",
+        "Sensitive email should be encrypted and labeled.",
+        "Only highly sensitive email should be encrypted."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Encrypting and labeling sensitive email will ensure that it remains confidential and can be identified. Performing these actions only on sensitive email will reduce the cost and effort of encrypting all email, allowing only sensitive email to be the focus of the organization's efforts. Only encrypting highly sensitive email not only skips labeling but might expose other classifications of email that shouldn't be exposed.",
+      "optionNotes": [
+        "Incorrect. Encrypting every message, including routine non-sensitive mail, adds cost and effort without much benefit. It also leaves out labeling, so nobody can tell from the message itself that sensitive content needs special handling.",
+        "Incorrect. Labeling helps identify messages, but applying encryption and labels to all email spends cost and effort on non-sensitive messages. The book's point is that controls should go only to sensitive email.",
+        "Correct. Encryption keeps sensitive email confidential and labeling makes it identifiable. Limiting both controls to sensitive email avoids the cost and effort of encrypting everything.",
+        "Incorrect. This option drops labeling. It also leaves email at lower but still sensitive classifications unencrypted, so messages that shouldn't be exposed could be."
+      ]
+    },
+    {
+      "id": "OPT4-C02-078",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "How can a data retention policy reduce liabilities?",
+      "options": [
+        "By reducing the amount of storage in use",
+        "By limiting the number of data classifications",
+        "By reducing the amount of data that may need to be produced for lawsuits",
+        "By reducing the legal penalties for noncompliance"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Data retention policies can reduce the number of old logs and other files that may need to be produced during a legal case. That can reduce organizational risk, but retention policies need to be in place well before a legal hold is filed. Reducing storage in use does not reduce liability, but it can reduce financial costs, and data retention policies don't tend to limit the number of classifications in use. Legal penalties are not impacted by a retention policy.",
+      "optionNotes": [
+        "Incorrect. Using less storage can lower financial costs, but it doesn't reduce legal liability. That makes it a cost benefit, not a liability benefit.",
+        "Incorrect. Retention policies set how long data is kept and when it is destroyed. They don't usually limit how many classification levels an organization uses.",
+        "Correct. Getting rid of old logs and files on schedule shrinks the data that could be discoverable in a lawsuit, which lowers risk. The policy has to be in place well before any legal hold.",
+        "Incorrect. A retention policy has no effect on legal penalties for noncompliance. Regulators and courts set those penalties no matter what internal policy says."
+      ]
+    },
+    {
+      "id": "OPT4-C02-079",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "What data role does a system that is used to process data have?",
+      "options": [
+        "Mission owner",
+        "Data owner",
+        "Data processor",
+        "Custodian"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Systems used to process data are data processors. Data owners are typically CEOs or other very senior staff, custodians are granted rights to perform day-to-day tasks when handling data, and mission owners are typically program or information system owners.",
+      "optionNotes": [
+        "Incorrect. Mission owners are usually program or information system owners. They are people with business responsibility for a program, not the systems that do the processing.",
+        "Incorrect. Data owners are usually CEOs or other very senior staff who are ultimately accountable for the data. A system that processes data doesn't hold that accountability.",
+        "Correct. A system used to process data is filling the data processor role, because it handles the data on someone else's behalf.",
+        "Incorrect. Custodians are given rights to do day-to-day data handling tasks such as backups and integrity checks, under authority delegated by the owner. That is a human operational role, not a processing system."
+      ]
+    },
+    {
+      "id": "OPT4-C02-080",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Which one of the following is not considered PII under U.S. federal government regulations?",
+      "options": [
+        "Name",
+        "Social Security number",
+        "Student ID number",
+        "ZIP code"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Personally identifiable information includes any information that can uniquely identify an individual. This would include name, Social Security number, and any other unique identifier (including a student ID number). ZIP code, by itself, does not uniquely identify an individual.",
+      "optionNotes": [
+        "Incorrect. A name is a direct identifier that can uniquely point to a person, so it counts as PII and isn't the exception the question wants.",
+        "Incorrect. A Social Security number is a unique government-issued identifier and one of the clearest examples of PII.",
+        "Incorrect. A student ID number is a unique identifier assigned to one person, so it falls within the definition of PII.",
+        "Correct. A ZIP code covers many residents, so on its own it can't identify one individual and is not PII by itself."
+      ]
+    },
+    {
+      "id": "OPT4-C02-081",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.74,
+      "stem": "What type of health information is the Health Insurance Portability and Accountability Act required to protect?",
+      "options": [
+        "PII",
+        "PHI",
+        "SHI",
+        "HPHI"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Protected health information, or PHI, includes a variety of data in multiple formats, including oral and recorded data, such as that created or received by healthcare providers, employers, and life insurance providers. PHI must be protected by HIPAA. PII is personally identifiable information. SHI and HPHI are both made-up acronyms.",
+      "optionNotes": [
+        "Incorrect. PII is personally identifiable information, a broader category of identity data. HIPAA specifically regulates health information, not PII in general.",
+        "Correct. HIPAA protects protected health information (PHI), which covers health data in any form, including oral and recorded data, created or received by healthcare providers, employers, and life insurers.",
+        "Incorrect. SHI is a made-up acronym. No regulation, HIPAA included, defines it as a category of health data.",
+        "Incorrect. HPHI is a made-up distractor built to look like PHI. HIPAA's defined term is protected health information (PHI)."
+      ]
+    },
+    {
+      "id": "OPT4-C02-082",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.2,
+      "stem": "The system that Ian has built replaces data in a database field with a randomized string of characters that remains the same for each instance of that data. What technique has he used?",
+      "options": [
+        "Data masking",
+        "Tokenization",
+        "Anonymization",
+        "DES"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Tokenization replaces other data with a random string of characters. These tokens are then matched to the actual values for secure lookups as needed. Anonymization removes all personally identifiable data to ensure that the original subject cannot be identified. Data masking obscures some, but not all, data. Pseudonymization uses a pseudonym or alias to replace other information.",
+      "optionNotes": [
+        "Incorrect. Data masking hides only part of the data (e.g., showing last four digits) rather than swapping the whole value for a consistent random token.",
+        "Correct. Tokenization swaps the value for a random string, and the same value always gets the same token. A secure lookup maps each token back to the real value when needed.",
+        "Incorrect. Anonymization strips out all personally identifiable data so the subject can never be identified. Ian's tokens can still be mapped back to the original values, so this isn't anonymization.",
+        "Incorrect. DES is a symmetric block cipher that encrypts data with a key. It doesn't replace field values with random strings tracked in a lookup table."
+      ]
+    },
+    {
+      "id": "OPT4-C02-083",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.14,
+      "stem": "Juanita's company processes credit cards and wants to select appropriate data security standards. What data security standard is she most likely to need to use and comply with?",
+      "options": [
+        "CC-Comply",
+        "PCI-DSS",
+        "GLBA",
+        "GDPR"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Payment Card Industry Data Security Standard, or PCI-DSS, is a credit card industry data security standard that defines how businesses must handle information related to credit cards. CC-Comply was made up for this question. GLBA, or Gramm-Leach-Bliley, modernized financial institution standards, and GDPR is an EU data privacy regulation.",
+      "optionNotes": [
+        "Incorrect. CC-Comply is not a real standard. It was made up as a distractor that sounds like it has to do with credit cards.",
+        "Correct. PCI-DSS is the payment card industry's data security standard. It defines how businesses that process credit cards must handle cardholder data, so it applies directly to Juanita's company.",
+        "Incorrect. GLBA (Gramm-Leach-Bliley Act) is a U.S. law that modernized rules for financial institutions and covers privacy of customer financial information. It is not the standard for handling credit card data.",
+        "Incorrect. GDPR is an EU privacy regulation for personal data in general. It is not a security standard written for credit card processing."
+      ]
+    },
+    {
+      "id": "OPT4-C02-084",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.69,
+      "stem": "What is the best method to sanitize a solid-state drive (SSD)?",
+      "options": [
+        "Clearing",
+        "Zero fill",
+        "Disintegration",
+        "Degaussing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Due to problems with remnant data, the U.S. National Security Agency requires physical destruction of SSDs. This process, known as disintegration, results in very small fragments via a shredding process. Zero fill wipes a drive by replacing data with zeros, degaussing uses magnets to wipe magnetic media, and clearing is the process of preparing media for reuse.",
+      "optionNotes": [
+        "Incorrect. Clearing only prepares media for reuse in a trusted environment. On an SSD, wear leveling and spare blocks can leave remnant data behind, so clearing isn't enough.",
+        "Incorrect. A zero fill overwrites data with zeros, but SSD wear leveling and over-provisioned cells can keep the original data, so it doesn't reliably sanitize the drive.",
+        "Correct. Because SSDs can retain remnant data, the NSA requires physical destruction by disintegration, which shreds the drive into very small fragments.",
+        "Incorrect. Degaussing uses magnets to wipe magnetic media. SSDs store data in flash memory cells, not magnetically, so degaussing has no effect on them."
+      ]
+    },
+    {
+      "id": "OPT4-C02-085",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "Scenario:\nAs shown in the following security life-cycle diagram (loosely based on the NIST reference architecture), NIST uses a five-step process for risk management. Using your knowledge of data roles and practices, answer the following questions based on the NIST framework process.\n[Figure, described in text: a cycle of five steps: Step 1 Categorize Systems and Data → Step 2 Select Security Controls → Step 3 Implement Security Controls → Step 4 Assess Security Controls → Step 5 Monitor Security → back to Step 1.]\n\nWhat data role will own responsibility for step 1, the categorization of information systems; to whom will they delegate step 2; and what data role will be responsible for step 3?",
+      "options": [
+        "Data owners, system owners, custodians",
+        "Data processors, custodians, users",
+        "Business owners, administrators, custodians",
+        "System owners, business owners, administrators"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The data owner bears responsibility for categorizing information systems and delegates selection of controls to system owners, while custodians implement the controls. Users don't perform any of these actions, while business owners are tasked with ensuring that systems are fulfilling their business purpose.",
+      "optionNotes": [
+        "Correct. Data owners classify/categorize systems and data, delegate control selection to system owners, and custodians carry out the actual implementation of the controls.",
+        "Incorrect. Data processors only handle data on a controller's behalf, and users don't perform any of these steps. Neither role categorizes systems or selects controls.",
+        "Incorrect. Business owners make sure systems fulfill their business purpose. They don't categorize information systems, so step 1 is assigned to the wrong role.",
+        "Incorrect. Data owners categorize systems, not system owners, and business owners focus on business purpose rather than choosing controls. The sequence of roles doesn't match the NIST steps."
+      ]
+    },
+    {
+      "id": "OPT4-C02-086",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.96,
+      "stem": "Scenario:\nAs shown in the following security life-cycle diagram (loosely based on the NIST reference architecture), NIST uses a five-step process for risk management. Using your knowledge of data roles and practices, answer the following questions based on the NIST framework process.\n[Figure, described in text: a cycle of five steps: Step 1 Categorize Systems and Data → Step 2 Select Security Controls → Step 3 Implement Security Controls → Step 4 Assess Security Controls → Step 5 Monitor Security → back to Step 1.]\n\nIf the systems that are being assessed all handle credit card information (and no other sensitive data), at what step would the PCI DSS first play an important role?",
+      "options": [
+        "Step 1",
+        "Step 2",
+        "Step 3",
+        "Step 4"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "PCI DSS provides a set of required security controls and standards. Step 2 would be guided by the requirements of PCI DSS. PCI DSS will not greatly influence step 1 because all of the systems handle credit card information, making PCI DSS apply to all systems covered. Steps 3 and 4 will be conducted after PCI DSS has guided the decisions in step 2.",
+      "optionNotes": [
+        "Incorrect. Every system in scope handles only credit card data, so they all fall under PCI DSS the same way. Categorization therefore doesn't separate them, and PCI DSS has little effect on Step 1.",
+        "Correct. PCI DSS is a set of required security controls and standards, so it first matters when choosing controls in Step 2, Select Security Controls.",
+        "Incorrect. Implementing controls comes after PCI DSS has already shaped which controls were picked in Step 2, so Step 3 is not where it first matters.",
+        "Incorrect. Assessment happens after the PCI DSS-driven control decisions in Step 2. Checking compliance in Step 4 is not where PCI DSS first comes in."
+      ]
+    },
+    {
+      "id": "OPT4-C02-087",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.26,
+      "stem": "Scenario:\nAs shown in the following security life-cycle diagram (loosely based on the NIST reference architecture), NIST uses a five-step process for risk management. Using your knowledge of data roles and practices, answer the following questions based on the NIST framework process.\n[Figure, described in text: a cycle of five steps: Step 1 Categorize Systems and Data → Step 2 Select Security Controls → Step 3 Implement Security Controls → Step 4 Assess Security Controls → Step 5 Monitor Security → back to Step 1.]\n\nWhat data security role is primarily responsible for step 5?",
+      "options": [
+        "Data owners",
+        "Data processors",
+        "Custodians",
+        "Users"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Custodians are tasked with the day-to-day monitoring of the integrity and security of data. Step 5 requires monitoring, which is a custodial task. A data owner may grant rights to custodians but will not be responsible for conducting monitoring. Data processors process data on behalf of the data controller, and a user simply uses the data via a computing system.",
+      "optionNotes": [
+        "Incorrect. Data owners are accountable for the data. They classify it and may grant rights to custodians, but they don't do the day-to-day monitoring that step 5 calls for.",
+        "Incorrect. Data processors handle data on behalf of a data controller. Ongoing security monitoring of the data isn't their main job.",
+        "Correct. Custodians monitor and maintain the integrity and security of data day to day, which is exactly the monitoring work in step 5.",
+        "Incorrect. Users only access and use data through a computing system. They aren't responsible for monitoring its security."
+      ]
+    },
+    {
+      "id": "OPT4-C02-088",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.29,
+      "stem": "Susan's organization performs a secure disk wipe process on hard drives before they are sent to a third-party organization to be shredded. What issue is her organization attempting to avoid?",
+      "options": [
+        "Data retention that is longer than defined in policy",
+        "Mishandling of drives by the third party",
+        "Classification mistakes",
+        "Data permanence"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Susan's organization is limiting its risk by sending drives that have been sanitized before they are destroyed. This limits the possibility of a data breach if drives are mishandled by the third party, allowing them to be stolen, resold, or simply copied. The destruction of the drives will handle any issues with data remanence, while classification mistakes are not important if the drives have been destroyed. Wiping the data before destruction does not make a meaningful difference for data retention policy concerns. Data permanence and the life span of the data are not important on a destroyed drive.",
+      "optionNotes": [
+        "Incorrect. The drives are about to be destroyed anyway, so wiping them first adds nothing for data retention policy. The retention period is already over by the time the drives go out for shredding.",
+        "Correct. Wiping the drives before they leave means a breach can't happen even if the third-party shredder mishandles them, for example if drives are stolen, resold, or copied before destruction.",
+        "Incorrect. Classification mistakes don't matter here because the drives will be destroyed no matter what data they held. Wiping isn't meant to fix labeling errors.",
+        "Incorrect. How long data lasts (data permanence) isn't a concern on a drive that will be shredded. Shredding also takes care of data remanence, so this isn't what the wipe step is guarding against."
+      ]
+    },
+    {
+      "id": "OPT4-C02-089",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Mike wants to track hardware assets as devices and equipment are moved throughout his organization. What type of system can help do this without requiring staff to individually check bar codes or serial numbers?",
+      "options": [
+        "A visual inventory",
+        "Wi-Fi MAC address tracking",
+        "RFID tags",
+        "Steganography"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "RFID tags are a common solution for tracking hardware assets and equipment. They can be queried wirelessly at varying ranges depending on the tags and may be built-in to handheld readers or even included in doorways or arches to track items as they enter or leave a facility. Visual inventory relies on staff checking items, MAC addresses are hardware addresses for networked devices, and not every asset in inventory is likely to have a wireless network capability—or to be on! Steganography is hiding messages in images and doesn't help at all with inventory.",
+      "optionNotes": [
+        "Incorrect. A visual inventory needs staff to physically look at and check each item, which is exactly the manual work Mike wants to avoid.",
+        "Incorrect. MAC addresses identify networked devices only. Many assets have no wireless capability or may be switched off, so Wi-Fi tracking can't account for all the hardware.",
+        "Correct. RFID tags can be read wirelessly by handheld readers or by readers built into doorways, so assets are tracked as they move without anyone scanning bar codes or serial numbers one by one.",
+        "Incorrect. Steganography hides messages inside images or other media. It's a way to conceal data and does nothing for asset tracking or inventory."
+      ]
+    },
+    {
+      "id": "OPT4-C02-090",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Retaining and maintaining information for as long as it is needed is known as what?",
+      "options": [
+        "Data storage policy",
+        "Data storage",
+        "Asset maintenance",
+        "Record retention"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Record retention is the process of retaining and maintaining information for as long as it is needed. A data storage policy describes how and why data is stored, while data storage is the process of actually keeping the data. Asset maintenance is a noninformation-security-related process for maintaining physical assets.",
+      "optionNotes": [
+        "Incorrect. A data storage policy sets out how and why data is stored. It says nothing specific about keeping information only for as long as it's needed.",
+        "Incorrect. Data storage just means physically keeping the data. It doesn't cover deciding how long information must be kept or maintained.",
+        "Incorrect. Asset maintenance is about upkeep of physical assets. It isn't an information security process for keeping records.",
+        "Correct. Record retention means keeping and maintaining information for exactly as long as it's needed, whether for business, legal or regulatory reasons."
+      ]
+    },
+    {
+      "id": "OPT4-C02-091",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.28,
+      "stem": "Which of the following activities is not a consideration during data classification?",
+      "options": [
+        "Who can access the data",
+        "What the impact would be if the data was lost or breached",
+        "How much the data cost to create",
+        "What protection regulations may be required for the data"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The cost of the data is not directly included in the classification process. Instead, the impact on the organization if the data were exposed or breached is considered. Who can access the data and what regulatory or compliance requirements cover the data are also important considerations.",
+      "optionNotes": [
+        "Incorrect. Classification does take into account who should be allowed to access the data, so this is a real consideration and not the answer.",
+        "Incorrect. The main factor in classification is the impact on the organization if the data is exposed or breached. It is clearly a consideration.",
+        "Correct. What the data cost to create is not directly part of classification. Classification looks at the impact of exposure, who can access the data and regulatory needs, not production cost.",
+        "Incorrect. Regulatory and compliance requirements that cover the data (e.g., privacy laws) help decide its classification and the protection it needs, so this is a valid consideration."
+      ]
+    },
+    {
+      "id": "OPT4-C02-092",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "What type of encryption is typically used for data at rest?",
+      "options": [
+        "Asymmetric encryption",
+        "Symmetric encryption",
+        "DES",
+        "OTP"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Symmetric encryption like AES is typically used for data at rest. Asymmetric encryption is often used during transactions or communications when the ability to have public and private keys is necessary. DES is an outdated encryption standard, and OTP is the acronym for onetime password.",
+      "optionNotes": [
+        "Incorrect. Asymmetric encryption is mostly used in transactions and communications, where public/private key pairs are needed. It is too slow to be the usual choice for bulk stored data.",
+        "Correct. Symmetric algorithms such as AES are fast and efficient for bulk data, which makes them the typical choice for encrypting data at rest.",
+        "Incorrect. DES is an outdated, weak symmetric standard. Its small key size means it shouldn't be used to protect data at rest today.",
+        "Incorrect. OTP stands for one-time password, which is an authentication mechanism. It is not a type of encryption used to protect stored data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-093",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 1.29,
+      "stem": "Which data role is tasked with applying rights that provide appropriate access to staff members?",
+      "options": [
+        "Data processors",
+        "Business owners",
+        "Custodians",
+        "Administrators"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Administrators have the rights to apply the permissions to access and handle data. Custodians are trusted with day-to-day data handling tasks. Business owners are typically system or project owners, and data processors are systems used to process data.",
+      "optionNotes": [
+        "Incorrect. Data processors are systems used to process data. They don't apply permissions that give staff access.",
+        "Incorrect. Business owners usually own a system or project and decide what's needed. They don't apply the actual access permissions for staff.",
+        "Incorrect. Custodians handle day-to-day data tasks such as backups and storage. Granting access permissions is not their defined role here.",
+        "Correct. Administrators have the rights to apply permissions, giving staff the right level of access to handle data."
+      ]
+    },
+    {
+      "id": "OPT4-C02-094",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "What element of asset security is often determined by identifying an asset's owner?",
+      "options": [
+        "It identifies the individual(s) responsible for protecting the asset.",
+        "It provides a law enforcement contact in case of theft.",
+        "It helps establish the value of the asset.",
+        "It determines the security classification of the asset."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Knowing the asset's owner also tells you who is responsible for protecting the asset or for delegating that task. While asset owners may be law enforcement contacts, this is not a critical item for asset security. It does not directly help you to establish the value of the asset or to set security classification levels for an asset.",
+      "optionNotes": [
+        "Correct. Identifying the owner shows who is accountable for protecting the asset, or for handing that protection work to custodians. Accountability is the main reason to record ownership.",
+        "Incorrect. An owner might happen to be a law enforcement contact, but that isn't central to asset security. Organizations usually name a separate single point of contact to work with police.",
+        "Incorrect. Knowing who owns an asset doesn't tell you what it's worth. Value comes from separate valuation work, such as replacement cost or business impact.",
+        "Incorrect. Owners may help decide classification, but naming the owner doesn't set the classification level. That depends on how sensitive the asset is and on the organization's classification criteria."
+      ]
+    },
+    {
+      "id": "OPT4-C02-095",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Fred is preparing to send backup tapes off-site to a secure third-party storage facility. What steps should Fred take before sending the tapes to that facility?",
+      "options": [
+        "Ensure that the tapes are handled the same way the original media would be handled based on their classification.",
+        "Increase the classification level of the tapes because they are leaving the possession of the company.",
+        "Purge the tapes to ensure that classified data is not lost.",
+        "Decrypt the tapes in case they are lost in transit."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Tapes may be vulnerable to theft or loss in transit. That means tapes that are leaving their normal storage facility should be handled according to the organization's classification schemes and handling requirements. Purging the tapes would cause the loss of data, while increasing the classification level of the tapes does not align with the standard practices for data classification and handling. The tapes should be encrypted rather than decrypted.",
+      "optionNotes": [
+        "Correct. Backup tapes hold the same data as the originals, so they keep the same classification and handling requirements. That protection matters most in transit, when tapes are open to theft or loss.",
+        "Incorrect. Classification depends on how sensitive the data is, not on where the media is stored. Raising the level because tapes are leaving the company doesn't match standard classification and handling practice.",
+        "Incorrect. Purging erases the data, which would destroy the backups and defeat the whole point of storing them off-site.",
+        "Incorrect. This gets it backwards. Tapes should be encrypted, not decrypted, so their data stays confidential if they are lost or stolen in transit."
+      ]
+    },
+    {
+      "id": "OPT4-C02-096",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.04,
+      "stem": "Which of the following does not describe data in motion?",
+      "options": [
+        "Data on a backup tape that is being shipped to a storage facility",
+        "Data in a TCP packet",
+        "Data in an e-commerce transaction",
+        "Data in files being copied between locations"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The correct answer is the tape that is being shipped to a storage facility. You might think that the tape in shipment is “in motion,” but the concept is that the data is not being accessed and is instead in storage rather than being sent across a network. Data in a TCP packet, in an e-commerce transaction, or in local RAM is in motion and is actively being used.",
+      "optionNotes": [
+        "Correct. A tape being shipped is moving physically, but its data isn't being accessed or sent across a network. It counts as stored data (data at rest), not data in motion.",
+        "Incorrect. Data inside a TCP packet is crossing a network between systems, so it is a textbook case of data in motion.",
+        "Incorrect. Data in an e-commerce transaction is sent across the Internet between the customer and the merchant while it's being used, so it counts as data in motion.",
+        "Incorrect. Copying files between locations sends the data across a network from one system to another. That matches the OSG definition of data in transit, also called data in motion."
+      ]
+    },
+    {
+      "id": "OPT4-C02-097",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "A new law is passed that would result in significant financial harm to your company if the data that it covers was stolen or inadvertently released. What should your organization do about this?",
+      "options": [
+        "Select a new security baseline.",
+        "Relabel the data.",
+        "Encrypt all of the data at rest and in transit.",
+        "Review its data classifications and classify the data appropriately."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "When the value of data changes due to legal, compliance, or business reasons, reviewing classifications and reclassifying the data is an appropriate response. Once the review is complete, data can be reclassified and handled according to its classification level. Simply relabeling the data avoids the classification process and may not result in the data being handled appropriately. Similarly, selecting a new baseline or simply encrypting the data may not handle all of the needs that the changes affecting the data create.",
+      "optionNotes": [
+        "Incorrect. Picking a new security baseline jumps ahead to controls before the data's value has been reassessed. A baseline may not cover everything the new law requires, so classification has to come first.",
+        "Incorrect. Relabeling skips the classification review. Labels change but nobody checks whether the data's handling requirements actually changed, so the data may still be handled wrongly.",
+        "Incorrect. Encryption at rest and in transit is one specific control. On its own it may not meet all the handling, retention and access needs that come from the data's new legal value.",
+        "Correct. When legal, compliance or business changes alter the data's value, the organization should review its classifications and reclassify the data. The data is then handled according to its new classification level."
+      ]
+    },
+    {
+      "id": "OPT4-C02-098",
+      "domain": 2,
+      "type": "multi",
+      "difficulty": 1.17,
+      "stem": "Which of the following data roles are typically found inside of a company instead of as a third-party contracting relationship? (Select all that apply.)",
+      "options": [
+        "Data owners",
+        "Data controllers",
+        "Data custodians",
+        "Data processors"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Data owners, controllers, and custodians are typically found inside of a company, while data processors are typically third parties.",
+      "optionNotes": [
+        "Correct. The data owner is a senior internal official who is accountable for the data and its classification, so the role sits inside the organization.",
+        "Correct. The data controller decides why and how personal data gets processed. That is normally the organization itself, not an outside contractor.",
+        "Correct. Data custodians are internal staff, often IT, who carry out daily protection tasks such as backups and access controls on the owner's behalf.",
+        "Incorrect. Data processors usually work as third parties under contract, processing data on the controller's behalf, for example cloud or payroll providers."
+      ]
+    },
+    {
+      "id": "OPT4-C02-099",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -1.14,
+      "stem": "What commercial data classification is most appropriate for data contained on corporate websites?",
+      "options": [
+        "Private",
+        "Sensitive",
+        "Public",
+        "Proprietary"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Public data is just that—information that can be made public without any harm to the organization, and in fact, it is often information that the organization wants to make available. Private information should stay private inside of an organization, sensitive data may cause damage to the mission of the organization if exposed, and proprietary or confidential information is the most sensitive data that an organization wants to protect.",
+      "optionNotes": [
+        "Incorrect. Private data is meant to stay inside the organization, often personal data about employees. A public corporate website is the opposite of that.",
+        "Incorrect. Sensitive data could hurt the organization's mission if it were exposed. Website content is published on purpose, so it isn't sensitive.",
+        "Correct. Public data can be released without harming the organization, and the organization often wants it seen, which is exactly what website content is.",
+        "Incorrect. Proprietary (confidential) data is the most sensitive commercial level and gets the strongest protection. It should never appear on a public website."
+      ]
+    },
+    {
+      "id": "OPT4-C02-100-1",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Match each of the numbered data elements shown here with one of the lettered categories. You may use the categories once, more than once, or not at all. If a data element matches more than one category, choose the one that is most specific.\nData elements:\n1. Medical records\n2. Trade secrets\n3. Social Security numbers\n4. Driver's license numbers\n\nWhich of the following matches item 1 (Medical records)?",
+      "options": [
+        "Proprietary data",
+        "Protected health information",
+        "Personally identifiable information"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The data elements match with the categories as follows:\nData elements\n1. Medical records: B. PHI\n2. Trade secrets A. Proprietary data\n3. Social Security numbers: C. PII\n4. Driver's license numbers: C. PII\nMedical records are an example of protected health information\n(PHI). Trade secrets are an example of proprietary data. Social\nSecurity numbers and driver's license numbers are examples of PII; if they were used in a medical context, they may also be PHI, but this question does not ask you to consider them in that context.",
+      "optionNotes": [
+        "Incorrect. Proprietary data covers an organization's confidential business information, such as trade secrets (item 2). Medical records are information about an individual's health, not company intellectual property.",
+        "Correct. Medical records are a textbook example of protected health information (PHI). PHI is the most specific category that fits health data about an individual.",
+        "Incorrect. Medical records can identify a person, so they also count as PII. However, the question asks for the most specific category, and PHI is narrower than general PII. PII is the better match for SSNs and driver's license numbers."
+      ]
+    },
+    {
+      "id": "OPT4-C02-100-2",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.77,
+      "stem": "Match each of the numbered data elements shown here with one of the lettered categories. You may use the categories once, more than once, or not at all. If a data element matches more than one category, choose the one that is most specific.\nData elements:\n1. Medical records\n2. Trade secrets\n3. Social Security numbers\n4. Driver's license numbers\n\nWhich of the following matches item 2 (Trade secrets)?",
+      "options": [
+        "Proprietary data",
+        "Protected health information",
+        "Personally identifiable information"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The data elements match with the categories as follows:\nData elements\n1. Medical records: B. PHI\n2. Trade secrets A. Proprietary data\n3. Social Security numbers: C. PII\n4. Driver's license numbers: C. PII\nMedical records are an example of protected health information\n(PHI). Trade secrets are an example of proprietary data. Social\nSecurity numbers and driver's license numbers are examples of PII; if they were used in a medical context, they may also be PHI, but this question does not ask you to consider them in that context.",
+      "optionNotes": [
+        "Correct. Trade secrets are proprietary data: confidential business information that gives the organization a competitive edge and belongs to the company, not to any individual.",
+        "Incorrect. PHI covers health information about individuals, such as medical records (item 1). Trade secrets hold no health data about a person.",
+        "Incorrect. PII is information that can identify an individual, such as SSNs and driver's license numbers (items 3 and 4). Trade secrets describe business information, not people."
+      ]
+    },
+    {
+      "id": "OPT4-C02-100-3",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Match each of the numbered data elements shown here with one of the lettered categories. You may use the categories once, more than once, or not at all. If a data element matches more than one category, choose the one that is most specific.\nData elements:\n1. Medical records\n2. Trade secrets\n3. Social Security numbers\n4. Driver's license numbers\n\nWhich of the following matches item 3 (Social Security numbers)?",
+      "options": [
+        "Proprietary data",
+        "Protected health information",
+        "Personally identifiable information"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The data elements match with the categories as follows:\nData elements\n1. Medical records: B. PHI\n2. Trade secrets A. Proprietary data\n3. Social Security numbers: C. PII\n4. Driver's license numbers: C. PII\nMedical records are an example of protected health information\n(PHI). Trade secrets are an example of proprietary data. Social\nSecurity numbers and driver's license numbers are examples of PII; if they were used in a medical context, they may also be PHI, but this question does not ask you to consider them in that context.",
+      "optionNotes": [
+        "Incorrect. Proprietary data matches item 2 (trade secrets). It covers an organization's confidential business information, not identifiers belonging to an individual such as an SSN.",
+        "Incorrect. PHI matches item 1 (medical records). An SSN would only count as PHI if it appeared in a medical context, and the question doesn't set up that context.",
+        "Correct. An SSN identifies a specific person, so it is personally identifiable information (PII). Item 4, driver's license numbers, is PII for the same reason."
+      ]
+    },
+    {
+      "id": "OPT4-C02-100-4",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Match each of the numbered data elements shown here with one of the lettered categories. You may use the categories once, more than once, or not at all. If a data element matches more than one category, choose the one that is most specific.\nData elements:\n1. Medical records\n2. Trade secrets\n3. Social Security numbers\n4. Driver's license numbers\n\nWhich of the following matches item 4 (Driver's license numbers)?",
+      "options": [
+        "Proprietary data",
+        "Protected health information",
+        "Personally identifiable information"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The data elements match with the categories as follows:\nData elements\n1. Medical records: B. PHI\n2. Trade secrets A. Proprietary data\n3. Social Security numbers: C. PII\n4. Driver's license numbers: C. PII\nMedical records are an example of protected health information\n(PHI). Trade secrets are an example of proprietary data. Social\nSecurity numbers and driver's license numbers are examples of PII; if they were used in a medical context, they may also be PHI, but this question does not ask you to consider them in that context.",
+      "optionNotes": [
+        "Incorrect. Proprietary data covers business assets such as trade secrets (item 2). A driver's license number identifies a person and isn't company intellectual property.",
+        "Incorrect. PHI fits medical records (item 1). A driver's license number would only count as PHI if it appeared in a medical context, and the question doesn't ask you to consider that.",
+        "Correct. Like Social Security numbers, a driver's license number is a government-issued identifier for a specific person. That makes it PII, the most specific category that fits."
+      ]
+    },
+    {
+      "id": "OPT4-C02-101",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Michelle wants to ensure that her organization's policies are enforced across all of the cloud services that it has adopted. What type of tool would be best suited to ensuring her organization's policies are enforced, regardless of the cloud service her users are accessing?",
+      "options": [
+        "A SIEM",
+        "A DLP",
+        "A CASB",
+        "A NGFW"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Cloud access security brokers (CASBs) can be on-site or cloud-based and are security policy enforcement points that operate between users and cloud services. A CASB can provide insight into what users are doing, enforce policies, provide threat protection, and even provide data loss prevention capabilities. An SIEM collects logs and event information as part of security monitoring and event management. A DLP system focuses on data loss prevention and data security but won't address an organization's full set of security policies and practices in the cloud, and NGFWs, or next-generation firewalls, provide a variety of security services but are not specifically designed to implement cloud policy.",
+      "optionNotes": [
+        "Incorrect. A SIEM collects and correlates logs and events for security monitoring. It shows what happened but doesn't sit between users and cloud services to enforce policy.",
+        "Incorrect. DLP focuses on data loss prevention and data security. It doesn't cover the organization's full set of security policies across cloud services.",
+        "Correct. A CASB is a policy enforcement point between users and cloud services. It gives visibility into user activity, enforces policies, and adds threat protection and DLP across all the cloud services in use.",
+        "Incorrect. A next-generation firewall (NGFW) offers many security services but isn't designed to enforce organizational policy across cloud services."
+      ]
+    },
+    {
+      "id": "OPT4-C02-102",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.57,
+      "stem": "Devices in Adam's organization are no longer receiving updates, and hardware support contracts cannot be extended. How should Adam describe the devices that are impacted by this?",
+      "options": [
+        "End of support",
+        "End of development",
+        "End of life",
+        "End of sales"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The devices have reached end of support (EOS), and the vendor will no longer provide updates or support for it. End of development occurs when no new software updates or patches are being released. End of life and end of sales often occur at the same time when the vendor no longer sells the device. Support will typically continue even after end of life (EOL).",
+      "optionNotes": [
+        "Correct. End of support (EOS) is when the vendor stops providing updates and support, matching no updates and no extendable hardware support contracts.",
+        "Incorrect. End of development only means no new software updates or patches are released. It doesn't cover hardware support contracts ending.",
+        "Incorrect. End of life usually means the vendor stops selling the device, and support typically continues after EOL. That doesn't match support contracts that can't be extended.",
+        "Incorrect. End of sales means the device is no longer sold and often happens at the same time as EOL. Updates and support usually continue after this point."
+      ]
+    },
+    {
+      "id": "OPT4-C02-103",
+      "domain": 2,
+      "type": "single",
+      "difficulty": 0.69,
+      "stem": "Gary is responsible for the procurement, management, and life cycle of network devices in his organization. What role best describes him?",
+      "options": [
+        "Data owner",
+        "Asset custodian",
+        "Data custodian",
+        "Asset owner"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Asset owners are responsible for assets in an organization, including their procurement, management, and life cycle. Unlike data roles, there are typically fewer asset roles in play, and asset custodian is not a commonly recognized role. Since these are hardware devices, Gary's role is not as a data custodian or owner in the scope of this question.",
+      "optionNotes": [
+        "Incorrect. A data owner is accountable for information and decides how it is classified and protected. Gary manages hardware network devices, not data, so this role doesn't fit.",
+        "Incorrect. Asset custodian is not a commonly recognized role. Gary also does more than look after devices day to day: he handles their procurement and full life cycle, which is the owner's job.",
+        "Incorrect. A data custodian carries out the day-to-day protection of data for the data owner. Gary's job is about hardware devices, so this data role is out of scope.",
+        "Correct. Asset owners are responsible for an organization's assets, including their procurement, management, and life cycle. That matches Gary's duties for the network devices exactly."
+      ]
+    },
+    {
+      "id": "OPT4-C02-104",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Jessica has adopted the CIS benchmark for Windows 11 workstations for her organization. She has modified what settings are called for in the benchmark to fit her organization's needs as well. What has she done?",
+      "options": [
+        "Tailoring",
+        "Scoping",
+        "Editing",
+        "Defining"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Modifying baselines to better suit an organization is known as tailoring. Scoping occurs when baselines are reviewed to ensure that only controls suited to the environment or system are used. Editing and defining are not terms used on the exam for these activities.",
+      "optionNotes": [
+        "Correct. Tailoring means changing a baseline's settings so they fit the organization's needs. That is what Jessica did when she modified the CIS benchmark settings.",
+        "Incorrect. Scoping means reviewing a baseline and keeping only the controls that apply to the environment or system. Jessica changed the settings themselves, which is tailoring, not choosing which controls are in scope.",
+        "Incorrect. \"Editing\" is not an exam term for adapting a baseline. The correct term for modifying a baseline's settings is tailoring.",
+        "Incorrect. \"Defining\" is not an exam term for adapting a security baseline. It doesn't describe changing benchmark settings to fit organizational needs."
+      ]
+    },
+    {
+      "id": "OPT4-C02-105",
+      "domain": 2,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Why is data location a significant concern for data owners, controllers, and custodians?",
+      "options": [
+        "It prevents the data from being lost.",
+        "Geographic location may impact compliance requirements.",
+        "Geographic location may drive storage costs.",
+        "It ensures that the proper data custodian works with it."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Data location, particularly at rest, may drive compliance requirements based on local or national laws. This concern drives the majority of data location concerns. Ensuring data is not lost is a data handling and management practice topic, geographic location may be related to cost but storage media and services drive cost far more than physical location, and data custodians are likely to work with data regardless of location.",
+      "optionNotes": [
+        "Incorrect. Location doesn't keep data from being lost. Preventing loss is a data handling and management practice, such as backups, not something geography takes care of.",
+        "Correct. Where data sits, especially at rest, determines which local or national laws apply, such as data sovereignty and privacy rules. This is the main reason owners, controllers and custodians care about location.",
+        "Incorrect. Location can affect cost somewhat, but the storage media and services chosen drive cost far more than physical location. Cost isn't the main concern here.",
+        "Incorrect. Custodians handle day-to-day protection, such as backups and logs, wherever the data is stored. Location doesn't decide which custodian works with the data."
+      ]
+    }
+  ]
+}
