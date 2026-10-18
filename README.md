@@ -14,6 +14,9 @@ Electron + TypeScript.
   must be answered, no going back, no flagging for review. Right-click strikes out an option. Letter
   keys (A, B, C…) select an option and Enter moves on. Breaks are allowed, but the clock keeps running.
   "End Exam" asks for confirmation and scores the exam as a fail.
+- **Progress bars** (training aid; the real exam shows only the clock and question number): time used
+  out of 3 hours, questions answered against the 100–150 range, and a pace hint ("On pace" / "Behind
+  pace by N questions") measured against finishing 150 questions in time (72 s per question).
 - **Lockdown** from the NDA screen until the score report: kiosk full screen, always on top, hidden
   from screen capture, no close/reload/devtools/clipboard, common shortcuts blocked, no display sleep.
   Each time the window loses focus it is recorded as an incident and the window is brought back.
@@ -51,6 +54,7 @@ npm start              # run the app
 npm run lint           # tsc + eslint
 npm test               # engine unit tests
 npm run smoke          # full exam driven through the real UI (Linux CI: xvfb-run -a npm run smoke)
+                       # CATEXAM_SMOKE_SHOTS=<dir> also saves screenshots of the main screens
 npm run dist:win       # Windows NSIS installer in release/ (on Linux it needs wine)
 ```
 

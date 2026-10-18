@@ -1,9 +1,12 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 import type { BrowserWindow } from 'electron';
 import type { Lockdown } from './lockdown';
 
 /**
  * Headless end-to-end run (CATEXAM_SMOKE=1, used by `npm run smoke` in the gates): drives the real
  * screens through a full exam and a short training session, checking the lockdown along the way.
+ * With CATEXAM_SMOKE_SHOTS=<dir>, it also saves PNG screenshots of the main screens there.
  */
 export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<boolean> {
   const js = <T>(code: string): Promise<T> => win.webContents.executeJavaScript(code, true) as Promise<T>;
@@ -19,9 +22,19 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     if (!ok) throw new Error(`check failed: ${what}`);
     console.log(`ok - ${what}`);
   };
+  const shot = async (name: string): Promise<void> => {
+    const dir = process.env.CATEXAM_SMOKE_SHOTS;
+    if (!dir) return;
+    await js(`(() => { const { promise, resolve } = Promise.withResolvers(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 200))); return promise; })()`);
+    await mkdir(dir, { recursive: true });
+    await writeFile(path.join(dir, `${name}.png`), (await win.webContents.capturePage()).toPNG());
+  };
+  const text = (selector: string): Promise<string> => js<string>(`document.querySelector(${JSON.stringify(selector)}).textContent`);
 
   try {
     await waitFor('#start-exam');
+    check((await js<number>(`document.querySelectorAll('#home .stat').length`)) === 4, 'home shows the progress summary');
+    await shot('home');
     const total = await js<number>(`window.examApi.info().then((i) => i.bank.total)`);
     check(total >= 150, `question bank loaded (${total} questions)`);
     await js(`document.querySelector('#candidate').value = 'Smoke Test'`);
@@ -32,6 +45,10 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await waitFor('#tutorial-start');
     await click('#tutorial-start');
     await waitFor('#exam');
+    check((await text('#question-progress')).startsWith('0 answered'), 'question progress bar starts at 0 answered');
+    check(/^0:00:0\d of 3:00:00$/.test(await text('#time-progress')), `time progress bar shows elapsed of 3 hours (${await text('#time-progress')})`);
+    check((await text('#pace')) === 'On pace', 'pace hint shows On pace at the start');
+    await shot('exam');
     win.close();
     check(!win.isDestroyed(), 'window cannot be closed during the exam');
     check((await js<boolean>(`document.querySelector('#prev, #back, #review-later') === null`)), 'no back or mark-for-review control');
@@ -82,6 +99,12 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
         check(ok, `question ${before} accepted an answer`);
       }
       answered++;
+      if (answered === 10) {
+        const shown = await text('#question-progress');
+        const width = await js<string>(`document.querySelector('#question-bar .bar-fill').style.width`);
+        check(shown.startsWith('10 answered') && width === `${Math.round((10 / 150) * 1000) / 10}%`, `question progress bar follows the answers (${shown}, ${width})`);
+        await shot('exam-question-11');
+      }
     }
     await waitFor('#outcome');
     check(answered >= 100 && answered <= 150, `exam ended between 100 and 150 questions (${answered})`);
@@ -102,6 +125,8 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await click('#review-home');
     await waitFor('#history');
     check((await js<number>(`document.querySelectorAll('#history tr').length`)) === 2, 'result saved to history');
+    check((await text('#stat-exams')).startsWith('1'), 'home summary counts the exam');
+    await shot('home-after-exam');
 
     await js(`document.querySelector('#practice-count').value = '2'`);
     await click('#start-practice');

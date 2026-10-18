@@ -148,6 +148,30 @@ describe('CAT exam rules', () => {
     }
   });
 
+  it('adapts difficulty: harder items after right answers, easier after wrong ones', () => {
+    const run = (correct: boolean): number[] => {
+      const rng = seeded(21);
+      const bank = syntheticBank(60, rng);
+      const exam = new ExamSession(bank, CISSP_CAT, rng);
+      for (let i = 0; i < 40; i++) {
+        const view = exam.current();
+        assert.ok(view);
+        const q = bank.find((b) => b.id === view.id) as Question;
+        exam.answer(view.id, correct ? q.answer : [(q.answer[0] + 1) % 4]);
+      }
+      exam.endByCandidate();
+      const scored = exam.result().review.filter((r) => !r.pretest);
+      return scored.map((r) => (bank.find((b) => b.id === r.id) as Question).difficulty);
+    };
+    const mean = (xs: number[]): number => xs.reduce((a, b) => a + b, 0) / xs.length;
+    const right = run(true);
+    const wrong = run(false);
+    // The first item sits at the starting estimate (0); later items follow the candidate.
+    assert.ok(Math.abs(right[0]) < 0.5 && Math.abs(wrong[0]) < 0.5, `first items near 0: ${right[0]}, ${wrong[0]}`);
+    assert.ok(mean(right.slice(-10)) > 2, `all-correct candidate gets hard items: ${mean(right.slice(-10))}`);
+    assert.ok(mean(wrong.slice(-10)) < -2, `all-wrong candidate gets easy items: ${mean(wrong.slice(-10))}`);
+  });
+
   it('refuses going back, skipping and empty answers', () => {
     const rng = seeded(3);
     const bank = syntheticBank(60, rng);

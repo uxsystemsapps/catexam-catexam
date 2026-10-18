@@ -35,7 +35,14 @@ async function reloadBank(): Promise<void> {
 function examState(): ExamState {
   if (!exam) throw new Error('no exam in progress');
   const question = exam.current();
-  return { question, deadline: exam.deadline, finished: question === null };
+  return {
+    question,
+    startedAt: exam.startedAt,
+    deadline: exam.deadline,
+    minItems: exam.config.minItems,
+    maxItems: exam.config.maxItems,
+    finished: question === null,
+  };
 }
 
 function onExamIncident(kind: string, detail: string): void {
