@@ -48,8 +48,11 @@ npm start              # run the app
 npm run lint           # tsc + eslint
 npm test               # engine unit tests
 npm run smoke          # full exam driven through the real UI (Linux CI: xvfb-run -a npm run smoke)
-npm run dist:win       # Windows NSIS installer in release/ (build it on Windows)
+npm run dist:win       # Windows NSIS installer in release/ (on Linux it needs wine)
 ```
 
-The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. There is no
-Windows runner, so neither the installer nor the Windows-specific lockdown is checked automatically.
+The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. The
+`windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the
+run as the `CATExam-windows-installer` artefact: open the run in Gitea → Actions and download it there.
+There is no Windows runner, so nobody runs the installer or tests the Windows-specific lockdown
+automatically. Windows SmartScreen warns about the unsigned installer ("More info" → "Run anyway").
