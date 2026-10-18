@@ -1,0 +1,4076 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 5: Identity and Access Management",
+ "questions": [
+  {
+   "id": "DUMP-0012",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "An organization has doubled in size due to a rapid market share increase. The size of the Information Technology (IT) staff has maintained pace with this growth. The organization hires several contractors whose onsite time is limited. The IT department has pushed its limits building servers and rolling out workstations and has a backlog of account management requests. Which contract is BEST in offloading the task from the IT staff?",
+   "options": [
+    "Platform as a Service (PaaS)",
+    "Identity as a Service (IDaaS)",
+    "Desktop as a Service (DaaS)",
+    "Software as a Service (SaaS)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The backlog is account management for transient contractors, which IDaaS addresses directly.",
+   "optionNotes": [
+    "PaaS addresses development platforms, not accounts.",
+    "Correct: IDaaS offloads account management for transient contractors.",
+    "DaaS reduces workstation builds but not account backlog.",
+    "SaaS replaces applications, not identity administration."
+   ]
+  },
+  {
+   "id": "DUMP-0014",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following is an effective control in preventing electronic cloning of Radio Frequency Identification (RFID) based access cards?",
+   "options": [
+    "Personal Identity Verification (PIV)",
+    "Cardholder Unique Identifier (CHUID) authentication",
+    "Physical Access Control System (PACS) repeated attempt detection",
+    "Asymmetric Card Authentication Key (CAK) challenge-response"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Asymmetric CAK challenge-response proves possession of a private key that cannot be copied from the card.",
+   "optionNotes": [
+    "PIV is the card standard, not an anti-cloning mechanism itself.",
+    "CHUID is static and can be copied/replayed.",
+    "Repeated-attempt detection doesn't stop a perfect clone.",
+    "Correct: private key never leaves card, defeating cloning."
+   ]
+  },
+  {
+   "id": "DUMP-0034",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST describes an access control method utilizing cryptographic keys derived from a smart card private key that is embedded within mobile devices?",
+   "options": [
+    "Derived credential",
+    "Temporary security credential",
+    "Mobile device credentialing service",
+    "Digest authentication"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A derived credential is a key placed on a mobile device derived from the user's PIV smart card credential.",
+   "optionNotes": [
+    "Correct: NIST SP 800-157 derived PIV credential.",
+    "Temporary credentials are short-lived tokens (cloud).",
+    "Generic description, not the defined term.",
+    "HTTP digest uses hashed passwords."
+   ]
+  },
+  {
+   "id": "DUMP-0035",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A manufacturing organization wants to establish a Federated Identity Management (FIM) system with its 20 different supplier companies. Which of the following is the BEST solution for the manufacturing organization?",
+   "options": [
+    "Trusted third-party certification",
+    "Lightweight Directory Access Protocol (LDAP)",
+    "Security Assertion Markup language (SAML)",
+    "Cross-certification"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said C] With many partner organizations, the hard problem in federation is establishing trust. If every pair of organizations cross-certifies, the number of trust relationships grows rapidly and becomes unmanageable at 20 suppliers. A trusted third party that each organization trusts gives one hub and scales well. SAML is the protocol that carries the assertions once trust exists. It is not the trust model itself.",
+   "optionNotes": [
+    "Correct: each organization trusts one third party, so trust scales cleanly to 20 suppliers.",
+    "Wrong: LDAP is a directory access protocol and does not provide cross-organization federation.",
+    "Wrong: SAML carries assertions but does not by itself establish trust among 20 separate organizations.",
+    "Wrong: pairwise cross-certification grows to many trust links and is hard to manage with 20 partners."
+   ]
+  },
+  {
+   "id": "DUMP-0037",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the BEST approach for controlling access to highly sensitive information when employees have the same level of security clearance?",
+   "options": [
+    "Audit logs",
+    "Role-Based Access Control (RBAC)",
+    "Two-factor authentication",
+    "Application of least privilege"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "With equal clearance, least privilege (need-to-know) restricts access to highly sensitive data.",
+   "optionNotes": [
+    "Logs are detective.",
+    "Roles may still grant broad access.",
+    "Authentication strength doesn't limit access scope.",
+    "Correct: need-to-know limits access among equal clearances."
+   ]
+  },
+  {
+   "id": "DUMP-0066",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which one of the following describes granularity?",
+   "options": [
+    "Maximum number of entries available in an Access Control List (ACL)",
+    "Fineness to which a trusted system can authenticate users",
+    "Number of violations divided by the number of total accesses",
+    "Fineness to which an access control system can be adjusted"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Granularity is how finely access control can be adjusted. Granularity is a property of the access control mechanism, not of authentication (B). Finer granularity lets permissions be set at the file, record or field level.",
+   "optionNotes": [
+    "ACL size is a capacity limit, not granularity.",
+    "Granularity concerns access control, not authentication.",
+    "That ratio is a violation rate metric.",
+    "Right: granularity is how finely access control can be tuned."
+   ]
+  },
+  {
+   "id": "DUMP-0072",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An Intrusion Detection System (IDS) is generating alarms that a user account has over 100 failed login attempts per minute. A sniffer is placed on the network, and a variety of passwords for that user are noted. Which of the following is MOST likely occurring?",
+   "options": [
+    "A dictionary attack",
+    "A Denial of Service (DoS) attack",
+    "A spoofing attack",
+    "A backdoor installation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Many password guesses against one account in rapid succession indicates a dictionary/brute-force attack. The sniffer shows many different passwords tried rapidly against one account, which points to a password-guessing (dictionary) attack. A DoS attack would aim at availability, not at guessing credentials.",
+   "optionNotes": [
+    "Right: many different passwords tried rapidly against one account is a dictionary/password attack.",
+    "DoS aims at availability; varied passwords show credential guessing.",
+    "Spoofing fakes an identity/address, not guessing passwords.",
+    "A backdoor would not generate repeated failed logins."
+   ]
+  },
+  {
+   "id": "DUMP-0073",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which security action should be taken FIRST when computer personnel are terminated from their jobs?",
+   "options": [
+    "Remove their computer access",
+    "Require them to turn in their badge",
+    "Conduct an exit interview",
+    "Reduce their physical access level to the facility"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Logical access removal comes first upon termination to prevent damage. A badge (B) and physical access (D) matter too, but IT staff can do the most damage through logical access. Revoking that access first prevents sabotage and data theft.",
+   "optionNotes": [
+    "Right: revoke logical access first to prevent sabotage or data theft.",
+    "Collecting the badge is important but after access removal.",
+    "Exit interviews are procedural and come later.",
+    "Physical access changes follow removal of system access."
+   ]
+  },
+  {
+   "id": "DUMP-0093",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "A practice that permits the owner of a data object to grant other users access to that object would usually provide",
+   "options": [
+    "Mandatory Access Control (MAC).",
+    "owner-administered control.",
+    "owner-dependent access control.",
+    "Discretionary Access Control (DAC)."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Owner-granted access is Discretionary Access Control. Under MAC (A) the system enforces labels and owners cannot grant access. Owner discretion to grant access is the defining feature of DAC; the other terms are not standard models.",
+   "optionNotes": [
+    "MAC is set by labels/system, not owner.",
+    "Not a standard model term.",
+    "Not a standard model term.",
+    "Right: owner-granted access is DAC."
+   ]
+  },
+  {
+   "id": "DUMP-0111",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When designing a networked Information System (IS) where there will be several different types of individual access, what is the FIRST step that should be taken to ensure all access control requirements are addressed?",
+   "options": [
+    "Create a user profile.",
+    "Create a user access matrix.",
+    "Develop an Access Control List (ACL).",
+    "Develop a Role Based Access Control (RBAC) list."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Before choosing a mechanism, designers should map every subject type to the objects and rights it needs. A user access matrix captures all those requirements; ACLs, roles and profiles are implemented from it.",
+   "optionNotes": [
+    "Profiles are built after requirements are known",
+    "Right: captures all subject/object/rights requirements",
+    "ACLs are columns of the matrix, derived later",
+    "RBAC is an implementation choice made after requirements"
+   ]
+  },
+  {
+   "id": "DUMP-0116",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is an essential element of a privileged identity lifecycle management?",
+   "options": [
+    "Regularly perform account re-validation and approval",
+    "Account provisioning based on multi-factor authentication",
+    "Frequently review performed activities and request justification",
+    "Account information to be provided by supervisor or line manager"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Privileged identities need periodic revalidation and reapproval so stale or excessive rights are removed. This recertification is a core lifecycle element.",
+   "optionNotes": [
+    "Right: recertification keeps privileges justified",
+    "MFA is an authentication control, not lifecycle management",
+    "Activity review is monitoring, not identity lifecycle",
+    "Who supplies account data is a minor process detail"
+   ]
+  },
+  {
+   "id": "DUMP-0123",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which one of the following security mechanisms provides the BEST way to restrict the execution of privileged procedures?",
+   "options": [
+    "Role Based Access Control (RBAC)",
+    "Biometric access control",
+    "Federated Identity Management (IdM)",
+    "Application hardening"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "RBAC ties privileged procedures to specific roles, so only users in authorised roles can run them. That directly restricts execution.",
+   "optionNotes": [
+    "Right: authorisation by role restricts privileged functions",
+    "Biometrics authenticate but do not define what one may run",
+    "Federation shares identities across domains",
+    "Hardening reduces attack surface but does not govern who runs procedures"
+   ]
+  },
+  {
+   "id": "DUMP-0131",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Why must all users be positively identified prior to using multi-user computers?",
+   "options": [
+    "To provide access to system privileges",
+    "To provide access to the operating system",
+    "To ensure that unauthorized persons cannot access the computers",
+    "To ensure that management knows what users are currently logged on"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Identification and authentication ensure that only authorised people use a shared system and allow actions to be attributed to individuals.",
+   "optionNotes": [
+    "Privileges come from authorisation after identification",
+    "OS access is too narrow a description",
+    "Right: keeps out unauthorised persons",
+    "Knowing who is logged on is a side benefit"
+   ]
+  },
+  {
+   "id": "DUMP-0139",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Logical access control programs are MOST effective when they are",
+   "options": [
+    "approved by external auditors.",
+    "combined with security token technology.",
+    "maintained by computer security officers.",
+    "made part of the operating system."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Access controls built into the operating system are applied consistently and are hard to bypass. Add-on programs can be circumvented.",
+   "optionNotes": [
+    "Auditor approval does not add effectiveness",
+    "Tokens strengthen authentication, not the access control program",
+    "Who maintains it does not determine effectiveness",
+    "Right: OS integration prevents bypass"
+   ]
+  },
+  {
+   "id": "DUMP-0146",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is an authentication protocol in which a new random number is generated uniquely for each login session?",
+   "options": [
+    "Challenge Handshake Authentication Protocol (CHAP)",
+    "Point-to-Point Protocol (PPP)",
+    "Extensible Authentication Protocol (EAP)",
+    "Password Authentication Protocol (PAP)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "CHAP uses a fresh random challenge for each authentication, which the client hashes with the shared secret; this defeats replay.",
+   "optionNotes": [
+    "A fresh random challenge per session is hashed with the shared secret, defeating replay",
+    "PPP is the link-layer framing protocol that carries CHAP/PAP, not itself the challenge scheme",
+    "EAP is a framework; any challenge depends on the chosen method",
+    "PAP sends the password in cleartext with no challenge"
+   ]
+  },
+  {
+   "id": "DUMP-0154",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Why MUST a Kerberos server be well protected from unauthorized access?",
+   "options": [
+    "It contains the keys of all clients.",
+    "It always operates at root privilege.",
+    "It contains all the tickets for services.",
+    "It contains the Internet Protocol (IP) address of all network entities."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The KDC stores the secret keys of all principals; its compromise compromises the entire realm.",
+   "optionNotes": [
+    "The KDC holds every principal's secret key, so compromise breaks the realm",
+    "Running as root is not the reason for protection",
+    "The KDC issues tickets but doesn't store them all",
+    "IP addresses are not sensitive Kerberos data"
+   ]
+  },
+  {
+   "id": "DUMP-0158",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The type of authorized interactions a subject can have with an object is",
+   "options": [
+    "control.",
+    "permission.",
+    "procedure.",
+    "protocol."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Permissions define the types of access (read, write, execute) a subject is authorized to have on an object.",
+   "optionNotes": [
+    "Control is a broad safeguard term, not the access type",
+    "Permissions express allowed actions like read/write/execute",
+    "Procedures are documented steps",
+    "Protocols govern communications"
+   ]
+  },
+  {
+   "id": "DUMP-0173",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "The process of mutual authentication involves a computer system authenticating a user and authenticating the",
+   "options": [
+    "user to the audit process.",
+    "computer system to the user.",
+    "user's access to all authorized objects.",
+    "computer system to the audit process."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Mutual authentication means both the user and the system prove identity to each other.",
+   "optionNotes": [
+    "Audit is not an authenticating party",
+    "The system proves its identity to the user too",
+    "That is authorization scope",
+    "Audit is not an authenticating party"
+   ]
+  },
+  {
+   "id": "DUMP-0175",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "The Structured Query Language (SQL) implements Discretionary Access Controls (DAC) using",
+   "options": [
+    "INSERT and DELETE.",
+    "GRANT and REVOKE.",
+    "PUBLIC and PRIVATE.",
+    "ROLLBACK and TERMINATE."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SQL grants and removes discretionary privileges with GRANT and REVOKE.",
+   "optionNotes": [
+    "DML statements for rows, not privileges",
+    "GRANT gives and REVOKE removes privileges at owner's discretion",
+    "Not SQL privilege commands",
+    "ROLLBACK is transaction control; TERMINATE isn't DAC"
+   ]
+  },
+  {
+   "id": "DUMP-0184",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which one of the following is the MOST important in designing a biometric access system if it is essential that no one other than authorized individuals are admitted?",
+   "options": [
+    "False Acceptance Rate (FAR)",
+    "False Rejection Rate (FRR)",
+    "Crossover Error Rate (CER)",
+    "Rejection Error Rate"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "To keep impostors out, minimize false acceptance (Type II errors).",
+   "optionNotes": [
+    "Low FAR keeps unauthorized people out",
+    "FRR only inconveniences valid users",
+    "CER compares devices, not this goal",
+    "Not a standard biometric metric"
+   ]
+  },
+  {
+   "id": "DUMP-0193",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A system is developed so that its business users can perform business functions but not user administration functions. Application administrators can perform administration functions but not user business functions. These capabilities are BEST described as",
+   "options": [
+    "least privilege.",
+    "rule based access controls.",
+    "Mandatory Access Control (MAC).",
+    "separation of duties."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Splitting business and administrative functions between different roles is separation of duties.",
+   "optionNotes": [
+    "Least privilege is related but doesn't describe splitting duties",
+    "Rule-based control uses global rules, not role splits",
+    "MAC uses labels and clearances",
+    "Separating business and admin functions is separation of duties"
+   ]
+  },
+  {
+   "id": "DUMP-0199",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Refer to the information below to answer the question. A new employee is given a laptop computer with full administrator access. This employee does not have a personal computer at home and has a child that uses the computer to send and receive e-mail, search the web, and use instant messaging. The organization's Information Technology (IT) department discovers that a peer-to-peer program has been installed on the computer using the employee's access. Which of the following could have MOST likely prevented the Peer-to-Peer (P2P) program from being installed on the computer?",
+   "options": [
+    "Removing employee's full access to the computer",
+    "Supervising their child's use of the computer",
+    "Limiting computer's access to only the employee",
+    "Ensuring employee understands their business conduct guidelines"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The P2P program was installed using the employee's administrator rights. Applying least privilege by removing full admin access would have prevented installation regardless of who used the laptop.",
+   "optionNotes": [
+    "Correct: without admin rights the software could not be installed.",
+    "Relies on the employee's supervision, not an enforceable control.",
+    "Does not stop the employee or malware from installing software with admin rights.",
+    "Awareness helps but is not a preventive technical control."
+   ]
+  },
+  {
+   "id": "DUMP-0204",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is an example of two-factor authentication?",
+   "options": [
+    "Retina scan and a palm print",
+    "Fingerprint and a smart card",
+    "Magnetic stripe card and an ID badge",
+    "Password and Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Two-factor authentication needs factors from different categories. A fingerprint (something you are) plus a smart card (something you have) qualifies; the others combine the same type or a non-authentication factor.",
+   "optionNotes": [
+    "Both are biometrics: one factor type.",
+    "Correct: something you are plus something you have.",
+    "Both are possession items.",
+    "CAPTCHA proves humanity, not identity."
+   ]
+  },
+  {
+   "id": "DUMP-0211",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Refer to the information below to answer the question. A large organization uses unique identifiers and requires them at the start of every system session. Application access is based on job classification. The organization is subject to periodic independent reviews of access controls and violations. The organization uses wired and wireless networks and remote access. The organization also uses secure connections to branch offices and secure backup and recovery strategies for selected information and processes. Which of the following BEST describes the access control methodology used?",
+   "options": [
+    "Least privilege",
+    "Lattice Based Access Control (LBAC)",
+    "Role Based Access Control (RBAC)",
+    "Lightweight Directory Access Control (LDAP)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Application access is granted according to job classification, which is the defining characteristic of role-based access control. Least privilege is a principle, not a methodology.",
+   "optionNotes": [
+    "A principle that RBAC can support, not the methodology.",
+    "Lattice models use security labels/levels, not job roles.",
+    "Correct: access by job classification is RBAC.",
+    "LDAP is a directory protocol, and the name is wrong."
+   ]
+  },
+  {
+   "id": "DUMP-0220",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -2.0,
+   "stem": "Which of the following describes the concept of a Single Sign-On (SSO) system?",
+   "options": [
+    "Users are authenticated to one system at a time.",
+    "Users are identified to multiple systems with several credentials.",
+    "Users are authenticated to multiple systems with one login.",
+    "Only one user is using the system at a time."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Single sign-on lets users authenticate once and then access multiple systems without logging in again.",
+   "optionNotes": [
+    "Opposite of SSO.",
+    "Multiple credentials is what SSO avoids.",
+    "Correct: one login gives access to many systems.",
+    "Describes single-user systems, unrelated."
+   ]
+  },
+  {
+   "id": "DUMP-0230",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the BEST countermeasure to brute force login attacks?",
+   "options": [
+    "Changing all canonical passwords",
+    "Decreasing the number of concurrent user sessions",
+    "Restricting initial password delivery only in person",
+    "Introducing a delay after failed system access attempts"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Brute force relies on rapid repeated guesses. Introducing a delay or lockout after failed attempts makes such attacks impractical.",
+   "optionNotes": [
+    "Does not limit guessing.",
+    "Concurrent sessions do not affect guess rate.",
+    "Protects initial password delivery, not guessing.",
+    "Correct: delays throttle guessing attempts."
+   ]
+  },
+  {
+   "id": "DUMP-0238",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What does secure authentication with logging provide?",
+   "options": [
+    "Data integrity",
+    "Access accountability",
+    "Encryption logging format",
+    "Segregation of duties"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Authentication identifies the user and logging records actions, together establishing accountability for access.",
+   "optionNotes": [
+    "Integrity needs hashing or similar controls.",
+    "Correct: identity plus logs gives accountability.",
+    "Not a meaningful security outcome.",
+    "SoD is an administrative design principle."
+   ]
+  },
+  {
+   "id": "DUMP-0245",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following BEST mitigates a replay attack against a system using identity federation and Security Assertion Markup Language (SAML) implementation?",
+   "options": [
+    "Two-factor authentication",
+    "Digital certificates and hardware tokens",
+    "Timed sessions and Secure Socket Layer (SSL)",
+    "Passwords with alpha-numeric and special characters"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Replay of SAML assertions is countered by limiting assertion/session validity in time and protecting them in transit with SSL/TLS so they cannot be captured and reused.",
+   "optionNotes": [
+    "2FA strengthens login but a captured assertion can still be replayed.",
+    "Certificates/tokens authenticate parties, not freshness of assertions.",
+    "Right: short validity windows plus TLS stop capture and reuse.",
+    "Password complexity is irrelevant to replaying assertions."
+   ]
+  },
+  {
+   "id": "DUMP-0246",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "What physical characteristic does a retinal scan biometric device measure?",
+   "options": [
+    "The amount of light reflected by the retina",
+    "The size, curvature, and shape of the retina",
+    "The pattern of blood vessels at the back of the eye",
+    "The pattern of light receptors at the back of the eye"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Retinal scans map the unique pattern of blood vessels on the retina at the back of the eye.",
+   "optionNotes": [
+    "Reflected light is not the measured trait.",
+    "Retina size/shape is not what is matched.",
+    "Right: blood-vessel pattern on the retina is unique.",
+    "Light receptors are not the mapped feature."
+   ]
+  },
+  {
+   "id": "DUMP-0247",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "What is a common challenge when implementing Security Assertion Markup Language (SAML) for identity integration between on-premise environment and an external identity provider service?",
+   "options": [
+    "Some users are not provisioned into the service.",
+    "SAML tokens are provided by the on-premise identity provider.",
+    "Single users cannot be revoked from the service.",
+    "SAML tokens contain user information."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Federating with an external IdP commonly runs into provisioning gaps where some users are not provisioned into the service, since SAML handles authentication not provisioning.",
+   "optionNotes": [
+    "Right: SAML doesn't provision accounts, so provisioning gaps are common.",
+    "Using the on-prem IdP is the normal design, not a challenge.",
+    "Revocation is possible by disabling the user at the IdP.",
+    "Assertions carrying user attributes is by design."
+   ]
+  },
+  {
+   "id": "DUMP-0250",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following violates identity and access management best practices?",
+   "options": [
+    "User accounts",
+    "System accounts",
+    "Generic accounts",
+    "Privileged accounts"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Generic/shared accounts break individual accountability and violate IAM best practice; the other account types are legitimate when managed.",
+   "optionNotes": [
+    "Individual user accounts are best practice.",
+    "System/service accounts are acceptable when managed.",
+    "Right: shared generic accounts destroy accountability.",
+    "Privileged accounts are needed; they just need tight control."
+   ]
+  },
+  {
+   "id": "DUMP-0254",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "What is the MOST effective method for gaining unauthorized access to a file protected with a long complex password?",
+   "options": [
+    "Brute force attack",
+    "Frequency analysis",
+    "Social engineering",
+    "Dictionary attack"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Long complex passwords resist brute force and dictionary attacks; social engineering bypasses password strength entirely by getting the user to reveal it.",
+   "optionNotes": [
+    "Brute force is impractical against long complex passwords.",
+    "Frequency analysis targets classical ciphers, not passwords.",
+    "Right: tricking the holder bypasses password strength.",
+    "Dictionary attacks fail against complex non-word passwords."
+   ]
+  },
+  {
+   "id": "DUMP-0259",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.3,
+   "stem": "What is the MOST important reason to configure unique user IDs?",
+   "options": [
+    "Supporting accountability",
+    "Reducing authentication errors",
+    "Preventing password compromise",
+    "Supporting Single Sign On (SSO)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Unique IDs tie actions to individuals, which is the basis of accountability.",
+   "optionNotes": [
+    "Right: unique IDs link actions to individuals.",
+    "Unique IDs don't reduce authentication errors.",
+    "Unique IDs don't stop password compromise.",
+    "SSO is a convenience, not the main reason for unique IDs."
+   ]
+  },
+  {
+   "id": "DUMP-0263",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Refer to the information below to answer the question. A large organization uses unique identifiers and requires them at the start of every system session. Application access is based on job classification. The organization is subject to periodic independent reviews of access controls and violations. The organization uses wired and wireless networks and remote access. The organization also uses secure connections to branch offices and secure backup and recovery strategies for selected information and processes. What MUST the access control logs contain in addition to the identifier?",
+   "options": [
+    "Time of the access",
+    "Security classification",
+    "Denied access attempts",
+    "Associated clearance"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "For accountability and review, logs must record when access occurred along with who accessed.",
+   "optionNotes": [
+    "Right: when access happened is essential for accountability.",
+    "Classification is metadata about the object, not a log requirement.",
+    "Denied attempts are useful but not the MUST.",
+    "Clearance is a user attribute, not something logs must hold."
+   ]
+  },
+  {
+   "id": "DUMP-0272",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following methods provides the MOST protection for user credentials?",
+   "options": [
+    "Forms-based authentication",
+    "Digest authentication",
+    "Basic authentication",
+    "Self-registration"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Digest authentication sends a hash of the credentials instead of cleartext, unlike Basic or plain forms-based authentication.",
+   "optionNotes": [
+    "Forms auth often sends credentials in cleartext without TLS.",
+    "Right: digest sends a hashed challenge response.",
+    "Basic auth is only base64, effectively cleartext.",
+    "Self-registration is account creation, not protection."
+   ]
+  },
+  {
+   "id": "DUMP-0275",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following assures that rules are followed in an identity management architecture?",
+   "options": [
+    "Policy database",
+    "Digital signature",
+    "Policy decision point",
+    "Policy enforcement point"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The policy enforcement point carries out the PDP's decisions and so actually enforces the rules.",
+   "optionNotes": [
+    "The database stores rules but enforces nothing.",
+    "Signatures give integrity/authenticity, not rule enforcement.",
+    "The PDP decides; it doesn't enforce.",
+    "Right: the PEP enforces the decision."
+   ]
+  },
+  {
+   "id": "DUMP-0285",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.6,
+   "stem": "Multi-Factor Authentication (MFA) is necessary in many systems given common types of password attacks. Which of the following is a correct list of password attacks?",
+   "options": [
+    "Masquerading, salami, malware, polymorphism",
+    "Brute force, dictionary, phishing, keylogger",
+    "Zeus, netbus, rabbit, turtle",
+    "Token, biometrics, IDS, DLP"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Brute force, dictionary, phishing and keyloggers are all ways to obtain passwords.",
+   "optionNotes": [
+    "Salami and polymorphism aren't password attacks.",
+    "Right: each is a way to get passwords.",
+    "These are malware names and nonsense.",
+    "These are controls, not attacks."
+   ]
+  },
+  {
+   "id": "DUMP-0287",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.4,
+   "stem": "Which item below is a federated identity standard?",
+   "options": [
+    "802.11i",
+    "Kerberos",
+    "Lightweight Directory Access Protocol (LDAP)",
+    "Security Assertion Markup Language (SAML)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SAML is the XML-based federated identity standard for exchanging authentication/authorization assertions across domains.",
+   "optionNotes": [
+    "802.11i is wireless security.",
+    "Kerberos is single-realm SSO, not a federation standard.",
+    "LDAP is a directory protocol.",
+    "Right: SAML is the federated assertion standard."
+   ]
+  },
+  {
+   "id": "DUMP-0290",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "A large bank deploys hardware tokens to all customers that use their online banking system. The token generates and displays a six digit numeric password every 60 seconds. The customers must log into their bank accounts using this numeric password. This is an example of",
+   "options": [
+    "asynchronous token.",
+    "Single Sign-On (SSO) token.",
+    "single factor authentication token.",
+    "synchronous token."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A token that generates a new code at fixed time intervals, synchronized with the server, is a synchronous (time-based) token.",
+   "optionNotes": [
+    "Asynchronous tokens use challenge/event, not time.",
+    "It isn't SSO; it's for one bank system.",
+    "OTP alone is one factor, but the question is about the token type.",
+    "Right: time-synchronized token."
+   ]
+  },
+  {
+   "id": "DUMP-0298",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Refer to the information below to answer the question. A large organization uses unique identifiers and requires them at the start of every system session. Application access is based on job classification. The organization is subject to periodic independent reviews of access controls and violations. The organization uses wired and wireless networks and remote access. The organization also uses secure connections to branch offices and secure backup and recovery strategies for selected information and processes. In addition to authentication at the start of the user session, best practice would require re-authentication.",
+   "options": [
+    "periodically during a session.",
+    "for each business process.",
+    "at system sign-off.",
+    "after a period of inactivity."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Best practice is to require re-authentication after an idle timeout, so an unattended session cannot be misused. Other options are either impractical or meaningless.",
+   "optionNotes": [
+    "Random periodic re-auth during active use burdens users without clear need",
+    "Per-process re-auth is impractical and not standard practice",
+    "Authenticating at sign-off serves no purpose",
+    "Inactivity timeout with re-auth protects unattended sessions"
+   ]
+  },
+  {
+   "id": "DUMP-0302",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "The BEST example of the concept of \"something that a user has\" when providing an authorized user access to a computing system is",
+   "options": [
+    "the user's hand geometry.",
+    "a credential stored in a token.",
+    "a passphrase.",
+    "the user's face."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Possession factors are physical items such as tokens or smart cards. A credential stored in a token is something you have.",
+   "optionNotes": [
+    "Hand geometry is a biometric (something you are)",
+    "A token holding a credential is a possession factor",
+    "A passphrase is something you know",
+    "A face is a biometric (something you are)"
+   ]
+  },
+  {
+   "id": "DUMP-0317",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "After a thorough analysis, it was discovered that a perpetrator compromised a network by gaining access to the network through a Secure Socket Layer (SSL) Virtual Private Network (VPN) gateway. The perpetrator guessed a username and brute forced the password to gain access. Which of the following BEST mitigates this issue?",
+   "options": [
+    "Implement strong passwords authentication for VPN",
+    "Integrate the VPN with centralized credential stores",
+    "Implement an Internet Protocol Security (IPSec) client",
+    "Use two-factor authentication mechanisms"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The attacker guessed a username and brute-forced the password; a second factor makes a cracked password insufficient. That directly mitigates the attack.",
+   "optionNotes": [
+    "Stronger passwords slow brute force but don't stop it",
+    "Central credential stores don't stop guessing",
+    "IPsec changes the tunnel, not the authentication weakness",
+    "2FA defeats password-only compromise"
+   ]
+  },
+  {
+   "id": "DUMP-0318",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is an advantage of on premise Credential Management Systems?",
+   "options": [
+    "Improved credential interoperability",
+    "Control over system configuration",
+    "Lower infrastructure capital costs",
+    "Reduced administrative overhead"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Running credential management on premises gives the organization full control over system configuration. It usually costs more and needs more administration.",
+   "optionNotes": [
+    "Interoperability is not specifically improved on premises",
+    "On-premises gives direct control of configuration",
+    "Capital costs are higher on premises, not lower",
+    "Administrative overhead increases on premises"
+   ]
+  },
+  {
+   "id": "DUMP-0320",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following information MUST be provided for user account provisioning?",
+   "options": [
+    "Full name",
+    "Unique identifier",
+    "Security question",
+    "Date of birth"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Each account needs a unique identifier to provide accountability. Other personal attributes are optional.",
+   "optionNotes": [
+    "Full name is not mandatory and can be non-unique",
+    "A unique ID is essential for accountability",
+    "Security questions are optional recovery aids",
+    "DOB is unnecessary PII"
+   ]
+  },
+  {
+   "id": "DUMP-0324",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which technology is a prerequisite for populating the cloud-based directory in a federated identity solution?",
+   "options": [
+    "Notification tool",
+    "Message queuing tool",
+    "Security token tool",
+    "Synchronization tool"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "To populate a cloud directory for federation, identities are synchronized from the on-premises directory. Token and messaging tools do not provision directory entries.",
+   "optionNotes": [
+    "Notification doesn't populate directories",
+    "Message queuing doesn't provide identity sync",
+    "Tokens assert authentication but don't populate directories",
+    "Directory synchronization populates the cloud directory"
+   ]
+  },
+  {
+   "id": "DUMP-0330",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is an important characteristic of Role Based Access Control (RBAC)?",
+   "options": [
+    "Supports Mandatory Access Control (MAC)",
+    "Simplifies the management of access rights",
+    "Relies on rotation of duties",
+    "Requires two factor authentication"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "RBAC assigns permissions to roles and users to roles, which simplifies managing access rights as people join and move.",
+   "optionNotes": [
+    "RBAC is non-discretionary, distinct from MAC",
+    "Role-based grouping simplifies rights management",
+    "Job rotation is not required by RBAC",
+    "RBAC does not mandate 2FA"
+   ]
+  },
+  {
+   "id": "DUMP-0334",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A security professional is asked to provide a solution that restricts a bank teller to only perform a savings deposit transaction but allows a supervisor to perform corrections after the transaction. Which of the following is the MOST effective solution?",
+   "options": [
+    "Access is based on rules.",
+    "Access is determined by the system.",
+    "Access is based on user's role.",
+    "Access is based on data sensitivity."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Teller and supervisor are job functions with different permitted transactions, which maps directly to role-based access control.",
+   "optionNotes": [
+    "Rule-based applies global rules, not job functions",
+    "'System-determined' is vague",
+    "Role-based access matches teller vs supervisor",
+    "Sensitivity labels are MAC, not job function"
+   ]
+  },
+  {
+   "id": "DUMP-0337",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "During a fingerprint verification process, which of the following is used to verify identity and authentication?",
+   "options": [
+    "A pressure value is compared with a stored template",
+    "Sets of digits are matched with stored values",
+    "A hash table is matched to a database of stored value",
+    "A template of minutiae is compared with a stored template"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Fingerprint systems extract minutiae such as ridge endings and bifurcations into a template, then compare it with the enrolled template.",
+   "optionNotes": [
+    "Pressure is not the matched feature",
+    "Digits matching describes PINs",
+    "Hash tables aren't how fingerprint matching works",
+    "Minutiae templates are compared"
+   ]
+  },
+  {
+   "id": "DUMP-0339",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A user sends an e-mail request asking for read-only access to files that are not considered sensitive. A Discretionary Access Control (DAC) methodology is in place. Which is the MOST suitable approach that the administrator should take?",
+   "options": [
+    "Administrator should request data owner approval to the user access",
+    "Administrator should request manager approval for the user access",
+    "Administrator should directly grant the access to the non-sensitive files",
+    "Administrator should assess the user access need and either grant or deny the access"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Under DAC, the data owner decides who gets access. The administrator should obtain the owner's approval rather than decide alone, even for non-sensitive files.",
+   "optionNotes": [
+    "Owner approval is how DAC grants access",
+    "Manager isn't the authority under DAC",
+    "Granting directly bypasses the owner",
+    "Admin isn't the decision maker"
+   ]
+  },
+  {
+   "id": "DUMP-0346",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is the BIGGEST weakness when using native Lightweight Directory Access Protocol (LDAP) for authentication?",
+   "options": [
+    "Authorizations are not included in the server response",
+    "Unsalted hashes are passed over the network",
+    "The authentication session can be replayed",
+    "Passwords are passed in clear text"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Native LDAP simple bind sends credentials in clear text unless protected by TLS/SASL.",
+   "optionNotes": [
+    "Authorization is not the authentication weakness",
+    "Native LDAP simple bind sends no hashes, salted or not",
+    "Replay is possible but secondary to cleartext exposure",
+    "Simple bind transmits passwords in cleartext without TLS"
+   ]
+  },
+  {
+   "id": "DUMP-0347",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is generally indicative of a replay attack when dealing with biometric authentication?",
+   "options": [
+    "False Acceptance Rate (FAR) is greater than 1 in 100,000",
+    "False Rejection Rate (FRR) is greater than 5 in 100",
+    "Inadequately specified templates",
+    "Exact match"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Live biometric samples always vary slightly; an exact match with a stored template suggests a replayed captured sample.",
+   "optionNotes": [
+    "A FAR threshold is a tuning metric, not a replay indicator",
+    "FRR measures false rejections, not replay",
+    "Poor templates cause errors, not replay evidence",
+    "Live samples always vary; an exact match signals a replayed capture"
+   ]
+  },
+  {
+   "id": "DUMP-0353",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Discretionary Access Control (DAC) restricts access according to",
+   "options": [
+    "data classification labeling.",
+    "page views within an application.",
+    "authorizations granted to the user.",
+    "management accreditation."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "DAC grants access based on authorizations the owner gives to users/identities.",
+   "optionNotes": [
+    "Classification labels are the basis of MAC",
+    "Page views are not an access control model basis",
+    "DAC uses owner-granted authorizations to identities",
+    "Accreditation is a system authorization decision, not DAC"
+   ]
+  },
+  {
+   "id": "DUMP-0357",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "In which identity management process is the subject's identity established?",
+   "options": [
+    "Trust",
+    "Provisioning",
+    "Authorization",
+    "Enrollment"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Enrollment (registration and identity proofing) establishes the subject's identity before credentials are issued.",
+   "optionNotes": [
+    "Trust is not an identity lifecycle step that establishes identity",
+    "Provisioning creates accounts after identity is established",
+    "Authorization grants rights after authentication",
+    "Enrollment includes identity proofing that establishes identity"
+   ]
+  },
+  {
+   "id": "DUMP-0367",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "An employee of a retail company has been granted an extended leave of absence by Human Resources (HR). This information has been formally communicated to the access provisioning team. Which of the following is the BEST action to take?",
+   "options": [
+    "Revoke access temporarily.",
+    "Block user access and delete user account after six months.",
+    "Block access to the offices immediately.",
+    "Monitor account usage temporarily."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Temporarily disabling access during extended leave removes unused-access risk while allowing restoration on return.",
+   "optionNotes": [
+    "Temporary revocation removes unneeded access, restorable on return",
+    "Deleting the account is excessive for an approved leave",
+    "Physical access alone leaves logical access open",
+    "Monitoring leaves unnecessary access active"
+   ]
+  },
+  {
+   "id": "DUMP-0378",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "If an identification process using a biometric system detects a 100% match between a presented template and a stored template, what is the interpretation of this result?",
+   "options": [
+    "User error",
+    "Suspected tampering",
+    "Accurate identification",
+    "Unsuccessful identification"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Biometric samples never match perfectly; a 100% match suggests a replayed or tampered template.",
+   "optionNotes": [
+    "User error lowers match quality, it does not yield 100%",
+    "Perfect match implies replayed or tampered template",
+    "Live samples never match exactly",
+    "A match is not an unsuccessful identification"
+   ]
+  },
+  {
+   "id": "DUMP-0391",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "For an organization considering two-factor authentication for secure network access, which of the following is MOST secure?",
+   "options": [
+    "Challenge response and private key",
+    "Digital certificates and Single Sign-On (SSO)",
+    "Tokens and passphrase",
+    "Smart card and biometrics"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Smart card (have) plus biometric (are) are two strong distinct factors.",
+   "optionNotes": [
+    "Both may be 'something you have/know' and weaker",
+    "SSO is not an authentication factor",
+    "Tokens plus passphrase are fine but weaker than biometrics",
+    "Smart card plus biometric combine strong distinct factors"
+   ]
+  },
+  {
+   "id": "DUMP-0395",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Discretionary Access Control (DAC) is based on which of the following?",
+   "options": [
+    "Information source and destination",
+    "Identification of subjects and objects",
+    "Security labels and privileges",
+    "Standards and guidelines"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "DAC lets the owner of an object decide which subjects may access it, so decisions rest on the identities of subjects and the objects they own. Labels belong to MAC, not DAC.",
+   "optionNotes": [
+    "Source/destination describes network filtering, not DAC.",
+    "Right: owner grants access per subject identity and object.",
+    "Labels and clearances define MAC.",
+    "Standards and guidelines are governance documents, not an access model."
+   ]
+  },
+  {
+   "id": "DUMP-0400",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following could elicit a Denial of Service (DoS) attack against a credential management system?",
+   "options": [
+    "Delayed revocation or destruction of credentials",
+    "Modification of Certificate Revocation List",
+    "Unauthorized renewal or re-issuance",
+    "Token use after decommissioning"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Tampering with the Certificate Revocation List can mark valid credentials as revoked, locking legitimate users out and denying service. The other options mostly allow continued unauthorized use rather than denial.",
+   "optionNotes": [
+    "Delayed revocation enables misuse, not denial.",
+    "Right: falsely revoking certificates denies legitimate access.",
+    "Unauthorized renewal grants access rather than denying it.",
+    "Using decommissioned tokens is unauthorized access, not DoS."
+   ]
+  },
+  {
+   "id": "DUMP-0425",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is a function of Security Assertion Markup Language (SAML)?",
+   "options": [
+    "File allocation",
+    "Redundancy check",
+    "Extended validation",
+    "Policy enforcement"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SAML carries authentication, attribute and authorization assertions that relying parties use to make and enforce access decisions. The other options are unrelated to SAML.",
+   "optionNotes": [
+    "File system function.",
+    "Error-detection mechanism.",
+    "Certificate validation type, not SAML.",
+    "Right: assertions support authorization/policy enforcement."
+   ]
+  },
+  {
+   "id": "DUMP-0430",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "What security risk does the role-based access approach mitigate MOST effectively?",
+   "options": [
+    "Excessive access rights to systems and data",
+    "Segregation of duties conflicts within business applications",
+    "Lack of system administrator activity monitoring",
+    "Inappropriate access requests"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Roles grant only the permissions a job needs, avoiding ad hoc accumulation of rights. RBAC therefore most directly limits excessive access.",
+   "optionNotes": [
+    "Right: roles constrain permissions to job need.",
+    "SoD conflicts need explicit constraints, not RBAC alone.",
+    "Monitoring is a separate control.",
+    "Request approval is a provisioning workflow issue."
+   ]
+  },
+  {
+   "id": "DUMP-0436",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Single Sign-On (SSO) is PRIMARILY designed to address which of the following?",
+   "options": [
+    "Confidentiality and Integrity",
+    "Availability and Accountability",
+    "Integrity and Availability",
+    "Accountability and Assurance"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SSO ties a user's actions to one authenticated identity across systems, supporting accountability, and gives assurance in that identity. It is not mainly a confidentiality or availability control.",
+   "optionNotes": [
+    "Not primary goals of SSO.",
+    "Availability is not addressed.",
+    "Not primary goals.",
+    "Right: single identity supports accountability and assurance."
+   ]
+  },
+  {
+   "id": "DUMP-0437",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following prevents improper aggregation of privileges in Role Based Access Control (RBAC)?",
+   "options": [
+    "Hierarchical inheritance",
+    "Dynamic separation of duties",
+    "The Clark-Wilson security model",
+    "The Bell-LaPadula security model"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Dynamic separation of duties stops a user from activating conflicting roles in the same session, preventing improper aggregation of privileges. Inheritance can actually aggregate rights.",
+   "optionNotes": [
+    "Inheritance accumulates permissions.",
+    "Right: blocks conflicting role combinations.",
+    "An integrity model, not an RBAC feature.",
+    "Confidentiality model, not RBAC."
+   ]
+  },
+  {
+   "id": "DUMP-0438",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "The implementation of which features of an identity management system reduces costs and administration overhead while improving audit and accountability?",
+   "options": [
+    "Two-factor authentication",
+    "Single Sign-On (SSO)",
+    "User self-service",
+    "A metadirectory"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Self-service password resets and profile updates cut help-desk work and cost, and they log user actions for audit. The other features do not reduce administration in the same way.",
+   "optionNotes": [
+    "2FA adds cost and admin.",
+    "SSO reduces logins but not admin overhead mainly.",
+    "Right: lowers admin cost, logs actions.",
+    "Metadirectory consolidates data, not cost focused."
+   ]
+  },
+  {
+   "id": "DUMP-0449",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "During which of the following processes is least privilege implemented for a user account?",
+   "options": [
+    "Provision",
+    "Approve",
+    "Request",
+    "Review"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Least privilege is put into effect when the account is actually provisioned, because that is when specific rights are granted. Request and approval only decide what should be granted, and review checks it afterwards.",
+   "optionNotes": [
+    "Correct: provisioning is when the rights are actually assigned, so least privilege is applied here.",
+    "Approval authorizes the request but does not configure any rights.",
+    "The request states the need; nothing is granted yet.",
+    "Review checks existing access after the fact (detective); it does not implement anything."
+   ]
+  },
+  {
+   "id": "DUMP-0451",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following provides the minimum set of privileges required to perform a job function and restricts the user to a domain with the required privileges?",
+   "options": [
+    "Access based on rules",
+    "Access based on user's role",
+    "Access determined by the system",
+    "Access based on data sensitivity"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Role-based access control gives each role only the privileges its job function needs. A user is limited to the domain of their assigned role, which supports least privilege.",
+   "optionNotes": [
+    "Rule-based access applies global rules regardless of job function.",
+    "Correct: RBAC ties a minimal privilege set to the job role.",
+    "System-determined access (MAC) is driven by labels, not job function.",
+    "Sensitivity-based access is MAC classification, not job-based minimal privilege."
+   ]
+  },
+  {
+   "id": "DUMP-0453",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the PRIMARY security concern associated with the implementation of smart cards?",
+   "options": [
+    "The cards have limited memory",
+    "Vendor application compatibility",
+    "The cards can be misplaced",
+    "Mobile code can be embedded in the card"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Smart cards are physical tokens, so the main operational risk is users losing or misplacing them, which leads to unauthorized use or denied access. The other issues are design limits, not primary security concerns.",
+   "optionNotes": [
+    "Limited memory is a capacity constraint, not a security concern.",
+    "Vendor compatibility is an interoperability issue.",
+    "Correct: lost or misplaced cards are the main security risk.",
+    "Card applets are tightly controlled; embedded mobile code is not the primary concern."
+   ]
+  },
+  {
+   "id": "DUMP-0458",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following questions can be answered using user and group entitlement reporting?",
+   "options": [
+    "When a particular file was last accessed by a user",
+    "Change control activities for a particular group of users",
+    "The number of failed login attempts for a particular user",
+    "Where does a particular user have access within the network"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Entitlement reports list the permissions granted to users and groups, showing where each user has access. They do not record activity events.",
+   "optionNotes": [
+    "Last-access time comes from audit logs, not entitlements.",
+    "Change control activity is tracked in change records.",
+    "Failed logins are authentication log events.",
+    "Correct: entitlement reporting shows where a user has access."
+   ]
+  },
+  {
+   "id": "DUMP-0460",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "A global organization wants to implement hardware tokens as part of a multifactor authentication solution for remote access. The PRIMARY advantage of this implementation is",
+   "options": [
+    "the scalability of token enrollment.",
+    "increased accountability of end users.",
+    "it protects against unauthorized access.",
+    "it simplifies user access administration."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A hardware token adds a possession factor, which makes it much harder for an attacker with stolen passwords to get in. The main benefit is preventing unauthorized remote access.",
+   "optionNotes": [
+    "Enrolling tokens globally is actually harder to scale.",
+    "Accountability improves somewhat, but that is secondary.",
+    "Correct: MFA protects against unauthorized access.",
+    "Tokens add administrative work rather than simplifying it."
+   ]
+  },
+  {
+   "id": "DUMP-0480",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is BEST suited for exchanging authentication and authorization messages in a multi-party decentralized environment?",
+   "options": [
+    "Lightweight Directory Access Protocol (LDAP)",
+    "Security Assertion Markup Language (SAML)",
+    "Internet Mail Access Protocol",
+    "Transport Layer Security (TLS)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SAML exchanges authentication and authorization assertions between independent parties such as IdPs and SPs. That makes it the standard for decentralized, federated environments.",
+   "optionNotes": [
+    "LDAP is a directory access protocol, not a cross-party assertion exchange.",
+    "Correct: SAML carries authN/authZ assertions across parties.",
+    "IMAP retrieves mail.",
+    "TLS secures the channel but carries no assertions."
+   ]
+  },
+  {
+   "id": "DUMP-0487",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.3,
+   "stem": "Which of the following is most helpful in applying the principle of LEAST privilege?",
+   "options": [
+    "Establishing a sandboxing environment",
+    "Setting up a Virtual Private Network (VPN) tunnel",
+    "Monitoring and reviewing privileged sessions",
+    "Introducing a job rotation program"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said C] Least privilege means a subject can do only what it needs. Sandboxing enforces this directly by limiting a process to the specific memory and resources it requires, and the OSG describes it as applying least privilege to processes. Monitoring privileged sessions is a detective control that reviews how privileges are used. It does not by itself restrict privilege, and job rotation tends to cause privilege creep.",
+   "optionNotes": [
+    "Correct: sandboxing limits a process to only the resources it needs, which directly applies least privilege.",
+    "Wrong: a VPN protects data in transit and does not limit what a user or process may do.",
+    "Wrong: monitoring privileged sessions is detective. It reviews privilege use but does not restrict privilege.",
+    "Wrong: job rotation targets fraud and collusion and can cause privilege creep instead of reducing privilege."
+   ]
+  },
+  {
+   "id": "DUMP-0492",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following BEST represents the concept of least privilege?",
+   "options": [
+    "Access to an object is denied unless access is specifically allowed.",
+    "Access to an object is only available to the owner.",
+    "Access to an object is allowed unless it is protected by the information security policy.",
+    "Access to an object is only allowed to authenticated users via an Access Control List (ACL)."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Of these options, default deny with explicit allow comes closest to least privilege, because subjects get only the access specifically granted. The other options describe ownership, default-allow or plain ACL use.",
+   "optionNotes": [
+    "Correct: deny unless specifically allowed means only needed access is granted.",
+    "Owner-only access is overly restrictive and not the principle.",
+    "Default-allow is the opposite of least privilege.",
+    "Authentication via an ACL does not limit access to what is needed."
+   ]
+  },
+  {
+   "id": "DUMP-0497",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "The BEST method to mitigate the risk of a dictionary attack on a system is to",
+   "options": [
+    "use a hardware token.",
+    "use complex passphrases.",
+    "implement password history.",
+    "encrypt the access control list (ACL)."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Dictionary attacks guess common words. Long, complex passphrases are not in dictionaries, which makes such guessing ineffective. Tokens add a factor but do not fix weak passwords.",
+   "optionNotes": [
+    "A token adds a factor but does not reduce password guessability.",
+    "Correct: complex passphrases defeat dictionary word lists.",
+    "Password history prevents reuse, not guessing.",
+    "Encrypting the ACL has nothing to do with password guessing."
+   ]
+  },
+  {
+   "id": "DUMP-0508",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the BEST metric to obtain when gaining support for an Identity and Access Management (IAM) solution?",
+   "options": [
+    "Application connection successes resulting in data leakage",
+    "Administrative costs for restoring systems after connection failure",
+    "Employee system timeouts from implementing wrong limits",
+    "Help desk costs required to support password reset requests"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Password reset help-desk costs are a measurable, recurring expense that IAM features like self-service and SSO directly reduce, making a strong business case.",
+   "optionNotes": [
+    "Data leakage from connections is not an IAM metric.",
+    "Restoration costs relate to availability, not IAM.",
+    "Timeouts from wrong limits are a configuration issue.",
+    "Correct: reset costs show clear ROI for IAM."
+   ]
+  },
+  {
+   "id": "DUMP-0521",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "The organization would like to deploy an authorization mechanism for an Information Technology (IT) infrastructure project with high employee turnover. Which access control mechanism would be preferred?",
+   "options": [
+    "Attribute Based Access Control (ABAC)",
+    "Discretionary Access Control (DAC)",
+    "Mandatory Access Control (MAC)",
+    "Role-Based Access Control (RBAC)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "RBAC ties permissions to roles, so with high turnover admins only assign or remove users from roles rather than maintaining per-user rights.",
+   "optionNotes": [
+    "ABAC is powerful but more complex to manage.",
+    "DAC relies on owners and is hard to manage at scale.",
+    "MAC requires labels and clearances.",
+    "Correct: RBAC simplifies joiners/leavers."
+   ]
+  },
+  {
+   "id": "DUMP-0527",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a benefit in implementing an enterprise Identity and Access Management (IAM) solution?",
+   "options": [
+    "Password requirements are simplified.",
+    "Risk associated with orphan accounts is reduced.",
+    "Segregation of duties is automatically enforced.",
+    "Data confidentiality is increased."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Centralized IAM ties accounts to lifecycle events, so leavers' accounts are removed and orphaned accounts decrease.",
+   "optionNotes": [
+    "Complexity is not simplified by IAM.",
+    "Correct: orphan account risk drops.",
+    "SoD must still be designed.",
+    "Confidentiality gain is indirect."
+   ]
+  },
+  {
+   "id": "DUMP-0528",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which security access policy contains fixed security attributes that are used by the system to determine a user's access to a file or object?",
+   "options": [
+    "Mandatory Access Control (MAC)",
+    "Access Control List (ACL)",
+    "Discretionary Access Control (DAC)",
+    "Authorized user control"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "MAC uses fixed labels set by the system/administrator that users cannot change to make access decisions.",
+   "optionNotes": [
+    "Correct: MAC uses fixed attributes.",
+    "ACLs are a mechanism, typically DAC.",
+    "DAC allows owner changes.",
+    "Not a standard model."
+   ]
+  },
+  {
+   "id": "DUMP-0533",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following access management procedures would minimize the possibility of an organization's employees retaining access to secure work areas after they change roles?",
+   "options": [
+    "User access modification",
+    "User access recertification",
+    "User access termination",
+    "User access provisioning"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Modifying access when someone changes role removes old rights so they don't retain previous work-area access.",
+   "optionNotes": [
+    "Correct: role change triggers modification.",
+    "Recertification is periodic, slower to catch it.",
+    "Termination applies to leavers.",
+    "Provisioning grants new rights."
+   ]
+  },
+  {
+   "id": "DUMP-0539",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When network management is outsourced to third parties, which of the following is the MOST effective method of protecting critical data assets?",
+   "options": [
+    "Log all activities associated with sensitive systems",
+    "Provide links to security policies",
+    "Confirm that confidentiality agreements are signed",
+    "Employ strong access controls"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Strong access controls technically limit what outsourced staff can reach, directly protecting the data.",
+   "optionNotes": [
+    "Logging is detective.",
+    "Policy links are weak.",
+    "NDAs are deterrent only.",
+    "Correct: strong access controls."
+   ]
+  },
+  {
+   "id": "DUMP-0550",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "The core component of Role Based Access Control (RBAC) must be constructed of defined data elements. Which elements are required?",
+   "options": [
+    "Users, permissions, operations, and protected objects",
+    "Roles, accounts, permissions, and protected objects",
+    "Users, roles, operations, and protected objects",
+    "Roles, operations, accounts, and protected objects"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Core RBAC is built from users, roles, operations and protected objects, with permissions formed by pairing operations with objects.",
+   "optionNotes": [
+    "Omits roles, the central RBAC element",
+    "Accounts are not a core RBAC element; omits operations",
+    "Correct: NIST core RBAC uses users, roles, operations and objects",
+    "Omits users and uses accounts instead"
+   ]
+  },
+  {
+   "id": "DUMP-0556",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is a common feature of an Identity as a Service (IDaaS) solution?",
+   "options": [
+    "Single Sign-On (SSO) authentication support",
+    "Privileged user authentication support",
+    "Password reset service support",
+    "Terminal Access Controller Access Control System (TACACS) authentication support"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "SSO to cloud and on-premises applications is the defining common feature of IDaaS offerings.",
+   "optionNotes": [
+    "Correct: federated SSO is the defining IDaaS feature",
+    "Privileged access management is a separate, specialised product",
+    "Self-service reset is common but secondary to SSO",
+    "TACACS is an on-premises network-device AAA protocol"
+   ]
+  },
+  {
+   "id": "DUMP-0564",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the GREATEST benefit of implementing a Role Based Access Control (RBAC) system?",
+   "options": [
+    "Integration using Lightweight Directory Access Protocol (LDAP)",
+    "Form-based user registration process",
+    "Integration with the organizations Human Resources (HR) system",
+    "A considerably simpler provisioning process"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "RBAC simplifies provisioning: users get permissions by being assigned to roles rather than one by one.",
+   "optionNotes": [
+    "LDAP integration is possible without RBAC",
+    "Form-based registration is unrelated to RBAC",
+    "HR integration is a feature, not RBAC's core benefit",
+    "Correct: assigning roles greatly simplifies provisioning"
+   ]
+  },
+  {
+   "id": "DUMP-0567",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Mandatory Access Controls (MAC) are based on:",
+   "options": [
+    "security classification and security clearance",
+    "data segmentation and data classification",
+    "data labels and user access permissions",
+    "user roles and data encryption"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "MAC compares subject clearances with object classification labels.",
+   "optionNotes": [
+    "Correct: MAC compares object classification labels with subject clearances",
+    "Segmentation is a network concept",
+    "User permissions belong to the discretionary model",
+    "Roles belong to RBAC; encryption is unrelated"
+   ]
+  },
+  {
+   "id": "DUMP-0569",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Due to system constraints, a group of system administrators must share a high-level access set of credentials. Which of the following would be MOST appropriate to implement?",
+   "options": [
+    "Increased console lockout times for failed logon attempts",
+    "Reduce the group in size",
+    "A credential check-out process for a per-use basis",
+    "Full logging on affected systems"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Checking out a shared credential for each use, with accountability tied to the person, restores individual accountability for shared accounts.",
+   "optionNotes": [
+    "Lockout tuning doesn't fix lost accountability",
+    "Fewer sharers still means shared accountability",
+    "Correct: per-use check-out ties every use to one individual",
+    "Logs show the account, not which person used it"
+   ]
+  },
+  {
+   "id": "DUMP-0579",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the BEST Identity-as-a-Service (IDaaS) solution for validating users?",
+   "options": [
+    "Single Sign-On (SSO)",
+    "Security Assertion Markup Language (SAML)",
+    "Lightweight Directory Access Protocol (LDAP)",
+    "Open Authentication (OAuth)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SAML carries authentication assertions between the identity provider and the service, validating users in federated IDaaS.",
+   "optionNotes": [
+    "SSO is an outcome, not a validation standard",
+    "Correct: SAML assertions validate user identity across domains",
+    "LDAP is a directory protocol, not a cloud federation standard",
+    "OAuth is authorization, not authentication"
+   ]
+  },
+  {
+   "id": "DUMP-0605",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What capability would typically be included in a commercially available software package designed for access control?",
+   "options": [
+    "Password encryption",
+    "File encryption",
+    "Source library control",
+    "File authentication"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Access control packages store and protect credentials, so protecting (encrypting/hashing) passwords is a typical built-in capability.",
+   "optionNotes": [
+    "Correct: credential protection",
+    "Data protection product function",
+    "Software configuration management",
+    "Not a standard term/feature"
+   ]
+  },
+  {
+   "id": "DUMP-0612",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which Identity and Access Management (IAM) process can be used to maintain the principle of least privilege?",
+   "options": [
+    "identity provisioning",
+    "access recovery",
+    "multi-factor authentication (MFA)",
+    "user access review"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Periodic access reviews detect privilege creep and remove excess rights, maintaining least privilege.",
+   "optionNotes": [
+    "Provisioning grants initial access; it does not trim rights over time",
+    "Access recovery restores lost credentials; unrelated to privilege scope",
+    "MFA strengthens authentication but does not limit privileges",
+    "Correct: periodic reviews remove accumulated excess rights"
+   ]
+  },
+  {
+   "id": "DUMP-0623",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is BEST achieved through the use of eXtensible Access Markup Language (XACML)?",
+   "options": [
+    "Minimize malicious attacks from third parties",
+    "Manage resource privileges",
+    "Share digital identities in hybrid cloud",
+    "Defined a standard protocol"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "XACML expresses fine-grained authorization policies controlling resource privileges.",
+   "optionNotes": [
+    "XACML does not reduce attacks; it expresses authorization policy",
+    "Correct: XACML defines fine-grained policies for resource access",
+    "Sharing identities across domains is SAML/federation",
+    "XACML is a policy language, and 'a standard protocol' is too vague"
+   ]
+  },
+  {
+   "id": "DUMP-0626",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "An organization's security policy delegates to the data owner the ability to assign which user roles have access to a particular resource. What type of authorization mechanism is being used?",
+   "options": [
+    "Discretionary Access Control (DAC)",
+    "Role Based Access Control (RBAC)",
+    "Media Access Control (MAC)",
+    "Mandatory Access Control (MAC)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The owner deciding at their discretion who gets access is discretionary access control.",
+   "optionNotes": [
+    "Correct",
+    "Roles are used but assignment at owner discretion defines DAC",
+    "Network layer term",
+    "System-enforced labels"
+   ]
+  },
+  {
+   "id": "DUMP-0641",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following is the MOST effective practice in managing user accounts when an employee is terminated?",
+   "options": [
+    "Implement processes for automated removal of access for terminated employees.",
+    "Delete employee network and system IDs upon termination.",
+    "Manually remove terminated employee user-access to all systems and applications.",
+    "Disable terminated employee network ID to remove all access."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Automated deprovisioning ensures timely, complete removal.",
+   "optionNotes": [
+    "Correct: automated deprovisioning is timely and complete across systems",
+    "Immediate deletion destroys audit trail and owned data",
+    "Manual removal risks missing systems",
+    "Disabling only network ID misses local/cloud accounts"
+   ]
+  },
+  {
+   "id": "DUMP-0646",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "A company needs to provide employee access to travel services, which are hosted by a third-party service provider, Employee experience is important, and when users are already authenticated, access to the travel portal is seamless. Which of the following methods is used to share information and grant user access to the travel portal?",
+   "options": [
+    "Security Assertion Markup Language (SAML) access",
+    "Single sign-on (SSO) access",
+    "Open Authorization (OAuth) access",
+    "Federated access"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "SAML assertions let an IdP pass authentication to a third-party SP, giving seamless federated access. SSO is the resulting experience and federation the trust relationship, but SAML is the actual exchange format.",
+   "optionNotes": [
+    "SAML carries authentication assertions from IdP to the third-party SP, enabling seamless access.",
+    "SSO is the user experience outcome, not the information-sharing mechanism.",
+    "OAuth is for delegated authorization, not passing authentication to a portal.",
+    "Federation is the trust concept; SAML is the method that shares the identity data."
+   ]
+  },
+  {
+   "id": "DUMP-0648",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A security professional has been assigned to assess a web application. The assessment report recommends switching to Security Assertion Markup Language (SAML). What is the PRIMARY security benefit in switching to SAML?",
+   "options": [
+    "It uses Transport Layer Security (TLS) to address confidentiality.",
+    "It enables single sign-on (SSO) for web applications.",
+    "The users' password is not passed during authentication.",
+    "It limits unnecessary data entry on web forms."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "With SAML the SP receives a signed assertion; the user's password is never sent to the application. Keeping credentials away from the service provider removes password exposure at the application.",
+   "optionNotes": [
+    "TLS is a transport feature, not a SAML benefit.",
+    "SSO is a usability benefit, not the primary security one.",
+    "The app receives a signed assertion, never the user's password.",
+    "Reduced data entry is convenience, not security."
+   ]
+  },
+  {
+   "id": "DUMP-0668",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "A project requires the use of an authentication mechanism where playback must be protected and plaintext secret must be used. Which of the following should be used?",
+   "options": [
+    "Password Authentication Protocol (PAP)",
+    "Extensible Authentication Protocol (EAP)",
+    "Secure Hash Algorithm (SHA)",
+    "Challenge Handshake Authentication Protocol (CHAP)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "CHAP uses challenge-response with a shared plaintext secret, protecting against replay. The changing challenge means captured responses can't be replayed.",
+   "optionNotes": [
+    "PAP sends cleartext passwords and allows replay.",
+    "EAP is a framework, not itself a mechanism.",
+    "SHA is a hash, not an authentication protocol.",
+    "CHAP challenge-response uses a plaintext shared secret and resists replay."
+   ]
+  },
+  {
+   "id": "DUMP-0671",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following is the MOST secure password technique?",
+   "options": [
+    "Passphrase",
+    "One-time password",
+    "Cognitive password",
+    "Dphertext"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "OTPs are valid only once, defeating replay and reuse. Even if intercepted, an OTP is useless afterward.",
+   "optionNotes": [
+    "Passphrases are reusable and can be stolen.",
+    "OTPs are valid once, defeating replay.",
+    "Cognitive passwords are guessable from public facts.",
+    "Ciphertext is not a password technique."
+   ]
+  },
+  {
+   "id": "DUMP-0673",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "A large organization's human resources and security teams are planning on implementing technology to eliminate manual user access reviews and improve compliance. Which of the following options is MOST likely to resolve the issues associated with user access?",
+   "options": [
+    "Implement a role-based access control (RBAC) system.",
+    "Implement identity and access management (IAM) platform.",
+    "Implement a Privileged Access Management (PAM) system.",
+    "Implement a single sign-on (SSO) platform."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "An IAM platform automates provisioning, reviews and certification. Automated certification campaigns replace manual reviews and give compliance evidence.",
+   "optionNotes": [
+    "RBAC is a model; it doesn't automate reviews itself.",
+    "An IAM platform automates provisioning and access certification.",
+    "PAM covers only privileged accounts.",
+    "SSO improves login, not access reviews."
+   ]
+  },
+  {
+   "id": "DUMP-0684",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "When should an application invoke re-authentication in addition to initial user authentication?",
+   "options": [
+    "At the application sign-off",
+    "Periodically during a session",
+    "After a period of inactivity",
+    "For each business process"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Re-authentication after inactivity limits session hijacking of idle sessions. It counters someone using an unattended logged-in session.",
+   "optionNotes": [
+    "Sign-off ends the session.",
+    "Periodic re-auth hurts usability without a trigger.",
+    "Inactivity re-auth protects unattended sessions.",
+    "Per-process re-auth is excessive."
+   ]
+  },
+  {
+   "id": "DUMP-0688",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following BEST describes centralized identity management?",
+   "options": [
+    "Service providers rely on a trusted third party (TTP) to provide requestors with both credentials and identifiers.",
+    "Service providers agree to integrate identity system recognition across organizational boundaries.",
+    "Service providers identify an entity by behavior analysis versus an identification factor.",
+    "Service providers perform as both the credential and identity provider (IdP)."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said D] Identity management models include isolated, centralized and federated. In the centralized model, one trusted entity issues both the credentials and the identifiers, and every service provider relies on it. When each service provider issues its own credentials and identifiers, that is the isolated model. When providers agree to recognize each other's identities across organizations, that is federation.",
+   "optionNotes": [
+    "Correct: one trusted third party supplies credentials and identifiers that all service providers rely on, which is centralized IdM.",
+    "Wrong: integrating identity recognition across organizational boundaries describes federated identity.",
+    "Wrong: behavior analysis is a behavioral biometric or analytics technique, not an IdM model.",
+    "Wrong: each service provider acting as its own credential and identity provider is the isolated model."
+   ]
+  },
+  {
+   "id": "DUMP-0702",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "In a large company, a system administrator needs to assign users access to files using Role Based Access Control (RBAC). Which option is an example of RBAC?",
+   "options": [
+    "Allowing users access to files based on their group membership",
+    "Allowing users access to files based on username",
+    "Allowing users access to files based on the users location at time of access",
+    "Allowing users access to files based on the file type"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "RBAC grants permissions to roles or groups that reflect job functions, and users inherit access through membership. Granting access based on group membership is the example that matches.",
+   "optionNotes": [
+    "Right: access through group/role membership is RBAC.",
+    "Per-username permissions are discretionary/identity-based, not role-based.",
+    "Location-based conditions are attribute- or rule-based controls.",
+    "File-type based access is an attribute of the object, not a role."
+   ]
+  },
+  {
+   "id": "DUMP-0711",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "After a breach incident, investigators narrowed the attack to a specific network administrator's credentials. However, there was no evidence to determine how the hackers obtained the credentials. Which of the following actions could have BEST avoided the above breach per the investigation described above?",
+   "options": [
+    "A periodic review of network access logs",
+    "A periodic review of active users on the network",
+    "A periodic review of all privileged accounts actions",
+    "A periodic review of password strength of all users across the organization"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The administrator's privileged credentials were misused, so regularly reviewing what privileged accounts actually do would have spotted the abnormal activity early. Privileged account monitoring is the key control for admin credential abuse.",
+   "optionNotes": [
+    "General access-log review is broader and less focused on admin misuse.",
+    "Listing active users won't show misuse of valid admin credentials.",
+    "Right: reviewing privileged account actions detects misuse of admin credentials.",
+    "Password strength doesn't address how the credentials were obtained or misused."
+   ]
+  },
+  {
+   "id": "DUMP-0713",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following presents the PRIMARY concern to an organization when setting up a federated single sign-on (SSO) solution with another organization?",
+   "options": [
+    "Sending assertions to an identity provider",
+    "Requesting Identity assertions from the partners domain",
+    "defining the identity mapping scheme",
+    "Having the resource provider query the Identity provider"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In federation, each party's identities and attributes must be mapped to the other side's accounts and privileges. Defining that mapping scheme is the main design concern; sending and requesting assertions is just how the protocol works.",
+   "optionNotes": [
+    "Assertions are sent from the IdP, not to it; this is protocol mechanics.",
+    "Requesting assertions is a normal SSO flow step.",
+    "Right: identity mapping between domains is the main federation concern.",
+    "The relying party querying the IdP is normal protocol behaviour."
+   ]
+  },
+  {
+   "id": "DUMP-0721",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "A user is allowed to access the file labeled \"Financial Forecast,\" but only between 9:00 a.m. and 5:00 p.m., Monday through Friday. Which type of access mechanism should be used to accomplish this?",
+   "options": [
+    "Minimum access control",
+    "Rule-based access control",
+    "Limited role-based access control (RBAC)",
+    "Access control list (ACL)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Time-of-day restrictions are global rules applied to access attempts, which is rule-based access control. ACLs and RBAC alone don't express time windows natively.",
+   "optionNotes": [
+    "'Minimum access control' isn't a standard model.",
+    "Right: time-based restrictions are rule-based access control.",
+    "Roles don't inherently restrict by time.",
+    "ACLs list subjects and permissions, not time conditions."
+   ]
+  },
+  {
+   "id": "DUMP-0730",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A client server infrastructure that provides user-to-server authentication describes which one of the following?",
+   "options": [
+    "Secure Sockets Layer (SSL)",
+    "Kerberos",
+    "X.509",
+    "User-based authorization"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Kerberos is a client-server authentication protocol in which a trusted KDC issues tickets that authenticate users to servers. SSL/TLS typically authenticates the server to the client.",
+   "optionNotes": [
+    "SSL/TLS mainly authenticates servers to clients.",
+    "Right: Kerberos provides user-to-server authentication.",
+    "X.509 is a certificate format, not an authentication infrastructure.",
+    "Authorization is not authentication."
+   ]
+  },
+  {
+   "id": "DUMP-0737",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "What is the MOST significant benefit of role-based access control (RBAC)?",
+   "options": [
+    "Reduction in authorization administration overhead",
+    "Reduces inappropriate access",
+    "Management of least privilege",
+    "Most granular form of access control"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "RBAC assigns permissions to roles rather than to individuals, which greatly reduces the effort of granting and revoking access as people join, move or leave. Lower administrative overhead is its main benefit.",
+   "optionNotes": [
+    "Right: role-level administration reduces overhead.",
+    "Reduced inappropriate access is a by-product, not the main benefit.",
+    "RBAC can support least privilege, but so can other models.",
+    "ABAC is more granular than RBAC."
+   ]
+  },
+  {
+   "id": "DUMP-0748",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following authorization standards is built to handle Application Programming Interface (API) access for Federated Identity Management (FIM)?",
+   "options": [
+    "Security Assertion Markup Language (SAML)",
+    "Open Authentication (OAUTH)",
+    "Remote Authentication Dial-in User service (RADIUS)",
+    "Terminal Access Control Access Control System Plus (TACACS+)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "OAuth is an authorization framework designed to delegate API access across federated parties. SAML is aimed at browser SSO assertions, while RADIUS and TACACS+ are network/device AAA protocols.",
+   "optionNotes": [
+    "Mainly authentication/SSO assertions for browsers",
+    "Correct: delegated API authorization",
+    "Network access AAA protocol",
+    "Device administration AAA"
+   ]
+  },
+  {
+   "id": "DUMP-0761",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "After the INITIAL input of a user identification (ID) and password, what is an authentication system that prompts the user for a different response each time the user logs on?",
+   "options": [
+    "Persons Identification Number (PIN)",
+    "Secondary password",
+    "Challenge response",
+    "Voice authentication"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Challenge-response systems present a different challenge each logon, requiring a different response. PINs and secondary passwords stay the same between logons, and voice is a biometric trait rather than a changing response.",
+   "optionNotes": [
+    "Static secret that is reused",
+    "Static secret that is reused",
+    "Correct: a new challenge needs a new answer",
+    "Biometric trait that does not change per session"
+   ]
+  },
+  {
+   "id": "DUMP-0771",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When using Security Assertion markup language (SAML), it is assumed that the principal subject",
+   "options": [
+    "accepts persistent cookies from the system.",
+    "allows Secure Sockets Layer (SSL) for data exchanges.",
+    "is on a system that supports remote authorization.",
+    "enrolls with at least one identity provider."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SAML assumes the principal has enrolled with at least one identity provider that asserts its identity. Trust in SAML flows from the IdP to the service provider, so the subject must have an account at an IdP.",
+   "optionNotes": [
+    "Not assumed",
+    "Transport detail",
+    "Not assumed",
+    "Correct"
+   ]
+  },
+  {
+   "id": "DUMP-0773",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the FIRST step during digital identity provisioning?",
+   "options": [
+    "Authorizing the entity for resource access",
+    "Synchronizing directories",
+    "Issuing an initial random password",
+    "Creating the entity record with the correct attributes"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Provisioning starts by creating the identity record with correct attributes; authorization and credentials follow. An entity must exist with accurate attributes before it can receive credentials, synchronization or authorizations.",
+   "optionNotes": [
+    "Authorization needs an existing identity first",
+    "Synchronization happens after the record exists",
+    "Credentials are issued to an existing record",
+    "Correct: the identity record comes first"
+   ]
+  },
+  {
+   "id": "DUMP-0775",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a process in the access provisioning lifecycle that will MOST likely identify access aggregation issues?",
+   "options": [
+    "Test",
+    "Assessment",
+    "Review",
+    "Peer review"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Periodic access reviews detect privilege accumulation/aggregation. Reviews compare accumulated rights against the current job role, which reveals privilege creep and toxic combinations.",
+   "optionNotes": [
+    "Testing is not a provisioning lifecycle step",
+    "Too general",
+    "Correct: periodic access review finds privilege creep",
+    "Code review practice"
+   ]
+  },
+  {
+   "id": "DUMP-0784",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the MOST significant benefit to implementing a third-party federated identity architecture?",
+   "options": [
+    "Attribute assertions as agencies can request a larger set of attributes to fulfill service delivery",
+    "Data decrease related to storing personal information",
+    "Reduction in operational costs to the agency",
+    "Enable business objectives so departments can focus on mission rather than the business of identity management"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Third-party federation lets the organization focus on its mission rather than running identity management. Cost and data reduction are side benefits, but the strategic benefit is enabling the business.",
+   "optionNotes": [
+    "Over-collecting attributes is a privacy risk, not a benefit",
+    "Side benefit",
+    "Side benefit",
+    "Correct: focus on mission"
+   ]
+  },
+  {
+   "id": "DUMP-0788",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In order to support the least privilege security principle when a resource is transferring within the organization from a production support system administration role to a developer role, what changes should be made to the resource's access to the production operating system (OS) directory structure?",
+   "options": [
+    "From Read Only privileges to No Access Privileges",
+    "From Author privileges to Administrator privileges",
+    "From Administrator privileges to No Access privileges",
+    "From No Access Privileges to Author privileges"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A developer should have no access to production; prior admin rights must be removed. Developers should not keep production access, because it violates least privilege and separation of duties.",
+   "optionNotes": [
+    "Admins did not have read-only access",
+    "Increases privilege",
+    "Correct: remove all production access",
+    "Grants unnecessary access"
+   ]
+  },
+  {
+   "id": "DUMP-0802",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "An organization has implemented a protection strategy to secure the network from unauthorized external access. The new Chief Information Security Officer (CISO) wants to increase security by better protecting the network from unauthorized internal access. Which Network Access Control (NAC) capability BEST meets this objective?",
+   "options": [
+    "Application firewall",
+    "Port security",
+    "Strong passwords",
+    "Two-factor authentication (2FA)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Network Access Control decides which devices may connect to internal network ports. Port security (for example 802.1X, or MAC limits on switch ports) blocks rogue internal devices at the point of connection, which matches the CISO's goal of stopping unauthorized internal access.",
+   "optionNotes": [
+    "An application firewall filters application-layer traffic; it does not gate device access to the LAN",
+    "Right: a port-level NAC control against internal rogue connections",
+    "Password strength is an authentication policy, not a NAC capability",
+    "2FA strengthens user login but does not stop an unauthorized device from plugging in"
+   ]
+  },
+  {
+   "id": "DUMP-0829",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An organization has implemented a password complexity and an account lockout policy enforcing five incorrect logins tries within ten minutes. Network users have reported significantly increased account lockouts. Which of the following security principles is this company affecting?",
+   "options": [
+    "Availability",
+    "Integrity",
+    "Confidentiality",
+    "Authentication"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Aggressive lockout thresholds lock out legitimate users who mistype complex passwords. The resulting denial of access to resources is an availability impact.",
+   "optionNotes": [
+    "Right: users are denied access, which is an availability impact",
+    "Data integrity is not affected by lockouts",
+    "Lockouts protect confidentiality rather than harm it",
+    "Authentication is a security service, not one of the CIA principles"
+   ]
+  },
+  {
+   "id": "DUMP-0831",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.4,
+   "stem": "Which access control method is based on users issuing access requests on system resources, features assigned to those resources, the operational or situational context, and a set of policies specified in terms of those features and context?",
+   "options": [
+    "Mandatory Access Control (MAC)",
+    "Role Based Access Control (RBAC)",
+    "Discretionary Access Control (DAC)",
+    "Attribute Based Access Control (ABAC)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "NIST SP 800-162 defines ABAC as granting access based on attributes of the subject, the object and the environment or context, evaluated against policy. The stem paraphrases that definition.",
+   "optionNotes": [
+    "MAC compares security labels and clearances",
+    "RBAC grants access by job role",
+    "DAC lets the owner grant access at their discretion",
+    "Right: attributes plus context evaluated against policy is ABAC"
+   ]
+  },
+  {
+   "id": "DUMP-0839",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is an open standard for exchanging authentication and authorization data between parties?",
+   "options": [
+    "Wired markup language",
+    "Hypertext Markup Language (HTML)",
+    "Extensible Markup Language (XML)",
+    "Security Assertion Markup Language (SAML)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SAML is the OASIS XML-based open standard for exchanging authentication and authorization assertions between an identity provider and a service provider. It underpins much web single sign-on.",
+   "optionNotes": [
+    "'Wired markup language' is a distractor (WML is the Wireless Markup Language)",
+    "HTML structures web pages and carries no assertions",
+    "XML is the generic syntax SAML is built on, not the exchange standard itself",
+    "Right: SAML exchanges authentication and authorization data"
+   ]
+  },
+  {
+   "id": "DUMP-0840",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.6,
+   "stem": "Which of the following factors should be considered characteristics of Attribute Based Access Control (ABAC) in terms of the attributes used?",
+   "options": [
+    "Mandatory Access Control (MAC) and Discretionary Access Control (DAC)",
+    "Discretionary Access Control (DAC) and Access Control List (ACL)",
+    "Role Based Access Control (RBAC) and Mandatory Access Control (MAC)",
+    "Role Based Access Control (RBAC) and Access Control List (ACL)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "ABAC policies can use role information (like RBAC) as one subject attribute and express resource permissions in an ACL-like way. RBAC and ACL concepts are therefore the characteristics that ABAC attributes can include.",
+   "optionNotes": [
+    "MAC labels and DAC owner discretion are not presented as ABAC's attribute characteristics",
+    "DAC is ownership-based, not attribute-based",
+    "MAC is label- and clearance-based",
+    "Right: role attributes and ACL-style resource rules"
+   ]
+  },
+  {
+   "id": "DUMP-0853",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An organization wants a service provider to authenticate users via the users' organization domain credentials. Which markup language should the organization's security personnel use to support the integration?",
+   "options": [
+    "Security Assertion Markup Language (SAML)",
+    "YAML Ain't Markup Language (YAML)",
+    "Hypertext Markup Language (HTML)",
+    "Extensible Markup Language (XML)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "SAML carries federated authentication assertions from IdP to service provider. The organization acts as the identity provider and the vendor as the service provider.",
+   "optionNotes": [
+    "SAML exchanges authentication assertions between an IdP and an SP.",
+    "A data serialization format, not a federation standard.",
+    "A web page markup language.",
+    "Generic markup; SAML is built on it, but XML alone does not federate."
+   ]
+  },
+  {
+   "id": "DUMP-0862",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "The security team plans on using automated account reconciliation in the corporate user access review process. Which of the following must be implemented for the BEST results with fewest errors when running the audit?",
+   "options": [
+    "Removal of service accounts from review",
+    "Segregation of Duties (SoD)",
+    "Clear provisioning policies",
+    "Frequent audits"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Automated reconciliation compares accounts against clear provisioning rules; without them, errors abound. Without clear rules, the tool flags false mismatches.",
+   "optionNotes": [
+    "Service accounts still need review.",
+    "SoD is a separate control objective.",
+    "Clear provisioning rules give reconciliation a baseline to compare against.",
+    "Audit frequency does not reduce reconciliation errors."
+   ]
+  },
+  {
+   "id": "DUMP-0878",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "When developing the entitlement review process, which of the following roles is responsible for determining who has a need for the information?",
+   "options": [
+    "Data Custodian",
+    "Data Owner",
+    "Database Administrator",
+    "Information Technology (IT) Director"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The data owner decides who needs access. Owners approve entitlements in reviews.",
+   "optionNotes": [
+    "Custodians implement controls; they do not decide need.",
+    "The owner determines who needs access.",
+    "A DBA is a custodian role.",
+    "Not the accountable role for data access."
+   ]
+  },
+  {
+   "id": "DUMP-0895",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which open standard could a large corporation deploy for authorization services for single sign-on (SSO) use across multiple internal and external application?",
+   "options": [
+    "Terminal Access Controller Access Control System (TACACS)",
+    "Security Assertion Markup Language (SAML)",
+    "Lightweight Directory Access Protocol (LDAP)",
+    "Active Directory Federation Services (ADFS)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "SAML is an open standard for cross-domain SSO assertions. It works across internal and external apps.",
+   "optionNotes": [
+    "An AAA protocol for device administration.",
+    "SAML is the open federated SSO standard.",
+    "A directory protocol, not cross-domain SSO.",
+    "A Microsoft product, not an open standard."
+   ]
+  },
+  {
+   "id": "DUMP-0916",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following terms BEST describes a system which allows a user to log in and access multiple related servers and applications?",
+   "options": [
+    "Remote Desktop Protocol (RDP)",
+    "Federated identity management (FIM)",
+    "Single sign-on (SSO)",
+    "Multi-factor authentication (MFA)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Single sign-on allows one authentication to access multiple related systems within an organization.",
+   "optionNotes": [
+    "RDP is remote access",
+    "FIM spans organizations; SSO best fits related internal servers",
+    "Right: Single sign-on allows one authentication to access multiple related systems within an organization.",
+    "MFA concerns factors"
+   ]
+  },
+  {
+   "id": "DUMP-0925",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A company is attempting to enhance the security of its user authentication processes. After evaluating several options, the company has decided to utilize Identity as a Service (IDaaS). Which of the following factors leads the company to choose an IDaaS as their solution?",
+   "options": [
+    "In-house development provides more control.",
+    "In-house team lacks resources to support an on-premise solution.",
+    "Third-party solutions are inherently more secure.",
+    "Third-party solutions are known for transferring the risk to the vendor."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "IDaaS is typically selected when internal staff lack the resources to build and operate an on-premises identity solution.",
+   "optionNotes": [
+    "In-house is the opposite of IDaaS",
+    "Right: IDaaS is typically selected when internal staff lack the resources to build and operate an on-premises identity solution.",
+    "Third parties are not inherently more secure",
+    "Risk ownership is not transferred"
+   ]
+  },
+  {
+   "id": "DUMP-0935",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In Identity Management (IdM), when is the verification stage performed?",
+   "options": [
+    "As part of system sign-on",
+    "Before creation of the identity",
+    "After revocation of the identity",
+    "During authorization of the identity"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Identity proofing/verification occurs before the identity is created and provisioned.",
+   "optionNotes": [
+    "Sign-on is authentication",
+    "Right: Identity proofing/verification occurs before the identity is created and provisioned.",
+    "Revocation ends lifecycle",
+    "Authorization follows"
+   ]
+  },
+  {
+   "id": "DUMP-0952",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "A company developed a web application which is sold as a Software as a Service (SaaS) solution to the customer. The application is hosted by a web server running on a specific operating system (OS) on a virtual machine (VM). During the transition phase of the service, it is determined that the support team will need access to the application logs. Which of the following privileges would be the MOST suitable?",
+   "options": [
+    "Administrative privileges on the OS",
+    "Administrative privileges on the web server",
+    "Administrative privileges on the hypervisor",
+    "Administrative privileges on the application folders"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said B] Least privilege says the support team should get only what is needed to read logs, i.e., access to the application folders where logs are kept. Admin rights on the web server, OS or hypervisor grant far more control than the task requires.",
+   "optionNotes": [
+    "OS admin is far broader than log access.",
+    "Web server admin allows reconfiguring the service; excessive.",
+    "Hypervisor admin would expose all VMs; grossly excessive.",
+    "Correct: scoped access to application/log folders meets the need with least privilege."
+   ]
+  },
+  {
+   "id": "DUMP-0954",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which type of access control includes a system that allows only users that are type=managers and department=sales to access employee records?",
+   "options": [
+    "Discretionary access control (DAC)",
+    "Mandatory access control (MAC)",
+    "Role-based access control (RBAC)",
+    "Attribute-based access control (ABAC)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said C] Decisions based on combinations of user attributes such as type=manager and department=sales are attribute-based access control. RBAC would grant by a single assigned role, not by evaluating multiple attributes.",
+   "optionNotes": [
+    "DAC is owner-discretion, not attribute rules.",
+    "MAC uses classification labels and clearances.",
+    "RBAC grants by role membership, not attribute policy expressions.",
+    "Correct: policy evaluates multiple subject attributes."
+   ]
+  },
+  {
+   "id": "DUMP-0981",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following is a characteristic of a challenge/response authentication process?",
+   "options": [
+    "Presenting distorted graphics of text for authentication",
+    "Transmitting a hash based on the user's password",
+    "Using a password history blacklist",
+    "Requiring the use of non-consecutive numeric characters"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In challenge/response the server sends a nonce and the client returns a value computed from the nonce and password hash, so the password itself is never sent.",
+   "optionNotes": [
+    "CAPTCHA proves humanness, not challenge/response authentication.",
+    "Correct: a hash derived from the password answers the challenge.",
+    "Password history is a policy control.",
+    "Character rules are password complexity policy."
+   ]
+  },
+  {
+   "id": "DUMP-1003",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "If an employee transfers from one role to another, which of the following actions should this trigger within the identity and access management (IAM) lifecycle?",
+   "options": [
+    "New account creation",
+    "User access review and adjustment",
+    "Deprovisioning",
+    "System account access review and adjustment"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A transfer should trigger review of existing access, adding what the new role needs and removing what it no longer needs, to avoid privilege creep.",
+   "optionNotes": [
+    "Wrong: The user keeps their account",
+    "Right: change access to fit the new role and remove old rights",
+    "Wrong: Full deprovisioning is for termination",
+    "Wrong: System accounts are not the user's"
+   ]
+  },
+  {
+   "id": "DUMP-1009",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A developer begins employment with an information technology (IT) organization. On the first day, the developer works through the list of assigned projects and finds that some files within those projects aren't accessible. Other developers working on the same project have no trouble locating and working on them. What is the MOST likely explanation for the discrepancy in access?",
+   "options": [
+    "The IT administrator had failed to grant the developer privileged access to the servers.",
+    "The project files were inadvertently deleted.",
+    "The new developer's computer had not been added to an access control list (ACL).",
+    "The new developer's user account was not associated with the right roles needed for the projects."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Peers on the same project have access, so the new account most likely lacks the project roles.",
+   "optionNotes": [
+    "Wrong: Privileged server access is not needed for project files",
+    "Wrong: Others can see the files, so they exist",
+    "Wrong: Access is granted to users, not computers",
+    "Right: the new account was not given the project roles its peers have"
+   ]
+  },
+  {
+   "id": "DUMP-1051",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following BEST describes how access to a system is granted to federated user accounts?",
+   "options": [
+    "With the federation assurance level",
+    "Based on defined criteria by the Relying Party (RP)",
+    "Based on defined criteria by the Identity Provider (IdP)",
+    "With the identity assurance level"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In federation the IdP asserts identity, but the relying party (service provider) applies its own criteria to decide what access the federated user receives.",
+   "optionNotes": [
+    "FAL measures the strength of the assertion, not the access criteria",
+    "Correct: the RP decides access based on its own criteria",
+    "The IdP authenticates and asserts identity but does not grant the RP's access",
+    "IAL measures identity-proofing strength, not access decisions"
+   ]
+  },
+  {
+   "id": "DUMP-1063",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the BEST defense against password guessing?",
+   "options": [
+    "Limit external connections to the network.",
+    "Disable the account after a limited number of unsuccessful attempts.",
+    "Force the password to be changed after an invalid password has been entered.",
+    "Require a combination of letters, numbers, and special characters in the password."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Locking the account after a few failed attempts directly stops repeated online guessing.",
+   "optionNotes": [
+    "Limiting connections does not stop guessing over allowed paths",
+    "Correct: lockout stops repeated guesses",
+    "Forcing a change after a typo is impractical and does not stop guessing",
+    "Complexity slows guessing but does not stop unlimited attempts"
+   ]
+  },
+  {
+   "id": "DUMP-1070",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A manager identified two conflicting sensitive user functions that were assigned to a single user account that had the potential to result in financial and regulatory risk to the company. The manager MOST likely discovered this during which of the following?",
+   "options": [
+    "Security control assessment.",
+    "Separation of duties analysis",
+    "Network Access Control (NAC) review",
+    "Federated identity management (FIM) evaluation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Two conflicting sensitive functions held by one account is exactly what a separation of duties analysis is designed to find.",
+   "optionNotes": [
+    "A control assessment is broad and not aimed at function conflicts",
+    "Correct: SoD analysis finds conflicting duties held by one user",
+    "NAC controls device admission to the network",
+    "FIM concerns cross-domain identity, not duty conflicts"
+   ]
+  },
+  {
+   "id": "DUMP-1090",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A hacker can use a lockout capability to start which of the following attacks?",
+   "options": [
+    "Denial of service (DoS)",
+    "Dictionary",
+    "Ping flood",
+    "Man-in-the-middle (MITM)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An attacker can deliberately trigger account lockout with bad logins to deny legitimate users access, which is a DoS.",
+   "optionNotes": [
+    "Correct: forced lockouts deny service to legitimate users",
+    "Lockout defends against dictionary attacks; it does not enable them",
+    "Ping flood does not rely on lockout",
+    "MITM does not rely on lockout"
+   ]
+  },
+  {
+   "id": "DUMP-1094",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the final phase of the identity and access provisioning lifecycle?",
+   "options": [
+    "Recertification",
+    "Revocation",
+    "Removal",
+    "Validation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The lifecycle runs from provisioning, through review, to revocation (deprovisioning) as the final phase.",
+   "optionNotes": [
+    "Recertification is part of review, mid-lifecycle",
+    "Correct: revocation ends the lifecycle",
+    "Removal is not the standard term",
+    "Validation happens early in the lifecycle"
+   ]
+  },
+  {
+   "id": "DUMP-1098",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "When dealing with shared, privileged accounts, especially those for emergencies, what is the BEST way to assure non-repudiation of logs?",
+   "options": [
+    "Regularly change the passwords",
+    "Implement a password vaulting solution.",
+    "Lock passwords in tamperproof envelopes in a safe.",
+    "Implement a strict access control policy."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "With a shared emergency account you can only prove who used it if each checkout is tied to a named person. A password vault does this: it records who retrieved the credential and when, and can rotate it after use, which ties log entries to an individual.",
+   "optionNotes": [
+    "Rotating passwords doesn't show who used the account.",
+    "Correct: vault checkout records the individual user, which supports non-repudiation.",
+    "Sealed envelopes show that the password was accessed, but not reliably by whom.",
+    "A policy alone doesn't technically tie actions to a person."
+   ]
+  },
+  {
+   "id": "DUMP-1102",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "An attacker is able to remain indefinitely logged into a web service by exploiting a flaw. Which control area is the attacker exploiting to remain on the web service?",
+   "options": [
+    "Alert management",
+    "Password management",
+    "Session management",
+    "Identity management (IM)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Staying logged in indefinitely means session tokens never expire or are never invalidated, which is a session management weakness. Proper idle and absolute timeouts, plus invalidating the token at logout, prevent it.",
+   "optionNotes": [
+    "Alert management deals with notifications, not session lifetime.",
+    "Password management covers credential strength, not active sessions.",
+    "Correct: missing session timeout or invalidation lets the attacker stay logged in.",
+    "Identity management covers provisioning, not session expiry."
+   ]
+  },
+  {
+   "id": "DUMP-1118",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following methods MOST efficiently manages user accounts when using a third-party cloud-based application and directory solution?",
+   "options": [
+    "Cloud directory",
+    "Directory synchronization",
+    "Assurance framework",
+    "Lightweight Directory Access Protocol (LDAP)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Synchronising the on-premises directory with the cloud provider's directory provisions and deprovisions accounts automatically from one source of truth. This avoids managing the same users twice.",
+   "optionNotes": [
+    "A separate cloud directory adds a second account store to manage.",
+    "Correct: synchronisation automates account management.",
+    "An assurance framework is not an account management method.",
+    "LDAP is a protocol, not a cloud management method by itself."
+   ]
+  },
+  {
+   "id": "DUMP-1121",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "What is the BEST way to restrict access to a file system on computing systems?",
+   "options": [
+    "Allow a user group to restrict access.",
+    "Use a third-party tool to restrict access.",
+    "Use least privilege at each level to restrict access.",
+    "Restrict access to all users."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Applying least privilege at each directory and file level gives users only the access they need. That is the core principle for file system access.",
+   "optionNotes": [
+    "Group-based restriction may still over-grant access.",
+    "A tool is a mechanism, not the principle.",
+    "Correct: least privilege at every level.",
+    "Denying all users access makes the system unusable."
+   ]
+  },
+  {
+   "id": "DUMP-1137",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "What is the BEST way to establish identity over the internet?",
+   "options": [
+    "Challenge Handshake Authentication Protocol (CHAP) and strong passwords",
+    "Internet Mail Access Protocol (IMAP) with Triple Data Encryption Standard (3DES)",
+    "Remote Authentication Dial-In User Service (RADIUS) server with hardware tokens",
+    "Remote user authentication via Simple Object Access Protocol (SOAP)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A RADIUS server combined with hardware tokens gives centralised, multifactor authentication. That is the strongest way among these options to establish remote identity.",
+   "optionNotes": [
+    "CHAP with passwords is single-factor.",
+    "IMAP with 3DES is mail access, not identity proofing.",
+    "Correct: centralised MFA with tokens.",
+    "SOAP is a messaging protocol, not authentication."
+   ]
+  },
+  {
+   "id": "DUMP-1139",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following access control models is MOST restrictive?",
+   "options": [
+    "Discretionary Access Control (DAC)",
+    "Mandatory Access Control (MAC)",
+    "Role Based Access Control (RBAC)",
+    "Rule based access control"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Mandatory access control enforces system labels that users can't change. That makes it the most restrictive model.",
+   "optionNotes": [
+    "DAC lets owners grant access, so it is the least restrictive.",
+    "Correct: MAC is centrally enforced through labels.",
+    "RBAC is more flexible than MAC.",
+    "Rule-based is less strict than MAC."
+   ]
+  },
+  {
+   "id": "DUMP-1144",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following departments initiates the request, approval, and provisioning business process?",
+   "options": [
+    "Operations",
+    "Human resources (HR)",
+    "Information technology (IT)",
+    "Security"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Provisioning starts from an HR event such as a hire or role change. HR initiates the request that IT then fulfils after approval.",
+   "optionNotes": [
+    "Operations fulfils, not initiates.",
+    "Correct: HR triggers the request.",
+    "IT performs the provisioning.",
+    "Security reviews but doesn't initiate."
+   ]
+  },
+  {
+   "id": "DUMP-1146",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Individual access to a network is BEST determined based on",
+   "options": [
+    "risk matrix.",
+    "value of the data.",
+    "business need.",
+    "data classification."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Access is granted on need to know and least privilege, which come from the person's business need. Classification and data value tell you how much protection is needed, not who should get access. A risk matrix ranks risks; it does not authorise individuals.",
+   "optionNotes": [
+    "A risk matrix ranks risks; it does not decide each person's access.",
+    "Value sets the protection level, not who needs access.",
+    "Business need (need to know) is the basis for granting individual access.",
+    "Classification labels sensitivity; it does not justify a given user's access."
+   ]
+  },
+  {
+   "id": "DUMP-1150",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "A recent information security risk assessment identified weak system access controls on mobile devices as a high risk. In order to address this risk and ensure only authorized staff access company information, which of the following should the organization implement?",
+   "options": [
+    "Intrusion prevention system (IPS)",
+    "Multi-factor authentication (MFA)",
+    "Data loss protection (DLP)",
+    "Data at rest encryption"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The finding is weak access control on mobile devices, and the goal is to let only authorised staff in. MFA strengthens authentication directly. IPS, DLP and encryption are useful controls, but they address other risks.",
+   "optionNotes": [
+    "An IPS blocks network attacks; it does not check who the user is.",
+    "Correct: MFA strengthens authentication on the devices.",
+    "DLP controls data leaving the device, not who gets in.",
+    "Encryption protects data at rest but is not an access-control fix."
+   ]
+  },
+  {
+   "id": "DUMP-1158",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the BEST way to protect privileged accounts?",
+   "options": [
+    "Quarterly user access rights audits",
+    "Role-based access control (RBAC)",
+    "Written supervisory approval",
+    "Multi-factor authentication (MFA)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Privileged credentials are prime targets, and MFA stops a stolen password from being enough to log in. Audits find problems after the fact, and RBAC and written approval govern how access is granted, not how the account is protected when used.",
+   "optionNotes": [
+    "A detective control that finds problems only after the fact.",
+    "RBAC assigns privileges; it does not protect the account's credentials.",
+    "Approval is an administrative step at provisioning time.",
+    "Correct: MFA directly protects privileged account logins."
+   ]
+  },
+  {
+   "id": "DUMP-1161",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which of the following is the MOST important action regarding authentication?",
+   "options": [
+    "Granting access rights",
+    "Enrolling in the system",
+    "Establishing audit controls",
+    "Obtaining executive authorization"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Authentication can only work once an identity has been enrolled and given credentials. Enrollment (identity proofing and registration) is the foundational step. Granting rights is authorisation, and audit controls belong to accountability.",
+   "optionNotes": [
+    "Granting rights is authorisation, which comes after authentication.",
+    "Correct: enrollment is the basis for all later authentication.",
+    "Auditing supports accountability, not authentication itself.",
+    "Executive approval is not a step in authentication."
+   ]
+  },
+  {
+   "id": "DUMP-1166",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An organization wants to enable users to authenticate across multiple security domains. To accomplish this they have decided to use Federated Identity Management (FIM). Which of the following is used behind the scenes in a FIM deployment?",
+   "options": [
+    "Standard Generalized Markup Language (SGML)",
+    "Extensible Markup Language (XML)",
+    "Security Assertion Markup Language (SAML)",
+    "Transaction Authority Markup Language (XAML)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Federated identity typically exchanges authentication and attribute assertions between domains using SAML, which is built on XML. XML is only the generic format, SGML is its predecessor, and XAML is a UI markup language.",
+   "optionNotes": [
+    "SGML is a document markup language, not a federation protocol.",
+    "XML is the underlying format, not the federation standard.",
+    "Correct: SAML carries the federated assertions.",
+    "XAML is UI markup and has nothing to do with FIM."
+   ]
+  },
+  {
+   "id": "DUMP-1176",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "How is Remote Authentication Dial-In User Service (RADIUS) authentication accomplished?",
+   "options": [
+    "It uses clear text and firewall rules.",
+    "It relies on Virtual Private Networks (VPN).",
+    "It uses clear text and shared secret keys.",
+    "It relies on asymmetric encryption keys."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "RADIUS hides only the user's password, using an MD5 construction keyed with a shared secret between the client and the server. The rest of the packet travels in clear text. It does not depend on VPNs or on asymmetric keys.",
+   "optionNotes": [
+    "Firewall rules are not how RADIUS authenticates.",
+    "RADIUS does not need a VPN.",
+    "Correct: shared secret, with the remaining attributes in clear text.",
+    "RADIUS uses a symmetric shared secret, not asymmetric keys."
+   ]
+  },
+  {
+   "id": "DUMP-1194",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An organization implements a remote access server (RAS). Once users connect to the server, digital certificates are used to authenticate their identity. What type of extensible Authentication protocol (EAP) would the organization use during this authentication?",
+   "options": [
+    "Message Digest 5 (MD5)",
+    "Subscriber Identity Module (SIM)",
+    "Lightweight Extensible Authentication Protocol (EAP)",
+    "Transport layer security (TLS)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "EAP-TLS uses digital certificates for mutual authentication between the client and the server. EAP-MD5 is password-based and weak, EAP-SIM uses SIM cards, and LEAP is Cisco's password-based method.",
+   "optionNotes": [
+    "MD5 is password-based, with no certificates.",
+    "SIM uses mobile SIM credentials.",
+    "LEAP is password-based and weak.",
+    "Correct: EAP-TLS is certificate-based."
+   ]
+  },
+  {
+   "id": "DUMP-1206",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "A large corporation is looking for a solution to automate access based on where the request is coming from, who the user is, what device they are connecting with, and what and time of day they are attempting this access. What type of solution would suit their needs?",
+   "options": [
+    "Mandatory Access Control (MAC)",
+    "Network Access Control (NAC)",
+    "Role Based Access Control (RBAC)",
+    "Discretionary Access Control (DAC)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "NAC evaluates user, device posture, location and time context before granting network access.",
+   "optionNotes": [
+    "MAC uses labels/clearances, not device/location context.",
+    "Correct: NAC checks user, device posture, location and time before admission.",
+    "RBAC uses job role only.",
+    "DAC lets owners grant access; no contextual automation."
+   ]
+  },
+  {
+   "id": "DUMP-1209",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "How does identity as a service (IDaaS) provide an easy mechanism for integrating identity service into individual applications with minimal development effort?",
+   "options": [
+    "By allowing the identification logic and storage of an identity's attributes to be maintained externally",
+    "By integrating internal provisioning procedures with external authentication processes",
+    "By allowing for internal provisioning of user accounts",
+    "By keeping all user information in easily accessible cloud repositories"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "IDaaS externalises authentication logic and attribute storage, so apps just consume it via federation.",
+   "optionNotes": [
+    "Correct: identity logic and attributes live in the external IDaaS, apps just integrate.",
+    "Describes provisioning integration, not the ease-of-integration mechanism.",
+    "Internal provisioning is the opposite of IDaaS.",
+    "Accessibility of repositories is not the integration mechanism and raises risk."
+   ]
+  },
+  {
+   "id": "DUMP-1214",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "What is the best way for mutual authentication of devices belonging to the same organization?",
+   "options": [
+    "Token",
+    "Certificates",
+    "User ID and passwords",
+    "Biometric"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Device-to-device mutual authentication is best done with PKI certificates.",
+   "optionNotes": [
+    "Tokens authenticate users, not device-to-device mutually.",
+    "Correct: PKI certificates enable mutual device authentication.",
+    "Passwords are weak and user-oriented.",
+    "Biometrics authenticate people, not devices."
+   ]
+  },
+  {
+   "id": "DUMP-1222",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.7,
+   "stem": "Which one of the following BEST protects vendor accounts that are used for emergency maintenance?",
+   "options": [
+    "Encryption of routing tables",
+    "Vendor access should be disabled until needed",
+    "Role-based access control (RBAC)",
+    "Frequent monitoring of vendor access"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Emergency vendor accounts should stay disabled until needed, eliminating standing exposure.",
+   "optionNotes": [
+    "Unrelated to account protection.",
+    "Correct: disabled-until-needed removes standing access.",
+    "RBAC limits rights but account stays exposed.",
+    "Monitoring is detective, not protective."
+   ]
+  },
+  {
+   "id": "DUMP-1226",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "An information security professional is reviewing user access controls on a customer-facing application. The application must have multi-factor authentication (MFA) in place. The application currently requires a username and password to login. Which of the following options would BEST implement MFA?",
+   "options": [
+    "Geolocate the user and compare to previous logins",
+    "Require a pre-selected number as part of the login",
+    "Have the user answer a secret question that is known to them",
+    "Enter an automatically generated number from a hardware token"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A hardware token code is something you have, adding a second factor to the password.",
+   "optionNotes": [
+    "Location is contextual, not a strong factor alone.",
+    "Pre-selected number is something you know, same factor as password.",
+    "Secret question is also knowledge.",
+    "Correct: hardware token adds something you have."
+   ]
+  },
+  {
+   "id": "DUMP-1230",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "A company wants to implement two-factor authentication (2FA) to protect their computers from unauthorized users. Which solution provides the MOST secure means of authentication and meets the criteria they have set?",
+   "options": [
+    "Username and personal identification number (PIN)",
+    "Fingerprint and retinal scanners",
+    "Short Message Services (SMS) and smartphone authenticator",
+    "Hardware token and password"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Hardware token plus password combines two different factors (have + know) strongly.",
+   "optionNotes": [
+    "Username is identification and PIN is knowledge only: single factor.",
+    "Both biometrics are same factor type.",
+    "SMS and app are both possession; SMS is weak.",
+    "Correct: possession plus knowledge factors."
+   ]
+  },
+  {
+   "id": "DUMP-1231",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following is TRUE for an organization that is using a third-party federated identity service?",
+   "options": [
+    "The organization enforces the rules to other organization's user provisioning",
+    "The organization establishes a trust relationship with the other organizations",
+    "The organization defines internal standard for overall user identification",
+    "The organization specifies alone how to authenticate other organization's users"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Federation relies on trust relationships between the organisations involved.",
+   "optionNotes": [
+    "Organisations don't enforce rules on others' provisioning.",
+    "Correct: federation rests on trust relationships.",
+    "Federation spans organisations; not only internal standards.",
+    "Authentication is agreed jointly, not specified alone."
+   ]
+  },
+  {
+   "id": "DUMP-1237",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "An organization would like to ensure that all new users have a predefined departmental access template applied upon creation. The organization would also like additional access for users to be granted on a per-project basis. What type of user access administration is BEST suited to meet the organization's needs?",
+   "options": [
+    "Hybrid",
+    "Federated",
+    "Decentralized",
+    "Centralized"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Combining centralized templates with per-project grants is a hybrid administration model.",
+   "optionNotes": [
+    "Correct: central templates plus per-project grants is hybrid.",
+    "Federated deals with cross-domain identity.",
+    "Purely decentralized lacks the central template.",
+    "Purely centralized wouldn't handle local project grants."
+   ]
+  },
+  {
+   "id": "DUMP-1254",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a unique feature of attribute-based access control (ABAC)?",
+   "options": [
+    "A user is granted access to a system based on group affinity.",
+    "A user is granted access to a system with biometric authentication.",
+    "A user is granted access to a system at a particular time of day.",
+    "A user is granted access to a system based on username and password."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "ABAC evaluates attributes of the subject, object and environment, such as time of day, which other models cannot express.",
+   "optionNotes": [
+    "Group-based is RBAC",
+    "Authentication method, not an access model",
+    "Right: environmental attribute (time) in policy",
+    "Basic authentication, not authorization model"
+   ]
+  },
+  {
+   "id": "DUMP-1273",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is an important requirement when designing a secure remote access system?",
+   "options": [
+    "Configure a Demilitarized Zone (DMZ) to ensure that user and service traffic is separated.",
+    "Provide privileged access rights to computer files and systems.",
+    "Ensure that logging and audit controls are included.",
+    "Reduce administrative overhead through password self service."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Remote access must be accountable, so logging and audit controls are an essential design requirement.",
+   "optionNotes": [
+    "Not specific to remote access design",
+    "Violates least privilege",
+    "Convenience, not a security requirement",
+    "Right: accountability"
+   ]
+  },
+  {
+   "id": "DUMP-1279",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following services can be deployed via a cloud service or on-premises to integrate with Identity as a Service (IDaaS) as the authoritative source of user identities?",
+   "options": [
+    "Directory",
+    "User database",
+    "Multi-factor authentication (MFA)",
+    "Single sign-on (SSO)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A directory service, such as AD or a cloud directory, is the authoritative identity store that IDaaS synchronizes or federates with.",
+   "optionNotes": [
+    "Right: authoritative identity source",
+    "Application-specific store",
+    "Authentication method",
+    "Relies on an identity source"
+   ]
+  },
+  {
+   "id": "DUMP-1282",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "A company needs to provide shared access of sensitive data on a cloud storage to external business partners. Which of the following identity models is the BEST to blind identity providers (IdP) and relying parties (RP) so that subscriber lists of other parties are not disclosed?",
+   "options": [
+    "Federation authorities",
+    "Proxied federation",
+    "Static registration",
+    "Dynamic registration"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In a proxied federation, an intermediary sits between IdPs and RPs and blinds each side, so neither learns the other's subscriber relationships.",
+   "optionNotes": [
+    "Trust authority; does not blind parties",
+    "Right: proxy hides parties from each other",
+    "Pre-arranged trust, no blinding",
+    "Runtime trust setup, no blinding"
+   ]
+  },
+  {
+   "id": "DUMP-1284",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "For a federated identity solution, a third-party Identity Provider (IdP) is PRIMARILY responsible for which of the following?",
+   "options": [
+    "Access Control",
+    "Account Management",
+    "Authentication",
+    "Authorization"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "In federation, the IdP authenticates the user and issues assertions; the relying party makes authorization decisions.",
+   "optionNotes": [
+    "Access control enforcement happens at the relying party's resource",
+    "Account lifecycle may be shared and is not the IdP's core federated role",
+    "Right: the IdP verifies identity and issues the assertion",
+    "The relying party decides what the authenticated user may do"
+   ]
+  },
+  {
+   "id": "DUMP-1316",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.1,
+   "stem": "An employee receives a promotion that entitles them to access higher-level functions on the company's accounting system, as well as keeping their access to the previous system that is no longer needed or applicable. What is the name of the process that tries to remove this excess privilege?",
+   "options": [
+    "Access provisioning",
+    "Segregation of Duties (SoD)",
+    "Access certification",
+    "Access aggregation"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Periodic access certification (recertification/review) has managers confirm each entitlement, which catches leftover access from earlier roles, known as privilege creep, and removes it.",
+   "optionNotes": [
+    "Provisioning grants access; it does not remove it.",
+    "SoD prevents toxic combinations, not leftover access.",
+    "Correct: certification reviews remove excess privileges.",
+    "Aggregation describes the problem, not the fix."
+   ]
+  },
+  {
+   "id": "DUMP-1328",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "An authentication system that uses challenge and response was recently implemented on an organization's network, because the organization conducted an annual penetration test showing that testers were able to move laterally using authenticated credentials. Which attack method was MOST likely used to achieve this?",
+   "options": [
+    "Cross-Site Scripting (XSS)",
+    "Pass the ticket",
+    "Brute force",
+    "Hash collision"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Challenge-response stops reuse of captured credential material. The testers moved laterally by replaying authenticated Kerberos tickets, which is pass-the-ticket.",
+   "optionNotes": [
+    "XSS is a web client attack.",
+    "Correct: replaying tickets enables lateral movement.",
+    "Brute force is not lateral movement with credentials.",
+    "Hash collisions attack integrity, not authentication replay."
+   ]
+  },
+  {
+   "id": "DUMP-1337",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following BEST describes the standard used to exchange authorization information between different identity management systems?",
+   "options": [
+    "Security Assertion Markup Language (SAML)",
+    "Service Oriented Architecture (SOA)",
+    "Extensible Markup Language (XML)",
+    "Wireless Authentication Protocol (WAP)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "SAML is the XML-based standard for exchanging authentication and authorization assertions between identity providers and service providers.",
+   "optionNotes": [
+    "Correct: SAML carries authN/authZ assertions across domains.",
+    "SOA is an architecture style.",
+    "XML is a generic markup language that SAML uses.",
+    "WAP is a wireless protocol."
+   ]
+  },
+  {
+   "id": "DUMP-1340",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What access control scheme uses fine-grained rules to specify the conditions under which access to each data item or applications is granted?",
+   "options": [
+    "Mandatory Access Control (MAC)",
+    "Discretionary Access Control (DAC)",
+    "Role Based Access Control (RBAC)",
+    "Attribute Based Access Control (ABAC)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "ABAC evaluates policies over attributes of the subject, object and environment, giving fine-grained conditional rules for each resource.",
+   "optionNotes": [
+    "MAC uses labels and clearances, not flexible conditions.",
+    "DAC is at the owner's discretion.",
+    "RBAC is role-based and coarser.",
+    "Correct: attribute rules give fine-grained conditions."
+   ]
+  },
+  {
+   "id": "DUMP-1342",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which inherent password weakness does a One Time Password (OTP) generator overcome?",
+   "options": [
+    "Static passwords must be changed frequently.",
+    "Static passwords are too predictable.",
+    "Static passwords are difficult to generate.",
+    "Static passwords are easily disclosed."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Static passwords can be observed, phished, shared or sniffed and then reused. An OTP is valid once, so disclosing it is far less damaging.",
+   "optionNotes": [
+    "Frequent change is a policy issue that OTP sidesteps but does not target.",
+    "Predictability can be fixed with complexity rules.",
+    "Generation difficulty is not the weakness.",
+    "Correct: OTP neutralises disclosure and replay."
+   ]
+  },
+  {
+   "id": "DUMP-1359",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is a use for mandatory access control (MAC)?",
+   "options": [
+    "Allows for labeling of sensitive user accounts for access control",
+    "Allows for mandatory user identity and passwords based on sensitivity",
+    "Allows for mandatory system administrator access control over objects",
+    "Allows for object security based on sensitivity represented by a label"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "MAC enforces access by comparing subject clearances with object sensitivity labels.",
+   "optionNotes": [
+    "Labels apply to objects and clearances to subjects, not \"sensitive accounts\".",
+    "Passwords are authentication, not MAC.",
+    "Administrator discretion is not what MAC is about.",
+    "Right: label-based object protection is MAC."
+   ]
+  },
+  {
+   "id": "DUMP-1361",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What are the first two components of logical access control?",
+   "options": [
+    "Confidentiality and authentication",
+    "Authentication and identification",
+    "Identification and confidentiality",
+    "Authentication and availability"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Logical access control begins with identification (claiming identity) followed by authentication (proving it), then authorization and accountability.",
+   "optionNotes": [
+    "Confidentiality is a security goal, not an access control step.",
+    "Right: identify, then authenticate.",
+    "Confidentiality is not an access control step.",
+    "Availability is a security goal, not an access control step."
+   ]
+  },
+  {
+   "id": "DUMP-1368",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "In a quarterly system access review, an active privileged account was discovered that did not exist in the prior review on the production system. The account was created one hour after the previous access review. Which of the following is the BEST option to reduce overall risk in addition to quarterly access reviews?",
+   "options": [
+    "Increase logging levels.",
+    "Implement bi-annual reviews.",
+    "Create policies for system access.",
+    "Implement and review risk-based alerts."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Risk-based alerts on privileged account creation detect such changes promptly rather than waiting for the next periodic review.",
+   "optionNotes": [
+    "More logs without review do not detect the change.",
+    "Less frequent reviews increase risk.",
+    "A policy alone does not detect unauthorized accounts.",
+    "Right: timely alerts on risky changes such as new privileged accounts."
+   ]
+  },
+  {
+   "id": "DUMP-1369",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the BEST way to mitigate circumvention of access controls?",
+   "options": [
+    "Multi-layer access controls working in isolation",
+    "Multi-vendor approach to technology implementation",
+    "Multi-layer firewall architecture with Internet Protocol (IP) filtering enabled",
+    "Multi-layer access controls with diversification of technologies"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Defense in depth with diverse technologies means one bypass technique will not defeat all layers.",
+   "optionNotes": [
+    "Layers working in isolation can leave gaps.",
+    "Multiple vendors alone does not mean layered control.",
+    "Covers network filtering only.",
+    "Right: defense in depth with diverse technologies."
+   ]
+  },
+  {
+   "id": "DUMP-1374",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "As users switch roles within an organization, their accounts are given additional permissions to perform the duties of their new position. After a recent audit, it was discovered that many of these accounts maintained their old permissions as well. The obsolete permissions identified by the audit have been remediated and accounts have only the appropriate permissions to complete their jobs. Which of the following is the BEST way to prevent access privilege creep?",
+   "options": [
+    "Implementing Identity and Access Management (IAM) solution",
+    "Time-based review and certification",
+    "Internet audit",
+    "Trigger-based review and certification"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Triggering access review on role-change events removes old privileges at the moment creep would occur.",
+   "optionNotes": [
+    "A tool is not effective without a process for role changes.",
+    "Periodic reviews leave gaps between reviews.",
+    "\"Internet audit\" does not apply here.",
+    "Right: role changes trigger a review that removes old privileges."
+   ]
+  },
+  {
+   "id": "DUMP-1378",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "An internal audit for an organization recently identified malicious actions by a user account. Upon further investigation, it was determined the offending user account was used by multiple people at multiple locations simultaneously for various services and applications. What is the BEST method to prevent this problem in the future?",
+   "options": [
+    "Ensure the security information and event management (SIEM) is set to alert.",
+    "Inform users only one user should be using the account at a time.",
+    "Ensure each user has their own unique account.",
+    "Allow several users to share a generic account."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Unique individual accounts restore accountability and stop shared-credential misuse.",
+   "optionNotes": [
+    "An alert detects misuse but does not prevent it.",
+    "A notice cannot be enforced.",
+    "Right: unique accounts ensure accountability.",
+    "Shared accounts cause the problem."
+   ]
+  },
+  {
+   "id": "DUMP-1404",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Clothing retailer employees are provisioned with user accounts that provide access to resources at partner businesses. All partner businesses use common identity and access management (IAM) protocols and differing technologies. Under the Extended Identity principle, what is the process flow between partner businesses to allow this TAM action?",
+   "options": [
+    "Clothing retailer acts as identity provider (IdP), confirms identity of user using industry standards, then sends credentials to partner businesses that act as a Service Provider and allows access to services.",
+    "Clothing retailer acts as User Self Service, confirms identity of user using industry standards, then sends credentials to partner businesses that act as a Service Provider and allows access to services.",
+    "Clothing retailer acts as Service Provider, confirms identity of user using industry standards, then sends credentials to partner businesses that act as an identity provider (IdP) and allows access to resources.",
+    "Clothing retailer acts as Access Control Provider, confirms access of user using industry standards, then sends credentials to partner businesses that act as a Service Provider and allows access to resources."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In federated (extended) identity, the home organization authenticates its own users and acts as the identity provider. It then passes assertions to partners, which act as relying parties or service providers and grant access.",
+   "optionNotes": [
+    "Correct: the retailer is the IdP and the partners consume its assertions.",
+    "Self-service is a password and profile function, not a federation role.",
+    "The retailer authenticates its users, so it is not the service provider here.",
+    "'Access control provider' is not a standard federation role."
+   ]
+  },
+  {
+   "id": "DUMP-1411",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "a large organization uses biometrics to allow access to its facilities. It adjusts the biometric value for incorrectly granting or denying access so that the two numbers are the same. What is this value called?",
+   "options": [
+    "False Rejection Rate (FRR)",
+    "Accuracy acceptance threshold",
+    "Equal error rate",
+    "False Acceptance Rate (FAR)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The point where the false acceptance rate equals the false rejection rate is the crossover or equal error rate. It is used to compare the accuracy of biometric systems.",
+   "optionNotes": [
+    "FRR is only the false rejection side.",
+    "This is not a standard biometric term.",
+    "Correct: the EER/CER is where FAR equals FRR.",
+    "FAR is only the false acceptance side."
+   ]
+  },
+  {
+   "id": "DUMP-1427",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which of the following will accomplish Multi-Factor Authentication (MFA)?",
+   "options": [
+    "Issuing a smart card with a user-selected Personal Identification Number (PIN)",
+    "Requiring users to enter a Personal Identification Number (PIN) and a password",
+    "Performing a palm and retinal scan",
+    "Issuing a smart card and a One Time Password (OTP) token"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said D] MFA needs factors of different types. A smart card (something you have) plus a PIN (something you know) qualifies. Card plus OTP token, PIN plus password, and palm plus retina each repeat a single factor type.",
+   "optionNotes": [
+    "Correct: have plus know.",
+    "Both are knowledge factors.",
+    "Both are inherence factors.",
+    "Both are possession factors."
+   ]
+  },
+  {
+   "id": "DUMP-1455",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Why is authentication by ownership stronger than authentication by knowledge?",
+   "options": [
+    "It is easier to change.",
+    "It can be kept on the user's person.",
+    "It is more difficult to duplicate.",
+    "It is simpler to control."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Something you have is a physical/cryptographic item that is harder to copy than a secret which can be guessed, shared or observed.",
+   "optionNotes": [
+    "Knowledge is easier to change",
+    "Not why it is stronger",
+    "Correct: harder to duplicate",
+    "Not a strength factor"
+   ]
+  },
+  {
+   "id": "DUMP-1474",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Within a large organization, what business unit is BEST positioned to initiate provisioning and deprovisioning of user accounts?",
+   "options": [
+    "Training department",
+    "Internal audit",
+    "Human resources",
+    "Information technology (IT)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "HR knows when people join, move and leave, so it should trigger account provisioning and deprovisioning.",
+   "optionNotes": [
+    "No authority",
+    "Independent reviewer",
+    "Correct: HR owns joiner/mover/leaver events",
+    "Implements, not initiates"
+   ]
+  },
+  {
+   "id": "DUMP-1480",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A large human resources organization wants to integrate their identity management with a trusted partner organization. The human resources organization wants to maintain the creation and management of the identities and may want to share with other partners in the future. Which of the following options BEST serves their needs?",
+   "options": [
+    "Federated identity",
+    "Cloud Active Directory (AD)",
+    "Security Assertion Markup Language (SAML)",
+    "Single sign-on (SSO)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Federated identity lets the home organization keep ownership of identities and extend trust to current and future partners.",
+   "optionNotes": [
+    "Correct: home org keeps identity ownership, trust extends to partners",
+    "Directory product, not cross-org",
+    "Protocol enabling federation, not the model",
+    "Can exist within one org"
+   ]
+  },
+  {
+   "id": "DUMP-1482",
+   "domain": 5,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In Federated Identity Management (FIM), which of the following represents the concept of federation?",
+   "options": [
+    "Collection of information logically grouped into a single entity",
+    "Collection, maintenance, and deactivation of user objects and attributes in one or more systems, directories or applications",
+    "Collection of information for common identities in a system",
+    "Collection of domains that have established trust among themselves"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A federation is a group of domains that have established trust with each other.",
+   "optionNotes": [
+    "Generic grouping",
+    "Identity lifecycle management",
+    "Directory",
+    "Correct: federation = domains with mutual trust"
+   ]
+  },
+  {
+   "id": "DUMP-1486",
+   "domain": 5,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the PRIMARY goal of logical access controls?",
+   "options": [
+    "Restrict access to an information asset.",
+    "Ensure integrity of an information asset.",
+    "Restrict physical access to an information asset.",
+    "Ensure availability of an information asset."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Logical access controls primarily restrict who can access information assets.",
+   "optionNotes": [
+    "Correct: logical controls restrict who can access what",
+    "Secondary",
+    "Physical controls",
+    "Secondary"
+   ]
+  }
+ ]
+}
