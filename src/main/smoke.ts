@@ -1,4 +1,5 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import type { BrowserWindow } from 'electron';
 import type { Lockdown } from './lockdown';
@@ -205,6 +206,32 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await click('#exam-history .delete-entry');
     await waitFor('#history-screen:not(:has(#exam-history))');
     check((await js<number>(`window.examApi.info().then((i) => i.history.length)`)) === 0, 'an exam can be deleted from the history');
+
+    // Folder import: one summary for added, already imported and invalid files; an imported bank can be removed.
+    await click('#history-home');
+    await waitFor('#import-bank');
+    const folder = await mkdtemp(path.join(os.tmpdir(), 'catexam-smoke-banks-'));
+    const q = (id: string): object => ({ id, domain: 3, type: 'single', difficulty: 0, stem: `Smoke ${id}?`, options: ['a', 'b', 'c', 'd'], answer: [1], explanation: 'e' });
+    await writeFile(path.join(folder, 'new.json'), JSON.stringify({ name: 'Smoke bank', questions: [q('SMK-1'), q('SMK-2')] }));
+    await writeFile(path.join(folder, 'dup.json'), JSON.stringify({ name: 'CISSP Domain 1 – Security and Risk Management', questions: [q('SMK-3')] }));
+    await writeFile(path.join(folder, 'bad.json'), JSON.stringify({ name: 'Bad', questions: [{ ...q('SMK-4'), domain: 12 }] }));
+    process.env.CATEXAM_SMOKE_IMPORT = folder;
+    const before = await js<number>(`window.examApi.info().then((i) => i.bank.total)`);
+    await click('#import-bank');
+    await waitFor('#import-summary');
+    await shot('import-summary');
+    check((await text('#import-totals')) === '3 files found: 1 file added with 2 questions, 1 skipped, 1 failed.', `import summary totals (${await text('#import-totals')})`);
+    check((await text('#import-skipped')).includes('dup.json: bank "CISSP Domain 1 – Security and Risk Management" is already imported.'), 'import summary names the skipped bank');
+    check((await text('#import-failed')).includes('bad.json') && (await text('#import-failed')).includes('domain'), `import summary shows the validator error (${await text('#import-failed')})`);
+    await click('#import-ok');
+    await waitFor('#imported-banks .remove-bank');
+    check((await js<number>(`window.examApi.info().then((i) => i.bank.total)`)) === before + 2, 'imported questions join the bank');
+    await click('#imported-banks .remove-bank');
+    await waitFor('#remove-confirm');
+    await click('#remove-confirm');
+    await waitFor('#bank-card:not(:has(#imported-banks))');
+    check((await js<number>(`window.examApi.info().then((i) => i.bank.total)`)) === before, 'an imported bank can be removed');
+    await rm(folder, { recursive: true, force: true });
 
     console.log('SMOKE OK');
     return true;

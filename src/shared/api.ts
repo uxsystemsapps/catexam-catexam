@@ -39,11 +39,40 @@ export interface TrainingEntry {
 
 export type HistoryKind = 'exam' | 'training';
 
+/** A bank the user imported into the profile folder. */
+export interface ImportedBank {
+  file: string;
+  name: string;
+  questions: number;
+}
+
+/** Outcome of one file of a folder import. */
+export interface BankImportFile {
+  file: string;
+  /** `skipped`: a bank with the same name is already loaded. */
+  status: 'added' | 'skipped' | 'failed';
+  /** Bank name from the file, or empty when it has none. */
+  bank: string;
+  questions: number;
+  /** Validator errors of a failed file. */
+  errors: string[];
+}
+
+export interface BankImportSummary {
+  folder: string;
+  files: BankImportFile[];
+  /** Files and questions actually added. */
+  added: number;
+  questions: number;
+  /** Set when the folder itself could not be read. */
+  error?: string;
+}
+
 export interface AppInfo {
   version: string;
   bank: { total: number; byDomain: { domain: DomainId; name: string; weight: number; count: number }[] };
   bankErrors: string[];
-  importedBanks: string[];
+  importedBanks: ImportedBank[];
   displays: number;
   history: HistoryEntry[];
   trainingHistory: TrainingEntry[];
@@ -73,7 +102,10 @@ export interface PracticeStart {
 /** Exposed by the preload script as `window.examApi`. */
 export interface ExamApi {
   info(): Promise<AppInfo>;
-  importBank(): Promise<{ imported: string | null; errors: string[] }>;
+  /** Lets the user pick a folder and imports every bank file in it; null when the picker was cancelled. */
+  importBanks(): Promise<BankImportSummary | null>;
+  /** Deletes an imported bank (by its file name in `importedBanks`) and reloads the questions. */
+  removeBank(file: string): Promise<void>;
   /** Saves the profile (invalid fields fall back to defaults) and applies the text size; returns what was saved. */
   saveProfile(profile: Profile): Promise<Profile>;
   /** Deletes history entries by date, or the whole history of that kind when `dates` is null. */

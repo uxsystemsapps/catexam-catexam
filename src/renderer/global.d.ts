@@ -16,6 +16,7 @@ declare global {
   type Profile = Api.Profile;
   type HistoryEntry = Api.HistoryEntry;
   type TrainingEntry = Api.TrainingEntry;
+  type BankImportSummary = Api.BankImportSummary;
   interface Window {
     examApi: ExamApi;
   }

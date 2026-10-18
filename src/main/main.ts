@@ -17,19 +17,20 @@ import {
 } from '../engine/profile';
 import { ExamSession } from '../engine/session';
 import type { Question } from '../engine/types';
-import type { AppInfo, ExamState, HistoryKind } from '../shared/api';
+import type { AppInfo, BankImportSummary, ExamState, HistoryKind, ImportedBank } from '../shared/api';
 import { Lockdown } from './lockdown';
 import { runSmoke } from './smoke';
 import {
   appendHistory,
   appendTrainingHistory,
   deleteHistory,
-  importBank,
+  importBankFolder,
   loadQuestions,
   readHistory,
   readProfile,
   readProgress,
   readTrainingHistory,
+  removeBank,
   saveProfile,
   saveProgress,
 } from './store';
@@ -41,7 +42,7 @@ if (SMOKE) app.setPath('userData', mkdtempSync(path.join(os.tmpdir(), 'catexam-s
 let win: BrowserWindow | null = null;
 let lockdown: Lockdown | null = null;
 let questions: Question[] = [];
-let imported: string[] = [];
+let imported: ImportedBank[] = [];
 let bankErrors: string[] = [];
 let exam: ExamSession | null = null;
 let candidate = '';
@@ -56,6 +57,7 @@ let progressWrite: Promise<void> = Promise.resolve();
 const TEXT_ZOOM: Record<Profile['textSize'], number> = { normal: 1, large: 1.15, larger: 1.3 };
 
 const userDir = (): string => app.getPath('userData');
+const builtinDir = (): string => path.join(app.getAppPath(), 'questions');
 
 /** Local calendar day (YYYY-MM-DD) for the daily training goal. */
 function today(): string {
@@ -74,7 +76,7 @@ function applyTextSize(): void {
 }
 
 async function reloadBank(): Promise<void> {
-  const loaded = await loadQuestions(path.join(app.getAppPath(), 'questions'), userDir());
+  const loaded = await loadQuestions(builtinDir(), userDir());
   questions = loaded.questions;
   imported = loaded.imported;
   bankErrors = loaded.errors;
@@ -138,17 +140,24 @@ function registerIpc(): void {
     return persistProgress();
   });
 
-  ipcMain.handle('bank:import', async () => {
-    if (!win) return { imported: null, errors: [] };
-    const pick = await dialog.showOpenDialog(win, {
-      title: 'Import question bank',
-      filters: [{ name: 'Question bank', extensions: ['json'] }],
-      properties: ['openFile'],
-    });
-    if (pick.canceled || pick.filePaths.length === 0) return { imported: null, errors: [] };
-    const outcome = await importBank(pick.filePaths[0], userDir());
-    if (outcome.imported) await reloadBank();
-    return outcome;
+  ipcMain.handle('bank:import', async (): Promise<BankImportSummary | null> => {
+    if (!win) return null;
+    // The smoke test cannot drive the native picker; it names the folder in CATEXAM_SMOKE_IMPORT instead.
+    let folder = SMOKE ? process.env.CATEXAM_SMOKE_IMPORT : undefined;
+    if (!folder) {
+      const pick = await dialog.showOpenDialog(win, { title: 'Import a folder of question banks', properties: ['openDirectory'] });
+      if (pick.canceled || pick.filePaths.length === 0) return null;
+      folder = pick.filePaths[0];
+    }
+    const summary = await importBankFolder(folder, builtinDir(), userDir());
+    if (summary.added > 0) await reloadBank();
+    return summary;
+  });
+
+  ipcMain.handle('bank:remove', async (_e, file: unknown) => {
+    if (typeof file !== 'string' || !imported.some((b) => b.file === file)) throw new Error('not an imported bank');
+    await removeBank(file, userDir());
+    await reloadBank();
   });
 
   ipcMain.handle('exam:lock', () => lockdown?.lock());
