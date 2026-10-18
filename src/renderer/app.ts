@@ -83,12 +83,23 @@ function toast(message: string): void {
 
 // ---------- Home ----------
 
+function stat(id: string, value: string, label: string): HTMLElement {
+  return h('div', { class: 'stat', id }, h('span', { class: 'stat-value' }, value), h('span', { class: 'stat-label' }, label));
+}
+
 async function home(): Promise<void> {
   const info = await api.info();
   for (const d of info.bank.byDomain) domainNames.set(d.domain, d.name);
-  const nameInput = h('input', { id: 'candidate', type: 'text', placeholder: 'Candidate name', maxlength: '80', value: localStorage.getItem(NAME_KEY) ?? '' });
+  const nameInput = h('input', { id: 'candidate', type: 'text', placeholder: 'Your name', maxlength: '80', value: localStorage.getItem(NAME_KEY) ?? '' });
   const domainBoxes = info.bank.byDomain.map((d) =>
-    h('label', { class: 'check' }, h('input', { type: 'checkbox', value: String(d.domain), checked: d.count > 0, disabled: d.count === 0 }), ` Domain ${d.domain}: ${d.name} (${d.count})`),
+    h(
+      'label',
+      { class: 'chip', title: d.name },
+      h('input', { type: 'checkbox', value: String(d.domain), checked: d.count > 0, disabled: d.count === 0 }),
+      h('span', { class: 'chip-num' }, String(d.domain)),
+      h('span', { class: 'chip-name' }, d.name),
+      h('span', { class: 'chip-count' }, String(d.count)),
+    ),
   );
   const setAll = (on: boolean): void => {
     for (const l of domainBoxes) {
@@ -101,110 +112,170 @@ async function home(): Promise<void> {
   const emptyBank = info.bank.total === 0;
   const passes = info.history.filter((e) => e.passed).length;
   const best = info.history.reduce((m, e) => Math.max(m, e.scaledScore), 0);
+  const last = info.history[0];
+  const startExamNow = (): void => {
+    const name = nameInput.value.trim();
+    localStorage.setItem(NAME_KEY, name);
+    void nda(name || 'Candidate');
+  };
+  nameInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !emptyBank) startExamNow();
+  });
 
   show(
-    h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'CATExam'), h('span', {}, 'CISSP Computerized Adaptive Testing simulator')),
+    h(
+      'header',
+      { class: 'topbar' },
+      h('span', { class: 'brand' }, 'CATExam', h('span', { class: 'brand-sub' }, 'CISSP Computerized Adaptive Testing simulator')),
+      h('button', { id: 'quit', class: 'ghost', onclick: () => void api.quit() }, 'Quit'),
+    ),
     h(
       'main',
       { class: 'home', id: 'home' },
       h(
         'section',
-        { class: 'card' },
-        h('h2', {}, 'Exam simulation'),
-        h('p', {}, '100–150 questions, 3 hours, adaptive difficulty, no going back. The screen is locked as in a test centre until the exam ends.'),
-        emptyBank && h('p', { class: 'warn', id: 'empty-bank' }, 'The question bank is empty. Import a question bank below to start.'),
-        info.displays > 1 && h('p', { class: 'warn' }, `${info.displays} displays detected. A test centre uses one; disconnect the others for a realistic session.`),
-        !emptyBank && shortBank && h('p', { class: 'warn' }, `The question bank has only ${info.bank.total} questions; the exam may end early when it runs out.`),
-        h('label', { class: 'field' }, 'Candidate name', nameInput),
+        { class: 'hero' },
         h(
-          'button',
-          {
-            id: 'start-exam',
-            class: 'primary',
-            disabled: emptyBank,
-            onclick: () => {
-              const name = nameInput.value.trim();
-              localStorage.setItem(NAME_KEY, name);
-              void nda(name || 'Candidate');
-            },
-          },
-          'Start exam simulation',
+          'div',
+          { class: 'hero-text' },
+          h('h1', {}, 'Exam simulation'),
+          h('p', { class: 'lead' }, 'The full CISSP CAT experience: 100–150 adaptive questions in 3 hours, no going back. The screen locks as in a test centre until the exam ends.'),
+          h(
+            'ul',
+            { class: 'facts' },
+            h('li', {}, h('strong', {}, '100–150'), ' questions'),
+            h('li', {}, h('strong', {}, '3 h'), ' time limit'),
+            h('li', {}, h('strong', {}, '700'), ' / 1000 to pass'),
+          ),
+          emptyBank && h('p', { class: 'warn', id: 'empty-bank' }, 'The question bank is empty. Import a question bank below to start.'),
+          info.displays > 1 && h('p', { class: 'warn' }, `${info.displays} displays detected. A test centre uses one; disconnect the others for a realistic session.`),
+          !emptyBank && shortBank && h('p', { class: 'warn' }, `The question bank has only ${info.bank.total} questions; the exam may end early when it runs out.`),
+        ),
+        h(
+          'div',
+          { class: 'hero-action' },
+          h('label', { class: 'field' }, 'Candidate name', nameInput),
+          h('button', { id: 'start-exam', class: 'primary big-button', disabled: emptyBank, onclick: startExamNow }, 'Start exam simulation ▶'),
+          h('p', { class: 'small' }, 'You accept the NDA and see a short tutorial before the clock starts.'),
         ),
       ),
       h(
         'section',
-        { class: 'card' },
-        h('h2', {}, 'Training mode'),
-        h('p', {}, 'Choose domains; see the right answer and the explanation after each question. Not locked, no clock.'),
-        h('div', { class: 'row' }, h('button', { class: 'mini', id: 'domains-all', onclick: () => setAll(true) }, 'Select all'), h('button', { class: 'mini', id: 'domains-none', onclick: () => setAll(false) }, 'Clear')),
-        h('div', { class: 'domains' }, ...domainBoxes),
-        h('label', { class: 'field' }, 'Questions', countInput),
-        h(
-          'button',
-          {
-            id: 'start-practice',
-            disabled: emptyBank,
-            onclick: () => {
-              const domains = domainBoxes
-                .map((l) => l.querySelector('input') as HTMLInputElement)
-                .filter((i) => i.checked)
-                .map((i) => Number(i.value) as DomainId);
-              if (domains.length === 0) return toast('Choose at least one domain.');
-              void startPractice(domains, Number(countInput.value) || 20);
-            },
-          },
-          'Start training',
-        ),
+        { class: 'stats', 'aria-label': 'Your progress' },
+        stat('stat-exams', String(info.history.length), 'Exams taken'),
+        stat('stat-passed', String(passes), 'Passed'),
+        stat('stat-best', info.history.length > 0 ? String(best) : '–', 'Best estimate'),
+        stat('stat-last', last ? (last.passed ? 'PASS' : 'FAIL') : '–', 'Last result'),
       ),
       h(
-        'section',
-        { class: 'card' },
-        h('h2', {}, 'Question bank'),
-        h('p', {}, `${info.bank.total} questions. Imported banks: ${info.importedBanks.join(', ') || 'none'}.`),
-        h('table', {}, ...info.bank.byDomain.map((d) => h('tr', {}, h('td', {}, `${d.domain}. ${d.name}`), h('td', {}, `${Math.round(d.weight * 100)}%`), h('td', {}, String(d.count))))),
-        info.bankErrors.length > 0 && h('p', { class: 'warn' }, `Skipped: ${info.bankErrors.slice(0, 3).join('; ')}`),
+        'div',
+        { class: 'home-grid' },
         h(
-          'button',
-          {
-            id: 'import-bank',
-            onclick: async () => {
-              const r = await api.importBank();
-              if (r.errors.length > 0) toast(`Import refused: ${r.errors.slice(0, 3).join('; ')}`);
-              else if (r.imported) {
-                toast(`Imported ${r.imported}.`);
-                void home();
-              }
-            },
-          },
-          'Import question bank (JSON)…',
+          'section',
+          { class: 'card', id: 'training-card' },
+          h('h2', {}, 'Training mode'),
+          h('p', { class: 'small' }, 'Pick domains; see the answer and explanation after each question. No lock, no clock.'),
+          h(
+            'div',
+            { class: 'row between' },
+            h('span', { class: 'label' }, 'Domains'),
+            h('span', { class: 'row' }, h('button', { class: 'mini', id: 'domains-all', onclick: () => setAll(true) }, 'All'), h('button', { class: 'mini', id: 'domains-none', onclick: () => setAll(false) }, 'None')),
+          ),
+          h('div', { class: 'domains' }, ...domainBoxes),
+          h(
+            'div',
+            { class: 'row end' },
+            h('label', { class: 'field inline' }, 'Questions', countInput),
+            h(
+              'button',
+              {
+                id: 'start-practice',
+                class: 'primary',
+                disabled: emptyBank,
+                onclick: () => {
+                  const domains = domainBoxes
+                    .map((l) => l.querySelector('input') as HTMLInputElement)
+                    .filter((i) => i.checked)
+                    .map((i) => Number(i.value) as DomainId);
+                  if (domains.length === 0) return toast('Choose at least one domain.');
+                  void startPractice(domains, Number(countInput.value) || 20);
+                },
+              },
+              'Start training',
+            ),
+          ),
         ),
-      ),
-      h(
-        'section',
-        { class: 'card' },
-        h('h2', {}, 'History'),
-        info.history.length > 0 &&
-          h('p', { id: 'history-stats' }, `${info.history.length} exam${info.history.length === 1 ? '' : 's'} · ${passes} passed · best estimate ${best} / 1000`),
-        info.history.length === 0
-          ? h('p', { class: 'empty' }, 'No exams taken yet. Your results appear here after each simulation.')
-          : h(
-              'table',
-              { id: 'history' },
-              h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Result'), h('th', {}, 'Score*'), h('th', {}, 'Items'), h('th', {}, 'Time')),
-              ...info.history.slice(0, 10).map((e) =>
-                h(
-                  'tr',
-                  {},
-                  h('td', {}, new Date(e.date).toLocaleString()),
-                  h('td', { class: e.passed ? 'pass' : 'fail' }, e.passed ? 'PASS' : 'FAIL'),
-                  h('td', {}, String(e.scaledScore)),
-                  h('td', {}, String(e.itemsAnswered)),
-                  h('td', {}, formatClock(e.elapsedSeconds)),
+        h(
+          'section',
+          { class: 'card', id: 'history-card' },
+          h('h2', {}, 'History'),
+          info.history.length > 0 &&
+            h('p', { id: 'history-stats', class: 'small' }, `${info.history.length} exam${info.history.length === 1 ? '' : 's'} · ${passes} passed · best estimate ${best} / 1000`),
+          info.history.length === 0
+            ? h('p', { class: 'empty' }, 'No exams taken yet. Your results appear here after each simulation.')
+            : h(
+                'table',
+                { id: 'history' },
+                h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Result'), h('th', {}, 'Score*'), h('th', {}, 'Items'), h('th', {}, 'Time')),
+                ...info.history.slice(0, 10).map((e) =>
+                  h(
+                    'tr',
+                    {},
+                    h('td', {}, new Date(e.date).toLocaleString()),
+                    h('td', {}, h('span', { class: `badge ${e.passed ? 'pass' : 'fail'}` }, e.passed ? 'PASS' : 'FAIL')),
+                    h('td', {}, String(e.scaledScore)),
+                    h('td', {}, String(e.itemsAnswered)),
+                    h('td', {}, formatClock(e.elapsedSeconds)),
+                  ),
                 ),
               ),
+          h('p', { class: 'small' }, '* Training estimate on the 0–1000 scale; 700 is the passing standard.'),
+        ),
+        h(
+          'section',
+          { class: 'card wide', id: 'bank-card' },
+          h(
+            'div',
+            { class: 'row between' },
+            h('h2', {}, 'Question bank'),
+            h(
+              'button',
+              {
+                id: 'import-bank',
+                onclick: async () => {
+                  const r = await api.importBank();
+                  if (r.errors.length > 0) toast(`Import refused: ${r.errors.slice(0, 3).join('; ')}`);
+                  else if (r.imported) {
+                    toast(`Imported ${r.imported}.`);
+                    void home();
+                  }
+                },
+              },
+              'Import question bank (JSON)…',
             ),
-        h('p', { class: 'small' }, '* Training estimate on the 0–1000 scale; 700 is the passing standard.'),
-        h('button', { id: 'quit', onclick: () => void api.quit() }, 'Quit'),
+          ),
+          h('p', { class: 'small' }, `${info.bank.total} questions. Imported banks: ${info.importedBanks.join(', ') || 'none'}.`),
+          h(
+            'div',
+            { class: 'bank-bars' },
+            ...info.bank.byDomain.map((d) => {
+              const share = info.bank.total === 0 ? 0 : d.count / info.bank.total;
+              const fill = h('span', { class: 'bar-fill' });
+              fill.style.width = `${Math.round(share * 1000) / 10}%`;
+              const target = h('span', { class: 'bar-mark', title: `Blueprint weight ${Math.round(d.weight * 100)}%` });
+              target.style.left = `${d.weight * 100}%`;
+              return h(
+                'div',
+                { class: 'bank-row' },
+                h('span', { class: 'bank-name' }, `${d.domain}. ${d.name}`),
+                h('div', { class: 'bar thin' }, fill, target),
+                h('span', { class: 'bank-count' }, `${d.count} · ${Math.round(d.weight * 100)}%`),
+              );
+            }),
+          ),
+          h('p', { class: 'small' }, 'Bar: share of the bank per domain; marker: blueprint weight.'),
+          info.bankErrors.length > 0 && h('p', { class: 'warn' }, `Skipped: ${info.bankErrors.slice(0, 3).join('; ')}`),
+        ),
       ),
     ),
   );
@@ -278,19 +349,74 @@ function tutorial(candidate: string): void {
 let clockTimer: number | undefined;
 let examOver = false;
 
+/** Time and question progress strip of the exam screen, with a pace hint against the time limit. */
+interface ExamProgress {
+  node: HTMLElement;
+  update(answered?: number): void;
+}
+
+function progressBar(id: string, label: string): { bar: HTMLElement; fill: HTMLElement } {
+  const fill = h('span', { class: 'bar-fill' });
+  const bar = h('div', { class: 'bar', id, role: 'progressbar', 'aria-label': label, 'aria-valuemin': '0', 'aria-valuemax': '100' }, fill);
+  return { bar, fill };
+}
+
+function examProgress(state: ExamState): ExamProgress {
+  const limit = (state.deadline - state.startedAt) / 1000;
+  const time = progressBar('time-bar', 'Time used');
+  const questions = progressBar('question-bar', 'Questions answered');
+  const minMark = h('span', { class: 'bar-mark', title: `Minimum: ${state.minItems} questions` });
+  minMark.style.left = `${(state.minItems / state.maxItems) * 100}%`;
+  questions.bar.append(minMark);
+  const timeText = h('span', { id: 'time-progress' });
+  const questionText = h('span', { id: 'question-progress' });
+  const pace = h('span', { id: 'pace', class: 'pace' });
+  const perItem = limit / state.maxItems;
+  let answered = 0;
+  const setBar = (b: { bar: HTMLElement; fill: HTMLElement }, ratio: number): void => {
+    const pct = Math.round(Math.min(1, Math.max(0, ratio)) * 1000) / 10;
+    b.fill.style.width = `${pct}%`;
+    b.bar.setAttribute('aria-valuenow', String(pct));
+  };
+  const update = (n?: number): void => {
+    if (n !== undefined) answered = n;
+    const elapsed = Math.min(limit, Math.max(0, (Date.now() - state.startedAt) / 1000));
+    setBar(time, elapsed / limit);
+    setBar(questions, answered / state.maxItems);
+    timeText.textContent = `${formatClock(elapsed)} of ${formatClock(limit)}`;
+    questionText.textContent = `${answered} answered · ends between ${state.minItems} and ${state.maxItems}`;
+    // Pace against the maximum length, so a candidate on pace can finish even a 150-item exam.
+    const behind = Math.floor(elapsed / perItem - answered);
+    pace.textContent = behind > 0 ? `Behind pace by ${behind} question${behind === 1 ? '' : 's'}` : 'On pace';
+    pace.classList.toggle('behind', behind > 0);
+    time.bar.classList.toggle('behind', behind > 0);
+  };
+  const node = h(
+    'div',
+    { class: 'progress', id: 'exam-progress' },
+    h('div', { class: 'progress-item' }, h('div', { class: 'progress-label' }, h('span', {}, 'Time used'), timeText), time.bar),
+    h('div', { class: 'progress-item' }, h('div', { class: 'progress-label' }, h('span', {}, 'Questions'), questionText), questions.bar),
+    h('div', { class: 'progress-pace', title: `About ${Math.round(perItem)} seconds per question finishes ${state.maxItems} questions in time` }, pace),
+  );
+  update();
+  return { node, update };
+}
+
 async function startExam(candidate: string): Promise<void> {
   examOver = false;
   const state = await api.startExam(candidate);
   const clock = h('span', { id: 'clock' });
+  const progress = examProgress(state);
   const tick = (): void => {
     const left = (state.deadline - Date.now()) / 1000;
     clock.textContent = formatClock(left);
     clock.classList.toggle('low', left < 300);
+    progress.update();
   };
   tick();
   clearInterval(clockTimer);
   clockTimer = window.setInterval(tick, 1000);
-  renderExamQuestion(state, candidate, clock);
+  renderExamQuestion(state, candidate, clock, progress);
 }
 
 function finishExam(): void {
@@ -378,9 +504,10 @@ function questionBody(q: QuestionView): { node: HTMLElement; response: () => num
   };
 }
 
-function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElement): void {
+function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElement, progress: ExamProgress): void {
   if (state.finished || !state.question) return finishExam();
   const q = state.question;
+  progress.update(q.number - 1);
   const body = questionBody(q);
   const next = async (): Promise<void> => {
     const response = body.response();
@@ -393,7 +520,7 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
     }
     nextButton.disabled = true;
     try {
-      renderExamQuestion(await api.answer(q.id, response), candidate, clock);
+      renderExamQuestion(await api.answer(q.id, response), candidate, clock, progress);
     } catch {
       finishExam();
     }
@@ -406,6 +533,7 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
       h('span', { class: 'brand' }, 'ISC2 CISSP – Certified Information Systems Security Professional'),
       h('span', { class: 'right' }, h('span', { id: 'candidate-name' }, candidate), h('span', {}, 'Time Remaining ', clock), h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number}`)),
     ),
+    progress.node,
     h('main', { class: 'question', id: 'exam' }, h('p', { class: 'stem' }, q.stem), body.node),
     h(
       'footer',

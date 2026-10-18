@@ -25,8 +25,12 @@ export interface AppInfo {
 
 export interface ExamState {
   question: QuestionView | null;
-  /** Epoch ms when the exam time runs out (the main process enforces it). */
+  /** Epoch ms when the exam started and when its time runs out (the main process enforces it). */
+  startedAt: number;
   deadline: number;
+  /** Item limits of the exam rules, for the progress bar. */
+  minItems: number;
+  maxItems: number;
   finished: boolean;
 }
 
