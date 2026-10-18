@@ -59,3 +59,35 @@ jobs:
             libgbm1 libasound2 libxss1 libxshmfence1 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 >/dev/null
           npm ci
           xvfb-run -a npm run smoke
+
+  windows-installer:
+    # Builds the Windows NSIS installer on Linux (electron-builder edits the .exe resources through wine) and
+    # attaches it to the run as a downloadable artefact. Not run or installed here: no Windows hand exists.
+    runs-on: linux
+    steps:
+      - uses: actions/checkout@v4
+      - name: install wine (32-bit too; electron-builder runs the 32-bit NSIS uninstaller stub under wine)
+        run: |
+          dpkg --add-architecture i386
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends wine wine32 wine64 file >/dev/null
+          wine --version
+      - name: build installer (npm run dist:win)
+        env:
+          WINEDEBUG: "-all"
+        run: |
+          npm ci
+          npm run dist:win -- --publish never
+      - name: check installer
+        run: |
+          ls -l release/*.exe
+          for f in release/*.exe; do
+            file "$f"
+            file "$f" | grep -q 'PE32.*Windows' || { echo "not a Windows executable: $f"; exit 1; }
+            grep -aq 'Nullsoft' "$f" || { echo "not an NSIS installer: $f"; exit 1; }
+          done
+      - uses: actions/upload-artifact@v3 # v4 needs Gitea's newer artifact API; it fails on this server
+        with:
+          name: CATExam-windows-installer
+          path: release/*.exe
+          if-no-files-found: error
