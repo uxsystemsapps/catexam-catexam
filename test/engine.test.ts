@@ -1,13 +1,28 @@
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
+import { mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { isCorrect, validateBank } from '../src/engine/bank';
 import { DOMAINS } from '../src/engine/domains';
 import { estimateAbility, probabilityCorrect } from '../src/engine/irt';
 import { PracticeSession } from '../src/engine/practice';
+import {
+  DEFAULT_PROFILE,
+  normalizeProfile,
+  normalizeProgress,
+  recordAnswer,
+  selectPracticeItems,
+  summarizeProgress,
+  toggleBookmark,
+  WEAK_DOMAIN_MIN_ANSWERS,
+  type PracticeOptions,
+} from '../src/engine/profile';
 import { CISSP_CAT, ExamSession } from '../src/engine/session';
-import type { DomainId, Question } from '../src/engine/types';
+import type { DomainId, Question, QuestionView } from '../src/engine/types';
+import { appendTrainingHistory, deleteHistory, readProfile, readProgress, readTrainingHistory, saveProfile, saveProgress } from '../src/main/store';
+import type { TrainingEntry } from '../src/shared/api';
 
 function seeded(seed: number): () => number {
   let a = seed >>> 0;
@@ -65,6 +80,7 @@ describe('question bank validation', () => {
       [{ ...good, type: 'ordering', answer: [0, 1, 2] }, /every option/],
       [{ ...good, domain: 9 }, /domain/],
       [{ ...good, difficulty: 'hard' }, /difficulty/],
+      [{ ...good, optionNotes: ['only one'] }, /optionNotes/],
     ];
     for (const [q, why] of cases) {
       const r = validateBank({ name: 'bad', questions: [q] });
@@ -223,16 +239,114 @@ describe('CAT exam rules', () => {
 });
 
 describe('training mode', () => {
+  const all = (over: Partial<PracticeOptions>): PracticeOptions => ({ ...DEFAULT_PROFILE.training, ...over });
+
   it('gives the answer and explanation after each item, only from the chosen domains', () => {
     const bank = syntheticBank(10, seeded(11));
-    const p = new PracticeSession(bank, [3, 5], 5, seeded(11));
+    const p = new PracticeSession(selectPracticeItems(bank, all({ domains: [3, 5], count: 5 }), normalizeProgress({}), seeded(11)));
     for (let q = p.current(); q; q = p.current()) {
       const item = bank.find((b) => b.id === q.id) as Question;
       assert.ok(item.domain === 3 || item.domain === 5);
       const f = p.answer(q.id, item.answer);
       assert.equal(f.correct, true);
       assert.equal(f.explanation, 'why');
+      assert.equal(f.domain, item.domain);
     }
     assert.equal(p.summary().answered, 5);
+  });
+
+  it('says which options were missed or wrongly chosen, and which ordering positions are wrong', () => {
+    const multi: Question = { id: 'M', domain: 1, type: 'multi', difficulty: 1, stem: 's', options: ['a', 'b', 'c', 'd'], answer: [0, 2], explanation: 'e', optionNotes: ['A ok', 'B no', 'C ok', 'D no'] };
+    const order: Question = { id: 'O', domain: 2, type: 'ordering', difficulty: -1, stem: 's', options: ['x', 'y', 'z'], answer: [2, 0, 1], explanation: 'e' };
+    const p = new PracticeSession([multi, order]);
+    const f = p.answer('M', [0, 1]);
+    assert.deepEqual([f.correct, f.missedOptions, f.wrongChoices, f.difficulty], [false, [2], [1], 'hard']);
+    assert.deepEqual(f.optionNotes, ['A ok', 'B no', 'C ok', 'D no']);
+    const g = p.answer('O', [2, 1, 0]);
+    assert.deepEqual([g.correct, g.positions, g.missedOptions, g.difficulty, g.finished], [false, [true, false, false], [], 'easy', true]);
+  });
+
+  it('a timed-out question counts as incorrect and moves on', () => {
+    const bank = syntheticBank(2, seeded(3));
+    const p = new PracticeSession(bank.slice(0, 2));
+    const first = p.current() as QuestionView;
+    const f = p.timeout(first.id);
+    assert.deepEqual([f.correct, f.timedOut, f.response], [false, true, []]);
+    assert.notEqual(p.current()?.id, first.id);
+    assert.throws(() => p.timeout(first.id));
+    assert.deepEqual([p.summary().answered, p.summary().timedOut, p.summary().missed.length], [1, 1, 1]);
+  });
+
+  it('selects by difficulty, type, missed and bookmarked questions, new or missed ones first', () => {
+    const bank = syntheticBank(10, seeded(5));
+    bank[0] = { ...bank[0], type: 'multi', answer: [0, 1] };
+    const progress = normalizeProgress({});
+    const hard = selectPracticeItems(bank, all({ difficulty: 'hard', count: 200 }), progress, seeded(1));
+    assert.ok(hard.length > 0 && hard.every((q) => q.difficulty > 0.5));
+    assert.deepEqual(selectPracticeItems(bank, all({ types: ['multi'], count: 200 }), progress).map((q) => q.id), [bank[0].id]);
+    assert.throws(() => new PracticeSession(selectPracticeItems(bank, all({ source: 'missed' }), progress)), /no questions match/);
+
+    recordAnswer(progress, bank[1].id, false, '2026-10-18', 't');
+    recordAnswer(progress, bank[2].id, true, '2026-10-18', 't');
+    toggleBookmark(progress, bank[2].id);
+    assert.deepEqual(selectPracticeItems(bank, all({ source: 'missed' }), progress).map((q) => q.id), [bank[1].id]);
+    assert.deepEqual(selectPracticeItems(bank, all({ source: 'bookmarked' }), progress).map((q) => q.id), [bank[2].id]);
+    assert.equal(selectPracticeItems(bank, all({ order: 'missed-first', count: 1 }), progress, seeded(9))[0].id, bank[1].id);
+    const fresh = selectPracticeItems(bank, all({ order: 'unseen-first', count: bank.length - 2 }), progress, seeded(9));
+    assert.ok(fresh.every((q) => q.id !== bank[1].id && q.id !== bank[2].id));
+    assert.equal(toggleBookmark(progress, bank[2].id), false);
+    assert.deepEqual(progress.bookmarks, []);
+  });
+
+  it('names the weakest domain only once it has enough answers', () => {
+    const bank = syntheticBank(10, seeded(6));
+    const progress = normalizeProgress({});
+    const d1 = bank.filter((q) => q.domain === 1);
+    const d2 = bank.filter((q) => q.domain === 2);
+    for (const q of d1.slice(0, WEAK_DOMAIN_MIN_ANSWERS - 1)) recordAnswer(progress, q.id, false, '2026-10-18', 't');
+    for (const q of d2.slice(0, WEAK_DOMAIN_MIN_ANSWERS)) recordAnswer(progress, q.id, q === d2[0], '2026-10-18', 't');
+    const s = summarizeProgress(bank, progress, '2026-10-18');
+    assert.equal(s.weakestDomain, 2);
+    assert.deepEqual([s.today, s.seen, s.missed], [2 * WEAK_DOMAIN_MIN_ANSWERS - 1, 2 * WEAK_DOMAIN_MIN_ANSWERS - 1, 2 * WEAK_DOMAIN_MIN_ANSWERS - 2]);
+    recordAnswer(progress, d1[WEAK_DOMAIN_MIN_ANSWERS].id, false, '2026-10-18', 't');
+    assert.equal(summarizeProgress(bank, progress, '2026-10-19').weakestDomain, 1);
+    assert.equal(summarizeProgress(bank, progress, '2026-10-19').today, 0);
+  });
+});
+
+describe('profile and history storage', () => {
+  it('replaces invalid profile fields with defaults and clamps numbers', () => {
+    const p = normalizeProfile({ name: '  Ann  ', examDate: '2026-13-45', dailyGoal: -3, theme: 'neon', training: { domains: [2, 9], count: 999, types: [], difficulty: 'hard', secondsPerQuestion: 45.4 } });
+    assert.deepEqual(
+      [p.name, p.examDate, p.dailyGoal, p.theme, p.textSize, p.training.domains, p.training.count, p.training.types, p.training.difficulty, p.training.secondsPerQuestion],
+      ['Ann', '', 0, 'light', 'normal', [2], 200, DEFAULT_PROFILE.training.types, 'hard', 45],
+    );
+    assert.deepEqual(normalizeProfile('garbage'), DEFAULT_PROFILE);
+  });
+
+  it('saves the profile and progress, and deletes one or all history entries', async () => {
+    const dir = await mkdtemp(path.join(os.tmpdir(), 'catexam-test-'));
+    try {
+      assert.deepEqual(await readProfile(dir), DEFAULT_PROFILE);
+      const profile = normalizeProfile({ name: 'Ann', examDate: '2026-12-01', theme: 'dark' });
+      await saveProfile(dir, profile);
+      assert.deepEqual(await readProfile(dir), profile);
+
+      const progress = normalizeProgress({});
+      recordAnswer(progress, 'Q1', false, '2026-10-18', 't');
+      await saveProgress(dir, progress);
+      assert.deepEqual(await readProgress(dir), progress);
+
+      const entry = (date: string): TrainingEntry => ({ date, answered: 2, correct: 1, timedOut: 0, difficulty: 'mixed', source: 'all', byDomain: [] });
+      await appendTrainingHistory(dir, entry('a'));
+      await appendTrainingHistory(dir, entry('b'));
+      await appendTrainingHistory(dir, entry('c'));
+      await deleteHistory(dir, 'training', ['b']);
+      assert.deepEqual((await readTrainingHistory(dir)).map((e) => e.date), ['c', 'a']);
+      await deleteHistory(dir, 'training', null);
+      assert.deepEqual(await readTrainingHistory(dir), []);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
   });
 });

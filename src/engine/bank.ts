@@ -58,6 +58,10 @@ export function validateBank(raw: unknown): BankValidation {
       errors.push(`${at}: multi needs at least two answers and at least one wrong option`);
     }
     if (r.type === 'ordering' && answer.length !== options.length) errors.push(`${at}: ordering answer must list every option`);
+    const notes = r.optionNotes;
+    if (notes !== undefined && (!Array.isArray(notes) || notes.length !== options.length || !notes.every((n) => typeof n === 'string'))) {
+      errors.push(`${at}: "optionNotes" must be one string per option`);
+    }
     questions.push({
       id: id ?? '',
       domain: r.domain as DomainId,
@@ -67,6 +71,7 @@ export function validateBank(raw: unknown): BankValidation {
       options: options as string[],
       answer: r.type === 'ordering' ? [...answer] : [...answer].sort((a, b) => a - b),
       explanation: r.explanation as string,
+      ...(Array.isArray(notes) ? { optionNotes: notes as string[] } : {}),
     });
   });
   if (errors.length > 0) return { bank: null, errors };

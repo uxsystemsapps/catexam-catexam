@@ -1,7 +1,19 @@
 import type { PracticeFeedback, PracticeSummary } from '../engine/practice';
-import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionView } from '../engine/types';
+import type { DifficultyFilter, PracticeOptions, PracticeSource, Profile, ProgressSummary } from '../engine/profile';
+import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView } from '../engine/types';
 
-export type { PracticeFeedback, PracticeSummary, DomainId, DomainReport, ExamResult, QuestionView };
+export type {
+  PracticeFeedback,
+  PracticeSummary,
+  PracticeOptions,
+  Profile,
+  ProgressSummary,
+  DomainId,
+  DomainReport,
+  ExamResult,
+  QuestionType,
+  QuestionView,
+};
 
 export interface HistoryEntry {
   date: string;
@@ -14,6 +26,19 @@ export interface HistoryEntry {
   domains: DomainReport[];
 }
 
+/** One finished training session. */
+export interface TrainingEntry {
+  date: string;
+  answered: number;
+  correct: number;
+  timedOut: number;
+  difficulty: DifficultyFilter;
+  source: PracticeSource;
+  byDomain: { domain: DomainId; answered: number; correct: number }[];
+}
+
+export type HistoryKind = 'exam' | 'training';
+
 export interface AppInfo {
   version: string;
   bank: { total: number; byDomain: { domain: DomainId; name: string; weight: number; count: number }[] };
@@ -21,6 +46,9 @@ export interface AppInfo {
   importedBanks: string[];
   displays: number;
   history: HistoryEntry[];
+  trainingHistory: TrainingEntry[];
+  profile: Profile;
+  progress: ProgressSummary;
 }
 
 export interface ExamState {
@@ -34,10 +62,24 @@ export interface ExamState {
   finished: boolean;
 }
 
+export interface PracticeStart {
+  question: QuestionView;
+  total: number;
+  secondsPerQuestion: number;
+  /** Bookmarked question ids, so the screen can show the bookmark state of each question. */
+  bookmarks: string[];
+}
+
 /** Exposed by the preload script as `window.examApi`. */
 export interface ExamApi {
   info(): Promise<AppInfo>;
   importBank(): Promise<{ imported: string | null; errors: string[] }>;
+  /** Saves the profile (invalid fields fall back to defaults) and applies the text size; returns what was saved. */
+  saveProfile(profile: Profile): Promise<Profile>;
+  /** Deletes history entries by date, or the whole history of that kind when `dates` is null. */
+  deleteHistory(kind: HistoryKind, dates: string[] | null): Promise<void>;
+  /** Forgets training progress: per-question results, bookmarks and daily counts. */
+  resetProgress(): Promise<void>;
   /** Enters the locked exam environment (before the NDA and tutorial screens). */
   lock(): Promise<void>;
   /** Leaves the locked environment when the candidate declines the NDA. */
@@ -50,8 +92,13 @@ export interface ExamApi {
   result(): Promise<ExamResult>;
   onTimeout(callback: () => void): void;
   onIncident(callback: (message: string) => void): void;
-  startPractice(domains: DomainId[], count: number): Promise<{ question: QuestionView; total: number }>;
+  startPractice(options: PracticeOptions): Promise<PracticeStart>;
   answerPractice(questionId: string, response: number[]): Promise<{ feedback: PracticeFeedback; next: QuestionView | null }>;
+  /** The time limit of the current training question ran out. */
+  timeoutPractice(questionId: string): Promise<{ feedback: PracticeFeedback; next: QuestionView | null }>;
+  /** Returns whether the question is now bookmarked. */
+  toggleBookmark(questionId: string): Promise<boolean>;
+  /** Summary of the training session; the first call also saves it to the training history. */
   practiceSummary(): Promise<PracticeSummary>;
   quit(): Promise<void>;
 }
