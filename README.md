@@ -16,7 +16,9 @@ Electron + TypeScript.
   "End Exam" asks for confirmation and scores the exam as a fail.
 - **Progress bars** (training aid; the real exam shows only the clock and question number): time used
   out of 3 hours, questions answered against the 100–150 range, and a pace hint ("On pace" / "Behind
-  pace by N questions") measured against finishing 150 questions in time (72 s per question).
+  pace by N questions") measured against finishing 150 questions in time (72 s per question). A side panel
+  shows one box per question (answered, current, still to come, and those past 100 that may follow); it is
+  read-only, since the exam has no going back.
 - **Lockdown** from the NDA screen until the score report: kiosk full screen, always on top, hidden
   from screen capture, no close/reload/devtools/clipboard, common shortcuts blocked, no display sleep.
   Each time the window loses focus it is recorded as an incident and the window is brought back.
@@ -31,7 +33,11 @@ Electron + TypeScript.
   wrong at once: your choice and the correct option(s) are highlighted, multi-select answers list what you
   missed or chose wrongly, ordering answers show each position, and the explanation follows (plus a note
   per option when the bank has `optionNotes`). The screen keeps a running score and streak; you can
-  bookmark a question. The session ends with accuracy per domain and a button to retry the missed questions.
+  bookmark a question. A side panel shows one box per question, coloured as correct, wrong, timed out,
+  skipped or not answered, with a star when bookmarked; click a box to open that question. **Skip** leaves
+  a question for later (it comes back after the others) and **Back** opens the previous one; an answered
+  question reopens locked, with its feedback. The session ends with accuracy per domain and a button to
+  retry the missed questions.
 - **Study plan** on the home screen: countdown to your exam date, today's answers against your daily
   goal, how much of the bank you have practised, your weakest domain (once it has 5 training answers) and
   one-click sessions for missed, bookmarked or new questions.

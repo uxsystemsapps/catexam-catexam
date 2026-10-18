@@ -277,6 +277,32 @@ describe('training mode', () => {
     assert.deepEqual([p.summary().answered, p.summary().timedOut, p.summary().missed.length], [1, 1, 1]);
   });
 
+  it('skipped questions come back after the others, and an answered question reopens locked with its feedback', () => {
+    const bank = syntheticBank(3, seeded(7)).slice(0, 3);
+    const p = new PracticeSession(bank);
+    const ids = bank.map((q) => q.id);
+    assert.equal(p.skip(ids[0]).id, ids[1]);
+    assert.deepEqual(p.states(), ['skipped', 'unanswered', 'unanswered']);
+    p.answer(ids[1], bank[1].answer);
+    assert.equal(p.current()?.id, ids[2]);
+    const wrong = bank[2].type === 'ordering' ? [...bank[2].answer].reverse() : [bank[2].options.findIndex((_, i) => !bank[2].answer.includes(i))];
+    const f = p.answer(ids[2], wrong);
+    assert.equal(f.finished, false);
+    assert.equal(p.current()?.id, ids[0], 'wraps round to the skipped question');
+    assert.deepEqual(p.states(), ['skipped', 'correct', 'wrong']);
+
+    const back = p.goTo(2);
+    assert.deepEqual([back.question.id, back.question.number, back.feedback?.correct, back.feedback?.response], [ids[1], 2, true, bank[1].answer]);
+    assert.throws(() => p.answer(ids[1], bank[1].answer), /already answered/);
+    assert.deepEqual(p.goTo(1).feedback, null);
+    assert.throws(() => p.goTo(4), /no such question/);
+
+    assert.equal(p.answer(ids[0], bank[0].answer).finished, true);
+    assert.equal(p.current(), null);
+    assert.deepEqual(p.states(), ['correct', 'correct', 'wrong']);
+    assert.deepEqual([p.summary().answered, p.summary().correct], [3, 2]);
+  });
+
   it('selects by difficulty, type, missed and bookmarked questions, new or missed ones first', () => {
     const bank = syntheticBank(10, seeded(5));
     bank[0] = { ...bank[0], type: 'multi', answer: [0, 1] };
