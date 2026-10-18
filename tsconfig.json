@@ -13,5 +13,5 @@
     "rootDir": ".",
     "outDir": "dist"
   },
-  "include": ["src/engine", "src/main", "src/preload", "src/shared", "test"]
+  "include": ["src/core", "src/engine", "src/main", "src/preload", "src/shared", "test"]
 }

@@ -4,12 +4,17 @@ import path from 'node:path';
 import type { BrowserWindow } from 'electron';
 import type { Lockdown } from './lockdown';
 
+/** Desktop run: the app window and its lockdown. Phone run: the Android web app (www/) in a phone-sized window. */
+export type SmokeTarget = { lockdown: Lockdown; mobile?: undefined } | { lockdown?: undefined; mobile: true };
+
 /**
- * Headless end-to-end run (CATEXAM_SMOKE=1, used by `npm run smoke` in the gates): drives the real
- * screens through a full exam and a short training session, checking the lockdown along the way.
- * With CATEXAM_SMOKE_SHOTS=<dir>, it also saves PNG screenshots of the main screens there.
+ * Headless end-to-end run (CATEXAM_SMOKE=1 for the desktop app, CATEXAM_SMOKE=mobile for the Android web app;
+ * `npm run smoke` runs both in the gates): drives the real screens through a full exam and a short training
+ * session, checking the lockdown (desktop) or the phone layout (Android) along the way.
+ * With CATEXAM_SMOKE_SHOTS=<dir>, it also saves PNG screenshots of the main screens there (`phone-*` for Android).
  */
-export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<boolean> {
+export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise<boolean> {
+  const { lockdown, mobile } = target;
   const js = <T>(code: string): Promise<T> => win.webContents.executeJavaScript(code, true) as Promise<T>;
   const waitFor = (selector: string): Promise<void> =>
     js(`new Promise((resolve, reject) => {
@@ -28,7 +33,7 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     if (!dir) return;
     await js(`(() => { const { promise, resolve } = Promise.withResolvers(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 200))); return promise; })()`);
     await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, `${name}.png`), (await win.webContents.capturePage()).toPNG());
+    await writeFile(path.join(dir, `${mobile ? 'phone-' : ''}${name}.png`), (await win.webContents.capturePage()).toPNG());
   };
   const text = (selector: string): Promise<string> => js<string>(`document.querySelector(${JSON.stringify(selector)}).textContent`);
   /** Whether `selector` sits in the middle of its `main` (within a scroll bar's width), and `main` spans the window. */
@@ -41,26 +46,62 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
       const fullWidth = main.closest('.workspace') ? true : Math.abs(m.width - window.innerWidth) < 1;
       return fullWidth && Math.abs((el.left - m.left) - (m.right - scrollbar - el.right)) <= 2;
     })()`);
+  /**
+   * Phone layout: nothing sticks out sideways (wide tables scroll inside themselves), and the screen fills the
+   * window without spilling below it.
+   */
+  const fitsPhone = async (screen: string): Promise<void> => {
+    if (!mobile) return;
+    const problem = await js<string>(`(() => {
+      const wide = [...document.querySelectorAll('main, header, footer, nav, .progress, .card, .dialog')].find((el) => el.scrollWidth > el.clientWidth + 1);
+      if (wide) {
+        // Name the element that sticks out furthest, to make the failure actionable.
+        const right = (el) => el.getBoundingClientRect().right;
+        const culprit = [...wide.querySelectorAll('*')].reduce((far, el) => (!far || right(el) > right(far) ? el : far), null);
+        const name = (el) => el ? el.tagName + (el.id ? '#' + el.id : '') + (el.className ? '.' + String(el.className).replace(/ /g, '.') : '') : '?';
+        return 'too wide: ' + name(wide) + ' ' + wide.scrollWidth + ' > ' + wide.clientWidth + ', because of ' + name(culprit) + ' "' + (culprit?.textContent ?? '').slice(0, 60) + '"';
+      }
+      if (document.documentElement.scrollWidth > window.innerWidth) return 'page scrolls sideways';
+      const app = document.querySelector('#app').getBoundingClientRect();
+      if (app.bottom > window.innerHeight + 1) return 'screen taller than the window: ' + app.bottom + ' > ' + window.innerHeight;
+      return '';
+    })()`);
+    check(problem === '', `${screen} fits the phone screen${problem ? ` (${problem})` : ''}`);
+  };
+  /** Height in CSS pixels of every element matching `selector`, for the touch target checks. */
+  const heights = (selector: string): Promise<number[]> =>
+    js<number[]>(`[...document.querySelectorAll(${JSON.stringify(selector)})].filter((el) => el.offsetParent).map((el) => el.getBoundingClientRect().height)`);
+  const visible = (selector: string): Promise<boolean> => js<boolean>(`(() => { const el = document.querySelector(${JSON.stringify(selector)}); return !!el && el.offsetParent !== null; })()`);
 
   try {
     await waitFor('#start-exam');
     check((await js<number>(`document.querySelectorAll('#home .stat').length`)) === 4, 'home shows the progress summary');
     check((await js<number>(`document.querySelector('#bank-card').compareDocumentPosition(document.querySelector('#study-card'))`)) === 4, 'question bank card comes before the study plan');
+    await fitsPhone('home');
     await shot('home');
     const total = await js<number>(`window.examApi.info().then((i) => i.bank.total)`);
     check(total >= 150, `question bank loaded (${total} questions)`);
+    if (mobile) {
+      check(
+        (await visible('.tabbar #tab-settings')) && !(await visible('#open-settings')) && !(await visible('#quit')),
+        'phone: bottom tab bar instead of the top buttons, no Quit button',
+      );
+      check((await heights('#home button')).every((hgt) => hgt >= 36), 'phone: buttons are large enough to tap');
+    }
 
     // Profile & settings: saved, applied and used as training defaults.
-    await click('#open-settings');
+    await click(mobile ? '#tab-settings' : '#open-settings');
     await waitFor('#settings-save');
     check(await centred('#settings .card'), 'settings are centred and scroll at the window edge');
-    check(
-      await js<boolean>(`(() => {
-        const r = ['#settings-name', '#settings-exam-date', '#settings-goal'].map((id) => document.querySelector(id).getBoundingClientRect());
-        return r.every((x) => x.top === r[0].top && x.height === r[0].height);
-      })()`),
-      'profile fields line up',
-    );
+    if (!mobile)
+      check(
+        await js<boolean>(`(() => {
+          const r = ['#settings-name', '#settings-exam-date', '#settings-goal'].map((id) => document.querySelector(id).getBoundingClientRect());
+          return r.every((x) => x.top === r[0].top && x.height === r[0].height);
+        })()`),
+        'profile fields line up',
+      );
+    await fitsPhone('settings');
     await shot('settings');
     await js(`(() => {
       const set = (id, v) => { const el = document.querySelector(id); el.value = v; el.dispatchEvent(new Event('change')); };
@@ -78,7 +119,11 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
       `window.examApi.info().then((i) => ({ name: i.profile.name, theme: i.profile.theme, count: i.profile.training.count, difficulty: i.profile.training.difficulty }))`,
     );
     check(saved.name === 'Smoke Test' && saved.theme === 'dark' && saved.count === 3 && saved.difficulty === 'easy', 'settings saved to the profile');
-    check((await js<string>(`document.documentElement.dataset.theme`)) === 'dark' && win.webContents.getZoomFactor() === 1.15, 'dark theme and large text applied');
+    const zoomed = mobile
+      ? (await js<string>(`getComputedStyle(document.body).zoom`)) === '1.15'
+      : win.webContents.getZoomFactor() === 1.15;
+    check((await js<string>(`document.documentElement.dataset.theme`)) === 'dark' && zoomed, 'dark theme and large text applied');
+    await fitsPhone('home with large text');
     check(
       (await js<string>(`document.querySelector('#candidate').value`)) === 'Smoke Test' &&
         (await js<string>(`document.querySelector('#practice-count').value`)) === '3' &&
@@ -91,9 +136,11 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await js(`document.querySelector('#candidate').value = 'Smoke Test'`);
     await click('#start-exam');
     await waitFor('#nda-accept');
-    check(lockdown.isLocked && win.isKiosk() && win.isAlwaysOnTop(), 'locked from the NDA screen: kiosk, always on top');
+    if (lockdown) check(lockdown.isLocked && win.isKiosk() && win.isAlwaysOnTop(), 'locked from the NDA screen: kiosk, always on top');
+    await fitsPhone('NDA');
     await click('#nda-accept');
     await waitFor('#tutorial-start');
+    await fitsPhone('tutorial');
     await click('#tutorial-start');
     await waitFor('#exam');
     check((await text('#question-progress')).startsWith('0 answered'), 'question progress bar starts at 0 answered');
@@ -106,9 +153,38 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
         (await js<string>(`document.querySelector('#navigator .current').textContent`)) === '1',
       'exam navigator shows every question, read-only',
     );
+    await fitsPhone('exam question');
     await shot('exam');
-    win.close();
-    check(!win.isDestroyed(), 'window cannot be closed during the exam');
+    if (mobile) {
+      check(!(await visible('#navigator')) && (await visible('#nav-toggle')), 'phone: the question list is hidden behind the Questions button');
+      await click('#nav-toggle');
+      check((await visible('#navigator')) && (await js<string>(`document.querySelector('#nav-toggle').getAttribute('aria-expanded')`)) === 'true', 'phone: Questions opens the question list');
+      await shot('exam-questions');
+      await click('.nav-backdrop');
+      check(!(await visible('#navigator')), 'phone: tapping outside closes the question list');
+      check((await heights('#exam .option, #exam .drag-item, footer button')).every((hgt) => hgt >= 44), 'phone: options and buttons are at least 44 px high');
+      if (await js<boolean>(`!!document.querySelector('#exam .option')`)) {
+        // Touch and hold strikes an option out without selecting it.
+        await js(`(() => {
+          const row = document.querySelector('#exam .option');
+          const r = row.getBoundingClientRect();
+          row.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, pointerType: 'touch', clientX: r.left + 20, clientY: r.top + 10 }));
+        })()`);
+        await js(`new Promise((resolve) => setTimeout(resolve, 700))`);
+        await js(`(() => {
+          const row = document.querySelector('#exam .option');
+          row.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, pointerType: 'touch' }));
+          row.click();
+        })()`);
+        check(
+          await js<boolean>(`document.querySelector('#exam .option').classList.contains('struck') && !document.querySelector('#exam .option input').checked`),
+          'phone: touch and hold strikes an option out without selecting it',
+        );
+      }
+    } else {
+      win.close();
+      check(!win.isDestroyed(), 'window cannot be closed during the exam');
+    }
     check((await js<boolean>(`document.querySelector('#prev, #back, #review-later') === null`)), 'no back or mark-for-review control');
 
     // An empty answer is refused.
@@ -166,11 +242,13 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
       }
     }
     await waitFor('#outcome');
+    await fitsPhone('score report');
+    await shot('score-report');
     check(answered >= 100 && answered <= 150, `exam ended between 100 and 150 questions (${answered})`);
     const outcome = await js<string>(`document.querySelector('#outcome').textContent`);
     const rows = await js<number>(`document.querySelectorAll('#domain-report tr').length`);
     check(rows === 9, `score report shows ${outcome.trim()} with all 8 domains`);
-    check(!lockdown.isLocked && !win.isKiosk(), 'lockdown released after the exam');
+    if (lockdown) check(!lockdown.isLocked && !win.isKiosk(), 'lockdown released after the exam');
 
     await click('#review');
     await waitFor('#review-list');
@@ -180,6 +258,8 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     const wrongShown = await js<number>(`document.querySelectorAll('#review-list article:not([hidden])').length`);
     const wrongTotal = await js<number>(`document.querySelectorAll('#review-list article.wrong').length`);
     check(wrongShown === wrongTotal, `review filter shows only incorrect answers (${wrongShown})`);
+    await shot('answer-review');
+    await fitsPhone('answer review');
 
     await click('#review-home');
     await waitFor('#history');
@@ -210,6 +290,7 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await click('#bookmark');
     await waitFor('#bookmark[aria-pressed="true"]');
     check((await box(2)).includes('marked'), 'a training question can be bookmarked and shows as marked');
+    await fitsPhone('training feedback');
     await shot('training-feedback');
     await key('Enter');
     await waitFor('#practice:not(:has(#feedback .explanation))');
@@ -221,12 +302,14 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
         (await js<boolean>(`!document.querySelector('#check') && [...document.querySelectorAll('#practice .options input')].every((i) => i.disabled)`)),
       'Back reopens the answered question, locked with its feedback',
     );
+    if (mobile) await click('#nav-toggle');
     await click('#navigator .nav-box[data-number="1"]');
     await waitFor('#practice:not(:has(#feedback .explanation))');
     check((await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 1 of 3' && (await box(1)).includes('current'), 'a navigator box opens its question');
     await shot('training-navigator');
     await click('#practice-stop');
     await waitFor('#practice-domains');
+    await fitsPhone('training summary');
     check(true, 'training summary shows accuracy by domain');
 
     await click('#practice-home');
@@ -243,30 +326,42 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await waitFor('#practice-domains');
 
     await click('#practice-home');
-    await waitFor('#open-history');
-    await click('#open-history');
+    await waitFor('#home');
+    await click(mobile ? '#tab-history' : '#open-history');
     await waitFor('#history-screen');
     check(await centred('#history-screen .card'), 'history is centred and scrolls at the window edge');
     const sessions = await js<number>(`document.querySelectorAll('#training-history tr.entry').length`);
     check(sessions === 2, `history lists both training sessions (${sessions})`);
     check((await js<number>(`document.querySelectorAll('#domain-progress tr').length`)) === 9, 'history shows training accuracy for all 8 domains');
+    await fitsPhone('history');
     await shot('history');
     await click('#exam-history .delete-entry');
     await waitFor('#history-screen:not(:has(#exam-history))');
     check((await js<number>(`window.examApi.info().then((i) => i.history.length)`)) === 0, 'an exam can be deleted from the history');
 
     // Folder import: one summary for added, already imported and invalid files; an imported bank can be removed.
-    await click('#history-home');
+    await click(mobile ? '#tab-home' : '#history-home');
     await waitFor('#import-bank');
     const folder = await mkdtemp(path.join(os.tmpdir(), 'catexam-smoke-banks-'));
     const q = (id: string): object => ({ id, domain: 3, type: 'single', difficulty: 0, stem: `Smoke ${id}?`, options: ['a', 'b', 'c', 'd'], answer: [1], explanation: 'e' });
     await writeFile(path.join(folder, 'new.json'), JSON.stringify({ name: 'Smoke bank', questions: [q('SMK-1'), q('SMK-2')] }));
     await writeFile(path.join(folder, 'dup.json'), JSON.stringify({ name: 'CISSP Domain 1 – Security and Risk Management', questions: [q('SMK-3')] }));
     await writeFile(path.join(folder, 'bad.json'), JSON.stringify({ name: 'Bad', questions: [{ ...q('SMK-4'), domain: 12 }] }));
-    process.env.CATEXAM_SMOKE_IMPORT = folder;
+    if (mobile) {
+      // The phone picks files with the system picker: answer it through the DevTools protocol.
+      const files = ['new.json', 'dup.json', 'bad.json'].map((n) => path.join(folder, n));
+      const devtools = win.webContents.debugger;
+      devtools.attach('1.3');
+      await devtools.sendCommand('Page.enable');
+      await devtools.sendCommand('Page.setInterceptFileChooserDialog', { enabled: true });
+      devtools.on('message', (_event, method, params: { backendNodeId: number }) => {
+        if (method === 'Page.fileChooserOpened') void devtools.sendCommand('DOM.setFileInputFiles', { files, backendNodeId: params.backendNodeId });
+      });
+    } else process.env.CATEXAM_SMOKE_IMPORT = folder;
     const before = await js<number>(`window.examApi.info().then((i) => i.bank.total)`);
     await click('#import-bank');
     await waitFor('#import-summary');
+    await fitsPhone('import summary');
     await shot('import-summary');
     check((await text('#import-totals')) === '3 files found: 1 file added with 2 questions, 1 skipped, 1 failed.', `import summary totals (${await text('#import-totals')})`);
     check((await text('#import-skipped')).includes('dup.json: bank "CISSP Domain 1 – Security and Risk Management" is already imported.'), 'import summary names the skipped bank');

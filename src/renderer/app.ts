@@ -12,6 +12,12 @@ const domainNames = new Map<number, string>();
 /** Keyboard handler of the current question screen; `show()` clears it. */
 let keyHandler: ((e: KeyboardEvent) => void) | null = null;
 
+/** What the Android back button does on the current screen (after closing a dialog or the question list); `show()` clears it. */
+let backAction: (() => void) | null = null;
+
+/** `mobile` in the Android app; set from the first `info()` call. */
+let platform: AppInfo['platform'] = 'desktop';
+
 type Child = Node | string | null | false;
 
 function h<K extends keyof HTMLElementTagNameMap>(
@@ -31,6 +37,7 @@ function h<K extends keyof HTMLElementTagNameMap>(
 
 function show(...nodes: Node[]): void {
   keyHandler = null;
+  backAction = null;
   root.replaceChildren(...nodes);
   root.querySelector('main')?.scrollTo(0, 0);
   root.querySelector('.navigator .current')?.scrollIntoView({ block: 'nearest' });
@@ -81,7 +88,44 @@ function toast(message: string): void {
   setTimeout(() => t.remove(), 6000);
 }
 
-/** One summary of a folder import: what was added, what was skipped as already imported, and why files failed. */
+/** Opens or closes the question list; on a phone it is a sheet over the question, on a desktop it is always shown. */
+function setNavOpen(open: boolean): void {
+  document.querySelector('.workspace')?.classList.toggle('nav-open', open);
+  document.getElementById('nav-toggle')?.setAttribute('aria-expanded', String(open));
+  if (open) document.querySelector('.navigator .current')?.scrollIntoView({ block: 'nearest' });
+}
+
+/** Phone-only button of the question screens that shows the question list. */
+function navToggle(): HTMLElement {
+  return h(
+    'button',
+    { id: 'nav-toggle', class: 'nav-toggle', 'aria-controls': 'navigator', 'aria-expanded': 'false', onclick: () => setNavOpen(!document.querySelector('.workspace.nav-open')) },
+    'Questions',
+  );
+}
+
+/** Question screen body: the question list (a sheet on phones, with a backdrop that closes it) and the question. */
+function workspace(navigator: HTMLElement, main: HTMLElement): HTMLElement {
+  return h('div', { class: 'workspace' }, navigator, h('div', { class: 'nav-backdrop', onclick: () => setNavOpen(false) }), main);
+}
+
+type Tab = 'home' | 'train' | 'history' | 'settings';
+
+/** Bottom navigation of the start and history screens on phones (hidden on the desktop, which has the top buttons). */
+function tabbar(active: Tab): HTMLElement {
+  const tab = (id: Tab, label: string, open: () => void): HTMLElement =>
+    h('button', { id: `tab-${id}`, class: id === active ? 'tab active' : 'tab', 'aria-current': id === active ? 'page' : false, onclick: open }, label);
+  return h(
+    'nav',
+    { class: 'tabbar', 'aria-label': 'Sections' },
+    tab('home', 'Home', () => void home()),
+    tab('train', 'Train', () => void home().then(() => document.getElementById('training-card')?.scrollIntoView({ block: 'start' }))),
+    tab('history', 'History', () => void historyScreen()),
+    tab('settings', 'Settings', () => void settingsScreen()),
+  );
+}
+
+/** One summary of an import (a folder, or picked files): what was added, what was skipped as already imported, and why files failed. */
 function showImportSummary(s: BankImportSummary): void {
   const skipped = s.files.filter((f) => f.status === 'skipped');
   const failed = s.files.filter((f) => f.status === 'failed');
@@ -92,7 +136,7 @@ function showImportSummary(s: BankImportSummary): void {
     s.error
       ? h('p', { class: 'warn' }, `Nothing imported: ${s.error}`)
       : h('p', { id: 'import-totals' }, `${plural(s.files.length, 'file')} found: ${plural(s.added, 'file')} added with ${plural(s.questions, 'question')}, ${skipped.length} skipped, ${failed.length} failed.`),
-    !s.error && s.files.length === 0 && h('p', {}, 'The folder has no .json files.'),
+    !s.error && s.files.length === 0 && h('p', {}, platform === 'mobile' ? 'None of the chosen files is a .json file.' : 'The folder has no .json files.'),
     skipped.length > 0 &&
       h('div', { id: 'import-skipped' }, h('h3', {}, 'Skipped (already imported)'), h('ul', {}, ...skipped.map((f) => h('li', {}, `${f.file}: bank "${f.bank}" is already imported.`)))),
     failed.length > 0 &&
@@ -209,6 +253,9 @@ async function home(): Promise<void> {
   profile = info.profile;
   applyAppearance(profile);
   for (const d of info.bank.byDomain) domainNames.set(d.domain, d.name);
+  platform = info.platform;
+  document.documentElement.dataset.platform = platform;
+  const mobile = platform === 'mobile';
   const nameInput = h('input', { id: 'candidate', type: 'text', placeholder: 'Your name', maxlength: '80', value: profile.name });
   const form = trainingForm(info, 'practice', profile.training);
   const shortBank = info.bank.total < 150;
@@ -242,10 +289,10 @@ async function home(): Promise<void> {
       h('span', { class: 'brand' }, 'CATExam', h('span', { class: 'brand-sub' }, 'CISSP Computerized Adaptive Testing simulator')),
       h(
         'span',
-        { class: 'row' },
+        { class: 'row top-actions' },
         h('button', { id: 'open-history', class: 'ghost', onclick: () => void historyScreen() }, 'History'),
         h('button', { id: 'open-settings', class: 'ghost', onclick: () => void settingsScreen() }, 'Profile & settings'),
-        h('button', { id: 'quit', class: 'ghost', onclick: () => void api.quit() }, 'Quit'),
+        !mobile && h('button', { id: 'quit', class: 'ghost', onclick: () => void api.quit() }, 'Quit'),
       ),
     ),
     h(
@@ -258,7 +305,7 @@ async function home(): Promise<void> {
           'div',
           { class: 'hero-text' },
           h('h1', {}, profile.name ? `Welcome back, ${profile.name}` : 'Exam simulation'),
-          h('p', { class: 'lead' }, 'The full CISSP CAT experience: 100–150 adaptive questions in 3 hours, no going back. The screen locks as in a test centre until the exam ends.'),
+          h('p', { class: 'lead' }, `The full CISSP CAT experience: 100–150 adaptive questions in 3 hours, no going back. ${mobile ? 'The app is pinned to the screen and screenshots are blocked' : 'The screen locks as in a test centre'} until the exam ends.`),
           h(
             'ul',
             { class: 'facts' },
@@ -302,7 +349,7 @@ async function home(): Promise<void> {
                 if (summary) showImportSummary(summary);
               },
             },
-            'Import a folder of question banks…',
+            mobile ? 'Import question bank files…' : 'Import a folder of question banks…',
           ),
         ),
         h('p', { class: 'small' }, `${info.bank.total} questions. Imported banks: ${info.importedBanks.length === 0 ? 'none' : info.importedBanks.length}.`),
@@ -439,6 +486,7 @@ async function home(): Promise<void> {
         ),
       ),
     ),
+    tabbar('home'),
   );
 }
 
@@ -447,7 +495,7 @@ function examTable(id: string, entries: HistoryEntry[], actions: boolean): HTMLE
   const table = h(
     'table',
     { id },
-    h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Result'), h('th', {}, 'Score*'), h('th', {}, 'Items'), h('th', {}, 'Time'), actions && h('th', {}, '')),
+    h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Result'), h('th', {}, 'Score*'), h('th', { class: 'opt' }, 'Items'), h('th', { class: 'opt' }, 'Time'), actions && h('th', {}, '')),
   );
   for (const e of entries) {
     const details = h(
@@ -471,8 +519,8 @@ function examTable(id: string, entries: HistoryEntry[], actions: boolean): HTMLE
         h('td', {}, new Date(e.date).toLocaleString()),
         h('td', {}, h('span', { class: `badge ${e.passed ? 'pass' : 'fail'}` }, e.passed ? 'PASS' : 'FAIL')),
         h('td', {}, String(e.scaledScore)),
-        h('td', {}, String(e.itemsAnswered)),
-        h('td', {}, formatClock(e.elapsedSeconds)),
+        h('td', { class: 'opt' }, String(e.itemsAnswered)),
+        h('td', { class: 'opt' }, formatClock(e.elapsedSeconds)),
         actions &&
           h(
             'td',
@@ -521,14 +569,14 @@ async function historyScreen(): Promise<void> {
         h(
           'table',
           { id: 'domain-progress' },
-          h('tr', {}, h('th', {}, 'Domain'), h('th', {}, 'Questions practised'), h('th', {}, 'Answers'), h('th', {}, 'Accuracy')),
+          h('tr', {}, h('th', {}, 'Domain'), h('th', {}, 'Questions practised'), h('th', { class: 'opt' }, 'Answers'), h('th', {}, 'Accuracy')),
           ...info.progress.byDomain.map((d) =>
             h(
               'tr',
               { class: d.domain === info.progress.weakestDomain ? 'weak' : '' },
               h('td', {}, `${d.domain}. ${domainNames.get(d.domain) ?? ''}`),
               h('td', {}, `${d.seen} of ${d.total}`),
-              h('td', {}, String(d.answered)),
+              h('td', { class: 'opt' }, String(d.answered)),
               h('td', {}, meter(d.correct, d.answered), ` ${percent(d.correct, d.answered)}`),
             ),
           ),
@@ -553,26 +601,28 @@ async function historyScreen(): Promise<void> {
           : h(
               'table',
               { id: 'training-history' },
-              h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Questions'), h('th', {}, 'Correct'), h('th', {}, 'Accuracy'), h('th', {}, 'Difficulty'), h('th', {}, 'From'), h('th', {}, 'Domains'), h('th', {}, '')),
+              h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Questions'), h('th', { class: 'opt' }, 'Correct'), h('th', {}, 'Accuracy'), h('th', { class: 'opt' }, 'Difficulty'), h('th', { class: 'opt' }, 'From'), h('th', { class: 'opt' }, 'Domains'), h('th', {}, '')),
               ...info.trainingHistory.map((t) =>
                 h(
                   'tr',
                   { class: 'entry' },
                   h('td', {}, new Date(t.date).toLocaleString()),
                   h('td', {}, String(t.answered)),
-                  h('td', {}, String(t.correct)),
+                  h('td', { class: 'opt' }, String(t.correct)),
                   h('td', {}, meter(t.correct, t.answered), ` ${percent(t.correct, t.answered)}`),
-                  h('td', {}, DIFFICULTY_LABELS[t.difficulty] ?? t.difficulty),
-                  h('td', {}, SOURCE_LABELS[t.source] ?? t.source),
-                  h('td', {}, t.byDomain.filter((d) => d.answered > 0).map((d) => d.domain).join(', ')),
+                  h('td', { class: 'opt' }, DIFFICULTY_LABELS[t.difficulty] ?? t.difficulty),
+                  h('td', { class: 'opt' }, SOURCE_LABELS[t.source] ?? t.source),
+                  h('td', { class: 'opt' }, t.byDomain.filter((d) => d.answered > 0).map((d) => d.domain).join(', ')),
                   h('td', { class: 'actions' }, h('button', { class: 'mini delete-entry', onclick: () => void api.deleteHistory('training', [t.date]).then(historyScreen) }, 'Delete')),
                 ),
               ),
             ),
       ),
     ),
-    h('footer', { class: 'bottombar' }, h('span', {}), h('button', { id: 'history-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
+    h('footer', { class: 'bottombar has-tabs' }, h('span', {}), h('button', { id: 'history-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
+    tabbar('history'),
   );
+  backAction = () => void home();
 }
 
 async function settingsScreen(): Promise<void> {
@@ -633,7 +683,7 @@ async function settingsScreen(): Promise<void> {
           'section',
           { class: 'card' },
           h('h2', {}, 'Your data'),
-          h('p', { class: 'small' }, 'Kept only on this computer, in the application profile folder.'),
+          h('p', { class: 'small' }, platform === 'mobile' ? 'Kept only on this phone, in the app’s private storage.' : 'Kept only on this computer, in the application profile folder.'),
           h(
             'div',
             { class: 'row wrap' },
@@ -652,6 +702,7 @@ async function settingsScreen(): Promise<void> {
       h('button', { id: 'settings-save', class: 'primary', onclick: () => void save() }, 'Save settings'),
     ),
   );
+  backAction = () => void home();
 }
 
 // ---------- NDA and tutorial (as at the test centre) ----------
@@ -687,6 +738,8 @@ async function nda(candidate: string): Promise<void> {
       h('button', { id: 'nda-accept', class: 'primary', onclick: () => { clearInterval(timer); tutorial(candidate); } }, 'I accept'),
     ),
   );
+  // The agreement must be accepted or declined with its buttons.
+  backAction = () => undefined;
 }
 
 function tutorial(candidate: string): void {
@@ -702,10 +755,16 @@ function tutorial(candidate: string): void {
         h('li', {}, 'You have 3 hours. The exam has 100 to 150 questions and stops as soon as the result is clear with 95% confidence.'),
         h('li', {}, 'Each question adapts to your previous answers. Some questions are unscored research items; you cannot tell which.'),
         h('li', {}, 'You must answer every question. Once you select Next you cannot return to it, and you cannot mark questions for review.'),
-        h('li', {}, 'Right-click an option to strike it out. For drag-and-drop questions, drag the items (or use the arrows) into the right order.'),
-        h('li', {}, 'You can also press a letter key (A, B, C…) to select an option and Enter to select Next.'),
+        platform === 'mobile'
+          ? h('li', {}, 'Touch and hold an option to strike it out. For ordering questions, drag the items by their handle (or use the arrows) into the right order.')
+          : h('li', {}, 'Right-click an option to strike it out. For drag-and-drop questions, drag the items (or use the arrows) into the right order.'),
+        platform === 'mobile'
+          ? h('li', {}, 'Questions shows the list of questions: those answered and those still to come.')
+          : h('li', {}, 'You can also press a letter key (A, B, C…) to select an option and Enter to select Next.'),
         h('li', {}, 'You may take a break at any time, but the clock keeps running.'),
-        h('li', {}, 'The screen is locked: leaving the exam window is recorded as an incident.'),
+        platform === 'mobile'
+          ? h('li', {}, 'The app is pinned to the screen: leaving it is recorded as an incident. Screenshots are blocked.')
+          : h('li', {}, 'The screen is locked: leaving the exam window is recorded as an incident.'),
       ),
     ),
     h(
@@ -715,6 +774,7 @@ function tutorial(candidate: string): void {
       h('button', { id: 'tutorial-start', class: 'primary', onclick: () => void startExam(candidate) }, 'Begin the exam'),
     ),
   );
+  backAction = () => undefined;
 }
 
 // ---------- Exam ----------
@@ -757,7 +817,7 @@ function examProgress(state: ExamState): ExamProgress {
     setBar(time, elapsed / limit);
     setBar(questions, answered / state.maxItems);
     timeText.textContent = `${formatClock(elapsed)} of ${formatClock(limit)}`;
-    questionText.textContent = `${answered} answered · ends between ${state.minItems} and ${state.maxItems}`;
+    questionText.textContent = `${answered} answered`;
     // Pace against the maximum length, so a candidate on pace can finish even a 150-item exam.
     const behind = Math.floor(elapsed / perItem - answered);
     pace.textContent = behind > 0 ? `Behind pace by ${behind} question${behind === 1 ? '' : 's'}` : 'On pace';
@@ -767,8 +827,13 @@ function examProgress(state: ExamState): ExamProgress {
   const node = h(
     'div',
     { class: 'progress', id: 'exam-progress' },
-    h('div', { class: 'progress-item' }, h('div', { class: 'progress-label' }, h('span', {}, 'Time used'), timeText), time.bar),
-    h('div', { class: 'progress-item' }, h('div', { class: 'progress-label' }, h('span', {}, 'Questions'), questionText), questions.bar),
+    h('div', { class: 'progress-item' }, h('div', { class: 'progress-label' }, h('span', { class: 'wide-only' }, 'Time used'), timeText), time.bar),
+    h(
+      'div',
+      { class: 'progress-item' },
+      h('div', { class: 'progress-label' }, h('span', { class: 'wide-only' }, 'Questions'), h('span', {}, questionText, h('span', { class: 'wide-only' }, ` · ends between ${state.minItems} and ${state.maxItems}`))),
+      questions.bar,
+    ),
     h('div', { class: 'progress-pace', title: `About ${Math.round(perItem)} seconds per question finishes ${state.maxItems} questions in time` }, pace),
   );
   update();
@@ -825,15 +890,41 @@ function questionBody(q: QuestionView): { node: HTMLElement; response: () => num
       if (delta < 0 && !sibling) return;
       list.insertBefore(li, sibling);
     };
+    /** Touch drag by the handle (the HTML drag and drop of the desktop does not work with fingers). */
+    const touchDrag = (li: HTMLElement, grip: HTMLElement, e: PointerEvent): void => {
+      if (e.pointerType === 'mouse' || !li.draggable) return;
+      e.preventDefault();
+      grip.setPointerCapture(e.pointerId);
+      li.classList.add('dragging');
+      const onMove = (ev: PointerEvent): void => {
+        for (const other of list.children) {
+          const r = other.getBoundingClientRect();
+          if (other === li || ev.clientY < r.top || ev.clientY > r.bottom) continue;
+          list.insertBefore(li, ev.clientY < r.top + r.height / 2 ? other : other.nextElementSibling);
+          return;
+        }
+      };
+      const onEnd = (): void => {
+        li.classList.remove('dragging');
+        grip.removeEventListener('pointermove', onMove);
+        grip.removeEventListener('pointerup', onEnd);
+        grip.removeEventListener('pointercancel', onEnd);
+      };
+      grip.addEventListener('pointermove', onMove);
+      grip.addEventListener('pointerup', onEnd);
+      grip.addEventListener('pointercancel', onEnd);
+    };
     q.options.forEach((text, i) => {
+      const grip = h('span', { class: 'grip', 'aria-hidden': 'true' }, '⋮⋮');
       const li = h(
         'li',
         { draggable: 'true', 'data-index': String(i), class: 'drag-item' },
-        h('span', { class: 'grip' }, '⋮⋮'),
+        grip,
         h('span', { class: 'text' }, text),
-        h('button', { class: 'mini', title: 'Move up', onclick: () => move(li, -1) }, '▲'),
-        h('button', { class: 'mini', title: 'Move down', onclick: () => move(li, 1) }, '▼'),
+        h('button', { class: 'mini move', title: 'Move up', 'aria-label': 'Move up', onclick: () => move(li, -1) }, '▲'),
+        h('button', { class: 'mini move', title: 'Move down', 'aria-label': 'Move down', onclick: () => move(li, 1) }, '▼'),
       );
+      grip.addEventListener('pointerdown', (e) => touchDrag(li, grip, e));
       li.addEventListener('dragstart', () => { dragged = li; li.classList.add('dragging'); });
       li.addEventListener('dragend', () => { dragged = null; li.classList.remove('dragging'); });
       li.addEventListener('dragover', (e) => {
@@ -845,7 +936,7 @@ function questionBody(q: QuestionView): { node: HTMLElement; response: () => num
       list.append(li);
     });
     return {
-      node: h('div', {}, h('p', { class: 'hint' }, 'Drag the items into the correct order (first at the top), or use the arrows.'), list),
+      node: h('div', {}, h('p', { class: 'hint' }, platform === 'mobile' ? 'Drag the items by their handle (⋮⋮) into the correct order, first at the top, or use the arrows.' : 'Drag the items into the correct order (first at the top), or use the arrows.'), list),
       response: () => [...list.querySelectorAll('li')].map((li) => Number(li.dataset.index)),
       select: () => undefined,
     };
@@ -856,11 +947,40 @@ function questionBody(q: QuestionView): { node: HTMLElement; response: () => num
     const input = h('input', { type: multi ? 'checkbox' : 'radio', name: 'option', value: String(i), id: `opt-${i}` });
     inputs.push(input);
     const row = h('label', { class: 'option', for: `opt-${i}` }, input, h('span', { class: 'letter' }, `${LETTERS[i]}.`), h('span', { class: 'text' }, text));
-    row.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
+    // Strike-out: right-click, or touch and hold. A long press may also raise `contextmenu`, so one press toggles once.
+    let lastStrike = 0;
+    let pressTimer: number | undefined;
+    let pressStart = { x: 0, y: 0 };
+    let swallowClick = false;
+    const strike = (): void => {
+      if (Date.now() - lastStrike < 700) return;
+      lastStrike = Date.now();
       if (struck.has(i)) struck.delete(i);
       else struck.add(i);
       row.classList.toggle('struck', struck.has(i));
+    };
+    row.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      strike();
+    });
+    row.addEventListener('pointerdown', (e) => {
+      swallowClick = false;
+      if (e.pointerType === 'mouse') return;
+      pressStart = { x: e.clientX, y: e.clientY };
+      pressTimer = window.setTimeout(() => {
+        strike();
+        // The finger lifting after a long press must not also select the option.
+        swallowClick = true;
+      }, 550);
+    });
+    row.addEventListener('pointermove', (e) => {
+      if (Math.hypot(e.clientX - pressStart.x, e.clientY - pressStart.y) > 10) clearTimeout(pressTimer);
+    });
+    for (const type of ['pointerup', 'pointercancel', 'pointerleave']) row.addEventListener(type, () => clearTimeout(pressTimer));
+    row.addEventListener('click', (e) => {
+      if (!swallowClick) return;
+      e.preventDefault();
+      swallowClick = false;
     });
     return row;
   });
@@ -902,12 +1022,19 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
   show(
     h(
       'header',
-      { class: 'topbar' },
-      h('span', { class: 'brand' }, 'ISC2 CISSP – Certified Information Systems Security Professional'),
-      h('span', { class: 'right' }, h('span', { id: 'candidate-name' }, candidate), h('span', {}, 'Time Remaining ', clock), h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number}`)),
+      { class: 'topbar question-top' },
+      h('span', { class: 'brand' }, h('span', { class: 'wide-only' }, 'ISC2 CISSP – Certified Information Systems Security Professional'), h('span', { class: 'narrow-only' }, 'CISSP')),
+      h(
+        'span',
+        { class: 'right' },
+        h('span', { id: 'candidate-name', class: 'wide-only' }, candidate),
+        h('span', {}, h('span', { class: 'wide-only' }, 'Time Remaining '), clock),
+        h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number}`),
+        navToggle(),
+      ),
     ),
     progress.node,
-    h('div', { class: 'workspace' }, examNavigator(state, q.number), h('main', { class: 'question', id: 'exam' }, h('p', { class: 'stem' }, q.stem), body.node)),
+    workspace(examNavigator(state, q.number), h('main', { class: 'question', id: 'exam' }, h('p', { class: 'stem' }, q.stem), body.node)),
     h(
       'footer',
       { class: 'bottombar' },
@@ -933,6 +1060,7 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
     ),
   );
   keyHandler = questionKeys(body.select, () => { if (!nextButton.disabled) void next(); });
+  backAction = () => toast('There is no going back in the exam. Use End Exam to stop it.');
 }
 
 /**
@@ -1019,14 +1147,14 @@ function resultScreen(r: ExamResult): void {
       h(
         'table',
         { id: 'domain-report' },
-        h('tr', {}, h('th', {}, 'Domain'), h('th', {}, 'Weight'), h('th', {}, 'Scored items'), h('th', {}, 'Correct'), h('th', {}, 'Proficiency')),
+        h('tr', {}, h('th', {}, 'Domain'), h('th', { class: 'opt' }, 'Weight'), h('th', { class: 'opt' }, 'Scored items'), h('th', {}, 'Correct'), h('th', {}, 'Proficiency')),
         ...r.domains.map((d) =>
           h(
             'tr',
             {},
             h('td', {}, `${d.domain}. ${d.name}`),
-            h('td', {}, `${Math.round(d.weight * 100)}%`),
-            h('td', {}, String(d.answered)),
+            h('td', { class: 'opt' }, `${Math.round(d.weight * 100)}%`),
+            h('td', { class: 'opt' }, String(d.answered)),
             h('td', {}, String(d.correct), ' ', meter(d.correct, d.answered)),
             h('td', { class: d.band.startsWith('Below') ? 'fail' : d.band.startsWith('Above') ? 'pass' : '' }, d.band),
           ),
@@ -1042,6 +1170,7 @@ function resultScreen(r: ExamResult): void {
       h('button', { id: 'result-home', class: 'primary', onclick: () => void home() }, 'Back to start'),
     ),
   );
+  backAction = () => void home();
 }
 
 function answerText(options: string[], indices: number[], ordering: boolean): string {
@@ -1103,6 +1232,7 @@ function reviewScreen(r: ExamResult): void {
     h('footer', { class: 'bottombar' }, h('button', { onclick: () => resultScreen(r) }, '◀ Score report'), h('button', { id: 'review-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
   );
   apply();
+  backAction = () => resultScreen(r);
 }
 
 // ---------- Training mode ----------
@@ -1331,14 +1461,14 @@ function renderPractice(q: QuestionView, answered: PracticeFeedback | null, ctx:
   show(
     h(
       'header',
-      { class: 'topbar' },
-      h('span', { class: 'brand' }, 'Training mode'),
-      h('span', { class: 'right' }, tally, streak, ctx.seconds > 0 && !answered && timeLeft, h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number} of ${ctx.total}`)),
+      { class: 'topbar question-top' },
+      h('span', { class: 'brand wide-only' }, 'Training mode'),
+      h('span', { class: 'right' }, tally, streak, ctx.seconds > 0 && !answered && timeLeft, h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number} of ${ctx.total}`), navToggle()),
     ),
-    h('div', { class: 'workspace' }, sidebar, h('main', { class: 'question', id: 'practice' }, h('p', { class: 'stem' }, q.stem), body.node, feedback)),
+    workspace(sidebar, h('main', { class: 'question', id: 'practice' }, h('p', { class: 'stem' }, q.stem), body.node, feedback)),
     h(
       'footer',
-      { class: 'bottombar' },
+      { class: 'bottombar practice-bar' },
       h('div', {}, back, h('button', { id: 'practice-stop', onclick: () => void practiceSummary() }, 'Stop'), bookmark),
       h('span', { class: 'small keys' }, q.type === 'ordering' ? 'Enter: Check / Next' : `Keys: A–${LETTERS[q.options.length - 1]} select · Enter: Check / Next`),
       h('div', {}, skip, button),
@@ -1360,6 +1490,11 @@ function renderPractice(q: QuestionView, answered: PracticeFeedback | null, ctx:
     (i) => { if (!go) body.select(i); },
     () => { if (go) go.click(); else if (!button.disabled) void check(); },
   );
+  backAction = () =>
+    modal('Stop training', 'Stop this training session and see its summary?', [
+      { label: 'Keep training', id: 'stop-cancel', onClick: () => undefined },
+      { label: 'Stop', id: 'stop-confirm', primary: true, onClick: () => void practiceSummary() },
+    ]);
 }
 
 async function practiceSummary(): Promise<void> {
@@ -1400,6 +1535,7 @@ async function practiceSummary(): Promise<void> {
       h('button', { id: 'practice-home', class: 'primary', onclick: () => void home() }, 'Back to start'),
     ),
   );
+  backAction = () => void home();
 }
 
 // ---------- Wiring ----------
@@ -1409,6 +1545,22 @@ api.onTimeout(() => {
   finishExam();
 });
 api.onIncident((message) => toast(message));
+// Android back button: closes a dialog (with its first, safe button) or the question list, then does what the
+// screen says; on the start screen it is not handled, so the app goes to the background.
+api.onBack(() => {
+  const dialogButton = document.querySelector<HTMLButtonElement>('.overlay button');
+  if (dialogButton) {
+    dialogButton.click();
+    return true;
+  }
+  if (document.querySelector('.workspace.nav-open')) {
+    setNavOpen(false);
+    return true;
+  }
+  if (!backAction) return false;
+  backAction();
+  return true;
+});
 document.addEventListener('copy', (e) => e.preventDefault());
 document.addEventListener('cut', (e) => e.preventDefault());
 document.addEventListener('contextmenu', (e) => e.preventDefault());

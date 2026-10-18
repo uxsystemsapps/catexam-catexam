@@ -48,7 +48,8 @@ jobs:
 
   smoke:
     # Starts the real Electron app headless (Xvfb) and drives a full exam and a training session through
-    # the screens (src/main/smoke.ts). Linux only: no Windows hand exists for this product.
+    # the screens (src/main/smoke.ts), then does the same with the Android web app (www/) in a phone-sized
+    # window, checking the phone layout. Linux only: no Windows or Android hand exists for this product.
     runs-on: linux
     steps:
       - uses: actions/checkout@v4
@@ -90,4 +91,45 @@ jobs:
         with:
           name: CATExam-windows-installer
           path: release/*.exe
+          if-no-files-found: error
+
+  android-apk:
+    # Builds the Android app (Capacitor, debug-signed APK) on Linux and attaches it to the run as a downloadable
+    # artefact. Not installed or run here: no Android hand (device or emulator) exists.
+    runs-on: linux
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: install JDK 21 and the Android SDK (platform 36, build tools 36.0.0)
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends unzip >/dev/null
+          mkdir -p /opt/jdk /opt/android-sdk/cmdline-tools
+          curl -fsSL "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse" | tar xz -C /opt/jdk --strip-components=1
+          curl -fsSL -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+          unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk/cmdline-tools
+          mv /opt/android-sdk/cmdline-tools/cmdline-tools /opt/android-sdk/cmdline-tools/latest
+          export JAVA_HOME=/opt/jdk
+          yes | /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null
+          /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;36.0.0" >/dev/null
+          echo "JAVA_HOME=/opt/jdk" >> "$GITHUB_ENV"
+          echo "ANDROID_HOME=/opt/android-sdk" >> "$GITHUB_ENV"
+      - name: build APK (npm run dist:android)
+        run: |
+          npm ci
+          npm run dist:android
+          mkdir -p release
+          cp android/app/build/outputs/apk/debug/app-debug.apk release/CATExam-android.apk
+      - name: check APK
+        run: |
+          ls -l release/CATExam-android.apk
+          "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging release/CATExam-android.apk | grep -E "^package: name='com.uxsystems.catexam'"
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify release/CATExam-android.apk
+          unzip -l release/CATExam-android.apk | grep -q 'assets/public/index.html' || { echo "web app missing from the APK"; exit 1; }
+          unzip -l release/CATExam-android.apk | grep -q 'assets/public/questions/index.json' || { echo "question banks missing from the APK"; exit 1; }
+      - uses: actions/upload-artifact@v3 # v4 needs Gitea's newer artifact API; it fails on this server
+        with:
+          name: CATExam-android-apk
+          path: release/CATExam-android.apk
           if-no-files-found: error

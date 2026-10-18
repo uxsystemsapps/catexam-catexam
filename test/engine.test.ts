@@ -21,7 +21,8 @@ import {
 } from '../src/engine/profile';
 import { CISSP_CAT, ExamSession } from '../src/engine/session';
 import type { DomainId, Question, QuestionView } from '../src/engine/types';
-import { appendTrainingHistory, deleteHistory, importBankFolder, loadQuestions, readProfile, readProgress, readTrainingHistory, removeBank, saveProfile, saveProgress } from '../src/main/store';
+import { appendTrainingHistory, deleteHistory, importBanks, loadQuestions, readProfile, readProgress, readTrainingHistory, removeBank, saveProfile, saveProgress } from '../src/core/store';
+import { folderFiles, fsDir } from '../src/main/fsdir';
 import type { TrainingEntry } from '../src/shared/api';
 
 function seeded(seed: number): () => number {
@@ -351,7 +352,8 @@ describe('profile and history storage', () => {
   });
 
   it('saves the profile and progress, and deletes one or all history entries', async () => {
-    const dir = await mkdtemp(path.join(os.tmpdir(), 'catexam-test-'));
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-test-'));
+    const dir = fsDir(tmp);
     try {
       assert.deepEqual(await readProfile(dir), DEFAULT_PROFILE);
       const profile = normalizeProfile({ name: 'Ann', examDate: '2026-12-01', theme: 'dark' });
@@ -372,7 +374,7 @@ describe('profile and history storage', () => {
       await deleteHistory(dir, 'training', null);
       assert.deepEqual(await readTrainingHistory(dir), []);
     } finally {
-      await rm(dir, { recursive: true, force: true });
+      await rm(tmp, { recursive: true, force: true });
     }
   });
 });
@@ -382,13 +384,14 @@ describe('question bank folder import', () => {
 
   it('adds valid banks, skips already imported names, reports validator errors, and removes a bank', async () => {
     const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-import-'));
-    const builtin = path.join(tmp, 'builtin');
+    const builtin = fsDir(path.join(tmp, 'builtin'));
     const folder = path.join(tmp, 'folder');
-    const user = path.join(tmp, 'user');
+    const user = fsDir(path.join(tmp, 'user'));
+    const importBankFolder = (dir: string) => importBanks(dir, () => folderFiles(dir), builtin, user);
     try {
-      await mkdir(builtin);
+      await mkdir(path.join(tmp, 'builtin'));
       await mkdir(folder);
-      await writeFile(path.join(builtin, 'core.json'), JSON.stringify({ name: 'Core', questions: [question('C1')] }));
+      await writeFile(path.join(tmp, 'builtin', 'core.json'), JSON.stringify({ name: 'Core', questions: [question('C1')] }));
       await writeFile(path.join(folder, 'a.json'), JSON.stringify({ name: 'Extra A', questions: [question('A1'), question('A2')] }));
       await writeFile(path.join(folder, 'b.json'), JSON.stringify({ name: 'Core', questions: [question('B1')] }));
       await writeFile(path.join(folder, 'c.json'), JSON.stringify({ name: 'Broken', questions: [{ ...question('X1'), answer: [7] }] }));
@@ -396,7 +399,7 @@ describe('question bank folder import', () => {
       await writeFile(path.join(folder, 'e.json'), JSON.stringify({ name: 'Extra A', questions: [question('E1')] }));
       await writeFile(path.join(folder, 'notes.txt'), 'ignored');
 
-      const first = await importBankFolder(folder, builtin, user);
+      const first = await importBankFolder(folder);
       assert.deepEqual(
         first.files.map((f) => [f.file, f.status, f.bank]),
         [['a.json', 'added', 'Extra A'], ['b.json', 'skipped', 'Core'], ['c.json', 'failed', 'Broken'], ['d.json', 'failed', ''], ['e.json', 'skipped', 'Extra A']],
@@ -412,14 +415,14 @@ describe('question bank folder import', () => {
       assert.equal(loaded.questions.length, 3);
 
       // Importing the same folder again adds nothing: its bank is already imported.
-      const again = await importBankFolder(folder, builtin, user);
+      const again = await importBankFolder(folder);
       assert.deepEqual([again.added, again.files[0].status], [0, 'skipped']);
 
       // A new bank with an already used file name gets its own file instead of overwriting.
       const other = path.join(tmp, 'other');
       await mkdir(other);
       await writeFile(path.join(other, 'a.json'), JSON.stringify({ name: 'Extra B', questions: [question('F1')] }));
-      await importBankFolder(other, builtin, user);
+      await importBankFolder(other);
       loaded = await loadQuestions(builtin, user);
       assert.deepEqual(loaded.imported.map((b) => [b.file, b.name]), [['a-2.json', 'Extra B'], ['a.json', 'Extra A']]);
 
@@ -429,7 +432,7 @@ describe('question bank folder import', () => {
       assert.equal(loaded.questions.length, 2);
       await assert.rejects(removeBank('../builtin/core.json', user));
 
-      const missing = await importBankFolder(path.join(tmp, 'nope'), builtin, user);
+      const missing = await importBankFolder(path.join(tmp, 'nope'));
       assert.ok(missing.error && missing.files.length === 0);
     } finally {
       await rm(tmp, { recursive: true, force: true });

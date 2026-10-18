@@ -1,0 +1,10 @@
+{
+  "appId": "com.uxsystems.catexam",
+  "appName": "CATExam",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": false,
+    "webContentsDebuggingEnabled": false
+  }
+}

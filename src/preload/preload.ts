@@ -21,6 +21,8 @@ const api: ExamApi = {
   onIncident: (callback) => {
     ipcRenderer.on('exam:incident', (_event, message: string) => callback(message));
   },
+  // The desktop has no back button.
+  onBack: () => undefined,
   startPractice: (options) => ipcRenderer.invoke('practice:start', options),
   answerPractice: (questionId, response) => ipcRenderer.invoke('practice:answer', questionId, response),
   timeoutPractice: (questionId) => ipcRenderer.invoke('practice:timeout', questionId),
