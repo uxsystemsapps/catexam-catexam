@@ -3,7 +3,8 @@ import type { ExamApi } from '../shared/api';
 
 const api: ExamApi = {
   info: () => ipcRenderer.invoke('app:info'),
-  importBank: () => ipcRenderer.invoke('bank:import'),
+  importBanks: () => ipcRenderer.invoke('bank:import'),
+  removeBank: (file) => ipcRenderer.invoke('bank:remove', file),
   saveProfile: (profile) => ipcRenderer.invoke('profile:save', profile),
   deleteHistory: (kind, dates) => ipcRenderer.invoke('history:delete', kind, dates),
   resetProgress: () => ipcRenderer.invoke('progress:reset'),

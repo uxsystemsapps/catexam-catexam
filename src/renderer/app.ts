@@ -52,7 +52,7 @@ function formatClock(seconds: number): string {
   return `${hh}:${String(mm).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 }
 
-function modal(title: string, text: string, buttons: { label: string; id: string; primary?: boolean; onClick: () => void }[]): void {
+function modal(title: string, body: string | Node, buttons: { label: string; id: string; primary?: boolean; onClick: () => void }[]): void {
   const overlay = h('div', { class: 'overlay', id: 'modal' });
   const close = (): void => overlay.remove();
   overlay.append(
@@ -60,7 +60,7 @@ function modal(title: string, text: string, buttons: { label: string; id: string
       'div',
       { class: 'dialog', role: 'dialog' },
       h('h2', {}, title),
-      h('p', {}, text),
+      typeof body === 'string' ? h('p', {}, body) : body,
       h(
         'div',
         { class: 'dialog-buttons' },
@@ -78,6 +78,31 @@ function toast(message: string): void {
   const t = h('div', { class: 'toast', role: 'alert' }, message);
   document.body.append(t);
   setTimeout(() => t.remove(), 6000);
+}
+
+/** One summary of a folder import: what was added, what was skipped as already imported, and why files failed. */
+function showImportSummary(s: BankImportSummary): void {
+  const skipped = s.files.filter((f) => f.status === 'skipped');
+  const failed = s.files.filter((f) => f.status === 'failed');
+  const plural = (n: number, word: string): string => `${n} ${word}${n === 1 ? '' : 's'}`;
+  const body = h(
+    'div',
+    { id: 'import-summary' },
+    s.error
+      ? h('p', { class: 'warn' }, `Nothing imported: ${s.error}`)
+      : h('p', { id: 'import-totals' }, `${plural(s.files.length, 'file')} found: ${plural(s.added, 'file')} added with ${plural(s.questions, 'question')}, ${skipped.length} skipped, ${failed.length} failed.`),
+    !s.error && s.files.length === 0 && h('p', {}, 'The folder has no .json files.'),
+    skipped.length > 0 &&
+      h('div', { id: 'import-skipped' }, h('h3', {}, 'Skipped (already imported)'), h('ul', {}, ...skipped.map((f) => h('li', {}, `${f.file}: bank "${f.bank}" is already imported.`)))),
+    failed.length > 0 &&
+      h(
+        'div',
+        { id: 'import-failed' },
+        h('h3', {}, 'Failed'),
+        h('ul', {}, ...failed.map((f) => h('li', {}, h('strong', {}, f.file), h('ul', {}, ...f.errors.map((e) => h('li', {}, e)))))),
+      ),
+  );
+  modal('Import summary', body, [{ label: 'OK', id: 'import-ok', primary: true, onClick: () => void home() }]);
 }
 
 // ---------- Home ----------
@@ -346,18 +371,50 @@ async function home(): Promise<void> {
               {
                 id: 'import-bank',
                 onclick: async () => {
-                  const r = await api.importBank();
-                  if (r.errors.length > 0) toast(`Import refused: ${r.errors.slice(0, 3).join('; ')}`);
-                  else if (r.imported) {
-                    toast(`Imported ${r.imported}.`);
-                    void home();
-                  }
+                  const summary = await api.importBanks();
+                  if (summary) showImportSummary(summary);
                 },
               },
-              'Import question bank (JSON)…',
+              'Import a folder of question banks…',
             ),
           ),
-          h('p', { class: 'small' }, `${info.bank.total} questions. Imported banks: ${info.importedBanks.join(', ') || 'none'}.`),
+          h('p', { class: 'small' }, `${info.bank.total} questions. Imported banks: ${info.importedBanks.length === 0 ? 'none' : info.importedBanks.length}.`),
+          info.importedBanks.length > 0 &&
+            h(
+              'ul',
+              { id: 'imported-banks', class: 'imported-banks' },
+              ...info.importedBanks.map((b) =>
+                h(
+                  'li',
+                  {},
+                  h('span', { class: 'bank-name', title: b.file }, `${b.name} (${b.questions} questions)`),
+                  h(
+                    'button',
+                    {
+                      class: 'remove-bank',
+                      onclick: () =>
+                        modal('Remove question bank', `Remove "${b.name}" and its ${b.questions} questions? The training progress is kept.`, [
+                          { label: 'Cancel', id: 'remove-cancel', onClick: () => undefined },
+                          {
+                            label: 'Remove',
+                            id: 'remove-confirm',
+                            primary: true,
+                            onClick: () =>
+                              void api.removeBank(b.file).then(
+                                () => {
+                                  toast(`Removed ${b.name}.`);
+                                  void home();
+                                },
+                                (err: unknown) => toast(errorText(err)),
+                              ),
+                          },
+                        ]),
+                    },
+                    'Remove',
+                  ),
+                ),
+              ),
+            ),
           h(
             'div',
             { class: 'bank-bars' },

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
@@ -21,7 +21,7 @@ import {
 } from '../src/engine/profile';
 import { CISSP_CAT, ExamSession } from '../src/engine/session';
 import type { DomainId, Question, QuestionView } from '../src/engine/types';
-import { appendTrainingHistory, deleteHistory, readProfile, readProgress, readTrainingHistory, saveProfile, saveProgress } from '../src/main/store';
+import { appendTrainingHistory, deleteHistory, importBankFolder, loadQuestions, readProfile, readProgress, readTrainingHistory, removeBank, saveProfile, saveProgress } from '../src/main/store';
 import type { TrainingEntry } from '../src/shared/api';
 
 function seeded(seed: number): () => number {
@@ -347,6 +347,66 @@ describe('profile and history storage', () => {
       assert.deepEqual(await readTrainingHistory(dir), []);
     } finally {
       await rm(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('question bank folder import', () => {
+  const question = (id: string) => ({ id, domain: 2, type: 'single', difficulty: 0, stem: 's', options: ['a', 'b', 'c', 'd'], answer: [0], explanation: 'e' });
+
+  it('adds valid banks, skips already imported names, reports validator errors, and removes a bank', async () => {
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-import-'));
+    const builtin = path.join(tmp, 'builtin');
+    const folder = path.join(tmp, 'folder');
+    const user = path.join(tmp, 'user');
+    try {
+      await mkdir(builtin);
+      await mkdir(folder);
+      await writeFile(path.join(builtin, 'core.json'), JSON.stringify({ name: 'Core', questions: [question('C1')] }));
+      await writeFile(path.join(folder, 'a.json'), JSON.stringify({ name: 'Extra A', questions: [question('A1'), question('A2')] }));
+      await writeFile(path.join(folder, 'b.json'), JSON.stringify({ name: 'Core', questions: [question('B1')] }));
+      await writeFile(path.join(folder, 'c.json'), JSON.stringify({ name: 'Broken', questions: [{ ...question('X1'), answer: [7] }] }));
+      await writeFile(path.join(folder, 'd.json'), '{ not json');
+      await writeFile(path.join(folder, 'e.json'), JSON.stringify({ name: 'Extra A', questions: [question('E1')] }));
+      await writeFile(path.join(folder, 'notes.txt'), 'ignored');
+
+      const first = await importBankFolder(folder, builtin, user);
+      assert.deepEqual(
+        first.files.map((f) => [f.file, f.status, f.bank]),
+        [['a.json', 'added', 'Extra A'], ['b.json', 'skipped', 'Core'], ['c.json', 'failed', 'Broken'], ['d.json', 'failed', ''], ['e.json', 'skipped', 'Extra A']],
+      );
+      assert.deepEqual([first.added, first.questions], [1, 2]);
+      const brokenErrors = validateBank({ name: 'Broken', questions: [{ ...question('X1'), answer: [7] }] }).errors;
+      assert.ok(brokenErrors.length > 0);
+      assert.deepEqual(first.files[2].errors, brokenErrors);
+      assert.equal(first.files[3].errors.length, 1);
+
+      let loaded = await loadQuestions(builtin, user);
+      assert.deepEqual(loaded.imported, [{ file: 'a.json', name: 'Extra A', questions: 2 }]);
+      assert.equal(loaded.questions.length, 3);
+
+      // Importing the same folder again adds nothing: its bank is already imported.
+      const again = await importBankFolder(folder, builtin, user);
+      assert.deepEqual([again.added, again.files[0].status], [0, 'skipped']);
+
+      // A new bank with an already used file name gets its own file instead of overwriting.
+      const other = path.join(tmp, 'other');
+      await mkdir(other);
+      await writeFile(path.join(other, 'a.json'), JSON.stringify({ name: 'Extra B', questions: [question('F1')] }));
+      await importBankFolder(other, builtin, user);
+      loaded = await loadQuestions(builtin, user);
+      assert.deepEqual(loaded.imported.map((b) => [b.file, b.name]), [['a-2.json', 'Extra B'], ['a.json', 'Extra A']]);
+
+      await removeBank('a.json', user);
+      loaded = await loadQuestions(builtin, user);
+      assert.deepEqual(loaded.imported.map((b) => b.name), ['Extra B']);
+      assert.equal(loaded.questions.length, 2);
+      await assert.rejects(removeBank('../builtin/core.json', user));
+
+      const missing = await importBankFolder(path.join(tmp, 'nope'), builtin, user);
+      assert.ok(missing.error && missing.files.length === 0);
+    } finally {
+      await rm(tmp, { recursive: true, force: true });
     }
   });
 });

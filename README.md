@@ -43,8 +43,11 @@ Electron + TypeScript.
 
 ## Question bank
 
-`questions/domain-*.json` holds 198 original starter questions across all 8 domains. Use **Import
-question bank** to add more questions; each file is validated before it is copied into the profile.
+`questions/domain-*.json` holds 198 original starter questions across all 8 domains. Use **Import a
+folder of question banks** to add more: every `.json` file in the chosen folder is validated, and the
+valid ones are copied into the profile (`banks/`). One summary then lists how many files and questions
+were added, the files skipped because a bank with the same `name` is already loaded, and the files that
+failed with the validator's errors. Each imported bank has a **Remove** button on the home screen.
 Format:
 
 ```json

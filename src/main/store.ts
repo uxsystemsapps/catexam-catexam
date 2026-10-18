@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mergeBanks, validateBank } from '../engine/bank';
 import { normalizeProfile, normalizeProgress, type Profile, type Progress } from '../engine/profile';
 import type { Question, QuestionBank } from '../engine/types';
-import type { HistoryEntry, HistoryKind, TrainingEntry } from '../shared/api';
+import type { BankImportFile, BankImportSummary, HistoryEntry, HistoryKind, ImportedBank, TrainingEntry } from '../shared/api';
 
 const HISTORY_LIMIT = 100;
 const TRAINING_HISTORY_LIMIT = 200;
@@ -37,28 +37,76 @@ async function readBanksFrom(dir: string): Promise<{ banks: QuestionBank[]; file
 export async function loadQuestions(
   builtinDir: string,
   userDir: string,
-): Promise<{ questions: Question[]; imported: string[]; errors: string[] }> {
+): Promise<{ questions: Question[]; imported: ImportedBank[]; errors: string[] }> {
   const builtin = await readBanksFrom(builtinDir);
   const user = await readBanksFrom(path.join(userDir, 'banks'));
   const merged = mergeBanks([...builtin.banks, ...user.banks]);
-  return { questions: merged.questions, imported: user.files, errors: [...builtin.errors, ...user.errors, ...merged.errors] };
+  const imported = user.banks.map((b, i) => ({ file: user.files[i], name: b.name, questions: b.questions.length }));
+  return { questions: merged.questions, imported, errors: [...builtin.errors, ...user.errors, ...merged.errors] };
 }
 
-/** Validates a bank file and copies it into the profile; nothing is copied when it has errors. */
-export async function importBank(file: string, userDir: string): Promise<{ imported: string | null; errors: string[] }> {
-  let raw: unknown;
-  try {
-    raw = JSON.parse(await fs.readFile(file, 'utf8'));
-  } catch (err) {
-    return { imported: null, errors: [`cannot read ${path.basename(file)}: ${(err as Error).message}`] };
-  }
-  const { bank, errors } = validateBank(raw);
-  if (!bank) return { imported: null, errors };
+/**
+ * Validates every `*.json` file of `folder` and copies the valid ones into the profile. A file whose bank
+ * name is already loaded (built-in, imported before, or earlier in the same folder) is skipped; a file with
+ * errors is not copied.
+ */
+export async function importBankFolder(folder: string, builtinDir: string, userDir: string): Promise<BankImportSummary> {
+  const builtin = await readBanksFrom(builtinDir);
   const dir = path.join(userDir, 'banks');
-  await fs.mkdir(dir, { recursive: true });
-  const name = path.basename(file);
-  await fs.writeFile(path.join(dir, name), JSON.stringify(bank, null, 2));
-  return { imported: name, errors: [] };
+  const user = await readBanksFrom(dir);
+  const names = new Set([...builtin.banks, ...user.banks].map((b) => b.name));
+  let taken: Set<string>;
+  try {
+    taken = new Set(await fs.readdir(dir));
+  } catch {
+    taken = new Set();
+  }
+  let entries: string[];
+  try {
+    entries = (await fs.readdir(folder, { withFileTypes: true }))
+      .filter((e) => e.isFile() && e.name.toLowerCase().endsWith('.json'))
+      .map((e) => e.name)
+      .sort();
+  } catch (err) {
+    return { folder, files: [], added: 0, questions: 0, error: `cannot read the folder: ${(err as Error).message}` };
+  }
+  const files: BankImportFile[] = [];
+  for (const file of entries) {
+    let raw: unknown;
+    try {
+      raw = JSON.parse(await fs.readFile(path.join(folder, file), 'utf8'));
+    } catch (err) {
+      files.push({ file, status: 'failed', bank: '', questions: 0, errors: [`not readable JSON: ${(err as Error).message}`] });
+      continue;
+    }
+    const { bank, errors } = validateBank(raw);
+    if (!bank) {
+      const name = raw !== null && typeof raw === 'object' && 'name' in raw && typeof raw.name === 'string' ? raw.name : '';
+      files.push({ file, status: 'failed', bank: name, questions: 0, errors });
+      continue;
+    }
+    if (names.has(bank.name)) {
+      files.push({ file, status: 'skipped', bank: bank.name, questions: bank.questions.length, errors: [] });
+      continue;
+    }
+    // Never overwrite another imported bank that happens to have the same file name.
+    const base = file.slice(0, -'.json'.length);
+    let target = `${base}.json`;
+    for (let n = 2; taken.has(target); n++) target = `${base}-${n}.json`;
+    await fs.mkdir(dir, { recursive: true });
+    await fs.writeFile(path.join(dir, target), JSON.stringify(bank, null, 2));
+    taken.add(target);
+    names.add(bank.name);
+    files.push({ file, status: 'added', bank: bank.name, questions: bank.questions.length, errors: [] });
+  }
+  const added = files.filter((f) => f.status === 'added');
+  return { folder, files, added: added.length, questions: added.reduce((s, f) => s + f.questions, 0) };
+}
+
+/** Deletes an imported bank from the profile; `file` must be a bank file name listed by `loadQuestions`. */
+export async function removeBank(file: string, userDir: string): Promise<void> {
+  if (path.basename(file) !== file || !file.endsWith('.json')) throw new Error('not an imported bank');
+  await fs.unlink(path.join(userDir, 'banks', file));
 }
 
 /** Parsed JSON file of the profile folder, or undefined when it is missing or unreadable. */
