@@ -1,0 +1,426 @@
+{
+  "name": "CISSP Domain 3 – Security Architecture and Engineering",
+  "questions": [
+    {
+      "id": "D3-001",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -2.0,
+      "stem": "Which security model is primarily concerned with preventing unauthorized disclosure by enforcing 'no read up' and 'no write down'?",
+      "options": [
+        "Biba",
+        "Clark-Wilson",
+        "Bell-LaPadula",
+        "Brewer-Nash"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Bell-LaPadula is a confidentiality model using the simple security property and the *-property. Biba and Clark-Wilson focus on integrity, and Brewer-Nash addresses conflicts of interest."
+    },
+    {
+      "id": "D3-002",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.8,
+      "stem": "A consulting firm must prevent an analyst who has accessed one bank client's data from then accessing a competing bank's data. Which model BEST fits this requirement?",
+      "options": [
+        "Brewer-Nash",
+        "Bell-LaPadula",
+        "Biba",
+        "Graham-Denning"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Brewer-Nash (Chinese Wall) dynamically restricts access based on prior access to avoid conflicts of interest. The other models do not track access history across conflict classes."
+    },
+    {
+      "id": "D3-003",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.5,
+      "stem": "Which component of a trusted computing base mediates every access attempt by subjects to objects and must be tamperproof, always invoked, and verifiable?",
+      "options": [
+        "Security kernel",
+        "Reference monitor",
+        "Trusted platform module",
+        "Hypervisor"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The reference monitor is the abstract concept that must be tamperproof, always invoked, and small enough to verify; the security kernel is its implementation. A TPM and hypervisor serve different purposes."
+    },
+    {
+      "id": "D3-004",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "A developer stores user passwords. Which approach is MOST appropriate?",
+      "options": [
+        "Encrypt passwords with AES-256 using a key in the application config",
+        "Hash passwords with SHA-256 without salt",
+        "Store passwords using a salted, adaptive key-derivation function such as Argon2 or bcrypt",
+        "Encode passwords with Base64 before storing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Salted, deliberately slow KDFs resist brute force and rainbow tables. Reversible encryption exposes all passwords if the key leaks, unsalted fast hashes are easily cracked, and Base64 is not protection."
+    },
+    {
+      "id": "D3-005",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -2.3,
+      "stem": "Alice wants to send Bob a message that only Bob can read. Which key should Alice use to encrypt it?",
+      "options": [
+        "Alice's private key",
+        "Alice's public key",
+        "Bob's private key",
+        "Bob's public key"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Encrypting with the recipient's public key ensures only the holder of Bob's private key can decrypt. Using Alice's private key provides origin authentication, not confidentiality."
+    },
+    {
+      "id": "D3-006",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.0,
+      "stem": "Which property of a digital signature provides nonrepudiation?",
+      "options": [
+        "The signature is created with the signer's private key, which only the signer should possess",
+        "The message is encrypted with a shared symmetric key",
+        "The signature is verified with the signer's private key",
+        "The hash function produces a fixed-length output"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Only the signer holds the private key, so a valid signature binds the signer to the message. Shared symmetric keys cannot provide nonrepudiation because both parties hold the key."
+    },
+    {
+      "id": "D3-007",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.2,
+      "stem": "An organization is concerned that adversaries are harvesting encrypted traffic today to decrypt later with quantum computers. What should the security architect do FIRST?",
+      "options": [
+        "Immediately replace all RSA certificates with longer RSA keys",
+        "Inventory where and how public-key cryptography is used to build a migration plan to post-quantum algorithms",
+        "Switch all symmetric encryption from AES-256 to 3DES",
+        "Disable TLS on internal networks"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Crypto-agility starts with an inventory of cryptographic dependencies so that prioritized migration to standardized post-quantum algorithms (e.g., ML-KEM) can be planned. Larger RSA keys do not resist Shor's algorithm, 3DES is weaker, and disabling TLS removes protection."
+    },
+    {
+      "id": "D3-008",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.0,
+      "stem": "A tenant in a public IaaS cloud wants assurance that hypervisor-level attacks cannot expose memory of its sensitive workloads. Which technology BEST addresses this?",
+      "options": [
+        "Confidential computing using hardware-based trusted execution environments",
+        "Server-side encryption of object storage",
+        "Multi-factor authentication for the cloud console",
+        "Network security groups"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Confidential computing encrypts data in use within hardware-isolated enclaves or VMs, protecting it even from the host. The other controls protect data at rest, identities, or network paths, not memory in use."
+    },
+    {
+      "id": "D3-009",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.2,
+      "stem": "Under the cloud shared responsibility model, which item is the customer ALWAYS responsible for regardless of service model?",
+      "options": [
+        "Physical security of the data center",
+        "Hypervisor patching",
+        "Data classification and access to its own data",
+        "Network hardware maintenance"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In IaaS, PaaS, and SaaS the customer remains accountable for its data and who can access it. Physical facilities, hypervisors, and network hardware are provider responsibilities."
+    },
+    {
+      "id": "D3-010",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.3,
+      "stem": "Which attack exploits the time difference between when a system checks a resource's state and when it uses the resource?",
+      "options": [
+        "Buffer overflow",
+        "Time-of-check to time-of-use (TOCTOU)",
+        "Covert timing channel",
+        "Replay attack"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "TOCTOU race conditions occur when the resource changes between check and use. A covert timing channel conveys information via timing but is not this flaw; replay reuses captured data."
+    },
+    {
+      "id": "D3-011",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.6,
+      "stem": "An attacker measures the power consumption of a smart card while it performs cryptographic operations to recover the key. What type of attack is this?",
+      "options": [
+        "Side-channel attack",
+        "Birthday attack",
+        "Meet-in-the-middle attack",
+        "Chosen-ciphertext attack"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Power analysis is a side-channel attack exploiting physical emanations rather than algorithm weaknesses. Birthday and meet-in-the-middle attacks are mathematical, and chosen-ciphertext attacks manipulate inputs."
+    },
+    {
+      "id": "D3-012",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.2,
+      "stem": "A manufacturing plant's legacy industrial control system cannot be patched. What is the BEST compensating control?",
+      "options": [
+        "Connect the ICS directly to the corporate network for central monitoring",
+        "Replace the PLC firmware with an unsigned community version",
+        "Install a general-purpose antivirus on each PLC",
+        "Segment the ICS into an isolated zone with tightly controlled conduits and monitoring"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Network segmentation per zones and conduits (e.g., ISA/IEC 62443) limits exposure of unpatchable systems. Connecting to corporate networks increases risk, unsigned firmware is untrustworthy, and PLCs typically cannot run AV."
+    },
+    {
+      "id": "D3-013",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.8,
+      "stem": "Which principle states that a system's security should not depend on the secrecy of its design, only on the secrecy of the key?",
+      "options": [
+        "Defense in depth",
+        "Kerckhoffs's principle",
+        "Least privilege",
+        "Separation of duties"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Kerckhoffs's principle holds that a cryptosystem should remain secure even if everything except the key is public. The other principles concern layering and access restriction."
+    },
+    {
+      "id": "D3-014",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.6,
+      "stem": "A company wants to validate that a server's boot firmware and OS loader have not been tampered with and report those measurements to a remote verifier. Which capability is MOST relevant?",
+      "options": [
+        "Full-disk encryption",
+        "Host-based firewall",
+        "TPM-based measured boot with remote attestation",
+        "Data loss prevention"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Measured boot records hashes of boot components in TPM PCRs, and remote attestation reports them to a verifier. Disk encryption, firewalls, and DLP do not verify boot integrity."
+    },
+    {
+      "id": "D3-015",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.2,
+      "stem": "Which fire suppression approach is MOST appropriate for a data center where water damage to equipment is a primary concern but some water-based protection is required by code?",
+      "options": [
+        "Wet pipe sprinkler",
+        "Deluge system",
+        "Dry chemical extinguishers only",
+        "Pre-action sprinkler system"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Pre-action systems require a detection event before water fills the pipes, reducing accidental discharge. Wet pipe systems hold water constantly and deluge systems release large volumes; dry chemicals alone may not satisfy code."
+    },
+    {
+      "id": "D3-016",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.0,
+      "stem": "Which block cipher mode provides both confidentiality and integrity (authenticated encryption)?",
+      "options": [
+        "ECB",
+        "CBC",
+        "GCM",
+        "CTR"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Galois/Counter Mode is an AEAD mode providing confidentiality and an authentication tag. ECB leaks patterns, and CBC and CTR provide confidentiality only without a separate MAC."
+    },
+    {
+      "id": "D3-017",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "During the design phase of a new application, which activity BEST supports the secure-by-design principle?",
+      "options": [
+        "Running a penetration test before release",
+        "Performing threat modeling to identify and mitigate design-level threats",
+        "Deploying a web application firewall",
+        "Scheduling quarterly vulnerability scans"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Threat modeling during design identifies flaws when they are cheapest to fix. Penetration tests, WAFs, and scans occur later and detect rather than prevent design flaws."
+    },
+    {
+      "id": "D3-018",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.8,
+      "stem": "An auditor finds that a CA's root private key is stored on a network-connected server. What is the MOST appropriate recommendation?",
+      "options": [
+        "Keep the root CA offline with its key protected in an HSM and use subordinate CAs for issuance",
+        "Increase the root key length and leave it online",
+        "Publish the root key fingerprint on the company website",
+        "Shorten end-entity certificate lifetimes"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "An offline root with HSM protection minimizes compromise of the trust anchor, while subordinate CAs handle daily issuance. Longer keys or shorter leaf lifetimes do not address exposure of the root."
+    },
+    {
+      "id": "D3-019",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.5,
+      "stem": "Which statement about the Common Criteria Evaluation Assurance Levels (EALs) is MOST accurate?",
+      "options": [
+        "A higher EAL guarantees a product is more secure in any environment",
+        "EALs measure the depth and rigor of evaluation against a defined security target, not absolute security",
+        "EAL1 is the highest level of assurance",
+        "EALs replace the need for a Protection Profile"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "EALs indicate how rigorously a product was evaluated against its Security Target; security depends on the claimed functions and environment. EAL7 is highest, and Protection Profiles define requirements independent of EALs."
+    },
+    {
+      "id": "D3-020",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.8,
+      "stem": "A microservices platform uses containers sharing one host kernel. Which risk is MOST specific to this architecture compared with full virtual machines?",
+      "options": [
+        "Container escape via a kernel vulnerability compromising all containers on the host",
+        "Inability to encrypt data at rest",
+        "Lack of support for TLS",
+        "Physical theft of the hypervisor"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Containers share the host kernel, so a kernel exploit can break isolation for every container. VMs have a separate guest kernel per workload; encryption and TLS are available in either model."
+    },
+    {
+      "id": "D3-021",
+      "domain": 3,
+      "type": "multi",
+      "difficulty": -1.4,
+      "stem": "Which of the following are symmetric encryption algorithms? (Select TWO.)",
+      "options": [
+        "AES",
+        "RSA",
+        "ChaCha20",
+        "Elliptic Curve Diffie-Hellman",
+        "DSA"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "AES and ChaCha20 use a single shared secret key. RSA, ECDH, and DSA are asymmetric algorithms used for encryption, key agreement, or signatures."
+    },
+    {
+      "id": "D3-022",
+      "domain": 3,
+      "type": "multi",
+      "difficulty": 0.4,
+      "stem": "A security architect is selecting controls to mitigate memory-corruption exploits on endpoints. Which controls are MOST directly effective? (Select THREE.)",
+      "options": [
+        "Address space layout randomization (ASLR)",
+        "Data execution prevention (DEP/NX)",
+        "Stack canaries",
+        "Full-disk encryption",
+        "Single sign-on"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "ASLR, DEP/NX, and stack canaries each make exploitation of buffer overflows harder. Disk encryption protects data at rest and SSO addresses authentication, not memory corruption."
+    },
+    {
+      "id": "D3-023",
+      "domain": 3,
+      "type": "ordering",
+      "difficulty": -0.4,
+      "stem": "Drag the steps of the cryptographic key lifecycle into the correct order.",
+      "options": [
+        "Destruction",
+        "Generation",
+        "Use and rotation",
+        "Distribution and storage",
+        "Archival or revocation"
+      ],
+      "answer": [
+        1,
+        3,
+        2,
+        4,
+        0
+      ],
+      "explanation": "Keys are generated, then securely distributed and stored, used and rotated, revoked or archived when no longer active, and finally destroyed. Destroying or revoking earlier would break the lifecycle."
+    },
+    {
+      "id": "D3-024",
+      "domain": 3,
+      "type": "ordering",
+      "difficulty": 2.2,
+      "stem": "Drag the steps for verifying a digitally signed message into the correct order.",
+      "options": [
+        "Compare the computed hash with the decrypted signature value",
+        "Obtain and validate the sender's certificate and public key",
+        "Compute a hash of the received message using the same algorithm",
+        "Use the sender's public key to process the signature and recover the signed hash"
+      ],
+      "answer": [
+        1,
+        3,
+        2,
+        0
+      ],
+      "explanation": "The verifier first validates the sender's certificate to trust the public key, recovers the signed hash with that key, hashes the received message, and compares the two. Comparing before both values exist is impossible, and an untrusted key makes verification meaningless."
+    }
+  ]
+}

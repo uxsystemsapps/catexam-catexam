@@ -1,0 +1,45 @@
+{
+  "name": "catexam",
+  "productName": "CATExam",
+  "version": "0.1.0",
+  "description": "CISSP computerized adaptive testing (CAT) exam simulator for Windows",
+  "main": "dist/src/main/main.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.renderer.json && node scripts/copy-static.mjs",
+    "lint": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.renderer.json --noEmit && eslint .",
+    "test": "npm run build && node --test dist/test/*.test.js",
+    "smoke": "npm run build && node scripts/smoke.mjs",
+    "start": "npm run build && electron .",
+    "dist:win": "npm run build && electron-builder --win nsis --x64"
+  },
+  "build": {
+    "appId": "com.uxsystems.catexam",
+    "productName": "CATExam",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/src/**",
+      "questions/*.json",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.10.0",
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3",
+    "eslint": "^10.13.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.2"
+  }
+}

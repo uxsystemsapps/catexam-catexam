@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "node10",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/engine", "src/main", "src/preload", "src/shared", "test"]
+}

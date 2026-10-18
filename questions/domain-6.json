@@ -1,0 +1,427 @@
+{
+  "name": "CISSP Domain 6 – Security Assessment and Testing",
+  "questions": [
+    {
+      "id": "D6-001",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -2.2,
+      "stem": "Which type of test gives the tester full knowledge of source code, architecture, and credentials before testing begins?",
+      "options": [
+        "White-box testing",
+        "Black-box testing",
+        "Blind testing",
+        "Double-blind testing"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "White-box (clear-box) testing provides full internal knowledge. Black-box gives none, and blind/double-blind describe what the tester or defenders know about the engagement."
+    },
+    {
+      "id": "D6-002",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.4,
+      "stem": "Before starting a penetration test of a production network, what must a consultant obtain FIRST?",
+      "options": [
+        "A list of known vulnerabilities",
+        "Written authorization defining scope and rules of engagement",
+        "Administrator credentials for all hosts",
+        "A copy of the incident response plan"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Written, signed authorization with scope and rules of engagement is the legal and ethical prerequisite. Without it testing may be illegal; the other items are optional inputs."
+    },
+    {
+      "id": "D6-003",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.3,
+      "stem": "A SOC 2 Type II report differs from a Type I report primarily because it:",
+      "options": [
+        "Covers financial reporting controls",
+        "Is intended for public distribution",
+        "Evaluates operating effectiveness of controls over a period of time",
+        "Is performed by internal auditors"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Type II tests operating effectiveness over a period (typically 6-12 months); Type I covers design at a point in time. SOC 1 addresses financial reporting, and SOC 3 is the public report."
+    },
+    {
+      "id": "D6-004",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.4,
+      "stem": "A company wants to share assurance about its cloud service's security controls with prospects on its public website. Which report is MOST appropriate?",
+      "options": [
+        "SOC 1 Type II",
+        "SOC 2 Type II",
+        "ISAE 3402 Type I",
+        "SOC 3"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "SOC 3 is a general-use summary suitable for public distribution. SOC 1 and SOC 2 reports are restricted-use, and ISAE 3402 addresses financial reporting controls."
+    },
+    {
+      "id": "D6-005",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.0,
+      "stem": "Which testing technique feeds malformed, random, or unexpected input to an application to find crashes and input-handling flaws?",
+      "options": [
+        "Fuzzing",
+        "Static code analysis",
+        "Regression testing",
+        "Misuse case modeling"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Fuzzing supplies invalid or random input to dynamically uncover robustness flaws. Static analysis doesn't execute code, regression testing confirms changes didn't break function, and misuse cases are design artifacts."
+    },
+    {
+      "id": "D6-006",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.9,
+      "stem": "A vulnerability scan reports a critical flaw on a server, but manual review shows the vulnerable package was backported with a patch. This result is BEST described as a:",
+      "options": [
+        "True positive",
+        "False positive",
+        "False negative",
+        "True negative"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The scanner flagged a vulnerability that doesn't exist, which is a false positive, common with version-banner checks on backported packages. A false negative would be a missed real flaw."
+    },
+    {
+      "id": "D6-007",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.3,
+      "stem": "To reduce false positives and get more accurate patch-level findings from vulnerability scans, what should a security team do?",
+      "options": [
+        "Increase scan frequency",
+        "Scan only from outside the firewall",
+        "Perform credentialed (authenticated) scans",
+        "Switch to passive network monitoring only"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Authenticated scans inspect installed packages and configurations directly, improving accuracy. More frequent or external-only scans don't fix the underlying inference problem, and passive monitoring has less visibility."
+    },
+    {
+      "id": "D6-008",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.8,
+      "stem": "Which code review method examines source code without executing it?",
+      "options": [
+        "Dynamic application security testing",
+        "Fuzz testing",
+        "Synthetic transaction monitoring",
+        "Static application security testing"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "SAST analyzes source or binaries without running them. DAST and fuzzing exercise the running application, and synthetic transactions monitor live behavior."
+    },
+    {
+      "id": "D6-009",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.1,
+      "stem": "An organization runs scripted transactions every five minutes against its e-commerce site to verify availability and response time. This is an example of:",
+      "options": [
+        "Synthetic transaction monitoring",
+        "Real user monitoring",
+        "Penetration testing",
+        "Log review"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Synthetic monitoring uses scripted, simulated transactions to proactively test functionality and performance. Real user monitoring passively observes actual user sessions."
+    },
+    {
+      "id": "D6-010",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.7,
+      "stem": "An auditor finds that the security team selects which logs to review based on alert volume, and many systems are never reviewed. What should the CISO do FIRST?",
+      "options": [
+        "Purchase a new SIEM",
+        "Define a risk-based log management policy establishing what must be collected and reviewed",
+        "Increase log retention to seven years",
+        "Disable logging on low-priority systems"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Policy and risk-based requirements must come first to guide what is collected, reviewed, and retained. Tools and retention changes follow governance; disabling logs reduces visibility."
+    },
+    {
+      "id": "D6-011",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "What is the PRIMARY purpose of clipping levels in audit log review?",
+      "options": [
+        "Encrypt sensitive log entries",
+        "Compress logs for long-term storage",
+        "Set a threshold below which routine events are not flagged for review",
+        "Synchronize time across log sources"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Clipping levels are baselines so only activity exceeding a threshold (e.g., more than three failed logins) is flagged, reducing noise. They don't encrypt, compress, or synchronize logs."
+    },
+    {
+      "id": "D6-012",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.6,
+      "stem": "Correlation of events from multiple systems during an investigation fails because timestamps don't line up. Which control would MOST directly prevent this?",
+      "options": [
+        "Log hashing",
+        "Write-once storage",
+        "Increased log verbosity",
+        "Centralized time synchronization such as NTP"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Synchronized clocks are required to correlate events across sources. Hashing and WORM storage protect integrity, and verbosity adds detail but not consistent time."
+    },
+    {
+      "id": "D6-013",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 2.0,
+      "stem": "An internal audit department reports to the CIO, whose systems it audits. Which is the MOST significant concern?",
+      "options": [
+        "Lack of auditor independence",
+        "Audit scope is too narrow",
+        "Insufficient audit tooling",
+        "Audit frequency is too low"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Auditors reporting to the management they audit compromises independence and objectivity; they should report to the audit committee or board. The other issues are secondary."
+    },
+    {
+      "id": "D6-014",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.0,
+      "stem": "Which metric is a key risk indicator (KRI) rather than a key performance indicator (KPI)?",
+      "options": [
+        "Percentage of staff completing security training on time",
+        "Number of critical vulnerabilities older than 30 days on internet-facing systems",
+        "Mean time to close help desk tickets",
+        "Number of patches deployed per month"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "KRIs measure exposure to risk; aging critical vulnerabilities on exposed systems signal rising risk. The others measure process performance or activity."
+    },
+    {
+      "id": "D6-015",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -2.4,
+      "stem": "Which test verifies that a new code change did not break previously working functionality?",
+      "options": [
+        "Acceptance testing",
+        "Penetration testing",
+        "Regression testing",
+        "Load testing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Regression testing re-runs earlier tests after changes to catch reintroduced defects. Acceptance confirms user requirements, penetration finds exploitable flaws, and load testing measures performance."
+    },
+    {
+      "id": "D6-016",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.5,
+      "stem": "During a test, defenders are not told an assessment is occurring and the testers receive only the company name. This is BEST described as:",
+      "options": [
+        "Blind test",
+        "Gray-box test",
+        "Targeted test",
+        "Double-blind test"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In double-blind testing neither the security staff knows of the test nor do the testers have internal information, testing detection and response. A blind test only limits tester knowledge."
+    },
+    {
+      "id": "D6-017",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 2.3,
+      "stem": "A test plan achieves 100% statement coverage but critical defects slip through in conditional logic. Which coverage measure would BEST address this?",
+      "options": [
+        "Branch (decision) coverage",
+        "Function coverage",
+        "Line coverage",
+        "Interface coverage"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Branch coverage ensures each true/false outcome of every decision is exercised, catching untested paths that statement coverage misses. Function and line coverage are weaker than or equal to statement coverage."
+    },
+    {
+      "id": "D6-018",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.1,
+      "stem": "After a penetration test, the report to executive management should FOCUS on:",
+      "options": [
+        "Raw tool output for all hosts",
+        "Business risk of findings and prioritized remediation",
+        "Exploit code used by testers",
+        "Tester resumes and certifications"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Executives need business impact and prioritized recommendations. Technical details belong in appendices for technical teams."
+    },
+    {
+      "id": "D6-019",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "A breach and attack simulation (BAS) platform shows endpoint controls block 95% of simulated techniques, yet a red team achieves domain admin in two days. What is the MOST likely explanation?",
+      "options": [
+        "The BAS platform is misconfigured",
+        "Red teams always succeed so results are meaningless",
+        "BAS validates individual controls but doesn't model adaptive, chained attacker behavior and process gaps",
+        "Endpoint controls are failing silently"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "BAS runs atomic technique checks against controls, while red teams chain techniques, adapt, and exploit identity and process weaknesses. Both are complementary; the discrepancy doesn't imply misconfiguration."
+    },
+    {
+      "id": "D6-020",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.3,
+      "stem": "Which activity is MOST appropriate for testing a disaster recovery plan without disrupting operations while still exercising technical recovery?",
+      "options": [
+        "Full interruption test",
+        "Checklist review",
+        "Read-through",
+        "Parallel test"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "A parallel test brings up recovery systems alongside production without cutting over. Full interruption disrupts production, while checklist and read-through tests don't exercise technical recovery."
+    },
+    {
+      "id": "D6-021",
+      "domain": 6,
+      "type": "multi",
+      "difficulty": -0.5,
+      "stem": "Which statements accurately describe a vulnerability assessment compared with a penetration test? (Select TWO.)",
+      "options": [
+        "A vulnerability assessment identifies and prioritizes weaknesses without exploiting them",
+        "A vulnerability assessment always requires social engineering",
+        "A penetration test attempts to exploit weaknesses to demonstrate impact",
+        "A penetration test is fully automated and requires no human tester",
+        "A vulnerability assessment requires no authorization"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "Vulnerability assessments find and rank weaknesses; penetration tests actively exploit them to show real impact. Penetration tests rely on skilled humans, and all testing requires authorization."
+    },
+    {
+      "id": "D6-022",
+      "domain": 6,
+      "type": "multi",
+      "difficulty": 1.1,
+      "stem": "Which are characteristics of interactive application security testing (IAST)? (Select TWO.)",
+      "options": [
+        "Uses instrumentation inside the running application",
+        "Analyzes code only when it is not running",
+        "Correlates runtime behavior with specific lines of code",
+        "Requires no test traffic to exercise the application",
+        "Replaces the need for any code review"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "IAST agents instrument the running app and map findings to code locations, combining SAST and DAST strengths. It needs traffic to exercise code and doesn't replace review."
+    },
+    {
+      "id": "D6-023",
+      "domain": 6,
+      "type": "ordering",
+      "difficulty": -1.2,
+      "stem": "Drag the steps into the correct order for a typical penetration test methodology.",
+      "options": [
+        "Exploitation",
+        "Reporting",
+        "Reconnaissance and discovery",
+        "Planning and authorization",
+        "Vulnerability identification"
+      ],
+      "answer": [
+        3,
+        2,
+        4,
+        0,
+        1
+      ],
+      "explanation": "Testing starts with planning and authorization, then discovery, vulnerability identification, exploitation, and finally reporting. Exploiting before authorization or discovery is improper and impractical."
+    },
+    {
+      "id": "D6-024",
+      "domain": 6,
+      "type": "ordering",
+      "difficulty": 1.9,
+      "stem": "Drag the steps into the correct order for conducting an internal security audit.",
+      "options": [
+        "Perform fieldwork and collect evidence",
+        "Define audit scope and objectives",
+        "Issue the audit report and track remediation",
+        "Analyze findings against criteria",
+        "Plan audit procedures and resources"
+      ],
+      "answer": [
+        1,
+        4,
+        0,
+        3,
+        2
+      ],
+      "explanation": "Audits define scope and objectives, plan procedures, collect evidence, analyze against criteria, then report and follow up. Reporting before analysis would lack supported conclusions."
+    }
+  ]
+}
