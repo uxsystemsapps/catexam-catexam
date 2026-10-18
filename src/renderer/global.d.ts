@@ -5,11 +5,17 @@ declare global {
   type ExamApi = Api.ExamApi;
   type AppInfo = Api.AppInfo;
   type QuestionView = Api.QuestionView;
+  type QuestionType = Api.QuestionType;
   type ExamResult = Api.ExamResult;
   type ExamState = Api.ExamState;
   type DomainId = Api.DomainId;
   type PracticeSummary = Api.PracticeSummary;
   type PracticeFeedback = Api.PracticeFeedback;
+  type PracticeOptions = Api.PracticeOptions;
+  type PracticeStart = Api.PracticeStart;
+  type Profile = Api.Profile;
+  type HistoryEntry = Api.HistoryEntry;
+  type TrainingEntry = Api.TrainingEntry;
   interface Window {
     examApi: ExamApi;
   }

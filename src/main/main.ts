@@ -4,12 +4,35 @@ import os from 'node:os';
 import path from 'node:path';
 import { DOMAINS } from '../engine/domains';
 import { PracticeSession } from '../engine/practice';
+import {
+  normalizePracticeOptions,
+  normalizeProfile,
+  recordAnswer,
+  selectPracticeItems,
+  summarizeProgress,
+  toggleBookmark,
+  type PracticeOptions,
+  type Profile,
+  type Progress,
+} from '../engine/profile';
 import { ExamSession } from '../engine/session';
-import type { DomainId, Question } from '../engine/types';
-import type { AppInfo, ExamState } from '../shared/api';
+import type { Question } from '../engine/types';
+import type { AppInfo, ExamState, HistoryKind } from '../shared/api';
 import { Lockdown } from './lockdown';
 import { runSmoke } from './smoke';
-import { appendHistory, importBank, loadQuestions, readHistory } from './store';
+import {
+  appendHistory,
+  appendTrainingHistory,
+  deleteHistory,
+  importBank,
+  loadQuestions,
+  readHistory,
+  readProfile,
+  readProgress,
+  readTrainingHistory,
+  saveProfile,
+  saveProgress,
+} from './store';
 
 const SMOKE = process.env.CATEXAM_SMOKE === '1';
 const DEV = process.env.CATEXAM_DEV === '1';
@@ -24,9 +47,34 @@ let exam: ExamSession | null = null;
 let candidate = '';
 let examTimer: NodeJS.Timeout | null = null;
 let practice: PracticeSession | null = null;
+let practiceOptions: PracticeOptions | null = null;
+let practiceSaved = false;
+let profile: Profile;
+let progress: Progress;
+let progressWrite: Promise<void> = Promise.resolve();
+
+const TEXT_ZOOM: Record<Profile['textSize'], number> = { normal: 1, large: 1.15, larger: 1.3 };
+
+const userDir = (): string => app.getPath('userData');
+
+/** Local calendar day (YYYY-MM-DD) for the daily training goal. */
+function today(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** Progress is saved after every training answer; writes are chained so they never overlap. */
+function persistProgress(): Promise<void> {
+  progressWrite = progressWrite.then(() => saveProgress(userDir(), progress)).catch((err: unknown) => console.error(err));
+  return progressWrite;
+}
+
+function applyTextSize(): void {
+  win?.webContents.setZoomFactor(TEXT_ZOOM[profile.textSize]);
+}
 
 async function reloadBank(): Promise<void> {
-  const loaded = await loadQuestions(path.join(app.getAppPath(), 'questions'), app.getPath('userData'));
+  const loaded = await loadQuestions(path.join(app.getAppPath(), 'questions'), userDir());
   questions = loaded.questions;
   imported = loaded.imported;
   bankErrors = loaded.errors;
@@ -66,8 +114,29 @@ function registerIpc(): void {
     bankErrors,
     importedBanks: imported,
     displays: screen.getAllDisplays().length,
-    history: await readHistory(app.getPath('userData')),
+    history: await readHistory(userDir()),
+    trainingHistory: await readTrainingHistory(userDir()),
+    profile,
+    progress: summarizeProgress(questions, progress, today()),
   }));
+
+  ipcMain.handle('profile:save', async (_e, raw: unknown) => {
+    profile = normalizeProfile(raw);
+    await saveProfile(userDir(), profile);
+    applyTextSize();
+    return profile;
+  });
+
+  ipcMain.handle('history:delete', (_e, kind: HistoryKind, dates: unknown) => {
+    if (kind !== 'exam' && kind !== 'training') throw new Error('unknown history');
+    const list = Array.isArray(dates) ? dates.filter((d): d is string => typeof d === 'string') : null;
+    return deleteHistory(userDir(), kind, list);
+  });
+
+  ipcMain.handle('progress:reset', () => {
+    progress = { questions: {}, bookmarks: [], daily: {} };
+    return persistProgress();
+  });
 
   ipcMain.handle('bank:import', async () => {
     if (!win) return { imported: null, errors: [] };
@@ -77,7 +146,7 @@ function registerIpc(): void {
       properties: ['openFile'],
     });
     if (pick.canceled || pick.filePaths.length === 0) return { imported: null, errors: [] };
-    const outcome = await importBank(pick.filePaths[0], app.getPath('userData'));
+    const outcome = await importBank(pick.filePaths[0], userDir());
     if (outcome.imported) await reloadBank();
     return outcome;
   });
@@ -116,7 +185,7 @@ function registerIpc(): void {
     clearTimeout(examTimer ?? undefined);
     examTimer = null;
     lockdown?.unlock();
-    await appendHistory(app.getPath('userData'), {
+    await appendHistory(userDir(), {
       date: new Date().toISOString(),
       candidate,
       passed: result.passed,
@@ -129,18 +198,50 @@ function registerIpc(): void {
     return result;
   });
 
-  ipcMain.handle('practice:start', (_e, domains: DomainId[], count: number) => {
-    practice = new PracticeSession(questions, domains, count);
-    return { question: practice.current(), total: practice.total };
+  ipcMain.handle('practice:start', (_e, raw: unknown) => {
+    const options = normalizePracticeOptions(raw);
+    practice = new PracticeSession(selectPracticeItems(questions, options, progress));
+    practiceOptions = options;
+    practiceSaved = false;
+    return { question: practice.current(), total: practice.total, secondsPerQuestion: options.secondsPerQuestion, bookmarks: [...progress.bookmarks] };
   });
-  ipcMain.handle('practice:answer', (_e, questionId: string, response: number[]) => {
+  const recordPractice = async (session: PracticeSession, questionId: string, correct: boolean) => {
+    recordAnswer(progress, questionId, correct, today(), new Date().toISOString());
+    await persistProgress();
+    return session.current();
+  };
+  ipcMain.handle('practice:answer', async (_e, questionId: string, response: number[]) => {
     if (!practice) throw new Error('no practice in progress');
     const feedback = practice.answer(questionId, response);
-    return { feedback, next: practice.current() };
+    return { feedback, next: await recordPractice(practice, questionId, feedback.correct) };
   });
-  ipcMain.handle('practice:summary', () => {
+  ipcMain.handle('practice:timeout', async (_e, questionId: string) => {
     if (!practice) throw new Error('no practice in progress');
-    return practice.summary();
+    const feedback = practice.timeout(questionId);
+    return { feedback, next: await recordPractice(practice, questionId, false) };
+  });
+  ipcMain.handle('practice:bookmark', async (_e, questionId: unknown) => {
+    if (typeof questionId !== 'string' || !questions.some((q) => q.id === questionId)) throw new Error('unknown question');
+    const on = toggleBookmark(progress, questionId);
+    await persistProgress();
+    return on;
+  });
+  ipcMain.handle('practice:summary', async () => {
+    if (!practice || !practiceOptions) throw new Error('no practice in progress');
+    const summary = practice.summary();
+    if (!practiceSaved && summary.answered > 0) {
+      practiceSaved = true;
+      await appendTrainingHistory(userDir(), {
+        date: new Date().toISOString(),
+        answered: summary.answered,
+        correct: summary.correct,
+        timedOut: summary.timedOut,
+        difficulty: practiceOptions.difficulty,
+        source: practiceOptions.source,
+        byDomain: summary.byDomain,
+      });
+    }
+    return summary;
   });
 
   ipcMain.handle('app:quit', () => {
@@ -173,6 +274,7 @@ async function createWindow(): Promise<void> {
   win.webContents.on('will-navigate', (event) => event.preventDefault());
   win.once('ready-to-show', () => win?.show());
   await win.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'));
+  applyTextSize();
   if (SMOKE) {
     const ok = await runSmoke(win, lockdown);
     lockdown.unlock();
@@ -188,6 +290,8 @@ if (!app.requestSingleInstanceLock()) {
   app.whenReady().then(async () => {
     electronSession.defaultSession.setPermissionRequestHandler((_wc, _permission, callback) => callback(false));
     await reloadBank();
+    profile = await readProfile(userDir());
+    progress = await readProgress(userDir());
     registerIpc();
     await createWindow();
   }).catch((err: unknown) => {

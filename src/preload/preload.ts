@@ -4,6 +4,9 @@ import type { ExamApi } from '../shared/api';
 const api: ExamApi = {
   info: () => ipcRenderer.invoke('app:info'),
   importBank: () => ipcRenderer.invoke('bank:import'),
+  saveProfile: (profile) => ipcRenderer.invoke('profile:save', profile),
+  deleteHistory: (kind, dates) => ipcRenderer.invoke('history:delete', kind, dates),
+  resetProgress: () => ipcRenderer.invoke('progress:reset'),
   lock: () => ipcRenderer.invoke('exam:lock'),
   unlock: () => ipcRenderer.invoke('exam:unlock'),
   startExam: (candidate) => ipcRenderer.invoke('exam:start', candidate),
@@ -17,8 +20,10 @@ const api: ExamApi = {
   onIncident: (callback) => {
     ipcRenderer.on('exam:incident', (_event, message: string) => callback(message));
   },
-  startPractice: (domains, count) => ipcRenderer.invoke('practice:start', domains, count),
+  startPractice: (options) => ipcRenderer.invoke('practice:start', options),
   answerPractice: (questionId, response) => ipcRenderer.invoke('practice:answer', questionId, response),
+  timeoutPractice: (questionId) => ipcRenderer.invoke('practice:timeout', questionId),
+  toggleBookmark: (questionId) => ipcRenderer.invoke('practice:bookmark', questionId),
   practiceSummary: () => ipcRenderer.invoke('practice:summary'),
   quit: () => ipcRenderer.invoke('app:quit'),
 };

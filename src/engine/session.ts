@@ -187,6 +187,7 @@ export class ExamSession {
         correct: d.correct,
         pretest: d.pretest,
         explanation: d.question.explanation,
+        optionNotes: [...(d.question.optionNotes ?? [])],
       })),
     };
   }

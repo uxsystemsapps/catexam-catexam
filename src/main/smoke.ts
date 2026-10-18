@@ -37,6 +37,36 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await shot('home');
     const total = await js<number>(`window.examApi.info().then((i) => i.bank.total)`);
     check(total >= 150, `question bank loaded (${total} questions)`);
+
+    // Profile & settings: saved, applied and used as training defaults.
+    await click('#open-settings');
+    await waitFor('#settings-save');
+    await js(`(() => {
+      const set = (id, v) => { const el = document.querySelector(id); el.value = v; el.dispatchEvent(new Event('change')); };
+      set('#settings-name', 'Smoke Test');
+      set('#settings-exam-date', '2099-01-01');
+      set('#settings-goal', '5');
+      set('#settings-theme', 'dark');
+      set('#settings-text', 'large');
+      set('#default-count', '3');
+      set('#default-difficulty', 'easy');
+    })()`);
+    await click('#settings-save');
+    await waitFor('#home');
+    const saved = await js<{ name: string; theme: string; count: number; difficulty: string }>(
+      `window.examApi.info().then((i) => ({ name: i.profile.name, theme: i.profile.theme, count: i.profile.training.count, difficulty: i.profile.training.difficulty }))`,
+    );
+    check(saved.name === 'Smoke Test' && saved.theme === 'dark' && saved.count === 3 && saved.difficulty === 'easy', 'settings saved to the profile');
+    check((await js<string>(`document.documentElement.dataset.theme`)) === 'dark' && win.webContents.getZoomFactor() === 1.15, 'dark theme and large text applied');
+    check(
+      (await js<string>(`document.querySelector('#candidate').value`)) === 'Smoke Test' &&
+        (await js<string>(`document.querySelector('#practice-count').value`)) === '3' &&
+        (await js<string>(`document.querySelector('#practice-difficulty').value`)) === 'easy',
+      'home uses the profile name and training defaults',
+    );
+    check(/Your exam is in \d+ days/.test(await text('#exam-countdown')), 'study plan counts down to the exam date');
+    await shot('home-dark');
+    await js(`document.querySelector('#practice-difficulty').value = 'mixed'`);
     await js(`document.querySelector('#candidate').value = 'Smoke Test'`);
     await click('#start-exam');
     await waitFor('#nda-accept');
@@ -137,12 +167,44 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await key('Enter');
     await waitFor('#feedback .explanation');
     check(true, 'training mode answers by keyboard and shows the explanation');
+    const verdict = await text('#feedback .verdict');
+    const marked = await js<number>(`document.querySelectorAll('#practice .is-answer').length`);
+    check(/^(✔ Correct!|✘ Incorrect\.)/.test(verdict) && marked > 0, `answer marked right or wrong at once, correct option highlighted (${verdict.slice(0, 12)})`);
+    await shot('training-feedback');
+    await click('#bookmark');
+    await waitFor('#bookmark[aria-pressed="true"]');
+    check(true, 'a training question can be bookmarked');
     await key('Enter');
     await waitFor('#practice:not(:has(#feedback .explanation))');
     check((await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 2 of 2', 'Enter moves to the next training question');
-    await click('#practice ~ footer button');
+    await click('#practice-stop');
     await waitFor('#practice-domains');
     check(true, 'training summary shows accuracy by domain');
+
+    await click('#practice-home');
+    await waitFor('#study-card');
+    check((await text('#coverage')).startsWith('Questions practised: 1 of'), `study plan counts practised questions (${await text('#coverage')})`);
+    check((await text('#train-bookmarks')) === 'Bookmarked (1)', 'study plan offers the bookmarked question');
+
+    // A per-question timer that runs out marks the question incorrect.
+    await js(`startPractice({ ...profile.training, count: 1, secondsPerQuestion: 1 })`);
+    await waitFor('#practice-time-left');
+    await waitFor('#feedback .verdict');
+    check((await text('#feedback .verdict')).startsWith('⏱ Time ran out'), 'training timer runs out and counts the question as incorrect');
+    await click('#practice-next');
+    await waitFor('#practice-domains');
+
+    await click('#practice-home');
+    await waitFor('#open-history');
+    await click('#open-history');
+    await waitFor('#history-screen');
+    const sessions = await js<number>(`document.querySelectorAll('#training-history tr.entry').length`);
+    check(sessions === 2, `history lists both training sessions (${sessions})`);
+    check((await js<number>(`document.querySelectorAll('#domain-progress tr').length`)) === 9, 'history shows training accuracy for all 8 domains');
+    await shot('history');
+    await click('#exam-history .delete-entry');
+    await waitFor('#history-screen:not(:has(#exam-history))');
+    check((await js<number>(`window.examApi.info().then((i) => i.history.length)`)) === 0, 'an exam can be deleted from the history');
 
     console.log('SMOKE OK');
     return true;

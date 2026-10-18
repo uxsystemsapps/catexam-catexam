@@ -24,8 +24,22 @@ Electron + TypeScript.
 - **Training**: a score report with a pass/fail result, a 0–1000 estimate shown against the 700 pass
   line, and a proficiency band per domain. Afterwards you can review every answer with its explanation,
   filtered by domain, by incorrect answers or by text. History is kept, with pass count and best score.
-  A training mode (no lock, no clock) runs chosen domains, explains each answer as you go, keeps a running
-  score and ends with accuracy per domain.
+- **Training mode** (no lock): choose domains, question types, difficulty (easy below −0.5 logits, hard
+  above 0.5, medium in between, or mixed), the number of questions, where they come from (whole bank,
+  questions you last got wrong, or bookmarks), the order (random, new first, missed first) and an optional
+  timer per question (a question that runs out of time counts as wrong). Each answer is marked right or
+  wrong at once: your choice and the correct option(s) are highlighted, multi-select answers list what you
+  missed or chose wrongly, ordering answers show each position, and the explanation follows (plus a note
+  per option when the bank has `optionNotes`). The screen keeps a running score and streak; you can
+  bookmark a question. The session ends with accuracy per domain and a button to retry the missed questions.
+- **Study plan** on the home screen: countdown to your exam date, today's answers against your daily
+  goal, how much of the bank you have practised, your weakest domain (once it has 5 training answers) and
+  one-click sessions for missed, bookmarked or new questions.
+- **History**: every exam (with its domain report) and training session, score and accuracy trends,
+  training accuracy per domain; entries can be deleted one by one or all at once.
+- **Profile & settings**: name, exam date, daily goal, light or dark theme, text size, and the default
+  training settings. Training progress can be reset. Everything is stored in the application's profile
+  folder (`profile.json`, `progress.json`, `history.json`, `training-history.json`).
 
 ## Question bank
 
@@ -39,6 +53,7 @@ Format:
     "stem": "…", "options": ["…", "…", "…", "…"], "answer": [2], "explanation": "…" } ] }
 ```
 
+`optionNotes` is optional: one string per option, shown in training feedback and in the exam review.
 `type` is `single`, `multi` (`answer` lists every correct index) or `ordering` (`answer` is the correct order).
 `difficulty` is in logits; 0 is the passing standard.
 A realistic exam needs a much larger bank; with fewer than about 150 items per run, exams may end when

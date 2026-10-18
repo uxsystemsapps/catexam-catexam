@@ -19,6 +19,8 @@ export interface Question {
   /** single/multi: correct option indices (sorted); ordering: option indices in the correct order. */
   answer: number[];
   explanation: string;
+  /** Optional note per option (same order as `options`): why it is right or wrong. */
+  optionNotes?: string[];
 }
 
 export interface QuestionBank {
@@ -70,6 +72,8 @@ export interface ReviewItem {
   /** Unscored pretest item: it did not count toward the result. */
   pretest: boolean;
   explanation: string;
+  /** Per-option notes from the bank; empty when the bank has none. */
+  optionNotes: string[];
 }
 
 export interface Incident {
