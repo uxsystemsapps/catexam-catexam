@@ -1,0 +1,2307 @@
+{
+  "name": "OPT4 Chapter 6: Security Assessment and Testing (Domain 6)",
+  "questions": [
+    {
+      "id": "OPT4-C06-001",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "During a port scan, Susan discovers a system running services on TCP and UDP 137–139 and TCP 445, as well as TCP 1433. What type of system is she likely to find if she connects to the machine?",
+      "options": [
+        "A Linux email server",
+        "A Windows SQL server",
+        "A Linux file server",
+        "A Windows workstation"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "TCP and UDP ports 137–139 are used for NetBIOS services, whereas 445 is used for Active Directory. TCP 1433 is the default port for Microsoft SQL, indicating that this is probably a Windows server providing SQL services.",
+      "optionNotes": [
+        "Incorrect. A Linux email server would show SMTP (25), POP3 (110), or IMAP ports. The ports found here are Windows NetBIOS/SMB plus Microsoft SQL on 1433, and no mail ports are open.",
+        "Correct. Ports 137–139 are NetBIOS and 445 is used for Active Directory/SMB, which points to Windows. TCP 1433 is the default Microsoft SQL Server port, so this is most likely a Windows server running SQL.",
+        "Incorrect. A Linux file server running Samba could expose 137–139 and 445. However, TCP 1433 is the default Microsoft SQL Server port, which points to a Windows SQL host rather than a Linux file server.",
+        "Incorrect. A Windows workstation often exposes NetBIOS and SMB ports 137–139 and 445. A listening Microsoft SQL Server port (1433) points to a server role, not a typical workstation."
+      ]
+    },
+    {
+      "id": "OPT4-C06-002",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Which of the following is a method used to automatically design new software tests and to ensure the quality of tests?",
+      "options": [
+        "Code auditing",
+        "Static code analysis",
+        "Regression testing",
+        "Mutation testing"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Mutation testing modifies a program in small ways and then tests that mutant to determine if it behaves as it should or if it fails. This technique is used to design and test software tests through mutation. Static code analysis and regression testing are both means of testing code, whereas code auditing is an analysis of source code rather than a means of designing and testing software tests.",
+      "optionNotes": [
+        "Incorrect. Code auditing means reviewing source code for flaws or compliance. It analyzes the code itself; it doesn't design new tests or check whether existing tests are good.",
+        "Incorrect. Static code analysis inspects code without running it to find defects. It tests the code, not the quality of the test suite, and it doesn't generate new tests.",
+        "Incorrect. Regression testing reruns existing tests after a change to confirm that features which already worked still work. It tests the code and doesn't create or evaluate tests.",
+        "Correct. Mutation testing makes small changes (mutants) to a program and checks whether the tests catch them. This shows how good the tests are and helps design new ones."
+      ]
+    },
+    {
+      "id": "OPT4-C06-003",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.42,
+      "stem": "During a port scan, Naomi found TCP port 443 open on a system. Which tool is best suited to scanning the service that is most likely running on that port?",
+      "options": [
+        "zzuf",
+        "Nikto",
+        "Metasploit",
+        "Sqlmap"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "TCP port 443 normally indicates an HTTPS server. Nikto is useful for vulnerability scanning web servers and applications and is the best choice listed for a web server. Metasploit includes some scanning functionality but is not a purpose-built tool for vulnerability scanning. zzuf is a fuzzing tool and isn't relevant for vulnerability scans, whereas sqlmap is a SQL injection testing tool.",
+      "optionNotes": [
+        "Incorrect. Zzuf is a fuzzing tool. It feeds malformed input to applications and isn't used to vulnerability-scan a web service on port 443.",
+        "Correct. TCP 443 usually means HTTPS, and Nikto is built specifically to scan web servers and web applications for vulnerabilities.",
+        "Incorrect. Metasploit is mainly an exploitation framework. It has some scanning features, but it isn't a purpose-built vulnerability scanner for web servers.",
+        "Incorrect. Sqlmap only tests for SQL injection flaws. It doesn't do a general vulnerability scan of the web server running on port 443."
+      ]
+    },
+    {
+      "id": "OPT4-C06-004",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -2.04,
+      "stem": "What message logging standard is commonly used by network devices, Linux and Unix systems, and many other enterprise devices?",
+      "options": [
+        "Syslog",
+        "Netlog",
+        "Eventlog",
+        "Remote Log Protocol (RLP)"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Syslog is a widely used protocol for event and message logging. Eventlog, netlog, and Remote Log Protocol are all made-up terms.",
+      "optionNotes": [
+        "Correct. Syslog is the widely used standard protocol for event and message logging, supported by network devices, Linux/Unix systems, and many other enterprise devices.",
+        "Incorrect. Netlog is a made-up term and not a recognized logging standard. Network devices send their messages using syslog.",
+        "Incorrect. Eventlog is a made-up term here. It may sound like Windows event logs, but those are a proprietary Windows feature, not the cross-platform standard the question describes.",
+        "Incorrect. Remote Log Protocol (RLP) is a made-up name. Remote log forwarding is handled by syslog (often sent to a syslog server or SIEM)."
+      ]
+    },
+    {
+      "id": "OPT4-C06-005",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "Alex wants to use an automated tool to fill web application forms to test for format string vulnerabilities. What type of tool should he use?",
+      "options": [
+        "A black box",
+        "A brute-force tool",
+        "A fuzzer",
+        "A static analysis tool"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Fuzzers are tools designed to provide invalid or unexpected input to applications, testing for vulnerabilities like format string vulnerabilities, buffer overflow issues, and other problems. A static analysis relies on examining code without running the application or code and thus would not fill forms as part of a web application. Brute-force tools attempt to bypass security by trying every possible combination for passwords or other values. A black box is a type of penetration test where the testers do not know anything about the environment.",
+      "optionNotes": [
+        "Incorrect. Black box describes a penetration testing approach where testers have no prior knowledge of the environment. It's a test methodology, not a tool that automatically fills forms with malformed input.",
+        "Incorrect. Brute-force tools try every possible combination of passwords or other values to get past security. They don't feed malformed or unexpected input to find format string flaws.",
+        "Correct. Fuzzers automatically send invalid or unexpected input to applications, such as web form fields, to find format string vulnerabilities, buffer overflows, and similar flaws.",
+        "Incorrect. Static analysis reviews code without running the application. Because nothing is executed, it can't fill in web forms during testing."
+      ]
+    },
+    {
+      "id": "OPT4-C06-006",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "Susan needs to scan a system for vulnerabilities, and she wants to use an open-source tool to test the system remotely. Which of the following tools will meet her requirements and allow vulnerability scanning?",
+      "options": [
+        "Nmap",
+        "OpenVAS",
+        "MBSA",
+        "Nessus"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "OpenVAS is an open-source vulnerability scanning tool that will provide Susan with a report of the vulnerabilities that it can identify from a remote, network-based scan. Nmap is an open-source port scanner. Both the Microsoft Baseline Security Analyzer (MBSA) and Nessus are closed-source tools, although Nessus was originally open source.",
+      "optionNotes": [
+        "Incorrect. Nmap is open source, but it's a port scanner. It finds open ports and services, not vulnerabilities, so it doesn't cover the vulnerability-scanning requirement.",
+        "Correct. OpenVAS is an open-source vulnerability scanner. It runs remote, network-based scans and reports the vulnerabilities it finds, which covers both of Susan's requirements.",
+        "Incorrect. Microsoft Baseline Security Analyzer (MBSA) is a closed-source Microsoft tool, so it fails the open-source requirement.",
+        "Incorrect. Nessus is a capable vulnerability scanner, but it is now closed source. It was open source originally, so it no longer meets Susan's open-source requirement."
+      ]
+    },
+    {
+      "id": "OPT4-C06-007",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "Morgan is implementing a vulnerability management system that uses standards-based components to score and evaluate the vulnerabilities it finds. Which of the following is most commonly used to provide a severity score for vulnerabilities?",
+      "options": [
+        "CCE",
+        "CVSS",
+        "CPE",
+        "OVAL"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "CVSS, the Common Vulnerability Scoring System, is used to describe the severity of security vulnerabilities. CCE is Common Configuration Enumeration, a naming system for configuration issues. CPE is Common Platform Enumeration, which names operating systems, applications, and devices. OVAL is a language for describing security testing procedures.",
+      "optionNotes": [
+        "Incorrect. CCE (Common Configuration Enumeration) is a naming system for system configuration issues. It identifies configurations and does not score vulnerability severity.",
+        "Correct. CVSS (Common Vulnerability Scoring System) is the SCAP component that assigns severity scores to security vulnerabilities, so it is the correct answer.",
+        "Incorrect. CPE (Common Platform Enumeration) names operating systems, applications and devices. It identifies platforms, not how severe a vulnerability is.",
+        "Incorrect. OVAL is a language for describing security testing procedures, meaning how to check a system's state. It does not produce severity scores."
+      ]
+    },
+    {
+      "id": "OPT4-C06-008",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "Jim has been contracted to perform a penetration test of a bank's primary branch. To make the test as real as possible, he has not been given any information about the bank other than its name and address. What type of penetration test has Jim agreed to perform?",
+      "options": [
+        "A crystal-box penetration test",
+        "A gray-box penetration test",
+        "A black-box penetration test",
+        "A white-box penetration test"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Jim has agreed to a black-box penetration test, which provides no information about the organization, its systems, or its defenses. A crystal- or white-box penetration test provides all of the information an attacker needs, whereas a gray-box penetration test provides some, but not all, information.",
+      "optionNotes": [
+        "Incorrect. A crystal-box test is the same as a white-box test: the tester gets full knowledge of the systems. Jim got only the bank's name and address, so this doesn't fit.",
+        "Incorrect. In a gray-box test the tester gets some information, but not all of it. Jim was deliberately given no internal information, so this is not a gray-box test.",
+        "Correct. In a black-box test the tester gets no information about the organization, its systems or its defenses. That matches Jim, who knows only the bank's name and address, the way a real outside attacker would.",
+        "Incorrect. In a white-box test the tester gets all the information an attacker would want, such as network layouts and system details. That is the opposite of Jim's situation."
+      ]
+    },
+    {
+      "id": "OPT4-C06-009",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "In a response to a request for proposal, Susan receives an SSAE 18 SOC report. If she wants a report that includes details on operating effectiveness, what should Susan ask for as follow-up, and why?",
+      "options": [
+        "A SOC 2 Type II report, because Type I does not cover operating effectiveness",
+        "A SOC 1 Type I report, because SOC 2 does not cover operating effectiveness",
+        "A SOC 2 Type I report, because SOC 2 Type II does not cover operating effectiveness",
+        "A SOC 3 report, because SOC 1 and SOC 2 reports are outdated"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The key to answering this question correctly is understanding the difference between SOC 1 and SOC 2 reports, and Type I and Type II audits. SOC 1 reports cover financial reporting, and SOC 2 reports look at security. Type I audits cover only a single point in time and are based on management descriptions of controls. They do not include an assessment of operating effectiveness. Type II audits cover a period of time and include an assessment of operating effectiveness.",
+      "optionNotes": [
+        "Correct. SOC 2 covers security controls, and a Type II audit looks at a period of time and tests whether the controls actually operated effectively. A Type I audit only reviews management's description of controls at a single point in time.",
+        "Incorrect. SOC 1 is about controls over financial reporting, not security. A Type I report also covers only one point in time and doesn't test operating effectiveness. The reasoning is wrong too, because SOC 2 Type II does cover operating effectiveness.",
+        "Incorrect. This gets it backwards. Type I is the report that leaves out operating effectiveness, because it is based on management's descriptions at a single point in time. Type II is the one that includes it.",
+        "Incorrect. SOC 3 is a stripped-down, public version of a SOC 2 report, mostly used for marketing, and it doesn't include detailed results. SOC 1 and SOC 2 are current reports under SSAE 18, not outdated."
+      ]
+    },
+    {
+      "id": "OPT4-C06-010",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "During a wireless network penetration test, Susan runs aircrack-ng against the network intending to capture a password as part of the four-way handshake and then crack the password offline. What might cause her to fail in her password-cracking efforts if the target is using WPA3 in Personal network mode?",
+      "options": [
+        "WPA3 uses complex passwords.",
+        "WPA3 uses SAE and does not transfer the password over the air.",
+        "WPA3 requires multifactor, making a password alone insufficient.",
+        "The password crack will work due to flaws in WPA3."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "WPA3 uses SAE, or simultaneous authentication of equals, and does not send the password over the air. Traditional cracking methods used against previous versions of WPA and WPA2 no longer work. This is not because of complex passwords or MFA, but because of how the handshake's elements are created to avoid sending the password.",
+      "optionNotes": [
+        "Incorrect. WPA3 doesn't impose password complexity. The attack fails because of how the handshake works, not because the password is strong.",
+        "Correct. WPA3-Personal uses SAE (Simultaneous Authentication of Equals), so password-derived material is never sent over the air. That means a captured handshake can't be cracked offline the way WPA/WPA2 four-way handshakes can.",
+        "Incorrect. WPA3-Personal is a pre-shared password mode and doesn't require multifactor authentication. MFA isn't why the crack fails.",
+        "Incorrect. The traditional offline cracking methods that work on WPA/WPA2 no longer work against WPA3's SAE handshake, so the crack won't succeed this way."
+      ]
+    },
+    {
+      "id": "OPT4-C06-011",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.4,
+      "stem": "A zero-day vulnerability is announced for the popular Apache web server in the middle of a workday. In Jacob's role as an information security analyst, he needs to quickly scan his network to determine what servers are vulnerable to the issue. What is Jacob's best route to quickly identify vulnerable systems?",
+      "options": [
+        "Immediately run Nessus against all of the servers to identify which systems are vulnerable.",
+        "Review the CVE database to find the vulnerability information and patch information.",
+        "Create a custom IDS or IPS signature.",
+        "Identify affected versions and check systems for that version number using an automated scanner."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In many cases when an exploit is initially reported, there are no prebuilt signatures or detections for vulnerability scanners, and the CVE database may not immediately have information about the attack. Jacob's best option is to quickly gather information and review potentially vulnerable servers based on their current configuration. As more information becomes available, signatures and CVE information are likely to be published. Unfortunately for Jacob, IDS and IPS signatures will detect only attacks and won't detect whether systems are vulnerable unless he sees the systems being exploited.",
+      "optionNotes": [
+        "Incorrect. When a zero-day is first disclosed, Nessus and other scanners usually have no plugin for it yet, so running a scan right away probably won't flag the vulnerable servers.",
+        "Incorrect. The CVE database often has no entry and no patch details when a zero-day is first announced, so checking it won't quickly show which of Jacob's servers are exposed.",
+        "Incorrect. IDS and IPS signatures detect attacks, not vulnerable configurations. A custom signature would only reveal a vulnerable server once someone was actively exploiting it.",
+        "Correct. Jacob can gather what is known about the affected Apache versions and use an automated scanner to find servers running them. That works right away, without waiting for vendor signatures or CVE entries."
+      ]
+    },
+    {
+      "id": "OPT4-C06-012",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "What type of testing is used to ensure that separately developed software modules properly exchange data?",
+      "options": [
+        "Fuzzing",
+        "Dynamic testing",
+        "Interface testing",
+        "API checksums"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Interface testing is used to ensure that software modules properly meet interface specifications and thus will properly exchange data. Dynamic testing tests software in a running environment, whereas fuzzing is a type of dynamic testing that feeds invalid input to running software to test error and input handling. API checksums are not a testing technique.",
+      "optionNotes": [
+        "Incorrect. Fuzzing is a type of dynamic testing. It feeds invalid or random input to running software to check how it handles errors and input. It doesn't check whether modules exchange data correctly.",
+        "Incorrect. Dynamic testing just means testing software while it runs. It's a broad category and doesn't specifically check whether separately built modules meet their interface specifications.",
+        "Correct. Interface testing checks that each module meets its interface specifications, which ensures that separately developed modules exchange data properly.",
+        "Incorrect. API checksums aren't a testing technique. The option is a distractor that borrows wording related to interfaces."
+      ]
+    },
+    {
+      "id": "OPT4-C06-013",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.42,
+      "stem": "Selah wants to provide security assessment information to customers who want to use her organization's cloud services. Which of the following options should she select to ensure that the greatest number of customers are satisfied with the assessment information?",
+      "options": [
+        "Use an internal audit team to self-assess against internal metrics.",
+        "Use a third-party auditor.",
+        "Use internal technical staff who know the systems.",
+        "Use an internal audit team to self-assess against a common standard like COBIT."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Using a third-party auditor from a well-known and well-regarded firm is often the best option when providing audit and compliance information to third parties. Selah could engage an appropriate vendor for a SOC 2 Type II engagement as one example of a reasonable option to provide detail to her customers. Internal staff assessing against a common standard like COBIT would be the next most acceptable option on this list, with an internal standard less useful than that. Finally, relying on internal personnel not specialized in audits proves to be the least effective strategy in this context.",
+      "optionNotes": [
+        "Incorrect. A self-assessment against internal metrics is one of the weaker choices. Customers can't easily compare it to anything, and nobody independent checks it, so it ranks below the COBIT-based option.",
+        "Correct. An independent third-party auditor from a well-regarded firm, for example one running a SOC 2 Type II engagement, gives customers the most trusted and widely accepted assurance about the cloud service.",
+        "Incorrect. Technical staff know the systems but aren't trained auditors, and they aren't independent. The book calls this the least effective way to give customers assessment information.",
+        "Incorrect. Measuring against a recognised framework like COBIT is the best of the internal choices. It's still a self-assessment with no independence, so it ranks second behind a third-party audit."
+      ]
+    },
+    {
+      "id": "OPT4-C06-014",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Yasmine has been asked to consider a breach and attack simulation system. What type of system should she look for?",
+      "options": [
+        "A ticket and change management system designed to help manage incidents",
+        "A system that runs incident response simulations for blue teams to test their skills",
+        "A system that combines red and blue team techniques with automation",
+        "A security operations and response (SOAR) system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Breach and attack simulation (BAS) systems combine red team (attack) and blue team (defense) techniques together with automation to simulate advanced persistent threats and other advanced threat actors when run against your environment. This allows a variety of threats to be replicated and assessed in an environment without as much overhead as a fully staffed purple team would.",
+      "optionNotes": [
+        "Incorrect. Ticketing and change management software tracks change requests and incident workflow. It doesn't simulate attacks or test defenses, so it isn't BAS.",
+        "Incorrect. BAS isn't a training exercise for blue teams. It automates attack and defense techniques against the real environment to see how actual controls respond, not to test how well staff respond in a scenario.",
+        "Correct. BAS combines red team (attack) and blue team (defense) techniques with automation to simulate APTs and other advanced threats, with less overhead than a fully staffed purple team.",
+        "Incorrect. SOAR (usually expanded as security orchestration, automation, and response) gathers alerts from sources such as SIEM and automates response workflows. It doesn't simulate breaches or attacks."
+      ]
+    },
+    {
+      "id": "OPT4-C06-015",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.77,
+      "stem": "Monica wants to gather information about security awareness in her organization. What technique is most frequently used to assess the broad range elements that make up security awareness?",
+      "options": [
+        "Phishing simulations",
+        "Gamified applications",
+        "Assessment tests",
+        "Surveys"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Most organizations use surveys to assess security awareness. Phishing simulators are also frequently used, but only test awareness of phishing issues and techniques, not general security awareness. Gamified applications are continuing to grow in popularity, but the ease of use and availability of surveys make them the most popular. Finally, assessment tests may be used when compliance knowledge assessments are required to meet a specific standard, but testing is not as common as surveying.",
+      "optionNotes": [
+        "Incorrect. Phishing simulations are common, but they only measure how susceptible users are to phishing. They don't cover the broad range of security awareness topics.",
+        "Incorrect. Gamified applications are becoming more popular. Surveys are still used more because they're easier to run and more widely available.",
+        "Incorrect. Assessment tests are mostly used when a specific standard requires a compliance knowledge check. They're less common than surveys for measuring general awareness.",
+        "Correct. Surveys are easy to create and widely available, and they can cover the full range of awareness topics. That makes them the technique most organizations use to assess security awareness."
+      ]
+    },
+    {
+      "id": "OPT4-C06-016",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.08,
+      "stem": "Jim has been contracted to conduct a gray-box penetration test, and his clients have provided him with the following information about their networks so that he can scan them:\nData center: 10.10.10.0/24\nSales: 10.10.11.0/24\nBilling: 10.10.12.0/24\nWireless: 192.168.0.0/16\nWhat problem will Jim encounter if he is contracted to conduct a scan from off-site?",
+      "options": [
+        "The IP ranges are too large to scan efficiently.",
+        "The IP addresses provided cannot be scanned.",
+        "The IP ranges overlap and will cause scanning issues.",
+        "The IP addresses provided are RFC 1918 addresses."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The IP addresses that his clients have provided are RFC 1918 nonroutable IP addresses, and Jim will not be able to scan them from off-site. To succeed in his penetration test, he will have to either first penetrate their network border or place a machine inside their network to scan from the inside. IP addresses overlapping is not a real concern for scanning, and the ranges can easily be handled by current scanning systems.",
+      "optionNotes": [
+        "Incorrect. Three /24s and one /16 add up to roughly 66,000 addresses, which modern scanners handle easily. Size isn't the issue; the problem is that these addresses can't be reached from the internet.",
+        "Incorrect. These addresses can be scanned, just not from off-site. Jim can still scan them once he is inside the network, either by breaching the perimeter or by placing a scanning machine internally.",
+        "Incorrect. None of the ranges actually overlap (10.10.10–12.x and 192.168.x.x are separate). Even if they did, the book says overlap isn't a real scanning concern.",
+        "Correct. All of these ranges are RFC 1918 private addresses (10.0.0.0/8 and 192.168.0.0/16), which aren't routed on the internet. An off-site scan can't reach them unless Jim gets inside first."
+      ]
+    },
+    {
+      "id": "OPT4-C06-017",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "Mark's company has been notified of a flaw in their web application. The anonymous individual has notified them that they have two weeks to fix it before the details of the flaw are published along with example exploit code. What industry norm is the individual who contacted Mark's company violating?",
+      "options": [
+        "Zero-day reporting",
+        "Ethical disclosure",
+        "Ethical hacking",
+        "The ISC2 vulnerability disclosure ethics statement"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Ethical (or responsible) disclosure practices will provide companies and organizations with a reasonable period of time to fix a flaw and to get that fix into the hands of their customers. Two weeks is unlikely to be a reasonable amount of time for this. Unfortunately, Mark may not be able to persuade the individual to make a different decision, and Mark's company will need to determine what to do about the issue.",
+      "optionNotes": [
+        "Incorrect. Zero-day refers to a flaw exploited or disclosed before a vendor patch exists. It names a type of vulnerability or attack, not a disclosure norm that sets how long a vendor gets to fix a flaw.",
+        "Correct. Ethical (responsible) disclosure gives the vendor a reasonable amount of time to fix a flaw and get the fix to customers before details go public. A two-week deadline that includes releasing exploit code is unlikely to be reasonable.",
+        "Incorrect. Ethical hacking means authorized security testing, such as penetration testing done with permission. It is not a norm about when or how a discovered flaw should be published.",
+        "Incorrect. ISC2 does not publish a separate vulnerability disclosure ethics statement. Its Code of Ethics binds certified members, while this reporter is an anonymous outsider."
+      ]
+    },
+    {
+      "id": "OPT4-C06-018",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.72,
+      "stem": "Scenario:\nThe company that Jennifer works for has implemented a central logging infrastructure, as shown here. Use this diagram and your knowledge of logging systems to answer the following questions.\n[Figure, described in text: in the corporate network, access points and Windows desktop systems send logs through the data center firewall to a SIEM appliance in the data center; a Linux web server and a Linux database server in the data center also send logs to the SIEM appliance.]\n\nJennifer needs to ensure that all Windows systems provide identical logging information to the SIEM. How can she best ensure that all Windows desktops have the same log settings?",
+      "options": [
+        "Perform periodic configuration audits.",
+        "Use Group Policy.",
+        "Use Local Policy.",
+        "Deploy a Windows syslog client."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Group Policy enforced by Active Directory can ensure consistent logging settings and can provide regular enforcement of policy on systems. Periodic configuration audits won't catch changes made between audits, and local policies can drift due to local changes or differences in deployments. A Windows syslog client will enable the Windows systems to send syslog to the SIEM appliance but won't ensure consistent logging of events.",
+      "optionNotes": [
+        "Incorrect. Configuration audits only find differences after they happen. Settings can change between audits and stay inconsistent until the next one, so audits detect drift but don't enforce identical settings.",
+        "Correct. Group Policy is enforced through Active Directory. It pushes the same logging settings to every domain-joined Windows desktop and reapplies them regularly, so the settings stay consistent.",
+        "Incorrect. Local Policy is set on each machine separately. It can drift because of local changes or differences in how systems were deployed, so it can't guarantee the same settings everywhere.",
+        "Incorrect. A syslog client only lets Windows systems send their logs to the SIEM. It doesn't control which events each desktop logs, so it doesn't make the logging consistent."
+      ]
+    },
+    {
+      "id": "OPT4-C06-019",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.23,
+      "stem": "Scenario:\nThe company that Jennifer works for has implemented a central logging infrastructure, as shown here. Use this diagram and your knowledge of logging systems to answer the following questions.\n[Figure, described in text: in the corporate network, access points and Windows desktop systems send logs through the data center firewall to a SIEM appliance in the data center; a Linux web server and a Linux database server in the data center also send logs to the SIEM appliance.]\n\nDuring normal operations, Jennifer's team uses the SIEM appliance to monitor for exceptions received via syslog. What system shown does not natively have support for syslog events?",
+      "options": [
+        "Enterprise wireless access points",
+        "Windows desktop systems",
+        "Linux web servers",
+        "Enterprise firewall devices"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Windows systems generate logs in the Windows native logging format. To send syslog events, Windows systems require a helper application or tool. Enterprise wireless access points, firewalls, and Linux systems all typically support syslog.",
+      "optionNotes": [
+        "Incorrect. Enterprise wireless access points usually support syslog natively, so they can send events straight to the SIEM without a helper agent.",
+        "Correct. Windows writes its logs in its own Event Log format and doesn't support syslog natively. It needs a helper agent or tool to forward events as syslog.",
+        "Incorrect. Linux systems support syslog natively through rsyslog or syslog-ng, so the web server can forward events to the SIEM directly.",
+        "Incorrect. Enterprise firewalls usually support syslog output natively, and it is one of the most common ways they send logs to a SIEM."
+      ]
+    },
+    {
+      "id": "OPT4-C06-020",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.88,
+      "stem": "Scenario:\nThe company that Jennifer works for has implemented a central logging infrastructure, as shown here. Use this diagram and your knowledge of logging systems to answer the following questions.\n[Figure, described in text: in the corporate network, access points and Windows desktop systems send logs through the data center firewall to a SIEM appliance in the data center; a Linux web server and a Linux database server in the data center also send logs to the SIEM appliance.]\n\nWhat technology should an organization use for each of the devices shown in the diagram to ensure that logs can be time sequenced across the entire infrastructure?",
+      "options": [
+        "Syslog",
+        "NTP",
+        "Logsync",
+        "SNAP"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Network Time Protocol (NTP) can ensure that systems are using the same time, allowing time sequencing for logs throughout a centralized logging infrastructure. Syslog is a way for systems to send logs to a logging server and won't address time sequencing. Neither logsync nor SNAP is an industry term.",
+      "optionNotes": [
+        "Incorrect. Syslog is a protocol that carries log messages from devices to a central server. It doesn't synchronize the device clocks, so it can't make timestamps line up across systems.",
+        "Correct. NTP gives every device the same reference time, so timestamps from the access points, desktops, servers and SIEM can be put in the right order across the whole infrastructure.",
+        "Incorrect. \"Logsync\" isn't a real industry technology or protocol. It's a made-up distractor that sounds like log synchronization.",
+        "Incorrect. SNAP isn't an industry term for logging or time synchronization. It's a distractor that may be meant to be confused with SNMP or SNTP."
+      ]
+    },
+    {
+      "id": "OPT4-C06-021",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.28,
+      "stem": "During a penetration test, Michelle needs to identify systems, but she hasn't gained sufficient access on the system she is using to generate raw packets. What type of scan should she run to verify the most open services?",
+      "options": [
+        "A TCP connect scan",
+        "A TCP SYN scan",
+        "A UDP scan",
+        "An ICMP scan"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "When a tester does not have raw packet creation privileges, such as when they have not escalated privileges on a compromised host, a TCP connect scan can be used. TCP SYN scans require elevated privileges on most Linux systems due to the need to write raw packets. A UDP scan will miss most services that are provided via TCP, and an ICMP is merely a ping sweep of systems that respond to pings and won't identify services at all.",
+      "optionNotes": [
+        "Correct. A TCP connect scan goes through the operating system's normal connect() call, so it doesn't need raw packet privileges. It still completes full handshakes and finds open TCP services, which is where most services run.",
+        "Incorrect. A SYN (half-open) scan has to craft raw packets, and on most Linux systems that needs elevated privileges. Michelle doesn't have those privileges on this host.",
+        "Incorrect. A UDP scan only checks UDP ports. It would miss the many services that run over TCP, so it can't verify the most open services.",
+        "Incorrect. An ICMP scan is just a ping sweep. It shows which hosts answer pings but identifies no services at all."
+      ]
+    },
+    {
+      "id": "OPT4-C06-022",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "During a port scan using nmap, Joseph discovers that a system shows two ports open that cause him immediate worry:\n21/open\n23/open\nWhat services are likely running on those ports?",
+      "options": [
+        "SSH and FTP",
+        "FTP and Telnet",
+        "SMTP and Telnet",
+        "POP3 and SMTP"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Joseph may be surprised to discover FTP (TCP port 21) and Telnet (TCP port 23) open on his network since both services are unencrypted and have been largely replaced by SSH, and SCP or SFTP. SSH uses port 22, SMTP uses port 25, and POP3 uses port 110.",
+      "optionNotes": [
+        "Incorrect. SSH uses TCP port 22, not 21 or 23. FTP is on 21, but the pair is wrong because port 23 belongs to Telnet.",
+        "Correct. FTP uses TCP 21 and Telnet uses TCP 23. Both send data, including credentials, unencrypted, and both have largely been replaced by SSH, SCP, and SFTP.",
+        "Incorrect. Telnet does use port 23, but SMTP uses TCP port 25, not 21.",
+        "Incorrect. POP3 uses TCP port 110 and SMTP uses TCP port 25. Neither one matches ports 21 or 23."
+      ]
+    },
+    {
+      "id": "OPT4-C06-023",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.45,
+      "stem": "Aaron wants to validate his compliance with PCI-DSS. His company is a large commercial organization with millions of dollars in transactions a year. What is the most common method of conducting this type of testing for large organizations?",
+      "options": [
+        "Self-assessment",
+        "To conduct a thirty-party assessment using COBIT",
+        "To partner with another company and trade assessments between the organizations",
+        "To conduct a third-party assessment using a qualified security assessor"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Large organizations hire QSAs, or qualified security assessors, to conduct compliance checks. Third-party certification is required for large organizations by PCI-DSS, although smaller organizations can self-certify.",
+      "optionNotes": [
+        "Incorrect. Only smaller merchants are allowed to self-assess, using a Self-Assessment Questionnaire. A large merchant with high transaction volume has to get a third-party assessment.",
+        "Incorrect. COBIT is an IT governance and control framework from ISACA, not the standard PCI-DSS uses to validate compliance. PCI assessments are done by a QSA against the PCI-DSS requirements themselves.",
+        "Incorrect. PCI-DSS has no mechanism for companies to swap assessments. Compliance validation has to come from a self-assessment or from a qualified, independent assessor approved by the PCI Security Standards Council.",
+        "Correct. Large organizations hire Qualified Security Assessors (QSAs) for third-party compliance checks, and PCI-DSS requires this for high-volume merchants."
+      ]
+    },
+    {
+      "id": "OPT4-C06-024",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "What method is commonly used to assess how well software testing covered the potential uses of an application?",
+      "options": [
+        "A test coverage analysis",
+        "A source code review",
+        "A fuzz analysis",
+        "A code review report"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A test coverage analysis is often used to provide insight into how well testing covered the set of use cases that an application is being tested for. Source code reviews look at the code of a program for bugs, not necessarily at a use case analysis, whereas fuzzing tests invalid inputs. A code review report might be generated as part of a source code review.",
+      "optionNotes": [
+        "Correct. Test coverage analysis measures how much of the application's use cases (or code) the tests actually exercised, so it directly shows how well testing covered the potential uses.",
+        "Incorrect. A source code review reads through a program's code looking for bugs. It doesn't measure how many use cases the testing covered.",
+        "Incorrect. Fuzzing throws invalid or random inputs at an application to find crashes and flaws. It is a testing technique, not a way to measure coverage, and it usually doesn't reach full coverage anyway.",
+        "Incorrect. A code review report is what a source code review produces. It records the bugs found and doesn't assess how well testing covered the use cases."
+      ]
+    },
+    {
+      "id": "OPT4-C06-025",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "Testing that is focused on functions that a system should not allow is an example of what type of testing?",
+      "options": [
+        "Use case testing",
+        "Manual testing",
+        "Misuse case testing",
+        "Dynamic testing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Testing how a system could be misused, or misuse testing, focuses on behaviors that are not what the organization desires or that are counter to the proper function of a system or application. Use case testing is used to verify whether a desired functionality works. Dynamic testing is used to determine how code handles variables that change over time, whereas manual testing is just what it implies: testing code by hand.",
+      "optionNotes": [
+        "Incorrect. Use case testing checks that desired, intended functionality works correctly. It does not look at behaviors the system should block.",
+        "Incorrect. Manual testing just means testing code by hand. It describes how a test is carried out, not whether it targets disallowed functions.",
+        "Correct. Misuse case testing looks at how a system could be misused, meaning behaviors the organization does not want or that work against the system's proper function.",
+        "Incorrect. Dynamic testing checks how code handles variables that change over time while it runs. It is not specifically about functions the system should not allow."
+      ]
+    },
+    {
+      "id": "OPT4-C06-026",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.31,
+      "stem": "What type of monitoring uses simulated traffic to a website to monitor performance?",
+      "options": [
+        "Log analysis",
+        "Synthetic transaction monitoring",
+        "Passive monitoring",
+        "Simulated transaction analysis"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Synthetic transaction monitoring uses emulated or recorded transactions to monitor for performance changes in response time, functionality, or other performance monitors. Passive monitoring uses a span port or other method to copy traffic and monitor it in real time. Log analysis is typically performed against actual log data but can be performed on simulated traffic to identify issues. Simulated transaction analysis is not an industry term.",
+      "optionNotes": [
+        "Incorrect. Log analysis reviews recorded log data, usually from real activity. It doesn't generate simulated traffic to test website performance.",
+        "Correct. Synthetic transaction monitoring runs emulated or recorded transactions against a site to catch changes in response time, functionality, or other performance measures.",
+        "Incorrect. Passive monitoring copies real traffic, for example through a span port, and analyzes it in real time. It watches actual users' traffic and doesn't create simulated traffic.",
+        "Incorrect. \"Simulated transaction analysis\" sounds right, but it isn't an industry term. It's a distractor that mimics the wording of the real answer."
+      ]
+    },
+    {
+      "id": "OPT4-C06-027",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "Derek wants to ensure that his organization tracks all changes to accounts through their life cycle. What type of tool should he invest in for his organization?",
+      "options": [
+        "A directory service like LDAP",
+        "An IAM system",
+        "A SIEM",
+        "An EDR system"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Identity and access management (IAM) systems combine life-cycle management and monitoring tools to ensure that identity and authorization are properly handled throughout an organization. Derek should invest in a capable IAM system and ensure that it is configured to use appropriate workflows and to generate the logs and reports that he needs. EDR systems are endpoint detection and response tools and are used to protect against compromise by advanced attackers.",
+      "optionNotes": [
+        "Incorrect. An LDAP directory such as AD DS stores and serves identity information so users can be looked up and authenticated. It doesn't manage accounts through their life cycle with workflows, and it doesn't report on every change.",
+        "Correct. IAM systems combine life-cycle management (provisioning, changes, deprovisioning) with monitoring. Configured with the right workflows, logging and reporting, an IAM system tracks every change to an account.",
+        "Incorrect. A SIEM collects and correlates security logs to detect events. It can store account-change logs, but it doesn't manage the identity provisioning life cycle that the question is about.",
+        "Incorrect. EDR (endpoint detection and response) tools protect endpoints from compromise by advanced attackers. They don't manage or track account life cycles."
+      ]
+    },
+    {
+      "id": "OPT4-C06-028",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "Jim uses a tool that scans a system for available services and then connects to them to collect banner information to determine what version of the service is running. It then provides a report detailing what it gathers, basing results on service fingerprinting, banner information, and similar details it gathers combined with CVE information. What type of tool is Jim using?",
+      "options": [
+        "A port scanner",
+        "A service validator",
+        "A vulnerability scanner",
+        "A patch management tool"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Vulnerability scanners that do not have administrative rights to access a machine or that are not using an agent to scan remote machines to gather information, including fingerprints from responses to queries and connections, banner information from services, and related data. CVE information is Common Vulnerability and Exposure information, or vulnerability information. A port scanner gathers information about what service ports are open, although some port scanners blur the line between port and vulnerability scanners. Patch management tools typically run as an agent on a system to allow them to both monitor patch levels and update the system as needed. Service validation typically involves testing the functionality of a service, not its banner and response patterns.",
+      "optionNotes": [
+        "Incorrect. A port scanner reports which service ports are open. Jim's tool goes further: it grabs banners, fingerprints services, and matches the results against CVE data, which is what a vulnerability scanner does.",
+        "Incorrect. Service validation tests whether a service works correctly. It doesn't look at banners or response patterns, and it doesn't map versions to CVE vulnerability data.",
+        "Correct. A vulnerability scanner without credentials or an agent scans remotely. It collects fingerprints and service banners, then compares them with CVE vulnerability information to produce a report.",
+        "Incorrect. Patch management tools usually run as an agent on the host. They check patch levels and install updates; they don't remotely grab banners and compare them with CVEs."
+      ]
+    },
+    {
+      "id": "OPT4-C06-029",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Emily builds a script that sends data to a web application that she is testing. Each time the script runs, it sends a series of transactions with data that fits the expected requirements of the web application to verify that it responds to typical customer behavior. What type of transactions is she using, and what type of test is this?",
+      "options": [
+        "Synthetic, passive monitoring",
+        "Synthetic, use case testing",
+        "Actual, dynamic monitoring",
+        "Actual, fuzzing"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Emily is using synthetic transactions, which can use recorded or generated transactions, and is conducting use-case testing to verify that the application responds properly to actual use cases. Neither actual data nor dynamic monitoring is an industry term. Fuzzing involves sending unexpected inputs to a program to see how it responds. Passive monitoring uses a network tap or other capture technology to allow monitoring of actual traffic to a system or application.",
+      "optionNotes": [
+        "Incorrect. The transactions are synthetic, but passive monitoring means capturing real traffic through a network tap or similar tool. Emily is actively sending scripted transactions, so this isn't passive monitoring.",
+        "Correct. The script generates synthetic transactions (recorded or generated), and checking that the app handles typical customer behavior is use-case testing.",
+        "Incorrect. The script generates its data, so it isn't actual data. Also, neither \"actual data\" nor \"dynamic monitoring\" is an industry term for this kind of testing.",
+        "Incorrect. Fuzzing sends unexpected or malformed input to see how a program reacts. Emily sends data that meets the expected requirements, and \"actual\" transactions isn't an industry term."
+      ]
+    },
+    {
+      "id": "OPT4-C06-030",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "What passive monitoring technique records all user interaction with an application or website to ensure quality and performance?",
+      "options": [
+        "Client-server testing",
+        "Real user monitoring",
+        "Synthetic user monitoring",
+        "Passive user recording"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Real user monitoring (RUM) is a passive monitoring technique that records user interaction with an application or system to ensure performance and proper application behavior. RUM is often used as part of a predeployment process using the actual user interface. The other answers are all made up—synthetic monitoring uses simulated behavior, but synthetic user monitoring is not a testing method. Similarly, passive monitoring monitors actual traffic, but passive user recording is not an industry term or technique. Client-server testing merely describes one possible architecture.",
+      "optionNotes": [
+        "Incorrect. Client-server testing isn't a monitoring technique. The term only describes one possible application architecture, so it doesn't answer a question about passively recording user interactions.",
+        "Correct. Real user monitoring (RUM) passively records what real users do in an application or system to check performance and proper behavior. It's often used before deployment, with the actual user interface.",
+        "Incorrect. Synthetic monitoring exists, but it is active: it runs scripted, simulated actions instead of recording real users. 'Synthetic user monitoring' isn't a recognized testing method.",
+        "Incorrect. This is a made-up distractor. Passive monitoring does watch actual traffic, but 'passive user recording' isn't an industry term or technique."
+      ]
+    },
+    {
+      "id": "OPT4-C06-031",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.91,
+      "stem": "Earlier this year, the information security team at Jim's employer identified a vulnerability in the web server that Jim is responsible for maintaining. He immediately applied the patch and is sure that it installed properly, but the vulnerability scanner has continued to incorrectly flag the system as vulnerable. To prevent the issue from being flagged incorrectly in the future, what is the next step?",
+      "options": [
+        "Uninstall and reinstall the patch.",
+        "Ask the information security team to flag the system as patched and not vulnerable to that particular flaw.",
+        "Update the version information in the web server's configuration.",
+        "Review the vulnerability report and use alternate remediation options."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Jim should ask the information security team to flag the issue as resolved if he is sure the patch was installed. Many vulnerability scanners rely on version information or banner information and may flag patched versions if the software provider does not update the information they see. Uninstalling and reinstalling the patch will not change this. Changing the version information may not change all of the details that are being flagged by the scanner and may cause issues at a later date. Reviewing the vulnerability information for a workaround may be a good idea but should not be necessary if the proper patch is installed; it can create maintenance issues later.",
+      "optionNotes": [
+        "Incorrect. Reinstalling the patch changes nothing the scanner checks. Scanners often go by version or banner information, and the vendor's patch didn't update it, so the false positive would continue.",
+        "Correct. If Jim is sure the patch installed, the security team should mark the finding as resolved. The scanner is relying on version or banner data that the vendor didn't update, so this is a false positive.",
+        "Incorrect. Manually editing the version information may not change every detail the scanner looks at. It can also cause problems later, for example with future patching or support.",
+        "Incorrect. Workarounds or alternate fixes aren't needed when the correct patch is already installed. Adding them only creates maintenance problems later."
+      ]
+    },
+    {
+      "id": "OPT4-C06-032",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.03,
+      "stem": "Angela wants to test a web browser's handling of unexpected data using an automated tool. What tool should she choose?",
+      "options": [
+        "Nmap",
+        "zzuf",
+        "Nessus",
+        "Nikto"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "zzuf is the only fuzzer on the list, and zzuf is specifically designed to work with tools like web browsers, image viewers, and similar software by modifying network and file input to applications. Nmap is a port scanner, Nessus is a vulnerability scanner, and Nikto is a web server scanner.",
+      "optionNotes": [
+        "Incorrect. Nmap is a port scanner that finds open ports and services. It doesn't feed malformed or unexpected input to a browser.",
+        "Correct. Zzuf is a fuzzer built for client software such as web browsers and image viewers. It changes the network and file input that applications receive, which tests how they handle unexpected data.",
+        "Incorrect. Nessus is a vulnerability scanner that checks systems for known flaws. It doesn't fuzz a browser's input handling.",
+        "Incorrect. Nikto scans web servers, not web browsers. It looks for server misconfigurations and dangerous files, so it doesn't test how a client handles unexpected data."
+      ]
+    },
+    {
+      "id": "OPT4-C06-033",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.66,
+      "stem": "Kara wants to conduct a security audit of her cloud IaaS vendor's systems, infrastructure, and practices. What type of audit is she most likely to be able to conduct?",
+      "options": [
+        "A third-party audit.",
+        "She cannot conduct an audit.",
+        "An internal audit.",
+        "She may request the vendor's third-party audit results."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Most IaaS vendors will not allow customers to conduct an audit of their systems and infrastructure. Kara is likely to be able to obtain third-party audit reports from her vendor, and the major IaaS vendors typically either make these available publicly or to paying or prospective customers. An internal audit will not assess the underlying infrastructure and services, only those that the organization uses.",
+      "optionNotes": [
+        "Incorrect. Kara can't commission her own third-party audit of the provider's infrastructure, because most IaaS vendors won't let customers audit their systems. She has to rely on the vendor's existing third-party reports.",
+        "Incorrect. This is too absolute. She can't audit the vendor directly, but she can still get assurance by obtaining the vendor's third-party audit reports, which major IaaS providers publish or share with customers.",
+        "Incorrect. An internal audit only covers the services and configurations her organization uses. It doesn't assess the vendor's underlying infrastructure and practices.",
+        "Correct. Major IaaS vendors make independent third-party audit reports (such as SOC reports) available, either publicly or to paying and prospective customers, in place of customer-run audits."
+      ]
+    },
+    {
+      "id": "OPT4-C06-034",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Why should passive scanning be conducted in addition to implementing wireless security technologies like wireless intrusion detection systems?",
+      "options": [
+        "It can help identify rogue devices.",
+        "It can test the security of the wireless network via scripted attacks.",
+        "Their short dwell time on each wireless channel can allow them to capture more packets.",
+        "They can help test wireless IDS or IPS systems."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Passive scanning can help identify rogue devices by capturing MAC address vendor IDs that do not match deployed devices, by verifying that systems match inventories of organizationally owned hardware by hardware address and by monitoring for rogue SSIDs or connections. Scripted attacks are part of active scanning rather than passive scanning, and active scanning is useful for testing IDS or IPS systems, whereas passive scanning will not be detected by detection systems. Finally, a shorter dwell time can actually miss troublesome traffic, so balancing dwell time versus coverage is necessary for passive wireless scanning efforts.",
+      "optionNotes": [
+        "Correct. Passive scanning finds rogue devices by spotting MAC vendor IDs that don't match deployed hardware, checking hardware addresses against the inventory, and watching for rogue SSIDs or connections.",
+        "Incorrect. Running scripted attacks is active scanning, not passive. A passive scan only listens to wireless traffic and never sends attack traffic.",
+        "Incorrect. This is backwards. A shorter dwell time on each channel can miss problem traffic, so passive scanning has to trade off dwell time against channel coverage.",
+        "Incorrect. Testing a wireless IDS or IPS calls for active scanning. Passive scanning doesn't trigger detection systems, so it can't show whether they work."
+      ]
+    },
+    {
+      "id": "OPT4-C06-035",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.08,
+      "stem": "Paul is reviewing the approval process for a penetration test and wants to ensure that it has appropriate management review. Who should he ensure has approved the request for a penetration test for a business system?",
+      "options": [
+        "The change advisory board",
+        "Senior management",
+        "The systems administrator for the system",
+        "The service owner"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In most organizations, senior management needs to approve penetration tests because of the risk to the organization and the potential impact of the test. In a small number of organizations, the service owner may be able to make this decision, but penetration tests often have broader impacts than a single service, meaning that senior management is the proper path. Change advisory boards approve changes, not penetration tests, and system administrators may be advised of the test but do not have the authority in most organizations to sign off on a penetration test.",
+      "optionNotes": [
+        "Incorrect. A change advisory board reviews and approves changes to systems. It doesn't authorize penetration tests, which carry organizational risk that senior management has to accept.",
+        "Correct. Penetration tests put the organization at risk and can affect more than one system, so in most organizations senior management must approve them.",
+        "Incorrect. The systems administrator may be told about the test, but in most organizations they don't have the authority to sign off on a penetration test.",
+        "Incorrect. A few organizations let the service owner approve, but penetration tests often affect more than a single service. That's why senior management is the proper approval path."
+      ]
+    },
+    {
+      "id": "OPT4-C06-036",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "What term describes software testing that is intended to uncover new bugs introduced by patches or configuration changes?",
+      "options": [
+        "Nonregression testing",
+        "Evolution testing",
+        "Smoke testing",
+        "Regression testing"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Regression testing, which is a type of functional or unit testing, tests to ensure that changes have not introduced new issues. Nonregression testing checks to see whether a change has had the effect it was supposed to, smoke testing focuses on simple problems with impact on critical functionality, and evolution testing is not a software testing technique.",
+      "optionNotes": [
+        "Incorrect. Nonregression testing checks whether a change achieved its intended effect, not whether it broke existing functionality or introduced new bugs.",
+        "Incorrect. Evolution testing is not a recognized software testing technique; it is a made-up distractor.",
+        "Incorrect. Smoke testing is a quick check for simple problems that would affect critical functionality. It is not meant to find new bugs introduced by patches or configuration changes.",
+        "Correct. Regression testing is a type of functional or unit testing that confirms patches or configuration changes have not introduced new issues into previously working software."
+      ]
+    },
+    {
+      "id": "OPT4-C06-037",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.91,
+      "stem": "Which of the following tools cannot identify a target's operating system for a penetration tester?",
+      "options": [
+        "Nmap",
+        "Nessus",
+        "Nikto",
+        "Sqlmap"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Nmap, Nessus, and Nikto all have OS fingerprinting or other operating system identification capabilities. Sqlmap is designed to perform automated detection and testing of SQL injection flaws and does not provide OS detection.",
+      "optionNotes": [
+        "Incorrect. Nmap is a port scanner that does OS fingerprinting (the -O option) by analyzing how the TCP/IP stack responds. It can identify the OS, so it doesn't fit this question.",
+        "Incorrect. Nessus is a vulnerability scanner that includes OS identification and fingerprinting. Because it can detect the target's operating system, it is not the answer.",
+        "Incorrect. Nikto is a web server scanner that can reveal operating system details through server banners and fingerprinting. Because it can identify the OS, it is not the answer.",
+        "Correct. Sqlmap automates detecting and testing SQL injection flaws. It has no OS detection feature, so it is the tool that can't identify the target's operating system."
+      ]
+    },
+    {
+      "id": "OPT4-C06-038",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Susan needs to predict high-risk areas for her organization and wants to use metrics to assess risk trends as they occur. What should she do to handle this?",
+      "options": [
+        "Perform yearly risk assessments.",
+        "Hire a penetration testing company to regularly test organizational security.",
+        "Identify and track key risk indicators.",
+        "Monitor logs and events using a SIEM device."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Key risk indicators are used to tell those in charge of risk management how risky an activity is and how much impact changes are having on that risk profile. Identifying and monitoring key risk indicators can help track high-risk areas earlier in their life cycle. Yearly risk assessments may be a good idea but provide only a point-in-time view, whereas penetration tests may miss out on risks that are not directly security-related. Monitoring logs and events using a SIEM device can help detect issues as they occur but won't necessarily show trends in risk.",
+      "optionNotes": [
+        "Incorrect. A yearly risk assessment only shows risk at one point in time. It can't track trends as they happen or flag rising risk early.",
+        "Incorrect. Penetration tests only look at technical security weaknesses, so they can miss risks that aren't security-related. They also aren't ongoing metrics for tracking risk trends.",
+        "Correct. Key risk indicators (KRIs) are forward-looking metrics that show how risky an activity is and how changes affect the risk profile. Tracking them lets Susan spot high-risk areas early.",
+        "Incorrect. A SIEM detects security events in real time, but event monitoring doesn't measure or show trends in organizational risk."
+      ]
+    },
+    {
+      "id": "OPT4-C06-039",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "What major difference separates synthetic and passive monitoring?",
+      "options": [
+        "Synthetic monitoring works only after problems have occurred.",
+        "Passive monitoring cannot detect functionality issues.",
+        "Passive monitoring works only after problems have occurred.",
+        "Synthetic monitoring cannot detect functionality issues."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Passive monitoring works only after issues have occurred because it requires actual traffic. Synthetic monitoring uses simulated or recorded traffic and thus can be used to proactively identify problems. Both synthetic and passive monitoring can be used to detect functionality issues.",
+      "optionNotes": [
+        "Incorrect. This gets the two reversed. Synthetic monitoring sends simulated or recorded traffic, so it can find problems proactively, before real users run into them.",
+        "Incorrect. Wrong, because passive monitoring can detect functionality issues by analyzing real traffic. Its limitation is timing: it only sees problems after they have happened.",
+        "Correct. Passive monitoring depends on actual user traffic, so it can only spot issues after they have occurred. Synthetic monitoring uses simulated transactions to find problems in advance.",
+        "Incorrect. Wrong, because synthetic monitoring is built to test functionality by running scripted transactions. Both monitoring types can detect functionality issues."
+      ]
+    },
+    {
+      "id": "OPT4-C06-040",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.26,
+      "stem": "For questions 40–42, please refer to the following scenario. Chris uses the standard penetration testing methodology shown here. Use this methodology and your knowledge of penetration testing to answer questions about tool usage during a penetration test.\n[Figure, described in text: a cycle: Planning → Information Gathering and Discovery → Vulnerability Scanning → Exploitation → Reporting → back to Planning.]\n\nWhat task is the most important during Phase 1, planning?",
+      "options": [
+        "Building a test lab",
+        "Getting authorization",
+        "Gathering appropriate tools",
+        "Determining if the test is white, black, or gray box"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Getting authorization is the most critical element in the planning phase. Permission, and the “get-out-of-jail-free card” that demonstrates that organizational leadership is aware of the issues that a penetration test could cause, is the first step in any penetration test. Gathering tools and building a lab, as well as determining what type of test will be conducted, are all important, but nothing should happen without permission.",
+      "optionNotes": [
+        "Incorrect. A test lab can be useful for preparing exploits, but it's still a supporting task. No lab work or other test activity should start until permission has been obtained.",
+        "Correct. Written authorization from leadership (the \"get-out-of-jail-free card\") shows management accepts the risks the test brings. It comes first, and nothing else should happen without it.",
+        "Incorrect. Choosing and gathering tools is part of planning, but it's secondary. Without authorization, using those tools against the target would be unauthorized activity.",
+        "Incorrect. Deciding between black box (no knowledge), gray box (partial knowledge) or white box (full knowledge) sets the test's scope and approach. That decision is still less critical than getting permission."
+      ]
+    },
+    {
+      "id": "OPT4-C06-041",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.14,
+      "stem": "For questions 40–42, please refer to the following scenario. Chris uses the standard penetration testing methodology shown here. Use this methodology and your knowledge of penetration testing to answer questions about tool usage during a penetration test.\n[Figure, described in text: a cycle: Planning → Information Gathering and Discovery → Vulnerability Scanning → Exploitation → Reporting → back to Planning.]\n\nWhich of the following tools is most likely to be used during discovery?",
+      "options": [
+        "Nessus",
+        "John",
+        "Nmap",
+        "Nikto"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Discovery can include both active and passive discovery. Port scanning is commonly done during discovery to assess what services the target provides, and nmap is one of the most popular tools used for this purpose. Nessus and Nikto might be used during the vulnerability scanning phase, and john, a password cracker, can be used to recover passwords during the exploitation phase.",
+      "optionNotes": [
+        "Incorrect. Nessus is a vulnerability scanner. It belongs to the vulnerability scanning phase, which comes after discovery.",
+        "Incorrect. John (John the Ripper) is a password cracker. It is used in the exploitation phase to recover passwords, not during discovery.",
+        "Correct. Port scanning happens during discovery to find out which services a target offers, and nmap is one of the most popular tools for this.",
+        "Incorrect. Nikto is a web server vulnerability scanner. Like Nessus, it is used in the vulnerability scanning phase, not discovery."
+      ]
+    },
+    {
+      "id": "OPT4-C06-042",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.71,
+      "stem": "For questions 40–42, please refer to the following scenario. Chris uses the standard penetration testing methodology shown here. Use this methodology and your knowledge of penetration testing to answer questions about tool usage during a penetration test.\n[Figure, described in text: a cycle: Planning → Information Gathering and Discovery → Vulnerability Scanning → Exploitation → Reporting → back to Planning.]\n\nWhich of these concerns is the most important to address during planning to ensure that the reporting phase does not cause problems?",
+      "options": [
+        "Which CVE format to use",
+        "How the vulnerability data will be stored and sent",
+        "Which targets are off-limits",
+        "How long the report should be"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Penetration test reports often include information that could result in additional exposure if they were accidentally released or stolen. Therefore, determining how vulnerability data should be stored and sent is critical. Problems with off-limits targets are more likely to result in issues during the vulnerability assessment and exploitation phase, and reports should not be limited in length but should be as long as they need to be to accomplish the goals of the test.",
+      "optionNotes": [
+        "Incorrect. CVE identifiers follow one standard naming format, so there's nothing to decide here. Planning should focus on protecting the sensitive findings, not on how vulnerabilities are labeled.",
+        "Correct. A pen test report collects exploitable weaknesses, so if it leaks or is stolen it creates more exposure. Deciding during planning how this data will be stored and sent prevents problems at the reporting stage.",
+        "Incorrect. Off-limits targets do need to be agreed during planning, but mistakes with them cause trouble during vulnerability scanning and exploitation, not during reporting.",
+        "Incorrect. Report length shouldn't be capped. A report should be as long as it needs to be to meet the test's goals, so length isn't a key planning concern."
+      ]
+    },
+    {
+      "id": "OPT4-C06-043",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "What four types of coverage criteria are commonly used when validating the work of a code testing suite?",
+      "options": [
+        "Input, statement, branch, and condition coverage",
+        "Function, statement, branch, and condition coverage",
+        "API, branch, bounds, and condition coverage",
+        "Bounds, branch, loop, and condition coverage"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Code coverage testing most frequently requires that every function has been called, that each statement has been executed, that all branches have been fully explored, and that each condition has been evaluated for all possibilities. API, input, and loop testing are not common types of code coverage testing measures.",
+      "optionNotes": [
+        "Incorrect. Input coverage isn't a standard code coverage criterion. The usual set is function, statement, branch, and condition, so 'input' takes the place of function coverage.",
+        "Correct. Code coverage checks that every function is called, every statement is executed, every branch is explored, and every condition is evaluated for all possible outcomes.",
+        "Incorrect. API coverage and bounds checking are other kinds of testing. Neither is one of the four common code coverage measures, which are function, statement, branch, and condition.",
+        "Incorrect. Loop and bounds testing aren't among the common code coverage criteria. Function and statement coverage are missing from this set."
+      ]
+    },
+    {
+      "id": "OPT4-C06-044",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.57,
+      "stem": "As part of his role as a security manager, Jacob provides the following chart to his organization's management team. What type of measurement is he providing for them?\n[Figure, described in text: a line chart titled \"Time to Remediate in Days vs. Number of Vulnerabilities\". Across vulnerabilities 1 to 15, the time to remediate falls from about 50 days to about 1 day, with small bumps along the way.]",
+      "options": [
+        "A coverage rate measure",
+        "A key performance indicator",
+        "A time to live metric",
+        "A business criticality indicator"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Time to remediate a vulnerability is a commonly used key performance indicator for security teams. Time to live measures how long a packet can exist in hops, business criticality is a measure used to determine how important a service or system is to an organization, and coverage rates are used to measure how effective code testing is.",
+      "optionNotes": [
+        "Incorrect. Coverage rates measure how much of the code testing actually exercises, which shows how thorough testing is. The chart tracks how long remediation takes, not testing coverage.",
+        "Correct. Time to remediate vulnerabilities is a common key performance indicator (KPI) that security teams report to management to show how well and how fast they work.",
+        "Incorrect. Time to live is a networking value that limits how many hops a packet can make before it is discarded. It is not a security management measure of remediation time.",
+        "Incorrect. Business criticality rates how important a service or system is to the organization. It ranks assets and does not measure how fast vulnerabilities get fixed over time."
+      ]
+    },
+    {
+      "id": "OPT4-C06-045",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.55,
+      "stem": "What does using unique user IDs for all users provide when reviewing logs?",
+      "options": [
+        "Confidentiality",
+        "Integrity",
+        "Availability",
+        "Accountability"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Unique user IDs provide accountability when paired with auditable logs to provide that a specific user took any given action. Confidentiality, availability, and integrity can be provided through other means like encryption, systems design, and digital signatures.",
+      "optionNotes": [
+        "Incorrect. Confidentiality is about keeping data from unauthorized disclosure, usually through encryption and access controls. Unique IDs in logs don't stop anyone from reading data.",
+        "Incorrect. Integrity is about preventing unauthorized changes and is provided by mechanisms like hashing and digital signatures. It doesn't tie a logged action to one specific person.",
+        "Incorrect. Availability comes from system design, such as redundancy and fault tolerance. Unique user IDs do nothing to keep systems accessible.",
+        "Correct. When unique IDs are paired with auditable logs, each recorded action can be traced to one specific user, which is what accountability means."
+      ]
+    },
+    {
+      "id": "OPT4-C06-046",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Which of the following is not an interface that is typically tested during the software testing process?",
+      "options": [
+        "APIs",
+        "Network interfaces",
+        "UIs",
+        "Physical interfaces"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Application programming interfaces (APIs), user interfaces (UIs), and physical interfaces are all important to test when performing software testing. Network interfaces are not part of the typical list of interfaces tested in software testing.",
+      "optionNotes": [
+        "Incorrect. APIs are one of the standard interface types covered in software interface testing, so they are typically tested. That makes this option wrong for a 'not tested' question.",
+        "Correct. Network interfaces aren't on the usual list of interfaces checked in software testing. That list is APIs, UIs, and physical interfaces.",
+        "Incorrect. User interfaces are a standard focus of interface testing, because they check how users interact with the software. So UIs are typically tested.",
+        "Incorrect. Physical interfaces, such as those to machinery or devices the software controls, are on the standard list of interfaces to test. So they are typically tested."
+      ]
+    },
+    {
+      "id": "OPT4-C06-047",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "Alan's organization uses the Security Content Automation Protocol (SCAP) to standardize its vulnerability management program. Which component of SCAP can Alan use to reconcile the identity of vulnerabilities generated by different security assessment tools?",
+      "options": [
+        "OVAL",
+        "XCCDF",
+        "CVE",
+        "SCE"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Common Vulnerabilities and Exposures (CVE) database provides a consistent reference for identifying security vulnerabilities. The Open Vulnerability and Assessment Language (OVAL) is used to describe the security condition of a system. The Extensible Configuration Checklist Description Format (XCCDF) is used to create security checklists in a standardized fashion. The Script Check Engine (SCE) is designed to make scripts interoperable with security policy definitions.",
+      "optionNotes": [
+        "Incorrect. OVAL is a language for describing the security condition or state of a system. It doesn't give you a shared naming scheme for matching up vulnerabilities reported by different tools.",
+        "Incorrect. XCCDF is the format for writing security checklists in a standard way. It defines configuration checklists, not shared identifiers for vulnerabilities.",
+        "Correct. CVE gives each vulnerability a consistent reference identifier. Because every tool can label a finding with the same CVE ID, results from different tools can be matched up.",
+        "Incorrect. The Script Check Engine (SCE) lets scripts work alongside security policy definitions. It has nothing to do with naming or reconciling vulnerabilities."
+      ]
+    },
+    {
+      "id": "OPT4-C06-048",
+      "domain": 6,
+      "type": "multi",
+      "difficulty": 2.2,
+      "stem": "Susan is reviewing software testing coverage data and sees the information shown here. What can she determine about this testing process? (Select all answers that apply.)\n[Figure, described in text: a stacked bar chart titled \"Software Test\" showing executed tests vs. failed tests: Test 1 about 80% executed and 20% failed; Test 2 100% failed; Test 3 about 85% executed and 15% failed; Test 4 100% executed with no failures.]",
+      "options": [
+        "The testing does not have full coverage.",
+        "Test 4 completed with no failures.",
+        "Test 2 failed to run successfully.",
+        "The testing needs to be run a fifth time."
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "Test 2's total failure is likely due to a failed test run, but the tests overall show continued improvement with full success in test 4. At this point, most testing processes would consider the testing complete. This does not show coverage, and there is no reason to run a fifth run if the fourth test was successful.",
+      "optionNotes": [
+        "Incorrect. The chart only shows executed versus failed tests across runs. It says nothing about code coverage, so Susan can't conclude that coverage is incomplete.",
+        "Correct. Test 4's bar is 100% executed with no failed portion, so the run passed. Most processes would treat testing as complete at that point.",
+        "Correct. Test 2 shows a 100% failure rate. That most likely means the test run itself failed, not that every case truly failed, especially since the other runs show steady improvement.",
+        "Incorrect. Test 4 succeeded fully, so nothing in the data calls for a fifth run."
+      ]
+    },
+    {
+      "id": "OPT4-C06-049",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "Which of the following strategies is not a reasonable approach for remediating a vulnerability identified by a vulnerability scanner?",
+      "options": [
+        "Install a patch.",
+        "Use a workaround fix.",
+        "Update the banner or version number.",
+        "Use an application layer firewall or IPS to prevent attacks against the identified vulnerability."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Simply updating the version that an application provides may stop the vulnerability scanner from flagging it, but it won't fix the underlying issue. Patching, using workarounds, or installing an application layer firewall or IPS can all help to remediate or limit the impact of the vulnerability.",
+      "optionNotes": [
+        "Incorrect. Installing a vendor patch fixes the flaw in the code itself, so it is a valid remediation and the most direct one. That makes it a wrong answer to a question asking which approach is not reasonable.",
+        "Incorrect. A workaround, such as a configuration change that avoids the vulnerable function, is a legitimate way to reduce the risk when no patch is available yet. It is a reasonable approach, so it is not the answer.",
+        "Correct. Changing the banner or version string only hides the vulnerability from the scanner. The flaw is still there and can still be exploited, so this is not real remediation.",
+        "Incorrect. An application layer firewall or IPS can block attacks against the known flaw. This compensating control limits the impact, so it is a reasonable remediation step."
+      ]
+    },
+    {
+      "id": "OPT4-C06-050",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.55,
+      "stem": "During a penetration test, Selah calls her target's help desk claiming to be the senior assistant to an officer of the company. She requests that the help desk reset the officer's password because of an issue with his laptop while traveling and persuades them to do so. What type of attack has she successfully completed?",
+      "options": [
+        "Zero knowledge",
+        "Help-desk spoofing",
+        "Social engineering",
+        "Black box"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Selah's social engineering attack succeeded in persuading a staff member at the help desk to change a password for someone who they not only couldn't see but who they couldn't verify actually needed their password reset. Black box and zero knowledge are both terms describing penetration tests without information about the organization or system, and help-desk spoofing is not an industry term.",
+      "optionNotes": [
+        "Incorrect. Zero knowledge describes a penetration test where the tester starts with no information about the target. It tells you how much the tester knows, not what kind of attack was used, so it doesn't fit a phone pretext.",
+        "Incorrect. Help-desk spoofing is not an industry term. It is a distractor built from the scenario's wording. The real technique, manipulating staff by impersonation, has its own standard name.",
+        "Correct. Selah pretended to be an officer's assistant and talked help desk staff into resetting a password for someone they could neither see nor verify. Manipulating people this way is social engineering.",
+        "Incorrect. Black box, like zero knowledge, describes a penetration test done without prior information about the organization or its systems. It is a test type, not the name of the attack she carried out."
+      ]
+    },
+    {
+      "id": "OPT4-C06-051",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.71,
+      "stem": "In this image, what issue may occur due to the log handling settings?\n[Figure, described in text: the Windows \"Log Properties - Application (Type: Administrative)\" dialog. Log path: %SystemRoot%\\System32\\Winevt\\Logs\\Application.evtx; log size 20.00 MB (20,975,616 bytes); Enable logging is checked; Maximum log size (KB): 20480. Under \"When maximum event log size is reached\", the selected option is \"Archive the log when full, do not overwrite events\" (the other choices are \"Overwrite events as needed (oldest events first)\" and \"Do not overwrite events (Clear logs manually)\").]",
+      "options": [
+        "Log data may be lost when the log is archived.",
+        "Log data may be overwritten.",
+        "Log data may not include needed information.",
+        "Log data may fill the system disk."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The menu shown will archive logs when they reach the maximum size allowed (20 MB). These archives will be retained, which could fill the disk. Log data will not be overwritten, and log data should not be lost when the data is archived. The question does not include enough information to determine if needed information may not be logged.",
+      "optionNotes": [
+        "Incorrect. Archiving saves the full log to a new file before starting fresh, so data is kept, not lost.",
+        "Incorrect. Overwriting only happens with \"Overwrite events as needed.\" The selected option explicitly says not to overwrite events.",
+        "Incorrect. The dialog only shows size and retention settings, not which events get logged. There isn't enough information to say needed data would be missing.",
+        "Correct. Every time the log reaches 20 MB it's archived, and the archives are kept with no limit. Over time they can fill the system disk."
+      ]
+    },
+    {
+      "id": "OPT4-C06-052",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "Which of the following is not a hazard associated with penetration testing?",
+      "options": [
+        "Application crashes",
+        "Denial of service",
+        "Blackouts",
+        "Data corruption"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Penetration tests typically do not involve blackouts. Application crashes, denial of service due to system, network, or application failures, and even data corruption can all be hazards of penetration tests.",
+      "optionNotes": [
+        "Incorrect. Application crashes are a real penetration-testing risk, since exploits and malformed input can bring software down. That makes it a hazard, so it is not the answer.",
+        "Incorrect. Denial of service is a known pen-test hazard. Testing can cause system, network or application failures that make services unavailable.",
+        "Correct. Blackouts are power outages, and penetration tests don't normally cause them. They are a facility or utility risk, not a side effect of testing.",
+        "Incorrect. Data corruption can happen during a pen test, for example when exploit payloads or injection attempts change stored data. It is a hazard, so it is not the answer."
+      ]
+    },
+    {
+      "id": "OPT4-C06-053",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "Which NIST special publication covers the assessment of security and privacy controls?",
+      "options": [
+        "800-12",
+        "800-53A",
+        "800-34",
+        "800-86"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "NIST SP 800-53A is titled “Assessing Security and Privacy Controls in Federal Information Systems and Organizations: Building Effective Assessment Plans” and covers methods for assessing and measuring controls. NIST 800-12 is an introduction to computer security, 800-34 covers contingency planning, and 800-86 is the “Guide to Integrating Forensic Techniques into Incident Response.”",
+      "optionNotes": [
+        "Incorrect. SP 800-12 is NIST's general introduction to computer security. It does not cover methods for assessing security and privacy controls.",
+        "Correct. SP 800-53A, 'Assessing Security and Privacy Controls in Federal Information Systems and Organizations', describes how to build assessment plans and how to assess and measure controls.",
+        "Incorrect. SP 800-34 is the contingency planning guide, which covers continuity and recovery planning. It is not about assessing controls.",
+        "Incorrect. SP 800-86 is the Guide to Integrating Forensic Techniques into Incident Response. Its subject is forensics, not control assessment."
+      ]
+    },
+    {
+      "id": "OPT4-C06-054",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.4,
+      "stem": "Michelle wants to assess her organization's disaster recovery readiness. What type of test could she run to most effectively assess readiness without the potential for disruption?",
+      "options": [
+        "Conduct a tabletop exercise.",
+        "Conduct a failover test.",
+        "Conduct a simulation.",
+        "Conduct a plan review."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Simulations are the most complete test that can be conducted without the risk that a full failover test creates. Michelle should conduct a simulation to validate as much of her organization's plan as possible. Tabletop exercises and plan reviews provide less complete coverage.",
+      "optionNotes": [
+        "Incorrect. A tabletop exercise has the team talk through a scenario. It doesn't disrupt operations, but it covers less of the plan than a simulation, so it isn't the most effective choice.",
+        "Incorrect. A failover test actually moves operations to the recovery site. That makes it the most thorough test, but it can disrupt business, which the question rules out.",
+        "Correct. A simulation is the most complete test that avoids the risk of a full failover. It checks as much of the plan as possible without affecting production systems.",
+        "Incorrect. A plan review is a read-through of the documentation. It carries no risk of disruption, but it only checks the plan on paper, so it gives the least assurance that the organization is actually ready."
+      ]
+    },
+    {
+      "id": "OPT4-C06-055",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.57,
+      "stem": "Lucca wants to conduct an audit of a hybrid cloud environment. What potential challenge should he identify for his management team?",
+      "options": [
+        "On-premises audits are difficult to complete.",
+        "Hybrid audits cannot be conducted by third parties.",
+        "Underlying cloud infrastructure may not be auditable.",
+        "There are no differences between hybrid and cloud audits."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Hybrid environment audits involve the complexity of both cloud and on-premises audits. That means that the underlying cloud infrastructure may not be auditable, although Lucca's organization's use and configuration of the cloud will be. On-premises audits are not any more challenging to complete than other audits, hybrid audits can be conducted by third parties, and hybrid audits include both on-premises and cloud auditing challenges and requirements as they are not the same as a cloud-only audit.",
+      "optionNotes": [
+        "Incorrect. On-premises audits are no harder to finish than other audits. The organization controls that infrastructure, so it isn't the special hybrid challenge.",
+        "Incorrect. Third parties can conduct hybrid audits. External auditors often review both the on-premises and cloud parts.",
+        "Correct. Hybrid audits carry the limits of cloud audits: the provider's underlying infrastructure may not be auditable. Lucca can still audit his organization's own use and configuration of the cloud.",
+        "Incorrect. Hybrid audits differ from cloud-only audits. They combine the challenges and requirements of both on-premises and cloud auditing."
+      ]
+    },
+    {
+      "id": "OPT4-C06-056",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "If Kara's primary concern is preventing administrative connections to the server, which port should she block?",
+      "options": [
+        "22",
+        "80",
+        "443",
+        "1433"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Port 22 is used by the Secure Shell (SSH) protocol for administrative connections. If Kara wants to restrict administrative connections, she should block access on this port. Port 80 is used for HTTP, 443 for HTTPS, and 1433 for Microsoft SQL.",
+      "optionNotes": [
+        "Correct. Port 22 carries SSH, the protocol used for remote administrative logins to servers, so blocking it stops administrative connections.",
+        "Incorrect. Port 80 is HTTP, used for unencrypted web traffic rather than administrative access. Blocking it would disrupt web service, not admin logins.",
+        "Incorrect. Port 443 is HTTPS, which carries encrypted web traffic. It isn't the standard remote administration channel.",
+        "Incorrect. Port 1433 is Microsoft SQL Server, used for database connections, not for administrative shell access to the server."
+      ]
+    },
+    {
+      "id": "OPT4-C06-057",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.4,
+      "stem": "During a third-party audit, Jim's company receives a finding that states, “The administrator should review backup success and failure logs on a daily basis and take action in a timely manner to resolve reported exceptions.” What potential problem does this finding indicate?",
+      "options": [
+        "Administrators will not know if the backups succeeded or failed.",
+        "The backups may not be properly logged.",
+        "The backups may not be usable.",
+        "The backup logs may not be properly reviewed."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The audit finding indicates that the backup administrator may not be monitoring backup logs and taking appropriate action based on what they report, thus resulting in potentially unusable backups. Issues with review, logging, or being aware of the success or failure of backups are less important than not having usable backups.",
+      "optionNotes": [
+        "Incorrect. The finding implies logs exist and report success or failure, so admins could find out. Not knowing the backup status is a smaller concern than the real risk: backups that won't work for recovery.",
+        "Incorrect. The finding assumes backup logs already exist and only need daily review, so logging isn't the gap. Per the explanation, logging problems matter less than unusable backups.",
+        "Correct. If nobody reviews the logs and fixes reported exceptions, failed or partial backups go unnoticed. The real business risk is that the backups may not be usable when a restore is needed.",
+        "Incorrect. This just restates the finding's wording (logs not reviewed) without naming the consequence. The question asks what potential problem that causes, which is unusable backups."
+      ]
+    },
+    {
+      "id": "OPT4-C06-058",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.42,
+      "stem": "Jim is helping his organization decide on audit standards for use throughout their international organization. Which of the following is not an IT standard that Jim's organization is likely to use as part of its audits?",
+      "options": [
+        "COBIT",
+        "SSAE-18",
+        "ITIL",
+        "ISO 27001"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "ITIL, which originally stood for IT Infrastructure Library, is a set of practices for IT service management and is not typically used for auditing. The Control Objectives for Information and Related Technology (COBIT), ISO 27001, and the Statement on Standards for Attestation Engagements number 18 (SSAE-18) are all used for auditing.",
+      "optionNotes": [
+        "Incorrect. COBIT (Control Objectives for Information and Related Technology) is a control framework that is commonly used as a basis for IT audits, so it is a standard Jim's organization would likely use.",
+        "Incorrect. SSAE-18 is the AICPA attestation standard behind SOC reports, so it is widely used for audits of service organizations' controls. That makes it a likely audit standard.",
+        "Correct. ITIL (originally IT Infrastructure Library) is a set of IT service management practices. It is not typically used as an audit standard.",
+        "Incorrect. ISO 27001 sets requirements for an information security management system and is used for audits and certification internationally, so it is a likely choice."
+      ]
+    },
+    {
+      "id": "OPT4-C06-059",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "Nicole wants to conduct a standards-based audit of her organization. Which of the following is commonly used to describe common requirements for information systems?",
+      "options": [
+        "IEC",
+        "COBIT",
+        "FISA",
+        "DMCA"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "COBIT, the Control Objectives for Information and Related Technologies, is commonly used as an audit framework for evaluating the governance and management of enterprise IT in an organization. The DMCA is the Digital Millennium Copyright Act, IEC is the International Electrotechnical Commission that defines standards for electrotechnology, and FISA is the Federal Intelligence Surveillance Act, not an audit standard.",
+      "optionNotes": [
+        "Incorrect. The IEC (International Electrotechnical Commission) writes standards for electrotechnology. It is not a framework for auditing the requirements of information systems.",
+        "Correct. COBIT (Control Objectives for Information and Related Technologies) is a widely used audit framework that sets out control objectives for the governance and management of enterprise IT.",
+        "Incorrect. FISA is a U.S. surveillance law, which the book calls the Federal Intelligence Surveillance Act (its official name is the Foreign Intelligence Surveillance Act). It is not an audit standard.",
+        "Incorrect. The DMCA (Digital Millennium Copyright Act) is a U.S. copyright law. It has nothing to do with defining control requirements for auditing information systems."
+      ]
+    },
+    {
+      "id": "OPT4-C06-060",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.03,
+      "stem": "Kelly's team conducts regression testing on each patch they release. What key performance measure should they maintain to measure the effectiveness of their testing?",
+      "options": [
+        "Time to remediate vulnerabilities",
+        "A measure of the rate of defect recurrence",
+        "A weighted risk trend",
+        "A measure of the specific coverage of their testing"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Kelly's team is using regression testing, which is intended to prevent the recurrence of issues. This means measuring the rate of defect recurrence is appropriate for their work. Time to remediate vulnerabilities is associated with activities such as patching, rather than preparing the patch, whereas a weighted risk trend is used to measure risk over time to an organization. Finally, specific coverage may be useful to determine if they are fully testing their effort, but regression testing is more specifically covered by defect recurrence rates.",
+      "optionNotes": [
+        "Incorrect. Time to remediate vulnerabilities tracks how quickly patches get applied. It measures the patching process, not how well the team tests the patch before release.",
+        "Correct. Regression testing exists to stop previously fixed defects from coming back, so the rate of defect recurrence directly shows whether it is working.",
+        "Incorrect. A weighted risk trend tracks an organization's overall risk over time. It doesn't measure how effective a team's regression testing is.",
+        "Incorrect. Test coverage shows whether the testing reaches everything it should. That's useful, but defect recurrence ties more directly to what regression testing is for."
+      ]
+    },
+    {
+      "id": "OPT4-C06-061",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "Which of the following types of code review is not typically performed by a human?",
+      "options": [
+        "Software inspections",
+        "Pair programming",
+        "Static program analysis",
+        "Software walk-throughs"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Static program reviews are typically performed by an automated tool. Program understanding, program comprehension, pair programming, software inspections, and software walk-throughs are all human-centric methods for reviewing code.",
+      "optionNotes": [
+        "Incorrect. Software inspections are formal, human-centric reviews in which trained reviewers go through code to find defects, so a person does them.",
+        "Incorrect. In pair programming, two developers work on the same code together and review it as they write it. It is a human method, not an automated one.",
+        "Correct. Static program analysis is usually run by automated tools that scan source code for flaws without executing it, so it is not typically done by a human.",
+        "Incorrect. In a software walk-through, the author leads peers through the code to get feedback. It is a human-centric review, not tool-driven analysis."
+      ]
+    },
+    {
+      "id": "OPT4-C06-062",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.63,
+      "stem": "Scenario:\nSusan is the lead of a quality assurance team at her company. The team has been tasked with the testing for a major release of their company's core software product.\n\nSusan's team of software testers are required to test every code path, including those that will be used only when an error condition occurs. What type of testing environment does her team need to ensure complete code coverage?",
+      "options": [
+        "White box",
+        "Gray box",
+        "Black box",
+        "Dynamic"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "To fully test code, a white-box test is required. Without full visibility of the code, error conditions or other code could be missed, making a gray-box or black-box test an inappropriate solution. Using dynamic testing that runs against live code could also result in some conditions being missed due to sections of code not being exposed to typical usage.",
+      "optionNotes": [
+        "Correct. White-box testing gives testers full visibility into the source code, so they can design tests that exercise every path, including error-handling branches that normal use rarely triggers.",
+        "Incorrect. Gray-box testing gives testers only partial knowledge of the code. Without full visibility, error-handling paths or other code can be missed, so complete coverage isn't guaranteed.",
+        "Incorrect. Black-box testing gives testers no view of the code and tests only inputs and outputs. Error conditions and hidden code paths can easily go untested.",
+        "Incorrect. Dynamic testing runs against live code under typical usage, so sections of code that are never exposed, such as rare error paths, may never be exercised."
+      ]
+    },
+    {
+      "id": "OPT4-C06-063",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.21,
+      "stem": "Scenario:\nSusan is the lead of a quality assurance team at her company. The team has been tasked with the testing for a major release of their company's core software product.\n\nAs part of the continued testing of their new application, Susan's quality assurance team has designed a set of test cases for a series of black-box tests. These functional tests are then run, and a report is prepared explaining what has occurred. What type of report is typically generated during this testing to indicate test metrics?",
+      "options": [
+        "A test coverage report",
+        "A penetration test report",
+        "A code coverage report",
+        "A line coverage report"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A test coverage report measures how many of the test cases have been completed and is used as a way to provide test metrics when using test cases. A penetration test report is provided when a penetration test is conducted—this is not a penetration test. A code coverage report covers how much of the code has been tested, and a line coverage report is a type of code coverage report, both of which cannot be created in a black-box test since the code is not accessible to testers.",
+      "optionNotes": [
+        "Correct. A test coverage report measures how many of the designed test cases have been completed, so it gives test metrics for test-case-driven black-box functional testing.",
+        "Incorrect. A penetration test report comes out of a penetration test. This scenario is functional QA testing with test cases, not a pen test.",
+        "Incorrect. A code coverage report shows how much of the source code was exercised. That needs access to the code, which black-box testers don't have.",
+        "Incorrect. A line coverage report is a type of code coverage report. It needs visibility into the code, so it can't come from a black-box test."
+      ]
+    },
+    {
+      "id": "OPT4-C06-064",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 2.08,
+      "stem": "Scenario:\nSusan is the lead of a quality assurance team at her company. The team has been tasked with the testing for a major release of their company's core software product.\n\nAs part of their code coverage testing, Susan's team runs the analysis in a nonproduction environment using logging and tracing tools. Which of the following type of code issues is most likely to be missed during testing due to this change in the operating environment?",
+      "options": [
+        "Improper bounds checking",
+        "Input validation",
+        "A race condition",
+        "Pointer manipulation"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The changes from a testing environment with instrumentation inserted into the code and the production environment for the code can mask timing-related issues like race conditions. Bounds checking, input validation, and pointer manipulation are all related to coding issues rather than environmental issues and are more likely to be discoverable in a test environment.",
+      "optionNotes": [
+        "Incorrect. Improper bounds checking is a flaw in the code itself, not in the environment. It behaves the same with or without instrumentation, so testing should still find it.",
+        "Incorrect. Input validation flaws come from how the code handles data, so they don't depend on the environment. Coverage testing in a nonproduction environment can still find them.",
+        "Correct. Logging and tracing tools change execution timing, so the test environment behaves differently from production. That can hide timing-dependent flaws like race conditions.",
+        "Incorrect. Pointer manipulation is a coding problem, not something tied to the environment. Instrumented test runs are still likely to find it."
+      ]
+    },
+    {
+      "id": "OPT4-C06-065",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.03,
+      "stem": "Robin recently conducted a vulnerability scan and found a critical vulnerability on a server that handles sensitive information. What should Robin do next?",
+      "options": [
+        "Patching",
+        "Reporting",
+        "Remediation",
+        "Validation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Once a vulnerability scanner identifies a potential problem, validation is necessary to verify that the issue exists. Reporting, patching, or other remediation actions can be conducted once the vulnerability has been confirmed.",
+      "optionNotes": [
+        "Incorrect. Patching is one kind of remediation. It should only happen after the scanner's finding has been confirmed, because scanners can report false positives.",
+        "Incorrect. Reporting comes after validation. Sending up an unconfirmed finding could pass along a false positive and send effort to the wrong place.",
+        "Incorrect. Remediation, such as patching or configuration changes, comes after the vulnerability is confirmed to exist. It is not the immediate next step.",
+        "Correct. A scanner only flags a possible problem, so Robin must first validate that the vulnerability really exists. Reporting and remediation can follow after that."
+      ]
+    },
+    {
+      "id": "OPT4-C06-066",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "The automated code testing and integration that Andrea ran as part of her organization's CI/CD pipeline errored out. What should Andrea do with the code if the company needs the code to go live immediately?",
+      "options": [
+        "Manually bypass the test.",
+        "Review error logs to identify the problem.",
+        "Rerun the test to see if it works.",
+        "Send the code back to the developer for a fix."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "While handling errors and exceptions can be something of an art, the first thing to do in circumstances like these is to review error logs and notifications to try to find out what went wrong. From there, Andrea can make a decision to remediate a problem, send the code back for a fix, or take another action. She might even opt to send the code forward if the error occurred after testing was completed and was with the process flow or another noncritical element, but would do so only if she was absolutely certain that was the case.",
+      "optionNotes": [
+        "Incorrect. Skipping the failed test sends code to production without knowing what failed. That could release a defect or vulnerability. Even under time pressure, Andrea should only move the code forward once she is sure the error doesn't matter.",
+        "Correct. The first step is to check the error logs and notifications to find out what went wrong. That tells Andrea whether to fix the problem, send the code back, or, if the error was noncritical, let the code go ahead.",
+        "Incorrect. Rerunning the test without understanding why it failed only hopes the error goes away. It doesn't find the cause, and a pass on the second try could hide a real problem.",
+        "Incorrect. Sending the code back may turn out to be the right fix, but only after the logs show the error is in the code. The failure could be in the pipeline or a noncritical step, so sending it back first is premature and slows the release."
+      ]
+    },
+    {
+      "id": "OPT4-C06-067",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.31,
+      "stem": "Michelle wants to compare vulnerabilities she has discovered in her data center based on how exploitable they are, if exploit code exists, and how hard they are to remediate. What scoring system should she use to compare vulnerability metrics like these?",
+      "options": [
+        "CSV",
+        "NVD",
+        "VSS",
+        "CVSS"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Common Vulnerability Scoring System (CVSS) includes metrics and calculation tools for exploitability, impact, how mature exploit code is, and how vulnerabilities can be remediated, as well as a means to score vulnerabilities against users' unique requirements. NVD is the National Vulnerability Database, CSV is short for comma-separated values, and Visual SourceSafe (VSS) is an irrelevant term related to software development rather than vulnerability management.",
+      "optionNotes": [
+        "Incorrect. CSV just means comma-separated values, a file format for tabular data. It isn't a vulnerability scoring system and has no metrics for exploitability or remediation.",
+        "Incorrect. NVD is the National Vulnerability Database, a repository of vulnerability information. It publishes CVSS scores, but it isn't a scoring system itself.",
+        "Incorrect. VSS here means Visual SourceSafe, a software development version-control tool. It has nothing to do with scoring vulnerabilities.",
+        "Correct. CVSS has metrics and calculators for exploitability, impact, how mature the exploit code is, and remediation level. It can also be adjusted for an organization's own requirements, which matches every factor Michelle wants to compare."
+      ]
+    },
+    {
+      "id": "OPT4-C06-068",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.42,
+      "stem": "During a port scan of his network, Alex finds that a number of hosts respond on TCP ports 80, 443, 515, and 9100 in offices throughout his organization. What type of devices is Alex likely discovering?",
+      "options": [
+        "Web servers",
+        "File servers",
+        "Wireless access points",
+        "Printers"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Network-enabled printers often provided services via TCP 515 and 9100 and have both nonsecure and secure web-enabled management interfaces on TCP 80 and 443. Web servers, access points, and file servers would not typically provide service on the LPR and LPD ports (515 and 9100).",
+      "optionNotes": [
+        "Incorrect. Web servers would explain 80 and 443, but they don't usually listen on 515 (LPD) or 9100 (raw printing). The printing ports point to printers.",
+        "Incorrect. File servers usually expose SMB (445) or NFS, not the LPR/LPD and raw printing ports 515 and 9100.",
+        "Incorrect. Wireless access points may have web management on 80/443, but they don't offer print services on 515 or 9100.",
+        "Correct. This is correct. Network printers serve print jobs on TCP 515 (LPD) and 9100 (raw/JetDirect), and they also have HTTP and HTTPS management interfaces on 80 and 443."
+      ]
+    },
+    {
+      "id": "OPT4-C06-069",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "Nikto, Burp Suite, and Wapiti are all examples of what type of tool?",
+      "options": [
+        "Web application vulnerability scanners",
+        "Code review tools",
+        "Vulnerability scanners",
+        "Port scanners"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Nikto, Burp Suite, and Wapiti are all web application vulnerability scanners, tools designed specifically to scan web servers and applications. While they share some functionality with broader vulnerability scanners and port scanning tools, they have a narrower focus and typically have deeper capabilities than vulnerability scanners.",
+      "optionNotes": [
+        "Correct. All three tools are built to scan web servers and web applications. Their focus is narrower than general vulnerability scanners, and they usually probe web flaws in more depth.",
+        "Incorrect. Code review tools examine source code, either statically or by manual inspection. These three tools test running web servers and applications from the outside and never read their source code.",
+        "Incorrect. These tools do share some functions with broad vulnerability scanners like Nessus. However, they focus specifically on web applications and go deeper there, so this answer is too general.",
+        "Incorrect. Port scanners such as Nmap find open ports and services. These tools have some overlap with them, but their real job is finding web application vulnerabilities."
+      ]
+    },
+    {
+      "id": "OPT4-C06-070",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.4,
+      "stem": "Frank's team is testing a new API that his company's developers have built for their application infrastructure. Which of the following is not a common API issue that you would expect Frank's team to find?",
+      "options": [
+        "Improper encryption",
+        "Object-level authorization issues",
+        "User authentication issues",
+        "Lack of rate limiting"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "APIs typically transfer data for web applications via HTTPS, meaning that the API itself is not responsible for encryption. If Frank's team discovers that TLS is not enabled, they will need to work with the infrastructure or systems administration team to ensure that TLS is enabled and in use rather than making API changes. Authorization for object access, authentication weaknesses, and rate limiting are all common API issues. If you're not familiar with the types of issues you might encounter in APIs, you can read more about them in the OWASP API security top 10 at https://owasp.org/API-Security/editions/2023/en/0x11-t10.",
+      "optionNotes": [
+        "Correct. APIs normally send data over HTTPS, so encryption is handled by TLS in the infrastructure, not by the API. If TLS is missing, the infrastructure or sysadmin team fixes it; the API code doesn't change.",
+        "Incorrect. Broken object-level authorization, where a user can reach objects by changing an ID, is a top item on the OWASP API Security Top 10. That makes it a common API flaw Frank's team should expect to find.",
+        "Incorrect. Broken user authentication, such as weak token handling or credential flaws, is one of the common API weaknesses listed by OWASP. Frank's team would expect to test for it.",
+        "Incorrect. Missing rate limiting (unrestricted resource consumption) lets attackers abuse or overload an API. It is a common API issue listed in the OWASP API Top 10."
+      ]
+    },
+    {
+      "id": "OPT4-C06-071",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "Jim is working with a penetration testing contractor who proposes using Metasploit as part of her penetration testing effort. What should Jim expect to occur when Metasploit is used?",
+      "options": [
+        "Systems will be scanned for vulnerabilities.",
+        "Systems will have known vulnerabilities exploited.",
+        "Services will be probed for buffer overflow and other unknown flaws.",
+        "Systems will be tested for zero-day exploits."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Metasploit is an exploitation package that is designed to assist penetration testers. A tester using Metasploit can exploit known vulnerabilities for which an exploit has been created or can create their own exploits using the tool. While Metasploit provides built-in access to some vulnerability scanning functionality, a tester using Metasploit should primarily be expected to perform actual tests of exploitable vulnerabilities. Similarly, Metasploit supports creating buffer overflow attacks, but it is not a purpose-built buffer overflow testing tool, and of course, testing systems for zero-day exploits doesn't work unless they have been released.",
+      "optionNotes": [
+        "Incorrect. Metasploit does include some built-in scanning capability, but its main purpose is exploitation. A dedicated vulnerability scanner such as Nessus is the tool for scanning, so scanning is not what Jim should mainly expect.",
+        "Correct. Metasploit is an exploitation framework. Testers use it to exploit known vulnerabilities with existing exploit modules, or to build their own exploits, which actually tests whether the flaws can be exploited.",
+        "Incorrect. Metasploit can help build buffer overflow attacks, but it is not a purpose-built tool for probing services for buffer overflows or unknown flaws. That kind of discovery work is done by fuzzers.",
+        "Incorrect. Metasploit runs exploits that have already been created and released. You can't test for zero-day exploits that haven't been released or included in the tool yet."
+      ]
+    },
+    {
+      "id": "OPT4-C06-072",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.32,
+      "stem": "Susan needs to ensure that the interactions between the components of her e-commerce application are all handled properly. She intends to verify communications, error handling, and session management capabilities throughout her infrastructure. What type of testing is she planning to conduct?",
+      "options": [
+        "Misuse case testing",
+        "Fuzzing",
+        "Regression testing",
+        "Interface testing"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Susan is conducting interface testing. Interface testing involves testing system or application components to ensure that they work properly together. Misuse case testing focuses on how an attacker might misuse the application and would not test normal cases. Fuzzing attempts to send unexpected input and might be involved in interface testing, but it won't cover the full set of concerns. Regression testing is conducted when testing changes and is used to ensure that the application or system functions as it did before the update or change.",
+      "optionNotes": [
+        "Incorrect. Misuse case testing looks at how an attacker could abuse the application. It doesn't check that normal component interactions like communications and session handling work correctly.",
+        "Incorrect. Fuzzing sends unexpected or malformed input to find faults. It can be one part of interface testing, but it doesn't cover communications, error handling and session management as a whole.",
+        "Incorrect. Regression testing runs after a change to confirm the system still works as it did before the update. It isn't specifically about how components interact with each other.",
+        "Correct. Interface testing checks that system or application components work properly together, which covers communications, error handling and session management between components."
+      ]
+    },
+    {
+      "id": "OPT4-C06-073",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Jim is designing his organization's log management systems and knows that he needs to carefully plan to handle the organization's log data. Which of the following is not a factor that Jim should be concerned with?",
+      "options": [
+        "The volume of log data",
+        "A lack of sufficient log sources",
+        "Data storage security requirements",
+        "Network bandwidth"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Not having enough log sources is not a common consideration in log management system design, although it may be a worry for security managers who can't capture the data they need. Log management system designs must take into account the volume of log data and the network bandwidth it consumes, the security of the data, and the amount of effort required to analyze the data.",
+      "optionNotes": [
+        "Incorrect. Log volume is a core design factor, since it drives storage capacity, processing, and analysis effort. So it is something Jim must plan for, not the factor to exclude.",
+        "Correct. Having too few log sources isn't a typical design concern for a log management system. It may bother security managers who can't get the data they need, but the design itself focuses on volume, bandwidth, security, and analysis effort.",
+        "Incorrect. Logs often hold sensitive data and serve as evidence, so the design must protect stored logs from tampering and unauthorized access. That makes this a real factor.",
+        "Incorrect. Sending logs from many sources to a central collector uses network bandwidth, so the design has to account for it. That makes this a real factor."
+      ]
+    },
+    {
+      "id": "OPT4-C06-074",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.66,
+      "stem": "Ryan's organization wants to ensure that proper account management is occurring but does not have a central identity and access management tool in place. Ryan has a limited amount of time to do his verification process. What is his best option to test the account management process as part of an internal audit?",
+      "options": [
+        "Validate all accounts changed in the past 90 days.",
+        "Select high-value administrative accounts for validation.",
+        "Validate all account changes in the past 180 days.",
+        "Validate a random sample of accounts."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Random sampling of accounts is the recommended best practice if all accounts cannot be validated. Selecting only recently changed accounts will not identify long-term issues or historic issues, and checking only high-value accounts will not show if there are issues or bad practices with other account types.",
+      "optionNotes": [
+        "Incorrect. Checking only accounts changed in the last 90 days leaves out older accounts, so it can't find long-term or historic account management problems.",
+        "Incorrect. Checking only high-value admin accounts doesn't show whether other account types have problems or bad practices, so the sample isn't representative.",
+        "Incorrect. A 180-day window is longer, but it still only looks at recently changed accounts. Older accounts that never changed, and historic problems, go unchecked.",
+        "Correct. When time doesn't allow checking every account, a random sample is the recommended practice. It gives a representative view of all account types and ages."
+      ]
+    },
+    {
+      "id": "OPT4-C06-075",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "When a Windows system is rebooted, what type of log is generated?",
+      "options": [
+        "Error",
+        "Warning",
+        "Information",
+        "Failure audit"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Rebooting a Windows machine results in an information log entry. Windows defines five types of events: errors, which indicate a significant problem; warnings, which may indicate future problems; information, which describes successful operation; success audits, which record successful security accesses; and failure audits, which record failed security access attempts.",
+      "optionNotes": [
+        "Incorrect. Windows error events mark a significant problem, such as a service or driver that fails to load. A normal reboot is not a problem, so it doesn't produce an error entry.",
+        "Incorrect. Warning events flag conditions that might cause trouble later, such as low disk space. A routine reboot doesn't signal any future problem.",
+        "Correct. Information events record successful operations, and a normal reboot is one, so Windows logs it as an information event.",
+        "Incorrect. Failure audits record failed security access attempts, such as a bad logon. A reboot isn't an access attempt, so it isn't logged as a failure audit."
+      ]
+    },
+    {
+      "id": "OPT4-C06-076",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "During a review of access logs, Alex notices that Michelle logged into her workstation in New York at 8 a.m. daily, but then she was recorded as logging into her department's main web application shortly after 3 a.m. daily. What common logging issue has Alex likely encountered?",
+      "options": [
+        "Inconsistent log formatting",
+        "Modified logs",
+        "Inconsistent timestamps",
+        "Multiple log sources"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Inconsistent timestamps are a common problem, often caused by improperly set time zones or due to differences in how system clocks are set. In this case, a consistent time difference often indicates that one system uses local time, and the other is using Greenwich mean time (GMT). Logs from multiple sources tend to cause problems with centralization and collection, whereas different log formats can create challenges in parsing log data. Finally, modified logs are often a sign of intrusion or malicious intent.",
+      "optionNotes": [
+        "Incorrect. Inconsistent log formats make the data harder to parse and normalize. They don't produce a steady five-hour gap between two related events.",
+        "Incorrect. Modified logs usually point to an intrusion or someone covering their tracks. A repeatable daily offset like this one points to a clock or time-zone mismatch, not tampering.",
+        "Correct. The same 5-hour gap every day suggests the two systems record time differently, most likely one in local time and the other in GMT/UTC. Wrong time zones or unsynchronized clocks are a common cause of inconsistent timestamps.",
+        "Incorrect. Having many log sources mainly makes centralizing and collecting logs harder. That alone doesn't explain why the times are consistently offset."
+      ]
+    },
+    {
+      "id": "OPT4-C06-077",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "What type of vulnerability scan accesses configuration information from the systems it is run against as well as information that can be accessed via services available via the network?",
+      "options": [
+        "Authenticated scans",
+        "Web application scans",
+        "Unauthenticated scans",
+        "Port scans"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Authenticated scans use a read-only account to access configuration files, allowing more accurate testing of vulnerabilities. Web application scans, unauthenticated scans, and port scans don't have access to configuration files unless they are inadvertently exposed.",
+      "optionNotes": [
+        "Correct. Authenticated (credentialed) scans log in with a read-only account to read configuration files and settings, combining that with network-visible service data for more accurate vulnerability results.",
+        "Incorrect. Web application scans test web apps for flaws such as injection and XSS over HTTP. They can't read system configuration files unless those files are accidentally exposed.",
+        "Incorrect. Unauthenticated scans only see what network services expose to an outside attacker. Without credentials, they can't read configuration information on the host.",
+        "Incorrect. Port scans only find open ports and listening services. They don't log in, so they can't read configuration files."
+      ]
+    },
+    {
+      "id": "OPT4-C06-078",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "Brian has discovered a vulnerability in a website and has notified the company that owns the website about the issue. What has he done?",
+      "options": [
+        "A penetration test",
+        "Ethical disclosure",
+        "A web application test",
+        "OSINT"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Notifying third parties of security issues and vulnerabilities in a confidential manner to allow them to address the issues is considered ethical disclosure. There is not enough information in the question to determine how it was found, and disclosure is not necessarily part of either penetration tests or application tests. How the information as found is not listed, so OSINT is not a useful answer either.",
+      "optionNotes": [
+        "Incorrect. The question doesn't say how Brian found the flaw, and a penetration test is an authorized attempt to exploit vulnerabilities, not the act of notifying the owner. Disclosure isn't necessarily part of a pen test.",
+        "Correct. Ethical disclosure means confidentially telling the affected party about a vulnerability so they can fix it, which is exactly what Brian did when he notified the website's owner.",
+        "Incorrect. Nothing in the question says how the vulnerability was discovered. A web application test is a way of finding flaws, not of reporting them, and it doesn't necessarily include telling a third party.",
+        "Incorrect. OSINT means gathering information from publicly available sources. The question never says how the information was found, and OSINT doesn't describe notifying the owner, so it doesn't fit."
+      ]
+    },
+    {
+      "id": "OPT4-C06-079",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.34,
+      "stem": "Scenario:\nBen's organization has begun to use STRIDE to assess its software and has identified threat agents and the business impacts that these threats could have. Now they are working to identify appropriate controls for the issues they have identified.\n\nBen's team is attempting to categorize a transaction identification issue that is caused by using a symmetric key shared by multiple servers. What STRIDE category should this fall into?",
+      "options": [
+        "Information disclosure",
+        "Denial of service",
+        "Tampering",
+        "Repudiation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Since a shared symmetric key could be used by any of the servers, transaction identification problems caused by a shared key are likely to involve a repudiation issue. If encrypted transactions cannot be uniquely identified by a server, they cannot be proved to have come from a specific server.",
+      "optionNotes": [
+        "Incorrect. Information disclosure means data is exposed to people who shouldn't see it, which threatens confidentiality. The issue here is not knowing which server originated a transaction, not data leaking.",
+        "Incorrect. Denial of service is about availability: an attacker stops legitimate users from reaching a service. A shared key that hides which server sent a transaction doesn't block anyone's access.",
+        "Incorrect. Tampering is unauthorized changes to data, which threatens integrity. The problem described is proving where a transaction came from, not whether it was altered.",
+        "Correct. Any server could have used the shared symmetric key, so you can't tell which one sent an encrypted transaction or prove it came from a specific server. That lack of proof is repudiation, the threat to non-repudiation."
+      ]
+    },
+    {
+      "id": "OPT4-C06-080",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.02,
+      "stem": "Scenario:\nBen's organization has begun to use STRIDE to assess its software and has identified threat agents and the business impacts that these threats could have. Now they are working to identify appropriate controls for the issues they have identified.\n\nBen wants to use a third-party service to help assess denial-of-service attack vulnerabilities due to the amount of traffic during denial-of-service attacks. What type of engagement should he suggest to his organization?",
+      "options": [
+        "A social engineering engagement",
+        "A penetration test",
+        "Load or stress testing",
+        "Testing using a fuzzer"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Ben should engage a company that can perform a load or stress test to validate how the application performs under both expected and extreme loads so that he knows what a denial-of-service attack based on load will look like. Social engineering does not test the ability of sites to handle load, and penetration testers may conduct denial-of-service attacks but typically do not. Fuzzers send random input to test how applications handle unexpected input rather than relying on extreme load. They might help test for flaws that could result in a denial-of-service condition, but the question specifically asks about load-based conditions, not software flaws.",
+      "optionNotes": [
+        "Incorrect. A social engineering engagement tests whether people can be manipulated into giving up access or information. It tells you nothing about how the site handles the heavy traffic of a load-based DoS attack.",
+        "Incorrect. Penetration testers look for exploitable vulnerabilities. They can run denial-of-service attacks but usually don't, so a pen test is the wrong engagement for measuring how the site behaves under heavy load.",
+        "Correct. Load and stress testing checks how the application performs under both expected and extreme traffic, which shows what a high-volume denial-of-service attack would look like.",
+        "Incorrect. A fuzzer sends random or unexpected input to find software flaws. Those flaws might cause a DoS condition, but the question asks about traffic volume, not input-handling bugs."
+      ]
+    },
+    {
+      "id": "OPT4-C06-081",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.8,
+      "stem": "Chris is troubleshooting an issue with his organization's SIEM reporting. After analyzing the issue, he believes that the timestamps on log entries from different systems are inconsistent. What protocol can he use to resolve this issue?",
+      "options": [
+        "SSH",
+        "FTP",
+        "TLS",
+        "NTP"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Network Time Protocol (NTP) allows the synchronization of system clocks with a standardized time source. The Secure Shell (SSH) protocol provides encrypted administrative connections to servers. The File Transfer Protocol (FTP) is used for data exchange. Transport Layer Security (TLS) is an encryption process used to protect information in transit over a network.",
+      "optionNotes": [
+        "Incorrect. SSH gives you encrypted remote administrative sessions to servers. It does nothing to keep system clocks in sync, so it won't make log timestamps consistent.",
+        "Incorrect. FTP is a file transfer protocol. It could carry log files from one place to another, but it can't fix clocks that disagree across systems.",
+        "Incorrect. TLS encrypts data in transit, so it protects log traffic sent to the SIEM. It has no role in synchronizing time between systems.",
+        "Correct. NTP syncs system clocks to a standard time source. With every system on the same time, log timestamps line up and the SIEM can correlate events correctly."
+      ]
+    },
+    {
+      "id": "OPT4-C06-082",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Ryan is considering the use of fuzz testing in his web application testing program. Which one of the following statements about fuzz testing should Ryan consider when making his decision?",
+      "options": [
+        "Fuzzers only find complex faults.",
+        "Testers must manually generate input.",
+        "Fuzzers may not fully cover the code.",
+        "Fuzzers can't reproduce errors."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Fuzz testers are capable of automatically generating input sequences to test an application. Therefore, testers do not need to manually generate input, although they may do so if they want. Fuzzers can reproduce errors (and thus, “fuzzers can't reproduce errors” is not an issue) but typically don't fully cover the code—code coverage tools are usually paired with fuzzers to validate how much coverage was possible. Fuzzers are often limited to simple errors because they won't handle business logic or attacks that require knowledge from the application user.",
+      "optionNotes": [
+        "Incorrect. This has it backwards. Fuzzers usually find only simple faults, because they can't handle business logic or attacks that need knowledge an application user would have.",
+        "Incorrect. Fuzz testers can generate input sequences automatically, so manual input is optional, not required.",
+        "Correct. Fuzzers usually don't exercise all of the code, which is why they're often paired with code coverage tools to measure how much coverage was actually reached.",
+        "Incorrect. False. Fuzzers can reproduce the errors they find, so reproducibility is not a limitation Ryan needs to weigh."
+      ]
+    },
+    {
+      "id": "OPT4-C06-083",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "Ken is designing a testing process for software developed by his team. He is designing a test that verifies that every line of code was executed during the test. What type of analysis is Ken performing?",
+      "options": [
+        "Branch coverage",
+        "Condition coverage",
+        "Function coverage",
+        "Statement coverage"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Statement coverage tests verify that every line of code was executed during the test. Branch coverage verifies that every if statement was executed under all if and else conditions. Condition coverage verifies that every logical test in the code was executed under all sets of inputs. Function coverage verifies that every function in the code was called and returns results.",
+      "optionNotes": [
+        "Incorrect. Branch coverage checks that every if statement ran under both its if and else outcomes. It doesn't confirm that every line of code was executed.",
+        "Incorrect. Condition coverage checks that every logical test in the code ran under all sets of inputs. It is about logical conditions, not about each line being executed.",
+        "Incorrect. Function coverage checks that every function was called and returned results. It works at the function level, not line by line.",
+        "Correct. Statement coverage checks that every line of code was executed during testing, which is exactly what Ken's test does."
+      ]
+    },
+    {
+      "id": "OPT4-C06-084",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.34,
+      "stem": "For questions 84–86, please refer to the following scenario. During a port scan, Ben uses nmap's default settings and sees the following results.\n[Exhibit, transcribed from the book's figure:]\nNmap scan report for 192.168.184.130\nHost is up (1.0s latency).\nNot shown: 977 closed ports\nPORT     STATE SERVICE\n21/tcp   open  ftp\n22/tcp   open  ssh\n23/tcp   open  telnet\n25/tcp   open  smtp\n53/tcp   open  domain\n80/tcp   open  http\n111/tcp  open  rpcbind\n139/tcp  open  netbios-ssn\n445/tcp  open  microsoft-ds\n512/tcp  open  exec\n513/tcp  open  login\n514/tcp  open  shell\n1099/tcp open  rmiregistry\n1524/tcp open  ingreslock\n2049/tcp open  nfs\n2121/tcp open  ccproxy-ftp\n3306/tcp open  mysql\n5432/tcp open  postgresql\n5900/tcp open  vnc\n6000/tcp open  X11\n6667/tcp open  irc\n8009/tcp open  ajp13\n8180/tcp open  unknown\n\nNmap done: 1 IP address (1 host up) scanned in 54.69 seconds\n\nIf Ben is conducting a penetration test, what should his next step be after receiving these results?",
+      "options": [
+        "Connect to the web server using a web browser.",
+        "Connect via Telnet to test for vulnerable accounts.",
+        "Identify interesting ports for further scanning.",
+        "Use sqlmap against the open databases."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "After scanning for open ports using a port scanning tool like nmap, penetration testers will identify interesting ports and then conduct vulnerability scans to determine what services may be vulnerable. This will perform many of the same activities that connecting via a web server will and will typically be more useful than trying to manually test for vulnerable accounts via Telnet. Sqlmap would typically be used after a vulnerability scanner identifies additional information about services, and the vulnerability scanner will normally provide a wider range of useful information.",
+      "optionNotes": [
+        "Incorrect. Manually browsing to the web server covers only one service. A vulnerability scan of the interesting ports would do much of the same checking and more, so it isn't the logical next step.",
+        "Incorrect. Trying vulnerable accounts by hand over Telnet is narrow and less useful than first picking the interesting ports and running vulnerability scans against them.",
+        "Correct. After the nmap port discovery, a tester picks out the interesting ports and runs vulnerability scans on them to see which services may be exploitable.",
+        "Incorrect. Sqlmap probes and exploits database-backed web apps. It normally comes after a vulnerability scanner has gathered details about the services, and the scanner gives broader information first."
+      ]
+    },
+    {
+      "id": "OPT4-C06-085",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.58,
+      "stem": "For questions 84–86, please refer to the following scenario. During a port scan, Ben uses nmap's default settings and sees the following results.\n[Exhibit, transcribed from the book's figure:]\nNmap scan report for 192.168.184.130\nHost is up (1.0s latency).\nNot shown: 977 closed ports\nPORT     STATE SERVICE\n21/tcp   open  ftp\n22/tcp   open  ssh\n23/tcp   open  telnet\n25/tcp   open  smtp\n53/tcp   open  domain\n80/tcp   open  http\n111/tcp  open  rpcbind\n139/tcp  open  netbios-ssn\n445/tcp  open  microsoft-ds\n512/tcp  open  exec\n513/tcp  open  login\n514/tcp  open  shell\n1099/tcp open  rmiregistry\n1524/tcp open  ingreslock\n2049/tcp open  nfs\n2121/tcp open  ccproxy-ftp\n3306/tcp open  mysql\n5432/tcp open  postgresql\n5900/tcp open  vnc\n6000/tcp open  X11\n6667/tcp open  irc\n8009/tcp open  ajp13\n8180/tcp open  unknown\n\nNmap done: 1 IP address (1 host up) scanned in 54.69 seconds\n\nBased on the scan results, what operating system (OS) was the system that was scanned most likely running?",
+      "options": [
+        "Windows Desktop",
+        "Linux",
+        "Network device",
+        "Windows Server"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The system is likely a Linux system. The system shows X11, as well as login, shell, and nfs ports, all of which are more commonly found on Linux systems than Windows systems or network devices. This system is also very poorly secured; many of the services running on it should not be exposed in a modern secure network.",
+      "optionNotes": [
+        "Incorrect. A Windows desktop wouldn't normally expose X11 (6000), the r-services (512–514), NFS, or rpcbind. Ports 139/445 can come from Samba, so they don't prove Windows.",
+        "Correct. X11, the login, shell and exec r-services, rpcbind and NFS are typical of Linux/Unix hosts, so Linux is the most likely OS. This is a badly secured Metasploitable-style box.",
+        "Incorrect. Network devices such as routers and switches usually expose only a few management ports (SSH, telnet, HTTP, SNMP). They don't run X11, NFS, MySQL, PostgreSQL or VNC like this host does.",
+        "Incorrect. A Windows server would show services like RDP (3389) and MSRPC (135). X11, the r-services (512–514) and rpcbind/NFS point to Unix/Linux instead."
+      ]
+    },
+    {
+      "id": "OPT4-C06-086",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.21,
+      "stem": "For questions 84–86, please refer to the following scenario. During a port scan, Ben uses nmap's default settings and sees the following results.\n[Exhibit, transcribed from the book's figure:]\nNmap scan report for 192.168.184.130\nHost is up (1.0s latency).\nNot shown: 977 closed ports\nPORT     STATE SERVICE\n21/tcp   open  ftp\n22/tcp   open  ssh\n23/tcp   open  telnet\n25/tcp   open  smtp\n53/tcp   open  domain\n80/tcp   open  http\n111/tcp  open  rpcbind\n139/tcp  open  netbios-ssn\n445/tcp  open  microsoft-ds\n512/tcp  open  exec\n513/tcp  open  login\n514/tcp  open  shell\n1099/tcp open  rmiregistry\n1524/tcp open  ingreslock\n2049/tcp open  nfs\n2121/tcp open  ccproxy-ftp\n3306/tcp open  mysql\n5432/tcp open  postgresql\n5900/tcp open  vnc\n6000/tcp open  X11\n6667/tcp open  irc\n8009/tcp open  ajp13\n8180/tcp open  unknown\n\nNmap done: 1 IP address (1 host up) scanned in 54.69 seconds\n\nBen's manager expresses concern about the coverage of his scan. Why might his manager have this concern?",
+      "options": [
+        "Ben did not test UDP services.",
+        "Ben did not discover ports outside the “well-known ports.”",
+        "Ben did not perform OS fingerprinting.",
+        "Ben tested only a limited number of ports."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Nmap scans only 1000 TCP and UDP ports by default, including ports outside the 0–1024 range of “well-known” ports. By using the defaults for nmap, Ben missed 64,535 ports. OS fingerprinting won't cover more ports but would have provided a best guess of the OS running on the scanned system.",
+      "optionNotes": [
+        "Incorrect. Not the coverage gap the key points to. UDP scanning checks for active UDP services and is a separate scan type. The bigger problem is that a default nmap run only probes about 1,000 ports, which leaves most of the port range untested.",
+        "Incorrect. This is false. Nmap's default 1,000-port list includes ports above the 0–1024 well-known range, and the results show some, such as 3306, 5432 and 8180.",
+        "Incorrect. OS fingerprinting would give a best guess at the target's operating system, but it doesn't scan any more ports. It does nothing to fix the coverage problem.",
+        "Correct. Nmap's defaults scan only 1,000 common ports, so Ben missed about 64,535 others where services could be listening. That limited scope is why the manager is worried about coverage."
+      ]
+    },
+    {
+      "id": "OPT4-C06-087",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "Lucca is reviewing his organization's disaster recovery process data and notes that the MTD for the business's main website is two hours. What does he know about the RTO for the site when he does testing and validation?",
+      "options": [
+        "It needs to be less than two hours.",
+        "It needs to be at least two hours.",
+        "The MTD is too short and needs to be longer.",
+        "The RTO is too short and needs to be longer."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "When Lucca reviews the recovery time objective (RTO) data, he needs to ensure that the organization can recover from an outage in less than two hours based on the maximum tolerable downtime (MTD) of two hours.",
+      "optionNotes": [
+        "Correct. The RTO is the recovery target and has to come in under the MTD, so with a two-hour MTD, testing must show the site can be restored in less than two hours.",
+        "Incorrect. An RTO of two hours or more meets or goes past the maximum tolerable downtime, which means the business could lose viability before the site is back. The RTO must be shorter than the MTD.",
+        "Incorrect. The MTD is set by business impact analysis: it is the longest outage the business can survive. A main revenue website should have a short MTD, and recovery testing doesn't justify lengthening it.",
+        "Incorrect. A short RTO is what you want, since it has to stay below the MTD. Making the RTO longer would push it toward or past the two-hour limit the business can tolerate."
+      ]
+    },
+    {
+      "id": "OPT4-C06-088",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "Diana has engaged third-party auditors and wants to release an audit attestation to third parties without including details of the audit. What type of SSAE 18 SOC report should she request?",
+      "options": [
+        "SOC 1",
+        "SOC 2",
+        "SOC 3",
+        "SOC 4"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Diana should request a SOC 3 report, which is intended for distribution to third parties. They include the auditor's opinions and management assertions, along with information about the service organization. SOC 3 reports are specifically intended for external release, unlike SOC 1 (financial reporting) and SOC 2 (confidentiality, security, and privacy) engagements. SOC 4 was made up for the question.",
+      "optionNotes": [
+        "Incorrect. SOC 1 covers internal controls over financial reporting. Its distribution is restricted to the client and its auditors, so it isn't meant for public release.",
+        "Incorrect. SOC 2 covers security, availability, confidentiality, processing integrity and privacy controls. It includes detailed test results and is shared only under restricted distribution, often with an NDA.",
+        "Correct. A SOC 3 report is meant for general external release. It contains the auditor's opinion, management's assertions and a description of the service organization, but leaves out the detailed audit findings.",
+        "Incorrect. SOC 4 is not a real report type. SSAE 18 defines only SOC 1, SOC 2 and SOC 3; the book made this option up as a distractor."
+      ]
+    },
+    {
+      "id": "OPT4-C06-089",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.08,
+      "stem": "While reviewing the software testing output for her organization's new application, Madhuri notices that the application has produced errors that included directory and file information shown to the web application tester. What issue should she include in her report about the application?",
+      "options": [
+        "It does not perform proper exception handling.",
+        "The software does not handle misuse case testing properly.",
+        "Debugging statements need to be removed.",
+        "The code was not fully tested due to errors."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Showing end users error information about the code, particularly with directory and file information included, means that the application does not perform proper exception handling. Errors should be logged or noted in a way that the administrator can handle, but end users (and attackers!) should not see that information. The software may be handling misuse properly, as the problem does not note if this was due to normal testing or misuse testing. There is no information about debugging code causing the output, and test coverage was not noted in the question.",
+      "optionNotes": [
+        "Correct. Errors that show directory and file details to the end user mean exceptions aren't being handled properly. They should be logged where administrators can deal with them, not shown to users or attackers.",
+        "Incorrect. Misuse case testing feeds in deliberately bad input. The question never says the error came from misuse testing rather than normal testing, so faulty misuse handling can't be concluded.",
+        "Incorrect. Leftover debugging statements could leak information. But nothing in the scenario says debug code produced this output, so the observed problem is the unhandled error itself.",
+        "Incorrect. The question says nothing about test coverage. The errors are a test result, not proof that testing was incomplete, so this is not the issue to report."
+      ]
+    },
+    {
+      "id": "OPT4-C06-090",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -1.18,
+      "stem": "What action might a pen tester perform to identify potential exploitable services to gain an initial foothold in a network?",
+      "options": [
+        "Data gathering",
+        "Port scanning",
+        "Getting permission",
+        "Planning"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Port scanning is the first step toward identifying potentially exploitable services. Data gathering is used to acquire information to prepare for port scanning and other activities. Permission and planning are not used to identify exploitable services but are critical to the overall process.",
+      "optionNotes": [
+        "Incorrect. Data gathering gets information ready for port scanning and later steps. It doesn't itself find which services are open and exploitable on target hosts.",
+        "Correct. Port scanning probes hosts for open ports and the services listening on them. It is the first step toward finding services that could be exploited for an initial foothold.",
+        "Incorrect. Getting permission (written approval and a defined scope) is critical before any pen test begins, but it is an administrative step and identifies no exploitable services.",
+        "Incorrect. Planning sets the scope, schedule, and methodology. It is essential to the overall process but doesn't reveal any services running on the target network."
+      ]
+    },
+    {
+      "id": "OPT4-C06-091",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.94,
+      "stem": "The president of Josh's company is concerned about a significant increase in cryptographic malware that is impacting other companies in their industry. She has asked John to ensure that the company's data will be recoverable if malware strikes and encrypts their production systems. What process does Josh need to undertake to be able to tell her that the company is covered?",
+      "options": [
+        "Encrypt all sensitive data.",
+        "Hash all of the organization's data to detect cryptographic malware.",
+        "Perform backup verification.",
+        "Use anti-encryption technology to prevent the malware from encrypting drives."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Validating that the organization has secure and usable backups is Josh's best answer. In case a system is affected by cryptographic malware, it's important to have reliable backups that are not encrypted by the malware. This requires keeping your backup systems separate from your main systems and potentially implementing version control so that your unencrypted backups are not overwritten by encrypted ones that become inaccessible. Encrypting sensitive data won't stop attackers from re-encrypting it, making it inaccessible. Hashing to detect the attack won't stop it or make it possible to recover, and anti-encryption technology does not exist.",
+      "optionNotes": [
+        "Incorrect. Encrypting sensitive data doesn't protect it from ransomware, because attackers can just encrypt it again and lock you out. It does nothing to make the data recoverable.",
+        "Incorrect. Hashing can help detect that files were changed, but it won't stop the attack or give you a way to restore the data. The president's question is about recoverability.",
+        "Correct. Backup verification confirms the organization has usable backups that the malware hasn't encrypted. Keeping backups separate from production and using versioning means clean copies can be restored, so Josh can tell her the company is covered.",
+        "Incorrect. There is no such thing as 'anti-encryption technology' that stops malware from encrypting drives. It's a made-up distractor."
+      ]
+    },
+    {
+      "id": "OPT4-C06-092",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.66,
+      "stem": "Joanna is her organization's CISO, and in her security operations oversight role she wants to ensure that management oversight is happening for security-related changes. What system should she focus on to track this type of data in most organizations?",
+      "options": [
+        "The SIEM system",
+        "The IPS system",
+        "The CMS tool",
+        "The ITSM tool"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "IT service management, or ITSM, tools include change management and thus the type of approvals and review processes that Joanna is looking for. A SIEM helps with security logs and events, an IPS looks for intrusions and unwanted traffic, and a CMS is a content management tool.",
+      "optionNotes": [
+        "Incorrect. A SIEM collects and correlates security logs and events. It doesn't run the approval and review workflow that shows management signed off on changes.",
+        "Incorrect. An IPS inspects traffic for intrusions and unwanted activity and blocks it. It has no record of change requests or management approvals.",
+        "Incorrect. CMS here means a content management system, used to publish web or document content. It isn't where change approvals are tracked. Don't confuse it with configuration management.",
+        "Correct. ITSM tools include change management, which covers the approval and review processes that show management oversight of security-related changes. That makes it the right system to track this data."
+      ]
+    },
+    {
+      "id": "OPT4-C06-093",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Henry wants to validate that his backups are working. Which of the following options is the best way for him to ensure that the backups will be useful in a true disaster recovery scenario?",
+      "options": [
+        "Periodically restore a random file to ensure that the backups are working.",
+        "Review configurations and settings on a regular schedule to validate backup settings.",
+        "Review the backup logs to ensure no errors are occurring.",
+        "Regularly perform full restores from backups to validate their success."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "All of these are useful parts of a backup strategy, but performing full restores from backups on a regular basis is the best option listed. If regular restores work, then individual files will be recoverable, but individual files may not show larger issues with backups. Configuration and setting reviews are important but will not validate the backups themselves, and error messages can indicate problems but won't demonstrate intact logs either.",
+      "optionNotes": [
+        "Incorrect. Restoring a random file shows that some files can be recovered, but a single-file restore can miss bigger backup problems that only a full restore would expose.",
+        "Incorrect. Reviewing configurations and settings is worthwhile, but it only checks how the backup is set up. It does not prove that the backup data can actually be restored.",
+        "Incorrect. Backup logs can point to problems, but a log with no errors does not prove the backups are complete and restorable.",
+        "Correct. Regular full restores actually exercise recovery from start to finish, which is what a real disaster would require. If full restores succeed, individual files will be recoverable too."
+      ]
+    },
+    {
+      "id": "OPT4-C06-094",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.81,
+      "stem": "What type of vulnerabilities will not be found by a vulnerability scanner?",
+      "options": [
+        "Local vulnerabilities",
+        "Service vulnerabilities",
+        "Zero-day vulnerabilities",
+        "Vulnerabilities that require authentication"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Vulnerability scanners cannot detect vulnerabilities for which they do not have a test, plug-in, or signature. Signatures often include version numbers, service fingerprints, or configuration data. They can detect local vulnerabilities as well as those that require authentication if they are provided with credentials, and of course, they can detect service vulnerabilities.",
+      "optionNotes": [
+        "Incorrect. Scanners can find local vulnerabilities, for example through credentialed or agent-based scans that look at installed software and configuration on the host.",
+        "Incorrect. Finding service vulnerabilities is a basic scanner job. Scanners fingerprint network services and compare their versions against known flaws.",
+        "Correct. Scanners only find what they have a test, plug-in or signature for. A zero-day isn't publicly known yet, so no signature exists and the scanner can't detect it.",
+        "Incorrect. If the scanner is given credentials, it can log in and find vulnerabilities that require authentication. Authentication is a configuration choice, not a hard limit."
+      ]
+    },
+    {
+      "id": "OPT4-C06-095",
+      "domain": 6,
+      "type": "multi",
+      "difficulty": 2.38,
+      "stem": "Jacinda wants to measure the effectiveness of her security training as one of her security metrics. Which of the following measures are the most useful for assessing the effectiveness of security awareness training? (Select all that apply.)",
+      "options": [
+        "How many people took the training",
+        "The level of security awareness before and after the training",
+        "The length of the training in hours",
+        "The number of training events each individual attended this year"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "The number of staff who took a given training and the average change in their awareness from before the training to after the training can provide insight into how many trained staff you have and how impactful the training was. Over time, this will allow you to determine if your training is helping and if awareness is increasing. The length of the training does not assess its impact; in addition, the number of events each individual attended does not mean that staff are becoming more aware.",
+      "optionNotes": [
+        "Correct. Knowing how many staff completed the training tells you how much of the workforce has been trained, so it measures the program's reach.",
+        "Correct. Comparing awareness before and after training shows the training's actual impact. Tracked over time, it shows whether awareness is improving.",
+        "Incorrect. Training length in hours only measures input or time spent. It says nothing about whether staff learned anything or became more aware.",
+        "Incorrect. Counting how many events each person attended measures participation, not results. Going to more sessions doesn't show that someone's awareness actually went up."
+      ]
+    },
+    {
+      "id": "OPT4-C06-096",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.57,
+      "stem": "Elaine has discovered a previously unknown critical vulnerability in a product that her organization uses. Her organization has a strong commitment to ethical disclosure, and Elaine wants to follow common ethical disclosure practices. What should she do first?",
+      "options": [
+        "Build an in-house remediation or control and then publicly disclose the vulnerability to prompt the vendor to patch it quickly.",
+        "Build an in-house remediation or control and then notify the vendor of the issue.",
+        "Notify the vendor and give them a reasonable amount of time to fix the issue.",
+        "Publicly disclose the vulnerability so that the vendor will patch it in an appropriate amount of time."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Ethical (or responsible) disclosure norms include notifying the vendor and providing them with a reasonable amount of time to remediate the issue. Public disclosures before notifying the vendor or in a short period of time are considered unethical in most circumstances. While this time frame varies, 90 to 120 days is not uncommon across the industry due to the complexity of software and other technologies.",
+      "optionNotes": [
+        "Incorrect. Disclosing publicly before the vendor has been told, and before it has had reasonable time to fix the flaw, is considered unethical. Building an in-house control first also delays the step that ethical disclosure puts first.",
+        "Incorrect. Compensating controls are fine, but ethical disclosure says the first duty is to report the flaw to the vendor so it can start on a patch. Building the in-house fix first delays that notification.",
+        "Correct. Responsible disclosure means notifying the vendor first and giving it a reasonable time to fix the issue, often 90–120 days. Only after that does public disclosure come into play.",
+        "Incorrect. Going public right away, before the vendor is notified, exposes users to attackers. It is considered unethical. Public disclosure is only appropriate if the vendor fails to fix the flaw within a reasonable time."
+      ]
+    },
+    {
+      "id": "OPT4-C06-097",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.51,
+      "stem": "For questions 97–99, please refer to the following scenario. NIST Special Publication 800-115, the Technical Guide to Information Security Testing and Assessment, provides NIST's process for penetration testing. Use this image as well as your knowledge of penetration testing to answer the questions.\nSource: NIST SP 800-115 / Public Domain.\n[Figure, described in text: Planning → Discovery → Attack, with an \"Additional Discovery\" loop from Attack back to Discovery; Planning and Attack both feed into Reporting.]\n\nWhich of the following is not a part of the discovery phase?",
+      "options": [
+        "Hostname and IP address information gathering",
+        "Service information capture",
+        "Dumpster diving",
+        "Privilege escalation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Privilege escalation occurs during the attack phase of a penetration test. Host and service information gathering, as well as activities like dumpster diving that can provide information about the organization, its systems, and security, are all part of the discovery phase.",
+      "optionNotes": [
+        "Incorrect. Collecting hostnames and IP addresses is basic reconnaissance and information gathering, which is part of the discovery phase. That makes it a discovery activity, so it is not the answer.",
+        "Incorrect. Capturing service information, such as running services and open ports, happens during discovery's scanning and information-gathering step. It is not an attack-phase task.",
+        "Incorrect. Dumpster diving reveals information about the organization, its systems and its security. The book counts it as a discovery-phase information-gathering technique.",
+        "Correct. Privilege escalation happens in the attack phase, after initial access, when the tester tries to gain more rights. It is not a discovery activity."
+      ]
+    },
+    {
+      "id": "OPT4-C06-098",
+      "domain": 6,
+      "type": "single",
+      "difficulty": 1.71,
+      "stem": "For questions 97–99, please refer to the following scenario. NIST Special Publication 800-115, the Technical Guide to Information Security Testing and Assessment, provides NIST's process for penetration testing. Use this image as well as your knowledge of penetration testing to answer the questions.\nSource: NIST SP 800-115 / Public Domain.\n[Figure, described in text: Planning → Discovery → Attack, with an \"Additional Discovery\" loop from Attack back to Discovery; Planning and Attack both feed into Reporting.]\n\nNIST specifies four attack phase steps: gaining access, escalating privileges, system browsing, and installing additional tools. Once attackers install additional tools, what phase will a penetration tester typically return to?",
+      "options": [
+        "Discovery",
+        "Gaining access",
+        "Escalating privileges",
+        "System browsing"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Once additional tools have been installed, penetration testers will typically use them to gain additional access. From there they can further escalate privileges, search for new targets or data, and, once again, install more tools to allow them to pivot further into infrastructure or systems.",
+      "optionNotes": [
+        "Incorrect. Discovery is a separate phase reached through the 'additional discovery' loop. Inside the attack phase, though, the four-step cycle restarts at gaining access once new tools are in place.",
+        "Correct. After installing more tools, testers use them to gain more access, which restarts the attack cycle. From there they escalate privileges, browse, and install tools again so they can pivot deeper into the systems.",
+        "Incorrect. Escalating privileges comes after gaining new access in the cycle, so it isn't the step testers go back to right after installing tools.",
+        "Incorrect. System browsing (looking for new targets or data) comes after access is gained and privileges are escalated. It isn't the step the cycle returns to first."
+      ]
+    },
+    {
+      "id": "OPT4-C06-099",
+      "domain": 6,
+      "type": "single",
+      "difficulty": -0.02,
+      "stem": "For questions 97–99, please refer to the following scenario. NIST Special Publication 800-115, the Technical Guide to Information Security Testing and Assessment, provides NIST's process for penetration testing. Use this image as well as your knowledge of penetration testing to answer the questions.\nSource: NIST SP 800-115 / Public Domain.\n[Figure, described in text: Planning → Discovery → Attack, with an \"Additional Discovery\" loop from Attack back to Discovery; Planning and Attack both feed into Reporting.]\n\nWhich of the following is not a typical part of a penetration test report?",
+      "options": [
+        "A list of identified vulnerabilities",
+        "All sensitive data that was gathered during the test",
+        "Risk ratings for each issue discovered",
+        "Mitigation guidance for issues identified"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Penetration testing reports often do not include the specific data captured during the assessment, as the readers of the report may not be authorized to access all of the data, and exposure of the report could result in additional problems for the organization. A listing of the issues discovered, risk ratings, and remediation guidance are all common parts of a penetration test report.",
+      "optionNotes": [
+        "Incorrect. Wrong pick. Listing the vulnerabilities found is the core of any pen test report, so it is a typical part, not the exception the question asks for.",
+        "Correct. Reports usually leave out the actual sensitive data captured during the test. Readers may not be authorized to see it, and if the report leaked, that data would create more problems for the organization.",
+        "Incorrect. Wrong pick. Giving each finding a risk rating is standard practice because it helps management decide what to fix first, so it is a normal report element.",
+        "Incorrect. Wrong pick. Remediation or mitigation guidance is a common report section that tells the organization how to fix what the testers found."
+      ]
+    },
+    {
+      "id": "OPT4-C06-100",
+      "domain": 6,
+      "type": "ordering",
+      "difficulty": 1.89,
+      "stem": "Alex is using nmap to perform port scanning of a system, and he receives three different port status messages in the results. Match each of the numbered status messages with the appropriate lettered description. You should use each item exactly once.\nStatus message:\n1. Open\n2. Closed\n3. Filtered\n\n(Arrange the options in the order of the numbered items 1–3.)",
+      "options": [
+        "The port is accessible on the remote system, but no application is accepting connections on that port.",
+        "The port is not accessible on the remote system.",
+        "The port is accessible on the remote system, and an application is accepting connections on that port."
+      ],
+      "answer": [
+        2,
+        1,
+        0
+      ],
+      "explanation": "The status messages match with the descriptions as follows:\n1. Open: C. The port is accessible on the remote system, and an application is accepting connections on that port.\n2. Closed: B. The port is not accessible on the remote system.\n3. Filtered: A. The port is accessible on the remote system, but no application is accepting connections on that port.",
+      "optionNotes": [
+        "Goes with item 3 (Filtered). Per the book, a filtered port can be reached on the remote system, but no application is accepting connections on it.",
+        "Goes with item 2 (Closed). Per the book, a closed port is one that cannot be reached on the remote system.",
+        "Goes with item 1 (Open). In the book's key, Open means the port can be reached and an application, such as a running service, is accepting connections on it."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4605 @@
+{
+ "name": "CISSP dump (reviewed) - Domain 1: Security and Risk Management",
+ "questions": [
+  {
+   "id": "DUMP-0001",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A company whose Information Technology (IT) services are being delivered from a Tier 4 data center, is preparing a companywide Business Continuity Planning (BCP). Which of the following failures should the IT manager be concerned with?",
+   "options": [
+    "Application",
+    "Storage",
+    "Power",
+    "Network"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A Tier 4 facility already provides fault-tolerant power, storage paths and network; the application layer remains the IT manager's own concern.",
+   "optionNotes": [
+    "Correct: application failures are not mitigated by Tier 4 facility redundancy.",
+    "Tier 4 provides redundant storage paths/systems.",
+    "Tier 4 guarantees redundant, fault-tolerant power.",
+    "Tier 4 has redundant network carriers and paths."
+   ]
+  },
+  {
+   "id": "DUMP-0004",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Intellectual property rights are PRIMARILY concerned with which of the following?",
+   "options": [
+    "Owner's ability to realize financial gain",
+    "Owner's ability to maintain copyright",
+    "Right of the owner to enjoy their creation",
+    "Right of the owner to control delivery method"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Intellectual property law primarily protects the owner's ability to profit from the creation.",
+   "optionNotes": [
+    "Correct: IP law exists mainly to let owners profit.",
+    "Copyright is one IP mechanism, not the purpose.",
+    "Enjoyment is not the legal focus of IP rights.",
+    "Delivery control is incidental, not primary."
+   ]
+  },
+  {
+   "id": "DUMP-0007",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "All of the following items should be included in a Business Impact Analysis (BIA) questionnaire EXCEPT questions that",
+   "options": [
+    "determine the risk of a business interruption occurring",
+    "determine the technological dependence of the business processes",
+    "Identify the operational impacts of a business interruption",
+    "Identify the financial impacts of a business interruption"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A BIA measures impacts and dependencies, not likelihood; likelihood belongs to risk assessment.",
+   "optionNotes": [
+    "Correct: likelihood is risk assessment, not BIA.",
+    "BIA does capture technology dependencies.",
+    "Operational impact is core BIA content.",
+    "Financial impact is core BIA content."
+   ]
+  },
+  {
+   "id": "DUMP-0009",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "An important principle of defense in depth is that achieving information security requires a balanced focus on which PRIMARY elements?",
+   "options": [
+    "Development, testing, and deployment",
+    "Prevention, detection, and remediation",
+    "People, technology, and operations",
+    "Certification, accreditation, and monitoring"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Defense in depth (NSA model) balances people, technology and operations.",
+   "optionNotes": [
+    "SDLC stages, not defense-in-depth elements.",
+    "Control functions, not the DiD balance elements.",
+    "Correct: NSA DiD focuses on people, technology, operations.",
+    "Authorization lifecycle steps, not DiD."
+   ]
+  },
+  {
+   "id": "DUMP-0016",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the following is an initial consideration when developing an information security management system?",
+   "options": [
+    "Identify the contractual security obligations that apply to the organizations",
+    "Understand the value of the information assets",
+    "Identify the level of residual risk that is tolerable to management",
+    "Identify relevant legislative and regulatory compliance requirements"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Valuing information assets is the starting point for scoping an ISMS and its controls.",
+   "optionNotes": [
+    "Contract obligations are inputs later in scoping.",
+    "Correct: asset value drives the ISMS scope and protection.",
+    "Risk tolerance is set after assets are valued.",
+    "Legal requirements matter but follow asset understanding."
+   ]
+  },
+  {
+   "id": "DUMP-0048",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "An organization is found lacking the ability to properly establish performance indicators for its Web hosting solution during an audit. What would be the MOST probable cause?",
+   "options": [
+    "Absence of a Business Intelligence (BI) solution",
+    "Inadequate cost modeling",
+    "Improper deployment of the Service-Oriented Architecture (SOA)",
+    "Insufficient Service Level Agreement (SLA)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Performance indicators for a hosted service come from the SLA; an insufficient SLA is the likely cause.",
+   "optionNotes": [
+    "BI solution isn't required for KPIs.",
+    "Cost modeling isn't performance metrics.",
+    "SOA deployment is unrelated.",
+    "Correct: SLAs define performance indicators."
+   ]
+  },
+  {
+   "id": "DUMP-0049",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A Business Continuity Plan/Disaster Recovery Plan (BCP/DRP) will provide which of the following?",
+   "options": [
+    "Guaranteed recovery of all business functions",
+    "Minimization of the need for decision making during a crisis",
+    "Insurance against litigation following a disaster",
+    "Protection from loss of organization resources"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "BCP/DRP pre-defines procedures and roles so fewer ad hoc decisions are needed in a crisis. Guarantees of full recovery or protection from all loss are impossible, and plans do not shield against litigation. What a plan realistically delivers is pre-decided actions, so stressed staff improvise less.",
+   "optionNotes": [
+    "No plan can guarantee recovery of everything.",
+    "Right: pre-made procedures and roles reduce crisis decision-making.",
+    "Plans do not insure against lawsuits.",
+    "Plans reduce impact but cannot prevent loss of resources."
+   ]
+  },
+  {
+   "id": "DUMP-0051",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following types of business continuity tests includes assessment of resilience to internal and external risks without endangering live operations?",
+   "options": [
+    "Walkthrough",
+    "Simulation",
+    "Parallel",
+    "White box"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A simulation exercises responses to a realistic scenario without affecting production systems. A walkthrough only reviews the plan on paper, and a parallel test actually activates recovery sites. A simulation is the option that tests resilience to a scenario while live operations stay untouched.",
+   "optionNotes": [
+    "Walkthrough is a discussion review of the plan, not a scenario assessment.",
+    "Right: simulation runs a scenario against risks without touching operations.",
+    "Parallel test activates alternate systems; heavier and resource intensive.",
+    "White box is a software/pen test term, not a BC test type."
+   ]
+  },
+  {
+   "id": "DUMP-0054",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Recovery strategies of a Disaster Recovery planning (DRP) MUST be aligned with which of the following?",
+   "options": [
+    "Hardware and software compatibility issues",
+    "Applications' criticality and downtime tolerance",
+    "Budget constraints and requirements",
+    "Cost/benefit analysis and business objectives"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Recovery strategies must be justified by cost/benefit and support business objectives, as decided by management. Application criticality and downtime tolerance (B) are BIA inputs, but management selects recovery strategies by weighing cost against benefit. That keeps recovery spending proportional to business value.",
+   "optionNotes": [
+    "Compatibility is a technical detail, not the alignment driver.",
+    "Criticality/tolerance feed the BIA but strategies must be business-justified overall.",
+    "Budget alone is one constraint, not the full alignment.",
+    "Right: strategies must be cost-justified and support business objectives."
+   ]
+  },
+  {
+   "id": "DUMP-0070",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What security management control is MOST often broken by collusion?",
+   "options": [
+    "Job rotation",
+    "Separation of duties",
+    "Least privilege model",
+    "Increased monitoring"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Collusion is the way separation of duties is defeated. Job rotation (A) is a control that helps uncover collusion rather than one it defeats. Separation of duties assumes no single person can complete a sensitive task, and collusion bypasses exactly that.",
+   "optionNotes": [
+    "Job rotation helps detect collusion rather than being broken by it.",
+    "Right: collusion is two or more people defeating separation of duties.",
+    "Least privilege is broken by excess rights, not primarily collusion.",
+    "Monitoring is a detective control, not the one collusion defeats."
+   ]
+  },
+  {
+   "id": "DUMP-0081",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A security consultant has been asked to research an organization's legal obligations to protect privacy-related information. What kind of reading material is MOST relevant to this project?",
+   "options": [
+    "The organization's current security policies concerning privacy issues",
+    "Privacy-related regulations enforced by governing bodies applicable to the organization",
+    "Privacy best practices published by recognized security standards organizations",
+    "Organizational procedures designed to protect privacy information"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Legal obligations come from applicable laws/regulations, not internal policy or best practice. Policies and procedures (A, D) may be incomplete, and best practices (C) are not binding. Legal obligations come from the laws and regulations that apply to the organization.",
+   "optionNotes": [
+    "Current policy may not reflect legal obligations.",
+    "Right: legal obligations are set by applicable laws and regulators.",
+    "Best practices are not legal obligations.",
+    "Procedures implement policy, not law."
+   ]
+  },
+  {
+   "id": "DUMP-0083",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following elements MUST a compliant EU-US Safe Harbor Privacy Policy contain?",
+   "options": [
+    "An explanation of how long the data subject's collected information will be retained for and how it will be eventually disposed.",
+    "An explanation of who can be contacted at the organization collecting the information if corrections are required by the data subject.",
+    "An explanation of the regulatory frameworks and compliance standards the information collecting organization adheres to.",
+    "An explanation of all the technologies employed by the collecting organization in gathering information on the data subject."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Safe Harbor principles included access: subjects must be able to contact the organization to correct data. The Safe Harbor principles required notice, including how individuals could contact the organization, plus access rights to correct their data. The other items were not mandatory contents.",
+   "optionNotes": [
+    "Retention detail was not a mandated element.",
+    "Right: Safe Harbor required notice of contact and access/correction rights.",
+    "Listing frameworks was not required.",
+    "Describing all technologies was not required."
+   ]
+  },
+  {
+   "id": "DUMP-0086",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "In Business Continuity Planning (BCP), what is the importance of documenting business processes?",
+   "options": [
+    "Provides senior management with decision-making tools",
+    "Establishes and adopts ongoing testing and maintenance strategies",
+    "Defines who will perform which functions during a disaster or emergency",
+    "Provides an understanding of the organization's interdependencies"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Documenting processes reveals dependencies between functions, systems and resources. Assigning roles (C) comes from the plan itself. Mapping business processes shows which functions depend on which systems, people and suppliers, and that feeds the BIA.",
+   "optionNotes": [
+    "Decision tools come from the BIA overall, not process docs.",
+    "Testing/maintenance strategy is separate from process documentation.",
+    "Role assignment comes from the plan, not process docs.",
+    "Right: process documentation reveals interdependencies."
+   ]
+  },
+  {
+   "id": "DUMP-0090",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which type of control recognizes that a transaction amount is excessive in accordance with corporate policy?",
+   "options": [
+    "Detection",
+    "Prevention",
+    "Investigation",
+    "Correction"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Recognizing (flagging) an excessive amount is a detective control. A preventive control (B) would block the transaction outright. Recognizing or flagging an amount that exceeds policy is a detective function.",
+   "optionNotes": [
+    "Right: identifying an excessive amount after it occurs is detective.",
+    "Prevention would block the transaction outright.",
+    "Investigation is not a control category here.",
+    "Correction restores after an issue."
+   ]
+  },
+  {
+   "id": "DUMP-0098",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Copyright provides protection for which of the following?",
+   "options": [
+    "Ideas expressed in literary works",
+    "A particular expression of an idea",
+    "New and non-obvious inventions",
+    "Discoveries of natural phenomena"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Copyright protects an author's particular expression of an idea once fixed in a tangible form. The underlying idea stays free for others to express differently.",
+   "optionNotes": [
+    "Ideas themselves are never copyrightable; only their expression",
+    "Right: copyright covers the specific expression",
+    "Novel, non-obvious inventions are patent territory",
+    "Natural phenomena cannot be owned under any IP regime"
+   ]
+  },
+  {
+   "id": "DUMP-0099",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is the BEST mitigation from phishing attacks?",
+   "options": [
+    "Network activity monitoring",
+    "Security awareness training",
+    "Corporate policy and procedures",
+    "Strong file and directory permissions"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Phishing exploits human trust rather than a technical flaw. Training users to recognise and report suspicious messages directly reduces the chance they click or disclose credentials, making it the best mitigation.",
+   "optionNotes": [
+    "Monitoring may detect consequences but does not stop users being deceived",
+    "Right: targets the human weakness phishing exploits",
+    "Policy sets rules but does not by itself teach recognition",
+    "Permissions do not prevent credential theft via deception"
+   ]
+  },
+  {
+   "id": "DUMP-0103",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "The PRIMARY purpose of a security awareness program is to",
+   "options": [
+    "ensure that everyone understands the organization's policies and procedures.",
+    "communicate that access to information will be granted on a need-to-know basis.",
+    "warn all users that access to all systems will be monitored on a daily basis.",
+    "comply with regulations related to data and information protection."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Awareness programs aim to make every staff member understand the organisation's security policies and procedures and their own responsibilities. Messages about monitoring or need-to-know are content within that goal, not its purpose.",
+   "optionNotes": [
+    "Right: shared understanding of policies is the purpose",
+    "Need-to-know is an access principle, one topic among many",
+    "Monitoring notice is a deterrent message, not the primary goal",
+    "Regulatory compliance is a by-product, not the main purpose"
+   ]
+  },
+  {
+   "id": "DUMP-0104",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "When constructing an Information Protection Policy (IPP), it is important that the stated rules are necessary, adequate, and",
+   "options": [
+    "flexible.",
+    "confidential.",
+    "focused.",
+    "achievable."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Policy rules must be necessary, adequate and achievable. A rule people cannot realistically follow breeds non-compliance and undermines the whole policy.",
+   "optionNotes": [
+    "Too much flexibility weakens enforceability",
+    "Policies must be communicated to staff, not kept secret",
+    "'Focused' is vague and not the standard criterion",
+    "Right: rules must be attainable to be followed"
+   ]
+  },
+  {
+   "id": "DUMP-0119",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following MUST be part of a contract to support electronic discovery of data stored in a cloud environment?",
+   "options": [
+    "Integration with organizational directory services for authentication",
+    "Tokenization of data",
+    "Accommodation of hybrid deployment models",
+    "Identification of data location"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "E-discovery requires locating and preserving relevant data, and in the cloud data location also determines jurisdiction. The contract must therefore require the provider to identify where data is stored.",
+   "optionNotes": [
+    "Directory integration is an authentication matter",
+    "Tokenisation is a protection technique, not discovery support",
+    "Hybrid deployment support is architectural",
+    "Right: location knowledge enables discovery and legal hold"
+   ]
+  },
+  {
+   "id": "DUMP-0130",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the MAIN reason that system re-certification and re-accreditation are needed?",
+   "options": [
+    "To assist data owners in making future sensitivity and criticality determinations",
+    "To assure the software development team that all security issues have been addressed",
+    "To verify that security protection remains acceptable to the organizational security policy",
+    "To help the security team accept or reject new systems for implementation and production"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Systems, threats and policies change over time. Periodic recertification and reaccreditation confirm the protection still meets policy and that residual risk is still acceptable.",
+   "optionNotes": [
+    "Classification decisions are the data owner's separate task",
+    "Assurance to developers is not the purpose",
+    "Right: confirms ongoing acceptability",
+    "Initial accreditation covers new systems"
+   ]
+  },
+  {
+   "id": "DUMP-0142",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the MOST important consideration when storing and processing Personally Identifiable Information (PII)?",
+   "options": [
+    "Encrypt and hash all PII to avoid disclosure and tampering.",
+    "Store PII for no more than one year.",
+    "Avoid storing PII in a Cloud Service Provider.",
+    "Adherence to collection limitation laws and regulations."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Handling PII must above all meet legal and regulatory obligations such as collection limitation. Technical choices like encryption follow from those obligations.",
+   "optionNotes": [
+    "Hashing PII destroys usability; encryption is a control, not the top consideration",
+    "Arbitrary retention period not grounded in law",
+    "Cloud storage can be compliant",
+    "Right: legal compliance governs PII handling"
+   ]
+  },
+  {
+   "id": "DUMP-0153",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -2.0,
+   "stem": "While impersonating an Information Security Officer (ISO), an attacker obtains information from company employees about their User IDs and passwords. Which method of information gathering has the attacker used?",
+   "options": [
+    "Trusted path",
+    "Malicious logic",
+    "Social engineering",
+    "Passive misuse"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Impersonating a trusted official to trick employees into revealing credentials is social engineering.",
+   "optionNotes": [
+    "Trusted path is a secure user-to-TCB channel, not an attack",
+    "Malicious logic means malware code, not pretexting",
+    "Pretexting as a trusted officer to elicit passwords is social engineering",
+    "Passive misuse is not a recognised term for this deception"
+   ]
+  },
+  {
+   "id": "DUMP-0160",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "An organization is selecting a service provider to assist in the consolidation of multiple computing sites including development, implementation and ongoing support of various computer systems. Which of the following MUST be verified by the Information Security Department?",
+   "options": [
+    "The service provider's policies are consistent with ISO/IEC27001 and there is evidence that the service provider is following those policies.",
+    "The service provider will segregate the data within its systems and ensure that each region's policies are met.",
+    "The service provider will impose controls and protections that meet or exceed the current systems controls and produce audit logs as verification.",
+    "The service provider's policies can meet the requirements imposed by the new environment even if they differ from the organization's current policies."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "When outsourcing, security must ensure the provider's controls are at least as strong as the existing ones and are verifiable via audit evidence.",
+   "optionNotes": [
+    "ISO alignment alone doesn't prove equivalent control strength",
+    "Data segregation is only one narrow requirement",
+    "Controls must equal or exceed current ones with audit-log evidence",
+    "Accepting differing policies may lower the protection level"
+   ]
+  },
+  {
+   "id": "DUMP-0162",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "The use of strong authentication, the encryption of Personally Identifiable Information (PII) on database servers, application security reviews, and the encryption of data transmitted across networks provide",
+   "options": [
+    "data integrity.",
+    "defense in depth.",
+    "data availability.",
+    "non-repudiation."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Multiple overlapping controls at different layers is defense in depth.",
+   "optionNotes": [
+    "Integrity is only one facet; the controls are layered",
+    "Multiple independent layers across identity, data, app and network",
+    "These controls don't target uptime",
+    "No signatures are involved to give non-repudiation"
+   ]
+  },
+  {
+   "id": "DUMP-0174",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An internal Service Level Agreement (SLA) covering security is signed by senior managers and is in place. When should compliance to the SLA be reviewed to ensure that a good security posture is being delivered?",
+   "options": [
+    "As part of the SLA renewal process",
+    "Prior to a planned security audit",
+    "Immediately after a security breach",
+    "At regularly scheduled meetings"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "SLA compliance should be monitored routinely through regularly scheduled reviews, not only at renewal or after incidents.",
+   "optionNotes": [
+    "Renewal-only review lets non-compliance persist for the term",
+    "Pre-audit review is ad hoc",
+    "Post-breach review is reactive",
+    "Scheduled periodic reviews give continuous assurance"
+   ]
+  },
+  {
+   "id": "DUMP-0177",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following MUST be done when promoting a security awareness program to senior management?",
+   "options": [
+    "Show the need for security; identify the message and the audience",
+    "Ensure that the security presentation is designed to be all-inclusive",
+    "Notify them that their compliance is mandatory",
+    "Explain how hackers have enhanced information security"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "To win management support, show the business need for security and identify the message and target audience.",
+   "optionNotes": [
+    "Demonstrating need and targeting message/audience wins management buy-in",
+    "All-inclusive design is not a requirement",
+    "Telling senior management compliance is mandatory won't gain support",
+    "Hackers haven't 'enhanced' security; off-message"
+   ]
+  },
+  {
+   "id": "DUMP-0190",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Refer to the information below to answer the question. An organization has hired an information security officer to lead their security department. The officer has adequate people resources but is lacking the other necessary components to have an effective security program. There are numerous initiatives requiring security involvement. Given the number of priorities, which of the following will MOST likely influence the selection of top initiatives?",
+   "options": [
+    "Severity of risk",
+    "Complexity of strategy",
+    "Frequency of incidents",
+    "Ongoing awareness"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Initiatives are prioritized by risk severity.",
+   "optionNotes": [
+    "Risk severity ranks which initiatives to address first",
+    "Strategy complexity doesn't set priority",
+    "Incident frequency is one input to risk, not the criterion",
+    "Awareness is a program element, not a selection driver"
+   ]
+  },
+  {
+   "id": "DUMP-0191",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Refer to the information below to answer the question. An organization has hired an information security officer to lead their security department. The officer has adequate people resources but is lacking the other necessary components to have an effective security program. There are numerous initiatives requiring security involvement. Which of the following is considered the MOST important priority for the information security officer?",
+   "options": [
+    "Formal acceptance of the security strategy",
+    "Disciplinary actions taken against unethical behavior",
+    "Development of an awareness program for new employees",
+    "Audit of all organization system configurations for faults"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Senior management formal acceptance of the security strategy is the foundation for all other program work.",
+   "optionNotes": [
+    "Management's formal acceptance of strategy is the foundation",
+    "Disciplinary actions are operational, later",
+    "Awareness programs follow an approved strategy",
+    "Configuration audits are tactical, later"
+   ]
+  },
+  {
+   "id": "DUMP-0192",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "During an audit, the auditor finds evidence of potentially illegal activity. Which of the following is the MOST appropriate action to take?",
+   "options": [
+    "Immediately call the police",
+    "Work with the client to resolve the issue internally",
+    "Advise the person performing the illegal activity to cease and desist",
+    "Work with the client to report the activity to the appropriate authority"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "An auditor should work with the client to report illegal activity to the proper authorities, following due process.",
+   "optionNotes": [
+    "Calling police directly bypasses the client and engagement terms",
+    "Resolving internally may conceal illegal activity",
+    "Confronting the person may tip them off and destroy evidence",
+    "Reporting jointly with the client follows due process"
+   ]
+  },
+  {
+   "id": "DUMP-0194",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Refer to the information below to answer the question. An organization experiencing a negative financial impact is forced to reduce budgets and the number of Information Technology (IT) operations staff performing basic logical access security administration functions. Security processes have been tightly integrated into normal IT operations and are not separate and distinct roles. Which of the following will be the PRIMARY security concern as staff is released from the organization?",
+   "options": [
+    "Inadequate IT support",
+    "Loss of data and separation of duties",
+    "Undocumented security controls",
+    "Additional responsibilities for remaining staff"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "When integrated security staff are cut, the people who performed access administration leave with knowledge and privileges, and remaining staff absorb conflicting duties. The primary security concern is therefore loss of data and erosion of separation of duties.",
+   "optionNotes": [
+    "Operational support issue, not the primary security concern.",
+    "Correct: departing staff risk data loss and remaining staff accumulate incompatible duties.",
+    "Possible but secondary; controls may still exist even if poorly documented.",
+    "A workload consequence; the security impact is the SoD breakdown it causes."
+   ]
+  },
+  {
+   "id": "DUMP-0197",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A risk assessment report recommends upgrading all perimeter firewalls to mitigate a particular finding. Which of the following BEST supports this recommendation?",
+   "options": [
+    "The inherent risk is greater than the residual risk.",
+    "The Annualized Loss Expectancy (ALE) approaches zero.",
+    "The expected loss from the risk exceeds mitigation costs.",
+    "The infrastructure budget can easily cover the upgrade costs."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A control is justified when its cost is less than the loss it prevents, which is a cost/benefit analysis. Budget availability or inherent vs residual risk alone do not justify a specific spend.",
+   "optionNotes": [
+    "Always true for any control; does not justify this one.",
+    "An ALE near zero would argue against spending.",
+    "Correct: expected loss exceeding mitigation cost is the classic justification.",
+    "Affordability is not a risk-based justification."
+   ]
+  },
+  {
+   "id": "DUMP-0206",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A Business Continuity Plan (BCP) is based on",
+   "options": [
+    "the policy and procedures manual.",
+    "an existing BCP from a similar organization.",
+    "a review of the business processes and procedures.",
+    "a standard checklist of required items and objectives."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A BCP is built on the business impact analysis, which comes from reviewing the organization's own business processes and their dependencies. Templates or another organization's plan do not reflect its critical functions.",
+   "optionNotes": [
+    "Manuals help but do not identify critical processes.",
+    "Another organization's plan will not match this business.",
+    "Correct: the plan derives from analysis of the organization's processes.",
+    "Checklists support but cannot replace process analysis."
+   ]
+  },
+  {
+   "id": "DUMP-0207",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is a BEST practice when traveling internationally with laptops containing Personally Identifiable Information (PII)?",
+   "options": [
+    "Use a thumb drive to transfer information from a foreign computer.",
+    "Do not take unnecessary information, including sensitive information.",
+    "Connect the laptop only to well-known networks like the hotel or public Internet cafes.",
+    "Request international points of contact help scan the laptop on arrival to ensure it is protected."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The safest approach when travelling with PII is data minimisation: carry only what is necessary. Devices may be inspected, seized or stolen at borders, so less data means less exposure.",
+   "optionNotes": [
+    "Foreign computers and thumb drives introduce malware and data-leak risk.",
+    "Correct: not carrying unnecessary sensitive data minimizes exposure.",
+    "Hotel and cafe networks are untrusted.",
+    "Handing the laptop to others increases exposure."
+   ]
+  },
+  {
+   "id": "DUMP-0214",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Refer to the information below to answer the question. An organization has hired an information security officer to lead their security department. The officer has adequate people resources but is lacking the other necessary components to have an effective security program. There are numerous initiatives requiring security involvement. The effectiveness of the security program can PRIMARILY be measured through",
+   "options": [
+    "audit findings.",
+    "risk elimination.",
+    "audit requirements.",
+    "customer satisfaction."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An effective program is evidenced by independent assessment of control performance. Audit findings show objectively whether controls are working; risk can never be eliminated.",
+   "optionNotes": [
+    "Correct: audit findings objectively measure control effectiveness.",
+    "Risk elimination is impossible.",
+    "Requirements define what is audited, not results.",
+    "Satisfaction is subjective and not a security measure."
+   ]
+  },
+  {
+   "id": "DUMP-0216",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Refer to the information below to answer the question. An organization experiencing a negative financial impact is forced to reduce budgets and the number of Information Technology (IT) operations staff performing basic logical access security administration functions. Security processes have been tightly integrated into normal IT operations and are not separate and distinct roles. When determining appropriate resource allocation, which of the following is MOST important to monitor?",
+   "options": [
+    "Number of system compromises",
+    "Number of audit findings",
+    "Number of staff reductions",
+    "Number of additional assets"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "After cuts, management must know whether the reduced staff can still protect the environment. Tracking the number of system compromises gives a direct indicator of whether security resourcing is adequate.",
+   "optionNotes": [
+    "Correct: compromises show whether reduced resources are failing to protect assets.",
+    "Audit findings lag and reflect compliance rather than actual protection.",
+    "Staff reductions are an input, not an outcome to monitor.",
+    "Asset growth affects workload but does not measure effectiveness."
+   ]
+  },
+  {
+   "id": "DUMP-0219",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Refer to the information below to answer the question. An organization has hired an information security officer to lead their security department. The officer has adequate people resources but is lacking the other necessary components to have an effective security program. There are numerous initiatives requiring security involvement. The security program can be considered effective when",
+   "options": [
+    "vulnerabilities are proactively identified.",
+    "audits are regularly performed and reviewed.",
+    "backups are regularly performed and validated.",
+    "risk is lowered to an acceptable level."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Security exists to manage risk to a level acceptable to management. A program is effective when risk has been reduced to that acceptable level, not simply when activities occur.",
+   "optionNotes": [
+    "An activity, not proof of effectiveness.",
+    "Audits are activities; performing them does not show effectiveness.",
+    "A narrow operational control.",
+    "Correct: reducing risk to an acceptable level is the goal."
+   ]
+  },
+  {
+   "id": "DUMP-0226",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -2.0,
+   "stem": "Refer to the information below to answer the question. During the investigation of a security incident, it is determined that an unauthorized individual accessed a system which hosts a database containing financial information. If it is discovered that large quantities of information have been copied by the unauthorized individual, what attribute of the data has been compromised?",
+   "options": [
+    "Availability",
+    "Integrity",
+    "Accountability",
+    "Confidentiality"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Copying information without authorization exposes it to unauthorized parties, which is a loss of confidentiality.",
+   "optionNotes": [
+    "Data remains available.",
+    "Copying does not alter data.",
+    "Not a core data attribute affected here.",
+    "Correct: unauthorized disclosure is a confidentiality breach."
+   ]
+  },
+  {
+   "id": "DUMP-0227",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Refer to the information below to answer the question. A large organization uses unique identifiers and requires them at the start of every system session. Application access is based on job classification. The organization is subject to periodic independent reviews of access controls and violations. The organization uses wired and wireless networks and remote access. The organization also uses secure connections to branch offices and secure backup and recovery strategies for selected information and processes. Following best practice, where should the permitted access for each department and job classification combination be specified?",
+   "options": [
+    "Security procedures",
+    "Security standards",
+    "Human resource policy",
+    "Human resource standards"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Mandatory, specific requirements such as permitted access for each department and job class belong in security standards, which support policy. Procedures describe how to perform tasks.",
+   "optionNotes": [
+    "Procedures are step-by-step instructions, not access specifications.",
+    "Correct: standards give mandatory specific requirements such as role access.",
+    "HR policy does not define system access.",
+    "HR standards cover personnel matters, not access rules."
+   ]
+  },
+  {
+   "id": "DUMP-0228",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following is a detective access control mechanism?",
+   "options": [
+    "Log review",
+    "Least privilege",
+    "Password complexity",
+    "Non-disclosure agreement"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Detective controls identify events after they occur. Reviewing logs uncovers violations; the others are preventive or deterrent.",
+   "optionNotes": [
+    "Correct: log review detects incidents.",
+    "Least privilege is preventive.",
+    "Password complexity is preventive.",
+    "NDAs are deterrent/administrative."
+   ]
+  },
+  {
+   "id": "DUMP-0242",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Refer to the information below to answer the question. A large, multinational organization has decided to outsource a portion of their Information Technology (IT) organization to a third-party provider's facility. This provider will be responsible for the design, development, testing, and support of several critical, customer-based applications used by the organization. The organization should ensure that the third party's physical security controls are in place so that they",
+   "options": [
+    "are more rigorous than the original controls.",
+    "are able to limit access to sensitive information.",
+    "allow access by the organization staff at any time.",
+    "cannot be accessed by subcontractors of the third party."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "When development and support of critical applications is outsourced, the provider's physical controls must restrict access to the organization's sensitive information.",
+   "optionNotes": [
+    "More rigor is not required; adequacy is.",
+    "Correct: physical controls must limit access to sensitive data.",
+    "Unrestricted access is not a control goal.",
+    "Subcontractors may be permitted under contract."
+   ]
+  },
+  {
+   "id": "DUMP-0248",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A security manager has noticed an inconsistent application of server security controls resulting in vulnerabilities on critical systems. What is the MOST likely cause of this issue?",
+   "options": [
+    "A lack of baseline standards",
+    "Improper documentation of security guidelines",
+    "A poorly designed security policy communication program",
+    "Host-based Intrusion Prevention System (HIPS) policies are ineffective"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Without baseline standards defining required server configurations, controls get applied inconsistently. Baselines provide the mandatory minimum configuration.",
+   "optionNotes": [
+    "Right: no baseline means each admin configures differently.",
+    "Guidelines are optional, so they don't enforce consistency anyway.",
+    "Communication matters less than having a mandatory standard.",
+    "HIPS covers only one control and doesn't explain wider inconsistency."
+   ]
+  },
+  {
+   "id": "DUMP-0251",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.6,
+   "stem": "Refer to the information below to answer the question. During the investigation of a security incident, it is determined that an unauthorized individual accessed a system which hosts a database containing financial information. If the intrusion causes the system processes to hang, which of the following has been affected?",
+   "options": [
+    "System integrity",
+    "System availability",
+    "System confidentiality",
+    "System auditability"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Hanging processes prevent the system from serving users, which is a loss of availability.",
+   "optionNotes": [
+    "Integrity concerns unauthorized modification, not hangs.",
+    "Right: hung processes deny service, so availability is hit.",
+    "Confidentiality is disclosure, not hangs.",
+    "Auditability isn't a CIA effect of hung processes."
+   ]
+  },
+  {
+   "id": "DUMP-0262",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization publishes and periodically updates its employee policies in a file on their intranet. Which of the following is a PRIMARY security concern?",
+   "options": [
+    "Availability",
+    "Confidentiality",
+    "Integrity",
+    "Ownership"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Policies published for employees must be accurate and authoritative, so unauthorized modification (integrity) is the primary concern.",
+   "optionNotes": [
+    "Availability matters but stale access is a lesser risk.",
+    "Policies are published internally and aren't secret.",
+    "Right: tampered policies would mislead employees.",
+    "Ownership isn't a security concern here."
+   ]
+  },
+  {
+   "id": "DUMP-0267",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "Refer to the information below to answer the question. A large, multinational organization has decided to outsource a portion of their Information Technology (IT) organization to a third-party provider's facility. This provider will be responsible for the design, development, testing, and support of several critical, customer-based applications used by the organization. What additional considerations are there if the third party is located in a different country?",
+   "options": [
+    "The organizational structure of the third party and how it may impact timelines within the organization",
+    "The ability of the third party to respond to the organization in a timely manner and with accurate information",
+    "The effects of transborder data flows and customer expectations regarding the storage or processing of their data",
+    "The quantity of data that must be provided to the third party and how it is to be used"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Offshore outsourcing raises transborder data flow laws and customer expectations about where their data is stored or processed.",
+   "optionNotes": [
+    "Org structure affects any vendor, foreign or not.",
+    "Responsiveness applies to any vendor.",
+    "Right: cross-border data laws and customer expectations are country-specific.",
+    "Data quantity matters with any vendor."
+   ]
+  },
+  {
+   "id": "DUMP-0277",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.1,
+   "stem": "A business has implemented Payment Card Industry Data Security Standard (PCI-DSS) compliant handheld credit card processing on their Wireless Local Area Network (WLAN) topology. The network team partitioned the WLAN to create a private segment for credit card processing using a firewall to control device access and route traffic to the card processor on the Internet. What components are in the scope of PCI-DSS?",
+   "options": [
+    "The entire enterprise network infrastructure.",
+    "The handheld devices, wireless access points and border gateway.",
+    "The end devices, wireless access points, WLAN, switches, management console, and firewall.",
+    "The end devices, wireless access points, WLAN, switches, management console, and Internet"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "PCI DSS scope covers every component that stores, processes, transmits or connects to cardholder data, including the segment's devices, APs, WLAN, switches, management console and the firewall that segments it.",
+   "optionNotes": [
+    "Proper segmentation means the whole network is out of scope.",
+    "Leaves out switches, management console and segmenting firewall.",
+    "Right: everything in or connected to the cardholder segment, including the firewall.",
+    "The Internet is outside the entity's control and scope."
+   ]
+  },
+  {
+   "id": "DUMP-0278",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "Refer to the information below to answer the question. An organization experiencing a negative financial impact is forced to reduce budgets and the number of Information Technology (IT) operations staff performing basic logical access security administration functions. Security processes have been tightly integrated into normal IT operations and are not separate and distinct roles. Which of the following will indicate where the IT budget is BEST allocated during this time?",
+   "options": [
+    "Policies",
+    "Frameworks",
+    "Metrics",
+    "Guidelines"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Metrics show where controls perform and where risk lies, so they guide where to put limited budget.",
+   "optionNotes": [
+    "Policies set direction but don't measure where to spend.",
+    "Frameworks structure the program but don't show performance.",
+    "Right: metrics show control effectiveness and risk to guide spend.",
+    "Guidelines are optional advice."
+   ]
+  },
+  {
+   "id": "DUMP-0280",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When dealing with compliance with the Payment Card Industry-Data Security Standard (PCI-DSS), an organization that shares card holder information with a service provider MUST do which of the following?",
+   "options": [
+    "Perform a service provider PCI-DSS assessment on a yearly basis.",
+    "Validate the service provider's PCI-DSS compliance status on a regular basis.",
+    "Validate that the service providers security policies are in alignment with those of the organization.",
+    "Ensure that the service provider updates and tests its Disaster Recovery Plan (DRP) on a yearly basis."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "PCI DSS requires the entity to monitor its service providers' compliance status at least annually.",
+   "optionNotes": [
+    "Doing the provider's assessment yourself isn't required.",
+    "Right: PCI DSS requires monitoring provider compliance status.",
+    "Policy alignment isn't the PCI requirement.",
+    "DRP testing isn't the PCI third-party requirement."
+   ]
+  },
+  {
+   "id": "DUMP-0286",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Refer to the information below to answer the question. A new employee is given a laptop computer with full administrator access. This employee does not have a personal computer at home and has a child that uses the computer to send and receive e-mail, search the web, and use instant messaging. The organization's Information Technology (IT) department discovers that a peer-to-peer program has been installed on the computer using the employee's access. Which of the following documents explains the proper use of the organization's assets?",
+   "options": [
+    "Human resources policy",
+    "Acceptable use policy",
+    "Code of ethics",
+    "Access control policy"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The acceptable use policy defines proper use of organizational assets.",
+   "optionNotes": [
+    "The HR policy covers employment, not asset use.",
+    "Right: the AUP defines proper use of organizational assets.",
+    "The code of ethics covers conduct broadly.",
+    "The access control policy covers authorization rules."
+   ]
+  },
+  {
+   "id": "DUMP-0288",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following MOST influences the design of the organization's electronic monitoring policies?",
+   "options": [
+    "Workplace privacy laws",
+    "Level of organizational trust",
+    "Results of background checks",
+    "Business ethical considerations"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Monitoring policy must first comply with applicable workplace privacy laws.",
+   "optionNotes": [
+    "Right: privacy laws limit and shape what monitoring is allowed.",
+    "Trust is cultural and comes second to law.",
+    "Background checks are unrelated to monitoring design.",
+    "Ethics matter but law is the binding constraint."
+   ]
+  },
+  {
+   "id": "DUMP-0291",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "What is the PRIMARY reason for ethics awareness and related policy implementation?",
+   "options": [
+    "It affects the workflow of an organization.",
+    "It affects the reputation of an organization.",
+    "It affects the retention rate of employees.",
+    "It affects the morale of the employees."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Ethics programs mainly protect the organization's reputation and public trust.",
+   "optionNotes": [
+    "Workflow isn't the main driver.",
+    "Right: ethics lapses damage reputation and trust.",
+    "Retention is a secondary effect.",
+    "Morale is a secondary effect."
+   ]
+  },
+  {
+   "id": "DUMP-0292",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is the MOST critical factor to achieve the goals of a security program?",
+   "options": [
+    "Capabilities of security resources",
+    "Executive management support",
+    "Effectiveness of security management",
+    "Budget approved for security resources"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Executive management support is the most critical success factor for a security program; it drives funding, authority and culture.",
+   "optionNotes": [
+    "Staff capability matters but depends on support.",
+    "Right: senior management support drives everything else.",
+    "Effective management requires mandate from the top.",
+    "Budget follows executive support."
+   ]
+  },
+  {
+   "id": "DUMP-0309",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following countermeasures is the MOST effective in defending against a social engineering attack?",
+   "options": [
+    "Mandating security policy acceptance",
+    "Changing individual behavior",
+    "Evaluating security awareness training",
+    "Filtering malicious e-mail content"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Social engineering targets people, so the most effective defense is changing how individuals actually behave, usually through awareness programs. Technical filters only cover some channels.",
+   "optionNotes": [
+    "Signing a policy does not change behavior",
+    "Behavior change addresses the human weakness being exploited",
+    "Evaluating training measures it but is not itself the countermeasure",
+    "Email filtering covers only one attack channel"
+   ]
+  },
+  {
+   "id": "DUMP-0312",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When evaluating third-party applications, which of the following is the GREATEST responsibility of Information Security?",
+   "options": [
+    "Accept the risk on behalf of the organization.",
+    "Report findings to the business to determine security gaps.",
+    "Quantify the risk to the business for product selection.",
+    "Approve the application that best meets security requirements."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Security's role is to advise: it quantifies risk so business owners can make informed product selection decisions. Accepting risk and approving purchases belong to the business.",
+   "optionNotes": [
+    "Risk acceptance belongs to management/business owners",
+    "Reporting gaps is weaker than quantifying risk for decision-making",
+    "Quantifying risk enables an informed business choice",
+    "Approval is a business decision, not security's"
+   ]
+  },
+  {
+   "id": "DUMP-0338",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "The MAIN reason an organization conducts a security authorization process is to",
+   "options": [
+    "force the organization to make conscious risk decisions.",
+    "assure the effectiveness of security controls.",
+    "assure the correct security organization exists.",
+    "force the organization to enlist management support."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Authorization (ATO) requires a senior official to formally decide whether to accept residual risk. It forces conscious risk decisions.",
+   "optionNotes": [
+    "The core purpose is an explicit risk acceptance decision",
+    "Assessment verifies controls; authorization is the decision",
+    "Organizational structure is not the goal",
+    "Management support is a by-product"
+   ]
+  },
+  {
+   "id": "DUMP-0370",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which of the following is the BEST example of weak management commitment to the protection of security assets and resources?",
+   "options": [
+    "poor governance over security processes and procedures",
+    "immature security controls and procedures",
+    "variances against regulatory requirements",
+    "unanticipated increases in security incidents and threats"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Weak governance over security processes directly reflects lack of management commitment.",
+   "optionNotes": [
+    "Poor governance directly shows lacking management commitment",
+    "Immaturity can stem from resources or time",
+    "Regulatory variances may have other causes",
+    "Incident increases can be external, not commitment-related"
+   ]
+  },
+  {
+   "id": "DUMP-0371",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Determining outage costs caused by a disaster can BEST be measured by the",
+   "options": [
+    "cost of redundant systems and backups.",
+    "cost to recover from an outage.",
+    "overall long-term impact of the outage.",
+    "revenue lost during the outage."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Outage cost is best measured by the overall long-term impact, including reputation and lost business, not only immediate costs.",
+   "optionNotes": [
+    "Redundancy cost is a mitigation cost, not outage cost",
+    "Recovery cost is only part of the loss",
+    "Long-term impact captures total loss including reputation",
+    "Lost revenue is only the immediate loss"
+   ]
+  },
+  {
+   "id": "DUMP-0376",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "What does the Maximum Tolerable Downtime (MTD) determine?",
+   "options": [
+    "The estimated period of time a business critical database can remain down before customers are affected.",
+    "The fixed length of time a company can endure a disaster without any Disaster Recovery (DR) planning",
+    "The estimated period of time a business can remain interrupted beyond which it risks never recovering",
+    "The fixed length of time in a DR process before redundant systems are engaged"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "MTD is the longest a business can be interrupted before the outage threatens its survival.",
+   "optionNotes": [
+    "Limited to one database and customers, too narrow",
+    "MTD is not about absence of DR planning",
+    "Maximum interruption before survival is threatened",
+    "Failover timing relates to RTO, not MTD"
+   ]
+  },
+  {
+   "id": "DUMP-0377",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "In order for a security policy to be effective within an organization, it MUST include",
+   "options": [
+    "strong statements that clearly define the problem.",
+    "a list of all standards that apply to the policy.",
+    "owner information and date of last revision.",
+    "disciplinary measures for non compliance."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Without consequences for non-compliance, policy has no enforcement and is ineffective.",
+   "optionNotes": [
+    "Problem statements alone do not drive compliance",
+    "Standards are referenced separately, not required in policy",
+    "Ownership info is administrative, not effectiveness",
+    "Consequences give policy enforceability"
+   ]
+  },
+  {
+   "id": "DUMP-0384",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "A database administrator is asked by a high-ranking member of management to perform specific changes to the accounting system database. The administrator is specifically instructed to not track or evidence the change in a ticket. Which of the following is the BEST course of action?",
+   "options": [
+    "Ignore the request and do not perform the change.",
+    "Perform the change as requested, and rely on the next audit to detect and report the situation.",
+    "Perform the change, but create a change ticket regardless to ensure there is complete traceability.",
+    "Inform the audit committee or internal audit directly using the corporate whistleblower process."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "An instruction to bypass change controls on a financial system suggests possible fraud and should be escalated through independent whistleblower channels.",
+   "optionNotes": [
+    "Silently refusing leaves possible fraud unreported",
+    "Performing untracked changes breaks change control",
+    "Still performs a possibly fraudulent change",
+    "Independent escalation through whistleblowing is proper"
+   ]
+  },
+  {
+   "id": "DUMP-0388",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "The goal of a Business Continuity Plan (BCP) training and awareness program is to",
+   "options": [
+    "enhance the skills required to create, maintain, and execute the plan.",
+    "provide for a high level of recovery in case of disaster.",
+    "describe the recovery organization to new employees.",
+    "provide each recovery team with checklists and procedures."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "BCP training builds the skills people need to create, maintain and execute the plan.",
+   "optionNotes": [
+    "Builds skills to create, maintain and execute the plan",
+    "Recovery level depends on the plan, not training goal",
+    "Orientation of new staff is too narrow",
+    "Checklists are plan content, not training goals"
+   ]
+  },
+  {
+   "id": "DUMP-0399",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "An organization's information security strategic plan MUST be reviewed",
+   "options": [
+    "whenever there are significant changes to a major application.",
+    "quarterly, when the organization's strategic plan is updated.",
+    "whenever there are major changes to the business.",
+    "every three years, when the organization's strategic plan is updated."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A security strategic plan supports business strategy, so it must be revisited when the business itself changes substantially. Fixed calendar cycles or single application changes do not drive strategic review.",
+   "optionNotes": [
+    "One application change is tactical, not strategic.",
+    "Fixed quarterly timing ignores event-driven need; strategy is rarely quarterly.",
+    "Right: major business change invalidates strategic assumptions.",
+    "Three-year cycle is too rigid for strategic alignment."
+   ]
+  },
+  {
+   "id": "DUMP-0406",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Backup information that is critical to the organization is identified through a",
+   "options": [
+    "Vulnerability Assessment (VA).",
+    "Business Continuity Plan (BCP).",
+    "Business Impact Analysis (BIA).",
+    "data recovery analysis."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said B] The BIA identifies critical business processes and the data and resources they depend on, which tells you which backup information is critical. The BCP is built from those BIA results.",
+   "optionNotes": [
+    "VA finds weaknesses, not business criticality.",
+    "BCP consumes BIA output rather than identifying criticality.",
+    "Right: BIA determines criticality of processes and data.",
+    "Not a standard method for establishing criticality."
+   ]
+  },
+  {
+   "id": "DUMP-0412",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "The goal of a Business Impact Analysis (BIA) is to determine which of the following?",
+   "options": [
+    "Cost effectiveness of business recovery",
+    "Cost effectiveness of installing software security patches",
+    "Resource priorities for recovery and Maximum Tolerable Downtime (MTD)",
+    "Which security measures should be implemented"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A BIA determines how disruptions affect the business, producing MTD/RTO values and recovery priorities. Cost-effectiveness and control selection come later in continuity planning.",
+   "optionNotes": [
+    "Recovery cost analysis follows the BIA.",
+    "Patching cost is unrelated to BIA.",
+    "Right: BIA yields MTD and recovery priorities.",
+    "Control selection is risk treatment, not BIA."
+   ]
+  },
+  {
+   "id": "DUMP-0414",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "Are companies legally required to report all data breaches?",
+   "options": [
+    "No, different jurisdictions have different rules.",
+    "No, not if the data is encrypted.",
+    "No, companies' codes of ethics don't require it.",
+    "No, only if the breach had a material impact."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Breach notification duties come from many state, national and sector laws with differing triggers. So whether a report is required depends on the jurisdiction.",
+   "optionNotes": [
+    "Right: rules vary by jurisdiction.",
+    "Encryption safe harbors exist only in some laws.",
+    "Ethics codes are irrelevant to legal duty.",
+    "Materiality thresholds are not universal."
+   ]
+  },
+  {
+   "id": "DUMP-0417",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "Which of the following is the BEST method to reduce the effectiveness of phishing attacks?",
+   "options": [
+    "User awareness",
+    "Two-factor authentication",
+    "Anti-phishing software",
+    "Periodic vulnerability scan"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Phishing targets people, so awareness training that teaches users to recognise and report it reduces its success most broadly. Technical tools help but cannot catch every lure.",
+   "optionNotes": [
+    "Right: users are the target and last line of defence.",
+    "2FA limits credential reuse but not malware or other phishing goals.",
+    "Filters miss novel phishing.",
+    "Scanning finds system flaws, not social engineering."
+   ]
+  },
+  {
+   "id": "DUMP-0423",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following restricts the ability of an individual to carry out all the steps of a particular process?",
+   "options": [
+    "Job rotation",
+    "Separation of duties",
+    "Least privilege",
+    "Mandatory vacations"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Separation of duties splits a critical process among people so no one can complete it alone. That prevents fraud without collusion.",
+   "optionNotes": [
+    "Rotation moves people between jobs to detect fraud.",
+    "Right: divides process steps among individuals.",
+    "Least privilege limits rights, not process steps.",
+    "Vacations help detect fraud after the fact."
+   ]
+  },
+  {
+   "id": "DUMP-0439",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "The application of which of the following standards would BEST reduce the potential for data breaches?",
+   "options": [
+    "ISO 9000",
+    "ISO 20121",
+    "ISO 26000",
+    "ISO 27001"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "ISO 27001 specifies an information security management system, which directly addresses data breach risk. The others are quality, events and social responsibility.",
+   "optionNotes": [
+    "Quality management.",
+    "Event sustainability.",
+    "Social responsibility.",
+    "Right: ISMS for information security."
+   ]
+  },
+  {
+   "id": "DUMP-0440",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "A company was ranked as high in the following National Institute of Standards and Technology (NIST) functions: Protect, Detect, Respond and Recover. However, a low maturity grade was attributed to the Identify function. In which of the following the controls categories does this company need to improve when analyzing its processes individually?",
+   "options": [
+    "Asset Management, Business Environment, Governance and Risk Assessment",
+    "Access Control, Awareness and Training, Data Security and Maintenance",
+    "Anomalies and Events, Security Continuous Monitoring and Detection Processes",
+    "Recovery Planning, Improvements and Communications"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In the NIST CSF (v1.1), the Identify function has the categories Asset Management, Business Environment, Governance, Risk Assessment and Risk Management Strategy. Those are where the company must improve.",
+   "optionNotes": [
+    "Right: Identify categories.",
+    "Protect categories.",
+    "Detect categories.",
+    "Recover categories."
+   ]
+  },
+  {
+   "id": "DUMP-0457",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "The World Trade Organization's (WTO) agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS) requires authors of computer software to be given the",
+   "options": [
+    "right to refuse or permit commercial rentals.",
+    "right to disguise the software's geographic origin.",
+    "ability to tailor security parameters based on location.",
+    "ability to confirm license authenticity of their works."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "TRIPS Article 11 gives authors of computer programs the right to authorize or prohibit commercial rental of their works. It is a specific rental right.",
+   "optionNotes": [
+    "Correct: TRIPS grants rental rights for software.",
+    "Disguising origin has nothing to do with TRIPS.",
+    "Location-based security parameters are not an IP right.",
+    "License authenticity checking is not a TRIPS-granted right."
+   ]
+  },
+  {
+   "id": "DUMP-0459",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "How can lessons learned from business continuity training and actual recovery incidents BEST be used?",
+   "options": [
+    "As a means for improvement",
+    "As alternative options for awareness and training",
+    "As indicators of a need for policy",
+    "As business function gap indicators"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Lessons learned exist to feed continuous improvement of the BC plan and program. They highlight what to fix in plans, training and procedures.",
+   "optionNotes": [
+    "Correct: lessons learned drive improvement.",
+    "Awareness is one possible use, not the best overall one.",
+    "Lessons may show a policy gap, but improvement is broader.",
+    "Gap indication is narrower than overall improvement."
+   ]
+  },
+  {
+   "id": "DUMP-0462",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following is the BEST approach to take in order to effectively incorporate the concepts of business continuity into the organization?",
+   "options": [
+    "Ensure end users are aware of the planning activities",
+    "Validate all regulatory requirements are known and fully documented",
+    "Develop training and awareness programs that involve all stakeholders",
+    "Ensure plans do not violate the organization's cultural objectives and goals"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Embedding BC in the organization's culture takes training and awareness that involve all stakeholders. Then everyone understands their role and the plan becomes part of normal operations.",
+   "optionNotes": [
+    "Awareness only for end users is too narrow.",
+    "Regulatory documentation is compliance, not culture.",
+    "Correct: involving all stakeholders through training builds BC into the organization.",
+    "Cultural alignment is a constraint, not the method."
+   ]
+  },
+  {
+   "id": "DUMP-0467",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "What is the PRIMARY difference between security policies and security procedures?",
+   "options": [
+    "Policies are used to enforce violations, and procedures create penalties",
+    "Policies point to guidelines, and procedures are more contractual in nature",
+    "Policies are included in awareness training, and procedures give guidance",
+    "Policies are generic in nature, and procedures contain operational details"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Policies are high-level, mandatory statements of intent. Procedures are detailed step-by-step instructions for carrying them out.",
+   "optionNotes": [
+    "Neither policies nor procedures 'enforce violations' or create penalties.",
+    "Policies do not merely point to guidelines, and procedures are not contracts.",
+    "Both can appear in training; that is not the difference.",
+    "Correct: policies are generic, procedures operational."
+   ]
+  },
+  {
+   "id": "DUMP-0471",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following standards/guidelines requires an Information Security Management System (ISMS) to be defined?",
+   "options": [
+    "International Organization for Standardization (ISO) 27000 family",
+    "Information Technology Infrastructure Library (ITIL)",
+    "Payment Card Industry Data Security Standard (PCIDSS)",
+    "ISO/IEC 20000"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "ISO/IEC 27001, part of the 27000 family, requires an organization to establish, implement, maintain and improve an ISMS.",
+   "optionNotes": [
+    "Correct: the ISO 27000 family defines ISMS requirements.",
+    "ITIL is an IT service management framework.",
+    "PCI DSS sets cardholder data controls, not an ISMS.",
+    "ISO 20000 is a service management system standard."
+   ]
+  },
+  {
+   "id": "DUMP-0499",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following has the GREATEST impact on an organization's security posture?",
+   "options": [
+    "International and country-specific compliance requirements",
+    "Security violations by employees and contractors",
+    "Resource constraints due to increasing costs of supporting security",
+    "Audit findings related to employee access and permissions process"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "External compliance obligations drive the controls an organization must implement across all operations, so they shape the overall security posture most broadly. The other items are individual events or constraints that affect parts of the program.",
+   "optionNotes": [
+    "Correct: mandatory legal/regulatory requirements shape the entire security program.",
+    "Violations are incidents that reflect posture rather than define it.",
+    "Resource constraints limit but do not set the posture.",
+    "Audit findings on one process are narrow in scope."
+   ]
+  },
+  {
+   "id": "DUMP-0503",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What does an organization FIRST review to assure compliance with privacy requirements?",
+   "options": [
+    "Best practices",
+    "Business objectives",
+    "Legal and regulatory mandates",
+    "Employee's compliance to policies and standards"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Privacy compliance starts with knowing what the law and regulators require; everything else is measured against those mandates.",
+   "optionNotes": [
+    "Best practices are optional guidance.",
+    "Business objectives do not define privacy obligations.",
+    "Correct: legal/regulatory mandates define compliance.",
+    "Employee compliance is checked later against policies derived from mandates."
+   ]
+  },
+  {
+   "id": "DUMP-0504",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.2,
+   "stem": "During the risk assessment phase of the project the CISO discovered that a college within the University is collecting Protected Health Information (PHI) data via an application that was developed in-house. The college collecting this data is fully aware of the regulations for Health Insurance Portability and Accountability Act (HIPAA) and is fully compliant. What is the best approach for the CISO? During the risk assessment phase of the project the CISO discovered that a college within the University is collecting Protected Health Information (PHI) data via an application that was developed in-house. The college collecting this data is fully aware of the regulations for Health Insurance Portability and Accountability Act (HIPAA) and is fully compliant. What is the best approach for the CISO?",
+   "options": [
+    "Document the system as high risk",
+    "Perform a vulnerability assessment",
+    "Perform a quantitative threat assessment",
+    "Notate the information and move on"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The college already knows and complies with HIPAA, so the risk is already addressed by the responsible owner. During risk assessment the CISO records the finding and continues rather than duplicating controls.",
+   "optionNotes": [
+    "Compliant handling does not make it high risk by default.",
+    "A vulnerability assessment is not warranted by the facts given.",
+    "A quantitative threat assessment is excessive for a compliant system.",
+    "Correct: document it and proceed, as it is already compliant."
+   ]
+  },
+  {
+   "id": "DUMP-0510",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the FIRST step in establishing an information security program?",
+   "options": [
+    "Establish an information security policy.",
+    "Identify factors affecting information security.",
+    "Establish baseline security controls.",
+    "Identify critical security infrastructure."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A security program is grounded in a policy that shows management intent and authority; standards, baselines and controls derive from it.",
+   "optionNotes": [
+    "Correct: policy establishes the program.",
+    "Identifying factors is input but policy sets direction.",
+    "Baselines derive from policy.",
+    "Infrastructure identification follows policy."
+   ]
+  },
+  {
+   "id": "DUMP-0515",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Who would be the BEST person to approve an organizations information security policy?",
+   "options": [
+    "Chief Information Officer (CIO)",
+    "Chief Information Security Officer (CISO)",
+    "Chief internal auditor",
+    "Chief Executive Officer (CEO)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said B] Senior management carries ultimate responsibility for security and approves the policy; the CISO writes and maintains it.",
+   "optionNotes": [
+    "CIO is an IT executive, not top authority.",
+    "CISO drafts but should not approve.",
+    "Auditors must stay independent.",
+    "Correct: CEO/senior management approves."
+   ]
+  },
+  {
+   "id": "DUMP-0520",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A control to protect from a Denial-of-Service (DoS) attack has been determined to stop 50% of attacks, and additionally reduces the impact of an attack by 50%. What is the residual risk?",
+   "options": [
+    "25%",
+    "50%",
+    "75%",
+    "100%"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Only half of attacks succeed, and those have half the impact: 0.5 x 0.5 = 0.25, so 25% of original risk remains.",
+   "optionNotes": [
+    "Correct: 50% x 50% = 25%.",
+    "50% ignores the impact reduction.",
+    "75% would be the reduction amount.",
+    "100% ignores the control."
+   ]
+  },
+  {
+   "id": "DUMP-0531",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "An Information Technology (IT) professional attends a cybersecurity seminar on current incident response methodologies. What code of ethics canon is being observed?",
+   "options": [
+    "Provide diligent and competent service to principals",
+    "Protect society, the commonwealth, and the infrastructure",
+    "Advance and protect the profession",
+    "Act honorably, honestly, justly, responsibly, and legally"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "OSG10 ties canon IV, Advance and protect the profession, to keeping your knowledge current and adding to the shared body of knowledge. Going to a seminar on current incident-response methods is that kind of professional development. Canon III is about the service you give to principals, not about building your own skills.",
+   "optionNotes": [
+    "Wrong: canon III is about competent, unbiased service to principals, not learning.",
+    "Wrong: canon I is about protecting society and infrastructure.",
+    "Right: OSG10 links keeping knowledge current to canon IV.",
+    "Wrong: canon II is about honourable, legal conduct."
+   ]
+  },
+  {
+   "id": "DUMP-0548",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is a direct monetary cost of a security incident?",
+   "options": [
+    "Morale",
+    "Reputation",
+    "Equipment",
+    "Information"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Equipment replacement is a direct, quantifiable monetary cost; morale, reputation and information value are indirect or intangible.",
+   "optionNotes": [
+    "Morale loss is an indirect, intangible impact",
+    "Reputational damage is indirect and hard to quantify",
+    "Correct: replacing or repairing equipment is a direct cash cost",
+    "Information value is an asset impact, not a direct outlay"
+   ]
+  },
+  {
+   "id": "DUMP-0553",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A security professional determines that a number of outsourcing contracts inherited from a previous merger do not adhere to the current security requirements. Which of the following BEST minimizes the risk of this happening again?",
+   "options": [
+    "Define additional security controls directly after the merger",
+    "Include a procurement officer in the merger team",
+    "Verify all contracts before a merger occurs",
+    "Assign a compliancy officer to review the merger conditions"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Reviewing contracts for security compliance before a merger is a preventive control that stops non-compliant obligations from being inherited.",
+   "optionNotes": [
+    "Reactive: acts only after bad contracts are inherited",
+    "A procurement officer lacks a security-compliance remit",
+    "Correct: pre-merger contract due diligence stops the problem recurring",
+    "Merger conditions differ from reviewing each outsourcing contract"
+   ]
+  },
+  {
+   "id": "DUMP-0575",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Who has the PRIMARY responsibility to ensure that security objectives are aligned with organization goals?",
+   "options": [
+    "Senior management",
+    "Information security department",
+    "Audit committee",
+    "All users"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Senior management aligns security with business goals through governance.",
+   "optionNotes": [
+    "Correct: governance and alignment are senior management's responsibility",
+    "Security implements, it doesn't own alignment",
+    "The audit committee provides oversight, not alignment",
+    "Users follow policy; they don't set alignment"
+   ]
+  },
+  {
+   "id": "DUMP-0576",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the MAIN goal of information security awareness and training?",
+   "options": [
+    "To inform users of the latest malware threats",
+    "To inform users of information assurance responsibilities",
+    "To comply with the organization information security policy",
+    "To prepare students for certification"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Awareness makes users understand their security and information-assurance responsibilities.",
+   "optionNotes": [
+    "Malware news is content, not the main goal",
+    "Correct: users must understand their security responsibilities",
+    "Compliance is a by-product",
+    "Certification prep is professional education, not awareness"
+   ]
+  },
+  {
+   "id": "DUMP-0577",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the BEST reason for writing an information security policy?",
+   "options": [
+    "To support information security governance",
+    "To reduce the number of audit findings",
+    "To deter attackers",
+    "To implement effective information security controls"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Policy is the foundation of security governance, setting management intent and direction.",
+   "optionNotes": [
+    "Correct: policy expresses management direction, which is the basis of governance",
+    "Fewer audit findings is a side effect",
+    "Policies don't deter attackers",
+    "Controls come from standards and procedures derived from policy"
+   ]
+  },
+  {
+   "id": "DUMP-0585",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "An organization plan on purchasing a custom software product developed by a small vendor to support its business model. Which unique consideration should be made part of the contractual agreement potential long-term risks associated with creating this dependency?",
+   "options": [
+    "A source code escrow clause",
+    "Right to request an independent review of the software source code",
+    "Due diligence form requesting statements of compliance with security requirements",
+    "Access to the technical documentation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Source code escrow protects the buyer if a small vendor fails or stops supporting the product.",
+   "optionNotes": [
+    "Correct: escrow gives source access if the vendor fails",
+    "A code review checks quality, not continuity",
+    "Compliance statements don't address vendor failure",
+    "Documentation without source can't sustain the product"
+   ]
+  },
+  {
+   "id": "DUMP-0586",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What are the steps of a risk assessment?",
+   "options": [
+    "identification, analysis, evaluation",
+    "analysis, evaluation, mitigation",
+    "classification, identification, risk management",
+    "identification, evaluation, mitigation"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "ISO 31000 defines risk assessment as risk identification, analysis and evaluation.",
+   "optionNotes": [
+    "Correct: ISO 31000 defines assessment as identification, analysis and evaluation",
+    "Mitigation is treatment, not assessment",
+    "Classification is not a step",
+    "Analysis is missing; mitigation is treatment"
+   ]
+  },
+  {
+   "id": "DUMP-0589",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the MOST challenging issue in apprehending cyber criminals?",
+   "options": [
+    "They often use sophisticated method to commit a crime.",
+    "It is often hard to collect and maintain integrity of digital evidence.",
+    "The crime is often committed from a different jurisdiction.",
+    "There is often no physical evidence involved."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Cross-jurisdiction issues are the hardest obstacle to apprehending cyber criminals.",
+   "optionNotes": [
+    "Sophistication can be countered by skill",
+    "Evidence handling is hard but manageable",
+    "Correct: different jurisdictions block arrest and extradition",
+    "Lack of physical evidence is common and manageable"
+   ]
+  },
+  {
+   "id": "DUMP-0594",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "An organization has outsourced its financial transaction processing to a Cloud Service Provider (CSP) who will provide them with Software as a Service (SaaS). If there was a data breach who is responsible for monetary losses?",
+   "options": [
+    "The Data Protection Authority (DPA)",
+    "The Cloud Service Provider (CSP)",
+    "The application developers",
+    "The data owner"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The data owner stays accountable for losses; responsibility cannot be outsourced.",
+   "optionNotes": [
+    "A DPA regulates; it is not liable",
+    "The CSP may be contractually liable, but ultimate accountability stays with the owner",
+    "Developers aren't accountable",
+    "Correct: the data owner remains accountable for losses"
+   ]
+  },
+  {
+   "id": "DUMP-0595",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When determining who can accept the risk associated with a vulnerability, which of the following is the MOST important?",
+   "options": [
+    "Countermeasure effectiveness",
+    "Type of potential loss",
+    "Incident likelihood",
+    "Information ownership"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Only the information owner can accept risk for their assets.",
+   "optionNotes": [
+    "Effectiveness affects residual risk, not who accepts it",
+    "Loss type informs impact, not authority",
+    "Likelihood is a risk input",
+    "Correct: the owner of the information has authority to accept risk"
+   ]
+  },
+  {
+   "id": "DUMP-0607",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "An international medical organization with headquarters in the United States (US) and branches in France wants to test a drug in both countries. What is the organization allowed to do with the test subject's data?",
+   "options": [
+    "Aggregate it into one database in the US",
+    "Process it in the US, but store the information in France",
+    "Share it with a third party",
+    "Anonymize it and process it in the US"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "EU data protection restricts transfer of personal data; anonymised data is no longer personal data and can be processed in the US.",
+   "optionNotes": [
+    "Transfer of identifiable data restricted",
+    "Processing in US is still a transfer",
+    "Sharing needs a lawful basis/consent",
+    "Correct: anonymised data is outside GDPR"
+   ]
+  },
+  {
+   "id": "DUMP-0615",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Attack trees are MOST useful for which of the following?",
+   "options": [
+    "Determining system security scopes",
+    "Generating attack libraries",
+    "Enumerating threats",
+    "Evaluating Denial of Service (DoS) attacks"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Attack trees model the paths to an attacker goal, enumerating threats.",
+   "optionNotes": [
+    "Scoping is set by requirements and boundaries, not attack trees",
+    "Attack libraries are catalogues like CAPEC, not the tree's purpose",
+    "Correct: trees systematically enumerate the ways a goal can be attacked",
+    "DoS is only one possible goal; trees are not DoS-specific"
+   ]
+  },
+  {
+   "id": "DUMP-0627",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "When developing a business case for updating a security program, the security program owner MUST do which of the following?",
+   "options": [
+    "Identify relevant metrics",
+    "Prepare performance test reports",
+    "Obtain resources for the security program",
+    "Interview executive management"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A business case needs measurable metrics to justify the investment.",
+   "optionNotes": [
+    "Correct",
+    "Not required",
+    "Result of approval",
+    "Helpful, not mandatory"
+   ]
+  },
+  {
+   "id": "DUMP-0636",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the expected outcome of security awareness in support of a security awareness program?",
+   "options": [
+    "Awareness activities should be used to focus on security concerns and respond to those concerns accordingly",
+    "Awareness is not an activity or part of the training but rather a state of persistence to support the program",
+    "Awareness is training. The purpose of awareness presentations is to broaden attention of security.",
+    "Awareness is not training. The purpose of awareness presentation is simply to focus attention on security."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Awareness is distinct from training; it focuses attention on security.",
+   "optionNotes": [
+    "Responding to concerns is an incident/feedback activity, not awareness's outcome",
+    "Awareness is an activity, so this is false",
+    "Awareness is explicitly distinguished from training",
+    "Correct: awareness focuses attention on security"
+   ]
+  },
+  {
+   "id": "DUMP-0637",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following mandates the amount and complexity of security controls applied to a security risk?",
+   "options": [
+    "Security vulnerabilities",
+    "Risk tolerance",
+    "Risk mitigation",
+    "Security staff"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Risk tolerance dictates how much control is needed.",
+   "optionNotes": [
+    "Vulnerabilities are inputs to risk analysis, not the deciding factor",
+    "Correct: management's tolerance sets how far risk must be reduced",
+    "Mitigation is the result of the decision, not its driver",
+    "Staff availability limits implementation but does not mandate control level"
+   ]
+  },
+  {
+   "id": "DUMP-0643",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is the MOST important activity an organization performs to ensure that security is part of the overall organization culture?",
+   "options": [
+    "Ensure security policies are issued to all employees",
+    "Perform formal reviews of security Incidents.",
+    "Manage a program of security audits.",
+    "Work with senior management to meet business goals."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Aligning security with business goals through senior management embeds it in culture.",
+   "optionNotes": [
+    "Issuing policies alone does not create culture",
+    "Incident reviews are reactive and limited",
+    "Audits drive compliance, not culture",
+    "Correct: alignment with business goals via senior management embeds security"
+   ]
+  },
+  {
+   "id": "DUMP-0657",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "An organization outgrew its internal data center and is evaluating third-party hosting facilities. In this evaluation, which of the following is a PRIMARY factor for selection?",
+   "options": [
+    "Facility provides an acceptable level of risk",
+    "Facility provides disaster recovery (DR) services",
+    "Facility provides the most cost-effective solution",
+    "Facility has physical access protection measures"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Selection should be driven by whether residual risk is acceptable to the organization. Cost, DR and physical controls all feed into that risk judgement.",
+   "optionNotes": [
+    "Acceptable risk is the overarching selection criterion.",
+    "DR services are one factor within risk.",
+    "Cost alone must not override risk.",
+    "Physical protection is one control within risk."
+   ]
+  },
+  {
+   "id": "DUMP-0665",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "The acquisition of personal data being obtained by a lawful and fair means is an example of what principle?",
+   "options": [
+    "Data Quality Principle",
+    "Openness Principle",
+    "Purpose Specification Principle",
+    "Collection Limitation Principle"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "OECD Collection Limitation requires data be obtained by lawful and fair means. It also says collection should be with the subject's knowledge or consent where appropriate.",
+   "optionNotes": [
+    "Data quality concerns accuracy and relevance.",
+    "Openness concerns transparency of practices.",
+    "Purpose specification concerns stated purposes.",
+    "Collection limitation requires lawful, fair means of collection."
+   ]
+  },
+  {
+   "id": "DUMP-0692",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "When designing a business continuity plan (BCP), what is the formula to determine the Maximum Tolerable Downtime (MTD)?",
+   "options": [
+    "Annual Loss Expectancy (ALE) + Work Recovery Time (WRT)",
+    "Business impact analysis (BIA) + Recovery Point Objective (RPO)",
+    "Recovery Time Objective (RTO) + Work Recovery Time (WRT)",
+    "Estimated Maximum Loss (EML) + Recovery Time Objective (RTO)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "MTD = RTO + WRT. WRT covers verifying and restoring data after systems recover.",
+   "optionNotes": [
+    "ALE is financial, not time.",
+    "BIA is a process, RPO is data loss.",
+    "MTD = RTO + WRT.",
+    "EML is financial."
+   ]
+  },
+  {
+   "id": "DUMP-0720",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.3,
+   "stem": "What is the FIRST step in risk management?",
+   "options": [
+    "Establish the expectations of stakeholder involvement.",
+    "Identify the factors that have potential to impact business.",
+    "Establish the scope and actions required.",
+    "Identify existing controls in the environment."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Risk management starts by framing the context: setting the scope and boundaries and what the process must accomplish. Identifying factors and controls only happens once the scope is set.",
+   "optionNotes": [
+    "Stakeholder expectations are part of context but narrower.",
+    "Identifying impact factors is risk identification, which comes after scoping.",
+    "Right: establishing scope comes first.",
+    "Inventorying existing controls is part of the assessment, later."
+   ]
+  },
+  {
+   "id": "DUMP-0731",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "What is the FIRST step for an organization to take before allowing personnel to access social media from a corporate device or user account?",
+   "options": [
+    "Publish a social media guidelines document.",
+    "Publish an acceptable usage policy.",
+    "Document a procedure for accessing social media sites.",
+    "Deliver security awareness training."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Policy comes first: an acceptable use policy sets the rules for using corporate devices and accounts on social media. Guidelines, procedures and training follow from that policy.",
+   "optionNotes": [
+    "Guidelines are non-mandatory and come after policy.",
+    "Right: the AUP is the first, foundational step.",
+    "Procedures implement policy and come later.",
+    "Training communicates the policy after it exists."
+   ]
+  },
+  {
+   "id": "DUMP-0733",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MOST effective way to determine a mission critical asset in an organization?",
+   "options": [
+    "Vulnerability analysis",
+    "business process analysis",
+    "Threat analysis",
+    "Business risk analysis"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Analysing business processes shows which processes the mission depends on and therefore which supporting assets are mission-critical. Threat and vulnerability analysis assess risk to assets but don't establish how critical they are.",
+   "optionNotes": [
+    "Vulnerability analysis finds weaknesses, not criticality.",
+    "Right: business process analysis identifies mission-critical assets.",
+    "Threat analysis identifies threats, not asset importance.",
+    "Risk analysis builds on criticality that has already been determined."
+   ]
+  },
+  {
+   "id": "DUMP-0738",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "The adoption of an enterprise-wide Business Continuity (BC) program requires which of the following?",
+   "options": [
+    "Good communication throughout the organization",
+    "A completed Business Impact Analysis (BIA)",
+    "Formation of Disaster Recovery (DR) project team",
+    "Well-documented information asset classification"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "An enterprise-wide BC program depends on awareness and buy-in across all business units, which requires good communication throughout the organization. The BIA and team formation are steps inside the program rather than requirements for adopting it.",
+   "optionNotes": [
+    "Right: enterprise adoption depends on organization-wide communication.",
+    "The BIA is performed within the program once it is adopted.",
+    "The DR team is a component formed during the program.",
+    "Asset classification is helpful but not required for adopting BC."
+   ]
+  },
+  {
+   "id": "DUMP-0742",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Which of the following BEST describes the objectives of the Business Impact Analysis (BIA)?",
+   "options": [
+    "Identifying the events and environmental factors that can adversely affect an organization",
+    "Identifying what is important and critical based on disruptions that can affect the organization.",
+    "Establishing the need for a Business Continuity Plan (BCP) based on threats that can affect an organization",
+    "Preparing a program to create an organizational awareness for executing the Business Continuity Plan (BCP)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A BIA identifies critical business functions and processes, and the impact of disrupting them over time, to set recovery priorities such as RTO and MTD. Identifying threats belongs to risk assessment.",
+   "optionNotes": [
+    "Identifying adverse events is risk/threat assessment.",
+    "Right: the BIA determines what is critical based on the impact of disruption.",
+    "The BIA quantifies impact; it doesn't just justify a BCP.",
+    "Awareness programs are part of BCP training."
+   ]
+  },
+  {
+   "id": "DUMP-0765",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A large manufacturing organization arranges to buy an industrial machine system to produce a new line of products. The system includes software provided to the vendor by a thirdparty organization. The financial risk to the manufacturing organization starting production is high. What step should the manufacturing organization take to minimize its financial risk in the new venture prior to the purchase?",
+   "options": [
+    "Hire a performance tester to execute offline tests on a system.",
+    "Calculate the possible loss in revenue to the organization due to software bugs and vulnerabilities, and compare that to the system's overall price.",
+    "Place the machine behind a Layer 3 firewall.",
+    "Require that the software be thoroughly tested by an accredited independent software testing company."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Requiring independent accredited testing of third-party software before purchase reduces the chance of costly defects, minimizing financial risk. Shifting assurance to an accredited third party before purchase addresses the root cause, software defects, while the other options only measure the risk or add unrelated controls.",
+   "optionNotes": [
+    "Performance testing does not cover security/quality fully",
+    "Analysis only, does not reduce risk",
+    "Network control unrelated to software defects",
+    "Correct"
+   ]
+  },
+  {
+   "id": "DUMP-0769",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which is the PRIMARY mechanism for providing the workforce with the information needed to protect an agency's vital information resources?",
+   "options": [
+    "Incorporating security awareness and training as part of the overall information security program",
+    "An information technology (IT) security policy to preserve the confidentiality, integrity, and availability of systems",
+    "Implementation of access provisioning process for coordinating the creation of user accounts",
+    "Execution of periodic security and privacy assessments to the organization"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Awareness and training are the mechanism for informing the workforce how to protect information. A policy only works when people know it, so training is the channel that delivers this knowledge.",
+   "optionNotes": [
+    "Correct: the program delivers protective knowledge",
+    "A policy alone does not inform people",
+    "Account creation does not educate users",
+    "Assessments measure, not inform"
+   ]
+  },
+  {
+   "id": "DUMP-0782",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the PRIMARY reason criminal law is difficult to enforce when dealing with cyber-crime?",
+   "options": [
+    "Extradition treaties are rarely enforced.",
+    "Numerous language barriers exist.",
+    "Law enforcement agencies are understaffed.",
+    "Jurisdiction is hard to define."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Cybercrime crosses borders, making jurisdiction hard to define. Attackers and victims sit under different legal systems, which makes investigation authority and prosecution difficult.",
+   "optionNotes": [
+    "Treaties are an issue but not the primary one",
+    "Minor obstacle",
+    "A resource issue, not a legal one",
+    "Correct: cross-border jurisdiction"
+   ]
+  },
+  {
+   "id": "DUMP-0792",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What process facilitates the balance of operational and economic costs of protective measures with gains in mission capability?",
+   "options": [
+    "Risk assessment",
+    "Performance testing",
+    "Security audit",
+    "Risk management"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Risk management balances protective cost against mission benefit. Risk assessment is only one input to risk management; audits and testing do not make cost-benefit trade-offs.",
+   "optionNotes": [
+    "Only one input",
+    "Measures speed",
+    "Checks compliance",
+    "Correct: cost-benefit trade-off of controls"
+   ]
+  },
+  {
+   "id": "DUMP-0796",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a canon of the (ISC)2 Code of Ethics?",
+   "options": [
+    "Integrity first, association before self, and excellence in all we do",
+    "Perform all professional activities and duties in accordance with all applicable laws and the highest ethical standards.",
+    "Provide diligent and competent service to principals.",
+    "Cooperate with others in the interchange of knowledge and ideas for mutual security."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said B] The canons include 'Provide diligent and competent service to principals'. Option A is the US Air Force core values, and B and D are not the wording of any canon.",
+   "optionNotes": [
+    "US Air Force core values",
+    "Sounds ethical but is not canon wording",
+    "Correct: canon 3",
+    "Not a canon"
+   ]
+  },
+  {
+   "id": "DUMP-0818",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "What is the MOST effective way to protect privacy?",
+   "options": [
+    "Eliminate or reduce collection of personal information.",
+    "Encrypt all collected personal information.",
+    "Classify all personal information at the highest information classification level.",
+    "Apply tokenization to all personal information records."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Data minimization is the strongest privacy control, because personal data that is never collected cannot be breached or misused. Other controls only protect data that still exists.",
+   "optionNotes": [
+    "Right: minimizing collection removes the risk at its source",
+    "Encryption reduces exposure, but the data is still held and the keys can be compromised",
+    "Over-classifying everything wastes resources and does not reduce the privacy risk",
+    "Tokenization protects the stored values, but the real data still exists in the token vault"
+   ]
+  },
+  {
+   "id": "DUMP-0821",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "The personal laptop of an organization executive is stolen from the office, complete with personnel and project records. Which of the following should be done FIRST to mitigate future occurrences?",
+   "options": [
+    "Encrypt disks on personal laptops.",
+    "Issue cable locks for use on personal laptops.",
+    "Create policies addressing critical information on personal laptops.",
+    "Monitor personal laptops for critical information."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Under ISC2 doctrine, policy comes before technology. The organization must first set policy on whether and how critical information may be held on personal laptops, and technical controls such as encryption or locks then enforce it.",
+   "optionNotes": [
+    "Encryption is a good control, but it should implement a policy rather than come before one",
+    "Cable locks are a physical control applied once policy is set",
+    "Right: create policy first, then choose controls",
+    "Monitoring personal devices needs a policy basis and has privacy implications"
+   ]
+  },
+  {
+   "id": "DUMP-0824",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Physical assets defined in an organization's Business Impact Analysis (BIA) could include which of the following?",
+   "options": [
+    "Personal belongings of organizational staff members",
+    "Supplies kept off-site at a remote facility",
+    "Cloud-based applications",
+    "Disaster Recovery (DR) line-item revenues"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Physical assets in a BIA are the tangible resources the organization needs to resume operations, such as supplies and equipment, including those stored at a remote site.",
+   "optionNotes": [
+    "Staff's personal belongings are not organizational assets",
+    "Right: physical supplies held at an off-site facility",
+    "Cloud applications are logical, not physical, assets",
+    "Revenue figures are financial data, not physical assets"
+   ]
+  },
+  {
+   "id": "DUMP-0827",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "An organization with divisions in the United States (US) and the United Kingdom (UK) processes data comprised of personal information belonging to subjects living in the European Union (EU) and in the US. Which data MUST be handled according to the privacy protections of General Data Protection Regulation (GDPR)?",
+   "options": [
+    "Only the EU citizens' data",
+    "Only the EU residents' data",
+    "Only the UK citizens' data",
+    "Only data processed in the UK"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "GDPR applies to the personal data of data subjects in the EU (Article 3), whatever their nationality. Residency or presence in the EU is what matters, not citizenship.",
+   "optionNotes": [
+    "Citizenship is not the test; an EU citizen living in the US is generally outside scope",
+    "Right: EU residents' data",
+    "UK citizenship is irrelevant, and the UK is not in the EU",
+    "Processing location alone is not the criterion in this scenario"
+   ]
+  },
+  {
+   "id": "DUMP-0832",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.1,
+   "stem": "An Internet media company produces and broadcasts highly popular television shows. The company is suffering a huge revenue loss due to piracy. What technique should be used to track the distribution of content?",
+   "options": [
+    "Install the latest data loss prevention (DLP) software at every server used to distribute content.",
+    "Log user access to servers. Every day those log records are going to be audited by a team of specialized investigators.",
+    "Hire several investigators to identify sources of pirated content and report people sharing the content.",
+    "Use watermarking to hide a signature into the digital media such that it can be used to find who is using the company's content."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Digital watermarking embeds an imperceptible, persistent identifier in the media itself. Leaked copies can then be traced back to their source even after they leave the company's systems.",
+   "optionNotes": [
+    "DLP controls data on the company's own systems, not copies already released",
+    "Server logs do not show what happens after distribution",
+    "Manual investigation does not scale and provides no technical traceability",
+    "Right: watermarks travel with the content and identify the source"
+   ]
+  },
+  {
+   "id": "DUMP-0836",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "Which of the following is performed to determine a measure of success of a security awareness training program designed to prevent social engineering attacks?",
+   "options": [
+    "Employee evaluation of the training program",
+    "Internal assessment of the training program's effectiveness",
+    "Multiple choice tests to participants",
+    "Management control of reviews"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Success is measured by whether the training changed behaviour, for example lower phishing click rates in simulations. An internal assessment of effectiveness captures that outcome.",
+   "optionNotes": [
+    "Employee feedback measures satisfaction, not reduced susceptibility",
+    "Right: assessing effectiveness measures real outcomes",
+    "Quiz scores show recall, not resistance to social engineering",
+    "Management reviews are oversight, not a success metric"
+   ]
+  },
+  {
+   "id": "DUMP-0843",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following trust services principles refers to the accessibility of information used by the systems, products, or services offered to a third-party provider's customers?",
+   "options": [
+    "Security",
+    "Privacy",
+    "Access",
+    "Availability"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In the AICPA Trust Services Criteria, Availability covers whether information and systems are accessible for operation and use as committed or agreed with customers.",
+   "optionNotes": [
+    "Security addresses protection against unauthorized access",
+    "Privacy covers the handling of personal information",
+    "'Access' is not a Trust Services category",
+    "Right: accessibility of systems and information is Availability"
+   ]
+  },
+  {
+   "id": "DUMP-0852",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "What BEST describes the confidentiality, integrity, availability triad?",
+   "options": [
+    "A tool used to assist in understanding how to protect the organization's data",
+    "The three-step approach to determine the risk level of an organization",
+    "The implementation of security systems to protect the organization's data",
+    "A vulnerability assessment to see how well the organization's data is protected"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The CIA triad is a conceptual model guiding how data should be protected. It frames the security objectives that controls must support.",
+   "optionNotes": [
+    "CIA is a conceptual model guiding protection of data.",
+    "Not a risk-level methodology.",
+    "CIA is a model, not an implementation of systems.",
+    "Not an assessment activity."
+   ]
+  },
+  {
+   "id": "DUMP-0869",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "In the last 15 years a company has experienced three electrical failures. The cost of each failure was: availability impact 60,000, integrity impact 10,000, confidentiality impact 0, total impact 70,000. Which of the following would be a reasonable annual loss expectation?",
+   "options": [
+    "140,000",
+    "3,500",
+    "350,000",
+    "14,000"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "[Key corrected: book said B] Three failures in 15 years gives ARO 0.2; ALE = SLE x ARO = 70,000 x 0.2 = 14,000. SLE is the total impact per event.",
+   "optionNotes": [
+    "Uses ARO 2 instead of 0.2.",
+    "Uses ARO 0.05 instead of 0.2.",
+    "Uses ARO 5 instead of 0.2.",
+    "0.2 x 70,000 = 14,000."
+   ]
+  },
+  {
+   "id": "DUMP-0873",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is considered the BEST explanation when determining whether to provide remote network access to a third-party security service?",
+   "options": [
+    "Contract negotiation",
+    "Vendor demonstration",
+    "Supplier request",
+    "Business need"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Third-party access must be justified by a documented business need. Least privilege requires need-based justification.",
+   "optionNotes": [
+    "Contracting follows the decision; it does not justify it.",
+    "A demo does not justify granting access.",
+    "A supplier's wish is not a justification.",
+    "Access must be driven by a documented business need."
+   ]
+  },
+  {
+   "id": "DUMP-0885",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is applicable to a publicly held company concerned about information handling and storage requirement specific to the financial reporting?",
+   "options": [
+    "Privacy Act of 1974",
+    "Clinger-Cohan Act of 1996",
+    "Sarbanes-Oxley (SOX) Act of 2002",
+    "International Organization for Standardization (ISO) 27001"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "SOX governs financial reporting controls of public companies. Section 404 requires internal controls.",
+   "optionNotes": [
+    "Covers federal agency records.",
+    "Covers federal IT acquisition.",
+    "SOX governs public company financial reporting controls.",
+    "A voluntary ISMS standard, not law."
+   ]
+  },
+  {
+   "id": "DUMP-0890",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the FIRST step for defining Service Level Requirements (SLR)?",
+   "options": [
+    "Creating a prototype to confirm or refine the customer requirements",
+    "Drafting requirements for the service level agreement (SLA)",
+    "Discussing technology and solution requirements with the customer",
+    "Capturing and documenting the requirements of the customer"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Defining SLRs starts by capturing and documenting customer requirements. SLRs are the basis of the SLA.",
+   "optionNotes": [
+    "Prototyping comes after the requirements are captured.",
+    "SLA drafting follows the SLR.",
+    "Technology discussion is premature.",
+    "Capture and document customer needs first."
+   ]
+  },
+  {
+   "id": "DUMP-0897",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "What is the MOST appropriate hierarchy of documents when implementing a security program?",
+   "options": [
+    "Organization principle, policy, standard, guideline",
+    "Policy, organization principle, standard, guideline",
+    "Standard, policy, organization principle, guideline",
+    "Organization principle, guideline, policy, standard"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Organizational principles (mission, governing direction) drive policy; policy is supported by mandatory standards, with guidelines as optional advice beneath. This top-down order is the documented hierarchy.",
+   "optionNotes": [
+    "Right: top-down order",
+    "Policy derives from principles, not vice versa",
+    "Standards cannot precede policy",
+    "Guidelines are lowest, not above policy"
+   ]
+  },
+  {
+   "id": "DUMP-0908",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Employee training, risk management, and data handling procedures and policies could be characterized as which type of security measure?",
+   "options": [
+    "Non-essential",
+    "Management",
+    "Preventative",
+    "Administrative"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Training, risk management and policies/procedures are management-driven administrative controls.",
+   "optionNotes": [
+    "Not a control category",
+    "Management is a synonym used in some texts but the standard category is administrative",
+    "Preventative is a function, not a type",
+    "Right: Training, risk management and policies/procedures are management-driven administrative controls."
+   ]
+  },
+  {
+   "id": "DUMP-0913",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "What is the MAIN purpose of conducting a business impact analysis (BIA)?",
+   "options": [
+    "To determine the critical resources required to recover from an incident within a specified time period",
+    "To determine the effect of mission-critical information system failures on core business processes",
+    "To determine the cost for restoration of damaged information system",
+    "To determine the controls required to return to business critical operations"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A BIA identifies critical business processes and assesses the impact of their disruption, including failures of supporting systems.",
+   "optionNotes": [
+    "Recovery resources/time come later from BIA results in strategy",
+    "Right: A BIA identifies critical business processes and assesses the impact of their disruption, including failures of supporting systems.",
+    "Restoration cost is a narrower element",
+    "Control selection belongs to strategy/plan development"
+   ]
+  },
+  {
+   "id": "DUMP-0931",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "The initial security categorization should be done early in the system life cycle and should be reviewed periodically. Why is it important for this to be done correctly?",
+   "options": [
+    "It determines the security requirements.",
+    "It affects other steps in the certification and accreditation process.",
+    "It determines the functional and operational requirements.",
+    "The system engineering process works with selected security controls."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Categorization sets impact levels which drive the baseline security requirements and controls for the system.",
+   "optionNotes": [
+    "Right: Categorization sets impact levels which drive the baseline security requirements and controls for the system.",
+    "True but a consequence of determining requirements",
+    "Functional requirements come from the business",
+    "Not the reason categorization matters"
+   ]
+  },
+  {
+   "id": "DUMP-0940",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.5,
+   "stem": "Which of the following are the three MAIN categories of security controls?",
+   "options": [
+    "Administrative, technical, physical",
+    "Corrective, detective, recovery",
+    "Confidentiality, integrity, availability",
+    "Preventative, corrective, detective"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Controls are classically categorized as administrative, technical (logical) and physical.",
+   "optionNotes": [
+    "Right: Controls are classically categorized as administrative, technical (logical) and physical.",
+    "These are control functions",
+    "These are security goals",
+    "These are control functions"
+   ]
+  },
+  {
+   "id": "DUMP-0950",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.6,
+   "stem": "Which of the following attacks is dependent upon the compromise of a secondary target in order to reach the primary target?",
+   "options": [
+    "Watering hole",
+    "Brute force",
+    "Spear phishing",
+    "Address Resolution Protocol (ARP) poisoning"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "A watering hole attack compromises a site the real targets frequent (the secondary target) and uses it to infect the primary target's users. The attack depends on that intermediate compromise.",
+   "optionNotes": [
+    "Correct: compromise a frequented site to reach the intended victims.",
+    "Brute force attacks the target's credentials directly.",
+    "Spear phishing contacts the target directly via tailored messages.",
+    "ARP poisoning manipulates the local network directly, no secondary target."
+   ]
+  },
+  {
+   "id": "DUMP-0959",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Information security metrics provide the GREATEST value to management when based upon the security manager's knowledge of which of the following?",
+   "options": [
+    "Likelihoof of a security breach",
+    "Value of information assets",
+    "Cost of implementing effective controls",
+    "Benefits related to quantitative analysts"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Metrics matter to management when tied to business value; knowing the value of information assets lets metrics express risk and protection in business terms.",
+   "optionNotes": [
+    "Likelihood alone lacks impact/value context.",
+    "Correct: asset value anchors metrics to business impact.",
+    "Control cost is meaningful only relative to asset value.",
+    "Quantitative analysis benefits are a method, not the basis."
+   ]
+  },
+  {
+   "id": "DUMP-0960",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "A new employee formally reported suspicious behavior to the organization security team. The report claims that someone not affiliated with the organization was inquiring about the member's work location, length of employment, and building access controls. The employee's reporting is MOST likely the result of which of the following?",
+   "options": [
+    "Risk avoidance",
+    "Security engineering",
+    "Security awareness",
+    "Phishing"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "An employee recognising elicitation (social engineering probing for location and access info) and reporting it is the intended outcome of security awareness training.",
+   "optionNotes": [
+    "Risk avoidance is a risk response strategy, not employee behaviour.",
+    "Security engineering concerns system design.",
+    "Correct: awareness enables recognising and reporting social engineering.",
+    "Phishing is the attack type, not the cause of the reporting."
+   ]
+  },
+  {
+   "id": "DUMP-0969",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "To control the scope of a Business Continuity Management (BCM) system, a security practitioner should identify which of the following?",
+   "options": [
+    "Size, nature, and complexity of the organization",
+    "Business needs of the security organization",
+    "All possible risks",
+    "Adaptation model for future recovery planning"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Scoping a BCM system (e.g., per ISO 22301) considers the organisation's size, nature and complexity so the programme is proportionate.",
+   "optionNotes": [
+    "Correct: scope reflects size, nature and complexity.",
+    "Security organisation needs are too narrow; scope is business-wide.",
+    "Identifying all possible risks is impractical and not a scoping factor.",
+    "Adaptation models are later improvement activities."
+   ]
+  },
+  {
+   "id": "DUMP-0972",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.4,
+   "stem": "A security professional is assessing the risk in an application and does not take into account any mitigating or compensating controls. This type of risk rating is an example of which of the following?",
+   "options": [
+    "Transferred risk",
+    "Inherent risk",
+    "Residual risk",
+    "Avoided risk"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Inherent risk is the risk level before any controls are considered; residual risk is what remains after controls.",
+   "optionNotes": [
+    "Transferred risk is shifted to a third party.",
+    "Correct: risk ignoring controls is inherent.",
+    "Residual risk accounts for controls.",
+    "Avoided risk is eliminated by not doing the activity."
+   ]
+  },
+  {
+   "id": "DUMP-0973",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "A financial company has decided to move its main business application to the Cloud. The legal department objects, arguing that the move of the platform should comply with several regulatory obligations such as the General Data Protection (GDPR) and ensure data confidentiality. The Chief Information Security Officer (CISO) says that the cloud provider has met all regulations requirements and even provides its own encryption solution with internally-managed encryption keys to address data confidentiality. Did the CISO address all the legal requirements in this situation?",
+   "options": [
+    "No, because the encryption solution is internal to the cloud provider.",
+    "Yes, because the cloud provider meets all regulations requirements.",
+    "Yes, because the cloud provider is GDPR compliant.",
+    "No, because the cloud provider is not certified to host government data."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Because the provider manages the encryption keys, it can access the data, so the company does not keep control of confidentiality as GDPR and financial regulation expect. Provider compliance claims do not shift the customer's accountability.",
+   "optionNotes": [
+    "Correct: provider-held keys leave data accessible to the provider.",
+    "Provider compliance does not transfer the controller's obligations.",
+    "Provider GDPR compliance alone does not satisfy confidentiality requirements.",
+    "Government data hosting is irrelevant to this scenario."
+   ]
+  },
+  {
+   "id": "DUMP-0982",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "Change management policies and procedures belong to which of the following types of controls?",
+   "options": [
+    "Directive",
+    "Detective",
+    "Corrective",
+    "Preventative"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Policies and procedures tell people what to do, making them directive (administrative) controls.",
+   "optionNotes": [
+    "Correct: policies direct behaviour.",
+    "Detective controls discover events after they occur.",
+    "Corrective controls restore after an incident.",
+    "They support prevention, but policies are classed as directive."
+   ]
+  },
+  {
+   "id": "DUMP-0992",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "A corporation does not have a formal data destruction policy. During which phase of a criminal legal proceeding will this have the MOST impact?",
+   "options": [
+    "Arraignment",
+    "Trial",
+    "Sentencing",
+    "Discovery"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Without a destruction policy, data that should have been destroyed is still kept and must be produced, and inconsistent destruction can look like spoliation. These problems arise during discovery.",
+   "optionNotes": [
+    "Arraignment is the charging hearing.",
+    "Trial uses evidence already produced.",
+    "Sentencing follows conviction.",
+    "Correct: discovery is when retained data must be produced."
+   ]
+  },
+  {
+   "id": "DUMP-0994",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "The core component of Role Based Access control (RBAC) must be constructed of defined data elements. Which elements are required?",
+   "options": [
+    "Users, permissions, operators, and protected objects",
+    "Users, roles, operations, and protected objects",
+    "Roles, accounts, permissions, and protected objects",
+    "Roles, operations, accounts, and protected objects"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "RBAC is built from users, roles, operations (permissions) and protected objects; users get permissions via roles.",
+   "optionNotes": [
+    "Wrong: Omits roles, the defining element",
+    "Right: the four core RBAC elements",
+    "Wrong: Accounts are not a core RBAC element; users are",
+    "Wrong: Omits users"
+   ]
+  },
+  {
+   "id": "DUMP-0998",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An organization has developed a way for customers to share information from their wearable devices with each other. Unfortunately, the users were not informed as to what information collected would be shared. What technical controls should be put in place to remedy the privacy issue while still trying to accomplish the organization's business goals?",
+   "options": [
+    "Default the user to not share any information.",
+    "Inform the user of the sharing feature changes after implemented.",
+    "Share only what the organization decides is best.",
+    "Stop sharing data with the other users."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Privacy by default means sharing is off until users opt in, fixing the consent problem while keeping the feature.",
+   "optionNotes": [
+    "Right: privacy by default (opt-in)",
+    "Wrong: Informing after the fact gives no consent",
+    "Wrong: Ignores user consent",
+    "Wrong: Defeats the business goal"
+   ]
+  },
+  {
+   "id": "DUMP-1000",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What does the result of Cost-Benefit Analysis (CBA) on new security initiatives provide?",
+   "options": [
+    "Quantifiable justification",
+    "Baseline improvement",
+    "Risk evaluation",
+    "Formalized acceptance"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Cost-benefit analysis shows whether the benefit of a control exceeds its cost, giving a quantifiable justification for the spend.",
+   "optionNotes": [
+    "Right: it shows whether the benefit is worth the cost, in numbers",
+    "Wrong: Not the output of CBA",
+    "Wrong: Risk evaluation is an input",
+    "Wrong: Acceptance is a management decision"
+   ]
+  },
+  {
+   "id": "DUMP-1006",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "What part of an organization's strategic risk assessment MOST likely includes information on items affecting the success of the organization?",
+   "options": [
+    "Key Risk Indicator (KRI)",
+    "Threat analysis",
+    "Vulnerability analysis",
+    "Key Performance Indicator (KPI)"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "[Key corrected: book said D] A strategic risk assessment tracks key risk indicators, metrics that signal growing exposure to events that could stop the organization reaching its objectives. They therefore carry information on items affecting its success. KPIs measure how well the organization is performing, not the risks to that performance. Threat and vulnerability analysis are tactical inputs, not strategic success indicators.",
+   "optionNotes": [
+    "Correct: KRIs are the risk-assessment metrics that flag risks threatening the organization's objectives and success.",
+    "Wrong: threat analysis identifies threat sources and events, a tactical input rather than a measure of items affecting organizational success.",
+    "Wrong: vulnerability analysis looks at technical or process weaknesses, not strategic factors affecting success.",
+    "Wrong: KPIs measure performance against goals; they belong to performance management, not risk assessment."
+   ]
+  },
+  {
+   "id": "DUMP-1013",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Why do Certificate Authorities (CA) add value to the security of electronic commerce transactions?",
+   "options": [
+    "They maintain the certificate revocation list.",
+    "They maintain the private keys of transaction parties.",
+    "They verify the transaction parties' private keys.",
+    "They provide a secure communication channel to the transaction parties."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "CAs vouch for certificate validity and publish revocation information, so parties can trust public keys.",
+   "optionNotes": [
+    "Right: revocation lists let parties reject compromised certificates",
+    "Wrong: CAs do not hold parties' private keys",
+    "Wrong: Private keys are never shared for verification",
+    "Wrong: CAs do not provide the channel"
+   ]
+  },
+  {
+   "id": "DUMP-1019",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following has the responsibility of information technology (IT) governance?",
+   "options": [
+    "Chief Information Officer (CIO)",
+    "Senior IT Management",
+    "Board of Directors",
+    "Chief Information Security Officer (CISO)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Governance is the responsibility of the board of directors; executives carry it out.",
+   "optionNotes": [
+    "Wrong: Executes governance",
+    "Wrong: Executes governance",
+    "Right: the board is accountable for governance",
+    "Wrong: Security leader, not governance owner"
+   ]
+  },
+  {
+   "id": "DUMP-1022",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is security control volatility?",
+   "options": [
+    "A reference to the stability of the security control.",
+    "A reference to how unpredictable the security control is.",
+    "A reference to the impact of the security control.",
+    "A reference to the likelihood of change in the security control."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Volatility describes how likely a control is to change, which drives how often it must be monitored.",
+   "optionNotes": [
+    "Wrong: Opposite meaning",
+    "Wrong: Not the definition",
+    "Wrong: That is impact",
+    "Right: how likely the control is to change, which drives monitoring frequency"
+   ]
+  },
+  {
+   "id": "DUMP-1026",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "When resolving ethical conflicts, the information security professional MUST consider many factors. In what order should these considerations be prioritized?",
+   "options": [
+    "Public safety, duties to individuals, duties to the profession, and duties to principals",
+    "Public safety, duties to principals, duties to individuals, and duties to the profession",
+    "Public safety, duties to the profession, duties to principals, and duties to individuals",
+    "Public safety, duties to principals, duties to the profession, and duties to individuals"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "[Key corrected: book said A] ISC2 guidance resolves conflicts in this order: public safety, then duties to principals, then individuals, then the profession.",
+   "optionNotes": [
+    "Wrong order",
+    "Right: public safety, then principals, then individuals, then the profession",
+    "Wrong order",
+    "Wrong order"
+   ]
+  },
+  {
+   "id": "DUMP-1027",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is a Key Performance Indicator (KPI) for a security training and awareness program?",
+   "options": [
+    "The number of security audits performed",
+    "The number of attendees at security training events",
+    "The number of security training materials created",
+    "The number of security controls implemented"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Attendance at training measures the program's reach and is a common performance indicator.",
+   "optionNotes": [
+    "Wrong: Measures audit activity",
+    "Right: attendance measures how far the program reaches",
+    "Wrong: Measures output, not performance",
+    "Wrong: Unrelated to training"
+   ]
+  },
+  {
+   "id": "DUMP-1038",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following four iterative steps are conducted on third-party vendors in an on-going basis?",
+   "options": [
+    "Investigate, Evaluate, Respond, Monitor",
+    "Frame, Assess, Respond, Monitor",
+    "Frame, Assess, Remediate, Monitor",
+    "Investigate, Assess, Remediate, Monitor"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "The NIST SP 800-39 risk management steps are Frame, Assess, Respond, Monitor.",
+   "optionNotes": [
+    "Wrong steps",
+    "Right: the NIST SP 800-39 risk cycle",
+    "Wrong: Remediate is not a step",
+    "Wrong steps"
+   ]
+  },
+  {
+   "id": "DUMP-1055",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is MOST important to follow when developing information security controls for an organization?",
+   "options": [
+    "Exercise due diligence with regard to all risk management information to tailor appropriate controls.",
+    "Perform a risk assessment and choose a standard that addresses existing gaps.",
+    "Use industry standard best practices for security controls in the organization.",
+    "Review all local and international standards and choose the most stringent based on location."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Controls should be tailored to the organization's actual risks, based on diligent use of all risk management information, rather than copied wholesale from standards.",
+   "optionNotes": [
+    "Correct: tailor controls using all of the risk information",
+    "A standard-first approach can miss tailoring to the organization's own risks",
+    "Best practices alone may not fit the organization's risks",
+    "The most stringent standard may be excessive and not cost-justified"
+   ]
+  },
+  {
+   "id": "DUMP-1062",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following needs to be taken into account when assessing vulnerability?",
+   "options": [
+    "Risk identification and validation",
+    "Threat mapping",
+    "Risk acceptance criteria",
+    "Safeguard selection"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Vulnerability assessment feeds risk assessment; vulnerabilities must be identified and validated as real risks before safeguards are chosen or acceptance is decided.",
+   "optionNotes": [
+    "Correct: vulnerabilities are identified and validated as risks",
+    "Threat mapping is a threat activity, not a vulnerability one",
+    "Acceptance criteria apply later, in risk response",
+    "Safeguards are selected after assessment"
+   ]
+  },
+  {
+   "id": "DUMP-1075",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the BEST reason to include supply chain risks in a corporate risk register?",
+   "options": [
+    "Risk registers help fund corporate supply chain risk management (SCRM) systems.",
+    "Risk registers classify and categorize risk and allow risks to be compared to corporate risk appetite.",
+    "Risk registers can be used to illustrate residual risk across the company.",
+    "Risk registers allow for the transfer of risk to third parties."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A risk register categorizes risks so they can be compared with the organization's risk appetite and prioritized, and supply chain risk should be included in the same way.",
+   "optionNotes": [
+    "Registers do not fund programs",
+    "Correct: categorize and compare risks to appetite",
+    "Residual risk display is a side benefit, not the main reason",
+    "Registers record risks; they do not transfer them"
+   ]
+  },
+  {
+   "id": "DUMP-1078",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the threat modeling order using process for Attack simu-lation and threat analysis (PASTA)?",
+   "options": [
+    "Application decomposition, threat analysis, vulnerability detection, attack enumeration, risk/impact analysis",
+    "Threat analysis, vulnerability detection, application decomposition, attack enumeration, risk/Impact analysis",
+    "Risk/impact analysis, application decomposition, threat analysis, vulnerability detection, attack enumeration",
+    "Application decomposition, threat analysis, risk/impact analysis, vulnerability detection, attack enumeration"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "After defining objectives and technical scope, PASTA proceeds through application decomposition, threat analysis, vulnerability analysis, attack modeling/enumeration, and finally risk/impact analysis.",
+   "optionNotes": [
+    "Correct: matches PASTA stages 3-7",
+    "Starts with threats before decomposition, which is out of order",
+    "Puts risk/impact first, but it is the final stage",
+    "Risk analysis comes before vulnerability analysis, which is out of order"
+   ]
+  },
+  {
+   "id": "DUMP-1079",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following is considered the last line defense in regard to a Governance, Risk managements, and compliance (GRC) program?",
+   "options": [
+    "Internal audit",
+    "Internal controls",
+    "Board review",
+    "Risk management"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "In the three lines model, internal audit is the independent third and last line of defense, after operational management and the risk/compliance functions.",
+   "optionNotes": [
+    "Correct: independent third line of defense",
+    "Internal controls are the first line",
+    "The board oversees rather than acting as a line of defense",
+    "Risk management is the second line"
+   ]
+  },
+  {
+   "id": "DUMP-1080",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "When developing an organization's information security budget, it is important that the",
+   "options": [
+    "expected risk can be managed appropriately with the funds allocated.",
+    "requested funds are at an equal amount to the expected cost of breaches.",
+    "requested funds are part of a shared funding pool with other areas.",
+    "expected risk to the organization does not exceed the funds allocated."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The budget should be sized so that the expected risk can be managed down to acceptable levels with the funds allocated.",
+   "optionNotes": [
+    "Correct: funds sized to manage risk to acceptable levels",
+    "Matching breach cost is arbitrary",
+    "Shared pooling is a funding mechanic",
+    "Comparing risk with funds as amounts is a category error"
+   ]
+  },
+  {
+   "id": "DUMP-1084",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "Which of the following goals represents a modern shift in risk management according to National Institute of Standards and Technology (NIST)?",
+   "options": [
+    "Focus on operating environments that are changing, evolving, and full of emerging threats.",
+    "Secure information technology (IT) systems that store, process, or transmit organizational information.",
+    "Enable management to make well-informed risk-based decisions justifying security expenditure.",
+    "Provide an improved mission accomplishment approach."
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "NIST's modern risk management guidance stresses dynamic operating environments with continuously emerging threats, rather than securing static IT systems.",
+   "optionNotes": [
+    "Correct: dynamic, evolving threat environments",
+    "Securing IT systems is the traditional focus",
+    "Justifying spend is a long-standing goal",
+    "Too vague and not the noted shift"
+   ]
+  },
+  {
+   "id": "DUMP-1087",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 1.0,
+   "stem": "What are the essential elements of a Risk Assessment Report (RAR)?",
+   "options": [
+    "Table of contents, testing criteria, and index",
+    "Table of contents, chapters, and executive summary",
+    "Executive summary, graph of risks, and process",
+    "Executive summary, body of the report, and appendices"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "A formal report is structured as an executive summary for management, a body with the detailed findings, and appendices with supporting data.",
+   "optionNotes": [
+    "Testing criteria and an index are not the core elements",
+    "Chapters are vague and there are no appendices",
+    "A graph is not an essential element",
+    "Correct: executive summary, body and appendices"
+   ]
+  },
+  {
+   "id": "DUMP-1103",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following is critical if an employee is dismissed due to violation of an organization's Acceptable Use Policy (AUP)?",
+   "options": [
+    "Privilege suspension",
+    "Internet access logs",
+    "Proxy records",
+    "Appropriate documentation"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Dismissing someone for violating policy can be challenged legally, so the organisation must be able to show the policy, the employee's acknowledgement, the evidence and due process. Appropriate documentation is what makes the termination defensible.",
+   "optionNotes": [
+    "Suspending privileges is a step in the process, not the critical defence.",
+    "Internet logs are one piece of evidence, not the whole record.",
+    "Proxy records are also only partial evidence.",
+    "Correct: thorough documentation supports due process and a legal defence."
+   ]
+  },
+  {
+   "id": "DUMP-1106",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following would qualify as an exception to the \"right to be forgotten\" of the General Data Protection Regulation's (GDPR)?",
+   "options": [
+    "For the establishment, exercise, or defense of legal claims",
+    "The personal data has been lawfully processed and collected",
+    "The personal data remains necessary to the purpose for which it was collected",
+    "For the reasons of private interest"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "GDPR Article 17(3) exempts erasure where the processing is needed to establish, exercise or defend legal claims. Lawful collection, or the data still being needed for its purpose, are conditions for processing, not listed exceptions, and private interest is not an exemption.",
+   "optionNotes": [
+    "Correct: legal claims are an explicit Art. 17(3) exception.",
+    "Lawful processing doesn't override a valid erasure request.",
+    "Continued necessity is a reason the right doesn't arise, not a listed exception.",
+    "Private interest is not an exemption."
+   ]
+  },
+  {
+   "id": "DUMP-1120",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What action should be taken by a business line that is unwilling to accept the residual risk in a system after implementing compensating controls?",
+   "options": [
+    "Notify the audit committee of the situation.",
+    "Purchase insurance to cover the residual risk.",
+    "Implement operational safeguards.",
+    "Find another business line willing to accept the residual risk."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "If residual risk is unacceptable and more controls aren't feasible, the remaining options are to avoid or transfer the risk. Insurance transfers the financial impact of the residual risk.",
+   "optionNotes": [
+    "Notifying the audit committee doesn't treat the risk.",
+    "Correct: insurance transfers the residual risk.",
+    "Compensating controls have already been applied.",
+    "Risk can't be pushed onto an unrelated business line."
+   ]
+  },
+  {
+   "id": "DUMP-1128",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.2,
+   "stem": "Which of the following is a risk matrix?",
+   "options": [
+    "A database of risks associated with a specific information system.",
+    "A table of risk management factors for management to consider.",
+    "A two-dimensional picture of risk for organizations, products, projects, or other items of interest.",
+    "A tool for determining risk management decisions for an activity or system."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A risk matrix plots likelihood against impact on a two-dimensional grid. It gives a visual picture of risk for prioritisation.",
+   "optionNotes": [
+    "That describes a risk register.",
+    "This describes factors, not a matrix.",
+    "Correct: a two-dimensional likelihood-by-impact view.",
+    "Too vague; it isn't what defines a matrix."
+   ]
+  },
+  {
+   "id": "DUMP-1130",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Which organizational department is ultimately responsible for information governance related to e-mail and other e-records?",
+   "options": [
+    "Audit",
+    "Compliance",
+    "Legal",
+    "Security"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Email and e-records governance centres on retention, legal hold and e-discovery obligations. Legal is ultimately accountable for those, while IT and security implement the controls.",
+   "optionNotes": [
+    "Audit checks compliance but doesn't own governance.",
+    "Compliance supports but isn't ultimately responsible.",
+    "Correct: Legal owns records-governance obligations.",
+    "Security implements the controls."
+   ]
+  },
+  {
+   "id": "DUMP-1157",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "What is the BEST approach for maintaining ethics when a security professional is unfamiliar with the culture of a country and is asked to perform a questionable task?",
+   "options": [
+    "Exercise due diligence when deciding to circumvent host government requests.",
+    "Become familiar with the means in which the code of ethics is applied and considered.",
+    "Complete the assignment based on the customer's wishes.",
+    "Execute according to the professional's comfort level with the code of ethics."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "When unsure, the professional should first understand how the ISC2 Code of Ethics applies in this cultural setting before acting. Simply doing what the customer wants, or going by personal comfort, does not uphold the Code. Defying the host government is not the starting point.",
+   "optionNotes": [
+    "Circumventing government requests is a risky and premature first step.",
+    "Correct: understand how the Code applies in this context.",
+    "Following the customer's wishes may breach the Code.",
+    "Personal comfort is subjective and not the Code's standard."
+   ]
+  },
+  {
+   "id": "DUMP-1181",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "What is the document that describes the measures that have been implemented or planned to correct any deficiencies noted during the assessment of the security controls?",
+   "options": [
+    "Business Impact Analysis (BIA)",
+    "Security Assessment Report (SAR)",
+    "Plan of Action and Milestones (POA&M)",
+    "Security Assessment Plan (SAP)"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A POA&M lists each deficiency with the planned corrective actions, resources and milestones. The SAR reports the findings, the SAP plans the assessment, and the BIA is unrelated.",
+   "optionNotes": [
+    "The BIA assesses business impact, not control deficiencies.",
+    "The SAR reports findings, not remediation plans.",
+    "Correct: the POA&M tracks corrective measures.",
+    "The SAP plans the assessment beforehand."
+   ]
+  },
+  {
+   "id": "DUMP-1184",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following documents specifies services from the client's viewpoint?",
+   "options": [
+    "Service level report",
+    "Business impact analysis (BIA)",
+    "Service level agreement (SLA)",
+    "Service Level Requirement (SLR)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "The SLR states the customer's service requirements from the client's viewpoint, and it feeds the SLA. The SLA is the agreed contract, and the service level report measures performance. The BIA is unrelated.",
+   "optionNotes": [
+    "Reports actual performance against the SLA.",
+    "The BIA covers business impact, not service requirements.",
+    "The negotiated agreement, not the client's own view.",
+    "Correct: the SLR expresses the client's requirements."
+   ]
+  },
+  {
+   "id": "DUMP-1186",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "A Chief Information Security Officer (CISO) of a firm which decided to migrate to cloud has been tasked with ensuring an optimal level of security. Which of the following would be the FIRST consideration?",
+   "options": [
+    "Define the cloud migration roadmap and set out which applications and data repositories should be moved into the cloud.",
+    "Ensure that the contract between the cloud vendor and the firm clearly defines responsibilities for operating security controls.",
+    "Analyze the firm's applications and data repositories to determine the relevant control requirements.",
+    "Request a security risk assessment of the cloud vendor be completed by an independent third-party."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Before planning the migration or writing contracts, the CISO must know which security controls each application and data store needs. Those requirements drive the roadmap, the contract terms and vendor assessments.",
+   "optionNotes": [
+    "Building the roadmap depends on knowing the requirements.",
+    "Contract responsibilities depend on the requirements.",
+    "Correct: determine control requirements first.",
+    "Vendor assessment is measured against the requirements."
+   ]
+  },
+  {
+   "id": "DUMP-1190",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "As a security manager which of the following is the MOST effective practice for providing value to an organization?",
+   "options": [
+    "Assess business risk and apply security resources accordingly",
+    "Coordinate security implementations with internal audit",
+    "Achieve compliance regardless of related technical issues",
+    "Identify confidential information and protect it"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Security adds value when resources go to the business risks that matter most. Compliance pursued regardless of other issues, or protection limited to confidential data, is too narrow. Coordinating with audit is useful but secondary.",
+   "optionNotes": [
+    "Correct: risk-based allocation of security resources.",
+    "Helpful, but not the main source of value.",
+    "Compliance at any cost ignores business risk.",
+    "Too narrow; it ignores integrity and availability."
+   ]
+  },
+  {
+   "id": "DUMP-1202",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "When can a security program be considered effective?",
+   "options": [
+    "Audits are regularly performed and reviewed.",
+    "Vulnerabilities are proactively identified.",
+    "Risk is lowered to an acceptable level.",
+    "Backups are regularly performed and validated."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Security programs exist to manage risk; effectiveness means risk is reduced to the level senior management accepts.",
+   "optionNotes": [
+    "Audits are an activity, not the measure of effectiveness.",
+    "Proactive discovery helps but doesn't prove risk is managed.",
+    "Correct: goal of the program is risk at an acceptable level.",
+    "Backups are one operational control, not program effectiveness."
+   ]
+  },
+  {
+   "id": "DUMP-1208",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "What type of risk is related to the sequences of value-adding and managerial activities undertaken in an organization?",
+   "options": [
+    "Demand risk",
+    "Process risk",
+    "Control risk",
+    "Supply risk"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Process risk arises from the sequence of value-adding and management activities.",
+   "optionNotes": [
+    "Demand risk concerns customer demand variability.",
+    "Correct: process risk relates to sequences of value-adding and managerial activities.",
+    "Control risk is risk that controls fail to detect issues (audit term).",
+    "Supply risk concerns inbound supply chain."
+   ]
+  },
+  {
+   "id": "DUMP-1213",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.4,
+   "stem": "When defining a set of security controls to mitigate a risk, which of the following actions MUST occur?",
+   "options": [
+    "Each control's effectiveness must be evaluated individually.",
+    "Each control must completely mitigate the risk.",
+    "The control set must adequately mitigate the risk.",
+    "The control set must evenly divide the risk."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Controls are selected so the combined set reduces risk to an acceptable level; no single control must do it all.",
+   "optionNotes": [
+    "Controls are judged jointly, not only individually.",
+    "No single control must fully mitigate risk.",
+    "Correct: the combined set must reduce risk adequately.",
+    "Evenly dividing risk is not a requirement."
+   ]
+  },
+  {
+   "id": "DUMP-1215",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "A colleague who recently left the organization asked a security professional for a copy of the organization's confidential incident management policy. Which of the following is the BEST response to this request?",
+   "options": [
+    "Email the policy to the colleague as they were already part of the organization and familiar with it.",
+    "Do not acknowledge receiving the request from the former colleague and ignore them.",
+    "Access the policy on a company-issued device and let the former colleague view the screen.",
+    "Submit the request using company official channels to ensure the policy is okay to distribute."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Confidential documents may only be released through official approval channels.",
+   "optionNotes": [
+    "Leaking confidential policy to an outsider violates confidentiality.",
+    "Ignoring is unprofessional; proper handling is better.",
+    "Showing the screen still discloses confidential data.",
+    "Correct: route via official channels for authorization."
+   ]
+  },
+  {
+   "id": "DUMP-1218",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.2,
+   "stem": "Which of the following protects personally identifiable information (PII) used by financial services organizations?",
+   "options": [
+    "National Institute of Standards and Technology (NIST) SP 800-53",
+    "Gramm-Leach-Bliley Act (GLBA)",
+    "Payment Card Industry Data Security Standard (PCI-DSS)",
+    "Health Insurance Portability and Accountability Act (HIPAA)"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "GLBA mandates protection of consumer financial PII by financial institutions.",
+   "optionNotes": [
+    "NIST 800-53 is a control catalogue, not financial privacy law.",
+    "Correct: GLBA protects consumer financial PII.",
+    "PCI DSS is industry standard for card data, not PII broadly.",
+    "HIPAA covers health information."
+   ]
+  },
+  {
+   "id": "DUMP-1243",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "The MAIN task of promoting security for Personal Computers (PC) is",
+   "options": [
+    "understanding the technical controls and ensuring they are correctly installed.",
+    "understanding the required systems and patching processes for different Operating Systems (OS).",
+    "making sure that users are using only valid, authorized software, so that the chance of virus infection is reduced.",
+    "making users understand the risks to the machines and data, so they will take appropriate steps to protect them."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "PC security depends largely on users understanding risks and acting to protect systems and data.",
+   "optionNotes": [
+    "Technical controls alone aren't the main task.",
+    "Patching is one part.",
+    "Authorized software is a narrow aspect.",
+    "Correct: user awareness drives protective behaviour on PCs."
+   ]
+  },
+  {
+   "id": "DUMP-1244",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "Which of the following is the name of an individual or group that is impacted by a change?",
+   "options": [
+    "Change agent",
+    "Stakeholder",
+    "Sponsor",
+    "End User"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A stakeholder is anyone affected by or with interest in a change.",
+   "optionNotes": [
+    "Change agent drives change.",
+    "Correct: stakeholders are those affected.",
+    "Sponsor funds/champions.",
+    "End users are only a subset of those affected."
+   ]
+  },
+  {
+   "id": "DUMP-1275",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is held accountable for the risk to organizational systems and data that result from outsourcing Information Technology (IT) systems and services?",
+   "options": [
+    "The acquiring organization",
+    "The service provider",
+    "The risk executive (function)",
+    "The IT manager"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Outsourcing transfers operations but not accountability; the acquiring organization remains accountable for the risk.",
+   "optionNotes": [
+    "Right: accountability cannot be outsourced",
+    "Responsible by contract only",
+    "Advisory function within the organization",
+    "Not ultimately accountable"
+   ]
+  },
+  {
+   "id": "DUMP-1290",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "What is the PRIMARY purpose of creating and reporting metrics for a security awareness, training, and education program?",
+   "options": [
+    "Make all stakeholders aware of the program's progress.",
+    "Measure the effect of the program on the organization's workforce.",
+    "Facilitate supervision of periodic training events.",
+    "Comply with legal regulations and document due diligence in security practices."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Metrics exist mainly to measure the program's effectiveness, meaning the change in workforce behavior and knowledge.",
+   "optionNotes": [
+    "Secondary",
+    "Right: measure effectiveness",
+    "Administrative",
+    "Secondary benefit"
+   ]
+  },
+  {
+   "id": "DUMP-1296",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Why is it important that senior management clearly communicates the formal Maximum Tolerable Downtime (MTD) decision?",
+   "options": [
+    "To provide each manager with precise direction on selecting an appropriate recovery alternative",
+    "To demonstrate to the regulatory bodies that the company takes business continuity seriously",
+    "To demonstrate to the board of directors that senior management is committed to continuity recovery efforts",
+    "To provide a formal declaration from senior management as required by internal audit to demonstrate sound business practices"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "MTD sets the outer limit for how long each business function can be down. Managers need that limit stated clearly so they can pick recovery alternatives (hot/warm/cold sites, contracts) whose recovery time fits inside it. Regulator, board and audit optics are side benefits, not the purpose.",
+   "optionNotes": [
+    "Correct: MTD drives recovery strategy selection for each function.",
+    "Regulatory demonstration is a by-product, not the reason.",
+    "Showing commitment to the board is secondary.",
+    "Audit formality is not why MTD is communicated."
+   ]
+  },
+  {
+   "id": "DUMP-1299",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following regulations dictates how data breaches are handled?",
+   "options": [
+    "Sarbanes-Oxley (SOX)",
+    "National Institute of Standards and Technology (NIST)",
+    "Payment Card Industry Data Security Standard (PCI-DSS)",
+    "General Data Protection Regulation (GDPR)"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "GDPR contains explicit breach-handling rules, such as notifying the supervisory authority within 72 hours and informing data subjects. SOX covers financial reporting, NIST is a standards body rather than a regulator, and PCI DSS is a contractual industry standard.",
+   "optionNotes": [
+    "SOX covers financial reporting controls, not breach handling.",
+    "NIST publishes guidance; it is not a regulation.",
+    "PCI DSS is an industry standard, not a regulation.",
+    "Correct: GDPR Articles 33-34 set breach-notification duties."
+   ]
+  },
+  {
+   "id": "DUMP-1301",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Activity to baseline, tailor, and scope security controls takes place during which National Institute of Standards and Technology (NIST) Risk Management Framework (RMF) step?",
+   "options": [
+    "Authorize IS.",
+    "Assess security controls.",
+    "Categorize Information system (IS).",
+    "Select security controls."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In NIST RMF, the Select step chooses the baseline controls and then tailors and scopes them to the system. Categorize sets impact levels, Assess tests the controls, and Authorize accepts the risk.",
+   "optionNotes": [
+    "Authorize is the risk-acceptance decision.",
+    "Assess evaluates the controls already in place.",
+    "Categorize assigns FIPS 199 impact levels.",
+    "Correct: baselining and tailoring happen in Select."
+   ]
+  },
+  {
+   "id": "DUMP-1302",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.8,
+   "stem": "Assuming an individual has taken all of the steps to keep their internet connection private, which of the following is the BEST to browse the web privately?",
+   "options": [
+    "Prevent information about browsing activities from being stored in the cloud.",
+    "Store browsing activities in the cloud.",
+    "Prevent information about browsing activities from being stored on the personal device.",
+    "Store information about browsing activities on the personal device."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Once the connection itself is protected, private browsing means not leaving browsing history, cookies and cache on the local device. That is what private/incognito modes do.",
+   "optionNotes": [
+    "Cloud sync matters, but local traces are the core of private browsing.",
+    "Storing activity in the cloud reduces privacy.",
+    "Correct: no local storage of browsing artifacts.",
+    "Storing locally leaves history behind."
+   ]
+  },
+  {
+   "id": "DUMP-1303",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "What should be used immediately after a Business Continuity Plan (BCP) has been invoked?",
+   "options": [
+    "Resumption procedures describing the actions to be taken to return to normal business operations",
+    "Emergency procedures describing the necessary actions to be taken following an incident jeopardizes business operations",
+    "Fallback procedures describing what action are to be taken to more essential business activities to alternative temporary locations",
+    "Maintain schedule how and the plan will be tested and the process for maintaining the plan"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "In the BCI/ISO model, emergency procedures come first after invocation: life safety and immediate response. Fallback (relocation) and resumption (return to normal) follow later. Test/maintenance schedules are not operational steps.",
+   "optionNotes": [
+    "Resumption is the last phase.",
+    "Correct: emergency procedures run immediately after invocation.",
+    "Fallback relocation comes after the emergency response.",
+    "Maintenance schedules are not invoked during an incident."
+   ]
+  },
+  {
+   "id": "DUMP-1307",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "Which one of the following would cause an immediate review and possible change to the security policies of an organization?",
+   "options": [
+    "Change in technology",
+    "Change in senior management",
+    "Change to organization processes",
+    "Change to organization goals"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Security policy exists to support the organization's goals. If those goals change, the policy must be reviewed straight away. Changes in technology or processes usually affect standards and procedures rather than policy.",
+   "optionNotes": [
+    "Technology changes mainly affect standards and procedures.",
+    "New executives do not by themselves change policy intent.",
+    "Process changes mostly affect procedures.",
+    "Correct: policy is aligned to organizational goals."
+   ]
+  },
+  {
+   "id": "DUMP-1317",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following contributes MOST to the effectiveness of a security officer?",
+   "options": [
+    "Understanding the regulatory environment",
+    "Developing precise and practical security plans",
+    "Integrating security into the business strategies",
+    "Analyzing the strengths and weakness of the organization"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "ISC2 stresses that security must support the business. A security officer is most effective when security is built into business strategy rather than run as a separate technical function.",
+   "optionNotes": [
+    "Regulatory knowledge is necessary but not sufficient.",
+    "Good plans help, but they must align with the business.",
+    "Correct: business alignment is the top driver of effectiveness.",
+    "SWOT-style analysis is an input, not the main factor."
+   ]
+  },
+  {
+   "id": "DUMP-1326",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "In a dispersed network that lacks central control, which of the following is the PRIMARY course of action to mitigate exposure?",
+   "options": [
+    "Implement management policies, audit control, and data backups",
+    "Implement security policies and standards, access controls, and access limitations",
+    "Implement security policies and standards, data backups, and audit controls",
+    "Implement remote access policies, shared workstations, and log management"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Without central control, the main way to reduce exposure is to set consistent security policies and standards and enforce access controls and limitations at each node.",
+   "optionNotes": [
+    "Backups and audits are not preventive.",
+    "Correct: policy plus access controls directly limit exposure.",
+    "Backups and audit are recovery/detective controls.",
+    "Shared workstations increase risk."
+   ]
+  },
+  {
+   "id": "DUMP-1327",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.9,
+   "stem": "Which of the ISC2 Code of Ethics canons is MOST reflected when preserving the value of systems, applications, and entrusted information while avoiding conflicts of interest?",
+   "options": [
+    "Act honorably, honestly, justly, responsibly, and legally.",
+    "Protect society, the commonwealth, and the infrastructure.",
+    "Provide diligent and competent service to principles.",
+    "Advance and protect the profession."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "[Key corrected: book said A] The ISC2 canon to provide diligent and competent service to principals includes preserving the value of their systems, applications and information, and avoiding conflicts of interest. The other canons address honesty/legality, society, and the profession.",
+   "optionNotes": [
+    "Covers honesty and legality, not service to principals.",
+    "Concerns society and the infrastructure.",
+    "Correct: this canon includes preserving the value of systems and avoiding conflicts of interest.",
+    "Concerns the profession's standing."
+   ]
+  },
+  {
+   "id": "DUMP-1367",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -1.0,
+   "stem": "What is the PRIMARY objective of business continuity planning?",
+   "options": [
+    "Establishing a cost estimate for business continuity recovery operations",
+    "Restoring computer systems to normal operations as soon as possible",
+    "Strengthening the perceived importance of business continuity planning among senior management",
+    "Ensuring timely recovery of mission-critical business processes"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "BCP aims to keep or timely recover mission-critical business processes, not just IT systems.",
+   "optionNotes": [
+    "A cost estimate is an input, not the objective.",
+    "IT restoration is DRP-focused, too narrow.",
+    "Management support is a prerequisite, not the purpose.",
+    "Right: recover critical business processes in time."
+   ]
+  },
+  {
+   "id": "DUMP-1373",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "While performing a security review for a new product, an information security professional discovers that the organization's product development team is proposing to collect government-issued identification (ID) numbers from customers to use as unique customer identifiers. Which of the following recommendations should be made to the product development team?",
+   "options": [
+    "Customer identifiers should be a variant of the user's government-issued ID number.",
+    "Customer identifiers that do not resemble the user's government-issued ID number should be used.",
+    "Customer identifiers should be a cryptographic hash of the user's government-issued ID number.",
+    "Customer identifiers should be a variant of the user's name, for example, \"jdoe\" or \"john.doe.\""
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Identifiers unrelated to government ID numbers avoid storing or deriving sensitive PII; hashes of low-entropy IDs can be reversed.",
+   "optionNotes": [
+    "A variant still exposes the government ID.",
+    "Right: an unrelated identifier avoids using the ID as PII.",
+    "A hash of a small ID space can be reversed by brute force.",
+    "Names are guessable and not unique."
+   ]
+  },
+  {
+   "id": "DUMP-1377",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.5,
+   "stem": "Which of the following outsourcing agreement provisions has the HIGHEST priority from a security operations perspective?",
+   "options": [
+    "Conditions to prevent the use of subcontractors",
+    "Terms for contract renegotiation in case of disaster",
+    "Escalation process for problem resolution during incidents",
+    "Root cause analysis for application performance issue"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "From an operations view, a defined escalation process for incidents is the highest priority provision.",
+   "optionNotes": [
+    "Subcontractor limits matter but are not the top operational concern.",
+    "Renegotiation terms are contractual, not operational.",
+    "Right: incident escalation is key to running operations.",
+    "Performance analysis is not a security priority."
+   ]
+  },
+  {
+   "id": "DUMP-1383",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.4,
+   "stem": "A healthcare insurance organization chose a vendor to develop a software application. Upon review of the draft contract, the information security professional notices that software security is not addressed. What is the BEST approach to address the issue?",
+   "options": [
+    "Update the service level agreement (SLA) to provide the organization the right to audit the vendor.",
+    "Update the service level agreement (SLA) to require the vendor to provide security capabilities.",
+    "Update the contract so that the vendor is obligated to provide security capabilities.",
+    "Update the contract to require the vendor to perform security code reviews."
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The contract is the legally binding vehicle; it must obligate the vendor to deliver security capabilities.",
+   "optionNotes": [
+    "Audit rights do not require security to be delivered.",
+    "An SLA sets service levels; it is not the primary binding obligation.",
+    "Right: a binding contract obligation to provide security.",
+    "Code review alone is too narrow."
+   ]
+  },
+  {
+   "id": "DUMP-1386",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.3,
+   "stem": "Which of the following can be used to calculate the loss event probability?",
+   "options": [
+    "Total number of possible outcomes divided by frequency of outcomes",
+    "Number of outcomes divided by total number of possible outcomes",
+    "Number of outcomes multiplied by total number of possible outcomes",
+    "Total number of possible outcomes multiplied by frequency of outcomes"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Probability is favorable outcomes divided by the total possible outcomes.",
+   "optionNotes": [
+    "The ratio is inverted.",
+    "Right: favorable outcomes over total outcomes.",
+    "Multiplying does not give a probability.",
+    "Multiplying does not give a probability."
+   ]
+  },
+  {
+   "id": "DUMP-1387",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "Which of the following is MOST important when determining appropriate countermeasures for an identified risk?",
+   "options": [
+    "Interaction with existing controls",
+    "Cost",
+    "Organizational risk tolerance",
+    "Patch availability"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "Countermeasures are selected so residual risk falls within the organization's risk tolerance.",
+   "optionNotes": [
+    "Interaction with existing controls matters but comes second.",
+    "Cost is weighed against tolerance and value.",
+    "Right: controls must bring risk within tolerance.",
+    "Patches apply only to some risks."
+   ]
+  },
+  {
+   "id": "DUMP-1391",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "A Certified Information Systems Security Professional (CISSP) with identity and access management (IAM) responsibilities is asked by the Chief Information Security Officer (CISO) to perform a vulnerability assessment on a web application to pass a Payment Card Industry (PCI) audit. The CISSP has never performed this before. According to the ISC2 Code of Professional Ethics, which of the following should the CISSP do?",
+   "options": [
+    "Review the CISSP guidelines for performing a vulnerability assessment before proceeding to complete it",
+    "Review the PCI requirements before performing the vulnerability assessment",
+    "Inform the CISO that they are unable to perform the task because they should render only those services for which they are fully competent and qualified",
+    "Since they are CISSP certified, they have enough knowledge to assist with the request, but will need assistance in order to complete it in a timely manner"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The Code requires providing diligent and competent service; doing work one is not qualified for violates it.",
+   "optionNotes": [
+    "Reading guidelines does not make the CISSP competent in time.",
+    "PCI reading alone does not give the needed skill.",
+    "Right: the Code requires competent service only.",
+    "Overstates competence and conflicts with the Code."
+   ]
+  },
+  {
+   "id": "DUMP-1396",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "An organization is considering outsourcing applications and data to a Cloud Service Provider (CSP). Which of the following is the MOST important concern regarding privacy?",
+   "options": [
+    "The CSP determines data criticality.",
+    "The CSP provides end-to-end encryption services.",
+    "The CSP's privacy policy may be developed by the organization.",
+    "The CSP may not be subject to the organization's country legislation."
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Data in another jurisdiction may fall under laws that conflict with the organization's privacy obligations.",
+   "optionNotes": [
+    "The data owner, not the CSP, sets criticality.",
+    "Encryption is a benefit, not a concern.",
+    "Customer-written policy would be a benefit.",
+    "Right: a jurisdiction mismatch affects privacy protection."
+   ]
+  },
+  {
+   "id": "DUMP-1402",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "Which of the following MUST a security professional do in order to quantify the value of a security program to organization management?",
+   "options": [
+    "Report using metrics.",
+    "Rank priorities as high, medium, or low.",
+    "Communicate compliance obstacles.",
+    "Report en employee activities"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Management understands value through measurable results. Metrics (KPIs/KRIs) quantify how the program reduces risk and supports objectives.",
+   "optionNotes": [
+    "Correct: metrics give objective, quantifiable evidence of value.",
+    "Qualitative rankings are not quantification.",
+    "Compliance obstacles describe problems, not program value.",
+    "Reporting on employee activity is monitoring, not value measurement."
+   ]
+  },
+  {
+   "id": "DUMP-1425",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.8,
+   "stem": "What is the MOST important factor in establishing an effective Information Security Awareness Program?",
+   "options": [
+    "Obtain management buy-in.",
+    "Conduct an annual security awareness event.",
+    "Mandate security training.",
+    "Hang information security posters on the walls,"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "Without management buy-in there is no funding, authority or cultural backing, so the program fails. It is the foundation for everything else.",
+   "optionNotes": [
+    "Correct: management support enables the program.",
+    "A single annual event is a weak tactic.",
+    "Mandates still need management backing.",
+    "Posters are a minor tactic."
+   ]
+  },
+  {
+   "id": "DUMP-1428",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.2,
+   "stem": "The European Union (EU) General Data Protection Regulation (GDPR) requires organizations to implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk. The Data Owner should therefore consider which of the following requirements?",
+   "options": [
+    "Data masking and encryption of personal data",
+    "Only to use encryption protocols approved by EU",
+    "Anonymization of personal data when transmitted to sources outside the EU",
+    "Never to store personal data of EU citizens outside the EU"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "GDPR Article 32 names pseudonymization and encryption of personal data as examples of appropriate technical measures. Masking and encryption are therefore what the data owner should consider.",
+   "optionNotes": [
+    "Correct: matches GDPR Article 32's examples.",
+    "The EU does not approve specific encryption protocols.",
+    "GDPR has no such anonymization rule for transfers.",
+    "Transfers outside the EU are allowed with safeguards."
+   ]
+  },
+  {
+   "id": "DUMP-1430",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.6,
+   "stem": "Which change management role is responsible for the overall success of the project and supporting the change throughout the organization?",
+   "options": [
+    "Change driver",
+    "Change implementer",
+    "Program sponsor",
+    "Project manager"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "The sponsor is the senior leader who owns the change. They are accountable for its overall success and champion it across the organization.",
+   "optionNotes": [
+    "Drivers push the change but are not accountable for overall success.",
+    "Implementers carry out tasks.",
+    "Correct: the sponsor owns success and organizational support.",
+    "The PM manages execution, not organizational sponsorship."
+   ]
+  },
+  {
+   "id": "DUMP-1432",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.3,
+   "stem": "Which of the following explains why classifying data is an important step in performing a Risk assessment?",
+   "options": [
+    "To provide a framework for developing good security metrics",
+    "To justify the selection of costly security controls",
+    "To classify the security controls sensitivity that helps scope the risk assessment",
+    "To help determine the appropriate level of data security controls"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "Classification shows how sensitive and valuable the data is. That determines the level of protection the risk assessment should recommend.",
+   "optionNotes": [
+    "Metrics are a secondary benefit.",
+    "Justifying cost is a side effect, not the purpose.",
+    "Classification applies to data, not controls.",
+    "Correct: classification drives the appropriate level of control."
+   ]
+  },
+  {
+   "id": "DUMP-1438",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.7,
+   "stem": "An organization is setting a security assessment scope with the goal of developing a Security Management Program (SMP). The next step is to select an approach for conducting the risk assessment. Which of the following approaches is MOST effective for the SMP?",
+   "options": [
+    "Data driven risk assessment with a focus on data",
+    "Security controls driven assessment that focuses on controls management",
+    "Business processes based risk assessment with a focus on business goals",
+    "Asset driven risk assessment with a focus on the assets"
+   ],
+   "answer": [
+    2
+   ],
+   "explanation": "A security management program has to support the organization's mission. A risk assessment based on business processes ties risk to business goals, which makes it the most effective approach for the SMP.",
+   "optionNotes": [
+    "A data-only focus misses process context.",
+    "A controls-driven assessment presumes the answers.",
+    "Correct: aligns with business goals.",
+    "Asset focus is narrower than business processes."
+   ]
+  },
+  {
+   "id": "DUMP-1439",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "A hospital enforces the Code of Fair Information Practices. What practice applies to a patient requesting their medical records from a web portal?",
+   "options": [
+    "Use limitation",
+    "Individual participation",
+    "Purpose specification",
+    "Collection limitation"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Individual participation gives people the right to access and correct their own records. A patient requesting their medical records is exactly that.",
+   "optionNotes": [
+    "Use limitation restricts secondary use of data.",
+    "Correct: the right to access one's own data.",
+    "Purpose specification concerns stating why data is collected.",
+    "Collection limitation concerns minimizing what is collected."
+   ]
+  },
+  {
+   "id": "DUMP-1450",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "According to the (ISC)2 ethics canon \"act honorably, honestly, justly, responsibly, and legally,\" which order should be used when resolving conflicts?",
+   "options": [
+    "Public safety and duties to principals, individuals, and the profession",
+    "Individuals, the profession, and public safety and duties to principals",
+    "Individuals, public safety and duties to principals, and the profession",
+    "The profession, public safety and duties to principals, and individuals"
+   ],
+   "answer": [
+    0
+   ],
+   "explanation": "The ISC2 canons are applied in priority order: society/public safety first, then principals, then individuals and the profession. Conflicts are resolved following that order.",
+   "optionNotes": [
+    "Correct: public safety and principals take precedence",
+    "Puts individuals ahead of public safety",
+    "Puts individuals first",
+    "Puts the profession first"
+   ]
+  },
+  {
+   "id": "DUMP-1459",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "An international trading organization that holds an International Organization for Standardization (ISO) 27001 certification is seeking to outsource their security monitoring to a managed security service provider (MSSP). The trading organization's security officer is tasked with drafting the requirements that need to be included in the outsourcing contract. Which of the following MUST be included in the contract?",
+   "options": [
+    "A detailed overview of all equipment involved in the outsourcing contract",
+    "The MSSP having an executive manager responsible for information security",
+    "The right to perform security compliance tests on the MSSP's equipment",
+    "The right to audit the MSSP's security process"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "For ISO 27001 supplier management, the customer must retain the right to audit the provider's security processes.",
+   "optionNotes": [
+    "Not mandatory",
+    "Nice but not required",
+    "Too narrow; audit right covers it",
+    "Correct: right to audit"
+   ]
+  },
+  {
+   "id": "DUMP-1467",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "During an internal audit of an organizational Information Security Management System (ISMS), nonconformities are identified. In which of the following management stages are nonconformities reviewed, assessed and/or corrected by the organization?",
+   "options": [
+    "Planning",
+    "Operation",
+    "Assessment",
+    "Improvement"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "In the ISMS PDCA cycle, nonconformities and corrective actions belong to the improvement (Act) stage.",
+   "optionNotes": [
+    "Too early",
+    "Execution stage",
+    "Identifies, does not correct",
+    "Correct: Act/improvement stage handles corrective action"
+   ]
+  },
+  {
+   "id": "DUMP-1469",
+   "domain": 1,
+   "type": "single",
+   "difficulty": -0.5,
+   "stem": "Which of the following is an indicator that a company's new user security awareness training module has been effective?",
+   "options": [
+    "There are more secure connections to the internal database servers.",
+    "More incidents of phishing attempts are being reported.",
+    "There are more secure connections to internal e-mail servers.",
+    "Fewer incidents of phishing attempts are being reported."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Trained users recognise and report phishing more often, so increased reporting indicates effective training.",
+   "optionNotes": [
+    "Unrelated",
+    "Correct: more reporting",
+    "Unrelated",
+    "Could just mean fewer attacks or unreported ones"
+   ]
+  },
+  {
+   "id": "DUMP-1478",
+   "domain": 1,
+   "type": "single",
+   "difficulty": 0.0,
+   "stem": "Which of the following is the FIRST step an organization's security professional performs when defining a cyber-security program based upon industry standards?",
+   "options": [
+    "Map the organization's current security practices to industry standards and frameworks.",
+    "Define the organization's objectives regarding security and risk mitigation.",
+    "Select from a choice of security best practices.",
+    "Review the past security assessments."
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "A program starts by defining organizational objectives and risk appetite; mapping and selecting controls follow.",
+   "optionNotes": [
+    "Later step",
+    "Correct: objectives and risk appetite drive everything else",
+    "Later step",
+    "Input, not first step"
+   ]
+  }
+ ]
+}

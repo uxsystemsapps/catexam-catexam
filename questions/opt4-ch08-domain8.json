@@ -1,0 +1,2316 @@
+{
+  "name": "OPT4 Chapter 8: Software Development Security (Domain 8)",
+  "questions": [
+    {
+      "id": "OPT4-C08-001",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.35,
+      "stem": "Susan provides a public RESTful API for her organization's data but wants to limit its use to trusted partners. She intends to use API keys. What other recommendation would you give Susan to limit the potential abuse of the service?",
+      "options": [
+        "Limit request rates.",
+        "Force HTTP-only requests.",
+        "Avoid tokens due to bandwidth constraints.",
+        "Blacklist HTTP methods such as GET, POST, and PUT."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Limiting request rates can prevent abuse of APIs like this one. The other suggestions are all poor recommendations. In general, requests should require HTTPS, tokens are used for security using tools like JSON web tokens (JWT), and HTTP methods may be restricted, but GET, POST, and PUT are some of the most common methods used for API access and are far more typically whitelisted.",
+      "optionNotes": [
+        "Correct. Rate limiting (throttling) stops any single key holder or attacker from flooding the API. That limits abuse and denial-of-service even when a valid API key is used.",
+        "Incorrect. Allowing only plain HTTP is a poor choice. API requests, and the API keys sent with them, should travel over HTTPS so the keys aren't sent in cleartext where they can be intercepted.",
+        "Incorrect. Tokens such as JSON Web Tokens (JWT) are a normal security mechanism for APIs. Their bandwidth cost is tiny, so avoiding them would weaken security and gain almost nothing.",
+        "Incorrect. GET, POST and PUT are the core methods RESTful APIs depend on, so they are usually whitelisted, not blacklisted. Blocking them would break the service rather than prevent abuse."
+      ]
+    },
+    {
+      "id": "OPT4-C08-002",
+      "domain": 8,
+      "type": "multi",
+      "difficulty": 2.36,
+      "stem": "Darren is conducting a threat-hunting exercise and would like to look for botnet indicators of compromise. Which of the following are common ways that attackers leverage botnets? (Select all that apply.)",
+      "options": [
+        "Mining cryptocurrency",
+        "Conducting brute-force attacks",
+        "Scanning for vulnerable systems",
+        "Conducting man-in-the-middle attacks"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Botnets are used for a wide variety of malicious purposes, including scanning the network for vulnerable systems, conducting brute-force attacks against other systems, mining cryptocurrency, and sending out spam messages. They are not commonly used to conduct man-in-the-middle attacks, which are normally waged through DNS poisoning or similar mechanisms.",
+      "optionNotes": [
+        "Correct. Attackers often use the combined processing power of compromised bots to mine cryptocurrency. This is one of the common botnet uses the book lists.",
+        "Correct. A botnet can spread password-guessing attempts across many hosts to brute-force other systems. This is one of the common uses the book lists.",
+        "Correct. Bots are often told to scan networks for vulnerable systems that can then be exploited and added to the botnet.",
+        "Incorrect. Botnets are not commonly used for man-in-the-middle attacks. Those attacks are normally carried out by intercepting traffic, for example through DNS poisoning or similar methods, rather than by a distributed set of bots."
+      ]
+    },
+    {
+      "id": "OPT4-C08-003",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Which one of the following statements is not true about code review?",
+      "options": [
+        "Code review should be a peer-driven process that includes multiple developers.",
+        "Code review may be automated.",
+        "Code review occurs during the design phase.",
+        "Code reviewers may expect to review several hundred lines of code per hour."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Code review takes place after code has been developed, which occurs after the design phase of the system's development life cycle (SDLC). Code review may use a combination of manual and automated techniques or rely solely on one or the other. It should be a peer-driven process that includes developers who did not write the code. Developers should expect to complete the review of around 300 lines per hour, on average.",
+      "optionNotes": [
+        "Incorrect. This statement is true, so it isn't the answer. Code review should be a peer-driven process that brings in several developers, including people who didn't write the code.",
+        "Incorrect. This statement is true, so it isn't the answer. Code review can use manual techniques, automated techniques, or both together.",
+        "Correct. This is the false statement. Code review happens after the code is written, and coding comes after the SDLC design phase. There's no code to review during design.",
+        "Incorrect. This statement is true, so it isn't the answer. The book says reviewers average about 300 lines per hour, which fits 'several hundred lines per hour.'"
+      ]
+    },
+    {
+      "id": "OPT4-C08-004",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Kathleen is reviewing the Ruby code shown here. What security technique is this code using?\n[Exhibit, transcribed from the book's figure:]\ninsert_new_user = db.prepare \"INSERT INTO users (name, userid, gender, usertype) VALUES (?, ?, ?, ?)\"\ninsert_new_user.execute 'davids', '194567', 'male', 'admin'",
+      "options": [
+        "Parameterization",
+        "Typecasting",
+        "Gem cutting",
+        "Stored procedures"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "This code is an example of parameterization, which can help avoid SQL injection. Note that each parameter has a placeholder, which is then passed to the query.",
+      "optionNotes": [
+        "Correct. The prepared statement uses ? placeholders, and the values are bound when execute runs. That is parameterization: user input is handled as data, never as SQL code, which helps prevent SQL injection.",
+        "Incorrect. Typecasting converts a value from one data type to another, such as a string to an integer. Nothing in this code converts types. It only binds values to placeholders.",
+        "Incorrect. 'Gem cutting' is a made-up distractor. Ruby libraries are called gems, but no security technique has this name, and the code doesn't involve gems.",
+        "Incorrect. A stored procedure is precompiled SQL that lives in the database and is called by name. This code writes its INSERT statement inline in the application and prepares it there, so it is a parameterized query, not a stored procedure."
+      ]
+    },
+    {
+      "id": "OPT4-C08-005",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.42,
+      "stem": "Jessica is reviewing her organization's change management process and would like to verify that changes to software include acceptance testing. Which process is responsible for achieving this goal?",
+      "options": [
+        "Request control",
+        "Change control",
+        "Release control",
+        "Configuration control"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "One of the responsibilities of the release control process is ensuring that acceptance testing is performed, to ensure that any alterations to end-user tasks are understood and functional prior to code release. The request control, change control, and configuration control processes do not include acceptance testing.",
+      "optionNotes": [
+        "Incorrect. Request control is the framework through which users ask for changes and managers weigh cost and benefit. It doesn't include acceptance testing.",
+        "Incorrect. Change control is about developers carrying out the requested changes, for example by recreating the situation and analyzing it. Acceptance testing before code release is not part of this process.",
+        "Correct. Release control makes sure acceptance testing is done, so that any changes to end-user tasks are understood and work properly before the code is released.",
+        "Incorrect. Configuration control makes sure only approved changes are made and tracks versions and the hardware and software configuration. It doesn't cover acceptance testing."
+      ]
+    },
+    {
+      "id": "OPT4-C08-006",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Ashley is investigating an attack that compromised an account of one of her users. In the attack, the attacker forced the submission of an authenticated request to a third-party site by exploiting trust relationships in the user's browser. What type of attack most likely took place?",
+      "options": [
+        "XSS",
+        "CSRF",
+        "SQL injection",
+        "Session hijacking"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Cross-site request forgery (XSRF or CSRF) attacks exploit the trust that sites have in a user's browser by attempting to force the submission of authenticated requests to third-party sites. Session hijacking attacks attempt to steal previously authenticated sessions but do not force the browser to submit requests. A SQL injection directly attacks a database through a web application. Cross-site scripting uses reflected input to trick a user's browser into executing untrusted code from a trusted site.",
+      "optionNotes": [
+        "Incorrect. Cross-site scripting uses reflected or stored input so the victim's browser runs untrusted code that appears to come from a trusted site. It doesn't force authenticated requests to a third-party site.",
+        "Correct. CSRF/XSRF abuses the trust a site places in a user's authenticated browser, forcing that browser to send authenticated requests to a third-party site, which is exactly what this scenario describes.",
+        "Incorrect. SQL injection attacks a database directly through a web application by injecting malicious queries. It doesn't involve exploiting browser trust or forcing requests from the browser.",
+        "Incorrect. Session hijacking steals a session that has already been authenticated, such as by capturing its token. It doesn't force the user's browser to submit requests."
+      ]
+    },
+    {
+      "id": "OPT4-C08-007",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.19,
+      "stem": "Arnold is creating a new software package and is making use of the OpenSSL library. What term best describes the library he is using?",
+      "options": [
+        "Open source",
+        "COTS",
+        "Third-party",
+        "Managed"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The OpenSSL package is a widely used implementation of TLS encryption that is available as an open-source package. It is not commercial off-the-shelf software (COTS). While it might be developed by third parties, it is more accurate to describe it as open source. The library is available as code for free use, but not as a managed service.",
+      "optionNotes": [
+        "Correct. OpenSSL is a widely used TLS implementation whose source code is publicly available for free use, so open source is the most accurate description of the library.",
+        "Incorrect. COTS means commercial off-the-shelf software bought from a vendor. OpenSSL is a free open-source project, not a commercially sold product.",
+        "Incorrect. OpenSSL may be built by people outside Arnold's organization, but \"third-party\" is a vague label. \"Open source\" describes the library more precisely.",
+        "Incorrect. A managed offering is a service that a provider runs for the customer. OpenSSL is code that Arnold builds into his own software, not a managed service."
+      ]
+    },
+    {
+      "id": "OPT4-C08-008",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.82,
+      "stem": "Jaime is a technical support analyst and is asked to visit a user whose computer is displaying the error message shown here. What state has this computer entered?\n[Exhibit, transcribed from the book's figure:]\nA problem has been detected and windows has been shut down to prevent damage to your computer.\nThe problem seems to be caused by the following file: SPCMDCON.SYS\nPAGE_FAULT_IN_NONPAGED_AREA\nIf this is the first time you've seen this Stop error screen, restart your computer. If this screen appears again, follow these steps:\n[…troubleshooting advice…]\nTechnical information:\n*** STOP: 0x00000050 (0xFD3094C2,0x00000001,0xFBFE7617,0x00000000)\n*** SPCMDCON.SYS - Address FBFE7617 base at FBFE5000, DateStamp 3d6dd67c",
+      "options": [
+        "Fail open",
+        "Irrecoverable error",
+        "Memory exhaustion",
+        "Fail secure"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The error message shown in the figure is the infamous “Blue Screen of Death” that occurs when a Windows system experiences a dangerous failure and enters a fail secure state. If the system had “failed open,” it would have continued operation. The error described is a memory fault that is likely recoverable by rebooting the system. There is no indication that the system has run out of usable memory.",
+      "optionNotes": [
+        "Incorrect. A fail-open system keeps running when a fault occurs. Here Windows halted on the Stop error, which is the opposite of failing open.",
+        "Incorrect. This page fault in the nonpaged area is a memory fault that a reboot will most likely clear. Nothing on the screen points to an irrecoverable error.",
+        "Incorrect. PAGE_FAULT_IN_NONPAGED_AREA means an invalid memory reference, not running out of memory. Nothing on the screen shows the system has used up its usable memory.",
+        "Correct. The Blue Screen of Death is Windows halting itself after a dangerous failure \"to prevent damage.\" Stopping all operation rather than continuing in an unsafe state is a fail-secure response."
+      ]
+    },
+    {
+      "id": "OPT4-C08-009",
+      "domain": 8,
+      "type": "multi",
+      "difficulty": 2.5,
+      "stem": "Joshua is developing a software threat modeling program for his organization. Which of the following are appropriate goals for the program? (Select all that apply.)",
+      "options": [
+        "To reduce the number of security-related design flaws",
+        "To reduce the number of security-related coding flaws",
+        "To reduce the severity of non-security-related flaws",
+        "To reduce the number of threat vectors"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Software threat modeling is designed to reduce the number of security-related design and coding flaws as well as the severity of other flaws. The developer or evaluator of software has no control over the threat environment, because it is external to the organization.",
+      "optionNotes": [
+        "Correct. One of the main goals of software threat modeling is to find and cut down security-related design flaws before the code is built.",
+        "Correct. Threat modeling also aims to reduce security-related coding flaws by guiding secure implementation and review.",
+        "Correct. According to the book, threat modeling also reduces the severity of other flaws, including ones that are not security-related.",
+        "Incorrect. Threat vectors belong to the external threat environment, which the software's developer or evaluator cannot control. Threat modeling can't reduce how many vectors exist."
+      ]
+    },
+    {
+      "id": "OPT4-C08-010",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "In the diagram shown here, which is an example of a method?\n[Exhibit, transcribed from the book's figure:]\nAccount\n  Balance: currency = 0\n  Owner: string\n  AddFunds(deposit: currency)\n  RemoveFunds(withdrawal: currency)",
+      "options": [
+        "Account",
+        "Owner",
+        "AddFunds",
+        "Balance"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In the diagram, Account is the name of the class. Owner and Balance are attributes of that class. AddFunds and RemoveFunds are methods of the class.",
+      "optionNotes": [
+        "Incorrect. Account is the class name at the top of the diagram. It is the template that holds the attributes and methods, so it is not a method itself.",
+        "Incorrect. Owner is an attribute (a data field of type string) of the Account class. It stores state and is not an operation the object performs.",
+        "Correct. AddFunds is a method: an operation of the Account class that takes a parameter (deposit) and acts on the object's data, just as RemoveFunds does.",
+        "Incorrect. Balance is an attribute of the class, a currency data field with a default value of 0. It is not a method."
+      ]
+    },
+    {
+      "id": "OPT4-C08-011",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.75,
+      "stem": "Wanda is reviewing the application development documentation used by her organization and finds the life-cycle illustration shown here. What application development method is her organization using?\n[Figure, described in text: Requirements Planning → User Design ⇄ Construction (each of these two has a looping arrow back to itself) → Cutover.]",
+      "options": [
+        "Waterfall",
+        "Spiral",
+        "Agile",
+        "RAD"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Rapid Application Development, or RAD, focuses on fast development and the ability to quickly adjust to changing requirements. RAD uses four phases: requirements planning, user design, construction, and cutover.",
+      "optionNotes": [
+        "Incorrect. Waterfall moves through sequential phases (requirements, design, coding, testing, etc.) with limited going back. It has no user design/construction loop and no cutover phase.",
+        "Incorrect. The spiral model is a metamodel that repeats waterfall-style loops, and each loop produces a new prototype (P1, P2, P3). It is drawn as a spiral, not as the four RAD phases shown.",
+        "Incorrect. Agile delivers working software in short iterative sprints, often run with scrum roles. It is not defined by the phases requirements planning, user design, construction and cutover.",
+        "Correct. RAD's four phases are requirements planning, user design, construction and cutover. The user design and construction phases repeat so the team can adjust quickly to changing requirements, which is what the diagram shows."
+      ]
+    },
+    {
+      "id": "OPT4-C08-012",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Which one of the following testing methodologies typically works without access to source code?",
+      "options": [
+        "Dynamic testing",
+        "Static testing",
+        "White-box testing",
+        "Code review"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Dynamic testing of software typically occurs in a black-box environment where the tester does not have access to the source code. Static testing, white-box testing, and code review approaches all require access to the source code of the application.",
+      "optionNotes": [
+        "Correct. Dynamic testing runs the compiled application and observes its behavior, usually as black-box testing, so the tester doesn't need the source code.",
+        "Incorrect. Static testing looks at the source code (or compiled code) without running it, so it depends on access to the code.",
+        "Incorrect. White-box testing means the tester can see the internal logic and source code, which is the opposite of working without the code.",
+        "Incorrect. In a code review, people read and inspect the source code line by line, so it can't be done without the code."
+      ]
+    },
+    {
+      "id": "OPT4-C08-013",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Lucca is analyzing a web application that his organization acquired from a third-party vendor. Lucca determined that the application contains a flaw that causes users who are logged in to be able to take actions they should not be able to in their role. What type of security vulnerability should this be classified as?",
+      "options": [
+        "Data validation",
+        "Session management",
+        "Authorization",
+        "Error handling"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Given the list of options here, the root cause is most likely an issue with an authorization check that does not properly limit users to the authorization that they should have. Data validation issues are more likely to allow injection attacks or to allow bad data to be input, while session management issues would allow session hijacking or might actually cause them to be logged in as another user. Finally, error handling would show up as a problem when errors occurred, which this problem does not indicate.",
+      "optionNotes": [
+        "Incorrect. Data validation flaws let bad input in and lead to things like injection attacks. Nothing in the question says users are taking extra actions because of malformed input.",
+        "Incorrect. Session management flaws lead to session hijacking or a user ending up logged in as someone else. Here, users act under their own login but go beyond what their role allows.",
+        "Correct. The authorization check fails to limit authenticated users to the permissions their role grants, so they can take actions they shouldn't.",
+        "Incorrect. Error handling problems show up when errors occur, for example leaked details or failing open. The scenario doesn't mention any error condition."
+      ]
+    },
+    {
+      "id": "OPT4-C08-014",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Bobby is investigating how an authorized database user is gaining access to information outside his normal clearance level. Bobby believes that the user is making use of a type of function that summarizes data. What term describes this type of function?",
+      "options": [
+        "Inference",
+        "Polymorphic",
+        "Aggregate",
+        "Modular"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Aggregate functions summarize large amounts of data and provide only summary information as a result. When carefully crafted, aggregate functions may unintentionally reveal sensitive information.",
+      "optionNotes": [
+        "Incorrect. Inference is an attack where a user works out sensitive facts by combining nonsensitive results. It describes the attack, not a function that summarizes data, so it doesn't answer the question.",
+        "Incorrect. Polymorphic describes code that changes its own form, such as polymorphic viruses, or the OOP idea of one interface with many behaviors. It isn't a type of database function that summarizes data.",
+        "Correct. Aggregate functions such as SUM, COUNT and AVG summarize large amounts of data and return only summary results. A carefully built aggregate query can still reveal sensitive information above the user's clearance.",
+        "Incorrect. Modular is a software design term for building programs out of separate, independent components. It isn't a kind of database function that summarizes data."
+      ]
+    },
+    {
+      "id": "OPT4-C08-015",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.19,
+      "stem": "Taylor would like to better protect the applications developed by her organization against buffer overflow attacks. Which of the following controls would best provide this protection?",
+      "options": [
+        "Encryption",
+        "Input validation",
+        "Firewall",
+        "Intrusion prevention system"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The best protection against buffer overflow attacks is server-side input validation. This technique limits user input to approved ranges of values that fit within allocated buffers. While firewalls and intrusion prevention systems may contain controls that limit buffer overflows, it would be more effective to perform filtering on the application server. Encryption cannot protect against buffer overflow attacks.",
+      "optionNotes": [
+        "Incorrect. Encryption protects data confidentiality. It does nothing to stop oversized input from overrunning an allocated buffer, so it cannot prevent buffer overflow attacks.",
+        "Correct. Server-side input validation limits user input to approved ranges and lengths that fit within the allocated buffers, so it stops overflows in the application itself.",
+        "Incorrect. A firewall may have some filtering that limits buffer overflows, but it is a network-perimeter control. Filtering input on the application server is more effective.",
+        "Incorrect. An IPS can detect or block some overflow attempts, but it is a network-level, signature-driven control. It is less effective than validating input inside the application."
+      ]
+    },
+    {
+      "id": "OPT4-C08-016",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.19,
+      "stem": "Kayla recently completed a thorough risk analysis and mitigation review of the software developed by her team and identified three persistent issues: Cross-site scripting SQL injection Buffer overflows\nWhat is the most significant deficiency in her team's work identified by these issues?",
+      "options": [
+        "Lack of API security",
+        "Improper error handling",
+        "Improper or missing input validation",
+        "Source code design issues"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Each of these problems is caused by improper or missing input validation and can be resolved by handling inputs properly. In many cases, this can be done using libraries or methods already built into the language or framework that the developer is using.",
+      "optionNotes": [
+        "Incorrect. API security covers authentication, authorization, and rate limiting on interfaces between components. XSS, SQL injection, and buffer overflows can all happen without any API involved, so API security isn't the common cause.",
+        "Incorrect. Poor error handling leads to information leakage, such as verbose stack traces. It doesn't let malicious script, SQL, or oversized input get processed, so it doesn't explain these three flaws.",
+        "Correct. All three flaws come from trusting input that wasn't checked. Proper input validation and sanitization, often with built-in language or framework libraries, fixes all of them.",
+        "Incorrect. \"Design issues\" is too vague to count as the most significant deficiency. The specific shared root cause of these three flaws is missing input validation, not overall code architecture."
+      ]
+    },
+    {
+      "id": "OPT4-C08-017",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.26,
+      "stem": "Scenario:\nRobert is a consultant who helps organizations create and develop mature software development practices. He prefers to use the Software Capability Maturity Model (SW-CMM) to evaluate the current and future status of organizations using both independent review and self-assessments. He is currently working with two different clients. Acme Widgets is not well organized with its software development practices. It does have a dedicated team of developers who do “whatever it takes” to get software out the door, but it does not have any formal processes. Beta Particles is a company with years of experience developing software using formal, documented software development processes. It uses a standard model for software development but does not have quantitative management of those processes.\n\nWhat phase of the SW-CMM should Robert report as the current status of Acme Widgets?",
+      "options": [
+        "Defined",
+        "Repeatable",
+        "Initial",
+        "Managed"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Acme Widgets is clearly in the initial stage of the SW-CMM. This stage is characterized by the absence of formal process. The company may still produce working code, but it does so in a disorganized fashion.",
+      "optionNotes": [
+        "Incorrect. Defined (level 3) requires formal, documented software development processes used across the organization. Acme has no formal processes, so it hasn't reached this level. Beta Particles fits Defined better.",
+        "Incorrect. Repeatable (level 2) brings in basic life cycle management processes and organized code reuse. Acme has no formal processes at all, so it is below this level.",
+        "Correct. The Initial level (level 1) has no formal process: hardworking people push software out the door in a disorganized way. That matches Acme's 'whatever it takes' team.",
+        "Incorrect. Managed (level 4) requires quantitative metrics and quantitative process management. A company with no formal processes can't be at this level."
+      ]
+    },
+    {
+      "id": "OPT4-C08-018",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.41,
+      "stem": "Scenario:\nRobert is a consultant who helps organizations create and develop mature software development practices. He prefers to use the Software Capability Maturity Model (SW-CMM) to evaluate the current and future status of organizations using both independent review and self-assessments. He is currently working with two different clients. Acme Widgets is not well organized with its software development practices. It does have a dedicated team of developers who do “whatever it takes” to get software out the door, but it does not have any formal processes. Beta Particles is a company with years of experience developing software using formal, documented software development processes. It uses a standard model for software development but does not have quantitative management of those processes.\n\nRobert is working with Acme Widgets on a strategy to advance their software development practices. What SW-CMM stage should be their next target milestone?",
+      "options": [
+        "Defined",
+        "Repeatable",
+        "Initial",
+        "Managed"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Repeatable stage is the second stage in the SW-CMM, following the Initial stage. It should be the next milestone goal for Acme Widgets. The Repeatable stage is characterized by basic life cycle management processes.",
+      "optionNotes": [
+        "Incorrect. Defined is level 3: formal, documented processes used across the organization. That describes Beta Particles. Acme would have to reach Repeatable first, since SW-CMM levels are climbed in order.",
+        "Correct. Acme has no formal processes and relies on heroic effort, so it is at Initial (level 1). The next level is Repeatable (level 2), which brings basic life cycle management processes.",
+        "Incorrect. Initial is where Acme already is: chaotic, ad hoc work that depends on individual effort. It can't be the next target.",
+        "Incorrect. Managed is level 4: processes are managed quantitatively. That is two levels past Repeatable, and SW-CMM says organizations move through the levels one at a time."
+      ]
+    },
+    {
+      "id": "OPT4-C08-019",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.09,
+      "stem": "Scenario:\nRobert is a consultant who helps organizations create and develop mature software development practices. He prefers to use the Software Capability Maturity Model (SW-CMM) to evaluate the current and future status of organizations using both independent review and self-assessments. He is currently working with two different clients. Acme Widgets is not well organized with its software development practices. It does have a dedicated team of developers who do “whatever it takes” to get software out the door, but it does not have any formal processes. Beta Particles is a company with years of experience developing software using formal, documented software development processes. It uses a standard model for software development but does not have quantitative management of those processes.\n\nWhat phase of the SW-CMM should Robert report as the current status of Beta Particles?",
+      "options": [
+        "Defined",
+        "Repeatable",
+        "Optimizing",
+        "Managed"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The Defined stage of the SW-CMM is marked by the presence of basic life cycle management processes and reuse of code. It includes the use of requirements management, software project planning, quality assurance, and configuration management practices.",
+      "optionNotes": [
+        "Correct. Beta Particles uses formal, documented, standard development processes but has no quantitative management. That matches Defined (level 3), which the book links to life cycle management, code reuse, requirements management, planning, QA and configuration management.",
+        "Incorrect. Repeatable (level 2) comes before Defined. Beta has years of formal, documented processes built on a standard model, so it has moved past level 2.",
+        "Incorrect. Optimizing (level 5) means continuous process improvement built on quantitative feedback. Beta doesn't even manage its processes quantitatively yet, so it cannot be at level 5.",
+        "Incorrect. Managed (level 4) requires quantitative development metrics, through Quantitative Process Management and Software Quality Management. The scenario says outright that Beta lacks quantitative management."
+      ]
+    },
+    {
+      "id": "OPT4-C08-020",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.09,
+      "stem": "Scenario:\nRobert is a consultant who helps organizations create and develop mature software development practices. He prefers to use the Software Capability Maturity Model (SW-CMM) to evaluate the current and future status of organizations using both independent review and self-assessments. He is currently working with two different clients. Acme Widgets is not well organized with its software development practices. It does have a dedicated team of developers who do “whatever it takes” to get software out the door, but it does not have any formal processes. Beta Particles is a company with years of experience developing software using formal, documented software development processes. It uses a standard model for software development but does not have quantitative management of those processes.\n\nRobert is also working with Beta Particles on a strategy to advance their software development practices. What SW-CMM stage should be their next target milestone?",
+      "options": [
+        "Defined",
+        "Repeatable",
+        "Optimizing",
+        "Managed"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Managed stage is the fourth stage in the SW-CMM, following the Defined stage. It should be the next milestone goal for Beta Particles. The Managed stage is characterized by the use of quantitative software development measures.",
+      "optionNotes": [
+        "Incorrect. Defined (Level 3) is where Beta Particles already sits: it uses formal, documented, standard processes. It can't be the next target because the company has already reached it.",
+        "Incorrect. Repeatable (Level 2) only adds basic life cycle management and some code reuse. Beta Particles has already gone past this with standardized, documented processes.",
+        "Incorrect. Optimizing (Level 5) is about continuous process improvement. SW-CMM stages are reached in order, so Beta Particles has to reach Managed (Level 4) first.",
+        "Correct. Managed (Level 4) comes right after Defined and is marked by quantitative measurement of development processes. That is exactly what Beta Particles is missing, so it is the logical next milestone."
+      ]
+    },
+    {
+      "id": "OPT4-C08-021",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Which one of the following database keys is used to enforce referential integrity relationships between tables?",
+      "options": [
+        "Primary key",
+        "Candidate key",
+        "Foreign key",
+        "Master key"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Referential integrity ensures that records exist in a secondary table when they are referenced with a foreign key from another table. Foreign keys are the mechanism used to enforce referential integrity.",
+      "optionNotes": [
+        "Incorrect. A primary key uniquely identifies each record within its own table. A foreign key can point to it, but the primary key does not enforce referential integrity between tables.",
+        "Incorrect. A candidate key is any set of fields that could serve as the primary key because it uniquely identifies records. It is not a link between tables.",
+        "Correct. A foreign key in one table references a key in another table. The database then requires the referenced record to exist, and this is how referential integrity is enforced.",
+        "Incorrect. \"Master key\" is not a relational database key type. The term usually refers to a top-level cryptographic key used to protect other keys, and it has nothing to do with relationships between tables."
+      ]
+    },
+    {
+      "id": "OPT4-C08-022",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Brynn believes that a system in her organization may have been compromised by a macro virus. Which one of the following files is most likely to be the culprit?",
+      "options": [
+        "projections.doc",
+        "command.com",
+        "command.exe",
+        "loopmaster.exe"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Macro viruses are most commonly found in office productivity documents, such as Microsoft Word documents that end in the .doc or .docx extension. They are not commonly found in executable files with the .com or .exe extension.",
+      "optionNotes": [
+        "Correct. Macro viruses live inside office productivity documents such as Word .doc/.docx files, where the embedded macro code runs when the document is opened.",
+        "Incorrect. Command.com is an executable system file. File-infector viruses and integrity monitoring target files like this, but macro viruses usually don't infect .com executables.",
+        "Incorrect. A .exe file holds compiled executable code. A file-infector virus might infect it, but macro viruses live in documents that support macro languages, not in executables.",
+        "Incorrect. Loopmaster.exe is an executable program. Executables with the .exe extension aren't where macro viruses are usually found; office documents are."
+      ]
+    },
+    {
+      "id": "OPT4-C08-023",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Victor created a database table that contains information on his organization's employees. The table contains the employee's user ID, three different telephone number fields (home, work, and mobile), the employee's office location, and the employee's job title. There are 16 records in the table. What is the degree of this table?",
+      "options": [
+        "3",
+        "4",
+        "6",
+        "16"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The degree of a database table is the number of attributes in the table. Victor's table has six attributes: the employee's user ID, home telephone, office telephone, mobile telephone, office location, and job title.",
+      "optionNotes": [
+        "Incorrect. Three is just the number of telephone fields. Degree counts every attribute (column), and this table has six columns.",
+        "Incorrect. Four comes from counting the three phone numbers as one field. Each phone number is its own attribute, so the column count is six.",
+        "Correct. Degree is the number of attributes (columns): user ID, home phone, work phone, mobile phone, office location and job title make six.",
+        "Incorrect. Sixteen is the number of records (rows), which is the table's cardinality. Degree measures columns, not rows."
+      ]
+    },
+    {
+      "id": "OPT4-C08-024",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Carrie is analyzing the application logs for her web-based application and comes across the following string: ../../../../../../../../../etc/passwd\nWhat type of attack was likely attempted against Carrie's application?",
+      "options": [
+        "Command injection",
+        "Session hijacking",
+        "Directory traversal",
+        "Brute-force"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The string shown in the logs is characteristic of a directory traversal attack where the attacker attempts to force the web application to navigate up the file hierarchy and retrieve a file that should not normally be provided to a web user, such as the password file. The series of “double dots” is indicative of a directory traversal attack because it is the character string used to reference the directory one level up in a hierarchy.",
+      "optionNotes": [
+        "Incorrect. Command injection adds OS commands to input, often chained with characters like ; or |. This string has no commands in it, only ../ sequences that point to a file path.",
+        "Incorrect. Session hijacking means stealing or reusing a valid session token or cookie to impersonate a user. A file path like this one has nothing to do with taking over a session.",
+        "Correct. Each ../ moves up one directory level. The attacker is trying to climb out of the web root and read a file web users shouldn't see, here /etc/passwd.",
+        "Incorrect. A brute-force attack tries many passwords or keys until one works, which would show up as repeated login attempts. This log entry is one crafted path request, not repeated guessing."
+      ]
+    },
+    {
+      "id": "OPT4-C08-025",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.35,
+      "stem": "When should a design review take place when following an SDLC approach to software development?",
+      "options": [
+        "After the code review",
+        "After user acceptance testing",
+        "After the development of functional requirements",
+        "After the completion of unit testing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Design reviews should take place after the development of functional and control specifications but before the creation of code. The code review, unit testing, and functional testing all take place after the creation of code and, therefore, after the design review.",
+      "optionNotes": [
+        "Incorrect. Code review happens only after code exists. The design review has to come before any code is written, so a code review always follows it.",
+        "Incorrect. User acceptance testing comes near the end of the SDLC, after coding and the other testing is done. That is long after the design should have been reviewed and approved.",
+        "Correct. The design review takes place once the functional and control specifications are developed and before any code is created. That way design flaws are caught before anyone builds on them.",
+        "Incorrect. Unit testing checks code that has already been written, so it comes after both coding and the design review."
+      ]
+    },
+    {
+      "id": "OPT4-C08-026",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Tracy is preparing to apply a patch to her organization's enterprise resource planning system. She is concerned that the patch may introduce flaws that did not exist in prior versions, so she plans to conduct a test that will compare previous responses to input with those produced by the newly patched application. What type of testing is Tracy planning?",
+      "options": [
+        "Unit testing",
+        "Acceptance testing",
+        "Regression testing",
+        "Vulnerability testing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Regression testing is software testing that runs a set of known inputs against an application and then compares the results to those produced by an earlier version of the software. It is designed to capture unanticipated consequences of deploying new code versions prior to introducing them into a production environment.",
+      "optionNotes": [
+        "Incorrect. Unit testing checks individual modules or components on their own while code is being developed. It doesn't compare a new version's outputs with the outputs of an earlier version.",
+        "Incorrect. Acceptance testing is usually black-box testing done before delivery to confirm the system meets user or business requirements. It isn't a comparison against an earlier version's outputs.",
+        "Correct. Regression testing runs a set of known inputs and compares the results with those from the earlier version. This catches unexpected flaws that new code, such as a patch, can introduce.",
+        "Incorrect. Vulnerability testing uses automated tools to look for known security weaknesses. It doesn't compare the patched application's responses with those of the previous version."
+      ]
+    },
+    {
+      "id": "OPT4-C08-027",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.99,
+      "stem": "What term is used to describe the level of confidence that software is free from vulnerabilities, either intentionally designed into the software or accidentally inserted at any time during its life cycle, and that the software functions in the intended manner?",
+      "options": [
+        "Validation",
+        "Accreditation",
+        "Confidence interval",
+        "Assurance"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Assurance, when it comes to software, is the level of confidence that software is free from vulnerabilities, either intentionally designed into the software or accidentally inserted at any time during its life cycle, and that the software functions in the intended manner. It is a term typically used in military and defense environments.",
+      "optionNotes": [
+        "Incorrect. Validation asks whether you're building the right product, i.e. that it meets business requirements. It doesn't measure confidence that software is free of vulnerabilities across its life cycle.",
+        "Incorrect. Accreditation is management's formal acceptance of a system and its risk to operate. It happens after certification during the transition to deployment. It isn't a measure of confidence that software is free of vulnerabilities.",
+        "Incorrect. A confidence interval is a statistical range estimate for a population parameter. It isn't a software security term for freedom from vulnerabilities.",
+        "Correct. Software assurance is the level of confidence that software is free from intentional or accidental vulnerabilities across its life cycle and that it works as intended. The term is common in military and defense environments."
+      ]
+    },
+    {
+      "id": "OPT4-C08-028",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.96,
+      "stem": "Victor recently took a new position at an online dating website and is responsible for leading a team of developers. He realized quickly that the developers are having issues with production code because they are working on different projects that result in conflicting modifications to the production code. What process should Victor invest in improving?",
+      "options": [
+        "Request control",
+        "Release control",
+        "Change control",
+        "Configuration control"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The change control process is responsible for providing an organized framework within which multiple developers can create and test a solution prior to rolling it out in a production environment. Request control provides a framework for user requests. Release control manages the deployment of code into production. Configuration control ensures that changes to software versions are made in accordance with the change and configuration management policies.",
+      "optionNotes": [
+        "Incorrect. Request control gives users an organized way to submit change requests and lets managers weigh cost and priority. It doesn't coordinate developers whose work conflicts.",
+        "Incorrect. Release control handles deploying approved code into production. Victor's problem comes earlier, when several developers are building and testing changes that collide.",
+        "Correct. Change control gives multiple developers an organized framework to create and test a solution before it goes into production, which stops their modifications from conflicting.",
+        "Incorrect. Configuration control makes sure changes to software versions follow the change and configuration management policies. It doesn't organize the parallel development work that's causing the conflicts."
+      ]
+    },
+    {
+      "id": "OPT4-C08-029",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Tom is assessing security risks related to a database he manages. Examining user access controls, he determines that users have access to individual records in a table that match their clearances, but if they pull multiple records, that collection of facts has a higher classification than the classification of any of those facts standing alone and exceeds the permitted access. What type of issue has Tom identified?",
+      "options": [
+        "Inference",
+        "SQL injection",
+        "Multilevel security",
+        "Aggregation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Aggregation is a security issue that arises when a collection of facts has a higher classification than the classification of any of those facts standing alone. An inference problem occurs when an attacker can pull together pieces of less sensitive information and use them to derive information of greater sensitivity. SQL injection is a web application exploit. Multilevel security is a system control that allows the simultaneous processing of information at different classification levels.",
+      "optionNotes": [
+        "Incorrect. Inference means deducing more sensitive information from less sensitive pieces. The scenario is about combining records, where the collection itself carries a higher classification, so no deduction is involved.",
+        "Incorrect. SQL injection is a web application exploit that inserts malicious SQL. It has nothing to do with legitimately pulled records adding up to a higher classification.",
+        "Incorrect. Multilevel security is a system control that lets a system process information at different classification levels at the same time. It is a control, not the issue described here.",
+        "Correct. Aggregation is when a collection of facts has a higher classification than any single fact on its own. That is exactly what happens when users pull multiple records here."
+      ]
+    },
+    {
+      "id": "OPT4-C08-030",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.05,
+      "stem": "Ron leads a team of software developers who find themselves often re-creating code that performs common functions. What software development tool could he use to best address this situation?",
+      "options": [
+        "Code repositories",
+        "Code libraries",
+        "IDEs",
+        "DAST"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Code libraries are packages of reusable functions that may be incorporated into individual development projects. Ron could use libraries to easily share code among his team. Code repositories may be used to manage the distribution and updating of these libraries, but that is a second-order use case, making code libraries the best answer. Integrated development environments (IDEs) are tools used by developers to create software, while dynamic application security testing (DAST) is used to verify the correct implementation of code.",
+      "optionNotes": [
+        "Incorrect. Code repositories store and version code. They can help distribute and update libraries, but that's a secondary use. They don't give the team reusable common functions the way libraries do.",
+        "Correct. Code libraries are packages of reusable functions that can be pulled into individual projects. They let Ron's team share common code so developers stop rewriting it, so this is the correct answer.",
+        "Incorrect. IDEs are tools developers use to write and build software. They don't supply shared, reusable function packages, so they don't fix the problem of repeatedly rewriting common code.",
+        "Incorrect. DAST (dynamic application security testing) checks running code to verify it was implemented correctly and securely. It's a testing tool and does nothing to promote code reuse."
+      ]
+    },
+    {
+      "id": "OPT4-C08-031",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Vivian would like to hire a software tester to come in and evaluate a new web application from a user's perspective. Which of the following tests best simulates that perspective?",
+      "options": [
+        "Black box",
+        "Gray box",
+        "Blue box",
+        "White box"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Black-box testing begins with no prior knowledge of the system implementation, simulating a user's perspective. White-box and gray-box testing provide full and partial knowledge of the system, respectively, in advance of the test. Blue boxes are a phone hacking tool and are not used in software testing.",
+      "optionNotes": [
+        "Correct. Black-box testing starts with no prior knowledge of how the system is implemented, so the tester interacts with the application the way an ordinary user would.",
+        "Incorrect. In gray-box testing the tester gets partial knowledge of the system before starting. A typical user has no such insider knowledge, so this doesn't simulate the user's view.",
+        "Incorrect. A blue box is a phone-hacking (phreaking) device that manipulates telephone tones. It isn't a software testing method.",
+        "Incorrect. In white-box testing the tester gets full knowledge of the system, such as source code and design, before starting. That is a developer's or insider's view, not a user's."
+      ]
+    },
+    {
+      "id": "OPT4-C08-032",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "Referring to the database transaction shown here, what would happen if no account exists in the Accounts table with account number 1001?\n[Exhibit, transcribed from the book's figure:]\nBEGIN TRANSACTION\n\nUPDATE accounts\nSET balance = balance + 250\nWHERE account_number = 1001;\n\nUPDATE accounts\nSET balance = balance - 250\nWHERE account_number = 2002;\n\nCOMMIT TRANSACTION",
+      "options": [
+        "The database would create a new account with this account number and give it a $250 balance.",
+        "The database would ignore that command and still reduce the balance of the second account by $250.",
+        "The database would roll back the transaction, ignoring the results of both commands.",
+        "The database would generate an error message."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In this example, the two SQL commands are indeed bundled in a transaction, but it is not an error to issue an update command that does not match any rows. Therefore, the first command would “succeed” in updating zero rows and not generate an error or cause the transaction to roll back. The second command would then execute, reducing the balance of the second account by $250.",
+      "optionNotes": [
+        "Incorrect. An UPDATE only changes rows that already exist; it never creates new ones. Adding a new account would take an INSERT, and this transaction doesn't contain one.",
+        "Correct. An UPDATE that matches no rows isn't an error. It just changes zero rows, so the transaction doesn't roll back, and the second UPDATE still takes $250 off account 2002.",
+        "Incorrect. A rollback happens only after an error, an explicit ROLLBACK, or a failure. Updating zero rows counts as success, so the transaction commits even though there's no row for 1001.",
+        "Incorrect. SQL treats an UPDATE with no matching rows as a successful statement that affected zero rows. It doesn't raise an error."
+      ]
+    },
+    {
+      "id": "OPT4-C08-033",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.21,
+      "stem": "Brandon is a software developer seeking to integrate his software with a popular social media site. The site provides him with software libraries that he can use to better integrate his code as well as other tools that make his work easier. What term best describes the service he is using?",
+      "options": [
+        "SDK",
+        "DLP",
+        "IDE",
+        "API"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Software development kits (SDKs) are code libraries and other tools made available to assist developers in creating code. An integrated development environment (IDE) may be a component of an SDK, but it is not necessarily part of every SDK. An application programming interface (API) is a set of functions made available to external developers, but the code does not execute on the users' machine, as would a code library or other SDK tools. Data loss prevention (DLP) capabilities are not a component of software development toolsets.",
+      "optionNotes": [
+        "Correct. An SDK bundles code libraries and supporting tools a vendor provides so developers can build and integrate their code, which matches exactly what the social media site gave Brandon.",
+        "Incorrect. Data loss prevention is a security control that detects and blocks sensitive data from leaving the organization. It is not part of a software development toolset.",
+        "Incorrect. An IDE is an environment for writing and debugging code. An SDK may include one, but an IDE alone doesn't describe vendor-supplied libraries and tools.",
+        "Incorrect. An API is a set of functions exposed to external developers. Its code runs on the provider's side, not as libraries running on the developer's own machine, so it doesn't fit as well as SDK."
+      ]
+    },
+    {
+      "id": "OPT4-C08-034",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 2.29,
+      "stem": "Kim is troubleshooting an application firewall that serves as a supplement to the organization's network and host firewalls and intrusion prevention system, providing added protection against web-based attacks. The issue the organization is experiencing is that the firewall technology suffers somewhat frequent restarts that render it unavailable for 10 minutes at a time. What configuration might Kim consider to maintain availability during that period at the lowest cost to the company?",
+      "options": [
+        "High availability cluster",
+        "Failover device",
+        "Fail open",
+        "Redundant disks"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A fail open configuration may be appropriate in this case. In this configuration, the firewall would continue to pass traffic without inspection while it is restarting. This would minimize downtime, and the traffic would still be protected by the other security controls described in the scenario. Failover devices and high availability clusters would indeed increase availability, but at potentially significant expense. Redundant disks would not help in this scenario because no disk failure is described.",
+      "optionNotes": [
+        "Incorrect. A high availability cluster would keep the application firewall's protection running through restarts, but buying and maintaining extra clustered nodes is expensive. That rules it out as the lowest-cost choice.",
+        "Incorrect. A standby failover device would take over while the primary restarts and so improve availability. It still means buying a second firewall, which costs far more than a configuration change.",
+        "Correct. With fail open, traffic keeps passing without inspection during the 10-minute restart, so it costs nothing extra. The network firewall, host firewalls and IPS still protect that traffic in the meantime.",
+        "Incorrect. Redundant disks such as RAID protect against storage failure. The problem here is device restarts, not disk failure, so they wouldn't help."
+      ]
+    },
+    {
+      "id": "OPT4-C08-035",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.99,
+      "stem": "What type of security issue arises when an attacker can deduce a more sensitive piece of information by analyzing several pieces of information classified at a lower level?",
+      "options": [
+        "SQL injection",
+        "Multilevel security",
+        "Parameterization",
+        "Inference"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "An inference problem occurs when an attacker can pull together pieces of less sensitive information and use them to derive information of greater sensitivity. SQL injection is a web application exploit. Multilevel security is a system control that allows the simultaneous processing of information at different classification levels. Parameterization is a security control used to reduce the likelihood of attacks that rely upon improper user input.",
+      "optionNotes": [
+        "Incorrect. SQL injection is a web application exploit that inserts malicious SQL through user input. It isn't about piecing together low-level data to work out sensitive facts.",
+        "Incorrect. Multilevel security is a system control that lets a system process information at different classification levels at the same time. It is a control, not the attack described here.",
+        "Incorrect. Parameterization is a control that reduces the risk of attacks that rely on improper user input, such as injection. It has nothing to do with deriving sensitive information.",
+        "Correct. Inference happens when an attacker combines several pieces of less sensitive information to work out information of greater sensitivity."
+      ]
+    },
+    {
+      "id": "OPT4-C08-036",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Greg is battling a malware outbreak in his organization. He used specialized malware analysis tools to capture samples of the malware from three different systems and noticed that the code is changing slightly from infection to infection. Greg believes that this is the reason that antivirus software is having a tough time defeating the outbreak. What type of malware should Greg suspect is responsible for this security incident?",
+      "options": [
+        "Stealth virus",
+        "Polymorphic virus",
+        "Multipartite virus",
+        "Encrypted virus"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Polymorphic viruses mutate each time they infect a system by making adjustments to their code that assists them in evading signature detection mechanisms. Encrypted viruses also mutate from infection to infection but do so by encrypting themselves with different keys on each device.",
+      "optionNotes": [
+        "Incorrect. Stealth viruses tamper with the operating system so antivirus tools think everything is normal. They hide from detection; they don't change their own code from one infection to the next.",
+        "Correct. Polymorphic viruses make small changes to their code each time they infect a system, which helps them get past signature-based antivirus. That matches the slightly different samples Greg captured.",
+        "Incorrect. Multipartite viruses spread using more than one technique, such as infecting both files and boot sectors, to get past defenses that block only one method. This doesn't explain code that changes between infections.",
+        "Incorrect. Encrypted viruses also look different on each system, but only because the main code is encrypted with a different key each time. The decryption routine often stays the same. Greg saw the code itself changing slightly, which points to polymorphism."
+      ]
+    },
+    {
+      "id": "OPT4-C08-037",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.66,
+      "stem": "Scenario:\nLinda is reviewing posts to a user forum on her company's website, and when she browses a certain post, a message pops up in a dialog box on her screen reading “Alert.” She reviews the source code for the post and finds the following code snippet:\n<script>alert(‘Alert’);</script>\n\nWhat vulnerability definitely exists on Linda's message board?",
+      "options": [
+        "Cross-site scripting",
+        "Cross-site request forgery",
+        "SQL injection",
+        "Improper authentication"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The message forum is clearly susceptible to a cross-site scripting (XSS) attack. The code that Linda discovered in the message is a definitive example of an attempt to conduct cross-site scripting, and the alert box that she received demonstrates that the vulnerability exists. The website may also be vulnerable to cross-site request forgery, SQL injection, improper authentication, and other attacks, but there is no evidence of this provided in the scenario.",
+      "optionNotes": [
+        "Correct. The script tag Linda found in the post ran in her browser and popped up the alert box. That proves the forum stores user input and serves it back without filtering, which is a stored XSS vulnerability.",
+        "Incorrect. CSRF tricks a logged-in user's browser into sending unwanted requests to a trusted site. The site might also be open to CSRF, but nothing in the scenario shows it.",
+        "Incorrect. SQL injection targets database queries on the server. The snippet is client-side JavaScript, so it gives no evidence of SQL injection.",
+        "Incorrect. Nothing in the scenario involves login or identity checks. The script running only shows that output isn't sanitized, not that authentication is weak."
+      ]
+    },
+    {
+      "id": "OPT4-C08-038",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.49,
+      "stem": "Scenario:\nLinda is reviewing posts to a user forum on her company's website, and when she browses a certain post, a message pops up in a dialog box on her screen reading “Alert.” She reviews the source code for the post and finds the following code snippet:\n<script>alert(‘Alert’);</script>\n\nWhat was the likely motivation of the user who posted the message on the forum containing this code?",
+      "options": [
+        "Reconnaissance",
+        "Theft of sensitive information",
+        "Credential stealing",
+        "Social engineering"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The script that Linda discovered merely pops up a message on a user's screen and does not perform any more malicious action. This type of script, using an alert() call, is commonly used to probe websites for cross-site scripting vulnerabilities.",
+      "optionNotes": [
+        "Correct. A plain alert() payload does nothing harmful. It is the standard probe for checking whether a site will run injected script, so it points to reconnaissance for cross-site scripting (XSS) vulnerabilities.",
+        "Incorrect. Stealing sensitive data would need a payload that reads page content or sends it to the attacker. This script only shows a dialog box and takes no data.",
+        "Incorrect. Stealing credentials through XSS usually means grabbing cookies or session tokens and sending them out, for example via document.cookie. A bare alert('Alert') harvests nothing.",
+        "Incorrect. Social engineering tries to trick the user into doing something, such as clicking a fake link. A generic 'Alert' popup asks nothing of the viewer. It only confirms that the injected script ran."
+      ]
+    },
+    {
+      "id": "OPT4-C08-039",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.82,
+      "stem": "Scenario:\nLinda is reviewing posts to a user forum on her company's website, and when she browses a certain post, a message pops up in a dialog box on her screen reading “Alert.” She reviews the source code for the post and finds the following code snippet:\n<script>alert(‘Alert’);</script>\n\nLinda communicates with the vendor and determines that no patch is available to correct this vulnerability. Which one of the following devices would best help her defend the application against further attack?",
+      "options": [
+        "VPN",
+        "WAF",
+        "DLP",
+        "IDS"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Web application firewalls (WAFs) sit in front of web applications and watch for potentially malicious web attacks, including cross-site scripting. They then block that traffic from reaching the web application. An intrusion detection system (IDS) may detect the attack but is unable to take action to prevent it. DLP and VPN solutions are unable to detect web application attacks.",
+      "optionNotes": [
+        "Incorrect. A VPN encrypts traffic between endpoints. It can't inspect or block XSS payloads sent to a public web forum.",
+        "Correct. A WAF sits in front of the web application, spots attacks such as cross-site scripting, and blocks that traffic. It works as a compensating control while no vendor patch is available.",
+        "Incorrect. DLP looks for sensitive data leaving the organization. It can't detect web application attacks like the injected script tag.",
+        "Incorrect. An IDS might detect the XSS attempt, but it only raises an alert. It can't take action to stop the attack from reaching the application."
+      ]
+    },
+    {
+      "id": "OPT4-C08-040",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.28,
+      "stem": "Scenario:\nLinda is reviewing posts to a user forum on her company's website, and when she browses a certain post, a message pops up in a dialog box on her screen reading “Alert.” She reviews the source code for the post and finds the following code snippet:\n<script>alert(‘Alert’);</script>\n\nIn further discussions with the vendor, Linda finds that they are willing to correct the issue but do not know how to update their software. What technique would be most effective in mitigating the vulnerability of the application to this type of attack?",
+      "options": [
+        "Bounds checking",
+        "Peer review",
+        "Input validation",
+        "OS patching"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Input validation verifies that user-supplied input does not violate security conditions and is the most effective defense against cross-site scripting attacks. Bounds checking is a form of input validation, but it is typically used to ensure that numeric input falls within an acceptable range and is not applicable against cross-site scripting attacks. Peer review and OS patching are both good security practices but are unlikely to be effective against a cross-site scripting attack.",
+      "optionNotes": [
+        "Incorrect. Bounds checking is a narrow type of input validation, usually used to keep numeric input or buffer lengths within allowed limits. It does nothing to strip or encode script tags, so it won't stop XSS.",
+        "Incorrect. Peer review, meaning other developers checking the code, is good practice. But on its own it doesn't stop the app from storing and showing script entered by users, so it won't fix the XSS flaw.",
+        "Correct. The snippet is a stored cross-site scripting (XSS) test. Input validation, along with output encoding, rejects or cleans user input such as <script> tags, which makes it the most effective defense against XSS.",
+        "Incorrect. OS patching fixes flaws in the operating system. XSS is a flaw in the web application's code, so patching the OS leaves the vulnerability in place."
+      ]
+    },
+    {
+      "id": "OPT4-C08-041",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.99,
+      "stem": "Hannah is a software developer working on creating statistical software using the R programming language. She uses the RStudio tool, shown here, to assist her in writing this code. What term best describes this tool?\n[Figure, described in text: the RStudio window: a code editor showing an R script (biztech.r), a Console pane showing the R startup message, plus Terminal and Jobs tabs and Run/Source buttons.]",
+      "options": [
+        "SDK",
+        "IDE",
+        "API",
+        "DLP"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "RStudio is a tool used to assist in the creation of code, otherwise known as an integrated development environment (IDE). Software development kits (SDKs) are code libraries and other tools made available to assist developers in creating code. An application programming interface (API) is a set of functions made available to external developers, but the code does not execute on the users' machine, as would a code library or other SDK tools. Data loss prevention (DLP) capabilities are not a component of software development toolsets.",
+      "optionNotes": [
+        "Incorrect. An SDK is a package of code libraries and tools that developers build with. RStudio is the editing and execution environment itself, not a library bundle.",
+        "Correct. RStudio puts a code editor, console, terminal and run/source controls in one window. That makes it an integrated development environment (IDE), a tool that helps developers create code.",
+        "Incorrect. An API is a set of functions exposed to outside developers, and the code behind it does not run on the user's machine. RStudio is a desktop authoring tool, not an interface.",
+        "Incorrect. Data loss prevention (DLP) is a security control that stops sensitive data from leaking. It is not part of a software development toolset."
+      ]
+    },
+    {
+      "id": "OPT4-C08-042",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 2.49,
+      "stem": "Which of the following configurations within the Scaled Agile Framework (SAFe) is specifically designed to support enterprises in building and maintaining large integrated solutions with the collaboration of hundreds of practitioners?",
+      "options": [
+        "Large Solution SAFe",
+        "Portfolio SAFe",
+        "Essential SAFe",
+        "Full SAFe"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Full SAFe is designed to support enterprises in building and maintaining large integrated solutions with the collaboration of hundreds of practitioners. It provides the most extensive level of guidance, with roles, responsibilities, and activities needed to sustainably deliver complex solutions. Essential SAFe focuses on the basic elements of the framework needed to be agile, Large Solution SAFe is for developing large and complex solutions that do not require the constructs of the portfolio level, and Portfolio SAFe is for aligning enterprise strategy with execution but does not address the complexity of building large solutions that Full SAFe is designed for.",
+      "optionNotes": [
+        "Incorrect. Large Solution SAFe covers large, complex solutions that don't need portfolio-level constructs. It lacks the full enterprise scope the question describes.",
+        "Incorrect. Portfolio SAFe aligns enterprise strategy with execution. It doesn't address the complexity of building large integrated solutions with hundreds of practitioners.",
+        "Incorrect. Essential SAFe is the basic starting configuration. It provides only the core elements needed for agility and isn't meant for large integrated solutions.",
+        "Correct. Full SAFe gives the most complete guidance (roles, responsibilities and activities) for enterprises where hundreds of practitioners build and maintain large integrated solutions."
+      ]
+    },
+    {
+      "id": "OPT4-C08-043",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Alan is deploying Java code to a variety of machines in his environment and must install the JVM on those machines first. What term best describes the JVM in this case?",
+      "options": [
+        "Repository",
+        "Change manager",
+        "Runtime",
+        "Sandbox"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The JVM is the runtime virtual machine that allows the execution of Java code on a device. The JVM implements the Java sandbox, but that is only one of its many functions. The JVM itself is not a change manager or code repository.",
+      "optionNotes": [
+        "Incorrect. A repository stores and versions source code (e.g., Git). The JVM executes Java bytecode and doesn't store code, so this label doesn't fit.",
+        "Incorrect. A change manager tracks and approves changes to systems. The JVM has no change management role; its job is executing Java code.",
+        "Correct. The JVM is the runtime virtual machine that must be present on a device for Java bytecode to run, so it has to be installed before the code is deployed.",
+        "Incorrect. The JVM does implement the Java sandbox, but that's only one of its functions. The term that best describes the JVM as a whole is runtime."
+      ]
+    },
+    {
+      "id": "OPT4-C08-044",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Christine is nearing the final stages of testing a new software package. Which one of the following types of software testing usually occurs last and is executed against test scenarios?",
+      "options": [
+        "Unit testing",
+        "Integration testing",
+        "User acceptance testing",
+        "System testing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "User acceptance testing (UAT) is typically the last phase of the testing process. It verifies that the solution developed meets user requirements and validates it against use cases. Unit testing, integration testing, and system testing are all conducted earlier in the process leading up to UAT.",
+      "optionNotes": [
+        "Incorrect. Unit testing checks individual modules or components in isolation and happens early in development, well before UAT, so it is not the final testing phase.",
+        "Incorrect. Integration testing checks how combined modules interact with each other. It comes after unit testing but before system testing and UAT, so it is not the last phase.",
+        "Correct. UAT is usually the last testing phase. It confirms the solution meets user requirements by running it against use cases and test scenarios.",
+        "Incorrect. System testing checks the complete, integrated system against its specifications. It happens before UAT, which is where users validate the system against their own scenarios."
+      ]
+    },
+    {
+      "id": "OPT4-C08-045",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.88,
+      "stem": "Alexis' organization recently moved to a CI/CD approach for software development where they intend to speed up the deployment of code supporting their website. What is the most reasonable frequency that they can expect to achieve using this type of approach?",
+      "options": [
+        "Monthly deployments",
+        "Weekly deployments",
+        "Daily deployments",
+        "Hundreds of daily deployments"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "When organizations adopt a continuous integration/continuous delivery (CI/CD) approach to software development, they may deploy code extremely rapidly. In fact, some organizations deploy new code to production hundreds or even thousands of times per day using this approach.",
+      "optionNotes": [
+        "Incorrect. Monthly releases are what slower, traditional release cycles look like. CI/CD automates build, test and deployment, so it can push code far more often than once a month.",
+        "Incorrect. A weekly cadence is faster than traditional cycles but still well below what CI/CD can do. Organizations using CI/CD push changes to production many times per day.",
+        "Incorrect. Daily deployments undersell CI/CD. The book explanation says some organizations using this approach deploy to production hundreds or even thousands of times per day.",
+        "Correct. With CI/CD, code can move to production extremely quickly, and some organizations deploy hundreds or even thousands of times per day."
+      ]
+    },
+    {
+      "id": "OPT4-C08-046",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Amber is conducting a threat intelligence project and would like to find a source of information on threats to her organization's web applications. Which of the following organizations is widely considered as the definitive source for information on web-based attack vectors?",
+      "options": [
+        "ISC2",
+        "ISACA",
+        "OWASP",
+        "Mozilla Foundation"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Open Worldwide Application Security Project (OWASP) is widely considered as the most authoritative source on web application security issues. They publish the OWASP Top Ten list that publicizes the most critical web application security issues.",
+      "optionNotes": [
+        "Incorrect. ISC2 is the professional certification body behind the CISSP. It sets credentials and a code of ethics, and it doesn't serve as the definitive source on web application attack vectors.",
+        "Incorrect. ISACA is an association focused on IT governance, audit and control (CISA, CISM, COBIT). It isn't the authoritative reference for web application threats.",
+        "Correct. OWASP (Open Worldwide Application Security Project) is widely seen as the most authoritative source on web application security. It publishes the OWASP Top Ten list of the most critical web application risks.",
+        "Incorrect. The Mozilla Foundation is a nonprofit known for the Firefox browser. It publishes some security guidance, but it isn't considered the definitive source on web-based attack vectors."
+      ]
+    },
+    {
+      "id": "OPT4-C08-047",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Chris is a software developer, and he is actively writing code for an application. What phase of the Agile process is he in?",
+      "options": [
+        "Planning",
+        "Sprints",
+        "Deployment",
+        "Testing"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Chris is in an Agile sprint phase and is likely developing code based on user stories. Planning includes stakeholder stories, as well as design and test case preparation. Testing involves ensuring that the code works properly and meets requirements. Deployment includes the actual deployment of the application, as well as additional verification and testing.",
+      "optionNotes": [
+        "Incorrect. In Agile, planning covers gathering stakeholder user stories and preparing designs and test cases. Chris is already writing code, so he has moved past planning.",
+        "Correct. In Agile, code gets written during sprints, where developers build features from user stories. That matches what Chris is actively doing.",
+        "Incorrect. Deployment means rolling the finished application out, along with some extra verification and testing. Chris is still writing the code, so it isn't ready to deploy.",
+        "Incorrect. Testing checks that code already written works properly and meets requirements. Chris is still writing the code, so testing isn't his current activity."
+      ]
+    },
+    {
+      "id": "OPT4-C08-048",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.88,
+      "stem": "Alyssa's team recently implemented a new system that gathers information from a variety of different log sources, analyzes that information, and then triggers automated playbooks in response to security events. What term best describes this technology?",
+      "options": [
+        "SIEM",
+        "Log repositories",
+        "IPS",
+        "SOAR"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Security information and event management (SIEM) systems do correlate information from multiple sources and perform analysis, but they stop short of providing automated playbook responses. That is the realm of security orchestration, automation, and response (SOAR) platforms. Intrusion prevention platforms have a more limited scope, allowing the blocking of traffic based upon analysis performed by the IPS itself. Log repositories simply collect log information and do not perform analysis.",
+      "optionNotes": [
+        "Incorrect. A SIEM collects and correlates logs from many sources and analyzes them, but it doesn't run automated playbook responses. That part is what makes the system a SOAR.",
+        "Incorrect. Log repositories only collect and store log data. They don't analyze it or trigger any automated response.",
+        "Incorrect. An IPS has a narrower scope. It blocks traffic based on its own analysis and doesn't pull together many log sources or run orchestrated playbooks.",
+        "Correct. SOAR (security orchestration, automation, and response) platforms gather data from multiple sources, analyze it, and run automated playbooks in response to security events. That matches the description exactly."
+      ]
+    },
+    {
+      "id": "OPT4-C08-049",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Chris is reviewing the code of an open-source application that he is planning to use in his organization. He finds the code excerpt shown here: int myarray[10]; myarray[10] = 8;\nWhat type of attack is taking place?",
+      "options": [
+        "Mismatched data types",
+        "Overflow",
+        "SQL injection",
+        "Covert channel"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "This is an example of a specific type of buffer overflow known as an off-by-one error. The first line of the code defines an array of 10 elements, which would be numbered 0 through 9. The second line of code tries to place a value in the 11th element of the array (remember, array counting begins at 0!), which would cause an overflow.",
+      "optionNotes": [
+        "Incorrect. Both the array and the value 8 are integers, so the data types match. The flaw is the index position, not the type of data being assigned.",
+        "Correct. This is an off-by-one buffer overflow. The array has 10 elements, numbered 0–9, so writing to myarray[10] puts data in an 11th slot that is outside the allocated memory.",
+        "Incorrect. SQL injection means slipping SQL commands into input that gets sent to a database. This code has no SQL and no database query, just a C array assignment.",
+        "Incorrect. A covert channel passes information over a path not normally used for communication, such as timing or shared storage. Writing past the end of an array is a memory-bounds error, not hidden signaling."
+      ]
+    },
+    {
+      "id": "OPT4-C08-050",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.35,
+      "stem": "Which one of the following database issues occurs when one transaction writes a value to the database that overwrites a value that was needed by transactions with earlier precedence?",
+      "options": [
+        "Dirty read",
+        "Incorrect summary",
+        "Lost update",
+        "SQL injection"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Lost updates occur when one transaction writes a value to the database that overwrites a value needed by transactions that have earlier precedence, causing those transactions to read an incorrect value. Dirty reads occur when one transaction reads a value from a database that was written by another transaction that did not commit. Incorrect summaries occur when one transaction is using an aggregate function to summarize data stored in a database while a second transaction is making modifications to the database, causing the summary to include incorrect information. SQL injection is a web application security flaw, not a database concurrency problem.",
+      "optionNotes": [
+        "Incorrect. A dirty read happens when a transaction reads a value written by another transaction that never committed. Nothing gets overwritten, so it doesn't match the question.",
+        "Incorrect. An incorrect summary happens when an aggregate function runs while another transaction is changing the data, so the summary includes wrong information. It is not about overwriting values that earlier transactions needed.",
+        "Correct. A lost update happens when one transaction overwrites a value that transactions with earlier precedence still needed, so those transactions read an incorrect value.",
+        "Incorrect. SQL injection is a security flaw in web applications, not a database concurrency problem between transactions."
+      ]
+    },
+    {
+      "id": "OPT4-C08-051",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.88,
+      "stem": "Belinda would like to better protect users of her organization's web application from cookie-stealing attacks. Which one of the following is the most effective control against this type of session hijacking attack?",
+      "options": [
+        "TLS",
+        "Complex session cookies",
+        "SSL",
+        "Expiring cookies frequently"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Transport Layer Security (TLS) provides the most effective defense against session hijacking because it encrypts all traffic between the client and server, preventing the attacker from stealing session credentials. Secure Sockets Layer (SSL) also encrypts traffic, but it is vulnerable to attacks against its encryption technology. Complex and expiring cookies are a good idea, but they are not sufficient protection against session hijacking.",
+      "optionNotes": [
+        "Correct. TLS encrypts all traffic between client and server, so an attacker sniffing the connection can't capture session cookies. That makes it the most effective defense against cookie-stealing session hijacking.",
+        "Incorrect. Complex session cookies make it harder to guess a token, but they do nothing to stop an attacker from capturing a cookie sent in cleartext. They're a good practice but not enough protection on their own.",
+        "Incorrect. SSL also encrypts traffic, but it is deprecated and has known weaknesses in its encryption (e.g., POODLE). It is less effective than TLS.",
+        "Incorrect. Expiring cookies often shrinks the window in which a stolen cookie can be reused, but it doesn't stop the theft itself. It's a helpful extra measure, not a sufficient defense."
+      ]
+    },
+    {
+      "id": "OPT4-C08-052",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "In a software configuration management program, what is the primary role of the CAB?",
+      "options": [
+        "Approve the credentials of developers.",
+        "Facilitate lessons learned sessions.",
+        "Review and approve/reject code changes.",
+        "Prioritize software development efforts."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The purpose of the change advisory board (CAB) is to review and then approve or reject proposed code changes. The CAB is not normally involved in the approval of developer credentials, the conduct of lessons learned sessions, or the prioritization of software development efforts.",
+      "optionNotes": [
+        "Incorrect. Approving developer credentials is an identity and access management task. The CAB doesn't normally do it; its job is evaluating proposed changes.",
+        "Incorrect. Lessons-learned sessions are post-incident or post-project reviews. They aren't the CAB's job, which is to review and decide on proposed changes.",
+        "Correct. The change advisory board's main job is to review proposed code changes and then approve or reject them.",
+        "Incorrect. Prioritizing development work belongs to project or product management, not the CAB. The CAB rules on specific change requests."
+      ]
+    },
+    {
+      "id": "OPT4-C08-053",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.53,
+      "stem": "Which one of the following tools is commonly used by software developers to interact with and manage code that is stored in code repositories?",
+      "options": [
+        "grep",
+        "git",
+        "lsof",
+        "gcc"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "git is a version management tool that is very commonly used by developers to interact with code repositories, such as those hosted by GitHub. grep is a command-line tool used to search files for specific content. lsof is a command used to list the open files on a system. gcc is a C language compiler used to transform source code into executable code.",
+      "optionNotes": [
+        "Incorrect. Grep is a command-line utility for searching files for text patterns. It doesn't manage code repositories or version history.",
+        "Correct. Git is the widely used version control tool developers use to clone, commit, push and pull code in repositories, such as those hosted on GitHub.",
+        "Incorrect. Lsof lists the files currently open on a system. It's a system diagnostic tool and has nothing to do with managing code repositories.",
+        "Incorrect. Gcc is a C compiler that turns source code into executables. It builds code but doesn't interact with repositories or track versions."
+      ]
+    },
+    {
+      "id": "OPT4-C08-054",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "While evaluating a potential security incident, Harry comes across a log entry from a web server request showing that a user entered the following input into a form field: CARROT'&1=1;--\nWhat type of attack was attempted?",
+      "options": [
+        "Buffer overflow",
+        "Cross-site scripting",
+        "SQL injection",
+        "Cross-site request forgery"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The single quotation mark in the input field is a telltale sign that this is a SQL injection attack. The single quotation mark is used to escape outside the SQL code's input field, and the text following it is used to directly manipulate the SQL command sent from the web application to the database.",
+      "optionNotes": [
+        "Incorrect. A buffer overflow sends too much input to overrun a memory buffer, usually with a long string. This input is short and uses SQL syntax (a quote, 1=1, and a -- comment), not oversized data.",
+        "Incorrect. Cross-site scripting injects script code, such as <script> tags, that runs in a victim's browser. This input has no script or HTML elements, only characters that change a database query.",
+        "Correct. The single quote breaks out of the input field. The text after it (1=1 and the -- comment) then changes the SQL command the web application sends to the database, which is classic SQL injection.",
+        "Incorrect. CSRF tricks a user's browser into sending unwanted requests to a site that trusts that user. It doesn't depend on injecting special characters into a form field the way this input does."
+      ]
+    },
+    {
+      "id": "OPT4-C08-055",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Which one of the following is not an effective control against SQL injection attacks?",
+      "options": [
+        "Escaping",
+        "Client-side input validation",
+        "Parameterization",
+        "Limiting database permissions"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Client-side input validation is not an effective control against any type of attack because the attacker can easily bypass the validation by altering the code on the client. Escaping restricted characters prevents them from being passed to the database, as does parameterization. Limiting database permissions prevents dangerous code from executing.",
+      "optionNotes": [
+        "Incorrect. Escaping neutralizes restricted characters so they can't be passed to the database as SQL syntax. That makes it an effective SQL injection control, so it isn't the answer.",
+        "Correct. Client-side validation runs on code the attacker controls, so it's easy to bypass by changing or skipping that code. It isn't an effective control against any attack, including SQL injection.",
+        "Incorrect. Parameterization (prepared statements) sends user input to the database as data, not as executable SQL, which blocks injection. It's an effective control, so it isn't the answer.",
+        "Incorrect. Least-privilege database permissions stop injected code from running dangerous operations, which limits the damage. It's an effective control, so it isn't the answer."
+      ]
+    },
+    {
+      "id": "OPT4-C08-056",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.08,
+      "stem": "Jason is reviewing the documentation for a software development project and comes across the diagram shown here. What type of diagram is he examining?\n[Figure, described in text: numbered milestone nodes (10, 20, 30, 40, 50) joined by lettered arrows with estimated durations: 10→30 (A, t=3 mo), 10→20 (B, t=4 mo), 20→50 (C, t=3 mo), 30→40 (D, t=1 mo), 30→50 (E, t=3 mo), 40→50 (F, t=3 mo).]",
+      "options": [
+        "WBS chart",
+        "PERT chart",
+        "Gantt chart",
+        "Wireframe diagram"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "PERT charts use nodes to represent milestones or deliverables and then show the estimated time to move between milestones. Gantt charts use a different format with a row for each task and lines showing the expected duration of the task. Work breakdown structures are an earlier deliverable that divides project work into achievable tasks. Wireframe diagrams are used in application UI design.",
+      "optionNotes": [
+        "Incorrect. A work breakdown structure is produced earlier in the project and splits the work into achievable tasks. It doesn't show milestone nodes linked by arrows with time estimates.",
+        "Correct. A PERT chart uses nodes for milestones or deliverables and connects them with arrows that carry estimated durations, such as t=3 mo. That matches the diagram.",
+        "Incorrect. A Gantt chart has one row per task and uses horizontal bars along a timeline to show each task's duration. It isn't a network of milestone nodes and arrows.",
+        "Incorrect. Wireframe diagrams are used to lay out an application's user interface. They don't show project milestones or schedule estimates."
+      ]
+    },
+    {
+      "id": "OPT4-C08-057",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "In what software testing technique does the evaluator retest a large number of scenarios each time that the software changes to verify that the results are consistent with a standard baseline?",
+      "options": [
+        "Orthogonal array testing",
+        "Pattern testing",
+        "Matrix testing",
+        "Regression testing"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Regression testing is performed after developers make changes to an application. It reruns a number of test cases and compares the results to baseline results. Orthogonal array testing is a method for generating test cases based on statistical analysis. Pattern testing uses records of past software bugs to inform the analysis. Matrix testing develops a matrix of all possible inputs and outputs to inform the test plan.",
+      "optionNotes": [
+        "Incorrect. Orthogonal array testing uses statistical analysis to generate test cases. It isn't about rerunning tests after a change and comparing the results to a baseline.",
+        "Incorrect. Pattern testing uses records of past software bugs to guide the analysis. It doesn't rerun scenarios against a baseline after each change.",
+        "Incorrect. Matrix testing builds a matrix of all possible inputs and outputs to shape the test plan. It's a planning method, not repeated retesting against a baseline.",
+        "Correct. Regression testing is done after developers change the software. It reruns many test cases and compares the results with baseline results to confirm nothing has broken."
+      ]
+    },
+    {
+      "id": "OPT4-C08-058",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.05,
+      "stem": "Haley is reviewing code created by her organization for its possible exposure to web application vulnerabilities. Which one of the following conditions may make an application most vulnerable to a cross-site scripting (XSS) attack?",
+      "options": [
+        "Input validation",
+        "Reflected input",
+        "Unpatched server",
+        "Promiscuous firewall rules"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Cross-site scripting (XSS) attacks may take advantage of the use of reflected input in a web application where input provided by one user is displayed to another user. Input validation is a control used to prevent XSS attacks. XSS does not require an unpatched server or any firewall rules beyond those permitting access to the web application.",
+      "optionNotes": [
+        "Incorrect. Input validation is a defense against XSS, not a weakness. It filters or rejects script content before the application processes or displays it.",
+        "Correct. XSS exploits reflected input, where input supplied by one user is displayed to another user without sanitization, so the injected script runs in the victim's browser.",
+        "Incorrect. XSS is a flaw in how the application's code handles input, so it doesn't depend on an unpatched server. A fully patched server can still host an application vulnerable to XSS.",
+        "Incorrect. XSS needs no firewall access beyond the normal access that lets users reach the web application. Loose (promiscuous) firewall rules have no bearing on the attack."
+      ]
+    },
+    {
+      "id": "OPT4-C08-059",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Roger is conducting a software test for a tax preparation application developed by his company. End users will access the application over the web, but Roger is conducting his test on the back end, evaluating the source code on the web server. What type of test is Roger conducting?",
+      "options": [
+        "White box",
+        "Gray box",
+        "Blue box",
+        "Black box"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In a white-box test, the tester has access to full implementation details of the system, including source code, prior to beginning the test. In gray-box testing, the tester has partial knowledge. In black-box testing, the tester has no knowledge of the system and tests it from a user perspective. Blue boxes are a phone hacking tool and are not used in software testing.",
+      "optionNotes": [
+        "Correct. Roger is reviewing the source code on the server, so he has full knowledge of how the system is built. That makes this a white-box test.",
+        "Incorrect. In gray-box testing the tester has only partial knowledge of the system. Roger has full access to the source code, so this is more than a gray-box test.",
+        "Incorrect. A blue box is an old phone-hacking device used to manipulate telephone switching tones. It is not a software testing method.",
+        "Incorrect. Black-box testing assumes no knowledge of the system and tests it from the user's side. Roger is examining the back-end source code, so this is not a black-box test."
+      ]
+    },
+    {
+      "id": "OPT4-C08-060",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Which of the following statements is true about heuristic-based antimalware software?",
+      "options": [
+        "It has a lower false positive rate than signature detection.",
+        "It requires frequent definition updates to detect new malware.",
+        "It has a higher likelihood of detecting zero-day exploits than signature detection.",
+        "It monitors systems for files with content known to be viruses."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Heuristic-based antimalware software has a higher likelihood of detecting a zero-day exploit than signature-based methods. Heuristic-based software does not require frequent signature updates because it does not rely upon monitoring systems for the presence of known malware. The trade-off with this approach is that it has a higher false positive rate than signature detection methods.",
+      "optionNotes": [
+        "Incorrect. Backwards. Heuristic detection flags suspicious behavior instead of exact matches, so it produces more false positives than signature detection. That is the trade-off for catching unknown threats.",
+        "Incorrect. Frequent definition updates are what signature-based tools need. Heuristic tools don't depend on lists of known malware, so they don't rely on constant signature updates.",
+        "Correct. Heuristics look at behavior and characteristics instead of known signatures, so they can catch zero-day exploits that have no signature yet.",
+        "Incorrect. Scanning for content from known viruses describes signature-based detection. Heuristic tools don't depend on known-malware patterns."
+      ]
+    },
+    {
+      "id": "OPT4-C08-061",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.08,
+      "stem": "Martin is inspecting a system where the user reported unusual activity, including disk activity when the system is idle and abnormal CPU and network usage. He suspects that the machine is infected by a virus, but scans come up clean. What malware technique might be in use here that would explain the clean scan results?",
+      "options": [
+        "File infector virus",
+        "MBR virus",
+        "Service injection virus",
+        "Stealth virus"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "One possibility for the clean scan results is that the virus is using stealth techniques, such as intercepting read requests from the antivirus software and returning a correct-looking version of the infected file. The system may also be the victim of a zero-day attack, using a virus that is not yet included in the signature definition files provided by the antivirus vendor.",
+      "optionNotes": [
+        "Incorrect. File infector viruses modify executable files, which signature scans normally detect; infecting files doesn't by itself hide the virus from antivirus checks.",
+        "Incorrect. MBR viruses describe where the virus lives: they redirect boot to an infected sector. Hiding a clean MBR from antivirus is a stealth technique, not something defined by the MBR type.",
+        "Incorrect. Service injection is not a standard virus category, and nothing about it explains how a virus would evade scans.",
+        "Correct. Stealth viruses intercept antivirus read requests and return a clean-looking version of the infected file. That explains clean scans despite signs of infection."
+      ]
+    },
+    {
+      "id": "OPT4-C08-062",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.75,
+      "stem": "Tomas discovers a line in his application log that appears to correspond with an attempt to conduct a directory traversal attack. He believes the attack was conducted using URL encoding. The line reads as follows: %252E%252E%252F%252E%252E%252Fetc/passwd\nWhat character is represented by the %252E value?",
+      "options": [
+        ".",
+        ",",
+        ";",
+        "/"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In URL encoding, the . character is replaced by %252E, and the /character is replaced by %252F. You can see this in the log entry, where the expected pattern of ../../ is replaced by %252E%252E%252F%252E%252E%252F.",
+      "optionNotes": [
+        "Correct. %252E is the double-encoded period (%25 decodes to %, leaving %2E, which is '.'). Together with %252F it rebuilds the ../../ traversal pattern before etc/passwd.",
+        "Incorrect. A comma is %2C in URL encoding (%252C double-encoded), not %2E. Commas also have no role in a ../ directory traversal sequence.",
+        "Incorrect. A semicolon is %3B (%253B double-encoded). It is used in command injection, not in the ../ path traversal pattern seen in this log.",
+        "Incorrect. The forward slash is %252F in this log entry, not %252E. Each %252E%252E%252F group decodes to ../, so the slash is the third value in the group."
+      ]
+    },
+    {
+      "id": "OPT4-C08-063",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "An attacker posted a message to a public discussion forum that contains an embedded malicious script that is not displayed to the user but executes on the user's system when read. What type of attack is this?",
+      "options": [
+        "Persistent XSRF",
+        "Nonpersistent XSRF",
+        "Persistent XSS",
+        "Nonpersistent XSS"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Attacks where the malicious user tricks the victim's web browser into executing a script through the use of a third-party site are known as cross-site scripting (XSS) attacks. This particular attack is a persistent XSS attack because it remains on the discussion forum until an administrator discovers and deletes it, giving it the ability to affect many users.",
+      "optionNotes": [
+        "Incorrect. XSRF (CSRF) tricks a logged-in user's browser into sending an unwanted command to another site, like a forged transfer link. Here a script runs on the reader's system, which is XSS, not request forgery.",
+        "Incorrect. XSRF is the wrong attack family. CSRF abuses a victim's authenticated session to issue commands to a second site. It is not about a hidden script running in the browser of whoever views a forum post.",
+        "Correct. A script hidden in a forum post makes the victim's browser run attacker code through a third-party site, which is XSS. It is persistent because it stays stored on the forum, hitting many visitors until an admin deletes it.",
+        "Incorrect. Nonpersistent (reflected) XSS bounces the script off a server in a crafted request or link and is not stored. A forum post that stays on the site and hits every reader is stored, persistent XSS."
+      ]
+    },
+    {
+      "id": "OPT4-C08-064",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.08,
+      "stem": "Which one of the following is not a principle of the Agile software development process?",
+      "options": [
+        "Welcome changing requirements, even late in the development process.",
+        "Maximizing the amount of work not done is essential.",
+        "Clear documentation is the primary measure of progress.",
+        "Build projects around motivated individuals."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Agile Manifesto includes 12 principles for software development. Three of those are listed as answer choices: maximizing the amount of work not done is essential, build projects around motivated individuals, and welcome changing requirements throughout the development process. Agile does not, however, consider clear documentation the primary measure of progress. Instead, working software is the primary measure of progress.",
+      "optionNotes": [
+        "Incorrect. This is one of the 12 Agile Manifesto principles. Agile welcomes changing requirements even late in development, so it can't be the answer to a 'not a principle' question.",
+        "Incorrect. Simplicity, described as the art of maximizing the amount of work not done, is a real Agile principle. That makes it a wrong answer here.",
+        "Correct. This is not an Agile principle. Agile treats working software as the primary measure of progress, not documentation, and it values working software over comprehensive documentation.",
+        "Incorrect. Building projects around motivated individuals, giving them support and trusting them, is one of the Agile Manifesto principles. So it is a valid principle, not the exception."
+      ]
+    },
+    {
+      "id": "OPT4-C08-065",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Gavin is an internal auditor tasked with examining the change management practices of his organization. He would like to review a series of changes made to a software package to determine whether they were properly documented. Where should he turn for a description of each proposed change?",
+      "options": [
+        "CAB",
+        "RFC",
+        "SOAR",
+        "SIEM"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Each change should be the result of a reviewed and approved request for change (RFC). These RFCs may be approved by the change advisory board (CAB). The security information and event management (SIEM) and security orchestration, automation, and response (SOAR) platforms used by the organization would not normally contain information about the change management process.",
+      "optionNotes": [
+        "Incorrect. The change advisory board (CAB) is the group that reviews and approves changes. It isn't the document that describes each proposed change; that description lives in the RFC.",
+        "Correct. Every change should come from a reviewed and approved request for change (RFC). The RFC documents what the proposed change is, so it's where an auditor would go to check that changes were documented.",
+        "Incorrect. SOAR (security orchestration, automation, and response) platforms automate incident response playbooks. They don't normally hold change management records.",
+        "Incorrect. A SIEM (security information and event management) system collects and correlates security logs and events. It would not normally contain descriptions of proposed changes."
+      ]
+    },
+    {
+      "id": "OPT4-C08-066",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Neal is working with a DynamoDB database. The database is not structured like a relational database but allows Neal to store data using a key-value store. What type of database is DynamoDB?",
+      "options": [
+        "Relational database",
+        "Graph database",
+        "Hierarchical database",
+        "NoSQL database"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "A key-value store is an example of a NoSQL database that does not follow a relational or hierarchical model like traditional databases. A graph database is another example of a NoSQL database, but it uses nodes and edges to store data rather than keys and values.",
+      "optionNotes": [
+        "Incorrect. A relational database stores data in tables of rows and columns linked by keys. The question says DynamoDB is not structured like a relational database.",
+        "Incorrect. A graph database is a type of NoSQL database, but it stores data as nodes and edges, not as key-value pairs.",
+        "Incorrect. A hierarchical database arranges records in a parent-child tree. That's a traditional model, and key-value stores don't follow it.",
+        "Correct. A key-value store like DynamoDB is a NoSQL database, which means it doesn't use the traditional relational or hierarchical models."
+      ]
+    },
+    {
+      "id": "OPT4-C08-067",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.05,
+      "stem": "In the transaction shown here, what would happen if the database failed in between the first and second update statements? BEGIN TRANSACTION UPDATE accounts SET balance = balance + 250 WHERE account_number = 1001; UPDATE accounts SET balance = balance - 250 WHERE account_number = 2002; COMMIT TRANSACTION",
+      "options": [
+        "The database would credit the first account with $250 in funds but then not reduce the balance of the second account.",
+        "The database would ignore the first command and only reduce the balance of the second account by $250.",
+        "The database would roll back the transaction, ignoring the results of both commands.",
+        "The database would successfully execute both commands."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A database failure in the middle of a transaction causes the rollback of the entire transaction. In this scenario, the database would not execute either command because doing so would violate the atomicity property of the transaction.",
+      "optionNotes": [
+        "Incorrect. Crediting account 1001 without debiting 2002 is the partial-completion problem that transactions exist to prevent. Atomicity means the first update can't stand on its own, so $250 can't appear out of thin air.",
+        "Incorrect. Skipping the first update while applying the second would also be a partial result, and it would make $250 vanish. Atomicity rules out applying any single statement from a transaction that didn't finish.",
+        "Correct. A failure partway through a transaction rolls back the whole transaction, so neither update takes effect. This is the atomicity (all-or-nothing) property of ACID.",
+        "Incorrect. The failure happened before the second update and before COMMIT, so the transaction never finished. Neither update is kept, which rules out both commands succeeding."
+      ]
+    },
+    {
+      "id": "OPT4-C08-068",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Tareck's organization makes use of a significant amount of COTS software. He recently discovered a significant buffer overflow vulnerability in the code of a COTS software package that is crucial to his business. What is the most likely way that Tareck can get this corrected?",
+      "options": [
+        "Work with his software development team to modify the code.",
+        "Notify the vendor and request a patch.",
+        "Deploy an intrusion prevention system.",
+        "Update firewall rules."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "When using commercial off-the-shelf (COTS) software, customers do not generally have access to the source code and must depend upon the vendor to release security patches that correct vulnerabilities. Other controls, such as intrusion prevention systems and firewalls, may be able to help mitigate the issue, depending upon the nature of the flaw, but they will not correct it.",
+      "optionNotes": [
+        "Incorrect. COTS customers generally don't have the source code, so Tareck's in-house developers can't change the vulnerable code themselves.",
+        "Correct. COTS customers rely on the vendor to fix the code. Reporting the buffer overflow and asking for a security patch is how the flaw actually gets fixed.",
+        "Incorrect. An IPS might block attempts to exploit the flaw, depending on how it works. That only reduces the risk. The buffer overflow stays in the code.",
+        "Incorrect. Changing firewall rules could limit who can reach the vulnerable software. That's a compensating control, and it doesn't remove the flaw."
+      ]
+    },
+    {
+      "id": "OPT4-C08-069",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Which one of the following statements is true about software testing?",
+      "options": [
+        "Static testing works on runtime environments.",
+        "Static testing performs code analysis.",
+        "Dynamic testing uses automated tools, but static testing does not.",
+        "Static testing is a more important testing technique than dynamic testing."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Static testing performs code analysis in an offline fashion, without actually executing the code. Dynamic testing evaluates code in a runtime environment. Both static and dynamic testing may use automated tools, and both are important security testing techniques.",
+      "optionNotes": [
+        "Incorrect. Static testing analyzes code offline without executing it. Testing code in a runtime environment is what dynamic testing does.",
+        "Correct. Static testing analyzes source or compiled code offline, without running it.",
+        "Incorrect. Both static and dynamic testing can use automated tools. Static analyzers that scan code are a common example.",
+        "Incorrect. Neither technique is more important. Static and dynamic testing find different problems, and both are important security testing techniques."
+      ]
+    },
+    {
+      "id": "OPT4-C08-070",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.52,
+      "stem": "David is working on developing a project schedule for a software development effort, and he comes across the chart shown here. What type of chart is this?\n[Figure, described in text: a chart with one row per WBS element (WBS 1 Summary Element 1, WBS 1.1 Activity A … WBS 2.3 Activity G) and horizontal bars drawn against a timeline of weeks, showing each activity's start and end, percent complete, dependencies (start-to-start, finish-to-start, finish-to-finish), and a TODAY line.]",
+      "options": [
+        "Work breakdown structure",
+        "Functional requirements",
+        "PERT chart",
+        "Gantt chart"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The chart shown in the figure is a Gantt chart, showing the proposed start and end dates for different activities. It is developed based on the work breakdown structure (WBS), which is developed based on functional requirements. Program Evaluation Review Technique (PERT) charts show the project schedule as a series of numbered nodes.",
+      "optionNotes": [
+        "Incorrect. The work breakdown structure is the input the Gantt chart is built from. A WBS breaks the project into elements, but it doesn't plot those elements as bars against a timeline.",
+        "Incorrect. Functional requirements describe what the software has to do, and the WBS is developed from them. They aren't a scheduling chart with timeline bars.",
+        "Incorrect. A PERT chart shows the project schedule as a network of numbered nodes. It doesn't use horizontal bars drawn against a calendar timeline.",
+        "Correct. A Gantt chart shows each activity's proposed start and end dates as horizontal bars across a timeline. It can also show percent complete and dependencies, which matches the figure."
+      ]
+    },
+    {
+      "id": "OPT4-C08-071",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.05,
+      "stem": "Barry is a software tester who is working with a new gaming application developed by his company. He is playing the game on a smartphone to conduct his testing in an environment that best simulates a normal end user, but he is referencing the source code as he conducts his test. What type of test is Barry conducting?",
+      "options": [
+        "White box",
+        "Black box",
+        "Blue box",
+        "Gray box"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In a gray-box test, the tester evaluates the software from a user perspective but has access to the source code as the test is conducted. White-box tests also have access to the source code but perform testing from a developer's perspective. Black-box tests work from a user's perspective but do not have access to source code. Blue boxes are a telephone hacking tool and not a software testing technique.",
+      "optionNotes": [
+        "Incorrect. White-box testing does give the tester the source code, but the testing is done from a developer's point of view. Barry is testing as a normal end user would, so this isn't white box.",
+        "Incorrect. Black-box testing is done from the user's point of view without any access to the source code. Barry has the source code open while he tests, so it can't be black box.",
+        "Incorrect. A blue box is an old telephone-hacking device. It isn't a software testing method at all.",
+        "Correct. Gray-box testing combines the user's point of view with access to the source code, which is exactly what Barry is doing: playing on a phone like an end user while checking the code."
+      ]
+    },
+    {
+      "id": "OPT4-C08-072",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Miguel recently completed a penetration test of the applications that his organization uses to handle sensitive information. During his testing, he discovered a condition where an attacker can exploit a timing condition to manipulate software into allowing him to perform an unauthorized action. Which one of the following attack types fits this scenario?",
+      "options": [
+        "SQL injection",
+        "Cross-site scripting",
+        "Pass the hash",
+        "TOC/TOU"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Time of Check to Time of Use (TOC/TOU) attack exploits timing differences between when a system verifies authorization and software uses that authorization to perform an action. It is an example of a race condition attack. The other three attacks mentioned do not depend on precise timing.",
+      "optionNotes": [
+        "Incorrect. SQL injection puts malicious SQL into input fields so it runs against the back-end database. It's an input-validation flaw, not a timing flaw, so precise timing has nothing to do with it.",
+        "Incorrect. Cross-site scripting is a code injection attack that slips attacker script into web pages shown to other users. It doesn't depend on any timing gap between checking authorization and using it.",
+        "Incorrect. Pass the hash reuses a stolen password hash to log in without knowing the plaintext password. It's credential theft, not a timing-based race condition.",
+        "Correct. TOC/TOU is a race condition. The attacker exploits the gap between when the system checks authorization and when the software acts on it, which matches the timing-based unauthorized action Miguel found."
+      ]
+    },
+    {
+      "id": "OPT4-C08-073",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.75,
+      "stem": "What part of the security review process are the input parameters shown in the diagram used for?\n[Figure, described in text: Configuration input parameters, User input parameters, Control input parameters and Back-end input parameters all feed into \"Parameter tracking through code\".]",
+      "options": [
+        "SQL injection review",
+        "Sprint review",
+        "Fagan inspection",
+        "Attack surface identification"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Each of these input parameters makes up part of the attack surface of the application. Attackers may opt to target any of them to attack the code or its supporting infrastructure.",
+      "optionNotes": [
+        "Incorrect. SQL injection review only looks at one attack type, where database queries are built from unsanitized input. The diagram tracks every input class (configuration, user, control, back-end) as a possible entry point, not just SQL injection.",
+        "Incorrect. A sprint review is an Agile meeting at the end of an iteration where the team demonstrates the work it finished. It isn't a security analysis that traces input parameters through code.",
+        "Incorrect. A Fagan inspection is a formal six-step code review process (planning, overview, preparation, inspection, rework, follow-up). It is about the review procedure, not about mapping input parameters.",
+        "Correct. Each input parameter shown is part of the application's attack surface, and attackers could target any of them to attack the code or its supporting infrastructure."
+      ]
+    },
+    {
+      "id": "OPT4-C08-074",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "What application security process can be described in these three major steps?\n1. Decomposing the application\n2. Determining and ranking threats\n3. Determining countermeasures and mitigation",
+      "options": [
+        "Fagan inspection",
+        "Threat modeling",
+        "Penetration testing",
+        "Code review"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Threat modeling commonly involves decomposing the application to understand it and how it interacts with other components or users. Next, identifying and ranking threats allows you to focus on the threats that should be prioritized. Finally, identifying how to mitigate those threats finishes the process. Once complete, an organization can take action to handle the threats that were identified with appropriate controls.",
+      "optionNotes": [
+        "Incorrect. A Fagan inspection is the most formal type of code review. It has six steps (planning, overview, preparation, inspection, rework, follow-up) and does not decompose an application or rank threats.",
+        "Correct. Threat modeling first decomposes the application to see how it interacts with other components and users. It then identifies and ranks threats so the important ones are handled first, and finally works out mitigations.",
+        "Incorrect. Penetration testing actively tries to exploit vulnerabilities to check whether security controls work. It is a testing activity, not a process for decomposing an application, ranking threats and planning countermeasures.",
+        "Incorrect. Code review means people examine source code to find defects. Its formal version, the Fagan inspection, follows planning, inspection, rework and follow-up steps, not decomposition and threat ranking."
+      ]
+    },
+    {
+      "id": "OPT4-C08-075",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Which one of the following approaches to failure management is the most conservative from a security perspective?",
+      "options": [
+        "Fail open",
+        "Fail mitigation",
+        "Fail clear",
+        "Fail closed"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The fail closed approach prevents any activity from taking place during a system security failure and is the most conservative approach to failure management. Fail open takes the opposite philosophy, allowing all activity in the event of a security control failure. Fail clear and fail mitigation are not failure management approaches.",
+      "optionNotes": [
+        "Incorrect. Fail open is the opposite philosophy. It allows all activity when a security control fails, so it favors availability over security and is the least conservative choice.",
+        "Incorrect. \"Fail mitigation\" isn't a recognized failure management approach. It's a made-up distractor term.",
+        "Incorrect. \"Fail clear\" isn't a recognized failure management approach. It's a made-up term that just sounds plausible.",
+        "Correct. Fail closed blocks all activity while a security control is failed, which makes it the most conservative, security-first approach to failure management."
+      ]
+    },
+    {
+      "id": "OPT4-C08-076",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "What software development model is shown here?\n[Figure, described in text: a spiral that winds outward through four quadrants: Determine objectives, alternatives, and constraints; Evaluate alternatives, identify and resolve risks; Develop and verify next-level product; Plan next phases. Successive loops pass prototypes P1, P2 and P3.]",
+      "options": [
+        "Waterfall",
+        "Agile",
+        "Lean",
+        "Spiral"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The illustration shows the spiral model of software development. In this approach, developers use multiple iterations of a waterfall-style software development process. This becomes a “loop” of iterations through similar processes. The original waterfall approach does not iterate through the entire process repeatedly. Some variants do allow iteration, but only by allowing movement backward and forward one stage. The Agile approach to software development focuses on iterative improvement and does not follow a rigorous SDLC model. Lean is a process improvement methodology and not a software development model.",
+      "optionNotes": [
+        "Incorrect. Waterfall moves through its stages in order and never repeats the whole process. Some variants let you step back one stage, but none loops through repeated prototypes the way this figure does.",
+        "Incorrect. Agile is built on iterative improvement, but it doesn't follow a rigid SDLC structure. So it can't be the picture of formal quadrants with risk analysis and numbered prototypes.",
+        "Incorrect. Lean is a process improvement method, not a software development model, so it can't be what the figure shows.",
+        "Correct. The spiral model runs the waterfall-style process many times as repeated loops. Each loop sets objectives, analyzes risk, develops a product and plans the next phase, producing prototypes P1, P2 and P3."
+      ]
+    },
+    {
+      "id": "OPT4-C08-077",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Mark is considering replacing his organization's customer relationship management (CRM) solution with a new product that is available in the cloud. This new solution is completely managed by the vendor, and Mark's company will not have to write any code or manage any physical resources. What type of cloud solution is Mark considering?",
+      "options": [
+        "IaaS",
+        "CaaS",
+        "PaaS",
+        "SaaS"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In a software-as-a-service solution, the vendor manages both the physical infrastructure and the complete application stack, providing the customer with access to a fully managed application.",
+      "optionNotes": [
+        "Incorrect. With Infrastructure as a Service, the vendor supplies only the virtualized compute, storage and network. The customer still manages the OS, applications and code, so it isn't a fully vendor-managed CRM.",
+        "Incorrect. Containers as a Service hosts and orchestrates the customer's own containerized workloads. The customer still builds and manages the application code inside the containers, which Mark's company won't have to do.",
+        "Incorrect. With Platform as a Service, the provider manages the hardware and runtime platform, but the customer writes and deploys its own application code. Mark's company won't write any code.",
+        "Correct. With SaaS, the vendor manages both the physical infrastructure and the whole application stack, and the customer just uses a fully managed application. That matches a vendor-managed cloud CRM."
+      ]
+    },
+    {
+      "id": "OPT4-C08-078",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.08,
+      "stem": "Which one of the following change management processes is initiated by users rather than developers?",
+      "options": [
+        "Change request",
+        "Change control",
+        "Release control",
+        "Design review"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The request process begins with a user-initiated request for a feature. Change and release control are initiated by developers seeking to implement changes. Design review is a phase of the change approval process initiated by developers when they have a completed design.",
+      "optionNotes": [
+        "Correct. The request process starts when a user asks for a new feature or modification, so it's the one change management process that users rather than developers kick off.",
+        "Incorrect. Change control is started by developers who want to implement changes in a controlled, approved way. Users don't initiate it.",
+        "Incorrect. Release control is driven by developers. It covers approving and deploying finished changes into production, not users asking for features.",
+        "Incorrect. Design review is a step in the change approval process. Developers start it once they have a completed design."
+      ]
+    },
+    {
+      "id": "OPT4-C08-079",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Teagan would like to better protect his organization against database inference attacks. Which one of the following techniques is an effective countermeasure against these attacks?",
+      "options": [
+        "Input validation",
+        "Parameterization",
+        "Polyinstantiation",
+        "Server-side validation"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Polyinstantiation allows the storage of multiple different pieces of information in a database at different classification levels to prevent attackers from inferring anything about the absence of information. Input validation, server-side validation, and parameterization are all techniques used to prevent web application attacks and are not effective against inference attacks.",
+      "optionNotes": [
+        "Incorrect. Input validation filters user-supplied data to stop web application attacks such as SQL injection and XSS. It does nothing to stop users from inferring sensitive facts out of data they're allowed to see.",
+        "Incorrect. Parameterization (prepared statements) keeps user input from changing how a SQL query runs, which defends against injection. It can't stop users from drawing inferences from legitimate query results.",
+        "Correct. Polyinstantiation stores different versions of a record at different classification levels. Lower-cleared users can't learn anything from missing or hidden data, which blocks inference.",
+        "Incorrect. Server-side validation checks input on the server so a client can't bypass the checks. Like other web application controls, it doesn't address inference attacks."
+      ]
+    },
+    {
+      "id": "OPT4-C08-080",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.26,
+      "stem": "Ursula is a government web developer who recently created a public application that offers property records. She would like to make it available for other developers to integrate into their applications. What can Ursula create to make it easiest for developers to call her code directly and integrate the output into their applications?",
+      "options": [
+        "Object model",
+        "Data dictionary",
+        "API",
+        "Primary key"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "While Ursula may certainly use an object model, data dictionary, and primary key in her development effort, external developers cannot directly use them to access her code. An application programming interface (API) allows other developers to call Ursula's code from within their own without knowing the details of Ursula's implementation.",
+      "optionNotes": [
+        "Incorrect. An object model describes how objects and classes in Ursula's code are structured. It's an internal design tool, so outside developers can't use it to call her code.",
+        "Incorrect. A data dictionary is the central catalog of data elements and their definitions inside a database. It documents her data but gives outside developers no way to call her code.",
+        "Correct. An API exposes defined calls that let other developers call Ursula's code from inside their own applications. They don't need to know how she implemented it.",
+        "Incorrect. A primary key is the attribute that uniquely identifies each row in a database table. It's an internal database element, not an interface outside developers can call."
+      ]
+    },
+    {
+      "id": "OPT4-C08-081",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "Nathan recently completed a software development project where he integrated the organization's network operations stack with their development processes. As a result, developers can modify firewall rules from their code on an as-needed basis. What term best describes this ability?",
+      "options": [
+        "Agile",
+        "IaC",
+        "SDS",
+        "DevOps"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "This is an example of software-defined security (SDS), where security infrastructure may be easily manipulated by code. Answering this question is tricky because several of the other terms are closely related. Software-defined security is an example of infrastructure as code (IaC), but SDS is a more descriptive, and therefore better, answer. SDS is commonly used within an Agile development framework. The DevOps approach links together development and operations but is generally called DevSecOps when it also includes SDS.",
+      "optionNotes": [
+        "Incorrect. Agile is an iterative software development methodology. SDS is often used inside Agile teams, but Agile doesn't describe changing firewall rules through code.",
+        "Incorrect. Infrastructure as code is the broader category, and SDS is one example of it. Because the question is specifically about security controls like firewall rules, SDS is the more precise and therefore better answer.",
+        "Correct. Software-defined security (SDS) means security infrastructure, such as firewall rules, can be changed directly through code as needed. That is exactly the ability described.",
+        "Incorrect. DevOps joins development and operations, but on its own it doesn't describe security controls changed by code. When the approach also includes SDS, it is usually called DevSecOps."
+      ]
+    },
+    {
+      "id": "OPT4-C08-082",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.19,
+      "stem": "TJ is inspecting a system where the user reported a strange error message and the inability to access files. He sees the window shown here. What type of malware should TJ suspect?\n[Figure, described in text: a CryptoLocker window headed \"Your personal files are encrypted!\" It says the user's files were encrypted with a unique RSA-2048 public key, that the only copy of the private key is on a secret server and will be destroyed after a deadline (a countdown shows 57:45:37), and that the user must pay 300 USD / 300 EUR to obtain the private key; a \"Next >>\" button leads to payment.]",
+      "options": [
+        "Service injection",
+        "Encrypted virus",
+        "SQL injection",
+        "Ransomware"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Messages similar to the one shown here are indicative of a ransomware attack. The attacker encrypts files on a user's hard drive and then demands a ransom, normally paid in Bitcoin, for the decryption key required to restore access to the original content. Encrypted viruses, on the other hand, use encryption to hide themselves from antivirus mechanisms and do not alter other contents on the system.",
+      "optionNotes": [
+        "Incorrect. Service injection is a way of hiding malicious code inside a legitimate system service or process. It doesn't encrypt the user's files or show a payment demand, which is what this window does.",
+        "Incorrect. An encrypted virus encrypts its own code to avoid antivirus detection. It doesn't change other content on the system, so it wouldn't lock the user's files or demand money.",
+        "Incorrect. SQL injection attacks a web application's database by inserting malicious queries. It doesn't infect an endpoint, encrypt local files, or display a ransom countdown.",
+        "Correct. Ransomware encrypts the user's files with a key only the attacker holds, then demands payment for the decryption key. The CryptoLocker message, with its deadline and $300 demand, is a classic example."
+      ]
+    },
+    {
+      "id": "OPT4-C08-083",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.55,
+      "stem": "Charles is developing a mission-critical application that has a direct impact on human safety. Time and cost are less important than correctly functioning software. Which of the following software development methodologies should he choose given these requirements?",
+      "options": [
+        "Agile",
+        "DevOps",
+        "Spiral",
+        "Waterfall"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Despite many organizations moving to Agile, DevOps, or other more responsive development methodologies, waterfall remains a strong contender when clear objectives and stable requirements are combined with a need to prevent flaws and to have a high level of control over the development process and output.",
+      "optionNotes": [
+        "Incorrect. Agile puts speed, frequent delivery and changing requirements first. This mission-critical, safety-related project needs stable requirements and tight control to prevent flaws, so Agile is the weaker fit.",
+        "Incorrect. DevOps combines development and operations to deploy quickly and continuously. Fast, frequent change doesn't match a project that values correctness and control over time and cost.",
+        "Incorrect. Spiral is a risk-driven iterative model that repeats its phases in cycles. It's useful when requirements are evolving, but it gives less of the linear, tightly controlled process that waterfall offers for stable, safety-critical requirements.",
+        "Correct. Waterfall fits best when objectives are clear and requirements are stable, and when the priority is preventing flaws and keeping a high level of control over the development process and its output."
+      ]
+    },
+    {
+      "id": "OPT4-C08-084",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Which one of the following types of artificial intelligence attempts to use complex computations to replicate the partial function of the human mind?",
+      "options": [
+        "Decision support systems",
+        "Expert systems",
+        "Knowledge bank",
+        "Neural networks"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Neural networks attempt to use complex computational techniques to model the behavior of the human mind. Knowledge banks are a component of expert systems, which are designed to capture and reapply human knowledge. Decision support systems are designed to provide advice to those carrying out standard procedures and are often driven by expert systems.",
+      "optionNotes": [
+        "Incorrect. Decision support systems give advice to people carrying out standard procedures and are often driven by expert systems. They don't computationally model how the human mind works.",
+        "Incorrect. Expert systems capture human expert knowledge as if/then rules and apply it again later. They don't use complex computations to replicate how the mind works.",
+        "Incorrect. A knowledge bank (knowledge base) is the rule store inside an expert system, not a separate type of AI. It does not model human thinking.",
+        "Correct. Neural networks use layers of weighted computations to model part of how the human brain works."
+      ]
+    },
+    {
+      "id": "OPT4-C08-085",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "At which level of the Software Capability Maturity Model (SW-CMM) does an organization introduce basic life-cycle management processes?",
+      "options": [
+        "Initial",
+        "Repeatable",
+        "Defined",
+        "Managed"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In level 2, the Repeatable level of the SW-CMM, an organization introduces basic life cycle management processes. Reuse of code in an organized fashion begins, and repeatable results are expected from similar projects. The key process areas for this level include Requirements Management, Software Project Planning, Software Project Tracking and Oversight, Software Subcontract Management, Software Quality Assurance, and Software Configuration Management.",
+      "optionNotes": [
+        "Incorrect. Level 1, Initial, is where work is ad hoc and chaotic with no formal process at all. Basic life-cycle management only appears at the next level.",
+        "Correct. Level 2, Repeatable, brings in basic life-cycle management, organized code reuse and repeatable results on similar projects. Its key process areas include requirements management, project planning and configuration management.",
+        "Incorrect. Level 3, Defined, comes after Repeatable. Here the organization runs formal, documented standard processes. It goes beyond introducing basic life-cycle management.",
+        "Incorrect. Level 4, Managed, uses quantitative measures to understand and control the development process. That is much more mature than first introducing basic life-cycle processes."
+      ]
+    },
+    {
+      "id": "OPT4-C08-086",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Lucas runs the accounting systems for his company. The morning after an essential employee was fired, systems began mysteriously losing information. Lucas suspects that the fired employee tampered with the systems prior to his departure. What type of attack should Lucas suspect?",
+      "options": [
+        "Privilege escalation",
+        "SQL injection",
+        "Logic bomb",
+        "Remote code execution"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The critical fact in this question is that Lucas suspects the tampering took place before the employee departed. This is the signature of a logic bomb: malicious code that lies dormant until certain conditions are met. The other attack types listed here—privilege escalation, SQL injection, and remote code execution—would more likely take place in real time.",
+      "optionNotes": [
+        "Incorrect. Privilege escalation means gaining higher rights than you were granted. It happens while the attacker is actively working, not as dormant code planted before someone leaves.",
+        "Incorrect. SQL injection sends malicious input to a database-backed application while the attack is underway. It isn't code planted ahead of time that waits to go off after the employee has left.",
+        "Correct. A logic bomb is malicious code that sits dormant until a condition is met, such as the employee's termination. That fits tampering done before he left that only showed up the next morning.",
+        "Incorrect. Remote code execution means an attacker runs commands on a target from a distance while the attack is happening. It doesn't explain damage set up in advance by an insider who has since left."
+      ]
+    },
+    {
+      "id": "OPT4-C08-087",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Which one of the following principles would not be favored in an Agile approach to software development?",
+      "options": [
+        "Processes and tools over individuals and interactions",
+        "Working software over comprehensive documentation",
+        "Customer collaboration over contract negotiations",
+        "Responding to change over following a plan"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The Agile approach to software development embraces four principles. It values individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan.",
+      "optionNotes": [
+        "Correct. This turns the Agile Manifesto around: Agile values individuals and interactions over processes and tools, so this principle would not be favored.",
+        "Incorrect. This is one of the four Agile Manifesto values. Agile puts working software ahead of comprehensive documentation.",
+        "Incorrect. This is a real Agile value. Agile prefers ongoing customer collaboration to rigid contract negotiation.",
+        "Incorrect. This is a real Agile value. Agile prefers adapting to change over sticking to a fixed plan, which sets it apart from waterfall."
+      ]
+    },
+    {
+      "id": "OPT4-C08-088",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.05,
+      "stem": "What technique do API developers most commonly use to limit access to an API to authorized individuals and applications?",
+      "options": [
+        "Encryption",
+        "Input validation",
+        "API keys",
+        "IP filters"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "API developers commonly use API keys to limit access to authorized users and applications. Encryption provides for confidentiality of information exchanged using an API but does not provide authentication. Input validation is an application security technique used to protect against malicious input. IP filters may be used to limit access to an API, but they are not commonly used because it is difficult to deploy an API with IP filters since the filters require constant modification and maintenance as endpoints change.",
+      "optionNotes": [
+        "Incorrect. Encryption keeps data exchanged through the API confidential, but it doesn't authenticate anyone, so it can't limit access to authorized users or apps.",
+        "Incorrect. Input validation protects the application from malicious input. It is not a way to identify or authorize the caller.",
+        "Correct. API keys are the most common way developers restrict an API to authorized users and applications. Each caller sends a key that identifies it and is checked before access is granted.",
+        "Incorrect. IP filters can restrict API access, but they are not commonly used. They need constant updating and maintenance as endpoints change, which makes them hard to deploy."
+      ]
+    },
+    {
+      "id": "OPT4-C08-089",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.46,
+      "stem": "Reggie recently received a letter from his company's internal auditors scheduling the kickoff meeting for an assessment of his group. Which of the following should Reggie not expect to learn during that meeting?",
+      "options": [
+        "Scope of the audit",
+        "Purpose of the audit",
+        "Expected timeframe",
+        "Expected findings"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "An audit kickoff meeting should clearly describe the scope and purpose of the audit as well as the expected time frame. Auditors should never approach an audit with any expectations about what they will discover because the findings should be developed based only upon the results of audit examinations.",
+      "optionNotes": [
+        "Incorrect. The kickoff meeting should spell out the audit's scope, meaning which systems, processes and groups will be examined. Reggie should expect to hear this, so it is not the answer.",
+        "Incorrect. Explaining why the audit is being done (its purpose) is a standard part of the kickoff meeting. Reggie should expect to learn it, so this is not the answer.",
+        "Incorrect. Auditors normally share the expected timeframe at kickoff so the audited group can plan resources and availability. Reggie should expect this information.",
+        "Correct. Auditors should not go into an audit expecting particular findings. Findings come only from the results of the audit examinations, so they can't be presented at the kickoff meeting."
+      ]
+    },
+    {
+      "id": "OPT4-C08-090",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Which one of the following is the proper order of steps in the waterfall model of software development?",
+      "options": [
+        "Requirements, Design, Testing, Coding, Maintenance",
+        "Requirements, Design, Coding, Testing, Maintenance",
+        "Design, Requirements, Coding, Testing, Maintenance",
+        "Design, Requirements, Testing, Coding, Maintenance"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In the waterfall model, the software development process follows five sequential steps that are, in order, Requirements, Design, Coding, Testing, and Maintenance. Note that these phases may be further subdivided. The Requirements phase often begins with System Requirements and then moves on to Software Requirements. The Design phase often begins with Preliminary Design and then moves on to Detailed Design.",
+      "optionNotes": [
+        "Incorrect. This option puts Testing before Coding. Code has to exist before it can be tested, so in the waterfall model Coding comes right after Design and Testing follows it.",
+        "Correct. The waterfall model runs through five steps in order: Requirements, Design, Coding, Testing, Maintenance. Requirements and Design can each be split further, for example System/Software Requirements and Preliminary/Detailed Design.",
+        "Incorrect. This option puts Design before Requirements. In the waterfall model, requirements are gathered first so that the design is based on them, starting with system requirements and then software requirements.",
+        "Incorrect. This option gets two pairs backwards: Design comes before Requirements and Testing comes before Coding. Waterfall goes Requirements, Design, Coding, Testing, then Maintenance."
+      ]
+    },
+    {
+      "id": "OPT4-C08-091",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Renee is a software developer who writes code in Node.js for her organization. The company is considering moving from a self-hosted Node.js environment to one where Renee will run her code on application servers managed by a cloud vendor. What type of cloud solution is Renee's company considering?",
+      "options": [
+        "IaaS",
+        "CaaS",
+        "PaaS",
+        "SaaS"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In a platform-as-a-service solution, the customer supplies application code that the vendor then executes on its own infrastructure.",
+      "optionNotes": [
+        "Incorrect. With IaaS the vendor supplies only raw compute, storage, and networking. Renee's company would still have to manage the OS and the Node.js runtime itself, but the question says the vendor manages the application servers.",
+        "Incorrect. CaaS (containers as a service) hosts containers: packages that bundle an application with everything it needs to run. Here Renee hands over plain code to run on the vendor's managed application servers, not container images.",
+        "Correct. In PaaS the customer supplies the application code, such as Renee's Node.js code, and the vendor runs it on infrastructure and application servers that the vendor manages.",
+        "Incorrect. SaaS gives customers a finished application built by the vendor. Customers don't write or deploy their own code, so it doesn't fit a developer running her own Node.js code."
+      ]
+    },
+    {
+      "id": "OPT4-C08-092",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.86,
+      "stem": "Tom is writing a software program that calculates the sales tax for online orders placed from various jurisdictions. The application includes a user-defined field that allows the entry of the total sale amount. Tom would like to ensure that the data entered in this field is a properly formatted dollar amount. What technique should he use?",
+      "options": [
+        "Limit check",
+        "Fail open",
+        "Fail secure",
+        "Input validation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Input validation ensures that the data provided to a program as input matches the expected parameters. Limit checks are a special form of input validation that ensure that the value remains within an expected range, but there was no range specified in this scenario. Fail open and fail secure are options when planning for possible system failures.",
+      "optionNotes": [
+        "Incorrect. A limit check is a kind of input validation that makes sure a value falls within an expected range. The scenario asks about format, not a range, so this is too narrow.",
+        "Incorrect. Fail open describes how a system behaves when it fails: it allows access or keeps working. It has nothing to do with checking whether a dollar amount is formatted correctly.",
+        "Incorrect. Fail secure is a failure-handling choice where the system locks down when it fails. It doesn't check user input for the correct format.",
+        "Correct. Input validation checks that the data given to a program matches the expected parameters. That includes making sure a field holds a properly formatted dollar amount."
+      ]
+    },
+    {
+      "id": "OPT4-C08-093",
+      "domain": 8,
+      "type": "multi",
+      "difficulty": 1.02,
+      "stem": "Brian is helping implement a new software testing methodology for his organization and would like to review the completeness of his toolkit. Which of the following would be considered dynamic application security testing (DAST) tools? (Select all that apply.)",
+      "options": [
+        "Code review",
+        "Fuzzing",
+        "Static analysis",
+        "Web application vulnerability scanning"
+      ],
+      "answer": [
+        1,
+        3
+      ],
+      "explanation": "Dynamic application security tools conduct their testing by actually executing the code. This is the case for both fuzzing and web application vulnerability scanning. Code reviews and static analysis packages analyze the code itself but do not execute it, making them static application security testing (SAST) tools.",
+      "optionNotes": [
+        "Incorrect. In a code review, people read the source code without running it. That makes it a static (SAST) technique, not a DAST one.",
+        "Correct. Fuzzing runs the program and feeds it random or malformed input to see whether it crashes or misbehaves. Because the code is executed, it counts as dynamic testing (DAST).",
+        "Incorrect. Static analysis tools examine source code or compiled binaries without executing them, so they are SAST tools by definition.",
+        "Correct. A web application vulnerability scanner probes the running application with live requests. Testing the code while it executes makes this a DAST tool."
+      ]
+    },
+    {
+      "id": "OPT4-C08-094",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.99,
+      "stem": "What approach to technology management integrates the three components of technology management shown in this illustration?\n[Figure, described in text: a Venn diagram of three overlapping circles labeled Software Development, Quality Assurance and Operations.]",
+      "options": [
+        "Agile",
+        "Lean",
+        "DevOps",
+        "ITIL"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The DevOps approach to technology management seeks to integrate software development, operations, and quality assurance in a seamless approach that builds collaboration between the three disciplines.",
+      "optionNotes": [
+        "Incorrect. Agile is an iterative software development methodology built on the Agile Manifesto. It deals with how software gets built, not with merging development, QA and operations into one operating model.",
+        "Incorrect. Lean is a process-improvement philosophy about cutting waste and adding value. It is not the approach that joins development, operations and quality assurance into one model.",
+        "Correct. DevOps brings software development, operations and quality assurance together into one collaborative model. That matches the three overlapping circles in the diagram.",
+        "Incorrect. ITIL is a framework of best practices for IT service management. It does not specifically aim to merge development, QA and operations the way DevOps does."
+      ]
+    },
+    {
+      "id": "OPT4-C08-095",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.48,
+      "stem": "Olivia is conducting a risk analysis of a web application that her organization obtained from a third party and is concerned that it might contain vulnerabilities. Which one of the following activities might she take to best mitigate the risk?",
+      "options": [
+        "Deploy a WAF.",
+        "Implement strong encryption.",
+        "Purchase an insurance policy.",
+        "Discontinue use of the software."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Deploying a web application firewall (WAF) may reduce the likelihood or impact of a web application vulnerability and is, therefore, a good example of risk mitigation. Encryption is also a risk mitigation control, but it is less likely be effective against a web application security flaw. Purchasing an insurance policy is an example of risk transference, not risk mitigation. Discontinuing use of the software is an example of risk avoidance, not risk mitigation.",
+      "optionNotes": [
+        "Correct. A WAF filters malicious web traffic such as injection and XSS attempts. That lowers the chance or impact of exploiting flaws in the third-party app, which makes it a direct form of risk mitigation.",
+        "Incorrect. Encryption is a mitigation control, but it protects data confidentiality. It does little to stop attacks that exploit web application code flaws, so it is a weaker fit than a WAF.",
+        "Incorrect. Buying insurance moves the financial impact to another party. That is risk transference, not mitigation, and it does nothing to reduce the vulnerabilities themselves.",
+        "Incorrect. Stopping use of the software removes the risk entirely. That is risk avoidance, not mitigation of a risk the organization keeps."
+      ]
+    },
+    {
+      "id": "OPT4-C08-096",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Which one of the following database concurrency issues occurs when one transaction reads information that was written to a database by a second transaction that never committed?",
+      "options": [
+        "Lost update",
+        "SQL injection",
+        "Incorrect summary",
+        "Dirty read"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Dirty reads occur when one transaction reads a value from a database that was written by another transaction that did not commit. Lost updates occur when one transaction writes a value to the database that overwrites a value needed by transactions that have earlier precedence, causing those transactions to read an incorrect value. Incorrect summaries occur when one transaction is using an aggregate function to summarize data stored in a database, while a second transaction is making modifications to the database, causing the summary to include incorrect information. SQL injection is a web application security flaw, not a database concurrency problem.",
+      "optionNotes": [
+        "Incorrect. A lost update happens when one transaction's write overwrites a value that earlier transactions still needed, so those transactions end up with wrong data. The problem is with overlapping writes, not with reading data that was never committed.",
+        "Incorrect. SQL injection is a security flaw in web applications that lets an attacker insert malicious SQL. It is an attack, not a concurrency problem between transactions.",
+        "Incorrect. An incorrect summary happens when an aggregate function runs while another transaction is changing the data, so the result is inaccurate. It is not about reading uncommitted writes.",
+        "Correct. A dirty read is when one transaction reads a value written by another transaction that never committed, so the value it read may later be rolled back."
+      ]
+    },
+    {
+      "id": "OPT4-C08-097",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.35,
+      "stem": "What software development concept was pioneered by the Defense Department in the 1990s as an effort to bring together diverse product development teams?",
+      "options": [
+        "Integrated product team",
+        "Agile methodology",
+        "Scrum approach",
+        "User stories"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The integrated product team (IPT) approach brought together cross-functional teams and was designed by the U.S. Department of Defense in 1995. It was a predecessor to the Agile methodology, which uses tools like the scrum approach and user stories to conduct software development work.",
+      "optionNotes": [
+        "Correct. The U.S. Department of Defense introduced the integrated product team (IPT) in 1995 to pull cross-functional teams together on product development.",
+        "Incorrect. Agile came after IPT and grew out of the software industry (Agile Manifesto, 2001), not out of the DoD. IPT was one of its predecessors.",
+        "Incorrect. Scrum is a framework that Agile teams use to organize work in sprints. It is not the DoD's 1990s cross-team initiative.",
+        "Incorrect. User stories are an Agile tool for writing requirements from the user's point of view. They are not a DoD team-integration concept."
+      ]
+    },
+    {
+      "id": "OPT4-C08-098",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.99,
+      "stem": "Frank is working to select a new cloud service that will provide block storage for a server being built by his team. What category of cloud service is Frank planning to use?",
+      "options": [
+        "SaaS",
+        "IaaS",
+        "FaaS",
+        "PaaS"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Storage is an infrastructure component and, therefore, a block storage service is an example of an infrastructure-as-a-service (IaaS) cloud service. Software-as-a-service (SaaS) models provide full applications managed by the provider. Platform-as-a-service (PaaS) and function-as-a-service (FaaS) approaches allow developers to run their own code on an infrastructure platform managed by the provider.",
+      "optionNotes": [
+        "Incorrect. SaaS delivers complete applications that the provider manages. Frank needs raw block storage for a server, not a finished application.",
+        "Correct. Block storage is an infrastructure component, the same kind of thing as compute and networking, so a block storage service falls under infrastructure as a service (IaaS).",
+        "Incorrect. FaaS lets developers run individual functions of their own code on a platform the provider manages. It doesn't supply block storage volumes for a server.",
+        "Incorrect. PaaS gives developers a provider-managed platform for running their own code. It hides the underlying infrastructure, such as block storage, rather than providing it directly."
+      ]
+    },
+    {
+      "id": "OPT4-C08-099",
+      "domain": 8,
+      "type": "ordering",
+      "difficulty": 0.08,
+      "stem": "Match the numbered code testing methods to their lettered definition:\nCode testing methods:\n1. Regression testing\n2. Integration testing\n3. Unit testing\n4. System testing\n\n(Arrange the options in the order of the numbered items 1–4.)",
+      "options": [
+        "Testing on a complete integrated product",
+        "A testing method that focuses on modules or smaller sections of code for testing",
+        "A testing method that is used to verify that previously tested software performs the same way after changes are made",
+        "A testing method used to validate how software modules work together"
+      ],
+      "answer": [
+        2,
+        3,
+        1,
+        0
+      ],
+      "explanation": "The code testing methods match to their definitions as follows:\n1. Regression testing: C. A testing method that is used to verify that previously tested software performs the same way after changes are made\n2. Integration testing: D. A testing method used to validate how software modules work together\n3. Unit testing: B. A testing method that focuses on modules or smaller sections of code for testing\n4. System testing: A. Testing on a complete integrated product",
+      "optionNotes": [
+        "Goes with item 4, system testing. That method tests the complete, integrated product as a whole, not individual modules or the links between them.",
+        "Goes with item 3, unit testing. Unit testing checks individual modules or small sections of code in isolation, before they are combined.",
+        "Goes with item 1, regression testing. Regression testing re-checks software that already passed testing to confirm it still behaves the same way after changes are made.",
+        "Goes with item 2, integration testing. Integration testing checks how separately tested modules work together and how they interface with each other."
+      ]
+    },
+    {
+      "id": "OPT4-C08-100",
+      "domain": 8,
+      "type": "ordering",
+      "difficulty": 1.02,
+      "stem": "Match the following numbered terms to their lettered definitions:\n1. Session hijacking\n2. Cross-site scripting\n3. Cross-site request forgery\n4. SQL injection\n\n(Arrange the options in the order of the numbered items 1–4.)",
+      "options": [
+        "An attack that injects a malicious script into otherwise trusted websites",
+        "An attack that is designed to execute commands against a database via an insecure web application",
+        "An exploitation method that often involves cookies or keys to gain unauthorized access to a computer or service",
+        "An attack that forces a user to execute unwanted actions in a website or application they are currently logged into"
+      ],
+      "answer": [
+        2,
+        0,
+        3,
+        1
+      ],
+      "explanation": "The terms match to their definitions as follows:\n1. Session hijacking: C. An exploitation method that often involves cookies or keys to gain unauthorized access to a computer or service\n2. Cross-site scripting: A. An attack that injects a malicious script into otherwise trusted websites\n3. Cross-site request forgery: D. An attack that forces a user to execute unwanted actions in a website or application they are currently logged into\n4. SQL injection: B. An attack that is designed to execute commands against a database via an insecure web application",
+      "optionNotes": [
+        "Belongs to item 2, cross-site scripting: the attacker plants a malicious script in a trusted website, and it runs in the browsers of visitors who trust that site.",
+        "Belongs to item 4, SQL injection: input that the web application doesn't validate properly is passed to the backend database and run as SQL commands.",
+        "Belongs to item 1, session hijacking: the attacker steals or reuses session cookies or keys to take over a session that is already authenticated, gaining unauthorized access.",
+        "Belongs to item 3, cross-site request forgery: it exploits the trust a site places in a user who is already logged in, causing their browser to send actions the user never intended."
+      ]
+    }
+  ]
+}

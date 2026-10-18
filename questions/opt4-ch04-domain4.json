@@ -1,0 +1,2334 @@
+{
+  "name": "OPT4 Chapter 4: Communication and Network Security (Domain 4)",
+  "questions": [
+    {
+      "id": "OPT4-C04-001",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Gary wants to distribute a large file and prefers a peer-to-peer content delivery network (CDN). Which of the following is the most common example of this type of technology?",
+      "options": [
+        "CloudFlare",
+        "BitTorrent",
+        "Amazon CloudFront",
+        "Akamai Edge"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "BitTorrent is an example of a peer-to-peer (P2P) content delivery network. It is commonly used for legitimate purposes to distribute large files like Linux ISOs and other freely distributed software packages and files in addition to its less legitimate uses. CloudFlare, CloudFront, and Akamai's Edge are all hosted CDNs.",
+      "optionNotes": [
+        "Incorrect. CloudFlare runs its own servers around the world, which makes it a hosted CDN. Gary wants a peer-to-peer design where clients share the content with each other.",
+        "Correct. BitTorrent is the best-known peer-to-peer CDN: the clients themselves share pieces of the file. It is often used legitimately to distribute large files like Linux ISOs.",
+        "Incorrect. Amazon CloudFront is a hosted CDN that delivers content from Amazon's own edge servers. It is not a peer-to-peer system.",
+        "Incorrect. Akamai's edge network is a hosted CDN of servers spread out geographically. It does not rely on peer-to-peer sharing between clients."
+      ]
+    },
+    {
+      "id": "OPT4-C04-002",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "What is the purpose of a virtual domain (VDOM)?",
+      "options": [
+        "They combine multiple virtual instances into a single domain.",
+        "They divide a firewall device or appliance into two or more virtual firewalls.",
+        "They create a virtual domain controller.",
+        "They allow the hosting of multiple domain names for a single host."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "VDOMs are instances of firewalls, each with their own interfaces and rulesets allowing granular configurations based on security requirements. VDOMs are commonly used to accommodate different purposes, customers, or other needs where separately managed firewall instances are desirable. They don't combine instances; instead, they create separate instances, they aren't domain controllers, and hosting multiple domain names does not require a VDOM.",
+      "optionNotes": [
+        "Incorrect. This is the reverse of what a VDOM does. A VDOM splits one device into separate firewall instances; it doesn't merge several instances into one domain.",
+        "Correct. A VDOM splits one firewall appliance into separate virtual firewalls. Each has its own interfaces and rulesets, so different customers or purposes can be managed separately.",
+        "Incorrect. A VDOM has nothing to do with Active Directory domain controllers. It is a virtual firewall instance, not a directory or authentication service.",
+        "Incorrect. Hosting several domain names on one host is done with virtual hosting (for example, name-based web hosting). It doesn't need a VDOM, which is a firewall partitioning feature."
+      ]
+    },
+    {
+      "id": "OPT4-C04-003",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "Ben has connected his laptop to his tablet PC using an 802.11ac connection. What wireless network mode has he used to connect these devices?",
+      "options": [
+        "Infrastructure mode",
+        "Wired extension mode",
+        "Ad hoc mode",
+        "Stand-alone mode"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Ben is using ad hoc mode, which directly connects two clients. It can be easy to confuse this with stand-alone mode, which connects clients using a wireless access point but not to wired resources like a central network. Infrastructure mode connects endpoints to a central network, not directly to each other. Finally, wired extension mode uses a wireless access point to link wireless clients to a wired network.",
+      "optionNotes": [
+        "Incorrect. Infrastructure mode connects endpoints through an access point to a central network rather than linking two clients directly, so it doesn't describe a laptop-to-tablet connection.",
+        "Incorrect. Wired extension mode uses a wireless access point to connect wireless clients to a wired network. Ben's two devices are talking directly to each other with no AP or wired LAN involved.",
+        "Correct. Ad hoc mode connects two wireless clients directly to each other with no access point, which is exactly what Ben's laptop-to-tablet link is.",
+        "Incorrect. Stand-alone mode is easy to confuse with ad hoc mode, but it still routes clients through a wireless access point, just without wired resources. A direct device-to-device link has no AP."
+      ]
+    },
+    {
+      "id": "OPT4-C04-004",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Selah's and Nick's PCs simultaneously send traffic by transmitting at the same time. What network term describes the range of systems on a network that could be affected by this same issue?",
+      "options": [
+        "The subnet",
+        "The supernet",
+        "A collision domain",
+        "A broadcast domain"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A collision domain is the set of systems that could cause a collision if they transmitted at the same time. Systems outside a collision domain cannot cause a collision if they send at the same time. This is important, as the number of systems in a collision domain increases the likelihood of network congestion due to an increase in collisions. A broadcast domain is the set of systems that can receive a broadcast from each other. A subnet is a logical division of a network, while a supernet is made up of two or more networks.",
+      "optionNotes": [
+        "Incorrect. A subnet is a logical division of an IP network. It doesn't describe which systems can collide when they transmit at the same moment.",
+        "Incorrect. A supernet combines two or more networks into a larger address block. It's an addressing idea and doesn't describe collision scope.",
+        "Correct. A collision domain is the set of systems that could cause a collision if they transmitted at the same time, which is exactly what happened with Selah's and Nick's PCs.",
+        "Incorrect. A broadcast domain is the set of systems that receive each other's broadcasts. It concerns how far broadcasts reach, not simultaneous transmissions colliding."
+      ]
+    },
+    {
+      "id": "OPT4-C04-005",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.24,
+      "stem": "Sarah is manually reviewing a packet capture of TCP traffic and finds that a system is setting the RST flag in the TCP packets it sends repeatedly during a short period of time. What does this flag mean in the TCP packet header?",
+      "options": [
+        "RST flags mean “Rest.” The server needs traffic to briefly pause.",
+        "RST flags mean “Relay-set.” The packets will be forwarded to the address set in the packet.",
+        "RST flags mean “Resume Standard.” Communications will resume in their normal format.",
+        "RST means “Reset.” The TCP session will be disconnected."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The RST flag is used to reset or disconnect a session. It can be resumed by restarting the connection via a new three-way handshake.",
+      "optionNotes": [
+        "Incorrect. RST doesn't mean \"Rest.\" TCP has no flag that pauses traffic. Flow control comes from the window size field, not from a control flag.",
+        "Incorrect. RST doesn't mean \"Relay-set,\" and no TCP flag forwards packets. Forwarding is done by IP routing at Layer 3, not by TCP header flags.",
+        "Incorrect. RST doesn't mean \"Resume Standard.\" A reset ends the session; to talk again, the systems must start a new connection with a fresh three-way handshake.",
+        "Correct. RST stands for Reset: it immediately ends (disconnects) the TCP session. Communication can only continue after a new three-way handshake."
+      ]
+    },
+    {
+      "id": "OPT4-C04-006",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Gary is deploying a wireless network and wants to deploy the fastest possible wireless technology. Which one of the following wireless networking standards should he use?",
+      "options": [
+        "802.11ac",
+        "802.11g",
+        "802.11n",
+        "802.11ax"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "He should choose 802.11ax, which supports theoretical speeds up to 9.6 Gbps. 802.11ac supports up to 5.9 Gbps, 802.11n supports up to 600 Mbps, and 802.11g is only capable up to 54 Mbps.",
+      "optionNotes": [
+        "Incorrect. 802.11ac (Wi-Fi 5) is fast, with theoretical speeds up to about 5.9 Gbps, but 802.11ax tops it at 9.6 Gbps.",
+        "Incorrect. 802.11g is an old standard with a maximum of 54 Mbps. That makes it the slowest of the options listed.",
+        "Incorrect. 802.11n (Wi-Fi 4) reaches up to 600 Mbps. That is well below both 802.11ac and 802.11ax.",
+        "Correct. 802.11ax (Wi-Fi 6) supports theoretical speeds up to 9.6 Gbps, the fastest of the standards listed."
+      ]
+    },
+    {
+      "id": "OPT4-C04-007",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.24,
+      "stem": "Michele wants to replace FTP traffic with a secure replacement. What secure protocol should she select instead?",
+      "options": [
+        "TFTP",
+        "HFTPS",
+        "SecFTP",
+        "SFTP"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Both FTP/S and SFTP are commonly used as replacement insecure FTP services. SFTP offers the advantage of using SSH for transfers, making it easy to use existing firewall rules. TFTP is trivial FTP, an insecure quick transfer method often used to transfer files for network devices, among other uses. HFTPS and SecFTP were made up for this question.",
+      "optionNotes": [
+        "Incorrect. TFTP is Trivial FTP, an unauthenticated, unencrypted quick-transfer protocol often used for network device files. It's less secure than FTP, not a replacement for it.",
+        "Incorrect. HFTPS isn't a real protocol; it was made up for this question. The real secure options are FTPS and SFTP.",
+        "Incorrect. SecFTP is a made-up protocol name. It sounds like a secure FTP variant, but no such standard exists.",
+        "Correct. SFTP sends files over SSH, so it encrypts both credentials and data. Because it uses SSH, existing firewall rules usually already allow it, which makes it a common secure replacement for FTP."
+      ]
+    },
+    {
+      "id": "OPT4-C04-008",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.48,
+      "stem": "Jake has been told that there is a layer 3 problem with his network. Which of the following is associated with layer 3 in the OSI model?",
+      "options": [
+        "IP addresses",
+        "TCP and UDP protocols",
+        "MAC addresses",
+        "Sending and receiving bits via hardware"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The Network layer, or layer 3, uses IP addresses for logical addressing. TCP and UDP protocols are used at the Transport layer, which is layer 4. Hardware addresses are used at layer 2, the Data Link layer, and sending and receiving bits via hardware is done at the Physical layer (layer 1).",
+      "optionNotes": [
+        "Correct. Layer 3, the Network layer, handles logical addressing and routing, and IP addresses are its logical addresses.",
+        "Incorrect. TCP and UDP work at layer 4, the Transport layer. They handle end-to-end delivery between hosts, not logical addressing at layer 3.",
+        "Incorrect. MAC addresses are hardware addresses used at layer 2, the Data Link layer, where switches forward frames based on them. They are not a layer 3 element.",
+        "Incorrect. Sending and receiving raw bits through hardware happens at layer 1, the Physical layer, not the Network layer."
+      ]
+    },
+    {
+      "id": "OPT4-C04-009",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Frank is responsible for ensuring that his organization has reliable, supported network hardware. Which of the following is not a common concern for network administrators as they work to ensure their network continues to be operational?",
+      "options": [
+        "If the devices have vendor support",
+        "If the devices are under warranty",
+        "If major devices support redundant power supplies",
+        "If all devices support redundant power supplies"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Most networks include many edge devices like wireless access points and edge switches. These devices often have a single power supply to balance cost against reliability and will simply be replaced if they fail. More critical devices like routers and core switches are typically equipped with redundant power supplies to ensure that larger segments of the network do not fail if a component fails. Of course, making sure devices are supported so they get updates and that they are under warranty are both common practices for supportable networks.",
+      "optionNotes": [
+        "Incorrect. Vendor support is a normal concern because supported devices keep getting firmware and security updates. Checking for it is standard practice, so it doesn't answer a question asking what is NOT a concern.",
+        "Incorrect. Warranty coverage is a normal concern because it pays for repair or replacement when hardware fails. Checking it is common practice for keeping a network supportable.",
+        "Incorrect. Critical devices like routers and core switches usually get redundant power supplies, because one failure there would take down a large part of the network. That makes this a real concern.",
+        "Correct. Edge devices like wireless access points and edge switches usually have a single power supply to keep costs down, and they are simply replaced if they fail. Requiring redundant power on every device is not a common concern."
+      ]
+    },
+    {
+      "id": "OPT4-C04-010",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Brian is analyzing his network traffic and is focused on the variance of the delay between packets of data that are sent between two of his sites. What is he analyzing?",
+      "options": [
+        "Latency",
+        "Jitter",
+        "Throughput",
+        "Signal-to-noise ratio"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Brian is analyzing the jitter, which is the variance in delay between packets. This can indicate issues along the path the packets take. Latency is the time it takes a packet to reach its destination, throughput is a measure of the volume of traffic that can be sent, and signal to noise ratios compare the amount of desired information that is received versus the level of background noise or unwanted data.",
+      "optionNotes": [
+        "Incorrect. Latency is how long a packet takes to reach its destination. It's a single delay measurement, not how much that delay varies from packet to packet.",
+        "Correct. Jitter is the variance in delay between packets, which is exactly what Brian is measuring. High jitter can point to problems along the path the packets take.",
+        "Incorrect. Throughput measures the volume of traffic actually sent over a period of time. It's about data rate, not variation in timing between packets.",
+        "Incorrect. Signal-to-noise ratio compares how much desired signal is received against background noise or unwanted data. It doesn't measure timing or delay at all."
+      ]
+    },
+    {
+      "id": "OPT4-C04-011",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Which one of the following protocols is commonly used to provide back-end authentication services for a VPN?",
+      "options": [
+        "HTTPS",
+        "RADIUS",
+        "ESP",
+        "AH"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Remote Access Dial In User Service (RADIUS) protocol was originally designed to support dial-up modem connections but is still commonly used for VPN-based authentication. HTTPS is not an authentication protocol. ESP and AH are IPsec protocols but do not provide authentication services for other systems.",
+      "optionNotes": [
+        "Incorrect. HTTPS is HTTP running over TLS. It encrypts web traffic but is not an authentication protocol, so it doesn't act as a back-end authentication service for a VPN.",
+        "Correct. RADIUS was originally built for dial-up modem connections. It is still commonly used as the back-end authentication service that VPN concentrators query to verify users.",
+        "Incorrect. ESP is the IPsec protocol that provides encryption, integrity and authentication of packets. It does not provide authentication services to other systems, such as checking user credentials.",
+        "Incorrect. AH is the IPsec protocol that provides packet integrity and authenticates where packets came from. It does not act as a centralized back-end user authentication service."
+      ]
+    },
+    {
+      "id": "OPT4-C04-012",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Isaac wants to ensure that his VoIP session initialization is secure. What protocol should he ensure is enabled and required?",
+      "options": [
+        "SVOIP",
+        "PBSX",
+        "SIPS",
+        "SRTP"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "SIPS, the secure version of the Session Initialization Protocol for VoIP, adds TLS encryption to keep the session initialization process secure. SVOIP and PBSX are not real protocols, but SRTP is the secure version of RTP, the Real time Transport Protocol.",
+      "optionNotes": [
+        "Incorrect. SVOIP is not a real protocol. It's a made-up name meant to sound like 'secure VoIP' and does nothing to secure session setup.",
+        "Incorrect. PBSX is not a real protocol. It looks like a play on PBX, the private branch exchange phone switch, and has nothing to do with securing session initialization.",
+        "Correct. SIPS is the secure version of the Session Initiation Protocol. It uses TLS to encrypt VoIP call setup signaling, so it is the protocol that protects session initialization.",
+        "Incorrect. SRTP is the secure version of RTP. It protects the voice and media stream after the call is set up, but it does not secure session initialization."
+      ]
+    },
+    {
+      "id": "OPT4-C04-013",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "Scenario:\nChris is designing layered network security for his organization.\n[Figure, described in text: the Internet connects over link A to a firewall; the firewall connects over link B to a web server; below the firewall, a router connects over link C to a VPN concentrator; the router connects to a switch that serves five workstations.]\n\nWhat type of firewall design is shown in the diagram?",
+      "options": [
+        "A single-tier firewall",
+        "A two-tier firewall",
+        "A three-tier firewall",
+        "A four-tier firewall"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The firewall in the diagram has two protected zones behind it, making it a two-tier firewall design.",
+      "optionNotes": [
+        "Incorrect. A single-tier design puts one firewall in front of a single protected network, with no separate DMZ. Here the firewall serves two zones: the web server segment and the internal router/LAN.",
+        "Correct. The one firewall has two protected zones behind it: the web server on link B, which acts as a DMZ, and the internal network behind the router. That makes it a two-tier design.",
+        "Incorrect. A three-tier design separates three protected zones, usually with more than one firewall, such as a DMZ, a transaction subnet and a back-end network. The diagram shows only two zones behind a single firewall.",
+        "Incorrect. A four-tier design is not a standard firewall architecture term. In any case, the diagram has only two protected zones behind the firewall."
+      ]
+    },
+    {
+      "id": "OPT4-C04-014",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.89,
+      "stem": "Scenario:\nChris is designing layered network security for his organization.\n[Figure, described in text: the Internet connects over link A to a firewall; the firewall connects over link B to a web server; below the firewall, a router connects over link C to a VPN concentrator; the router connects to a switch that serves five workstations.]\n\nIf the VPN grants remote users the same access to network and system resources as local workstations have, what security issue should Chris raise?",
+      "options": [
+        "VPN users will not be able to access the web server.",
+        "There is no additional security issue; the VPN concentrator's logical network location matches the logical network location of the workstations.",
+        "Web server traffic is not subjected to stateful inspection.",
+        "VPN users should only connect from managed PCs."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Segmentation is a critical concept for network designers. Remote PCs that connect to a protected network need to comply with security settings and standards that match those required for the internal network. The VPN concentrator logically places remote users in the protected zone behind the firewall, but that means user workstations (and users) must be trusted in the same way that local workstations are.",
+      "optionNotes": [
+        "Incorrect. Not the issue. A VPN link works like a direct LAN connection, so remote users can reach whatever local workstations reach, and that includes the web server through the firewall.",
+        "Incorrect. Wrong, because there is an issue. Sharing the workstations' logical location puts remote users in the trusted zone behind the firewall, so their possibly unmanaged PCs get the same trust as internal workstations.",
+        "Incorrect. The web server sits behind the firewall on link B, so its traffic still passes through the firewall's inspection. It also has nothing to do with the trust problem the VPN creates.",
+        "Correct. Remote users land in the protected zone with full internal access, so their PCs must be managed and meet the same security standards as local workstations."
+      ]
+    },
+    {
+      "id": "OPT4-C04-015",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.24,
+      "stem": "Scenario:\nChris is designing layered network security for his organization.\n[Figure, described in text: the Internet connects over link A to a firewall; the firewall connects over link B to a web server; below the firewall, a router connects over link C to a VPN concentrator; the router connects to a switch that serves five workstations.]\n\nChris wants to implement security controls in his data center at the level of individual services and workloads. He plans to use firewall rules and other controls as well as on-demand access to services as part of his security design. What design concept is he implementing?",
+      "options": [
+        "Converged protocols",
+        "Physical segmentation",
+        "Edge network-based design",
+        "Micro-segmentation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Micro-segmentation is used to logically separate systems and services by defining boundaries between them. This is often part of a zero trust architecture including the use of on-demand access to services. Converged protocols implement other protocols over another protocol like iSCSI or InfiniBand over Ethernet. Physical segmentation uses separate physical devices and infrastructure to provide segmentation. Edge networks place computation and storage closer to the end user.",
+      "optionNotes": [
+        "Incorrect. Converged protocols carry one protocol over another, for example iSCSI or InfiniBand over Ethernet. That doesn't involve workload-level security boundaries or on-demand access.",
+        "Incorrect. Physical segmentation separates traffic with separate physical devices and infrastructure. Chris wants logical, per-workload boundaries enforced by firewall rules.",
+        "Incorrect. Edge network design moves computing and storage closer to end users to improve performance. It isn't about putting security boundaries around individual services in the data center.",
+        "Correct. Micro-segmentation logically separates individual systems, services and workloads with boundaries such as granular firewall rules. It is often part of a zero trust architecture with on-demand access to services."
+      ]
+    },
+    {
+      "id": "OPT4-C04-016",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.12,
+      "stem": "As part of his segmentation approach, Chris also wants to segment network routes. What type of solution should he select?",
+      "options": [
+        "VPCs",
+        "VRF",
+        "VLANs",
+        "A CDN"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Virtual routing and forwarding (VRF) is used to allow multiple routing tables to exist in a virtual router, all working simultaneously as defined by network traffic rules. A VPC may include VRF capabilities, but VRF would still be required to complete this requirement. VLANs are used to separate network segments, not to provide routing, and a content distribution network is used to provide high-performance, denial-of-service-resistant content replication and access from a large-scale network of replicas.",
+      "optionNotes": [
+        "Incorrect. A VPC is an isolated virtual network in a cloud. It may include VRF capabilities, but it doesn't segment routes by itself, so VRF is still what meets this requirement.",
+        "Correct. Virtual routing and forwarding lets one router hold several separate routing tables at the same time, which is exactly how network routes get segmented.",
+        "Incorrect. VLANs split traffic into separate Layer 2 broadcast domains. They don't provide routing or separate routing tables, so they can't segment routes.",
+        "Incorrect. A CDN copies content to a large network of servers for fast delivery and resistance to denial-of-service attacks. It has nothing to do with segmenting routes."
+      ]
+    },
+    {
+      "id": "OPT4-C04-017",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Ben has configured his network to not broadcast an SSID. Why might Ben disable SSID broadcast, and how could his SSID be discovered?",
+      "options": [
+        "Disabling SSID broadcast prevents attackers from discovering the encryption key. The SSID can be recovered from decrypted packets.",
+        "Disabling SSID broadcast hides networks from unauthorized personnel. The SSID can be discovered using a wireless sniffer.",
+        "Disabling SSID broadcast prevents issues with beacon frames. The SSID can be recovered by reconstructing the BSSID.",
+        "Disabling SSID broadcast helps avoid SSID conflicts. The SSID can be discovered by attempting to connect to the network."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Disabling SSID broadcast can help prevent unauthorized personnel from attempting to connect to the network. Since the SSID is still active, it can be discovered by using a wireless sniffer. Encryption keys are not related to SSID broadcast, beacon frames are used to broadcast the SSID, and it is possible to have multiple networks with the same SSID.",
+      "optionNotes": [
+        "Incorrect. Whether the SSID is broadcast has nothing to do with protecting the encryption key, so this gets the purpose wrong. Recovering the SSID also doesn't require decrypting anything, because it is sent in normal client traffic.",
+        "Correct. Hiding the SSID keeps casual or unauthorized users from seeing the network and trying to connect. The SSID is still sent between connected clients and the WAP, so a wireless sniffer can capture it.",
+        "Incorrect. Beacon frames are what broadcast the SSID, so turning off broadcast doesn't fix any beacon problem. The BSSID is the base station's MAC address, and you can't rebuild the SSID from it.",
+        "Incorrect. Several networks can share the same SSID, so avoiding conflicts isn't the reason to hide it. Guessing it by trying to connect is also not how hidden SSIDs are found; sniffing is."
+      ]
+    },
+    {
+      "id": "OPT4-C04-018",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Chuck is in charge of a commercial data center that handles many customers who host their servers there. He wants to be able to configure his data center network to adjust to traffic pattern changes and to manage bandwidth and other options. What technology should he implement to allow central, programmatic control of his network?",
+      "options": [
+        "SDN",
+        "SD-WAN",
+        "Proxy routing",
+        "Agile networking"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Software-defined networking (SDN) uses code to configure and control the network. This allows for agile, programmatic control and configuration as needed from a central control point. SD-WAN provides the same sort of control for wide area network links, which aren't mentioned in this question. Proxy routing occurs when a proxy server routes traffic between clients and other systems, and agile networking is not a commonly used term.",
+      "optionNotes": [
+        "Correct. SDN separates the control plane from the data plane, so the data center network can be configured and adjusted through code from a central controller. That fits Chuck's need to respond to traffic changes and manage bandwidth.",
+        "Incorrect. SD-WAN gives the same kind of software-driven control, but over wide area network links. The question is about the internal data center network and doesn't mention WAN links.",
+        "Incorrect. Proxy routing means a proxy server forwards traffic between clients and other systems. It doesn't give central, programmatic control over how the whole network is configured.",
+        "Incorrect. \"Agile networking\" is not a commonly used term or a recognized technology. It just echoes the idea of agility that SDN actually delivers."
+      ]
+    },
+    {
+      "id": "OPT4-C04-019",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Susan wants to access her company's SAN via Ethernet and knows that she can access it as a block-level storage device. What converged protocol is she most likely to use?",
+      "options": [
+        "CXL",
+        "SDWAN",
+        "iSCSI",
+        "Zigbee"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "iSCSI is a converged protocol that supports SCSI storage access via Ethernet. CXL is Compute Express Link, often used to interconnect memory, CPUs, and accelerators. SD-WAN is a software-defined wide area network, and Zigbee is a low-power wireless protocol.",
+      "optionNotes": [
+        "Incorrect. CXL (Compute Express Link) is a high-speed interconnect linking CPUs, memory, and accelerators. It doesn't carry block-level SAN storage traffic over Ethernet.",
+        "Incorrect. SD-WAN is a software-defined wide area network that manages WAN connectivity between sites. It is not a protocol for reaching SAN block storage over Ethernet.",
+        "Correct. ISCSI is a converged protocol that carries SCSI block-level storage commands over IP/Ethernet, so Susan can reach the SAN as a block device without dedicated Fibre Channel.",
+        "Incorrect. Zigbee is a low-power wireless protocol used for IoT and home automation devices. It has nothing to do with Ethernet-based SAN storage access."
+      ]
+    },
+    {
+      "id": "OPT4-C04-020",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.12,
+      "stem": "Melissa wants to leverage a cloud service provider's edge services. What will peering allow her to do in this scenario?",
+      "options": [
+        "Ensure that a copy of any data stored in the cloud is also replicated in her local data center.",
+        "Provide a direct path from her on-premises network to the cloud provider's services.",
+        "Control traffic flows via software-defined routes.",
+        "Host copies of her sites at multiple locations hosted by her cloud computing service provider."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Peering allows you to connect directly to a provider's network at a peering location where they provide edge facilities. This can reduce ingress/egress costs as well as provide direct paths to their networks and services. Replication of data is not an artifact of or a result of peering. Controlling traffic flows via software-defined routes is done using SD-WAN, and hosting copies of sites at multiple locations is a typical result of using a CDN.",
+      "optionNotes": [
+        "Incorrect. Peering doesn't replicate data. Keeping a copy of cloud data in the local data center would take a separate backup or replication setup.",
+        "Correct. Peering connects her network directly to the provider's network at a peering location with edge facilities. That gives her direct paths to the provider's services and can cut ingress/egress costs.",
+        "Incorrect. Steering traffic over software-defined routes is what SD-WAN does. Peering is a direct network interconnection, not a way to control routing in software.",
+        "Incorrect. Hosting copies of sites at many provider locations is what a content delivery network (CDN) does. Peering doesn't produce this."
+      ]
+    },
+    {
+      "id": "OPT4-C04-021",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Jake wants to describe traffic sent between servers in his data center. What common terminology should he use to describe this?",
+      "options": [
+        "North/South",
+        "Privilege/Unprivileged",
+        "East/West",
+        "Store/Forward"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Traffic sent between systems in the same data center is called east/west traffic since it does not flow across network boundaries. East/west traffic requires additional design work in many organizations if monitoring and other security is desired. Traffic that is external to the data center, either inbound or outbound, is called north/south traffic. Privileged/unprivileged and store/forward are not typically used to describe the traffic flows in the question.",
+      "optionNotes": [
+        "Incorrect. North/south describes traffic crossing the data center boundary, inbound from or outbound to external clients. Jake's traffic stays between servers inside the data center, so this term doesn't fit.",
+        "Incorrect. Privileged/unprivileged describes access levels or execution modes, not the direction traffic flows. It isn't a standard term for data center traffic patterns.",
+        "Correct. East/west traffic is traffic between systems inside the same data center that doesn't cross network boundaries. Monitoring it often takes extra design work.",
+        "Incorrect. Store-and-forward is a switching or message-delivery method in which data is received in full before it is forwarded. It doesn't describe server-to-server traffic flow inside a data center."
+      ]
+    },
+    {
+      "id": "OPT4-C04-022",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "During a security assessment, Jim discovers that the organization he is working with uses a multilayer protocol to handle SCADA systems and recently connected the SCADA network to the rest of the organization's production network. What concern should he raise about serial data transfers carried via TCP/IP?",
+      "options": [
+        "SCADA devices that are now connected to the network can be attacked over the network.",
+        "Serial data over TCP/IP cannot be encrypted.",
+        "Serial data cannot be carried in TCP packets.",
+        "TCP/IP's throughput can allow for easy denial-of-service attacks against serial devices."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Multilayer protocols like Distributed Network Protocol (DNP3) allow SCADA and other systems to use TCP/IP-based networks to communicate. Many SCADA devices were never designed to be exposed to a network, and adding them to a potentially insecure network can create significant risks. TLS or other encryption can be used on TCP packets, meaning that even serial data can be protected. Serial data can be carried via TCP packets because TCP packets don't care about their content; it is simply another payload. Finally, TCP/IP does not have a specific throughput as designed, so issues with throughput are device-level issues.",
+      "optionNotes": [
+        "Correct. Multilayer protocols such as DNP3 carry SCADA traffic over TCP/IP, but many SCADA devices were never built to face a network. Connecting them to the production network exposes them to network-based attacks.",
+        "Incorrect. False. TLS or other encryption can protect TCP traffic, so serial data carried inside TCP packets can be encrypted too.",
+        "Incorrect. False. TCP doesn't care what its payload contains, so serial data is just another payload and is routinely carried this way.",
+        "Incorrect. TCP/IP isn't designed with any fixed throughput, so throughput problems come from the devices themselves, not the protocol. That makes this a poor reason for concern."
+      ]
+    },
+    {
+      "id": "OPT4-C04-023",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "Ben provides networking and security services for a small chain of coffee shops. The coffee shop chain wants to provide secure, free wireless for customers. Which of the following is the best option available to Ben to allow customers to connect securely to his wireless network without needing a user account if Ben does not need to worry about protocol support issues?",
+      "options": [
+        "Use WPA2 in PSK mode.",
+        "Use WPA3 in SAE mode.",
+        "Use WPA2 in Enterprise mode.",
+        "Use a captive portal."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "WPA3's simultaneous authentication of equals (SAE) mode improves on WPA2's pre-shared key (PSK) mode by allowing for secure authentication between clients and the wireless network without enterprise user accounts. If Ben needed to worry about support for WPA3, which may not be available to all systems that may want to connect, he might have to choose WPA2. A captive portal is often used with open guest networks but requires additional work to maintain, and Enterprise mode requires user accounts.",
+      "optionNotes": [
+        "Incorrect. WPA2-PSK uses a single shared passphrase and is weaker than SAE. It would only be the fallback if Ben had to support older devices that can't do WPA3, and the question says compatibility isn't a concern.",
+        "Correct. WPA3's SAE mode improves on WPA2-PSK and gives clients secure authentication to the network without enterprise user accounts. Since protocol support isn't a concern, it's the best choice.",
+        "Incorrect. WPA2 Enterprise mode authenticates each user with 802.1X/RADIUS, so every customer would need a user account. The question rules that out.",
+        "Incorrect. A captive portal is common on open guest networks, but it takes extra work to maintain. On its own it doesn't encrypt or secure the wireless connection the way SAE does."
+      ]
+    },
+    {
+      "id": "OPT4-C04-024",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "Alicia's company has implemented multifactor authentication using SMS messages to provide a numeric code. What is the primary security concern that Alicia may want to express about this design?",
+      "options": [
+        "SMS messages are not encrypted.",
+        "SMS messages can be spoofed by senders.",
+        "SMS messages may be received by more than one phone.",
+        "SMS messages may be stored on the receiving phone."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "SMS messages are not encrypted, meaning that they could be sniffed and captured. While using two factors is more secure than a single factor, SMS is one of the less secure ways to implement two-factor authentication because of this. SMS messages can be spoofed, can be received by more than one phone, and are typically stored on the recipient's phone. The primary threat here, however, is the unencrypted message itself.",
+      "optionNotes": [
+        "Correct. SMS is sent unencrypted, so the one-time code can be sniffed and captured in transit. That makes SMS one of the weaker ways to deliver a second factor.",
+        "Incorrect. SMS sender spoofing is real, but it's mainly a phishing risk. It doesn't expose the code being delivered, and the book names the unencrypted message as the main threat.",
+        "Incorrect. SMS can reach more than one device, for example through forwarding or synced devices. The book treats this as a lesser issue than the code travelling unencrypted.",
+        "Incorrect. Codes saved on the phone are a minor concern because they are short-lived and usually used once. The book says the main risk is that the message is unencrypted in transit."
+      ]
+    },
+    {
+      "id": "OPT4-C04-025",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "What speed and frequency range are used by 802.11ac?",
+      "options": [
+        "5 GHz only",
+        "900 MHz and 2.4 GHz",
+        "2.4 GHz and 5 GHz",
+        "2.4 GHz only"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "802.11ac operates in the 5 GHz range. The 900 MHz range has frequently been used for phones and non-Wi-Fi wireless networks as well as other amateur radio uses, and 2.4 GHz is used by 802.11n and other protocols. Knowing that multiple ranges are available and that they may behave differently based on how many access points are in use and whether other devices that may cause interference on that band are in the area can be important for wireless network deployments.",
+      "optionNotes": [
+        "Correct. 802.11ac (Wi-Fi 5) operates only in the 5 GHz band, using wider channels to get higher throughput.",
+        "Incorrect. 900 MHz has mostly been used by phones, non-Wi-Fi wireless networks and amateur radio. 802.11ac doesn't use it, and it doesn't use 2.4 GHz either.",
+        "Incorrect. Using both 2.4 and 5 GHz describes 802.11n (and later 802.11ax), not 802.11ac. 802.11ac is limited to 5 GHz.",
+        "Incorrect. 2.4 GHz is used by 802.11b/g/n and other protocols. 802.11ac runs only in the 5 GHz band."
+      ]
+    },
+    {
+      "id": "OPT4-C04-026",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "The Address Resolution Protocol (ARP) and the Reverse Address Resolution Protocol (RARP) operate at what layer of the OSI model?",
+      "options": [
+        "Layer 1",
+        "Layer 2",
+        "Layer 3",
+        "Layer 4"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "ARP and RARP operate at the Data Link layer, the second layer of the OSI model. Both protocols deal with physical hardware addresses, which are used above the Physical layer (layer 1) and below the Network layer (layer 3), thus falling at the Data Link layer.",
+      "optionNotes": [
+        "Incorrect. Layer 1 is the Physical layer, which handles signaling and bits on the medium. ARP/RARP work with hardware (MAC) addresses, and those are used above this layer.",
+        "Correct. ARP and RARP translate between IP addresses and physical MAC addresses. Those hardware addresses belong to the Data Link layer (Layer 2).",
+        "Incorrect. Layer 3 is the Network layer, which uses logical IP addresses. ARP resolves those IP addresses to MAC addresses, but the book places it below Layer 3 because it deals with hardware addresses.",
+        "Incorrect. Layer 4 is the Transport layer (TCP/UDP), which handles ports and end-to-end delivery. It does nothing with physical address resolution."
+      ]
+    },
+    {
+      "id": "OPT4-C04-027",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Which of the following is a converged protocol that allows storage mounts over TCP, and which is frequently used as a lower-cost alternative to Fibre Channel?",
+      "options": [
+        "MPLS",
+        "SDN",
+        "VoIP",
+        "iSCSI"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Internet Small Computer Systems Interface (iSCSI) is a converged protocol that allows location-independent file services over traditional network technologies. It costs less than traditional Fibre Channel. VoIP is Voice over IP, SDN is software-defined networking, and MPLS is Multiprotocol Label Switching, a technology that uses path labels instead of network addresses.",
+      "optionNotes": [
+        "Incorrect. MPLS (Multiprotocol Label Switching) forwards traffic using path labels instead of network addresses. It's a WAN transport technology, not a way to mount storage over TCP.",
+        "Incorrect. SDN (software-defined networking) splits the control plane from the data plane so the network can be managed centrally. It doesn't carry storage traffic or replace Fibre Channel.",
+        "Incorrect. VoIP (Voice over IP) is a converged protocol, but it carries voice calls over IP networks. It has nothing to do with storage mounts.",
+        "Correct. ISCSI sends SCSI storage commands over ordinary TCP/IP networks, so storage can be reached from anywhere on the network. It costs less than Fibre Channel."
+      ]
+    },
+    {
+      "id": "OPT4-C04-028",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "Chris is building an Ethernet network and knows that he needs to span a distance of more than 150 meters with his 1000BaseT network. What network technology should he use to help with this?",
+      "options": [
+        "Install a repeater, a switch, or a concentrator before 100 meters.",
+        "Use Category 7 cable, which has better shielding for higher speeds.",
+        "Install a gateway to handle the distance.",
+        "Use STP cable to handle the longer distance at high speeds."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A repeater, switch, or concentrator will amplify the signal, ensuring that the 100-meter distance limitation of 1000BaseT is not an issue. A gateway would be useful if network protocols were changing, while Cat7 cable is appropriate for a 10 Gbps network at much shorter distances. STP cable is limited to 155 Mbps and 100 meters, which would leave Chris with network problems.",
+      "optionNotes": [
+        "Correct. 1000BaseT copper runs are limited to 100 meters. A repeater, switch, or concentrator placed before that point regenerates the signal so the network can extend past 150 meters.",
+        "Incorrect. Cat7 cable is meant for 10 Gbps networks over even shorter distances. Better shielding does not remove the roughly 100-meter twisted-pair length limit.",
+        "Incorrect. A gateway translates between different network protocols. Nothing here needs protocol conversion, so a gateway does not solve the distance problem.",
+        "Incorrect. According to the book, STP cable is limited to 155 Mbps and 100 meters, so it would still leave Chris with network problems over this distance at gigabit speeds."
+      ]
+    },
+    {
+      "id": "OPT4-C04-029",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.59,
+      "stem": "Scenario:\nSelah's organization has used a popular messaging service for a number of years. Recently, concerns have been raised about the use of messaging.\n[Figure, described in text: workstation A sends messaging traffic via TCP 80 through a switch, a router and a firewall to the Internet, and on to system B outside the network; workstation C is also connected to the same switch.]\n\nWhat protocol is the messaging traffic most likely to use based on the diagram?",
+      "options": [
+        "SLACK",
+        "HTTP",
+        "SMTP",
+        "HTTPS"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The use of TCP port 80 indicates that the messaging service is using the HTTP protocol. Slack is a messaging service that runs over HTTPS, which uses port 443. SMTP is an email protocol that uses port 25.",
+      "optionNotes": [
+        "Incorrect. Slack is a messaging product, not a protocol, and it runs over HTTPS on port 443. It doesn't match the TCP 80 traffic shown in the diagram.",
+        "Correct. TCP port 80 is HTTP's well-known port, so the messaging traffic is most likely carried over HTTP.",
+        "Incorrect. SMTP is an email transfer protocol that uses TCP port 25. It isn't a messaging protocol running on port 80.",
+        "Incorrect. HTTPS is encrypted HTTP and uses TCP port 443, not port 80, so it doesn't match the traffic in the diagram."
+      ]
+    },
+    {
+      "id": "OPT4-C04-030",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.24,
+      "stem": "Scenario:\nSelah's organization has used a popular messaging service for a number of years. Recently, concerns have been raised about the use of messaging.\n[Figure, described in text: workstation A sends messaging traffic via TCP 80 through a switch, a router and a firewall to the Internet, and on to system B outside the network; workstation C is also connected to the same switch.]\n\nWhat security concern does sending internal communications from A to B raise?",
+      "options": [
+        "The firewall does not protect system B.",
+        "System C can see the broadcast traffic from system A to B.",
+        "It is traveling via an unencrypted protocol.",
+        "Messaging does not provide nonrepudation."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "HTTP traffic is typically sent via TCP80. Unencrypted HTTP traffic can be easily captured at any point between A and B, meaning that the messaging solution chosen does not provide confidentiality for the organization's corporate communications.",
+      "optionNotes": [
+        "Incorrect. System B is outside the organization's network, so its protection is not the organization's firewall's job. The real risk is that the content is exposed while in transit, not that B is unprotected.",
+        "Incorrect. A switch forwards unicast traffic only to the destination port, so C would not normally see A-to-B messaging. This is not broadcast traffic, and the main risk is interception anywhere along the path.",
+        "Correct. TCP 80 usually means unencrypted HTTP, which can be captured at any point between A and B. That leaves the organization's internal messages without confidentiality.",
+        "Incorrect. Some messaging services do lack nonrepudiation, but nothing in the diagram points to that. The visible problem is the cleartext protocol, which puts confidentiality at risk."
+      ]
+    },
+    {
+      "id": "OPT4-C04-031",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.77,
+      "stem": "Scenario:\nSelah's organization has used a popular messaging service for a number of years. Recently, concerns have been raised about the use of messaging.\n[Figure, described in text: workstation A sends messaging traffic via TCP 80 through a switch, a router and a firewall to the Internet, and on to system B outside the network; workstation C is also connected to the same switch.]\n\nHow could Selah's company best address a desire for secure messaging for users of internal systems A and C?",
+      "options": [
+        "Use a third-party messaging service.",
+        "Implement and use a locally hosted service.",
+        "Use HTTPS.",
+        "Discontinue use of messaging and instead use email, which is more secure."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "If a business need requires messaging, using a local messaging server is the best option. This prevents traffic from traveling to a third-party server and can offer additional benefits such as logging, archiving, and control of security options like the use of encryption.",
+      "optionNotes": [
+        "Incorrect. A third-party service still routes messages through someone else's servers outside the organization, which is the exposure a local server avoids. It also gives up direct control over logging, archiving and encryption settings.",
+        "Correct. A locally hosted messaging server keeps traffic between A and C off third-party servers. It also lets the company handle logging and archiving and control security options such as encryption.",
+        "Incorrect. HTTPS (TLS) only encrypts the connection between each client and the server. Messages would still pass through and be readable on the external provider's server, and the company would gain no logging, archiving or control.",
+        "Incorrect. Email is not inherently more secure. It is insecure unless it is deliberately protected, for example with integrity checks, source authentication and access restrictions. Dropping messaging also ignores the business need for it."
+      ]
+    },
+    {
+      "id": "OPT4-C04-032",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Which of the following drawbacks is a concern when multilayer protocols are allowed?",
+      "options": [
+        "A range of protocols may be used at higher layers.",
+        "Covert channels are allowed.",
+        "Filters cannot be bypassed.",
+        "Encryption can't be incorporated at multiple layers."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Multilayer protocols create three primary concerns for security practitioners: they can conceal covert channels (and thus covert channels are allowed), filters can be bypassed by traffic concealed in layered protocols, and the logical boundaries put in place by network segments can be bypassed under some circumstances. Multilayer protocols allow encryption at various layers and support a range of protocols at higher layers.",
+      "optionNotes": [
+        "Incorrect. Supporting a wide range of protocols at higher layers is a benefit of multilayer protocols, not a drawback.",
+        "Correct. Encapsulation in multilayer protocols can hide covert channels, so allowing these protocols creates a path for covert communication.",
+        "Incorrect. This is backwards. Traffic hidden inside layered protocols can get past filters, so filter bypass is the real drawback.",
+        "Incorrect. This is false. Multilayer protocols let encryption be added at various layers, and the study guide lists that as a benefit."
+      ]
+    },
+    {
+      "id": "OPT4-C04-033",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Which of the following is not an example of a converged protocol?",
+      "options": [
+        "MIME",
+        "FCoE",
+        "iSCSI",
+        "VoIP"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Fibre Channel over Ethernet (FCoE), Internet Small Computer Systems Interface (iSCSI), and Voice over Internet Protocol (VoIP) are all examples of converged protocols that combine specialized protocols with standard protocols like TCP/IP. Multipurpose Internet Mail Extensions (MIIME) is not a converged protocol.",
+      "optionNotes": [
+        "Correct. MIME is an email content-formatting standard for encoding attachments and non-ASCII data. It doesn't merge a specialty protocol onto a standard network protocol, so it isn't a converged protocol.",
+        "Incorrect. FCoE carries Fibre Channel storage traffic over Ethernet. Because it merges a specialized storage protocol with standard networking, it is a converged protocol.",
+        "Incorrect. ISCSI carries SCSI storage commands over TCP/IP networks. That makes it a classic converged protocol, so it isn't the answer.",
+        "Incorrect. VoIP carries voice telephony over standard IP networks. It merges a specialized service with TCP/IP, so it is a converged protocol."
+      ]
+    },
+    {
+      "id": "OPT4-C04-034",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Chris uses a cellular hot spot to provide Internet access when he is traveling. If he leaves the hot spot connected to his PC while his PC is on his organization's corporate network, what security issue might he cause?",
+      "options": [
+        "Traffic may not be routed properly, exposing sensitive data.",
+        "His system may act as a bridge from the Internet to the local network.",
+        "His system may be a portal for a reflected DDoS attack.",
+        "Security administrators may not be able to determine his IP address if a security issue occurs."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "When a workstation or other device is connected simultaneously to both a secure network and a nonsecure network like the Internet, it may act as a bridge, bypassing the security protections located at the edge of a corporate network. It is unlikely that traffic will be routed improperly, leading to the exposure of sensitive data, as traffic headed to internal systems and networks is unlikely to be routed to the external network. Reflected DDoS attacks are used to hide identities rather than to connect through to an internal network, and security administrators of managed systems should be able to determine both the local and wireless IP addresses his system uses.",
+      "optionNotes": [
+        "Incorrect. Misrouting is unlikely. Traffic bound for internal systems and networks won't normally be sent out the external hot spot interface, so sensitive data isn't exposed that way.",
+        "Correct. A device connected to the secure corporate network and the internet at the same time can act as a bridge that bypasses the security controls at the corporate network edge.",
+        "Incorrect. Reflected DDoS attacks are used to hide the attacker's identity and amplify traffic. They are not a way to connect through to an internal network, so this isn't the risk a dual-homed PC creates.",
+        "Incorrect. On a managed system, security administrators should be able to see both the local and the wireless IP addresses the PC uses, so being unable to identify his address isn't the main concern."
+      ]
+    },
+    {
+      "id": "OPT4-C04-035",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "Sarah has been asked to improve the observability of her network. Which of the following is not a common step to improve observability?",
+      "options": [
+        "Aggregate and centralize data.",
+        "Enable alerts for critical errors.",
+        "Implement logging using a standardized format.",
+        "Avoid feedback loops."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Observability focuses on the ability to see how an entire system, service, or environment is performing and behaving based on its external outputs. That means that telemetry data—information about what components are doing—is critical and will be gathered using logs, metrics, and real-time analysis. This means that centralizing and aggregating data, enabling alerts for critical errors, and implementing logging using standardized formats are all common practices. Feedback loops are also important, allowing administrators and others to take action when problems or issues are detected.",
+      "optionNotes": [
+        "Incorrect. Centralizing and aggregating telemetry from logs and metrics is a core observability practice. It lets you see how the whole system behaves, so it doesn't answer a question asking what is NOT a step.",
+        "Incorrect. Alerting on critical errors turns telemetry into timely notification of problems, so it's a standard observability step and not the answer.",
+        "Incorrect. Standardized log formats make data easier to aggregate, correlate and analyze across components. This is a common observability practice.",
+        "Correct. Observability depends on feedback loops so administrators can act when problems are detected. Avoiding them would hurt observability, so this is not a common step."
+      ]
+    },
+    {
+      "id": "OPT4-C04-036",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "What features can IPsec provide for secure communication?",
+      "options": [
+        "Encryption, access control, nonrepudiation, and message authentication",
+        "Protocol convergence, content distribution, micro-segmentation, and network virtualization",
+        "Encryption, authorization, nonrepudiation, and message integrity checking",
+        "Micro-segmentation, network virtualization, encryption, and message authentication"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "IPsec can provide encryption, access control, nonrepudiation, and message authentication using public key cryptography. It does not provide authorization, protocol convergence, content distribution, or the other items listed.",
+      "optionNotes": [
+        "Correct. Through AH and ESP plus public key cryptography, IPsec provides encryption, access control, nonrepudiation, and message authentication.",
+        "Incorrect. None of these is an IPsec feature. Protocol convergence means carrying voice, video, and data over one IP network. CDNs are distributed hosting services. Micro-segmentation and virtualization are network design approaches.",
+        "Incorrect. Wrong because it lists authorization, which IPsec does not provide according to the book. IPsec authenticates peers and controls access but does not decide what a user is allowed to do.",
+        "Incorrect. Only partly right. Encryption and message authentication are IPsec features, but micro-segmentation and network virtualization are network architecture ideas, not services that IPsec provides through AH/ESP."
+      ]
+    },
+    {
+      "id": "OPT4-C04-037",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Casey has been asked to determine if Zigbee network traffic can be secured in transit. What security mechanism does Zigbee use to protect data traffic?",
+      "options": [
+        "3DES encryption",
+        "AES encryption",
+        "ROT13 encryption",
+        "Blowfish encryption"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Zigbee uses AES to protect network traffic, providing integrity and confidentiality controls. It does not use 3DES, and ROT13 is a simple rotational cipher you might find in a cereal box or secret decoder ring.",
+      "optionNotes": [
+        "Incorrect. Zigbee does not use 3DES. 3DES is an older, slower legacy block cipher, not the cipher in the IEEE 802.15.4/Zigbee security suite.",
+        "Correct. Zigbee protects network traffic with AES (128-bit, in CCM mode), which gives it both confidentiality and integrity in transit.",
+        "Incorrect. ROT13 is a simple letter-rotation cipher, the kind found in a cereal-box decoder ring. It offers no real security, and Zigbee doesn't use it.",
+        "Incorrect. Blowfish is a symmetric block cipher designed by Bruce Schneier and used in tools like bcrypt. It isn't part of the Zigbee standard, which specifies AES."
+      ]
+    },
+    {
+      "id": "OPT4-C04-038",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Sue modifies her MAC address to one that is allowed on a network that uses MAC filtering to provide security. What is the technique Sue used, and what nonsecurity issue could her actions cause?",
+      "options": [
+        "Broadcast domain exploit, address conflict",
+        "Spoofing, token loss",
+        "Spoofing, address conflict",
+        "Sham EUI creation, token loss"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The process of using a fake Media Access Control (MAC) address is called spoofing, and spoofing a MAC address already in use on the network can lead to an address collision, preventing traffic from reaching one or both systems. Tokens are used in token ring networks, which are outdated, and EUI refers to an Extended Unique Identifier, another term for MAC address, but token loss is still not the issue. Broadcast domains refer to the set of machines a host can send traffic to via a broadcast message.",
+      "optionNotes": [
+        "Incorrect. Address conflict is the right side effect, but there's no attack called a \"broadcast domain exploit.\" A broadcast domain is just the set of hosts that a broadcast reaches. Changing a MAC address is spoofing.",
+        "Incorrect. Spoofing is the right technique, but token loss only applies to old token ring networks. Reusing a MAC address that's already in use causes an address conflict, not token loss.",
+        "Correct. Using a fake MAC address is spoofing. If the copied address is already in use, the two addresses collide, and traffic may not reach one or both systems.",
+        "Incorrect. EUI (Extended Unique Identifier) is just another name for a MAC address. There's no technique called \"sham EUI creation.\" Token loss belongs to token ring networks, so it isn't the problem here."
+      ]
+    },
+    {
+      "id": "OPT4-C04-039",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.18,
+      "stem": "Joanna wants to deploy 4G LTE as an out-of-band management solution for devices at remote sites. Which of the following security capabilities is not commonly available from 4G service providers?",
+      "options": [
+        "Encryption capabilities",
+        "Device-based authentication",
+        "Dedicated towers and antennas for secure service subscribers",
+        "SIM-based authentication"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "While security features vary from provider to provider, encryption, device-based authentication (for example, using certificates), and SIM-based authentication are all common options for 4G connectivity solutions. Joanna should work with her provider to determine what capabilities are available and assess whether they meet her needs.",
+      "optionNotes": [
+        "Incorrect. 4G providers commonly offer encryption, so it is a capability that is available. The question asks for the one that is not commonly offered.",
+        "Incorrect. Device-based authentication, such as certificates on the device, is a common 4G security option, so this is not the answer.",
+        "Correct. Carriers don't normally build separate towers and antennas for secure subscribers, because all customers share the same radio network. Security is handled through encryption and authentication.",
+        "Incorrect. SIM-based authentication is a standard feature of 4G connectivity solutions, so it is commonly available and not the answer."
+      ]
+    },
+    {
+      "id": "OPT4-C04-040",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.48,
+      "stem": "SMTP, HTTP, and SNMP all occur at what layer of the OSI model?",
+      "options": [
+        "Layer 4",
+        "Layer 5",
+        "Layer 6",
+        "Layer 7"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Application-specific protocols are handled at layer 7, the Application layer of the OSI model.",
+      "optionNotes": [
+        "Incorrect. Layer 4 is the Transport layer, where TCP and UDP provide segmentation and end-to-end delivery. Application protocols like SMTP, HTTP, and SNMP run on top of it, not at it.",
+        "Incorrect. Layer 5 is the Session layer, which sets up, manages, and tears down sessions (for example NetBIOS and RPC). It doesn't handle application-specific protocols such as SMTP or HTTP.",
+        "Incorrect. Layer 6 is the Presentation layer, which handles data formatting, encoding, encryption, and compression (for example ASCII and JPEG). It isn't where mail, web, or network-management protocols run.",
+        "Correct. SMTP (email), HTTP (web), and SNMP (network management) are application-specific protocols, and those are handled at Layer 7, the Application layer."
+      ]
+    },
+    {
+      "id": "OPT4-C04-041",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.3,
+      "stem": "Mark's organization hosts their infrastructure in a cloud IaaS environment. They operate in a private, isolated, and secure cloud that they configure. What term best describes this?",
+      "options": [
+        "VLAN",
+        "VPC",
+        "SDN",
+        "CXL"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "AVPC, or virtual private cloud, is the environment many organizations operate inside of public clouds. They provide on-demand access to configurable, shared resources operated by the cloud provider inside of their isolated boundaries. VLANs are used to logically separate networks; SDN is software-defined networking, which is typically part of how a VPC is implemented; and CXL, or Compute Express Link, is a converged protocol used to connect CPUs, GPUs, accelerators, and other components at high speeds.",
+      "optionNotes": [
+        "Incorrect. A VLAN logically separates networks at Layer 2 within switched infrastructure. It is not the term for an isolated, customer-configured private cloud environment within IaaS.",
+        "Correct. A virtual private cloud is an isolated, configurable environment inside a public cloud provider, giving on-demand access to shared provider resources within the customer's own boundaries—exactly Mark's setup.",
+        "Incorrect. Software-defined networking is a technology typically used to implement a VPC, not the name for the isolated private cloud environment itself.",
+        "Incorrect. Compute Express Link is a converged high-speed protocol connecting CPUs, GPUs, accelerators, and other components; it has nothing to do with cloud tenancy isolation."
+      ]
+    },
+    {
+      "id": "OPT4-C04-042",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.24,
+      "stem": "Selah wants to provide port-based authentication on her network to ensure that clients must authenticate before using the network. What technology is an appropriate solution for this requirement?",
+      "options": [
+        "802.11a",
+        "802.3",
+        "802.15.1",
+        "802.1x"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "802.1x provides port-based authentication and can be used with technologies like the Extensible Authentication Protocol (EAP). 802.11a is a wireless standard, 802.3 is the standard for Ethernet, and 802.15.1 was the original Bluetooth IEEE standard.",
+      "optionNotes": [
+        "Incorrect. 802.11a is a wireless LAN standard covering 5 GHz Wi-Fi. It defines the physical and MAC layers, not port-based authentication.",
+        "Incorrect. 802.3 is the IEEE standard for Ethernet, which covers wired LAN signaling and framing. It does not make clients authenticate before they get network access.",
+        "Incorrect. 802.15.1 was the original IEEE standard for Bluetooth, a personal area network technology. It is not a mechanism for network access control.",
+        "Correct. 802.1x is the IEEE standard for port-based network access control. A client must authenticate, often using EAP, before the switch or access point lets its traffic through, which is exactly what Selah needs."
+      ]
+    },
+    {
+      "id": "OPT4-C04-043",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Ben has deployed a 1000BaseT gigabit network and needs to run a cable across a large building. If Ben is running his link directly from a switch to another switch in that building, what is the maximum distance Ben can cover according to the 1000BaseT specification?",
+      "options": [
+        "2 kilometers",
+        "500 meters",
+        "185 meters",
+        "100 meters"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "1000BaseT is capable of a 100-meter run according to its specifications. For longer distances and exterior runs, a fiber-optic cable is typically used in modern networks.",
+      "optionNotes": [
+        "Incorrect. Kilometer-scale runs are fiber-optic territory (e.g., multimode/single-mode fiber), not copper twisted pair; 1000BaseT over UTP is limited to far shorter segments.",
+        "Incorrect. 500 meters is the maximum segment length for 10Base5 thick coaxial cable, not for 1000BaseT twisted pair.",
+        "Incorrect. 185 meters is the maximum length for 10Base2 thin coax (rounded to 200 in its name), not the twisted-pair 1000BaseT limit.",
+        "Correct. The 1000BaseT specification supports a 100-meter run; longer or exterior runs typically use fiber-optic cable."
+      ]
+    },
+    {
+      "id": "OPT4-C04-044",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "What security control does MAC cloning attempt to bypass for wired networks?",
+      "options": [
+        "Port security",
+        "VLAN hopping",
+        "802.1q trunking",
+        "Etherkiller prevention"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Port security prevents unrecognized or unpermitted systems from connecting to a network port based on their MAC address. Cloning a permitted or legitimate MAC address attempts to bypass this. VLAN hopping and 802.1q trunking attacks attempt to access other subnets by encapsulating packets so they will be unwrapped and directed to the other subnet. Etherkiller prevention is not a security setting or control.",
+      "optionNotes": [
+        "Correct. Port security lets only recognized MAC addresses use a switch port. Cloning an allowed MAC address is an attempt to get past this check.",
+        "Incorrect. VLAN hopping is an attack, not a control. It tries to reach other subnets by encapsulating packets, not by faking a permitted MAC address.",
+        "Incorrect. 802.1q trunking attacks wrap packets in VLAN tags so they get unwrapped and sent to another subnet. They aren't the MAC-filtering control that cloning gets around.",
+        "Incorrect. \"Etherkiller prevention\" isn't a real security setting or control. It's a made-up distractor."
+      ]
+    },
+    {
+      "id": "OPT4-C04-045",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "The company that Kathleen works for has moved to remote work for most employees and wants to ensure that the multimedia collaboration platform that they use for voice, video, and text-based collaboration is secure. Which of the following security options will provide the best user experience while providing appropriate security for communications?",
+      "options": [
+        "Require software-based VPN to the corporate network for all use of the collaboration platform.",
+        "Require the use of SIPS and SRTP for all communications.",
+        "Use TLS for all traffic for the collaboration platform.",
+        "Deploy secure VPN endpoints to each remote location and use a point-to-point VPN for communications."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Most modern applications support TLS throughout their communications allowing clients to securely connect to the service and to encrypt communications. VPN, either in software or hardware form, will be more complex and unwieldy. Software-based VPN would be more flexible, and hardware-based VPN would be more expensive and more complex. SIPS and SRTP are appropriate for a VoIP environment but are not generally a complete solution for a modern multimedia collaboration platform like Microsoft Teams, Zoom, or WebEx.",
+      "optionNotes": [
+        "Incorrect. A software VPN can be set up fairly flexibly, but making every remote user connect to the corporate network before using the platform adds complexity and slows things down. TLS already encrypts the traffic without that hassle.",
+        "Incorrect. SIPS and SRTP protect VoIP signaling and media. They don't fully cover a modern multimedia platform such as Teams, Zoom or WebEx, which also carries text, video and file sharing.",
+        "Correct. Most modern collaboration apps support TLS end to end, so clients connect securely and their communications are encrypted. Users don't have to do anything extra, which gives the best experience while still being secure.",
+        "Incorrect. Putting hardware VPN endpoints at every remote location and running point-to-point VPNs is expensive and complex. It also doesn't suit staff who mostly work from home."
+      ]
+    },
+    {
+      "id": "OPT4-C04-046",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Chris wants to use a low-power, personal area network (PAN) wireless protocol for a device he is designing. Which of the following wireless protocols is best suited to creating small, low-power devices that can connect to each other at relatively short distances across buildings or rooms?",
+      "options": [
+        "Wi-Fi",
+        "Zigbee",
+        "NFC",
+        "Infrared"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Zigbee is designed for this type of low-power, Internet of Things network, and would be the best option for Chris. Some versions of Bluetooth are designed to operate in low-power mode as well, but Bluetooth isn't in this list of answers. Wi-Fi requires more power, NFC is very short range and would not work across a building or room, and infrared requires line of sight and is rarely used for that reason.",
+      "optionNotes": [
+        "Incorrect. Wi-Fi uses considerably more power than a low-power PAN protocol, which makes it a poor fit for small, battery-constrained devices like the one Chris is designing.",
+        "Correct. Zigbee was built for low-power IoT networks, letting small devices connect to each other over short distances across rooms or buildings.",
+        "Incorrect. NFC only works over a few centimeters, so it can't connect devices across a room or a building.",
+        "Incorrect. Infrared needs a clear line of sight between devices, so it is rarely used for this kind of networking and won't reach across rooms."
+      ]
+    },
+    {
+      "id": "OPT4-C04-047",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.24,
+      "stem": "Olga wants to provide out-of-band management for her SCADA devices, which are deployed across her organization's large physical infrastructure in multiple distinct production facilities. Which of the following is an appropriate solution to meet her needs?",
+      "options": [
+        "Administrative access via a web client installed on each system that requires Windows-based domain authentication",
+        "Administrative access via nonstandard ports using a secure protocol like SSH",
+        "Administrative access via a second, physically separate Ethernet network with access controlled via VPN and multifactor authentication",
+        "Administrative access via physical access to the devices when needed"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Separate, physically isolated Ethernet networks that require strong authentication are a commonly used out-of-band (OOB) option. While direct physical access is also an acceptable out-of-band option, it does not work well in a complex, production-oriented environment where devices may not be safe or easy to access. Web clients and nonstandard ports are not out-of-band options as described.",
+      "optionNotes": [
+        "Incorrect. A web client on each system runs over the same production network it manages, so it is in-band. Tying it to Windows domain authentication doesn't change that. Per the book, this is not an out-of-band option.",
+        "Incorrect. Running SSH on nonstandard ports still sends management traffic over the production network. That is in-band access with some obscurity added, not out-of-band management.",
+        "Correct. A physically separate management network, with access controlled by VPN and multifactor authentication, is a common out-of-band design. It keeps admin traffic off the production network across many sites.",
+        "Incorrect. Direct physical access does count as out-of-band. However, it scales poorly across many large production facilities, where devices may be unsafe or hard to reach."
+      ]
+    },
+    {
+      "id": "OPT4-C04-048",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.95,
+      "stem": "Cameron is worried about distributed denial-of-service attacks against his company's primary web application. Which of the following options will provide the most resilience against large-scale DDoS attacks?",
+      "options": [
+        "A CDN",
+        "Increasing the number of servers in the web application server cluster",
+        "Contract for DDoS mitigation services via the company's ISP",
+        "Increasing the amount of bandwidth available from one or more ISPs"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A content delivery network run by a major provider can handle large-scale DDoS attacks more easily than any of the other solutions. Using DDoS mitigation techniques via an ISP is the next most useful capability, followed by both increases in bandwidth and increases in the number of servers in the web application cluster.",
+      "optionNotes": [
+        "Correct. A major provider's CDN spreads traffic across a huge, globally distributed edge network, so it can absorb large-scale DDoS volumes better than any of the other options.",
+        "Incorrect. Adding servers to the web cluster ranks among the least effective choices. A large DDoS can still saturate network links or overwhelm a cluster of fixed size long before it reaches the CDN's scale.",
+        "Incorrect. ISP-based DDoS mitigation is the next most useful option after a CDN. However, a single ISP's capacity and scrubbing ability are smaller than a major CDN's distributed network.",
+        "Incorrect. Buying more bandwidth only raises the threshold by a limited amount. Large botnet floods can still exceed it, so it ranks below both a CDN and ISP mitigation services."
+      ]
+    },
+    {
+      "id": "OPT4-C04-049",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "There are four common VPN protocols. Which group listed contains all of the common VPN protocols?",
+      "options": [
+        "PPTP, LTP, L2TP, IPsec",
+        "PPP, L2TP, IPsec, VNC",
+        "PPTP, L2F, L2TP, IPsec",
+        "PPTP, L2TP, IPsec, SPAP"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "PPTP, L2F, L2TP, and IPsec are the most common VPN protocols. TLS is also used for an increasingly large percentage of VPN connections and may appear at some point in the CISSP exam. PPP is a dial-up protocol, LTP is not a protocol, and SPAP is the Shiva Password Authentication Protocol sometimes used with PPTP.",
+      "optionNotes": [
+        "Incorrect. LTP isn't a VPN protocol. It looks like a mix-up of L2F/L2TP, so this group is missing L2F.",
+        "Incorrect. PPP is a dial-up encapsulation protocol, not a VPN protocol. VNC is a remote desktop tool, not a tunneling protocol.",
+        "Correct. PPTP, L2F, L2TP and IPsec are the four common VPN protocols. TLS VPNs are becoming more common too.",
+        "Incorrect. SPAP is the Shiva Password Authentication Protocol. It's an authentication method sometimes used with PPTP, not a VPN protocol itself."
+      ]
+    },
+    {
+      "id": "OPT4-C04-050",
+      "domain": 4,
+      "type": "multi",
+      "difficulty": 2.43,
+      "stem": "Wayne wants to deploy a secure voice communication network. Which of the following techniques should he consider? (Select all that apply.)",
+      "options": [
+        "Use a dedicated VLAN for VoIP phones and devices.",
+        "Require the use of SIPS and SRTP.",
+        "Require the use of VPN for all remote VoIP devices.",
+        "Implement a VoIP IPS."
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Wayne should consider the use of a dedicated VLAN for VoIP devices to help separate them from other networked devices, and he should also require the use of SIPS and SRTP, both secure protocols that will keep his VoIP traffic encrypted. Requiring the use of VPN for all remote VoIP devices is not necessary if SIPS and SRTP are in use, and a specific IPS for VoIP is not a typical deployment in most organizations.",
+      "optionNotes": [
+        "Correct. A dedicated VoIP VLAN keeps phones and voice devices apart from other networked systems, which shrinks exposure and makes it easier to apply voice-specific controls.",
+        "Correct. SIPS encrypts the SIP signaling and SRTP encrypts the media stream, so the VoIP traffic stays protected from eavesdropping and tampering.",
+        "Incorrect. Once SIPS and SRTP are encrypting the signaling and media, making every remote VoIP device use a VPN adds overhead without being necessary.",
+        "Incorrect. Most organizations don't deploy an IPS built specifically for VoIP, so it isn't a standard technique for securing a voice network."
+      ]
+    },
+    {
+      "id": "OPT4-C04-051",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.48,
+      "stem": "Which OSI layer includes electrical specifications, protocols, and interface standards?",
+      "options": [
+        "The Transport layer",
+        "The Device layer",
+        "The Physical layer",
+        "The Data Link layer"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Physical layer includes electrical specifications, protocols, and standards that allow control of throughput, handling line noise, and a variety of other electrical interface and signaling requirements. The OSI layer doesn't have a Device layer. The Transport layer connects the Network and Session layers, and the Data Link layer packages packets from the network layer for transmission and receipt by devices operating on the Physical layer.",
+      "optionNotes": [
+        "Incorrect. The Transport layer (Layer 4) connects the Network and Session layers and handles end-to-end delivery. It doesn't define electrical or signaling specifications.",
+        "Incorrect. The OSI model has no Device layer. Its seven layers are Physical, Data Link, Network, Transport, Session, Presentation, and Application.",
+        "Correct. The Physical layer (Layer 1) defines the electrical specifications, protocols, and interface standards that control throughput, line noise, and signaling.",
+        "Incorrect. The Data Link layer (Layer 2) packages packets from the Network layer into frames for transmission. The electrical and interface specs belong to the Physical layer below it."
+      ]
+    },
+    {
+      "id": "OPT4-C04-052",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Ben is designing a Wi-Fi network and has been asked to choose the most secure option for the network. Which wireless security standard should he choose?",
+      "options": [
+        "WPA2",
+        "WPA",
+        "WEP",
+        "WPA3"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "WPA3, the replacement for WPA2, adds security features including a new mode called simultaneous authentication of equals that replaces the pre-shared key mode from WPA2 with a more secure option. Overall, it provides security improvements but may not be immediately implemented due to time for hardware and software to fully support it. WPA2 has been the most commonly deployed wireless security standard having replaced WPA and WEP.",
+      "optionNotes": [
+        "Incorrect. WPA2 is the widely deployed predecessor to WPA3. Its pre-shared key mode is weaker than WPA3's SAE, so it isn't the most secure choice.",
+        "Incorrect. WPA was an interim fix for WEP that relied on TKIP. WPA2 replaced it, and it is now considered insecure.",
+        "Incorrect. WEP is the original Wi-Fi security standard. Its RC4/IV weaknesses make it trivially breakable, and WPA and WPA2 replaced it long ago.",
+        "Correct. WPA3 replaces WPA2 and adds Simultaneous Authentication of Equals (SAE), which is a more secure replacement for the PSK mode. That makes it the most secure option."
+      ]
+    },
+    {
+      "id": "OPT4-C04-053",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.18,
+      "stem": "What mode of switching is best suited to low-latency, high-throughput data transfer?",
+      "options": [
+        "Store-and-forward switching",
+        "Blind switching",
+        "Forward switching",
+        "Cut-through switching"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Cut-through switching forwards packets as soon as the destination address is known without waiting for the rest of the frame to arrive. This means that packets are not checked for integrity before being forwarded, optimizing throughput and reducing latency at the expense of error checking. Store-and-forward waits for the entire frame to allow it to be checked using a cyclic redundancy check (CRC) before forwarding it. Blind and forward switching were made up for this question.",
+      "optionNotes": [
+        "Incorrect. Store-and-forward buffers the whole frame and verifies its CRC before forwarding. That adds latency, so it gives up speed in exchange for error checking.",
+        "Incorrect. Blind switching is not a real switching mode. The question writers made it up as a distractor.",
+        "Incorrect. Forward switching is a made-up term and not a real switching mode. It sounds plausible because it resembles store-and-forward.",
+        "Correct. Cut-through switching forwards a frame as soon as the destination address is read, without waiting for the rest of the frame. This keeps latency low and throughput high, but frames aren't checked for errors."
+      ]
+    },
+    {
+      "id": "OPT4-C04-054",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.24,
+      "stem": "Segmentation, sequencing, and error checking all occur at what layer of the OSI model that is associated with SSL, TLS, and UDP?",
+      "options": [
+        "The Transport layer",
+        "The Network layer",
+        "The Session layer",
+        "The Presentation layer"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The Transport layer provides logical connections between devices, including end-to-end transport services to ensure that data is delivered. Transport layer protocols include TCP, UDP, SSL, and TLS.",
+      "optionNotes": [
+        "Correct. Layer 4, the Transport layer, sets up logical end-to-end connections and handles segmentation, sequencing and error checking. Its protocols include TCP, UDP, SSL and TLS.",
+        "Incorrect. The Network layer (Layer 3) deals with logical addressing and routing, using protocols such as IP. Segmentation, sequencing and error checking are Transport-layer jobs, and UDP, SSL and TLS are Layer 4 protocols.",
+        "Incorrect. The Session layer (Layer 5) sets up, manages and ends sessions between applications. Segmentation and sequencing happen at Layer 4, and the TCP/IP stack has no real session layer, so TCP at Layer 4 takes over some of its functions.",
+        "Incorrect. The Presentation layer (Layer 6) deals with data formatting, encoding and encryption representation. It doesn't do segmentation or sequencing, and UDP and TLS are listed as Transport-layer protocols."
+      ]
+    },
+    {
+      "id": "OPT4-C04-055",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "The Windows ipconfig command displays the following information: BC-5F-F4-7B-4B-7D\nWhat term describes this, and what information can usually be gathered from it?",
+      "options": [
+        "The IP address, the network location of the system",
+        "The MAC address, the network interface card's manufacturer",
+        "The MAC address, the media type in use",
+        "The IPv6 client ID, the network interface card's manufacturer"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Machine Access Control (MAC) addresses are the hardware address the machine uses for layer 2 communications. The MAC addresses include an organizationally unique identifier (OUI), which identifies the manufacturer. MAC addresses can be changed, so this is not a guarantee of accuracy, but under normal circumstances you can tell what manufacturer made the device by using the MAC address.",
+      "optionNotes": [
+        "Incorrect. BC-5F-F4-7B-4B-7D is six hyphen-separated hex bytes. That is the format of a MAC address, not an IPv4 address (dotted decimal). A MAC address also doesn't reveal where the system sits on the network.",
+        "Correct. This is a 48-bit MAC address, the layer 2 hardware address. Its first 3 bytes are the OUI, which identifies the NIC's manufacturer. MAC addresses can be spoofed, but normally the OUI shows who made the device.",
+        "Incorrect. The term MAC address is right, but a MAC address doesn't show the media type (copper, fiber, wireless). It contains the OUI, which identifies the vendor, plus a NIC-specific serial portion.",
+        "Incorrect. IPv6 addresses are 128 bits long and written as colon-separated hex groups. An IPv6 interface identifier may be derived from a MAC address, but the value shown is the 48-bit MAC address itself."
+      ]
+    },
+    {
+      "id": "OPT4-C04-056",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.89,
+      "stem": "Chris wants to ensure that traffic sent via his backhaul networks provided by third-party telecom providers is secure. Which of the following options is best suited to ensuring that all traffic sent through the connection is secure?",
+      "options": [
+        "Use TLS for all web services.",
+        "Use an on-demand, client-based VPN.",
+        "Use a point-to-point VPN.",
+        "Tunnel traffic via SSH."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "For long-term connections like backhaul networks, a point-to-point VPN that is connected at all times is the most common choice to ensure all traffic is secured. TLS and SSH are commonly used to tunnel data but require additional attention to ensure that all traffic is tunneled. On-demand VPNs are more commonly used by users than for a connection like a backhaul network link.",
+      "optionNotes": [
+        "Incorrect. TLS only protects the specific web services set up to use it. The book notes it needs extra effort to make sure all traffic is tunneled, so it doesn't secure everything crossing the backhaul link.",
+        "Incorrect. On-demand, client-based VPNs are made for individual users who connect when they need to. They don't suit a permanent site-to-site backhaul link that must protect all traffic all the time.",
+        "Correct. A point-to-point VPN that stays connected at all times is the usual choice for long-term links like backhaul networks. It encrypts all traffic crossing the third-party telecom connection.",
+        "Incorrect. SSH can tunnel traffic, but each tunnel has to be configured, and the book says it takes extra attention to make sure all traffic goes through it. That makes it a poor fit for securing a whole backhaul link."
+      ]
+    },
+    {
+      "id": "OPT4-C04-057",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "Ben is troubleshooting a network and discovers that the NAT router he is connected to has the 192.168.x.x subnet as its internal network and that its external IP is 192.168.1.40. What problem is he encountering?",
+      "options": [
+        "192.168.x.x is a nonroutable network and will not be carried to the Internet.",
+        "192.168.1.40 is not a valid address because it is reserved by RFC 1918.",
+        "Double NATing is not possible using the same IP range.",
+        "The upstream system is unable to de-encapsulate his packets, and he needs to use PAT instead."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Double NATing isn't possible with the same IP range; the same IP addresses cannot appear inside and outside a NAT router. RFC 1918 addresses are reserved, but only so they are not used and routable on the Internet, and changing to PAT would not fix the issue.",
+      "optionNotes": [
+        "Incorrect. 192.168.x.x is private and not routed on the Internet, but double NAT through an upstream router is how such networks normally reach out. Non-routability isn't the problem here. The real fault is the same range appearing on both sides of the router.",
+        "Incorrect. RFC 1918 reserves 192.168.0.0/16 for private use. That only means these addresses aren't routed on the public Internet. They are still valid to assign, including on a router's external interface.",
+        "Correct. The external IP 192.168.1.40 falls inside the router's internal 192.168.x.x range. The same addresses can't appear on both the inside and outside of a NAT router, so double NAT fails.",
+        "Incorrect. PAT multiplexes many sessions over one external IP using port numbers. Switching to it wouldn't fix the overlapping address ranges, and de-encapsulation by the upstream system isn't the issue."
+      ]
+    },
+    {
+      "id": "OPT4-C04-058",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.48,
+      "stem": "What is the default subnet mask for a Class B network?",
+      "options": [
+        "255.0.0.0",
+        "255.255.0.0",
+        "255.254.0.0",
+        "255.255.255.0"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A Class B network holds 2^16 systems, and its default network mask is 255.255.0.0.",
+      "optionNotes": [
+        "Incorrect. 255.0.0.0 (/8) is the default mask for a Class A network. It leaves 24 host bits, not the 16 host bits a Class B network has.",
+        "Correct. A Class B network uses 16 network bits and 16 host bits, which gives about 2^16 hosts. Its default mask is 255.255.0.0 (/16).",
+        "Incorrect. 255.254.0.0 is a /15 mask. That is a CIDR supernet, not the default mask for any classful network. Class B uses /16.",
+        "Incorrect. 255.255.255.0 (/24) is the default mask for a Class C network. It leaves only 8 host bits, so it is not the Class B default."
+      ]
+    },
+    {
+      "id": "OPT4-C04-059",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "Kim wants to protect her Zoom meetings from Zoom bombing. What security option should she enable?",
+      "options": [
+        "Require HTTPS connections.",
+        "Turn on the waiting room.",
+        "Randomize meeting links.",
+        "Require a meeting passcode."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Enabling waiting rooms allows hosts to allow only intended attendees for events and meetings. Unfortunately, passcodes are easily shared, resulting in Zoom bombing despite the security they appear to offer. Meeting links are automatically generated and randomized, preventing brute forcing, and HTTPS is enabled by default for meetings.",
+      "optionNotes": [
+        "Incorrect. Zoom meetings already use HTTPS by default. Transport encryption protects the traffic in transit, but it does nothing to keep uninvited people from joining.",
+        "Correct. With a waiting room, the host sees each person before letting them in and admits only intended attendees. That stops uninvited people from disrupting the meeting.",
+        "Incorrect. Zoom already generates random meeting links automatically, which prevents brute-forcing. Bombers usually get in through links that were shared, so randomizing adds nothing.",
+        "Incorrect. Passcodes are easily shared, often embedded in the invite link, so meetings get Zoom-bombed even with a passcode. It only looks like protection."
+      ]
+    },
+    {
+      "id": "OPT4-C04-060",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.48,
+      "stem": "Olivia wants to use a network fault management tool that can provide real-time fault detection. What capabilities are most commonly associated with this type of monitoring?",
+      "options": [
+        "SNMP and ICMP-based monitoring and diagnostic data retrieval",
+        "Netflow and syslog-based monitoring",
+        "SNMP and Netflow-based monitoring",
+        "ICMP and syslog-based monitoring"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Real-time fault monitoring for network devices and connections often relies on SNMP and ICMP-based monitoring capabilities. Netflow and syslog are more commonly used for diagnostic and analysis tasks.",
+      "optionNotes": [
+        "Correct. SNMP polling and traps, together with ICMP reachability checks such as ping, are the standard basis for real-time fault detection and for retrieving diagnostic data from network devices and links.",
+        "Incorrect. NetFlow records traffic-flow data and syslog collects event logs. Both are mainly used for diagnosis and after-the-fact analysis, not for real-time fault detection.",
+        "Incorrect. SNMP helps with fault monitoring, but NetFlow is a traffic-analysis tool used for diagnosis and capacity work. This pairing leaves out ICMP, which is the usual way to check whether a device is reachable in real time.",
+        "Incorrect. ICMP helps with fault detection, but syslog is mostly used for diagnosis and log analysis. This pairing leaves out SNMP, which provides the device status polling and traps that real-time fault monitoring relies on."
+      ]
+    },
+    {
+      "id": "OPT4-C04-061",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Selah's organization has deployed VoIP phones on the same switches that the desktop PCs are on. What security issue could this create, and what solution would help?",
+      "options": [
+        "VLAN hopping; use physically separate switches.",
+        "VLAN hopping; use encryption.",
+        "Caller ID spoofing; MAC filtering.",
+        "Denial-of-service attacks; use a firewall between networks."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "VLAN hopping between the voice and computer VLANs can be accomplished when devices share the same switch infrastructure. Using physically separate switches can prevent this attack. Encryption won't help with VLAN hopping because it relies on header data that the switch needs to read (and this is unencrypted), while Caller ID spoofing is an inherent problem with VoIP systems. A denial of service is always a possibility, but it isn't specifically a VoIP issue, and a firewall may not stop the problem if it's on a port that must be allowed through.",
+      "optionNotes": [
+        "Correct. Voice and data VLANs on the same switches leave an opening for VLAN hopping between them. Putting the phones on physically separate switches removes the shared infrastructure the attack relies on.",
+        "Incorrect. VLAN hopping is the right threat, but encryption doesn't stop it. The attack abuses frame header and tag data that the switch has to read, and that data stays unencrypted.",
+        "Incorrect. Caller ID spoofing is a built-in weakness of VoIP and has nothing to do with sharing switches. MAC filtering wouldn't stop it anyway, because MAC addresses are easy to spoof or clone.",
+        "Incorrect. DoS is always possible, but it isn't a problem caused by sharing switches. A firewall between networks may also fail to stop it if the traffic uses a port that has to be allowed through."
+      ]
+    },
+    {
+      "id": "OPT4-C04-062",
+      "domain": 4,
+      "type": "multi",
+      "difficulty": 0.35,
+      "stem": "Scenario:\nSusan is designing her organization's new network infrastructure for a branch office.\n\nSusan wants to use a set of nonroutable IP addresses for the location's internal network addresses. Using your knowledge of secure network design principles and IP networking, which of the following IP ranges are usable for that purpose? (Select all that apply.)",
+      "options": [
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "128.192.0.0/24",
+        "10.0.0.0/8"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "RFC 1918 defines three address ranges as private (nonroutable) IP address ranges: 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. Any of these would work, but many organizations use the 192.168.0.0/16 range for smaller sites or opt to carve out sections of the 10.0.0.0/8 range for multiple remote sites.",
+      "optionNotes": [
+        "Correct. 172.16.0.0/12 (172.16.0.0–172.31.255.255) is one of the three RFC 1918 private ranges, so you can use it for internal addressing behind NAT.",
+        "Correct. 192.168.0.0/16 is an RFC 1918 private range. Organizations often pick it for smaller sites like a branch office.",
+        "Incorrect. 128.192.0.0/24 is public, routable address space, not one of the RFC 1918 ranges. Using it internally could clash with real Internet hosts.",
+        "Correct. 10.0.0.0/8 is the largest RFC 1918 private range. Many organizations split it into sections to address multiple remote sites."
+      ]
+    },
+    {
+      "id": "OPT4-C04-063",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.24,
+      "stem": "Scenario:\nSusan is designing her organization's new network infrastructure for a branch office.\n\nSusan knows that she will need to implement a Wi-Fi network for her customers and wants to gather information about the customers, such as their email address, without having to provide them with a wireless network password or key. What type of solution would provide this combination of features?",
+      "options": [
+        "NAC",
+        "A captive portal",
+        "Pre-shared keys",
+        "WPA3's SAE mode"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A captive portal is a popular solution that you may be familiar with from hotels and coffee shops. They combine the ability to gather data from customers with an open network, so customer data will not be encrypted. This avoids the need to distribute network passwords but means that customers must ensure their own traffic is encrypted if they are worried about security.",
+      "optionNotes": [
+        "Incorrect. NAC checks device posture and controls network access, often using 802.1X credentials. It isn't built to collect customer details like email addresses on an open guest network, so it doesn't fit this need.",
+        "Correct. A captive portal, the kind used in hotels and coffee shops, gathers customer data such as email addresses on an open network, so no password has to be handed out. Because the network is open, customer traffic isn't encrypted.",
+        "Incorrect. Pre-shared keys mean giving every user a shared password or key, which is exactly what Susan wants to avoid. PSKs also can't collect customer information.",
+        "Incorrect. WPA3-Personal's SAE mode replaces PSK authentication, but users still need a password to join. It also has no way to collect customer data such as email addresses."
+      ]
+    },
+    {
+      "id": "OPT4-C04-064",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.24,
+      "stem": "Scenario:\nSusan is designing her organization's new network infrastructure for a branch office.\n\nWith her wireless network set up, Susan moves on to ensuring that her network will remain operational even if disruptions occur. What is the simplest way she can ensure that her network devices, including her router, access points, and network switches, stay on if a brownout or other temporary power issue occurs?",
+      "options": [
+        "Purchase and install a generator with an automatic start.",
+        "Deploy dual power supplies for all network devices.",
+        "Install UPS systems to cover all network devices that must remain online.",
+        "Contract with multiple different power companies for redundant power."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A UPS system, or uninterruptible power supply, is designed to provide backup power during brief power disruptions ranging from power sags and brownouts to temporary power failures. For a longer outage, Susan will still want a generator or even a secondary power feed from another power grid or provider if possible, but for this specific scenario, a UPS will meet her needs. Dual power supplies help when the concern is losing power from one power supply and would be a great idea for her most critical network devices, but it is rare to have dual power supplies for edge devices like access points or edge switches.",
+      "optionNotes": [
+        "Incorrect. A generator is meant for long outages. It takes time to start, so it won't ride through a brownout without a UPS bridging the gap, and it's more complex than this scenario needs.",
+        "Incorrect. Dual power supplies only protect against one power supply unit failing. If the incoming power sags, both supplies are affected. Edge devices like access points and edge switches also rarely have them.",
+        "Correct. A UPS gives immediate backup power during sags, brownouts and short outages. It's the simplest way to keep the router, access points and switches running.",
+        "Incorrect. Redundant feeds from different providers or grids help with longer utility outages, but they're costly and complex. They're not the simplest fix for brief power problems, which a UPS handles directly."
+      ]
+    },
+    {
+      "id": "OPT4-C04-065",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.24,
+      "stem": "Scenario:\nSusan is designing her organization's new network infrastructure for a branch office.\n\nSusan wants to provide 100 gigabit network connections to devices in the facility where the new branch will operate. What connectivity options does she have for structured wiring that can meet those speeds? (Select all that apply.)",
+      "options": [
+        "Cat5e",
+        "Fiber",
+        "Cat6",
+        "Coaxial cable"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Fiber-optic cable is best suited to running 100 gigabit speeds. Cat5e, Cat6, and coaxial cable are not rated to those speeds.",
+      "optionNotes": [
+        "Incorrect. Cat5e twisted pair is rated for up to 1 Gbps (1000BASE-T). That is far below 100 Gbps, so it can't meet the requirement.",
+        "Correct. Fiber-optic cabling supports 100 gigabit Ethernet, which makes it the right structured wiring choice for 100 Gbps device connections.",
+        "Incorrect. Cat6 twisted pair tops out at 10 Gbps, and only over short runs of about 55 meters. It is not rated for 100 Gbps.",
+        "Incorrect. Coaxial cable, such as legacy 10BASE2/10BASE5 or cable-modem plant, is not rated for 100 Gbps structured Ethernet links."
+      ]
+    },
+    {
+      "id": "OPT4-C04-066",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Data streams occur at what three layers of the OSI model?",
+      "options": [
+        "Application, Presentation, and Session",
+        "Presentation, Session, and Transport",
+        "Physical, Data Link, and Network",
+        "Data Link, Network, and Transport"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Data streams are associated with the Application, Presentation, and Session layers. Once they reach the Transport layer, they become segments (TCP) or datagrams (UDP). From there, they are converted to packets at the Network layer, frames at the Data Link layer, and bits at the Physical layer.",
+      "optionNotes": [
+        "Correct. The upper three layers (Application, Presentation, Session) handle data as streams. Encapsulation into segments or datagrams starts only at the Transport layer.",
+        "Incorrect. Data at the Transport layer is no longer a stream. It becomes TCP segments or UDP datagrams, so this set is wrong.",
+        "Incorrect. These lower layers carry bits (Physical), frames (Data Link) and packets (Network), not data streams.",
+        "Incorrect. These layers use frames, packets and segments/datagrams respectively. Streams exist only in the top three layers."
+      ]
+    },
+    {
+      "id": "OPT4-C04-067",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.89,
+      "stem": "Lucca wants to protect endpoints that are in production use but that are no longer supported and cannot be patched from network attacks. What should he do to best protect these devices?",
+      "options": [
+        "Install a firewall on the device.",
+        "Disable all services and open ports on the devices.",
+        "Place a hardware network security device in front of the devices.",
+        "Unplug the devices from the network because they cannot be properly secured."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "If the devices still need to be in production but cannot be patched, Lucca's best option is to use a separate security device to protect them. It may be tempting to simply install a firewall on the device or to disable all the services it exposes to the network, but some devices may not have firewall software available, and even if they do, the underlying operating system may have vulnerabilities in its implementation of its network stack or other software that even a firewall could not protect. Unplugging devices that are needed for protection does not resolve the need to keep them online.",
+      "optionNotes": [
+        "Incorrect. A host-based firewall may not exist for an unsupported device, and even if it does, it runs on the same unpatched OS. Flaws in that OS's network stack can still be exploited, so this isn't the best protection.",
+        "Incorrect. Turning off services and ports shrinks the attack surface, but the unpatched OS and its network stack are still exposed. Some services also have to stay running for the device to do its production job.",
+        "Correct. A separate hardware security device, such as a firewall or IPS placed in front of the endpoints, filters attacks before they reach the unpatchable systems. It does this without relying on the vulnerable device's own software.",
+        "Incorrect. The devices still have to stay in production use. Unplugging them removes the network risk but also stops the business function they support, so it doesn't meet the requirement."
+      ]
+    },
+    {
+      "id": "OPT4-C04-068",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Selah's networking team has been asked to identify a technology that will allow them to separate the routing process for the network from the packet switching process while increasing centralization?",
+      "options": [
+        "A network that follows the 5-4-3 rule",
+        "A converged network",
+        "A software-defined network",
+        "A hypervisor-based network"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Software-defined networking provides a network architecture that can be defined and configured as code or software and separates routing processes from packet switching while centralizing control. The 5-4-3 rule is an old design rule for networks that relied on repeaters or hubs. A converged network carries multiple types of traffic like voice, video, and data. A hypervisor-based network may be software defined, but it could also use traditional network devices running as virtual machines.",
+      "optionNotes": [
+        "Incorrect. The 5-4-3 rule is an old design rule for networks built on repeaters or hubs. It doesn't separate routing from switching, and it doesn't centralize control.",
+        "Incorrect. A converged network carries several kinds of traffic, such as voice, video and data, over one infrastructure. It doesn't split the control (routing) plane from the forwarding plane.",
+        "Correct. SDN defines and configures the network as code. It separates routing (the control plane) from packet switching (the data plane) and centralizes control in a controller.",
+        "Incorrect. A hypervisor-based network might be software defined, but it could just as easily run traditional network devices as virtual machines. That means it doesn't necessarily separate the planes or centralize control."
+      ]
+    },
+    {
+      "id": "OPT4-C04-069",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Jason knows that protocols using the OSI model rely on encapsulation as data moves from layer to layer. What is added at each layer as data flows up the OSI layers such as from layer 3 to 4 and layer 4 to 5?",
+      "options": [
+        "Information is added to the header.",
+        "Information is added to the main body of the data.",
+        "The data is encrypted with a new secret key.",
+        "A security envelope that provides perfect forward secrecy."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Encapsulation adds to the header (and sometimes to the footer) of the data provided by the previous layer. The main body of the data is not modified, and encryption may happen but does not always happen.",
+      "optionNotes": [
+        "Correct. Encapsulation adds layer-specific information to the header, and sometimes a footer, around the data from the previous layer. The payload itself is left unchanged.",
+        "Incorrect. Each layer wraps the data it receives with header (and sometimes footer) information. The main body of the data is never changed.",
+        "Incorrect. Encryption is not part of encapsulation. Some protocols encrypt data, but it doesn't happen at every layer, and no new key is generated per layer.",
+        "Incorrect. Perfect forward secrecy is a key-exchange property found in protocols like TLS. It is not something added at each OSI layer, where the only additions are headers and footers."
+      ]
+    },
+    {
+      "id": "OPT4-C04-070",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "During a troubleshooting process, the support technician that Alyssa is talking to states that the problem is a layer 3 problem. Which of the following possible issues is not a layer 3 problem?",
+      "options": [
+        "A TTL mismatch",
+        "An MTU mismatch",
+        "An incorrect ACL",
+        "A broken network cable"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "A broken network cable is a layer 1 problem. If you encounter a problem like this and aren't sure, look for the answer that has a different situation or set of assumptions. Here you have three questions that occur at the network (layer 3), all of which have software or protocol implications. A broken network cable is a completely different type of issue and should stand out. Be careful, though! The exam is likely to give you two potentially valid answers to choose from, so work to get rid of the two least likely answers and spend your time on the remaining options.",
+      "optionNotes": [
+        "Incorrect. TTL is a field in the IP header, so a TTL problem (packets expiring before they arrive) is a network-layer issue. That makes it a layer 3 problem, which is not what the question asks for.",
+        "Incorrect. An MTU mismatch affects how IP packets are sized and fragmented, and the book groups it with the layer 3 protocol issues. It is a layer 3 problem, so it is not the answer.",
+        "Incorrect. Router or firewall ACLs that filter by IP address act on network-layer traffic, so a misconfigured ACL is a layer 3 software/configuration issue. It is not the answer.",
+        "Correct. A broken cable is a physical-media fault at layer 1. Unlike the other three options, it has nothing to do with protocol or software settings."
+      ]
+    },
+    {
+      "id": "OPT4-C04-071",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "During a review of her organization's network, Angela discovered that it was suffering from broadcast storms and that contractors, guests, and organizational administrative staff were on the same network segment. What design change should Angela recommend?",
+      "options": [
+        "Require encryption for all users.",
+        "Install a firewall at the network border.",
+        "Enable spanning tree loop detection.",
+        "Segment the network based on functional requirements."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Network segmentation can reduce issues with performance as well as diminish the chance of broadcast storms by limiting the number of systems in a segment. This decreases broadcast traffic visible to each system and can reduce congestion. Segmentation can also help provide security by separating functional groups that don't need to be able to access each other's systems. Installing a firewall at the border would only help with inbound and outbound traffic, not cross-network traffic. Spanning tree loop prevention helps prevent loops in Ethernet networks (for example, when you plug a switch into a switch via two ports on each), but it won't solve broadcast storms that aren't caused by a loop or security issues. Encryption might help prevent some problems between functional groups, but it won't stop them from scanning other systems, and it definitely won't stop a broadcast storm!",
+      "optionNotes": [
+        "Incorrect. Encryption could protect traffic between functional groups, but it doesn't stop users from scanning each other's systems and does nothing to reduce broadcast storms.",
+        "Incorrect. A border firewall only filters traffic entering and leaving the network. It can't separate groups inside the same segment or cut down broadcast traffic within it.",
+        "Incorrect. Spanning tree prevents Ethernet switching loops. It won't stop broadcast storms that have other causes, and it doesn't address mixing contractors, guests and staff on one segment.",
+        "Correct. Segmenting the network puts fewer systems in each broadcast domain, which reduces broadcast storms and congestion. It also separates contractors, guests and admin staff, who don't need access to each other's systems."
+      ]
+    },
+    {
+      "id": "OPT4-C04-072",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Lisa wants to explain the difference between network throughput and bandwidth to her team. Which of the following best describes the difference between the two terms?",
+      "options": [
+        "Bandwidth describes the number of parallel data channels available to a network, and throughput describes how many can be used at once.",
+        "Bandwidth is the maximum amount of data that can be sent via a channel or connection, and throughput is the actual amount of data that is sent via the channel or connection in a given period of time.",
+        "Bandwidth and throughput are the same and can be used interchangeably.",
+        "Bandwidth is a measure of the amount of data sent over a given period of time, and throughput is the maximum amount of data that could be sent via the channel."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Bandwidth describes the maximum amount of data that can be sent via a connection or network in a given period of time, and throughput describes the actual amount of traffic that is sent via the network or connection in a given period of time. The terms are not interchangeable but are closely related.",
+      "optionNotes": [
+        "Incorrect. Neither term counts parallel channels. Bandwidth is the maximum data rate a link can carry, and throughput is the data rate actually achieved over a period of time.",
+        "Correct. Bandwidth is the maximum amount of data a connection can carry in a given period. Throughput is the amount of traffic actually sent in that period.",
+        "Incorrect. The book says the terms are closely related but not interchangeable. One is the maximum capacity, and the other is the amount of data actually delivered.",
+        "Incorrect. This swaps the definitions. Bandwidth is the maximum the channel could carry, and throughput is the amount actually sent over a period of time."
+      ]
+    },
+    {
+      "id": "OPT4-C04-073",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.89,
+      "stem": "Scenario:\nBen is an information security professional at an organization that is replacing its physical servers with cloud-hosted virtual machines. As the organization builds its virtual environment, it is moving toward a hybrid cloud operational model with some systems and services remaining in its local data center and others hosted in the cloud. The following diagram shows the local data center and cloud VPC's network IP ranges, which you should consider as you answer the questions.\n[Figure, described in text: the local data center network (10.0.0.0/24) connected to the cloud VPC network (10.0.0.0/24).]\n\nBen wants to ensure that the instance-to-instance (system-to-system) traffic in his cloud-hosted infrastructure-as-a-service environment is secure. What can he do to fully ensure that the virtualized network traffic is not being captured and analyzed?",
+      "options": [
+        "Prevent the installation of a packet sniffer on all hosts.",
+        "Disable promiscuous mode for all virtual network interfaces.",
+        "Disallow the use of any virtual taps.",
+        "Encrypt all traffic between hosts."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In an IaaS environment, the company that provides the cloud environment has final control of all the virtual machines and networks. Thus, to protect data, the best option is to encrypt the data. Unfortunately, Ben cannot fully ensure that traffic in his environment is not being captured and must rely on the cloud hosting provider for that assurance. While preventing the installation of packet sniffers and taps and ensuring that promiscuous mode cannot be enabled are useful habits in an environment that you control, this will not provide the same control in a cloud environment.",
+      "optionNotes": [
+        "Incorrect. Blocking sniffer installs only covers the guest VMs Ben manages. In IaaS the provider controls the hypervisor and virtual network, so traffic can still be captured below his instances.",
+        "Incorrect. Turning off promiscuous mode on his virtual NICs is good practice in an environment you control. It can't stop the cloud provider from capturing traffic at the hypervisor or virtual switch level.",
+        "Incorrect. Virtual taps live in the provider's virtual network infrastructure. Ben can't fully forbid or verify their absence there, so banning taps doesn't guarantee his traffic goes unanalyzed.",
+        "Correct. The IaaS provider has final control of the VMs and networks, so Ben can't stop capture. Encrypting traffic between hosts is the only measure he controls, and it keeps captured traffic from being read and analyzed."
+      ]
+    },
+    {
+      "id": "OPT4-C04-074",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.95,
+      "stem": "Scenario:\nBen is an information security professional at an organization that is replacing its physical servers with cloud-hosted virtual machines. As the organization builds its virtual environment, it is moving toward a hybrid cloud operational model with some systems and services remaining in its local data center and others hosted in the cloud. The following diagram shows the local data center and cloud VPC's network IP ranges, which you should consider as you answer the questions.\n[Figure, described in text: the local data center network (10.0.0.0/24) connected to the cloud VPC network (10.0.0.0/24).]\n\nWhat issue is most likely to occur due to the subnets configured for the data center and VPC?",
+      "options": [
+        "IP address conflicts",
+        "Routing loops",
+        "MAC address conflicts",
+        "All of the above"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Using the same IP range for an on-site and cloud-hosted data center can be helpful when designing a flat network, but addresses must be carefully managed and allocated even in a space as big as the 10.0.0.0/24 range. If addresses are not properly managed, conflicts may arise that could disrupt production services. MAC address conflicts should not arise unless addresses are manually changed or virtual machines are replicated without changing their MAC addresses. There is nothing in the problem to suggest routing issues.",
+      "optionNotes": [
+        "Correct. Both the data center and the VPC use the same 10.0.0.0/24 range, so unless allocation is carefully managed, two hosts can end up with the same IP, and that conflict can disrupt production services.",
+        "Incorrect. A routing loop comes from misconfigured routing between networks, and nothing in the scenario points to a routing problem. The overlapping subnet is an addressing issue, not a routing one.",
+        "Incorrect. MAC addresses are Layer 2 hardware identifiers and have nothing to do with how the IP subnets are configured. They only conflict if someone changes them manually or clones VMs without assigning new MACs.",
+        "Incorrect. Routing loops and MAC conflicts are not likely results of the shared subnet design. Only IP address conflicts follow from it, so 'all of the above' is wrong."
+      ]
+    },
+    {
+      "id": "OPT4-C04-075",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.24,
+      "stem": "Scenario:\nBen is an information security professional at an organization that is replacing its physical servers with cloud-hosted virtual machines. As the organization builds its virtual environment, it is moving toward a hybrid cloud operational model with some systems and services remaining in its local data center and others hosted in the cloud. The following diagram shows the local data center and cloud VPC's network IP ranges, which you should consider as you answer the questions.\n[Figure, described in text: the local data center network (10.0.0.0/24) connected to the cloud VPC network (10.0.0.0/24).]\n\nBen wants to use multiple Internet service providers (ISPs) to connect to his cloud VPC to ensure reliable access and bandwidth. What technology can he use to manage and optimize those connections?",
+      "options": [
+        "FCoE",
+        "VXLAN",
+        "SD-WAN",
+        "LiFi"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A software-defined wide area network, or SD-WAN, is commonly used to manage multiple ISPs and other connectivity options to ensure speed, reliability, and bandwidth design goals are all met. Ben can use SD-WAN capabilities to accomplish his goals to make his hybrid cloud environment successful. Fibre Channel over Ethernet (FCoE) is a storage protocol; VXLAN is used for extensible virtual LANs, not WANs; and LiFi uses visible and infrared light to transfer data.",
+      "optionNotes": [
+        "Incorrect. FCoE (Fibre Channel over Ethernet) is a storage networking protocol that carries Fibre Channel frames over Ethernet. It doesn't manage or optimize multiple ISP WAN links.",
+        "Incorrect. VXLAN extends virtual LANs across Layer 3 networks by encapsulating Layer 2 frames. It's a LAN segmentation technology and doesn't manage WAN links across multiple ISPs.",
+        "Correct. SD-WAN centrally manages multiple ISPs and other connectivity options so that speed, reliability, and bandwidth goals are met, which is exactly what Ben needs for his hybrid cloud links.",
+        "Incorrect. LiFi is a wireless technology that transfers data using visible and infrared light. It has nothing to do with managing or optimizing multiple ISP connections."
+      ]
+    },
+    {
+      "id": "OPT4-C04-076",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Traffic entering and leaving a network through a WAN link is often described as what sort of traffic?",
+      "options": [
+        "Foreign/domestic",
+        "North/south",
+        "East/west",
+        "Trusted/untrusted"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Traffic entering and leaving a network is often called north/south traffic. East/west traffic is traffic between systems inside of a network. Foreign/domestic is not a commonly used term, and trusted/untrusted cannot be determined without additional information.",
+      "optionNotes": [
+        "Incorrect. Foreign/domestic isn't a standard networking term for traffic flow direction, so it doesn't describe traffic crossing a WAN link.",
+        "Correct. Traffic that enters or leaves a network across its edge, such as through a WAN link, is called north/south traffic.",
+        "Incorrect. East/west traffic moves between systems inside the network, for example server to server in a data center. It doesn't cross the WAN boundary.",
+        "Incorrect. Whether traffic is trusted or untrusted depends on its source and policy. You can't tell that from its direction alone, so it isn't a name for WAN ingress/egress traffic."
+      ]
+    },
+    {
+      "id": "OPT4-C04-077",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "What converged protocol is designed to allow high-speed communication to devices like CPUs, GPUs, and accelerators?",
+      "options": [
+        "CXL",
+        "VoIP",
+        "CDN",
+        "iSCSI"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "CXL, or Compute Express Link, is a converged protocol that is an open standard for high-speed communications with accelerators, GPUs, CPUs, and similar devices. VoIP is a telephony protocol, CDNs are content distribution networks, and iSCSI is a converged storage protocol.",
+      "optionNotes": [
+        "Correct. Compute Express Link (CXL) is an open-standard converged interconnect that gives CPUs, GPUs, accelerators and memory high-speed communication over a single link.",
+        "Incorrect. VoIP is a converged telephony protocol that carries voice over IP networks. It has nothing to do with links between processors and accelerators.",
+        "Incorrect. A CDN is a content distribution network: geographically spread servers that deliver content to users. It is not a device-interconnect protocol.",
+        "Incorrect. ISCSI is a converged storage protocol that carries SCSI commands over IP to reach storage. It does not provide CPU or GPU interconnects."
+      ]
+    },
+    {
+      "id": "OPT4-C04-078",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.01,
+      "stem": "Mark is concerned about the physical security of his network cables. What type of network connection would be the hardest to tap without specialized equipment?",
+      "options": [
+        "Wi-Fi",
+        "Bluetooth",
+        "Cat5/Cat6 twisted pair",
+        "Fiber optic"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Fiber-optic cable is the most difficult of the listed types of network to capture data from without specialized equipment. Given access to a fiber-optic cable and specialized equipment to tap it, or with access to the endpoints of a fiber-optic cable and an optical tap, access can still be obtained. In either case, disruption may be observed when the cable is cut, spliced, or disconnected, and many attackers will not have access, skills, or the tools needed to do so. Wi-Fi and Bluetooth traffic can be captured using standard wireless cards and tools, and data carried by twisted-pair Ethernet cables is easily captured using commodity tools.",
+      "optionNotes": [
+        "Incorrect. Wi-Fi sends its signal through the air, so anyone in range with a standard wireless card and common tools can capture it. It is the easiest to tap, not the hardest.",
+        "Incorrect. Bluetooth is also a radio broadcast, and standard wireless capture tools can intercept it. No physical access or specialized equipment is required.",
+        "Incorrect. Twisted-pair copper carries data as electrical voltage, which leaks emanations and can be tapped easily with commodity tools. That is why fiber is recommended in its place.",
+        "Correct. Fiber optic carries light pulses and gives off no electromagnetic emanations. Tapping it takes specialized optical equipment, and cutting or splicing the cable usually causes a noticeable disruption."
+      ]
+    },
+    {
+      "id": "OPT4-C04-079",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.65,
+      "stem": "Rich wants to connect his network to a building a half-mile away from his current location. There are trees and terrain features along the way, but a road passes between the trees to the other location. What type of transmission media is best suited to this type of deployment?",
+      "options": [
+        "Ethernet cable with repeaters every 200 to 300 yards",
+        "A Wi-Fi directional antenna",
+        "Fiber-optic cable",
+        "A LiFi system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Buried fiber-optic cable is best suited to long distances, particularly when there are trees or other obstacles blocking line of sight that may interfere with Wi-Fi or LiFi deployments. Ethernet's distance limitations mean that repeaters would need to be powered, and there is no description of other structures or power along the path.",
+      "optionNotes": [
+        "Incorrect. Copper Ethernet runs are limited to about 100 meters, so this run would need repeaters along the way, and each one needs power. The scenario mentions no structures or power along the path.",
+        "Incorrect. A directional Wi-Fi antenna needs a clear line of sight. The trees and terrain between the buildings could block or weaken the signal over half a mile.",
+        "Correct. Buried fiber-optic cable covers long distances without powered repeaters, and obstacles along the route don't affect it. It can be laid along the road between the sites.",
+        "Incorrect. LiFi sends data using light, so it needs line of sight and only works over short distances. Trees and terrain would block it, which makes it unsuitable for a half-mile link."
+      ]
+    },
+    {
+      "id": "OPT4-C04-080",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "What challenge is most common for endpoint security system deployments?",
+      "options": [
+        "Compromises",
+        "The volume of data",
+        "Monitoring encrypted traffic on the network",
+        "Handling non-TCP protocols"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Endpoint security solutions face challenges due to the sheer volume of data that they can create. When each workstation is generating data about events, this can be a massive amount of data. Endpoint security solutions should reduce the number of compromises when properly implemented, and they can also help by monitoring traffic after it is decrypted on the local host. Finally, non-TCP protocols are relatively uncommon on modern networks, making this a relatively rare concern for endpoint security system implementations.",
+      "optionNotes": [
+        "Incorrect. When endpoint security is deployed properly, it should cut down on compromises. That makes compromises the problem the tool is meant to solve, not the main challenge of deploying it.",
+        "Correct. Every workstation produces event data, so the combined volume of data is huge. This sheer volume is the most common challenge for endpoint security deployments.",
+        "Incorrect. Endpoint agents can inspect traffic after the local host has decrypted it. Encrypted traffic is mainly a problem for network-based monitoring, not for endpoint tools.",
+        "Incorrect. Non-TCP protocols are fairly uncommon on modern networks. Handling them is therefore a rare concern, not the most common challenge."
+      ]
+    },
+    {
+      "id": "OPT4-C04-081",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.72,
+      "stem": "What type of address is 127.0.0.1?",
+      "options": [
+        "A public IP address",
+        "An RFC 1918 address",
+        "An APIPA address",
+        "A loopback address"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The IP address 127.0.0.1 is a loopback address and will resolve to the local machine. Public addresses are non–RFC 1918, nonreserved addresses. RFC 1918 addresses are reserved and include ranges like 10.x.x.x. An APIPA address is a self-assigned address used when a DHCP server cannot be found.",
+      "optionNotes": [
+        "Incorrect. Public addresses are routable, non-RFC 1918, nonreserved addresses. 127.0.0.1 sits in a reserved range, so it isn't public.",
+        "Incorrect. RFC 1918 sets aside private ranges such as 10.x.x.x, 172.16-31.x.x and 192.168.x.x. 127.0.0.0/8 is not one of them.",
+        "Incorrect. An APIPA address is one a host assigns itself from 169.254.x.x when it can't find a DHCP server. It has nothing to do with 127.0.0.1.",
+        "Correct. 127.0.0.1 is the loopback address. It always points back to the local machine and is used to test the local TCP/IP stack."
+      ]
+    },
+    {
+      "id": "OPT4-C04-082",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "Susan is writing a best practices statement for her organizational users who need to use Bluetooth. She knows that there are many potential security issues with Bluetooth and wants to provide the best advice she can. Which of the following sets of guidance should Susan include?",
+      "options": [
+        "Use Bluetooth's built-in strong encryption, change the default PIN on your device, turn off discovery mode, and turn off Bluetooth when it's not in active use.",
+        "Use Bluetooth only for those activities that are not confidential, change the default PIN on your device, turn off discovery mode, and turn off Bluetooth when it's not in active use.",
+        "Use Bluetooth's built-in strong encryption, use extended (eight digits or longer) Bluetooth PINs, turn off discovery mode, and turn off Bluetooth when it's not in active use.",
+        "Use Bluetooth only for those activities that are not confidential, use extended (eight digits or longer) Bluetooth PINs, turn off discovery mode, and turn off Bluetooth when it's not in active use."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Since Bluetooth doesn't provide strong encryption, it should only be used for activities that are not confidential. Bluetooth PINs are four-digit codes that often default to 0000. Turning it off and ensuring that your devices are not in discovery mode can help prevent Bluetooth attacks.",
+      "optionNotes": [
+        "Incorrect. Bluetooth doesn't offer strong built-in encryption, so telling users to depend on it gives false assurance. The other three items in this set are sound, but the encryption advice disqualifies it.",
+        "Correct. Bluetooth's encryption is weak, so it shouldn't carry confidential activity. Default PINs (often 0000) should be changed, and turning off discovery mode and Bluetooth itself when idle cuts down attack exposure.",
+        "Incorrect. This set has two problems. It relies on strong encryption that Bluetooth doesn't provide, and Bluetooth PINs are typically four-digit codes, so asking for eight-digit PINs isn't realistic guidance.",
+        "Incorrect. Keeping confidential work off Bluetooth is correct here. However, Bluetooth PINs are typically four digits, so the realistic advice is to change the default PIN, not to require eight-digit PINs."
+      ]
+    },
+    {
+      "id": "OPT4-C04-083",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "What type of networking device is most commonly used to assign endpoint systems to VLANs?",
+      "options": [
+        "Firewall",
+        "Router",
+        "Switch",
+        "Hub"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The assignment of endpoint systems to VLANs is normally performed by a network switch.",
+      "optionNotes": [
+        "Incorrect. A firewall filters traffic between network segments based on rules. It can enforce segmentation, but it isn't the device that normally puts endpoint ports into VLANs.",
+        "Incorrect. A router forwards traffic between subnets at Layer 3 and can route between VLANs. Assigning endpoints to VLANs, though, is configured on the switch.",
+        "Correct. A network switch is the device that normally assigns endpoint systems to VLANs, usually by port. The VLANs it creates are separate broadcast domains that can be changed through the switch's internal settings.",
+        "Incorrect. A hub is a simple Layer 1 repeater that sends traffic out of every port. It has no concept of VLANs, so it can't segment endpoints."
+      ]
+    },
+    {
+      "id": "OPT4-C04-084",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.89,
+      "stem": "Srini is building a high-performance computing cluster that requires very high bandwidth and very low latency. What converged protocol is he most likely to select for this purpose?",
+      "options": [
+        "iSCSI",
+        "VoIP",
+        "Infiniband over Ethernet",
+        "CXL"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Infiniband over Ethernet is commonly used for purposes like this, allowing direct memory access over Ethernet while providing high bandwidth and low latency. iSCSI is used for storage, VoIP is used for telephony, and Compute Express Link (CXL) is used for CPU to device and CPU to memory connections.",
+      "optionNotes": [
+        "Incorrect. ISCSI carries SCSI storage commands over IP networks. It's a storage protocol, not one built for low-latency, high-bandwidth links between nodes in an HPC cluster.",
+        "Incorrect. VoIP is a converged protocol that carries telephone calls over IP networks. It has nothing to do with high-bandwidth interconnects between cluster nodes.",
+        "Correct. Infiniband over Ethernet gives direct memory access over Ethernet with high bandwidth and low latency, which is exactly what high-performance computing clusters need.",
+        "Incorrect. Compute Express Link (CXL) connects a CPU to devices and memory inside a system. It isn't a converged network protocol for linking the nodes of a cluster."
+      ]
+    },
+    {
+      "id": "OPT4-C04-085",
+      "domain": 4,
+      "type": "multi",
+      "difficulty": 2.19,
+      "stem": "Michelle is told that the organization that she is joining uses an SD-WAN controller architecture to manage their WAN connections. What can she assume about how the network is managed and controlled? (Select all that apply.)",
+      "options": [
+        "The network uses predefined rules to optimize performance.",
+        "The network conducts continuous monitoring to support better performance.",
+        "The network uses self-learning techniques to respond to changes in the network.",
+        "All connections are managed by the organization's primary Internet service provider."
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "SD-WAN implementations typically perform all of these functions, combining active data collection via monitoring and response via self-learning and machine intelligence techniques and then applying predefined rules to take action to make the network perform as desired. SD-WAN does not imply or require that all connections are managed by the organization's primary Internet service provider. In fact, SD-WANs are often used to handle multiple ISPs to allow for failover and redundancy.",
+      "optionNotes": [
+        "Correct. SD-WAN controllers apply predefined policies/rules to steer traffic and act so the network performs as desired.",
+        "Correct. SD-WAN actively collects data by continuously monitoring links (latency, loss, jitter) to drive performance decisions.",
+        "Correct. SD-WAN implementations typically use self-learning and machine intelligence techniques to respond to changing network conditions.",
+        "Incorrect. SD-WAN doesn't require one ISP to manage all connections. It's often used to combine several ISPs for failover and redundancy."
+      ]
+    },
+    {
+      "id": "OPT4-C04-086",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.72,
+      "stem": "Which of the following shows the layers of the OSI model in correct order, from layer 1 to layer 7? Place the layers of the OSI model shown here in the appropriate order, from layer 1 to layer 7.",
+      "options": [
+        "Layer 1 = Data Link; Layer 2 = Physical; Layer 3 = Network; Layer 4 = Transport; Layer 5 = Session; Layer 6 = Presentation; Layer 7 = Applications",
+        "Layer 1 = Physical; Layer 2 = Data Link; Layer 3 = Network; Layer 4 = Transport; Layer 5 = Session; Layer 6 = Presentation; Layer 7 = Applications",
+        "Layer 1 = Physical; Layer 2 = Data Link; Layer 3 = Network; Layer 4 = Transport; Layer 5 = Session; Layer 6 = Applications; Layer 7 = Presentation",
+        "Layer 1 = Physical; Layer 2 = Data Link; Layer 3 = Network; Layer 4 = Session; Layer 5 = Transport; Layer 6 = Presentation; Layer 7 = Applications"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The OSI layers in order from layer 1 to layer 7 are as follows:\n1. Physical\n2. Data Link\n3. Network\n4. Transport\n5. Session\n6. Presentation\n7. Application",
+      "optionNotes": [
+        "Incorrect. This swaps layers 1 and 2. Physical is layer 1 because it handles bits on the wire, and Data Link is layer 2 because it handles frames and MAC addressing.",
+        "Correct. The order from layer 1 up is Physical, Data Link, Network, Transport, Session, Presentation, Application, which matches the book's list exactly.",
+        "Incorrect. This swaps layers 6 and 7. Presentation is layer 6 because it handles formatting and encryption. Application is the top layer, layer 7.",
+        "Incorrect. This swaps layers 4 and 5. Transport (TCP/UDP) is layer 4, and Session, which manages dialogs between hosts, is layer 5."
+      ]
+    },
+    {
+      "id": "OPT4-C04-087",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.65,
+      "stem": "Valerie enables port security on the switches on her network. What type of attack is she most likely trying to prevent?",
+      "options": [
+        "IP spoofing",
+        "MAC aggregation",
+        "CAM table flooding",
+        "VLAN hopping"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Valerie is most likely trying to prevent content addressable memory (CAM) table or MAC address table flooding by preventing large numbers of MAC addresses from being used on a single port. If CAM table flooding is successful, switches will not know where to send traffic and resort to sending all traffic to every port, potentially exposing traffic to attackers. IP spoofing and VLAN hopping are not prevented by port security, which focuses on hardware (MAC) addresses. MAC aggregation was made up for this question.",
+      "optionNotes": [
+        "Incorrect. IP spoofing forges Layer 3 source addresses. Port security works on hardware (MAC) addresses at Layer 2, so it doesn't stop IP spoofing.",
+        "Incorrect. 'MAC aggregation' is not a real attack. The term was made up as a distractor that sounds close to the MAC-based features of port security.",
+        "Correct. Port security limits how many MAC addresses can be used on one port, which stops CAM table flooding. A flooded switch falls back to sending traffic to every port, which exposes it to attackers.",
+        "Incorrect. VLAN hopping uses switch spoofing or double tagging to reach other VLANs. You stop it with trunk and VLAN configuration, not with MAC-based port security."
+      ]
+    },
+    {
+      "id": "OPT4-C04-088",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Alaina wants to ensure that systems are compliant with her network security settings before they are allowed on the network and wants to ensure that she can test and validate system settings as soon as possible. What type of NAC system should she deploy?",
+      "options": [
+        "A pre-admit, clientless NAC system",
+        "A postadmission, client-based NAC system",
+        "A pre-admit, client-based NAC system",
+        "A postadmission, clientless NAC system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A pre-admit, client-based NAC system will test systems before they are allowed on the network using a client that can determine more about a system than a clientless model can. Postadmission tests after clients are already on the network and clientless versions are useful when installing clients isn't possible for systems.",
+      "optionNotes": [
+        "Incorrect. Pre-admit timing is right, but a clientless NAC can see less about the system than an installed agent. Clientless is mainly for devices that can't run a client, so it validates settings less thoroughly.",
+        "Incorrect. A postadmission system only tests systems after they are already on the network. Alaina needs compliance verified before admission.",
+        "Correct. Pre-admit testing checks systems before they join the network. An installed client can inspect more of the system's settings than a clientless check, so it can validate compliance thoroughly at the earliest point.",
+        "Incorrect. This option is wrong on both counts. Postadmission checks happen after network access is granted, and a clientless model sees less of the system's settings than an agent does."
+      ]
+    },
+    {
+      "id": "OPT4-C04-089",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "Derek wants to deploy redundant core routers, as shown in the diagram. What model of high availability clustering will provide him with the greatest throughput?\n[Figure, described in text: two routers, each with its own ISP connection (ISP connection 1 and ISP connection 2), linked to each other by a heartbeat connection, with each router connected to all four core switches.]",
+      "options": [
+        "Active/active",
+        "Line interactive",
+        "Active/passive",
+        "Nearline"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "An active/active pair can use the full throughput capability of both devices, but normal deployment models will design to the maximum throughput of a single device to avoid disruption in the event that one of the pair fails. Active/passive designs can only handle the throughput of a single device and allow the secondary device to remain ready to operate but not passing traffic until it is needed. Line interactive is a term often used to describe UPS systems that filter power instead of passing it through, and near-line is a term used to describe backups that are not online but can be retrieved relatively quickly.",
+      "optionNotes": [
+        "Correct. Active/active clustering passes traffic through both routers at once, so the pair can use the combined throughput of both devices. That gives the greatest throughput, although designs usually plan for what one device can carry in case its partner fails.",
+        "Incorrect. Line interactive describes a type of UPS that filters and conditions power. It is not a model for clustering routers, so it does not fit this question.",
+        "Incorrect. In active/passive clustering, the secondary router waits on standby and passes no traffic until the primary fails. Throughput is therefore limited to what a single device can handle.",
+        "Incorrect. Nearline describes backups that are not online but can be retrieved fairly quickly. It is a storage and backup term, not a high-availability model for routers."
+      ]
+    },
+    {
+      "id": "OPT4-C04-090",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Angela needs access to manage IoT devices at multiple sites that her organization manages. What solution should she suggest to ensure access and security for the devices?",
+      "options": [
+        "VPNs to protected VLANs",
+        "An IDS located at the network edge protecting a network using only private IP addresses",
+        "A DLP system configured to prevent attacks against IoT devices",
+        "An iSCSI-based security solution accessed using a VPN and jump boxes"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A VPN that allows access to secured VLANs is the most common security design for this type of infrastructure. This allows secured remote access while protecting IoT devices that are often unable to be properly secured and thus cannot be trusted on a more exposed network. IPS does not provide remote access, and private IP addresses alone do not provide a protected network. DLP is used to prevent data exfiltration and won't stop other attacks or provide remote management access. iSCSI is a storage protocol, not a security solution. A VPN and jump boxes are useful, but the devices would not be provided with additional security by iSCSi.",
+      "optionNotes": [
+        "Correct. A VPN gives Angela secure remote access to every site, and protected VLANs keep IoT devices apart from more exposed networks. That matters because these devices often can't be properly secured themselves. This is the most common design for this kind of setup.",
+        "Incorrect. An IDS/IPS at the edge only detects or blocks traffic. It doesn't give remote management access. Using only private IP addresses doesn't create a protected network on its own either.",
+        "Incorrect. DLP is meant to stop data exfiltration. It won't stop other attacks on IoT devices, and it doesn't provide remote management access.",
+        "Incorrect. ISCSI is a storage protocol, not a security solution. A VPN and jump boxes are useful, but iSCSI adds no protection for the IoT devices."
+      ]
+    },
+    {
+      "id": "OPT4-C04-091",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "What is a frequent concern for systems that require high-performing Internet connectivity when satellite Internet is the only available option?",
+      "options": [
+        "Security",
+        "Compatibility with protocols like LiFi",
+        "Compatibility with protocols like Zigbee",
+        "Latency"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Most existing satellite internet systems have relatively high latency. Newer low Earth orbit satellites like Starlink appear to provide better latency than higher orbits, but latency and susceptibility to interference from weather are both common concerns for satellite-based systems.",
+      "optionNotes": [
+        "Incorrect. Every connection type has its own security issues, and satellite is no exception. But security isn't the performance worry the question asks about. For high-performance needs, the typical satellite concern is latency.",
+        "Incorrect. LiFi is short-range wireless networking that uses visible light. It runs on the local network side, so it has nothing to do with how well a satellite WAN link performs.",
+        "Incorrect. Zigbee is a low-power, short-range mesh protocol for IoT devices. Compatibility with it has no bearing on satellite Internet performance.",
+        "Correct. Most satellite Internet systems have relatively high latency because the signal travels a long way to and from orbit. Low Earth orbit services like Starlink improve this, but latency and weather interference are still common concerns."
+      ]
+    },
+    {
+      "id": "OPT4-C04-092",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.53,
+      "stem": "What layer of an SDN implementation uses programs to communicate needs for resources via APIs?",
+      "options": [
+        "The data plane",
+        "The control plane",
+        "The application plane",
+        "The monitoring plane"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The application plane of a software-defined network (SDN) is where applications run that use application programming interfaces (APIs) to communicate with the SDN about needed resources. The control plane receives instructions and sends them to the network. The last common plane is the data plane, which forwards devices handling data and takes inputs from the control plane. The monitoring plane is not a common layer in an SDN environment.",
+      "optionNotes": [
+        "Incorrect. The data plane is made up of the forwarding devices that handle traffic using inputs from the control plane. Programs don't request resources through APIs at this layer.",
+        "Incorrect. The control plane takes the instructions coming from applications and pushes them out to the network. It is not where the requesting programs run.",
+        "Correct. Applications run on the application plane and use APIs (northbound) to tell the SDN which network resources they need.",
+        "Incorrect. A monitoring plane is not one of the standard SDN layers. The usual layers are application, control and data."
+      ]
+    },
+    {
+      "id": "OPT4-C04-093",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.06,
+      "stem": "Which of the following is not a drawback of multilayer protocols?",
+      "options": [
+        "They can allow filters and rules to be bypassed.",
+        "They can operate at higher OSI levels.",
+        "They can allow covert channels.",
+        "They can allow network segment boundaries to be bypassed."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Common drawbacks of multilayer protocols are that they can bypass filters, allow or create covert channels, and allow network segment boundaries to be bypassed. The ability to operate at higher OSI layer levels is normally considered a benefit.",
+      "optionNotes": [
+        "Incorrect. This is a real drawback. Encapsulating one protocol inside another can hide traffic from filters and firewall rules, so it gets past them.",
+        "Correct. Being able to work at higher OSI layers is usually seen as a benefit of multilayer protocols, not a drawback, so this is the option that is not a weakness.",
+        "Incorrect. This is a real drawback. Multilayer encapsulation can create or allow covert channels, letting data move in ways that are hidden or not authorized.",
+        "Incorrect. This is a real drawback. Encapsulated traffic can cross network segment boundaries that were meant to keep traffic separate, which weakens segmentation."
+      ]
+    },
+    {
+      "id": "OPT4-C04-094",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -0.65,
+      "stem": "Place the following layers of the TCP/IP model in order, starting with the Application layer and moving down the stack.\n1. Application layer\n2. Network Access layer\n3. Internet layer\n4. Transport layer",
+      "options": [
+        "1, 2, 3, 4",
+        "1, 4, 2, 3",
+        "1, 4, 3, 2",
+        "4, 1, 3, 2"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In order, the layers are Application layer, Transport layer, Internet layer, and Network Access layer.",
+      "optionNotes": [
+        "Incorrect. This order puts Network Access (2) directly under Application. Network Access is actually the bottom layer, and Transport (4) belongs right below Application.",
+        "Incorrect. Transport (4) is correctly second, but this order puts Network Access (2) above Internet (3). Internet comes before Network Access, which is the lowest layer.",
+        "Correct. Moving down the TCP/IP stack, the order is Application (1), Transport (4), Internet (3), and then Network Access (2).",
+        "Incorrect. This order starts with Transport (4), but the question says to start with Application, which is the top layer. Transport belongs below Application."
+      ]
+    },
+    {
+      "id": "OPT4-C04-095",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.89,
+      "stem": "Aadita's company wants to ensure that their website is highly available and resistant to potential denial-of-service attacks. What type of solution would be best suited to this if the company operates an e-commerce site that serves multiple countries and regions with a very large number of customers?",
+      "options": [
+        "A load-balanced web server cluster",
+        "A CDN",
+        "Micro-segmentation of virtual servers",
+        "A VPC"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Content distribution networks are used to both improve performance and reduce the impacts of denial-of-service attacks. Load-balanced server clusters may be part of the underlying design, but a CDN will more completely address Aadita's needs at the scale described. Micro-segmentation is used to isolate systems and services, not to address multiregion content accessibility and denial-of-service issues. A VPC may be part of a solution, but nothing about a VPC makes it a sufficient solution on its own.",
+      "optionNotes": [
+        "Incorrect. A load-balanced cluster can sit underneath the design. At multi-country scale, though, it doesn't spread content around the world or soak up DoS traffic the way a CDN does.",
+        "Correct. A CDN places content on edge servers in many regions, which speeds things up for distant customers and spreads out and absorbs denial-of-service traffic.",
+        "Incorrect. Micro-segmentation isolates systems and services from each other for security. It does nothing for access across regions or for resisting DoS attacks.",
+        "Incorrect. A virtual private cloud (VPC) is an isolated network inside a cloud provider. It might be one part of the design, but on its own it doesn't provide availability across regions or DoS resistance."
+      ]
+    },
+    {
+      "id": "OPT4-C04-096",
+      "domain": 4,
+      "type": "multi",
+      "difficulty": 2.19,
+      "stem": "What are two primary advantages that 5G networks have over 4G networks? (Select all that apply.)",
+      "options": [
+        "Anti-jamming features",
+        "Enhanced subscriber identity protection",
+        "Mutual authentication capabilities",
+        "Multifactor authentication"
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "5G technology includes both a new mutual authentication capability and additional protections for subscriber identities. It does not have specific anti-jamming security features and does not specifically use multifactor authentication.",
+      "optionNotes": [
+        "Incorrect. 5G doesn't include specific anti-jamming security features, so this isn't one of its main security advantages over 4G.",
+        "Correct. 5G adds protection for subscriber identities. For example, it conceals the permanent subscriber identifier that 4G could expose to IMSI catchers.",
+        "Correct. 5G adds a new mutual authentication capability, so the device and the network authenticate each other.",
+        "Incorrect. 5G doesn't specifically use multifactor authentication. Its improvement is mutual (two-way) authentication, not authentication with several factors."
+      ]
+    },
+    {
+      "id": "OPT4-C04-097",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.29,
+      "stem": "What function does VXLAN perform in a data center environment? (Select all that apply.)",
+      "options": [
+        "It removes limitations due to maximum distance for Ethernet cables.",
+        "It allows multiple subnets to exist in the same IP space with hosts using the same IP addresses.",
+        "It tunnels layer 2 connections over a layer 3 network, stretching them across the underlying layer 3 network.",
+        "All of the above."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Virtual eXtensible LAN (VXLAN) tunnels layer 2 connections over a layer 3 network, in essence extending a LAN over distances or networks that it might not otherwise function over. It does not remove the distance limitations of Ethernet cables, nor does it allow multiple subnets to use the same IP space—that requires NAT or other technologies that remap addresses to avoid conflicts.",
+      "optionNotes": [
+        "Incorrect. VXLAN doesn't change how far an Ethernet cable can physically run. Copper and fiber distance limits stay the same; VXLAN only encapsulates frames logically.",
+        "Incorrect. Letting overlapping subnets share the same IP space with duplicate addresses requires NAT or another address-remapping technology. VXLAN doesn't do that.",
+        "Correct. VXLAN encapsulates layer 2 frames inside layer 3 (UDP/IP) packets. This stretches LAN segments across routed networks and distances where they couldn't normally work.",
+        "Incorrect. This is wrong because options A and B are false. VXLAN tunnels layer 2 over layer 3 but doesn't remove cable distance limits or handle overlapping address spaces."
+      ]
+    },
+    {
+      "id": "OPT4-C04-098",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Chris is setting up a hotel network and needs to ensure that systems in each room or suite can connect to each other, but systems in other suites or rooms cannot. At the same time, he needs to ensure that all systems in the hotel can reach the Internet. What solution should he recommend as the most effective business solution?",
+      "options": [
+        "Per-room VPNs",
+        "VLANs",
+        "Port security",
+        "Firewalls"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "VLANs can be used to logically separate groups of network ports while still providing access to an uplink. Per-room VPNs would create significant overhead for support as well as create additional expenses. Port security is used to limit what systems can connect to ports, but it doesn't provide network security between systems. Finally, while firewalls might work, they would add expense and complexity without adding any benefits over a VLAN solution.",
+      "optionNotes": [
+        "Incorrect. Building a VPN for every room would mean heavy support overhead and extra cost. It isn't a sensible business choice when simple logical segmentation does the job.",
+        "Correct. VLANs logically group the ports in each room so the systems there can reach each other but not other rooms. All VLANs still share an uplink to the Internet, and this is cheap and simple to run.",
+        "Incorrect. Port security controls which devices are allowed to connect to a switch port. It doesn't separate traffic between rooms.",
+        "Incorrect. Firewalls could do the separation, but they add cost and complexity and give no benefit over VLANs. That makes them the less effective business solution."
+      ]
+    },
+    {
+      "id": "OPT4-C04-099",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.48,
+      "stem": "During a forensic investigation, Charles is able to determine the Media Access Control (MAC) address of a system that was connected to a compromised network. Charles knows that MAC addresses are tied back to a manufacturer or vendor and are part of the fingerprint of the system. To which OSI layer does a MAC address belong?",
+      "options": [
+        "The Application layer",
+        "The Session layer",
+        "The Physical layer",
+        "The Data Link layer"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "MAC addresses and their organizationally unique identifiers are used at the Data Link layer to identify systems on a network. The Application and Session layers don't care about physical addresses, while the Physical layer involves electrical connectivity and handling physical interfaces rather than addressing.",
+      "optionNotes": [
+        "Incorrect. The Application layer (Layer 7) handles application protocols like HTTP and SMTP. It doesn't use physical hardware addresses such as MAC addresses.",
+        "Incorrect. The Session layer (Layer 5) sets up, manages and ends sessions between applications. Physical addresses like the MAC play no part in it.",
+        "Incorrect. The Physical layer (Layer 1) covers electrical signaling, cabling and physical interfaces. It moves raw bits and does no addressing, so the MAC address doesn't belong here.",
+        "Correct. MAC addresses, including the vendor's organizationally unique identifier (OUI), are Layer 2 Data Link addresses used to identify systems on the local network segment."
+      ]
+    },
+    {
+      "id": "OPT4-C04-100",
+      "domain": 4,
+      "type": "single",
+      "difficulty": 0.53,
+      "stem": "Mikayla is reviewing her organization's VoIP environment configuration and finds a diagram that shows the following design. What concern should she express?\n[Figure, described in text: a VoIP phone connected to a VoIP PBX by two connections: a SIP connection and an SRTP connection.]",
+      "options": [
+        "The voice connection is unencrypted and could be listened to.",
+        "There are no security issues in this diagram.",
+        "The session initialization connection is unencrypted and could be viewed.",
+        "Both the session initialization and voice data connection are unencrypted and could be captured and analyzed."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "This diagram shows the use of the Session Initialization Protocol (SIP) instead of SIP Secure (SIPS), meaning that SIP is not encrypted. Fortunately, the voice data via the Secure Real-time Transport Protocol (SRTP) is encrypted. Mikayla should look into using SIPS in addition to SRTP.",
+      "optionNotes": [
+        "Incorrect. The voice stream runs over SRTP, the secure version of RTP, so it's encrypted. Listening in on the voice data isn't the concern here.",
+        "Incorrect. Signaling runs over plain SIP instead of SIPS, so the session setup traffic is unencrypted. That's a real issue Mikayla should flag.",
+        "Correct. Plain SIP, not SIPS, is used for session setup, so the signaling isn't encrypted and can be viewed. She should recommend SIPS alongside the existing SRTP.",
+        "Incorrect. Only the SIP signaling is unencrypted. The voice data uses SRTP, which provides encryption, authentication and integrity."
+      ]
+    },
+    {
+      "id": "OPT4-C04-101",
+      "domain": 4,
+      "type": "single",
+      "difficulty": -1.24,
+      "stem": "Jake's company keeps their certificate signing server disconnected from the network to prevent it from being compromised by network attacks. What is this type of solution called?",
+      "options": [
+        "Store-and-forward",
+        "Out-of-band",
+        "In-band",
+        "Air-gapping"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Air-gaps are physical separations between systems or devices that prevent communications or connections between them. This prevents network-based attacks and limits the ways that attackers could access the devices. Store-and-forward stores communications and send them after checking for errors. In-band administration occurs over existing interfaces or connections; out-of-band administration uses a separate network or management interface.",
+      "optionNotes": [
+        "Incorrect. Store-and-forward is a switching/communication method that holds traffic, checks it for errors, then sends it. It doesn't isolate a system from the network.",
+        "Incorrect. Out-of-band administration manages a device through a separate network or management interface. The device is still connected, just not through the production path, so this isn't physical isolation.",
+        "Incorrect. In-band administration happens over the device's existing network interfaces and connections. That is the opposite of keeping the server disconnected.",
+        "Correct. An air gap physically separates a system from networks, which blocks network-based attacks and limits how an attacker can reach the signing server."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2312 @@
+{
+  "name": "OPT4 Chapter 1: Security and Risk Management (Domain 1)",
+  "questions": [
+    {
+      "id": "OPT4-C01-001",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Alyssa is responsible for her organization's security awareness program. She is concerned that changes in technology may make the content outdated. What control can she put in place to protect against this risk?",
+      "options": [
+        "Gamification",
+        "Computer-based training",
+        "Content reviews",
+        "Live training"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Alyssa should use periodic content reviews to continually verify that the content in her program meets the organization's needs and is up-to-date based upon the evolving risk landscape. She may do this using a combination of computer-based training, live training, and gamification, but those techniques do not necessarily verify that the content is updated.",
+      "optionNotes": [
+        "Incorrect. Gamification is a way to deliver training and keep learners engaged. It does nothing to check whether the content is still current as technology changes.",
+        "Incorrect. Computer-based training is just a delivery method. Content can go stale in CBT as easily as in any other format, so it doesn't address the risk.",
+        "Correct. Periodic content reviews check, again and again, that the program's material still meets the organization's needs and keeps up with changing technology and risks. This directly addresses outdated content.",
+        "Incorrect. Live training is a delivery format, not a control for keeping material current. An instructor can still teach outdated content if nobody reviews it."
+      ]
+    },
+    {
+      "id": "OPT4-C01-002",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Gavin is creating a report for management on the results of his most recent risk assessment. In his report, he would like to identify the remaining level of risk to the organization after adopting security controls. What term best describes this current level of risk?",
+      "options": [
+        "Inherent risk",
+        "Residual risk",
+        "Control risk",
+        "Mitigated risk"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The residual risk is the level of risk that remains after controls have been applied to mitigate risks. Inherent risk is the original risk that existed prior to the controls. Control risk is new risk introduced by the addition of controls to the environment. Mitigated risk is the risk that has been addressed by existing controls.",
+      "optionNotes": [
+        "Incorrect. Inherent risk is the original risk that exists before any controls are applied, not what remains after Gavin's controls are in place.",
+        "Correct. Residual risk is the risk that is left after controls have been applied to mitigate risks. That matches what Gavin wants to report.",
+        "Incorrect. Control risk is new risk that comes from adding the controls themselves to the environment. It is not the total risk remaining after mitigation.",
+        "Incorrect. Mitigated risk is the portion of risk that existing controls have already addressed, which is the opposite of the risk that still remains."
+      ]
+    },
+    {
+      "id": "OPT4-C01-003",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Francine is a security specialist for an online service provider in the United States. She recently received a claim from a copyright holder that a user is storing information on her service that violates the third party's copyright. What law governs the actions that Francine must take?",
+      "options": [
+        "Copyright Act",
+        "Lanham Act",
+        "Digital Millennium Copyright Act",
+        "Gramm-Leach-Bliley Act"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Digital Millennium Copyright Act (DMCA) sets forth the requirements for online service providers when handling copyright complaints received from third parties. The Copyright Act creates the mechanics for issuing and enforcing copyrights but does not cover the actions of online service providers. The Lanham Act regulates the issuance of trademarks to protect intellectual property. The Gramm-Leach-Bliley Act regulates the handling of personal financial information.",
+      "optionNotes": [
+        "Incorrect. The Copyright Act sets up how copyrights are issued and enforced. It doesn't say what online service providers must do when they get an infringement complaint.",
+        "Incorrect. The Lanham Act covers trademarks, not copyright complaints, so it doesn't decide how a service provider must respond here.",
+        "Correct. The DMCA sets out what online service providers must do when a third party reports copyright infringement by a user, including notice-and-takedown and safe harbor provisions.",
+        "Incorrect. GLBA governs how financial institutions handle personal financial information. It has nothing to do with copyright complaints."
+      ]
+    },
+    {
+      "id": "OPT4-C01-004",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "FlyAway Travel has offices in both the European Union (EU) and the United States and transfers personal information between those offices regularly. They have recently received a request from an EU customer requesting that their account be terminated. Under the General Data Protection Regulation (GDPR), which requirement for processing personal information states that individuals may request that their data no longer be disseminated or processed?",
+      "options": [
+        "The right to access",
+        "Privacy by Design",
+        "The right to erasure",
+        "The right of data portability"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The right to erasure, also known as the right to be forgotten, guarantees the data subject the ability to have their information removed from processing or use. It may be tied to consent given for data processing; if a subject revokes consent for processing, the data controller may need to take additional steps, including erasure.",
+      "optionNotes": [
+        "Incorrect. The right to access lets data subjects find out what personal data a controller holds about them and how it is used. It doesn't stop processing or remove the data.",
+        "Incorrect. Privacy by Design is a principle that requires privacy protections to be built into systems from the start. It is not a right that lets an individual ask for their data to be removed.",
+        "Correct. The right to erasure, also called the right to be forgotten, lets a data subject have their information removed from processing or use. This often follows when they withdraw consent, as with this account termination request.",
+        "Incorrect. Data portability lets subjects get their data in a common machine-readable format and move it to another controller. It covers transferring data, not stopping its processing."
+      ]
+    },
+    {
+      "id": "OPT4-C01-005",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "After conducting a qualitative risk assessment of her organization, Sally recommends purchasing cybersecurity breach insurance. What type of risk response behavior is she recommending?",
+      "options": [
+        "Accept",
+        "Transfer",
+        "Reduce",
+        "Reject"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Purchasing insurance is a means of transferring risk. If Sally had worked to decrease the likelihood of the events occurring, she would have been using a reduce or risk mitigation strategy, while simply continuing to function as the organization has would be an example of an acceptance strategy. Rejection, or denial of the risk, is not a valid strategy, even though it occurs!",
+      "optionNotes": [
+        "Incorrect. Acceptance means the organization keeps operating as it is and absorbs any losses. Buying insurance is an active step to shift the financial impact, so it isn't acceptance.",
+        "Correct. Insurance hands the financial consequences of a breach to the insurer, which makes it a classic risk transference (assignment) response.",
+        "Incorrect. Reduction (mitigation) means adding safeguards that lower the likelihood or impact of an event. Insurance doesn't make a breach any less likely; it only moves the cost to someone else.",
+        "Incorrect. Rejecting risk means denying or ignoring it. That isn't a valid response, and buying insurance does the opposite by openly acknowledging the risk."
+      ]
+    },
+    {
+      "id": "OPT4-C01-006",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.73,
+      "stem": "Which one of the following elements of information is not considered personally identifiable information that would trigger most United States state data breach laws?",
+      "options": [
+        "Student identification number",
+        "Social Security number",
+        "Driver's license number",
+        "Credit card number"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Most state data breach notification laws are modeled after California's data breach notification law, which covers Social Security number, driver's license number, state identification card number, credit/debit card numbers, and bank account numbers (in conjunction with a PIN or password). These laws are separate and distinct from privacy laws, such as the California Consumer Privacy Act (CCPA), which regulates the handling of personal information more broadly.",
+      "optionNotes": [
+        "Correct. Student ID numbers aren't among the data elements in California's model breach law, which most other state laws copy, so exposing one alone usually doesn't require breach notification.",
+        "Incorrect. Social Security numbers are a core data element in California's model law and in nearly every state breach law, so their exposure triggers notification.",
+        "Incorrect. Driver's license numbers (and state ID card numbers) are listed in California's model breach law, so they count as covered PII under most state laws.",
+        "Incorrect. Credit and debit card numbers are covered elements under California-style breach laws, so a breach involving them requires notification."
+      ]
+    },
+    {
+      "id": "OPT4-C01-007",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "Renee is purchasing a new software product and is working with the vendor on the negotiation of a license agreement that will specify customized terms of use and a discounted price. What type of agreement would normally be used to document the results of this negotiation?",
+      "options": [
+        "Perpetual license",
+        "Subscription license",
+        "Enterprise license agreement",
+        "End-user license agreement"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Renee's situation calls for an enterprise license agreement as it typically allows customization of terms and pricing, reflecting the negotiated details between the vendor and a corporate client. The license agreement may be written as a perpetual or subscription license, but there is no information provided in the scenario about which one is being used. An end-user license agreement usually accompanies software to dictate the terms of use but is not designed for custom negotiations and pricing agreements.",
+      "optionNotes": [
+        "Incorrect. A perpetual license describes how long the license lasts (no expiration), not how custom terms get negotiated. The scenario gives no detail about the license term, so this isn't the document type being asked about.",
+        "Incorrect. A subscription license is time-limited and renews periodically, so it describes how long the license lasts. An enterprise agreement could use either term model, and the scenario says nothing about duration.",
+        "Correct. An enterprise license agreement is negotiated between a vendor and a corporate client, and it typically records customized terms of use and discounted pricing.",
+        "Incorrect. An EULA comes with the software as standard terms of use that the user accepts as written. It isn't built for negotiated custom terms or special pricing."
+      ]
+    },
+    {
+      "id": "OPT4-C01-008",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "Henry recently assisted one of his co-workers in preparing for the CISSP® exam. During this process, Henry disclosed confidential information about the content of the exam, in violation of Canon IV of the Code of Ethics: “Advance and protect the profession.” Who may bring ethics charges against Henry for this violation?",
+      "options": [
+        "Anyone may bring charges.",
+        "Any certified or licensed professional may bring charges.",
+        "Only Henry's employer may bring charges.",
+        "Only the affected employee may bring charges."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "This is a question about who has the standing to bring an ethics complaint. The group of individuals that has standing differs based upon the violated canon. In this case, we are examining Canon IV, which permits any certified or licensed professional who subscribes to a code of ethics to bring charges. Charges of violations of Canons I or II may be brought by anyone. Charges of violations of Canon III may be brought only by a principal with an employer/contractor relationship with the accused.",
+      "optionNotes": [
+        "Incorrect. Anyone has standing only for complaints under Canons I and II (protect society; act honorably). A Canon IV complaint needs a certified or licensed professional.",
+        "Correct. For Canon IV, any certified or licensed professional who subscribes to a code of ethics has standing to bring charges.",
+        "Incorrect. Limiting standing to principals with an employer or contractor relationship applies to Canon III (service to principals), not Canon IV.",
+        "Incorrect. The co-worker isn't the only one with standing. Canon IV standing covers any certified or licensed professional who subscribes to a code of ethics, not just the person involved."
+      ]
+    },
+    {
+      "id": "OPT4-C01-009",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 2.21,
+      "stem": "Wanda is working with one of her organization's European Union business partners to facilitate the exchange of customer information. Wanda's organization is located in the United States. What would be the best method for Wanda to use to ensure GDPR compliance?",
+      "options": [
+        "Binding corporate rules",
+        "Privacy Shield",
+        "Standard contractual clauses",
+        "Safe harbor"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The European Union provides standard contractual clauses that may be used to facilitate data transfer. That would be the best choice in a case where two different companies are sharing data. If the data was being shared internally within a company, binding corporate rules would also be an option. The EU/U.S. Privacy Shield was a safe harbor agreement that would previously have allowed the transfer but is no longer valid.",
+      "optionNotes": [
+        "Incorrect. Binding corporate rules cover data transfers within a single multinational organization. Wanda is sharing data with a separate business partner, so BCRs don't apply.",
+        "Incorrect. The EU/U.S. Privacy Shield used to allow these transfers, but it was invalidated and can no longer be used for GDPR compliance.",
+        "Correct. Standard contractual clauses are EU-approved contract terms for transferring personal data between two different companies. That makes them the best choice for a U.S. firm exchanging data with an EU partner.",
+        "Incorrect. Safe harbor arrangements, including the original Safe Harbor and the Privacy Shield that replaced it, were struck down. They are no longer valid ways to transfer data from the EU to the U.S."
+      ]
+    },
+    {
+      "id": "OPT4-C01-010",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Yolanda is the chief privacy officer for a financial institution and is researching privacy requirements related to customer checking accounts. Which one of the following laws is most likely to apply to this situation?",
+      "options": [
+        "GLBA",
+        "SOX",
+        "HIPAA",
+        "FERPA"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The Gramm-Leach-Bliley Act (GLBA) contains provisions regulating the privacy of customer financial information. It applies specifically to financial institutions. Among other things, the Sarbanes Oxley (SOX) Act regulates the financial reporting activities of publicly traded companies. The Health Insurance Portability and Accountability Act (HIPAA) regulates the handling of protected health information (PHI). The Family Educational Rights and Privacy Act (FERPA) regulates the handling of student educational records.",
+      "optionNotes": [
+        "Correct. GLBA is the law that governs the privacy of customer financial information, and it applies specifically to financial institutions. That makes it the law for privacy on customer checking accounts.",
+        "Incorrect. SOX regulates the financial reporting of publicly traded companies. It does not cover the privacy of customer account information.",
+        "Incorrect. HIPAA governs protected health information (PHI). A checking account is financial data, not health data.",
+        "Incorrect. FERPA protects student educational records. It does not apply to a bank's customer checking account data."
+      ]
+    },
+    {
+      "id": "OPT4-C01-011",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Tim's organization recently received a contract to conduct sponsored research as a government contractor. What law now likely applies to the information systems involved in this contract?",
+      "options": [
+        "FISMA",
+        "PCI DSS",
+        "HIPAA",
+        "GISRA"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The Federal Information Security Modernization Act (FISMA) specifically applies to government contractors. The Government Information Security Reform Act (GISRA) was the precursor to FISMA and expired in November 2002. HIPAA and PCI DSS apply to healthcare and payment card information, respectively. Additionally, PCI DSS is not a law, while FISMA, HIPAA, and GISRA are all laws.",
+      "optionNotes": [
+        "Correct. FISMA requires federal agencies to secure their information systems, and the requirement extends to government contractors that run systems for them, so it covers Tim's sponsored research systems.",
+        "Incorrect. PCI DSS is an industry standard for protecting payment card data, not a law. Nothing in a government research contract involves cardholder data.",
+        "Incorrect. HIPAA covers protected health information held by healthcare entities and their business associates. Being a government contractor doesn't make it apply.",
+        "Incorrect. GISRA was the law that came before FISMA and expired in November 2002, so it no longer applies to anyone."
+      ]
+    },
+    {
+      "id": "OPT4-C01-012",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Chris is advising travelers from his organization who will be visiting many different countries overseas. He is concerned about compliance with export control laws. Which of the following technologies is most likely to trigger these regulations?",
+      "options": [
+        "Memory chips",
+        "Office productivity applications",
+        "Hard drives",
+        "Encryption software"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The export of encryption software to certain countries is regulated under U.S. export control laws. Memory chips, office productivity applications, and hard drives are less likely to be covered by these regulations, unless they contain hardware dedicated to encryption.",
+      "optionNotes": [
+        "Incorrect. Memory chips are commodity hardware. Export controls usually don't cover them unless they contain dedicated encryption hardware, so they are less likely to trigger the rules.",
+        "Incorrect. Office productivity applications are general-purpose software and aren't a typical target of export control laws, so they aren't the most likely trigger.",
+        "Incorrect. Ordinary hard drives are less likely to be regulated. They would only become a concern if they included dedicated encryption hardware, as self-encrypting drives do.",
+        "Correct. U.S. export control laws regulate exporting encryption software to certain countries, so travelers carrying it overseas need to check compliance."
+      ]
+    },
+    {
+      "id": "OPT4-C01-013",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.03,
+      "stem": "Bobbi is investigating a security incident and discovers that an attacker began with a normal user account but managed to exploit a system vulnerability to provide that account with administrative rights. What type of attack took place under the STRIDE threat model?",
+      "options": [
+        "Spoofing",
+        "Repudiation",
+        "Tampering",
+        "Elevation of privilege"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In an elevation of privilege attack, the attacker transforms a limited user account into an account with greater privileges, powers, and/or access to the system. Spoofing attacks falsify an identity, while repudiation attacks attempt to deny accountability for an action. Tampering attacks attempt to violate the integrity of information or resources.",
+      "optionNotes": [
+        "Incorrect. Spoofing means faking an identity, such as using stolen credentials. Here the attacker kept their own normal account and only raised its rights.",
+        "Incorrect. Repudiation means denying responsibility for an action. Nothing in the scenario involves escaping accountability.",
+        "Incorrect. Tampering is an attack on the integrity of data or resources. The defining act in this scenario is gaining admin rights, not changing information.",
+        "Correct. Exploiting a vulnerability to turn a limited user account into an administrative account is exactly what STRIDE calls elevation of privilege."
+      ]
+    },
+    {
+      "id": "OPT4-C01-014",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.73,
+      "stem": "You are completing your business continuity planning effort and have decided that you want to accept one of the risks. What should you do next?",
+      "options": [
+        "Implement new security controls to reduce the risk level.",
+        "Design a disaster recovery plan.",
+        "Repeat the business impact assessment.",
+        "Document your decision-making process."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Whenever you choose to accept a risk, you should maintain detailed documentation of the risk acceptance process to satisfy auditors in the future. This should happen before implementing security controls, designing a disaster recovery plan, or repeating the business impact analysis (BIA).",
+      "optionNotes": [
+        "Incorrect. Adding controls to lower the risk is mitigation, a different treatment option. Once you've decided to accept the risk, the next step is to document that decision, not to mitigate.",
+        "Incorrect. Designing a disaster recovery plan is a separate later effort. It isn't the immediate follow-up to a risk acceptance decision, which has to be documented first.",
+        "Incorrect. The BIA was already done to identify and prioritize risks. Doing it again isn't needed just because you accepted one risk; the decision should be documented instead.",
+        "Correct. When you accept a risk, you should keep detailed records of how the acceptance decision was made. This creates accountability and satisfies future auditors."
+      ]
+    },
+    {
+      "id": "OPT4-C01-015",
+      "domain": 1,
+      "type": "multi",
+      "difficulty": 1.67,
+      "stem": "You are completing a review of the controls used to protect a media storage facility in your organization and would like to properly categorize each control that is currently in place. Which of the following control categories accurately describe a fence around a facility? (Select all that apply.)",
+      "options": [
+        "Physical",
+        "Detection",
+        "Deterrent",
+        "Preventive"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "A fence does not have the ability to detect intrusions. It does, however, have the ability to prevent and deter an intrusion. A fence is an example of a physical control.",
+      "optionNotes": [
+        "Correct. A fence is a tangible barrier in the real world, so it falls into the physical control category, as opposed to administrative or technical/logical controls.",
+        "Incorrect. A fence has no way to sense or report an intrusion. Detection needs an added control, such as CCTV or sensors, alongside the fence.",
+        "Correct. A visible fence discourages would-be intruders from trying to get in, so it works as a deterrent control.",
+        "Correct. A fence physically blocks unauthorized entry to the facility, so it is a preventive control."
+      ]
+    },
+    {
+      "id": "OPT4-C01-016",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.73,
+      "stem": "Tony is developing a business continuity plan and is having difficulty prioritizing resources because of the difficulty of combining information about tangible and intangible assets. What would be the most effective risk assessment approach for him to use?",
+      "options": [
+        "Quantitative risk assessment",
+        "Qualitative risk assessment",
+        "Neither quantitative nor qualitative risk assessment",
+        "Combination of quantitative and qualitative risk assessment"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Tony would see the best results by combining elements of quantitative and qualitative risk assessment. Quantitative risk assessment excels at analyzing financial risk, while qualitative risk assessment is a good tool for intangible risks. Combining the two techniques provides a well-rounded risk picture.",
+      "optionNotes": [
+        "Incorrect. Quantitative assessment is strong at putting dollar values on tangible, financial risks, but it handles intangible assets like reputation poorly. Used alone, it can't give Tony the combined view he needs.",
+        "Incorrect. Qualitative assessment works well for intangible risks, but on its own it gives up the precise financial analysis that tangible assets need. It leaves only half the picture.",
+        "Incorrect. Dropping both methods leaves Tony with no structured way to rank risks. Each method covers one part of his problem, so the answer is to use both, not neither.",
+        "Correct. Combining the two lets quantitative analysis cover tangible, financial risks while qualitative analysis covers intangible ones. Together they give a well-rounded picture for prioritizing resources."
+      ]
+    },
+    {
+      "id": "OPT4-C01-017",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Vincent believes that a former employee took trade secret information from his firm and brought it with him to a competitor. He wants to pursue legal action. Under what law could he pursue charges?",
+      "options": [
+        "Copyright law",
+        "Lanham Act",
+        "Glass-Steagall Act",
+        "Economic Espionage Act"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Economic Espionage Act imposes fines and jail sentences on anyone found guilty of stealing trade secrets from a U.S. corporation. It gives true teeth to the intellectual property rights of trade secret owners. Copyright law does not apply in this situation because there is no indication that the information was copyrighted. The Lanham Act applies to trademark protection cases. The Glass-Steagall Act was a banking reform act that is not relevant in this situation.",
+      "optionNotes": [
+        "Incorrect. Copyright law covers original works of authorship. Nothing in the scenario says the information was copyrighted, so it doesn't fit a trade secret theft claim.",
+        "Incorrect. The Lanham Act is the U.S. trademark law. It deals with marks that identify goods and services, not stolen trade secrets.",
+        "Incorrect. Glass-Steagall was a banking reform law that separated commercial and investment banking. It has nothing to do with trade secret theft.",
+        "Correct. The Economic Espionage Act (1996) sets fines and prison terms for stealing trade secrets from U.S. companies. It gives trade secret owners real legal protection, so it fits this case."
+      ]
+    },
+    {
+      "id": "OPT4-C01-018",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.76,
+      "stem": "Which one of the following principles imposes a standard of care upon an individual that is broad and equivalent to what one would expect from a reasonable person under the circumstances?",
+      "options": [
+        "Due diligence",
+        "Separation of duties",
+        "Due care",
+        "Least privilege"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The due care principle states that an individual should react in a situation using the same level of care that would be expected from any reasonable person. It is a very broad standard. The due diligence principle is a more specific component of due care that states that an individual assigned a responsibility should exercise due care to complete it accurately and in a timely manner.",
+      "optionNotes": [
+        "Incorrect. Due diligence is narrower: a specific component of due care requiring that an assigned responsibility be completed accurately and on time. It isn't the broad reasonable-person standard.",
+        "Incorrect. Separation of duties splits critical tasks among several people to prevent fraud and collusion. It's an operational control, not a standard of care based on a reasonable person.",
+        "Correct. Due care is the broad standard: a person must act with the level of care any reasonable person would show in the same circumstances.",
+        "Incorrect. Least privilege limits users to only the access their job requires. It's an access control principle, not a legal standard of reasonable-person care."
+      ]
+    },
+    {
+      "id": "OPT4-C01-019",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 2.21,
+      "stem": "Brenda's organization recently completed the acquisition of a competitor firm. Which one of the following tasks would be LEAST likely to be part of the organizational processes addressed during the acquisition?",
+      "options": [
+        "Consolidation of security functions",
+        "Integration of security tools",
+        "Protection of intellectual property",
+        "Documentation of security policies"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The protection of intellectual property is a greater concern during a divestiture, where a subsidiary is being spun off into a separate organization, than an acquisition, where one firm has purchased another. Acquisition concerns include consolidating security functions and policies as well as integrating security tools.",
+      "optionNotes": [
+        "Incorrect. Bringing the two firms' security functions together under one structure is a core acquisition task, so this is likely to happen, not least likely.",
+        "Incorrect. After an acquisition, the two firms' security toolsets have to be integrated or rationalized. That makes this a typical acquisition process.",
+        "Correct. Protecting intellectual property is mainly a divestiture concern, where a spun-off subsidiary might take IP with it. In an acquisition, the buyer takes ownership of the IP, so this is the least likely task.",
+        "Incorrect. The acquiring firm has to consolidate and document security policies across the combined organization. This is an expected acquisition task."
+      ]
+    },
+    {
+      "id": "OPT4-C01-020",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.0,
+      "stem": "Kelly believes that an employee engaged in the unauthorized use of computing resources for a side business. After consulting with management, she decides to launch an administrative investigation. What is the burden of proof that she must meet in this investigation?",
+      "options": [
+        "Preponderance of the evidence.",
+        "Beyond a reasonable doubt.",
+        "Beyond the shadow of a doubt.",
+        "There is no standard."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Unlike criminal or civil cases, administrative investigations are an internal matter, and there is no set standard of proof that Kelly must apply. However, it would still be wise for her organization to include a standard burden of proof in their own internal procedures to ensure the thoroughness and fairness of investigations.",
+      "optionNotes": [
+        "Incorrect. Preponderance of the evidence (more likely than not) is the standard for civil cases. An administrative investigation is an internal matter, so no standard is required.",
+        "Incorrect. Beyond a reasonable doubt is the standard prosecutors must meet in criminal cases. It doesn't apply to an internal administrative investigation.",
+        "Incorrect. Administrative investigations have no set standard of proof, so this very high bar isn't required. It isn't a formal legal standard anyway; even criminal cases only require proof beyond a reasonable doubt.",
+        "Correct. Administrative investigations are internal, so no burden of proof is imposed. The organization should still set its own standard in internal procedures so investigations are thorough and fair."
+      ]
+    },
+    {
+      "id": "OPT4-C01-021",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "Keenan Systems recently developed a new manufacturing process for microprocessors. The company wants to license the technology to other companies for use but wants to prevent unauthorized use of the technology. What type of intellectual property protection is best suited for this situation?",
+      "options": [
+        "Patent",
+        "Trade secret",
+        "Copyright",
+        "Trademark"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Patents and trade secrets can both protect intellectual property related to a manufacturing process. Trade secrets are appropriate only when the details can be tightly controlled within an organization, so a patent is the appropriate solution in this case. Copyrights are used to protect creative works, while trademarks are used to protect names, logos, and symbols.",
+      "optionNotes": [
+        "Correct. A patent can protect a new manufacturing process, and it gives the holder legal exclusivity even after the details are disclosed. That lets Keenan license the process to other companies while still blocking unauthorized use.",
+        "Incorrect. A trade secret can also protect a manufacturing process, but only while the details stay tightly controlled inside the organization. Licensing the process to outside companies breaks that control, so trade secret protection doesn't fit.",
+        "Incorrect. Copyright protects creative works, meaning the expression of an idea. It doesn't protect a functional manufacturing process, so it can't stop others from using the technology.",
+        "Incorrect. Trademarks protect names, logos, and symbols that identify a brand. They give no protection to a technical manufacturing process."
+      ]
+    },
+    {
+      "id": "OPT4-C01-022",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.0,
+      "stem": "Which one of the following actions might be taken as part of a business continuity plan?",
+      "options": [
+        "Restoring from backup tapes",
+        "Implementing RAID",
+        "Relocating to a cold site",
+        "Restarting business operations"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "RAID technology provides fault tolerance for hard drive failures and is an example of a business continuity action. Restoring from backup tapes, relocating to a cold site, and restarting business operations are all disaster recovery actions.",
+      "optionNotes": [
+        "Incorrect. Restoring from backup tapes happens after data has already been lost, so it is a disaster recovery action, not a BCP measure meant to keep operations running.",
+        "Correct. RAID gives fault tolerance against hard drive failure, so operations keep going without interruption. That makes it a business continuity action.",
+        "Incorrect. Moving to a cold site is a response to a disaster that has already shut down the primary facility, so it belongs to disaster recovery, not continuity.",
+        "Incorrect. Restarting business operations means they were already interrupted. Restoring them is a disaster recovery activity, not a BCP preventive or resilience step."
+      ]
+    },
+    {
+      "id": "OPT4-C01-023",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 2.21,
+      "stem": "When developing a business impact analysis, the team should first create a list of assets. What should happen next?",
+      "options": [
+        "Identify vulnerabilities in each asset.",
+        "Determine the risks facing the asset.",
+        "Develop a value for each asset.",
+        "Identify threats facing each asset."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "After developing a list of assets, the business impact analysis team should assign values to each asset. The other activities listed here occur only after the assets are assigned values.",
+      "optionNotes": [
+        "Incorrect. You identify vulnerabilities later in the BIA, only after every asset has a value, since vulnerabilities only matter as exposure of a valued asset.",
+        "Incorrect. Assessing risk means combining threats, vulnerabilities and asset value, so it has to come after valuation. It can't be the step right after the asset list.",
+        "Correct. Once the asset list exists, the BIA team gives each asset a value. Prioritization and the later risk activities all depend on these values.",
+        "Incorrect. Threat identification (for example, threat modeling with STRIDE or PASTA) is a later step. The book says it happens only after assets have values."
+      ]
+    },
+    {
+      "id": "OPT4-C01-024",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.03,
+      "stem": "Mike recently implemented an intrusion prevention system designed to block common network attacks from affecting his organization. What type of risk management strategy is Mike pursuing?",
+      "options": [
+        "Risk acceptance",
+        "Risk avoidance",
+        "Risk mitigation",
+        "Risk transference"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Risk mitigation strategies attempt to lower the probability and/or impact of a risk occurring. Intrusion prevention systems attempt to reduce the probability of a successful attack and are, therefore, examples of risk mitigation. Risk acceptance involves making a conscious decision to accept a risk as is with no further action. Risk avoidance alters business activities to make a risk irrelevant. Risk transference shifts the costs of a risk to another organization, such as an insurance company.",
+      "optionNotes": [
+        "Incorrect. Risk acceptance means consciously choosing to live with the risk and take no further action. Mike acted by deploying an IPS, so this isn't acceptance.",
+        "Incorrect. Risk avoidance changes business activities so the risk no longer applies, for example by dropping the risky service. Mike kept his operations the same and added a control.",
+        "Correct. An IPS lowers the chance that an attack succeeds. Reducing the probability or impact of a risk is risk mitigation.",
+        "Incorrect. Risk transference moves the cost of a risk to another party, such as an insurance company. An in-house IPS doesn't move any risk to someone else."
+      ]
+    },
+    {
+      "id": "OPT4-C01-025",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 2.21,
+      "stem": "Laura has been asked to perform a security controls assessment (SCA). What type of organization is she most likely in?",
+      "options": [
+        "Higher education",
+        "Banking",
+        "Government",
+        "Healthcare"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A security controls assessment (SCA) most often refers to a formal U.S. government process for assessing security controls. This means that Laura is probably part of a government organization or contractor.",
+      "optionNotes": [
+        "Incorrect. Universities do run security reviews, but the formal SCA process comes from U.S. federal practice (NIST SP 800-53A, RMF). Higher education isn't the setting the term usually points to.",
+        "Incorrect. Banks are assessed under frameworks such as FFIEC, GLBA and PCI DSS. 'SCA' as a formal named process most often means U.S. government control assessment, not banking.",
+        "Correct. An SCA most often means the formal U.S. government process for assessing security controls (NIST RMF), so Laura probably works for a government agency or a government contractor.",
+        "Incorrect. Healthcare organizations do HIPAA security risk analyses, not the formal government SCA process. Healthcare is not the most likely setting."
+      ]
+    },
+    {
+      "id": "OPT4-C01-026",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Carl is a federal agent investigating a computer crime case. He identified an attacker who engaged in illegal conduct and wants to pursue a case against that individual that will lead to imprisonment. What standard of proof must Carl meet?",
+      "options": [
+        "Beyond the shadow of a doubt",
+        "Preponderance of the evidence",
+        "Beyond a reasonable doubt",
+        "Majority of the evidence"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "There are two steps to answering this question. First, you must realize that for the case to lead to imprisonment, it must be the result of a criminal investigation. Next, you must know that the standard of proof for a criminal investigation is normally the beyond a reasonable doubt standard.",
+      "optionNotes": [
+        "Incorrect. \"Beyond the shadow of a doubt\" is a common phrase, not a legal standard of proof. Criminal cases don't require certainty, only proof beyond a reasonable doubt.",
+        "Incorrect. Preponderance of the evidence means \"more likely than not.\" It is the lower bar used in civil investigations, not in criminal cases that can lead to imprisonment.",
+        "Correct. Imprisonment can only come out of a criminal case, and criminal cases normally require proof beyond a reasonable doubt, the highest standard.",
+        "Incorrect. \"Majority of the evidence\" is not a recognized standard of proof. It loosely resembles the civil preponderance standard, which is still too low for a criminal conviction."
+      ]
+    },
+    {
+      "id": "OPT4-C01-027",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.57,
+      "stem": "ISC2 uses the logo shown here to represent itself online and in a variety of forums. What type of intellectual property protection can it use to protect its rights in this logo?\n[Figure, described in text: the ISC2 logo: the stylized letters \"ISC2\" in white on a green square, followed by a ™ mark.]",
+      "options": [
+        "Copyright",
+        "Patent",
+        "Trade secret",
+        "Trademark"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Trademark protection extends to words and symbols used to represent an organization, product, or service in the marketplace. Copyrights are used to protect creative works. Patents and trade secrets are used to protect inventions and similar intellectual property.",
+      "optionNotes": [
+        "Incorrect. Copyright protects creative works of authorship like books, software code, and music. It doesn't protect a symbol's role in identifying an organization in the marketplace.",
+        "Incorrect. Patents protect novel, useful, non-obvious inventions. A logo identifies an organization; it is not an invention.",
+        "Incorrect. Trade secret protection covers confidential information such as formulas or processes. It only works while the information stays secret, and a logo is publicly displayed.",
+        "Correct. Trademarks protect words and symbols that represent an organization, product, or service in the marketplace. ISC2's logo is exactly this kind of symbol, and the ™ mark signals the claim."
+      ]
+    },
+    {
+      "id": "OPT4-C01-028",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.42,
+      "stem": "Mary is helping a computer user who sees the following message appear on his computer screen. What type of attack has occurred?\n[Figure, described in text: a CryptoLocker window headed \"Your personal files are encrypted!\" It says the user's files were encrypted with a unique RSA-2048 public key, that the only copy of the private key is on a secret server and will be destroyed after a deadline (a countdown shows 57:45:37), and that the user must pay 300 USD / 300 EUR to obtain the private key; a \"Next >>\" button leads to payment.]",
+      "options": [
+        "Availability",
+        "Confidentiality",
+        "Disclosure",
+        "Distributed"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The message displayed is an example of ransomware, which encrypts the contents of a user's computer to prevent legitimate use. This is an example of an availability attack. There is no indication that the data was disclosed to others, so there is no confidentiality/disclosure risk. There is also no indication that other systems were involved in a distributed attack.",
+      "optionNotes": [
+        "Correct. The CryptoLocker ransomware encrypts the user's files so he can't use them unless he pays, and denying legitimate access is an attack on availability.",
+        "Incorrect. A confidentiality attack exposes data to people who shouldn't see it. Nothing in the message suggests the files were viewed or taken, only locked.",
+        "Incorrect. Disclosure (the opposite of confidentiality in the DAD model) means data is released to others. Ransomware like this withholds the data from the owner and does not reveal it to anyone.",
+        "Incorrect. A distributed attack, such as a DDoS, uses many systems at once. Here a single user's computer was encrypted, and nothing shows other systems were involved."
+      ]
+    },
+    {
+      "id": "OPT4-C01-029",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Which one of the following organizations would not be automatically subject to the privacy and security requirements of HIPAA if they engage in electronic transactions?",
+      "options": [
+        "Healthcare provider",
+        "Health and fitness application developer",
+        "Health information clearinghouse",
+        "Health insurance plan"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A health and fitness application developer would not necessarily be collecting or processing healthcare data, and the terms of HIPAA do not apply to this category of business. HIPAA regulates three types of entities—healthcare providers, health information clearinghouses, and health insurance plans—as well as the business associates of any of those covered entities.",
+      "optionNotes": [
+        "Incorrect. Healthcare providers that conduct electronic transactions are one of HIPAA's three covered entity types, so the privacy and security rules apply to them automatically.",
+        "Correct. A health and fitness app developer isn't a HIPAA covered entity and may not handle healthcare data at all. It would fall under HIPAA only if it acted as a business associate of a covered entity.",
+        "Incorrect. Health information clearinghouses are one of HIPAA's three named covered entity types, so the law applies to them directly.",
+        "Incorrect. Health insurance plans are named as a HIPAA covered entity, so they must follow the privacy and security requirements."
+      ]
+    },
+    {
+      "id": "OPT4-C01-030",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.57,
+      "stem": "John's network begins to experience symptoms of slowness. Upon investigation, he realizes that the network is being bombarded with TCP SYN packets and believes that his organization is the victim of a denial-of-service attack. What principle of information security is being violated?",
+      "options": [
+        "Availability",
+        "Integrity",
+        "Confidentiality",
+        "Denial"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A SYN flood attack is an example of a denial-of-service attack, which jeopardizes the availability of a targeted network. SYN flood attacks do not target integrity or confidentiality. While this is a denial-of-service attack, denial is not the correct answer because you are asked which principle is being violated, not what type of attack took place. Denial-of-service attacks target resource availability.",
+      "optionNotes": [
+        "Correct. A SYN flood is a denial-of-service attack that exhausts resources so legitimate users can't reach the network, which violates availability.",
+        "Incorrect. Integrity is about stopping unauthorized changes to data. A SYN flood overwhelms resources but doesn't alter any information.",
+        "Incorrect. Confidentiality is about stopping unauthorized disclosure. Flooding a network with SYN packets doesn't expose any data.",
+        "Incorrect. \"Denial\" names the type of attack (denial of service), not a security principle. The question asks which principle is being violated."
+      ]
+    },
+    {
+      "id": "OPT4-C01-031",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Renee is designing a long-term security plan for her organization and has a three- to five-year planning horizon. Her primary goal is to align the security function with the broader plans and objectives of the business. What type of plan is she developing?",
+      "options": [
+        "Operational",
+        "Tactical",
+        "Summary",
+        "Strategic"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Strategic plans have a long-term planning horizon of up to five years in most cases. They are designed to strategically align the security function with the business' objectives. Operational and tactical plans have shorter horizons of a year or less.",
+      "optionNotes": [
+        "Incorrect. Operational plans are short-term, detailed plans covering day-to-day tasks, with horizons of a year or less. They don't match a three- to five-year plan meant to align security with business objectives.",
+        "Incorrect. Tactical plans are midterm plans that carry out the goals of the strategic plan. Their horizon is shorter (about a year), so they are not the long-term plan that aligns security with business goals.",
+        "Incorrect. \"Summary\" is not one of the three security management plan types. Those are strategic, tactical and operational.",
+        "Correct. Strategic plans are long-term, typically up to five years, and are designed to align the security function with the business's goals and objectives. That is exactly what Renee is building."
+      ]
+    },
+    {
+      "id": "OPT4-C01-032",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Gina is working to protect a logo that her company will use for a new product they are launching. She has questions about the intellectual property protection process for this logo. What U.S. government agency would be best able to answer her questions?",
+      "options": [
+        "USPTO",
+        "Library of Congress",
+        "NSA",
+        "NIST"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "First, you must realize that a trademark is the correct intellectual property protection mechanism for a logo. Therefore, Gina should contact the U.S. Patent and Trademark Office (USPTO), which bears responsibility for the registration of trademarks. The Library of Congress Copyright Office administers the copyright program. The National Security Agency (NSA) and the National Institute of Standards and Technology (NIST) play no role in intellectual property protection.",
+      "optionNotes": [
+        "Correct. A logo is protected as a trademark, and the U.S. Patent and Trademark Office handles trademark registration. That makes it the right agency to answer Gina's questions.",
+        "Incorrect. The Library of Congress runs the Copyright Office, which handles copyrights. A logo is protected as a trademark, so this office is the wrong place for her questions.",
+        "Incorrect. The NSA is an intelligence and signals security agency. It plays no role in trademark registration or any other intellectual property protection.",
+        "Incorrect. NIST develops standards and guidance such as the SP 800 series. It has no role in registering or protecting trademarks."
+      ]
+    },
+    {
+      "id": "OPT4-C01-033",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "The Acme Widgets Company is putting new controls in place for its accounting department. Management is concerned that a rogue accountant may be able to create a new false vendor and then issue checks to that vendor as payment for services that were never rendered. What security control can best help prevent this situation?",
+      "options": [
+        "Mandatory vacation",
+        "Segregation of duties",
+        "Defense in depth",
+        "Job rotation"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "When following the segregation of duties principle, organizations divide critical tasks into discrete components and ensure that no one individual has the ability to perform both actions. This prevents a single rogue individual from performing that task in an unauthorized manner. Mandatory vacations and job rotations are designed to detect fraud, not prevent it. Defense in depth is not a relevant principle here because the answer is seeking an initial control. Management may choose to add additional controls at a later date, but the primary objective here would be to implement segregation of duties.",
+      "optionNotes": [
+        "Incorrect. Mandatory vacation is a detective control. Someone else covers the role while the employee is away and may uncover fraud already underway, but it doesn't stop one person from creating a vendor and paying it.",
+        "Correct. Segregation of duties splits a critical task into separate parts, such as creating a vendor and issuing a payment, and gives them to different people. One rogue accountant then can't complete the fraud alone.",
+        "Incorrect. Defense in depth means layering several controls. The question asks for the first, primary control to stop this specific fraud, so a layering strategy doesn't answer it.",
+        "Incorrect. Job rotation moves staff between roles so others can spot irregularities, and it also cross-trains people. Like mandatory vacation, it mainly detects fraud rather than preventing it."
+      ]
+    },
+    {
+      "id": "OPT4-C01-034",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "Which one of the following categories of organizations is most likely to be covered by the provisions of FISMA?",
+      "options": [
+        "Banks",
+        "Defense contractors",
+        "School districts",
+        "Hospitals"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The U.S. Federal Information Security Modernization Act (FISMA) applies to federal government agencies and contractors. Of the entities listed, a defense contractor is the most likely to have government contracts subject to FISMA.",
+      "optionNotes": [
+        "Incorrect. Banks fall mainly under financial-sector laws such as GLBA. FISMA covers federal agencies and their contractors, and a bank isn't one of those by default.",
+        "Correct. FISMA applies to federal agencies and the contractors that run systems for them. Defense contractors hold government contracts, so they are the most likely of these to be covered.",
+        "Incorrect. School districts are run by state or local government. Their student-record obligations come from FERPA, not FISMA, which covers federal agencies and their contractors.",
+        "Incorrect. Hospitals are HIPAA covered entities and must protect PHI under HIPAA's privacy and security rules. As a group they aren't federal agencies or contractors, so FISMA doesn't normally apply."
+      ]
+    },
+    {
+      "id": "OPT4-C01-035",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.57,
+      "stem": "Robert is responsible for securing systems used to process credit card information. What security control framework should guide his actions?",
+      "options": [
+        "HIPAA",
+        "PCI DSS",
+        "SOX",
+        "GLBA"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Payment Card Industry Data Security Standard (PCI DSS) governs the storage, processing, and transmission of payment card information. Among other things, the Sarbanes Oxley (SOX) Act regulates the financial reporting activities of publicly traded companies. The Health Insurance Portability and Accountability Act (HIPAA) regulates the handling of protected health information (PHI). The Gramm-Leach-Bliley Act (GLBA) regulates the handling of personal financial information.",
+      "optionNotes": [
+        "Incorrect. HIPAA covers the handling of protected health information (PHI) by healthcare entities. It doesn't govern payment card data.",
+        "Correct. PCI DSS is the industry standard for storing, processing and transmitting payment card information. That is exactly what Robert's systems do.",
+        "Incorrect. SOX regulates financial reporting by publicly traded companies. It isn't a framework for securing cardholder data.",
+        "Incorrect. GLBA governs how financial institutions handle personal financial information. It isn't the control framework specific to credit card processing."
+      ]
+    },
+    {
+      "id": "OPT4-C01-036",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Which one of the following individuals is normally responsible for fulfilling the operational data protection responsibilities delegated by senior management, such as validating data integrity, testing backups, and managing security policies?",
+      "options": [
+        "Data custodian",
+        "Data owner",
+        "User",
+        "Auditor"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The data custodian role is assigned to an individual who is responsible for implementing the security controls defined by policy and senior management. The data owner does bear ultimate responsibility for these tasks, but the data owner is typically a senior leader who delegates operational responsibility to a data custodian.",
+      "optionNotes": [
+        "Correct. The data custodian carries out the protection defined by policy and senior management. That includes testing backups, validating data integrity, deploying security solutions, and managing storage, which matches every task named in the question.",
+        "Incorrect. The data owner is ultimately accountable for these tasks. However, the owner is usually a senior leader who hands the day-to-day operational work to a data custodian rather than doing it personally.",
+        "Incorrect. A user is someone who accesses data to do their job and must follow security policy. Users don't carry out delegated protection duties such as testing backups or validating integrity.",
+        "Incorrect. An auditor reviews and verifies that controls are implemented and working properly. The auditor provides independent oversight and doesn't perform operational tasks like backups or integrity validation."
+      ]
+    },
+    {
+      "id": "OPT4-C01-037",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Alan works for an e-commerce company that recently had some content stolen by another website and republished without permission. What type of intellectual property protection would best preserve Alan's company's rights?",
+      "options": [
+        "Trade secret",
+        "Copyright",
+        "Trademark",
+        "Patent"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Written works, such as website content, are normally protected by copyright law. Trade secret status would not be appropriate here because the content is online and available outside the company. Patents protect inventions, and trademarks protect words and symbols used to represent a brand, neither of which is relevant in this scenario.",
+      "optionNotes": [
+        "Incorrect. Trade secret protection only works while the information stays confidential inside the company. Website content is published online, so it can't be a trade secret.",
+        "Correct. Copyright protects original written works such as website content, and it gives the owner the right to stop others from copying and republishing that content without permission.",
+        "Incorrect. Trademarks protect the words and symbols that identify a brand, to prevent confusion in the marketplace. They don't cover the body of written content that was copied here.",
+        "Incorrect. Patents protect inventions, meaning novel, useful and non-obvious processes or devices. Written website content is not an invention, so a patent doesn't apply."
+      ]
+    },
+    {
+      "id": "OPT4-C01-038",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Florian receives a flyer from a U.S. federal government agency announcing that a new administrative law will affect his business operations. Where should he go to find the text of the law?",
+      "options": [
+        "U.S. Code",
+        "Supreme Court rulings",
+        "Code of Federal Regulations",
+        "Compendium of Laws"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Code of Federal Regulations (CFR) contains the text of all administrative laws promulgated by federal agencies. The U.S. Code contains criminal and civil law. Supreme Court rulings contain interpretations of law and are not laws themselves. The Compendium of Laws does not exist.",
+      "optionNotes": [
+        "Incorrect. The U.S. Code holds criminal and civil statutes passed by Congress. Administrative regulations that agencies issue are not published there.",
+        "Incorrect. Supreme Court rulings interpret the law. They are not laws themselves and do not contain the text of agency regulations.",
+        "Correct. The Code of Federal Regulations publishes the text of all administrative laws issued by federal agencies, so this is where Florian will find the new rule.",
+        "Incorrect. No official U.S. publication called the \"Compendium of Laws\" exists. It is a made-up distractor."
+      ]
+    },
+    {
+      "id": "OPT4-C01-039",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Tom enables an application firewall provided by his cloud infrastructure as a service provider that is designed to block many types of application attacks. When viewed from a risk management perspective, what metric is Tom attempting to lower by implementing this countermeasure?",
+      "options": [
+        "Impact",
+        "RPO",
+        "MTO",
+        "Likelihood"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Installing a device that will block attacks is an attempt to lower risk by reducing the likelihood of a successful application attack. Adding a firewall will not address the impact of a risk, the recovery point objective (RPO), or the maximum tolerable outage (MTO).",
+      "optionNotes": [
+        "Incorrect. Impact is the damage done if an attack succeeds. A firewall that blocks attacks makes success less likely but doesn't shrink the damage when one gets through.",
+        "Incorrect. RPO (recovery point objective) is the most data loss you can accept, measured in time. It is a backup and recovery target, so a firewall that blocks attacks doesn't change it.",
+        "Incorrect. MTO (maximum tolerable outage) is a business continuity measure: the longest a function can be down. A preventive firewall doesn't change what outage the business can tolerate.",
+        "Correct. Blocking application attacks lowers the chance that an attack succeeds, which reduces the likelihood part of risk."
+      ]
+    },
+    {
+      "id": "OPT4-C01-040",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "Which one of the following individuals would be the most effective organizational owner for an information security program?",
+      "options": [
+        "CISSP-certified analyst",
+        "Chief information officer (CIO)",
+        "Manager of network security",
+        "President and CEO"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The owner of information security programs may be different from the individuals responsible for implementing the controls. This person should be as senior an individual as possible who is able to focus on the management of the security program. The president and CEO would not be an appropriate choice because an executive at this level is unlikely to have the time necessary to focus on security. Of the remaining choices, the CIO is the most senior position who would be the strongest advocate at the executive level.",
+      "optionNotes": [
+        "Incorrect. A CISSP-certified analyst is a security professional who implements controls. An analyst doesn't have the seniority or executive standing to own the program and advocate for it.",
+        "Correct. The CIO is the most senior of the realistic choices who can still focus on managing the security program. That makes the CIO the strongest advocate for security at the executive level.",
+        "Incorrect. The manager of network security implements controls within one technical area. This role lacks the executive-level authority needed to sign off on security policy and champion the whole program.",
+        "Incorrect. The president and CEO is senior enough, but an executive at this level is unlikely to have the time to focus on managing the security program."
+      ]
+    },
+    {
+      "id": "OPT4-C01-041",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "What important function do senior managers normally fill on a business continuity planning team?",
+      "options": [
+        "Arbitrating disputes about criticality",
+        "Evaluating the legal environment",
+        "Training staff",
+        "Designing failure controls"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Senior managers play several business continuity planning roles. These include setting priorities, obtaining resources, and arbitrating disputes among team members.",
+      "optionNotes": [
+        "Correct. Senior managers set priorities, obtain resources, and arbitrate disputes among BCP team members, including disagreements over which functions are most critical.",
+        "Incorrect. Analyzing the legal and regulatory landscape is a team task, usually handled by legal representatives on the BCP team. It is not a role that is distinctive to senior management.",
+        "Incorrect. Personnel are trained on their BCP roles during implementation, but that training is an operational task carried out by trainers or the BCP team. Senior managers don't normally deliver it.",
+        "Incorrect. Designing continuity or failure controls is technical work for subject-matter experts such as IT and engineering staff. It is not a senior management function."
+      ]
+    },
+    {
+      "id": "OPT4-C01-042",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.0,
+      "stem": "You are the CISO for a major hospital system and are preparing to sign a contract with a software-as-a-service (SaaS) email vendor. You want to perform a control assessment to ensure that its business continuity planning measures are reasonable. What type of audit might you request to meet this goal?",
+      "options": [
+        "SOC 1",
+        "FISMA",
+        "PCI DSS",
+        "SOC 2"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The System and Organization Controls audit program includes business continuity controls in a SOC 2, but not SOC 1, audit. Although FISMA and PCI DSS may audit business continuity, they would not apply to an email service used by a hospital.",
+      "optionNotes": [
+        "Incorrect. A SOC 1 audit covers controls over financial reporting. It doesn't evaluate availability or business continuity controls, so it can't tell you whether the vendor's continuity planning is reasonable.",
+        "Incorrect. FISMA governs security programs at U.S. federal agencies and their contractors. A hospital's commercial SaaS email vendor wouldn't be assessed under it.",
+        "Incorrect. PCI DSS applies to entities that store, process or transmit payment card data. It might touch on continuity, but it doesn't fit an email service used by a hospital.",
+        "Correct. A SOC 2 audit evaluates controls under the trust services criteria, including availability and business continuity, which is what a customer needs to judge a SaaS vendor's continuity planning."
+      ]
+    },
+    {
+      "id": "OPT4-C01-043",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "Gary is analyzing a security incident and, during his investigation, encounters a user who denies having performed an action that Gary believes he did perform. What type of threat has taken place under the STRIDE model?",
+      "options": [
+        "Repudiation",
+        "Information disclosure",
+        "Tampering",
+        "Elevation of privilege"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Repudiation threats allow an attacker to deny having performed an action or activity without the other party being able to prove differently. There is no evidence that the attacker engaged in information disclosure, tampering, or elevation of privilege.",
+      "optionNotes": [
+        "Correct. In STRIDE, repudiation means a user can deny having performed an action and the other party can't prove otherwise. That is exactly what this user is doing.",
+        "Incorrect. Information disclosure means data is exposed to people who shouldn't see it. Nothing in the scenario shows data was leaked; the problem is that the user denies doing something.",
+        "Incorrect. Tampering means data or systems are changed without authorization. The scenario gives no sign of modification, only a user disputing his own action.",
+        "Incorrect. Elevation of privilege means a user gains more access rights than he was given. Nothing here shows unauthorized privilege gain; the issue is that the user's action can't be proven."
+      ]
+    },
+    {
+      "id": "OPT4-C01-044",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "Beth is the security administrator for a public school district. She is implementing a new student information system and is testing the code to ensure that students are not able to alter their own grades. What principle of information security is Beth enforcing?",
+      "options": [
+        "Integrity",
+        "Availability",
+        "Confidentiality",
+        "Denial"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Integrity controls, such as the one Beth is implementing in this example, are designed to prevent the unauthorized modification of information. There is no evidence of an attack against availability or confidentiality. Denial is an objective of attackers, rather than of security professionals, and is not relevant in this scenario that targets integrity.",
+      "optionNotes": [
+        "Correct. Stopping students from changing their own grades prevents unauthorized modification of data, and preventing unauthorized modification is the definition of integrity.",
+        "Incorrect. Availability means authorized users can get to systems and data when they need them. The scenario is about blocking grade changes, not about keeping the system up, so availability isn't the concern.",
+        "Incorrect. Confidentiality protects information from unauthorized disclosure. The worry here is students altering grades, not seeing them, so confidentiality isn't the principle Beth is enforcing.",
+        "Incorrect. Denial is something attackers aim for (the counterpart to availability in the DAD model). It isn't a principle security professionals enforce, and it doesn't apply to this integrity scenario."
+      ]
+    },
+    {
+      "id": "OPT4-C01-045",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Which one of the following issues is not normally addressed in a service-level agreement (SLA)?",
+      "options": [
+        "Confidentiality of customer information",
+        "Failover time",
+        "Uptime",
+        "Maximum consecutive downtime"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "SLAs do not normally address issues of data confidentiality. Those provisions are normally included in a nondisclosure agreement (NDA).",
+      "optionNotes": [
+        "Correct. SLAs set service performance and availability expectations. Protecting the confidentiality of customer data is normally handled in a nondisclosure agreement (NDA), not an SLA.",
+        "Incorrect. Failover time (how quickly service switches over when redundancy is in place) is on OSG's list of issues SLAs commonly address, so it doesn't answer a \"not addressed\" question.",
+        "Incorrect. System uptime, given as a percentage of total operating time, is a core SLA metric. It's one of the issues SLAs normally address.",
+        "Incorrect. Maximum consecutive downtime (in seconds, minutes, etc.) is one of the availability terms OSG lists as commonly included in SLAs, so it's not the answer."
+      ]
+    },
+    {
+      "id": "OPT4-C01-046",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Joan is seeking to protect a piece of computer software that she developed under intellectual property law. Which one of the following avenues of protection would not apply to a piece of software?",
+      "options": [
+        "Trademark",
+        "Copyright",
+        "Patent",
+        "Trade secret"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Trademarks protect words and images that represent a product or service and would not protect computer software.",
+      "optionNotes": [
+        "Correct. Trademarks protect words, slogans, and logos that identify a product or service in the marketplace. They don't protect the software itself.",
+        "Incorrect. Copyright does apply. Source and object code count as original works of authorship, so they're protected automatically from creation. This makes copyright a common way to protect software.",
+        "Incorrect. A patent can apply. Novel, useful, and nonobvious inventions, including software-implemented processes or algorithms, may be patented. This gives the owner exclusive rights for a limited term.",
+        "Incorrect. Trade secret protection can apply. Proprietary code can be kept confidential through NDAs and access controls, provided Joan takes reasonable steps to keep it secret."
+      ]
+    },
+    {
+      "id": "OPT4-C01-047",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.42,
+      "stem": "Scenario:\nJuniper Content is a web content development company with 40 employees located in two offices: one in New York and a smaller office in the San Francisco Bay Area. Each office has a local area network protected by a perimeter firewall. The local area network (LAN) contains modern switch equipment connected to both wired and wireless networks. Each office has its own file server, and the information technology (IT) team runs software every hour to synchronize files between the two servers, distributing content between the offices. These servers are primarily used to store images and other files related to web content developed by the company. The team also uses a SaaS-based email and document collaboration solution for much of their work. You are the newly appointed IT manager for Juniper Content, and you are working to augment existing security controls to improve the organization's security.\n\nUsers in the two offices would like to access each other's file servers over the internet. What control would provide confidentiality for those communications?",
+      "options": [
+        "Digital signatures",
+        "Virtual private network",
+        "Virtual LAN",
+        "Digital content management"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Virtual private networks (VPNs) provide secure communications channels over otherwise insecure networks (such as the Internet) using encryption. If you establish a VPN connection between the two offices, users in one office could securely access content located on the other office's server over the Internet. Digital signatures are used to provide nonrepudiation, not confidentiality. Virtual LANs (VLANs) provide network segmentation on local networks but do not cross the Internet. Digital content management solutions are designed to manage web content, not access shared files located on a file server.",
+      "optionNotes": [
+        "Incorrect. Digital signatures give integrity, authentication, and nonrepudiation. They don't encrypt the data, so they can't keep file traffic between the offices confidential.",
+        "Correct. A site-to-site VPN builds an encrypted tunnel across the untrusted internet, so users can reach the other office's file server confidentially.",
+        "Incorrect. A VLAN segments traffic inside a local switched network. It doesn't reach across the internet between the two offices, and it doesn't encrypt anything.",
+        "Incorrect. Digital content management tools organize and publish web content. They don't secure network access to files on a remote file server."
+      ]
+    },
+    {
+      "id": "OPT4-C01-048",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.12,
+      "stem": "Scenario:\nJuniper Content is a web content development company with 40 employees located in two offices: one in New York and a smaller office in the San Francisco Bay Area. Each office has a local area network protected by a perimeter firewall. The local area network (LAN) contains modern switch equipment connected to both wired and wireless networks. Each office has its own file server, and the information technology (IT) team runs software every hour to synchronize files between the two servers, distributing content between the offices. These servers are primarily used to store images and other files related to web content developed by the company. The team also uses a SaaS-based email and document collaboration solution for much of their work. You are the newly appointed IT manager for Juniper Content, and you are working to augment existing security controls to improve the organization's security.\n\nYou are also concerned about the availability of data stored on each office's server. You would like to add technology that would enable continued access to files located on the server even if a hard drive in a server fails. What control allows you to add robustness without adding additional servers?",
+      "options": [
+        "Server clustering",
+        "Load balancing",
+        "RAID",
+        "Scheduled backups"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "RAID uses additional hard drives to protect the server against the failure of a single drive or two, based on the RAID level selected. Load balancing and server clustering do add robustness but require the addition of a server. Scheduled backups protect against data loss but do not provide immediate access to data in the event of a hard drive failure.",
+      "optionNotes": [
+        "Incorrect. Server clustering adds fault tolerance, but it needs extra servers to fail over to, and the question rules out adding servers.",
+        "Incorrect. Load balancing spreads requests across several servers. It improves robustness only when more servers are added, which the question excludes.",
+        "Correct. RAID writes data across additional drives inside the same server. If one drive fails (or two, depending on the RAID level), the files stay available without adding servers.",
+        "Incorrect. Scheduled backups protect against data loss, but after a drive fails you must restore from them. They don't give the continued, immediate access the question asks for."
+      ]
+    },
+    {
+      "id": "OPT4-C01-049",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.02,
+      "stem": "Scenario:\nJuniper Content is a web content development company with 40 employees located in two offices: one in New York and a smaller office in the San Francisco Bay Area. Each office has a local area network protected by a perimeter firewall. The local area network (LAN) contains modern switch equipment connected to both wired and wireless networks. Each office has its own file server, and the information technology (IT) team runs software every hour to synchronize files between the two servers, distributing content between the offices. These servers are primarily used to store images and other files related to web content developed by the company. The team also uses a SaaS-based email and document collaboration solution for much of their work. You are the newly appointed IT manager for Juniper Content, and you are working to augment existing security controls to improve the organization's security.\n\nFinally, there are historical records stored on the server that are extremely important to the business and should never be modified. You would like to add an integrity control that allows you to verify on a periodic basis that the files were not modified. What control can you add?",
+      "options": [
+        "Hashing",
+        "ACLs",
+        "Read-only attributes",
+        "Firewalls"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Hashing allows you to computationally verify that a file has not been modified between hash evaluations. ACLs and read-only attributes are useful controls that may help you prevent unauthorized modification, but they cannot verify that files were not modified. Firewalls are network security controls and do not verify file integrity.",
+      "optionNotes": [
+        "Correct. Hashing gives you a baseline fingerprint of each file. Recompute the hashes on a schedule and compare them to the baseline: any difference means the file changed. This is the detective integrity check the question asks for.",
+        "Incorrect. ACLs restrict who can modify the files, so they help prevent unauthorized changes. They can't confirm afterward that a file hasn't been altered.",
+        "Incorrect. Read-only attributes are a preventive control that discourages changes. They can be removed or bypassed, and they give you no way to check periodically that the contents are unchanged.",
+        "Incorrect. Firewalls filter network traffic at the network perimeter. They do nothing to verify the integrity of files stored on the server."
+      ]
+    },
+    {
+      "id": "OPT4-C01-050",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Beth is a human resources specialist preparing to assist in the termination of an employee. Which of the following is not typically part of a termination process?",
+      "options": [
+        "An exit interview",
+        "Recovery of organizational property",
+        "Account termination",
+        "Signing an NCA"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Signing a noncompete (NCA) or NDA agreement is typically done at hiring. Exit interviews, recovery of organizational property, and account termination are all common elements of a termination process. During the exit interview, the team may choose to review employment agreements and policies that remain in force, such as a noncompete or nondisclosure agreement.",
+      "optionNotes": [
+        "Incorrect. Exit interviews are a standard part of termination. They are also where the team reviews agreements that still apply, such as an NCA or NDA, so this does belong in the process.",
+        "Incorrect. Getting back badges, laptops, keys and other company property is a normal termination step, so it is not the answer.",
+        "Incorrect. Disabling or terminating the employee's accounts is a core termination step that stops further access, so it is not the answer.",
+        "Correct. A noncompete agreement (NCA) is usually signed at hiring, not at termination. During the exit interview it is only reviewed as an agreement that stays in force."
+      ]
+    },
+    {
+      "id": "OPT4-C01-051",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Frances is reviewing her organization's business continuity plan documentation for completeness. Which one of the following is not normally included in business continuity plan documentation?",
+      "options": [
+        "Statement of accounts",
+        "Statement of importance",
+        "Statement of priorities",
+        "Statement of organizational responsibility"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Business continuity plan documentation normally includes the continuity planning goals, a statement of importance, a statement of priorities, a statement of organizational responsibility, a statement of urgency and timing, risk assessment and risk acceptance and mitigation documentation, a vital records program, emergency response guidelines, and documentation for maintaining and testing the plan.",
+      "optionNotes": [
+        "Correct. A statement of accounts is a financial/accounting document and isn't one of the standard BCP documentation components listed in the book.",
+        "Incorrect. The statement of importance is a standard part of BCP documentation. It explains why the plan is critical to the organization's continued viability.",
+        "Incorrect. The statement of priorities is a standard BCP document. It ranks critical business functions based on the business impact assessment so recovery can be ordered correctly.",
+        "Incorrect. The statement of organizational responsibility is standard BCP documentation. It states that business continuity is everyone's responsibility."
+      ]
+    },
+    {
+      "id": "OPT4-C01-052",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.73,
+      "stem": "An accounting employee at Doolittle Industries was recently arrested for participation in an embezzlement scheme. The employee transferred money to a personal account and then shifted funds around between other accounts every day to disguise the fraud for months. Which one of the following controls might have best allowed the earlier detection of this fraud?",
+      "options": [
+        "Separation of duties",
+        "Least privilege",
+        "Defense in depth",
+        "Mandatory vacation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Mandatory vacation programs require that employees take continuous periods of time off each year and have their system privileges revoked during that time. The purpose of these required vacation periods is to disrupt any attempt to engage in the cover-up actions necessary to hide fraud and result in exposing the threat. Separation of duties, least privilege, and defense in depth all may help prevent the fraud in the first place but are unlikely to speed the detection of fraud that has already occurred.",
+      "optionNotes": [
+        "Incorrect. Separation of duties splits sensitive tasks so no single person can commit fraud alone. It is a preventive control and wouldn't speed up detection of fraud that is already happening.",
+        "Incorrect. Least privilege limits users to only the access they need. It helps prevent misuse but does nothing to expose the daily cover-up shuffling of funds already under way.",
+        "Incorrect. Defense in depth layers several security controls to make an attack harder. It is a general preventive strategy, not a way to uncover ongoing insider fraud sooner.",
+        "Correct. Mandatory vacation forces the employee to take continuous time off with their access revoked. That breaks the daily cover-up routine, so someone else handling the accounts would notice the discrepancies."
+      ]
+    },
+    {
+      "id": "OPT4-C01-053",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.13,
+      "stem": "Jeff would like to adopt an industry-standard approach for assessing the processes his organization uses to manage risk. What maturity model would be most appropriate for his use?",
+      "options": [
+        "CMM",
+        "SW-CMM",
+        "RMM",
+        "COBIT"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Risk Maturity Model (RMM) is specifically designed for the purpose of assessing enterprise risk management programs. Jeff could conceivably use the more generic capability maturity model (CMM), but this would not be as good of a fit. The software capability maturity model (SW-CMM) is designed for assessing development projects, not risk management efforts. The Control Objectives for Information Technology (COBIT) are a set of security control objectives and not a maturity model.",
+      "optionNotes": [
+        "Incorrect. CMM is a generic capability maturity model. It could be adapted to risk management, but it wasn't built for that, so it fits worse than RMM.",
+        "Incorrect. SW-CMM measures the maturity of software development processes, not enterprise risk management programs.",
+        "Correct. The Risk Maturity Model was built specifically to assess enterprise risk management programs, which makes it the best fit for Jeff's goal.",
+        "Incorrect. COBIT is a framework of IT control objectives, not a maturity model for assessing risk management processes."
+      ]
+    },
+    {
+      "id": "OPT4-C01-054",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.16,
+      "stem": "Chris' organization recently suffered an attack that rendered their website inaccessible to paying customers for several hours. Which information security goal was most directly impacted?",
+      "options": [
+        "Confidentiality",
+        "Integrity",
+        "Availability",
+        "Denial"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Denial-of-service (DoS) attacks and distributed denial-of-service (DDoS) attacks try to disrupt the availability of information systems and networks by flooding a victim with traffic or otherwise disrupting service.",
+      "optionNotes": [
+        "Incorrect. Confidentiality means keeping data away from people who shouldn't see it. Nothing here says data was exposed or stolen; customers simply couldn't reach the site.",
+        "Incorrect. Integrity means data isn't changed without authorization. The scenario describes an outage, not altered or corrupted data.",
+        "Correct. When paying customers can't reach the website, availability is what was lost. Disrupting availability is the goal of DoS and DDoS attacks, which flood a target with traffic or otherwise disrupt service.",
+        "Incorrect. Denial is not a security goal. It describes a threat or attack outcome, the opposite of availability, and the option only echoes the attack name 'denial of service'."
+      ]
+    },
+    {
+      "id": "OPT4-C01-055",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.76,
+      "stem": "Yolanda is writing a document that will provide configuration information regarding the minimum level of security that every system in the organization must meet. What type of document is she preparing?",
+      "options": [
+        "Policy",
+        "Baseline",
+        "Guideline",
+        "Procedure"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Baselines provide the minimum level of security that every system throughout the organization must meet. This type of information would not appear in a policy, guideline, or procedure.",
+      "optionNotes": [
+        "Incorrect. Policies are high-level management statements of security goals and responsibilities; they don't hold system-specific minimum configuration settings like those Yolanda is documenting.",
+        "Correct. A baseline sets the minimum security configuration that every system in the organization has to meet.",
+        "Incorrect. Guidelines are optional recommendations and best-practice advice. A security minimum that every system must meet is mandatory, so it isn't a guideline.",
+        "Incorrect. Procedures are detailed step-by-step instructions for doing a task. They describe how to do something, not the minimum security level every system must meet."
+      ]
+    },
+    {
+      "id": "OPT4-C01-056",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Who should receive initial business continuity plan training in an organization?",
+      "options": [
+        "Senior executives",
+        "Those with specific business continuity roles",
+        "Everyone in the organization",
+        "First responders"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Everyone in the organization should receive basic training on the nature and scope of the business continuity program. Those with specific roles, such as first responders and senior executives, should also receive detailed, role-specific training.",
+      "optionNotes": [
+        "Incorrect. Senior executives get detailed, role-specific BCP training too, but initial basic training on the program's nature and scope is not limited to them. It goes to everyone.",
+        "Incorrect. People with specific BCP roles get extra role-specific training. The initial awareness training still has to reach every employee, not just the role holders.",
+        "Correct. Every employee should get basic training on the nature and scope of the business continuity program, and people with specific roles then get detailed training on top of that.",
+        "Incorrect. First responders are one group that needs detailed, role-specific training. Initial BCP training is not limited to them; the whole organization needs it."
+      ]
+    },
+    {
+      "id": "OPT4-C01-057",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "James is conducting a risk assessment for his organization and is attempting to assign an asset value to the servers in his data center. The organization's primary concern is ensuring that it has sufficient funds available to rebuild the data center in the event it is damaged or destroyed. Which one of the following asset valuation methods would be most appropriate in this situation?",
+      "options": [
+        "Purchase cost",
+        "Depreciated cost",
+        "Replacement cost",
+        "Opportunity cost"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "If the organization's primary concern is the cost of rebuilding the data center, James should use the replacement cost method to determine the current market price for equivalent servers.",
+      "optionNotes": [
+        "Incorrect. Purchase cost is the historical price originally paid. Hardware prices change over time, so that figure may not match what it would cost to buy equivalent servers today and rebuild.",
+        "Incorrect. Depreciated cost is the purchase price minus accumulated depreciation, which is an accounting book value. It usually understates the money needed to buy new equivalent servers after a disaster.",
+        "Correct. Replacement cost uses the current market price of equivalent servers, which is exactly the money needed to rebuild the data center if it is damaged or destroyed.",
+        "Incorrect. Opportunity cost is the value of the alternative you give up by choosing one option over another. It does not measure what it costs to buy replacement servers."
+      ]
+    },
+    {
+      "id": "OPT4-C01-058",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.81,
+      "stem": "Roger's organization suffered a breach of customer credit card records. Under the terms of PCI DSS, what organization may choose to pursue an investigation of this matter?",
+      "options": [
+        "FBI",
+        "Local law enforcement",
+        "Bank",
+        "PCI SSC"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "PCI DSS is a standard promulgated by the Payment Card Industry Security Standards Council (PCI SSC) but is enforced through contractual relationships between merchants and their banks. Therefore, the bank would be the appropriate entity to initiate an investigation under PCI DSS. Local and federal law enforcement agencies (such as the FBI) could decide to pursue a criminal investigation if the circumstances warrant it, but they do not have the authority to enforce PCI DSS requirements.",
+      "optionNotes": [
+        "Incorrect. The FBI could open a criminal investigation if the facts warrant it, but it has no authority to enforce PCI DSS. PCI DSS is a contractual standard, not a federal law.",
+        "Incorrect. Local police could pursue criminal charges, but they cannot enforce PCI DSS requirements. Those obligations come from the merchant's contract, not from statute.",
+        "Correct. PCI DSS is enforced through the contract between a merchant and its bank (the acquirer). That makes the bank the entity that can start an investigation under PCI DSS.",
+        "Incorrect. The PCI SSC writes and publishes the standard, but it doesn't enforce it. Enforcement happens through the bank–merchant contract, so the council doesn't investigate individual breaches."
+      ]
+    },
+    {
+      "id": "OPT4-C01-059",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Rick recently engaged critical employees in each of his organization's business units to ask for their assistance with his security awareness program. They will be responsible for sharing security messages with their peers and answering questions about cybersecurity matters. What term best describes this relationship?",
+      "options": [
+        "Security champion",
+        "Security expert",
+        "Gamification",
+        "Peer review"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "This is an example of a security champion program that uses individuals employed in other roles in a business unit to share security messaging. The individuals in these roles are not necessarily security experts and do not have a peer review role.",
+      "optionNotes": [
+        "Correct. A security champion program enlists staff who hold other roles in each business unit to spread security messages to their peers and field basic security questions.",
+        "Incorrect. Security experts are dedicated security professionals. These champions keep their regular business jobs and don't need deep security expertise.",
+        "Incorrect. Gamification uses game elements like points, competitions and rewards to boost engagement in training. It doesn't describe recruiting employees to deliver security messages.",
+        "Incorrect. Peer review means colleagues formally evaluate each other's work, such as code or documents. The champions only share messaging and answer questions, so they have no review role."
+      ]
+    },
+    {
+      "id": "OPT4-C01-060",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.89,
+      "stem": "Frank discovers a keylogger hidden on the laptop of his company's chief executive officer. What information security principle is the keylogger most likely designed to disrupt?",
+      "options": [
+        "Confidentiality",
+        "Integrity",
+        "Availability",
+        "Denial"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Keyloggers monitor the keystrokes of an individual and report them back to an attacker. They are designed to steal sensitive information, a disruption of the goal of confidentiality.",
+      "optionNotes": [
+        "Correct. A keylogger records keystrokes such as passwords and messages and sends them to the attacker. Its purpose is to steal sensitive information, which violates confidentiality.",
+        "Incorrect. Integrity is about preventing unauthorized changes to data. A keylogger only watches and records keystrokes. It doesn't alter the CEO's data or systems.",
+        "Incorrect. Availability is about keeping systems accessible to authorized users. A keylogger is built to stay hidden and leave the laptop working normally, so it doesn't disrupt access.",
+        "Incorrect. Denial isn't part of the CIA triad. In the DAD model it's the opposite of availability (destruction of availability), and a covert keylogger causes disclosure, not denial."
+      ]
+    },
+    {
+      "id": "OPT4-C01-061",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.4,
+      "stem": "Elise is helping her organization prepare to evaluate and adopt a new cloud-based human resource management (HRM) system vendor. What would be the most appropriate minimum security standard for her to require of possible vendors?",
+      "options": [
+        "Compliance with all laws and regulations",
+        "Handling information in the same manner her organization would",
+        "Elimination of all identified security risks",
+        "Compliance with the vendor's own policies"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The most appropriate standard to use as a baseline when evaluating vendors is to determine whether the vendor's security controls meet the organization's own standards. Compliance with laws and regulations should be included in that requirement and are a necessary, but not sufficient, condition for working with the vendor. Vendor compliance with their own policies also fits into the category of necessary, but not sufficient, controls, as the vendor's policy may be weaker than the organization's own requirements. The elimination of all identified security risks is an impossible requirement for a potential vendor to meet.",
+      "optionNotes": [
+        "Incorrect. Legal and regulatory compliance is needed but isn't enough on its own. It belongs inside the broader requirement that the vendor meet the organization's own security standards.",
+        "Correct. The right baseline is that the vendor's controls meet the organization's own standards, so HR data gets the same protection it would get in-house.",
+        "Incorrect. No vendor can eliminate every identified risk. Risk can only be reduced to an acceptable level, so this requirement is impossible to meet.",
+        "Incorrect. Following its own policies is needed but not enough, because the vendor's policies may be weaker than Elise's organization's requirements."
+      ]
+    },
+    {
+      "id": "OPT4-C01-062",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "The following graphic shows the NIST risk management framework with a step missing. What is the missing step?\n[Figure, described in text: a cycle with PREPARE (Process Initiation) at the center, surrounded by CATEGORIZE → SELECT → IMPLEMENT → ? → AUTHORIZE → MONITOR → back to CATEGORIZE.]",
+      "options": [
+        "Assess security controls.",
+        "Determine control gaps.",
+        "Remediate control gaps.",
+        "Evaluate user activity."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The missing step of the NIST risk management framework is assessing security controls. This is an important component of the process. The organization has already prepared, categorized the system, selected appropriate controls, and implemented those controls. Before authorizing the use of the system, they must assess the effectiveness of those controls to ensure that they meet security requirements.",
+      "optionNotes": [
+        "Correct. Assess is RMF step 5. It comes after Implement and before Authorize, and it checks whether the implemented controls work as intended and meet security requirements.",
+        "Incorrect. \"Determine control gaps\" is not a named RMF step. The seven steps are Prepare, Categorize, Select, Implement, Assess, Authorize and Monitor. Finding gaps happens as part of assessing the controls.",
+        "Incorrect. Remediation isn't a separate RMF step. Fixing weaknesses is handled inside the Assess and Authorize work, for example through a plan of action and milestones (POA&M). The step between Implement and Authorize is Assess.",
+        "Incorrect. Evaluating user activity is an ongoing monitoring or auditing task, which fits the Monitor step. It is not the step that comes before Authorize."
+      ]
+    },
+    {
+      "id": "OPT4-C01-063",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "HAL Systems recently decided to stop offering public NTP services because of a fear that its NTP servers would be used in amplification DDoS attacks. What type of risk management strategy did HAL pursue with respect to its NTP services?",
+      "options": [
+        "Risk mitigation",
+        "Risk acceptance",
+        "Risk transference",
+        "Risk avoidance"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "HAL Systems decided to stop offering the service because of the risk. This is an example of a risk avoidance strategy. The company altered its operations in a manner that eliminates the risk of NTP misuse. Risk acceptance involves making a conscious decision to accept a risk as is with no further action. Risk mitigation takes measures to reduce the likelihood and/or impact of a risk. Risk transfer shifts the costs of a risk to another organization, such as an insurance company.",
+      "optionNotes": [
+        "Incorrect. Mitigation would keep the NTP service running and add controls like rate limiting to lower the likelihood or impact of abuse. HAL dropped the service entirely, so this isn't mitigation.",
+        "Incorrect. Acceptance means knowingly living with the risk and taking no further action. HAL took decisive action and shut the service down.",
+        "Incorrect. Transference moves the cost of a risk to another party, such as an insurer. HAL didn't shift the NTP risk to anyone; it removed the activity that caused it.",
+        "Correct. Stopping the activity that creates the risk is avoidance. By no longer offering public NTP, HAL removed any chance of its servers being used for amplification attacks."
+      ]
+    },
+    {
+      "id": "OPT4-C01-064",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.57,
+      "stem": "Susan is working with the management team in her company to classify data in an attempt to apply extra security controls that will limit the likelihood of a data disclosure breach. What principle of information security is Susan trying to enforce?",
+      "options": [
+        "Availability",
+        "Denial",
+        "Confidentiality",
+        "Integrity"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Confidentiality controls prevent the disclosure of sensitive information to unauthorized individuals. Limiting the likelihood of a data breach is an attempt to prevent unauthorized disclosure.",
+      "optionNotes": [
+        "Incorrect. Availability means authorized users can get to data and systems when they need them. Classifying data to cut the risk of disclosure doesn't address uptime or access.",
+        "Incorrect. Denial is not one of the CIA triad principles. It is the 'D' in the DAD model (disclosure, alteration, destruction/denial), where it is the threat that opposes availability, not a principle to enforce.",
+        "Correct. Confidentiality controls stop sensitive information from being disclosed to unauthorized people. Classifying data and adding controls to reduce the chance of a disclosure breach is enforcing confidentiality.",
+        "Incorrect. Integrity protects data from unauthorized or accidental changes, so it stays accurate. The concern in this question is disclosure, not alteration."
+      ]
+    },
+    {
+      "id": "OPT4-C01-065",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.73,
+      "stem": "Which one of the following components should be included in an organization's emergency response guidelines?",
+      "options": [
+        "List of individuals who should be notified of an emergency incident",
+        "Long-term business continuity protocols",
+        "Activation procedures for the organization's cold sites",
+        "Contact information for ordering equipment"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The emergency response guidelines should include the immediate steps an organization should follow in response to an emergency situation. These include immediate response procedures, a list of individuals who should be notified of the emergency, and secondary response procedures for first responders. They do not include long-term actions such as activating business continuity protocols, ordering equipment, or activating DR sites.",
+      "optionNotes": [
+        "Correct. Emergency response guidelines cover immediate actions, and a notification list of who must be told about the incident is one of their core parts, along with immediate and secondary response procedures.",
+        "Incorrect. Business continuity protocols are long-term actions that happen after the immediate emergency response. They don't belong in the emergency response guidelines.",
+        "Incorrect. Activating cold sites or other DR sites is a later recovery action that belongs in the disaster recovery plan, not in the immediate emergency response steps.",
+        "Incorrect. Ordering replacement equipment is a longer-term recovery task. It is not part of the immediate response steps that the emergency guidelines cover."
+      ]
+    },
+    {
+      "id": "OPT4-C01-066",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Chas recently completed the development of his organization's business continuity plan (BCP). Who is the ideal person to approve an organization's business continuity plan?",
+      "options": [
+        "Chief information officer",
+        "Chief executive officer",
+        "Chief information security officer",
+        "Chief operating officer"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Although the CEO will not normally serve on a BCP team, it is best to obtain top-level management approval for your plan to increase the likelihood of successful adoption.",
+      "optionNotes": [
+        "Incorrect. The CIO runs IT, but BCP covers the whole business. The plan should be endorsed by the top executive, not a functional technology leader.",
+        "Correct. The CEO usually doesn't sit on the BCP team, but approval from top-level management shows the organization is committed to the plan and makes successful adoption more likely.",
+        "Incorrect. The CISO is a security executive who may help develop the BCP. Approval should still come from the top business leader so the plan carries authority across the whole organization.",
+        "Incorrect. The COO is a senior executive but not the top one. OSG recommends endorsement by the CEO, chairperson, or president to show the highest level of commitment."
+      ]
+    },
+    {
+      "id": "OPT4-C01-067",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Which one of the following actions is not normally part of the project scope and planning phase of business continuity planning?",
+      "options": [
+        "Structured analysis of the organization",
+        "Review of the legal and regulatory landscape",
+        "Creation of a BCP team",
+        "Documentation of the plan"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The project scope and planning phase includes four actions: a structured analysis of the organization, the creation of a BCP team, an assessment of available resources, and an analysis of the legal and regulatory landscape.",
+      "optionNotes": [
+        "Incorrect. A structured analysis of the organization is one of the four actions in project scope and planning. It identifies the groups involved in BCP, so it is part of this phase.",
+        "Incorrect. Analyzing the legal and regulatory landscape is one of the four listed scope-and-planning actions. Laws and regulations shape what the BCP must cover, so this belongs in the phase.",
+        "Incorrect. Creating the BCP team is one of the four core actions in project scope and planning, so it is part of this phase.",
+        "Correct. Documenting the plan comes after business impact analysis and continuity planning. It is not one of the four scope-and-planning actions: organizational analysis, team creation, resource assessment and legal/regulatory review."
+      ]
+    },
+    {
+      "id": "OPT4-C01-068",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "Gary is implementing a new website architecture that uses multiple small web servers behind a load balancer. What principle of information security is Gary seeking to enforce?",
+      "options": [
+        "Denial",
+        "Confidentiality",
+        "Integrity",
+        "Availability"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Keeping a service up and running is an example of an availability control because it increases the likelihood that a service will remain available to answer user requests.",
+      "optionNotes": [
+        "Incorrect. Denial isn't a security principle. It's one of the DAD threats (disclosure, alteration, destruction/denial), the opposite of the CIA triad. Load balancing works against denial of service; it doesn't enforce \"denial.\"",
+        "Incorrect. Confidentiality means preventing unauthorized disclosure, using controls such as encryption and access control. Spreading traffic across several web servers doesn't stop anyone from seeing data.",
+        "Incorrect. Integrity means preventing unauthorized changes, using controls such as hashing and change control. A load balancer and a server cluster don't protect data from being altered.",
+        "Correct. Several servers behind a load balancer keep the service running if one server fails. That makes it more likely the site stays available to answer user requests, so it's an availability control."
+      ]
+    },
+    {
+      "id": "OPT4-C01-069",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.03,
+      "stem": "Becka recently signed a contract with an alternate data processing facility that will provide her company with space in the event of a disaster. The facility includes HVAC, power, and communications circuits but no hardware. What type of facility is Becka using?",
+      "options": [
+        "Cold site",
+        "Warm site",
+        "Hot site",
+        "Mobile site"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A cold site includes the basic capabilities required for data center operations such as space, power, HVAC, and communications, but it does not include any of the hardware required to restore operations. Warm sites, hot sites, and mobile sites would all include hardware.",
+      "optionNotes": [
+        "Correct. A cold site provides only the basics: space, power, HVAC, and communications. It has no hardware, which matches Becka's facility exactly.",
+        "Incorrect. A warm site already has hardware and communications in place, though data isn't current. Becka's facility has no hardware at all.",
+        "Incorrect. A hot site is fully equipped with hardware and near-current data so it can take over quickly. That is far more than space and utilities alone.",
+        "Incorrect. A mobile site is a self-contained trailer or unit that comes with its own equipment, so it includes hardware. Becka's fixed facility with no hardware doesn't fit."
+      ]
+    },
+    {
+      "id": "OPT4-C01-070",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Greg's company recently experienced a significant data breach involving the personal data of many of their customers. The company operates only in the United States and has facilities in several different states. The personal information relates only to residents of the United States. Which breach laws should they review to ensure that they are taking appropriate action?",
+      "options": [
+        "The breach laws in the state where they are headquartered along with federal breach laws.",
+        "The breach laws of states they do business in or where their customers reside along with federal breach laws.",
+        "Only federal breach laws.",
+        "Breach laws only cover government agencies, not private businesses."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In general, companies should be aware of the breach laws in any location where they do business. U.S. states have a diverse collection of breach laws and requirements, meaning that in this case, Greg's company may need to review many different breach laws to determine which they may need to comply with if they conduct business in the state or with the state's residents.",
+      "optionNotes": [
+        "Incorrect. Too narrow. State breach laws apply based on where the company does business and where affected residents live, not just where it is headquartered, so laws in other states may also require notification.",
+        "Correct. U.S. states have a diverse mix of breach notification laws, so Greg's company must review the laws of every state where it does business or whose residents were affected, in addition to any applicable federal requirements.",
+        "Incorrect. The U.S. has no single comprehensive federal breach law. California's SB 1386 created the first state notification requirement and every other state followed, so state laws cannot be ignored.",
+        "Incorrect. False. State breach notification laws such as California's SB 1386 cover private organizations that hold personal information, not just government agencies."
+      ]
+    },
+    {
+      "id": "OPT4-C01-071",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Ben is seeking a control objective framework that is widely accepted around the world and focuses specifically on information security controls. Which one of the following frameworks would best meet his needs?",
+      "options": [
+        "ITIL",
+        "ISO 27002",
+        "CMM",
+        "PMBOK Guide"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "ISO 27002 is an international standard focused on information security and titled “Information security, cybersecurity and privacy protection: Information security controls.” ITIL does contain security management practices, but it is not the sole focus of the document, and the ITIL security section is derived from ISO 27002. The Capability Maturity Model (CMM) is focused on software development, and the Project Management Body of Knowledge (PMBOK) Guide focuses on project management.",
+      "optionNotes": [
+        "Incorrect. ITIL is an IT service management framework. It has security management practices, but security isn't its focus, and its security section is derived from ISO 27002.",
+        "Correct. ISO 27002 is an international standard devoted specifically to information security controls, so it meets both of Ben's needs: worldwide acceptance and a security-control focus.",
+        "Incorrect. The Capability Maturity Model measures how mature software development processes are. It isn't a catalog of information security control objectives.",
+        "Incorrect. The PMBOK Guide covers project management practices, not information security controls."
+      ]
+    },
+    {
+      "id": "OPT4-C01-072",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Matt works for a telecommunications firm and was approached by a federal agent seeking assistance with wiretapping one of Matt's clients pursuant to a search warrant. Which one of the following laws requires that communications service providers cooperate with law enforcement requests?",
+      "options": [
+        "ECPA",
+        "CALEA",
+        "Privacy Act",
+        "HITECH Act"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Communications Assistance for Law Enforcement Act (CALEA) requires that all communications carriers make wiretaps possible for law enforcement officials who have an appropriate court order.",
+      "optionNotes": [
+        "Incorrect. ECPA (1986) makes it a crime to intercept electronic communications without authorization. It protects privacy and does not require carriers to build wiretap capability. CALEA later amended ECPA to add that duty.",
+        "Correct. CALEA requires every communications carrier to make wiretaps possible for law enforcement that holds an appropriate court order, whatever technology the carrier uses.",
+        "Incorrect. The Privacy Act of 1974 limits how federal agencies collect, use and disclose personal records. It puts no wiretap-cooperation duty on private telecom carriers.",
+        "Incorrect. The HITECH Act amended HIPAA, adding breach notification and extending obligations to business associates. It is about health information, not law-enforcement wiretaps."
+      ]
+    },
+    {
+      "id": "OPT4-C01-073",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.76,
+      "stem": "Every year, Gary receives privacy notices in the mail from financial institutions where he has accounts. What law requires the institutions to send Gary these notices?",
+      "options": [
+        "FERPA",
+        "GLBA",
+        "HIPAA",
+        "HITECH"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Gramm-Leach-Bliley Act (GLBA) places strict privacy regulations on financial institutions, including providing written notice of privacy practices to customers.",
+      "optionNotes": [
+        "Incorrect. FERPA protects the privacy of student educational records at schools that receive federal funding. It doesn't cover financial institutions or require annual privacy notices to bank customers.",
+        "Correct. GLBA sets privacy rules for financial institutions, including giving customers written notice of their privacy practices. That's why Gary gets these notices every year.",
+        "Incorrect. HIPAA regulates how health records are protected and shared by covered healthcare entities. Gary's notices come from financial institutions, which fall under GLBA instead.",
+        "Incorrect. HITECH added to HIPAA, adding breach notification requirements and extending HIPAA rules to business associates. It applies to health information, not to financial institutions' customer privacy notices."
+      ]
+    },
+    {
+      "id": "OPT4-C01-074",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "Which one of the following agreements typically requires that a vendor not disclose confidential information learned during the scope of an engagement?",
+      "options": [
+        "NCA",
+        "SLA",
+        "NDA",
+        "RTO"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Nondisclosure agreements (NDAs) typically require either mutual or one-way confidentiality in a business relationship. Service-level agreements specify service uptime and other performance measures. Noncompete agreements (NCAs) limit the future employment possibilities of employees. Recovery time objectives (RTOs) are used in business continuity planning.",
+      "optionNotes": [
+        "Incorrect. A noncompete agreement (NCA) restricts where an employee can work in the future, such as joining a competitor. It doesn't cover keeping information confidential.",
+        "Incorrect. A service-level agreement (SLA) sets uptime and other performance expectations for a vendor, often with penalties if they're missed. It isn't a confidentiality contract.",
+        "Correct. A nondisclosure agreement (NDA) creates a one-way or mutual duty not to disclose confidential information, which is exactly what a vendor engagement needs.",
+        "Incorrect. A recovery time objective (RTO) is a business continuity planning metric for how quickly a function must be restored. It isn't an agreement at all."
+      ]
+    },
+    {
+      "id": "OPT4-C01-075",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "The ISC2 Code of Ethics applies to all CISSP holders. Which of the following is not one of the four mandatory canons of the code?",
+      "options": [
+        "Protect society, the common good, the necessary public trust and confidence, and the infrastructure.",
+        "Disclose breaches of privacy, trust, and ethics.",
+        "Provide diligent and competent service to the principals.",
+        "Advance and protect the profession."
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The ISC2 Code of Ethics also includes “Act honorably, honestly, justly, responsibly, and legally” but does not specifically require credential holders to disclose all breaches of privacy, trust, or ethics.",
+      "optionNotes": [
+        "Incorrect. This is Canon I, the first canon of the ISC2 Code of Ethics. It is mandatory, so it can't be the answer to a 'not one of' question.",
+        "Correct. The canons don't say members must disclose every breach of privacy, trust, or ethics. The canon this option replaces is 'Act honorably, honestly, justly, responsibly, and legally.'",
+        "Incorrect. This is Canon III, which covers your duty to employers and clients (principals). It is one of the four mandatory canons.",
+        "Incorrect. This is Canon IV, the last of the four canons. It is a required part of the code, not the missing item."
+      ]
+    },
+    {
+      "id": "OPT4-C01-076",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Which one of the following stakeholders is not typically included on a business continuity planning team?",
+      "options": [
+        "Core business function leaders",
+        "Information technology staff",
+        "CEO",
+        "Support departments"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "While senior management should be represented on the BCP team, it would be highly unusual for the CEO to fill this role personally.",
+      "optionNotes": [
+        "Incorrect. Leaders of core business functions are standard BCP team members. They know which operations are critical and must be represented when continuity strategies are planned.",
+        "Incorrect. IT staff are usually on the BCP team because they understand the systems and infrastructure that business processes rely on, along with the technical recovery options.",
+        "Correct. Senior management should be represented on the BCP team, but it would be highly unusual for the CEO to fill that role personally. The CEO usually sponsors and approves the plan instead.",
+        "Incorrect. Support departments, such as facilities, HR and legal, are normally included because core operations depend on them during a disruption."
+      ]
+    },
+    {
+      "id": "OPT4-C01-077",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.76,
+      "stem": "Ben is designing a messaging system for a bank and would like to include a feature that allows the recipient of a message to prove to a third party that the message did indeed come from the purported originator. What goal is Ben trying to achieve?",
+      "options": [
+        "Authentication",
+        "Authorization",
+        "Integrity",
+        "Nonrepudiation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Nonrepudiation allows a recipient to prove to a third party that a message came from a purported source. Authentication would provide proof to Ben that the sender was authentic, but Ben would not be able to prove this to a third party.",
+      "optionNotes": [
+        "Incorrect. Authentication proves the sender's identity to Ben, the recipient, but on its own it doesn't let him prove the message's origin to a third party.",
+        "Incorrect. Authorization decides what an authenticated subject may access or do. It says nothing about proving where a message came from.",
+        "Incorrect. Integrity confirms that a message wasn't changed between sender and recipient. It doesn't prove to an outside party who sent the message.",
+        "Correct. Nonrepudiation lets the recipient prove to a third party that a message came from the claimed sender, usually by means of digital signatures, so the sender can't deny sending it."
+      ]
+    },
+    {
+      "id": "OPT4-C01-078",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "What principle of information security states that an organization should implement overlapping security controls whenever possible?",
+      "options": [
+        "Least privilege",
+        "Separation of duties",
+        "Defense in depth",
+        "Security through obscurity"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Defense in depth states that organizations should have overlapping security controls designed to meet the same security objectives whenever possible. This approach provides security in the event of a single control failure. Least privilege ensures that an individual has only the minimum set of permissions necessary to carry out their assigned job functions and does not require overlapping controls. Separation of duties requires that one person not have permission to perform two separate actions that, when combined, carry out a sensitive function. Security through obscurity attempts to hide the details of security controls to add security to them. Neither separation of duties nor security through obscurity involves overlapping controls.",
+      "optionNotes": [
+        "Incorrect. Least privilege limits a user to the minimum permissions needed for their job. It is about permission scope, not about layering overlapping controls.",
+        "Incorrect. Separation of duties keeps one person from performing two actions that together complete a sensitive function. It is a fraud-prevention control, not a principle of overlapping controls.",
+        "Correct. Defense in depth layers overlapping controls that serve the same security objective, so security holds even if a single control fails.",
+        "Incorrect. Security through obscurity tries to protect controls by hiding how they work. It has nothing to do with overlapping controls and is considered a weak approach."
+      ]
+    },
+    {
+      "id": "OPT4-C01-079",
+      "domain": 1,
+      "type": "multi",
+      "difficulty": 1.67,
+      "stem": "Ryan is a CISSP-certified cybersecurity professional working in a nonprofit organization. Which of the following ethical obligations apply to his work? (Select all that apply.)",
+      "options": [
+        "ISC2 Code of Ethics",
+        "Organizational code of ethics",
+        "Federal code of ethics",
+        "RFC 1087"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "All ISC2 certified professionals are required to comply with the ISC2 Code of Ethics. All employees of an organization are required to comply with the organization's code of ethics. The federal code of ethics (or, more formally, the Code of Ethics for Government Service) would not apply to a nonprofit organization, as it applies only to federal employees. RFC 1087 does provide a code of ethics for the Internet, but it is not binding on any individual.",
+      "optionNotes": [
+        "Correct. Every ISC2-certified professional, Ryan included, must follow the ISC2 Code of Ethics as a condition of holding the certification.",
+        "Correct. All employees must follow their employer's code of ethics, so Ryan is bound by the nonprofit's organizational code.",
+        "Incorrect. The federal code (the Code of Ethics for Government Service) covers only federal employees. It doesn't apply to someone working at a nonprofit.",
+        "Incorrect. RFC 1087 sets out ethics guidance for Internet use, but it is advisory and not binding on any individual."
+      ]
+    },
+    {
+      "id": "OPT4-C01-080",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "Ben is responsible for the security of payment card information stored in a database. Policy directs that he remove the information from the database, but he cannot do this for operational reasons. He obtained an exception to policy and is seeking an appropriate compensating control to mitigate the risk. What would be his best option?",
+      "options": [
+        "Purchasing insurance",
+        "Encrypting the database contents",
+        "Removing the data",
+        "Objecting to the exception"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Ben should encrypt the data to provide an additional layer of protection as a compensating control. The organization has already made a policy exception, so he should not react by objecting to the exception or removing the data without authorization. Purchasing insurance may transfer some of the risk but is not a mitigating control.",
+      "optionNotes": [
+        "Incorrect. Insurance is risk transference. It shifts some of the financial impact to another party but doesn't lower the chance of the data being compromised, so it isn't a mitigating compensating control.",
+        "Correct. Encryption adds a layer of protection to the stored card data. That makes it a fitting compensating control while the policy exception keeps the data in the database.",
+        "Incorrect. Removing the data is the original policy requirement that operations can't meet, which is why the exception was granted. Doing it without authorization would go against the approved exception.",
+        "Incorrect. The organization has already approved the exception. Ben's job now is to reduce the remaining risk, not to fight a decision that management has made."
+      ]
+    },
+    {
+      "id": "OPT4-C01-081",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.69,
+      "stem": "The Domer Industries risk assessment team recently conducted a qualitative risk assessment and developed a matrix similar to the one shown here. Which quadrant contains the risks that require the most immediate attention?\n[Figure, described in text: a 2×2 matrix with Probability on the vertical axis and Impact on the horizontal axis. Quadrant I is top right (high probability, high impact), II is top left (high probability, low impact), III is bottom left (low probability, low impact), and IV is bottom right (low probability, high impact).]",
+      "options": [
+        "I",
+        "II",
+        "III",
+        "IV"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The risk assessment team should pay the most immediate attention to those risks that appear in quadrant I. These are the risks with a high probability of occurring and a high impact on the organization if they do occur.",
+      "optionNotes": [
+        "Correct. Quadrant I holds risks that are both highly likely to happen and would hurt the organization badly if they did. That combination makes them the top priority for immediate attention.",
+        "Incorrect. Quadrant II risks are likely to happen but have low impact. They matter less than quadrant I risks, which are also high impact.",
+        "Incorrect. Quadrant III risks are low probability and low impact, the lowest combined value on the matrix. They get the least priority.",
+        "Incorrect. Quadrant IV risks would have high impact but are unlikely to happen. They deserve attention, but less urgently than quadrant I risks, which are high on both axes."
+      ]
+    },
+    {
+      "id": "OPT4-C01-082",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.05,
+      "stem": "Tom is planning to terminate an employee this afternoon for fraud and expects that the meeting will be somewhat hostile. He is coordinating the meeting with human resources and wants to protect the company against damage. Which one of the following steps is most important to coordinate in time with the termination meeting?",
+      "options": [
+        "Informing other employees of the termination",
+        "Retrieving the employee's photo ID",
+        "Calculating the final paycheck",
+        "Revoking electronic access rights"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Electronic access to company resources must be carefully coordinated. An employee who retains access after being terminated may use that access to take retaliatory action. On the other hand, if access is terminated too early, the employee may figure out that they are about to be terminated.",
+      "optionNotes": [
+        "Incorrect. Telling other employees is an HR or communications step that can happen after the meeting. Doing it at the exact same moment doesn't protect systems from retaliation by a hostile employee.",
+        "Incorrect. Collecting the photo ID is a normal part of exit processing, but it doesn't have to happen at the exact moment of termination. Electronic access is the bigger risk, because it allows immediate retaliatory damage.",
+        "Incorrect. The final paycheck is an HR and legal matter that doesn't need precise timing. It does nothing to stop a fired employee from damaging company resources.",
+        "Correct. Revoking access must be timed with the meeting. If access stays active, the terminated employee could retaliate. If it's cut off too early, the employee may realize they're about to be fired."
+      ]
+    },
+    {
+      "id": "OPT4-C01-083",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.03,
+      "stem": "Rolando is a risk manager with a large-scale enterprise. The firm recently evaluated the risk of California mudslides on its operations in the region and determined that the cost of responding outweighed the benefits of any controls it could implement. The company chose to take no action at this time. What risk management strategy did Rolando's organization pursue?",
+      "options": [
+        "Risk avoidance",
+        "Risk mitigation",
+        "Risk transference",
+        "Risk acceptance"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In a risk acceptance strategy, the organization decides that taking no action is the most beneficial route to managing a risk.",
+      "optionNotes": [
+        "Incorrect. Risk avoidance means dropping or changing the risky activity, such as pulling operations out of the mudslide area. The firm kept operating there and simply did nothing, so this isn't avoidance.",
+        "Incorrect. Risk mitigation means putting controls in place to cut the likelihood or impact of a risk. Rolando's firm decided controls cost more than they were worth and implemented none.",
+        "Incorrect. Risk transference shifts part of the loss to another party, usually through insurance or outsourcing. The scenario doesn't mention any insurance or other party taking on the risk.",
+        "Correct. With risk acceptance, the organization decides that taking no action is the best way to handle a risk, because countermeasures would cost more than the expected loss. That matches the firm's decision on the mudslide risk."
+      ]
+    },
+    {
+      "id": "OPT4-C01-084",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.03,
+      "stem": "Helen is the owner of a U.S. website that provides information for middle and high school students preparing for exams. She is writing the site's privacy policy and would like to ensure that it complies with the provisions of the Children's Online Privacy Protection Act (COPPA). What is the cutoff age below which parents must give consent in advance of the collection of personal information from their children under COPPA?",
+      "options": [
+        "13",
+        "15",
+        "17",
+        "18"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "COPPA requires that websites obtain advance parental consent for the collection of personal information from children under the age of 13.",
+      "optionNotes": [
+        "Correct. Under COPPA, websites must get verifiable parental consent before they collect personal information from children under 13.",
+        "Incorrect. COPPA's consent threshold is under 13, not 15. Fifteen isn't a cutoff in COPPA, though some non-U.S. laws, such as certain GDPR member-state options, use ages like 15 or 16.",
+        "Incorrect. Seventeen has no role in COPPA. Parental consent applies only to children under 13, so most high school students fall outside it.",
+        "Incorrect. Eighteen is the general age of majority, not COPPA's threshold. COPPA protects only children under 13."
+      ]
+    },
+    {
+      "id": "OPT4-C01-085",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Tom is considering locating a business in the downtown area of Miami, Florida. He consults the FEMA flood plain map for the region, shown here, and determines that the area he is considering lies within a 100-year flood plain. What is the ARO of a flood in this area?\n[Figure, described in text: the City of North Miami Floodzone Map 2020, a FEMA-based flood zone map with a legend of flood zones (VE, AE, X, X-500).]",
+      "options": [
+        "100",
+        "1",
+        "0.1",
+        "0.01"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The annualized rate of occurrence (ARO) is the frequency at which you should expect a risk to materialize each year. In a 100-year flood plain, risk analysts expect a flood to occur once every 100 years, or 0.01 times per year.",
+      "optionNotes": [
+        "Incorrect. 100 is the recurrence interval in years, not the annual rate. ARO is the inverse of that interval: 1/100 = 0.01 occurrences per year.",
+        "Incorrect. An ARO of 1 would mean you expect a flood every year. A 100-year flood plain means one flood per century, which is far less often.",
+        "Incorrect. 0.1 is one flood every 10 years, so it is off by a factor of ten. The 100-year flood plain on the FEMA map gives 1/100 per year.",
+        "Correct. ARO is how often a risk is expected to happen per year. A 100-year flood plain means one flood per 100 years, which is 0.01 per year."
+      ]
+    },
+    {
+      "id": "OPT4-C01-086",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.76,
+      "stem": "You discover that a user on your network has been using the Wireshark tool, as shown here. Further investigation revealed that he was using it for illicit purposes. What pillar of information security has most likely been violated?\n[Figure, described in text: a Wireshark capture window listing TCP and HTTP packets exchanged between 10.0.2.15 and 10.0.2.4 (including HTTP GET requests), with packet details shown below the list.]",
+      "options": [
+        "Integrity",
+        "Denial",
+        "Availability",
+        "Confidentiality"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Wireshark is a protocol analyzer and may be used to eavesdrop on network connections. Eavesdropping is an attack against confidentiality.",
+      "optionNotes": [
+        "Incorrect. Integrity means preventing unauthorized changes to data. Wireshark only captures and reads traffic passively, so it doesn't change anything in transit.",
+        "Incorrect. Denial is not a pillar of information security. The CIA triad is confidentiality, integrity and availability. DAD (disclosure, alteration, destruction) is its opposite, and eavesdropping matches disclosure, not 'denial'.",
+        "Incorrect. Availability is about keeping systems and data accessible. A protocol analyzer that is just listening doesn't disrupt service or block access to anything.",
+        "Correct. Wireshark is a protocol analyzer that can be used to eavesdrop on network traffic, and eavesdropping exposes data to people who aren't authorized to see it. That is an attack on confidentiality."
+      ]
+    },
+    {
+      "id": "OPT4-C01-087",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.33,
+      "stem": "Alan is performing threat modeling and decides that it would be useful to decompose the system into the core elements shown here. What tool is he using?\n[Figure, described in text: a diagram of Users, a Web Servlet, a Login Process, a College Library Database and Database Files, connected by labeled data flows (Login Request/Login Response, Authenticate User()/Authenticate User Result, Authenticate User SQL Query/Query Result, Pages, Data), and crossed by dashed lines marking the User/Web Server Boundary and the Web Server/Database Boundary.]",
+      "options": [
+        "Vulnerability assessment",
+        "Fuzzing",
+        "Reduction analysis",
+        "Data modeling"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In reduction analysis, the security professional breaks the system down into five core elements: trust boundaries, data flow paths, input points, privileged operations, and details about security controls.",
+      "optionNotes": [
+        "Incorrect. A vulnerability assessment scans systems for known weaknesses. It doesn't break a system down into trust boundaries and data flows the way the diagram does.",
+        "Incorrect. Fuzzing is a dynamic testing method that sends malformed or random input to software to make it crash. It isn't a way to break a system into parts during threat modeling.",
+        "Correct. Reduction analysis breaks a system into its core elements: trust boundaries, data flow paths, input points, privileged operations and security control details. The diagram shows exactly these, including the dashed boundary lines and data flows.",
+        "Incorrect. Data modeling describes data structures and the relationships between entities, such as database schemas. It doesn't map trust boundaries or privileged operations for threat modeling."
+      ]
+    },
+    {
+      "id": "OPT4-C01-088",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "Shahla is reviewing the privacy laws that apply to a new enterprise that her company will be launching in South Africa. This is the company's first expansion into that country, and the enterprise will involve handling the personal information of residents of South Africa. What law will likely affect this operation?",
+      "options": [
+        "PIPL",
+        "PCI DSS",
+        "PIPEDA",
+        "POPIA"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "South Africa's Protection of Personal Information Act (POPIA) governs the processing of personal data and would affect any new enterprise operating within its jurisdiction that handles personal information. PIPL refers to China's Personal Information Protection Law, which would not apply in South Africa. PCI DSS is a set of security standards for entities that handle credit cards and does not relate to privacy law but rather to the security of cardholder data. PIPEDA, the Personal Information Protection and Electronic Documents Act, is Canada's data privacy law and would not be applicable to operations in South Africa.",
+      "optionNotes": [
+        "Incorrect. PIPL is China's Personal Information Protection Law. It covers personal data of people in China, so it would not govern an operation handling South African residents' data.",
+        "Incorrect. PCI DSS is an industry security standard for protecting cardholder data, not a national privacy law. Nothing in the scenario mentions payment cards.",
+        "Incorrect. PIPEDA is Canada's federal privacy law for private-sector organizations. It would not apply to operations in South Africa.",
+        "Correct. South Africa's Protection of Personal Information Act (POPIA) governs how personal information is processed within its jurisdiction. That makes it the law that applies to this new enterprise."
+      ]
+    },
+    {
+      "id": "OPT4-C01-089",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "Which type of business impact assessment tool is most appropriate when attempting to evaluate the impact of a failure on customer confidence?",
+      "options": [
+        "Quantitative",
+        "Qualitative",
+        "Annualized loss expectancy",
+        "Reduction"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Qualitative tools are often used in business impact assessment to capture the impact on intangible factors such as customer confidence, employee morale, and reputation.",
+      "optionNotes": [
+        "Incorrect. Quantitative assessment uses numbers and formulas, usually dollar values. It doesn't capture intangible factors like customer confidence well.",
+        "Correct. Qualitative assessment looks at non-numerical factors such as customer confidence, reputation and employee morale. Results are usually ranked as high, medium or low priority.",
+        "Incorrect. ALE (SLE × ARO) is a quantitative formula that gives a dollar figure for expected annual loss. It can't directly measure intangible impacts like lost customer confidence.",
+        "Incorrect. Reduction (mitigation) is a way to respond to risk, not a BIA assessment tool. It doesn't measure impacts on intangibles."
+      ]
+    },
+    {
+      "id": "OPT4-C01-090",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.62,
+      "stem": "Ryan is a security risk analyst for an insurance company. He is currently examining a scenario in which a malicious hacker might use a SQL injection attack to deface a web server due to a missing patch in the company's web application. In this scenario, what is the threat?",
+      "options": [
+        "Unpatched web application",
+        "Web defacement",
+        "Malicious hacker",
+        "Operating system"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Risks are the combination of a threat and a vulnerability. Threats are the external forces seeking to undermine security, such as the malicious hacker in this case. Vulnerabilities are the internal weaknesses that might allow a threat to succeed. In this scenario the missing patch is the vulnerability, and the malicious hacker is the threat. If the hacker (threat) attempts a SQL injection attack against the unpatched server (vulnerability), the result is website defacement.",
+      "optionNotes": [
+        "Incorrect. The unpatched web application, with its missing patch, is the vulnerability. It's the internal weakness the threat exploits, not the threat itself.",
+        "Incorrect. Web defacement is what happens when the hacker (the threat) successfully uses SQL injection against the unpatched server (the vulnerability). It's the impact, not the threat.",
+        "Correct. A threat is an external force trying to undermine security. Here that's the malicious hacker who would launch the SQL injection attack.",
+        "Incorrect. The scenario never names the operating system as a weakness or an attacker. It's just part of the asset environment, and the flaw described is in the web application."
+      ]
+    },
+    {
+      "id": "OPT4-C01-091",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.19,
+      "stem": "Scenario:\nHenry is the risk manager for Atwood Landing, a resort community in the midwestern United States. The resort's main data center is located in northern Indiana in an area that is prone to tornados. Henry recently undertook a replacement cost analysis and determined that rebuilding and reconfiguring the data center would cost $10 million. Henry consulted with tornado experts, data center specialists, and structural engineers. Together, they determined that a typical tornado would cause approximately $5 million of damage to the facility. The meteorologists determined that Atwood's facility lies in an area where they are likely to experience a tornado once every 200 years.\n\nBased upon the information in this scenario, what is the exposure factor for the effect of a tornado on Atwood Landing's data center?",
+      "options": [
+        "10%",
+        "25%",
+        "50%",
+        "75%"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The exposure factor is the percentage of the facility that risk managers expect will be damaged if a risk materializes. It is calculated by dividing the amount of damage by the asset value. In this case, that is $5 million in damage divided by the $10 million facility value, or 50%.",
+      "optionNotes": [
+        "Incorrect. 10% doesn't come from any correct use of the scenario figures. EF = $5M damage ÷ $10M asset value, which is 50%, not 10%.",
+        "Incorrect. 25% would mean about $2.5M of damage to a $10M facility. The experts estimated $5M of damage, which gives an EF of 50%.",
+        "Correct. The exposure factor is the expected damage divided by the asset value: $5M ÷ $10M = 50% of the facility lost per tornado.",
+        "Incorrect. 75% would require $7.5M of damage. The scenario's $5M estimate on a $10M asset gives an EF of 50%."
+      ]
+    },
+    {
+      "id": "OPT4-C01-092",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.86,
+      "stem": "Scenario:\nHenry is the risk manager for Atwood Landing, a resort community in the midwestern United States. The resort's main data center is located in northern Indiana in an area that is prone to tornados. Henry recently undertook a replacement cost analysis and determined that rebuilding and reconfiguring the data center would cost $10 million. Henry consulted with tornado experts, data center specialists, and structural engineers. Together, they determined that a typical tornado would cause approximately $5 million of damage to the facility. The meteorologists determined that Atwood's facility lies in an area where they are likely to experience a tornado once every 200 years.\n\nBased upon the information in this scenario, what is the annualized rate of occurrence for a tornado at Atwood Landing's data center?",
+      "options": [
+        "0.0025",
+        "0.005",
+        "0.01",
+        "0.015"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The annualized rate of occurrence is the number of times that risk analysts expect a risk to happen in any given year. In this case, the analysts expect tornados once every 200 years, or 0.005 times per year.",
+      "optionNotes": [
+        "Incorrect. 0.0025 would mean one tornado every 400 years, which is half the stated frequency. A once-in-200-years event gives 1/200 = 0.005 per year.",
+        "Correct. ARO is how many times the risk is expected to occur in a year. One tornado every 200 years is 1/200 = 0.005.",
+        "Incorrect. 0.01 would mean one tornado every 100 years, the frequency used in a different OSG tornado example. This scenario says once every 200 years, so the ARO is 0.005.",
+        "Incorrect. 0.015 means about one tornado every 67 years, which nothing in the scenario supports. ARO is just 1 divided by the 200-year interval."
+      ]
+    },
+    {
+      "id": "OPT4-C01-093",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.54,
+      "stem": "Scenario:\nHenry is the risk manager for Atwood Landing, a resort community in the midwestern United States. The resort's main data center is located in northern Indiana in an area that is prone to tornados. Henry recently undertook a replacement cost analysis and determined that rebuilding and reconfiguring the data center would cost $10 million. Henry consulted with tornado experts, data center specialists, and structural engineers. Together, they determined that a typical tornado would cause approximately $5 million of damage to the facility. The meteorologists determined that Atwood's facility lies in an area where they are likely to experience a tornado once every 200 years.\n\nBased upon the information in this scenario, what is the annualized loss expectancy for a tornado at Atwood Landing's data center?",
+      "options": [
+        "$25,000",
+        "$50,000",
+        "$250,000",
+        "$500,000"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The annualized loss expectancy is calculated by multiplying the single loss expectancy (SLE) by the annualized rate of occurrence (ARO). In this case, the SLE is $5,000,000, and the ARO is 0.005. Multiplying these numbers together gives you the ALE of $25,000.",
+      "optionNotes": [
+        "Correct. ALE = SLE × ARO. The SLE is the $5 million in expected tornado damage, and a 1-in-200-year event gives an ARO of 0.005. $5,000,000 × 0.005 = $25,000.",
+        "Incorrect. $50,000 comes from using the $10 million replacement cost (the asset value) instead of the $5 million expected damage. The SLE is the damage from one occurrence, not the full asset value.",
+        "Incorrect. $250,000 multiplies the $5 million SLE by 0.05 instead of 0.005. A once-in-200-years rate means an ARO of 1/200 = 0.005.",
+        "Incorrect. $500,000 combines both mistakes: it uses the $10 million asset value as the SLE and an ARO of 0.05. The correct figures are an SLE of $5 million and an ARO of 0.005."
+      ]
+    },
+    {
+      "id": "OPT4-C01-094",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "John is analyzing an attack against his company in which the attacker found comments embedded in HTML code that provided the clues needed to exploit a software vulnerability. Using the STRIDE model, what type of attack did he uncover?",
+      "options": [
+        "Spoofing",
+        "Repudiation",
+        "Information disclosure",
+        "Elevation of privilege"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Information disclosure attacks rely upon the revelation of private, confidential, or controlled information. When the attacker examined the HTML code and discovered sensitive information, this was an example of an information disclosure attack, as the attacker gained information they should not have been privy to.",
+      "optionNotes": [
+        "Incorrect. Spoofing means getting into a system with a fake identity. Here the attacker didn't pretend to be anyone. They read comments in the HTML that were exposed to them.",
+        "Incorrect. Repudiation is when someone denies doing something they did, which is a non-repudiation and accountability problem. Finding clues in HTML comments has nothing to do with denying an action.",
+        "Correct. HTML comments exposed sensitive details the attacker should never have seen. Revealing private or controlled information is what STRIDE calls information disclosure.",
+        "Incorrect. Elevation of privilege means gaining higher access rights, such as admin or root. A later exploit might do that, but the attack described here is reading leaked information."
+      ]
+    },
+    {
+      "id": "OPT4-C01-095",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.32,
+      "stem": "Chris is worried that the laptops that his organization has recently acquired were modified by a third party to include keyloggers before they were delivered. Where should he focus his efforts to prevent this?",
+      "options": [
+        "His supply chain",
+        "His vendor contracts",
+        "His post-purchase build process",
+        "The original equipment manufacturer (OEM)"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Supply chain management can help ensure the security of hardware, software, and services that an organization acquires. Chris should focus on each step that his laptops take from the original equipment manufacturer to delivery.",
+      "optionNotes": [
+        "Correct. The keyloggers would be planted before delivery, so Chris needs supply chain management. That means securing every step the laptops take from the OEM until they reach his organization.",
+        "Incorrect. Vendor contracts can assign responsibility and set requirements, but on their own they don't secure or verify the whole path from manufacturer to delivery. The book's answer is the end-to-end supply chain.",
+        "Incorrect. The post-purchase build process starts after the laptops arrive. It can't stop tampering that happened before delivery, and firmware or hardware keyloggers may survive a reimage.",
+        "Incorrect. The OEM is only the first link. Laptops can still be modified by distributors, shippers, or resellers after they leave the manufacturer, so Chris has to cover the whole chain."
+      ]
+    },
+    {
+      "id": "OPT4-C01-096",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.22,
+      "stem": "In her role as a developer for an online bank, Lisa is required to submit her code for testing and review. After it passes through this process and it is approved, another employee moves the code to the production environment. What security management does this process describe?",
+      "options": [
+        "Regression testing",
+        "Code review",
+        "Change management",
+        "Fuzz testing"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Change management is a critical control process that involves systematically managing change. Without it, Lisa might simply deploy her code to production without oversight, documentation, or testing. Regression testing focuses on testing to ensure that new code doesn't bring back old flaws, while fuzz testing feeds unexpected input to code. In a code review the source code itself is reviewed, and this may be done as part of the change management process but isn't what is described here.",
+      "optionNotes": [
+        "Incorrect. Regression testing checks that new code doesn't bring back old flaws. It's one kind of test, not the whole submit, approve and deploy workflow described here.",
+        "Incorrect. A code review examines the source code itself. It may be one step inside change management, but it doesn't cover the approval and the separate person deploying to production.",
+        "Correct. Change management is the systematic control over changes: testing, review, approval, and deployment by a separate employee. Without it, Lisa could push code to production with no oversight, documentation or testing.",
+        "Incorrect. Fuzz testing feeds unexpected or random input to code to find flaws. It's a testing technique, not a process for approving and promoting changes."
+      ]
+    },
+    {
+      "id": "OPT4-C01-097",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.2,
+      "stem": "After completing the first year of his security awareness program, Charles reviews the data about how many staff completed training compared to how many were assigned the training to determine whether he hit the 95% completion rate he was aiming for. What is this type of measure called?",
+      "options": [
+        "A KPI",
+        "A metric",
+        "An awareness control",
+        "A return on investment rate"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Charles is tracking a key performance indicator (KPI). A KPI is used to measure performance (and success). Without a definition of success, this would simply be a metric, but Charles is working toward a known goal and can measure against it. There is not a return investment calculation in this problem, and the measure is not a control.",
+      "optionNotes": [
+        "Correct. This is a KPI because Charles compares completion data against a set success target of 95%. A KPI measures performance against a defined goal.",
+        "Incorrect. A metric is just a raw measurement, like a completion count. Without a defined goal it stays a metric. Charles has a 95% target, so the measure is a KPI.",
+        "Incorrect. Awareness training is a control, but this completion-rate figure only measures how the program is doing. It doesn't reduce risk on its own, so it isn't a control.",
+        "Incorrect. ROI compares the financial benefit of the program with its cost. The scenario has no cost or benefit figures, only completion percentages."
+      ]
+    },
+    {
+      "id": "OPT4-C01-098",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.35,
+      "stem": "Which of the following is not typically included in a prehire screening process?",
+      "options": [
+        "A drug test",
+        "A background check",
+        "Social media review",
+        "Fitness evaluation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "A fitness evaluation is not a typical part of a hiring process. Drug tests, background checks, and social media checks are all common parts of current hiring practices.",
+      "optionNotes": [
+        "Incorrect. Drug tests are a common part of current hiring practices, used to screen candidates before they are hired, so they are typically included.",
+        "Incorrect. Background checks are a core screening step. How thorough they are depends on the sensitivity of the position, which makes them a standard prehire element.",
+        "Incorrect. Reviewing a candidate's social media is now a common hiring practice for spotting problems with conduct or reputation, so it is typically included.",
+        "Correct. A fitness evaluation is not a typical part of prehire security screening. Screening focuses on trustworthiness, using drug tests, background and reference checks, and social media reviews, not physical fitness."
+      ]
+    },
+    {
+      "id": "OPT4-C01-099",
+      "domain": 1,
+      "type": "multi",
+      "difficulty": 1.67,
+      "stem": "Which of the following would normally be considered a supply chain risk? (Select all that apply.)",
+      "options": [
+        "Adversary tampering with hardware prior to being shipped to the end customer",
+        "Adversary hacking into a web server run by the organization in an IaaS environment",
+        "Adversary using social engineering to compromise an employee of a SaaS vendor to gain access to customer accounts",
+        "Adversary conducting a denial-of-service attack using a botnet"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "Supply chain risks occur when the adversary is interfering with the delivery of goods or services from a supplier to the customer. This might involve tampering with hardware before the customer receives it or using social engineering to compromise a vendor employee. Hacking into a web server run in an infrastructure-as-a-service (IaaS) environment is not a supply chain risk because the web server is already under the control of the customer. Using a botnet to conduct a denial-of-service attack does not involve any supply chain elements.",
+      "optionNotes": [
+        "Correct. If an adversary tampers with hardware before it ships, they are interfering with the delivery of goods from the supplier to the customer, which is the textbook supply chain risk.",
+        "Incorrect. A web server the organization runs in IaaS is already under the customer's control, so hacking it is a direct attack on the organization, not on the supplier's delivery of goods or services.",
+        "Correct. Socially engineering a SaaS vendor's employee to reach customer accounts attacks the supplier in order to compromise the service it delivers to customers. That is a supply chain risk.",
+        "Incorrect. A botnet-driven denial-of-service attack is an availability attack aimed straight at the target. No supplier or delivery channel is involved, so it has no supply chain element."
+      ]
+    },
+    {
+      "id": "OPT4-C01-100",
+      "domain": 1,
+      "type": "ordering",
+      "difficulty": 0.32,
+      "stem": "Match the following numbered laws or industry standards to their lettered description:\nLaws and industry standards:\n1. GLBA\n2. PCI DSS\n3. HIPAA\n4. SOX\n\n(Arrange the options in the order of the numbered items 1–4.)",
+      "options": [
+        "A U.S. law that requires covered financial institutions to provide their customers with a privacy notice on a yearly basis",
+        "A U.S. law that requires internal controls assessments, including IT transaction flows for publicly traded companies",
+        "An industry standard that covers organizations that handle payment cards",
+        "A U.S. law that provides data privacy and security requirements for medical information"
+      ],
+      "answer": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "explanation": "The laws or industry standards match to the descriptions as follows:\n1. GLBA: A. A U.S. law that requires covered financial institutions to provide their customers with a privacy notice on a yearly basis\n2. PCI DSS: C. An industry standard that covers organizations that handle payment cards\n3. HIPAA: D. A U.S. law that provides data privacy and security requirements for medical information\n4. SOX: B. A U.S. law that requires internal controls’ assessments including IT transaction flows for publicly traded companies",
+      "optionNotes": [
+        "Matches item 1, GLBA. The Gramm-Leach-Bliley Act requires covered financial institutions to send customers a privacy notice every year.",
+        "Matches item 4, SOX. Sarbanes-Oxley requires publicly traded companies to assess their internal controls, including IT transaction flows that affect financial reporting.",
+        "Matches item 2, PCI DSS. This is an industry standard set by the card brands, not a law, and it applies to organizations that handle payment cards.",
+        "Matches item 3, HIPAA. This U.S. law sets privacy and security requirements for medical (health) information."
+      ]
+    }
+  ]
+}

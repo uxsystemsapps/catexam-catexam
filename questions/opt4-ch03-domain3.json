@@ -1,0 +1,2315 @@
+{
+  "name": "OPT4 Chapter 3: Security Architecture and Engineering (Domain 3)",
+  "questions": [
+    {
+      "id": "OPT4-C03-001",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Matthew is the security administrator for a consulting firm and must enforce access controls that restrict users' access based upon their previous activity. For example, once a consultant accesses data belonging to Acme Cola, a consulting client, they may no longer access data belonging to any of Acme's competitors. What security model best fits Matthew's needs?",
+      "options": [
+        "Clark-Wilson",
+        "Biba",
+        "Bell-LaPadula",
+        "Brewer-Nash"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Brewer-Nash model allows access controls to change dynamically based upon a user's actions. It is often used in environments like Matthew's to implement a “Chinese wall” between data belonging to different clients.",
+      "optionNotes": [
+        "Incorrect. Clark-Wilson enforces integrity through well-formed transactions, access triples (subject-program-object), and separation of duties. Its access rules stay fixed and do not change based on a user's earlier access, so it can't build a conflict-of-interest wall.",
+        "Incorrect. Biba protects integrity in a lattice with rules like no read down and no write up. Its rules are static and based on integrity levels, so they don't change dynamically to block access to a competitor's data.",
+        "Incorrect. Bell-LaPadula is a static, lattice-based confidentiality model with no read up and no write down. It controls access by clearance and classification, not by what the user accessed before, so it can't enforce conflict-of-interest separation.",
+        "Correct. Brewer-Nash, also called the Chinese wall model, changes access controls dynamically based on a user's past actions. Once a consultant touches Acme's data, data from Acme's competitors becomes off limits."
+      ]
+    },
+    {
+      "id": "OPT4-C03-002",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Referring to the figure shown here, what is the earliest stage of a fire where it is possible to use detection technology to identify it?\n[Figure, described in text: a graph of temperature against time for a fire. The curve stays nearly flat through Stage 1: Incipient, Stage 2: Smoke and Stage 3: Flame, then climbs steeply at Stage 4: Heat.]",
+      "options": [
+        "Incipient",
+        "Smoke",
+        "Flame",
+        "Heat"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Fires may be detected as early as the incipient stage. During this stage, air ionization takes place, and specialized incipient fire detection systems can identify these changes to provide early warning of a fire.",
+      "optionNotes": [
+        "Correct. Stage 1 is the earliest stage. The only change is air ionization, and specialized incipient detection systems such as VESDA can pick it up and give early warning.",
+        "Incorrect. Smoke is Stage 2, when smoke becomes visible. Standard smoke detectors work here, but ionization can already be detected in the earlier incipient stage.",
+        "Incorrect. Flame is Stage 3, when a flame can be seen with the naked eye. Flame detectors trigger at this point, which is well after the fire could have been caught at the incipient stage.",
+        "Incorrect. Heat is Stage 4, the last stage, when temperature climbs sharply. Heat-based detectors respond here, which is the latest point of detection, not the earliest."
+      ]
+    },
+    {
+      "id": "OPT4-C03-003",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Ralph is designing a physical security infrastructure for a new computing facility that will remain largely unstaffed. He plans to implement motion detectors in the facility but would also like to include a secondary verification control for physical presence. Which one of the following would best meet his needs?",
+      "options": [
+        "CCTV",
+        "IPS",
+        "Turnstiles",
+        "Faraday cages"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Closed-circuit television (CCTV) systems act as a secondary verification mechanism for physical presence because they allow security officials to view the interior of the facility when a motion alarm sounds to determine the current occupants and their activities.",
+      "optionNotes": [
+        "Correct. CCTV is a secondary verification mechanism. When a motion alarm goes off, security staff can view the inside of the unstaffed facility to see who is there and what they are doing.",
+        "Incorrect. An intrusion prevention system (IPS) is a network control that detects and blocks malicious traffic. It cannot confirm that a person is physically present in a room.",
+        "Incorrect. Turnstiles control entry by letting people through one at a time. They are a preventive barrier and cannot verify who is inside after a motion detector goes off.",
+        "Incorrect. A Faraday cage blocks electromagnetic emanations (as in TEMPEST protection). It does nothing to detect or confirm that someone is physically present."
+      ]
+    },
+    {
+      "id": "OPT4-C03-004",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Harry would like to retrieve a lost encryption key from a database that uses m of n control, with m = 4 and n = 8. What is the minimum number of escrow agents required to retrieve the key?",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "12"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In an m of n control system, at least m of n possible escrow agents must collaborate to retrieve an encryption key from the escrow database.",
+      "optionNotes": [
+        "Incorrect. Two agents falls short of the threshold. In m of n control, at least m agents (here 4) have to work together before the key can be recovered.",
+        "Correct. In m of n control, m is the minimum number of escrow agents who must collaborate to retrieve the key. With m = 4, four agents are required.",
+        "Incorrect. Eight is n, the total number of escrow agents in the pool. Only m of them (4) are needed, not all 8.",
+        "Incorrect. Twelve is m + n added together, which has no meaning here. It is also more agents than exist (8). The minimum is m = 4."
+      ]
+    },
+    {
+      "id": "OPT4-C03-005",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.13,
+      "stem": "Fran's company is considering purchasing a web-based email service from a vendor and eliminating its own email server environment as a cost-saving measure. What type of cloud computing environment is Fran's company considering?",
+      "options": [
+        "SaaS",
+        "IaaS",
+        "CaaS",
+        "PaaS"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "This is an example of a vendor offering a fully functional application as a web-based service. Therefore, it fits under the definition of software as a service (SaaS). In infrastructure as a service (IaaS), compute as a service (CaaS), and platform as a service (PaaS), the customer provides their own software. In this example, the vendor is providing the email software, so none of those choices is appropriate.",
+      "optionNotes": [
+        "Correct. Web-based email is a complete application that the vendor hosts and runs, and customers just use it. That matches software as a service (SaaS).",
+        "Incorrect. IaaS gives the customer raw compute, storage and networking, and the customer installs and runs its own software. Here the vendor supplies the email software, so IaaS doesn't fit.",
+        "Incorrect. With compute as a service (CaaS), the customer rents processing capacity but still runs its own software. It doesn't cover a vendor-provided email application.",
+        "Incorrect. PaaS provides a platform where customers build and deploy their own applications. In this case the vendor provides the finished email application, so PaaS is wrong."
+      ]
+    },
+    {
+      "id": "OPT4-C03-006",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "Bob is a security administrator with the U.S. federal government and wants to choose a digital signature approach that is an approved part of the federal Digital Signature Standard under FIPS 186-5. Which one of the following encryption algorithms is not an acceptable choice for use in digital signatures?",
+      "options": [
+        "EdDSA",
+        "HAVAL",
+        "RSA",
+        "ECDSA"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Digital Signature Standard approves three encryption algorithms for use in digital signatures: the Rivest, Shamir, Adleman (RSA) algorithm; the Elliptic Curve DSA (ECDSA) algorithm, and the Edwards Curve Digital Signature Algorithm (EdDSA). HAVAL is a hash function, not an encryption algorithm. While hash functions are used as part of the digital signature process, they do not provide encryption.",
+      "optionNotes": [
+        "Incorrect. EdDSA (Edwards Curve Digital Signature Algorithm) is one of the three signature algorithms FIPS 186-5 approves, so it is an acceptable choice.",
+        "Correct. HAVAL is a hash function, not an encryption algorithm, and DSS does not approve it. Digital signatures use hashing, but a hash function doesn't provide the encryption that signing requires.",
+        "Incorrect. RSA (Rivest, Shamir, Adleman) is listed in FIPS 186-5 as an approved digital signature algorithm, so it is acceptable.",
+        "Incorrect. ECDSA (Elliptic Curve DSA) is one of the approved signature algorithms in the Digital Signature Standard, so it is acceptable."
+      ]
+    },
+    {
+      "id": "OPT4-C03-007",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.7,
+      "stem": "Harry would like to access a document owned by Sally and stored on a file server. Applying the subject/object model to this scenario, who or what is the subject of the resource request?",
+      "options": [
+        "Harry",
+        "Sally",
+        "Server",
+        "Document"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In the subject/object model of access control, the user or process making the request for a resource is the subject of that request. In this example, Harry is requesting resource access and is, therefore, the subject.",
+      "optionNotes": [
+        "Correct. Harry is the one actively asking for the resource. In the subject/object model, the user or process making the request is the subject.",
+        "Incorrect. Sally owns the document, but she isn't the one requesting access here. Being the owner doesn't make her the subject of Harry's request.",
+        "Incorrect. The file server only stores the document and isn't the one trying to access anything. A subject is an active entity that tries to access an object.",
+        "Incorrect. The document is the passive resource being accessed, so it is the object. It is not the subject."
+      ]
+    },
+    {
+      "id": "OPT4-C03-008",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "Michael is responsible for forensic investigations and is investigating a medium-severity security incident that involved the defacement of a corporate website. The web server in question ran on a virtualization platform, and the marketing team would like to get the website up and running as quickly as possible. What would be the most reasonable next step for Michael to take?",
+      "options": [
+        "Keep the website offline until the investigation is complete.",
+        "Take the virtualization platform offline as evidence.",
+        "Take a snapshot of the compromised system and use that for the investigation.",
+        "Ignore the incident and focus on quickly restoring the website."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Michael should conduct his investigation, but there is a pressing business need to bring the website back online. The most reasonable course of action would be to take a snapshot of the compromised system and use the snapshot for the investigation, restoring the website to operation as quickly as possible while using the results of the investigation to improve the security of the site.",
+      "optionNotes": [
+        "Incorrect. For a medium-severity defacement, leaving the site down until the investigation finishes ignores a pressing business need. A snapshot keeps the evidence and still lets the site come back quickly.",
+        "Incorrect. Taking the entire virtualization platform offline goes far beyond what is needed. It would disrupt other hosted systems when only the compromised VM's state has to be preserved as evidence.",
+        "Correct. A snapshot preserves the compromised system's state for forensic analysis while the website is restored right away. The investigation's findings can then be used to harden the site.",
+        "Incorrect. Ignoring the incident throws away evidence and lessons learned, and the same vulnerability could be exploited again. Responding to an incident means investigating it, not just restoring service."
+      ]
+    },
+    {
+      "id": "OPT4-C03-009",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Helen is a software engineer and is developing code that she would like to restrict to running within an isolated sandbox for security purposes. What software development technique is Helen using?",
+      "options": [
+        "Bounds",
+        "Input validation",
+        "Confinement",
+        "TCB"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Using a sandbox is an example of confinement, where the system restricts the access of a particular process to limit its ability to affect other processes running on the same system.",
+      "optionNotes": [
+        "Incorrect. Bounds are the memory limits a process is allowed to use (and bounds checking keeps input within range, e.g., against buffer overflows). Bounds alone don't place code inside an isolated sandbox.",
+        "Incorrect. Input validation checks that user-supplied data is the right type and within an acceptable range, ideally on the server side. It filters data. It does not isolate the code's execution environment.",
+        "Correct. A sandbox is an example of confinement. The system limits what a process can access so it can't affect other processes running on the same system.",
+        "Incorrect. The Trusted Computing Base (TCB) is the set of hardware, software and firmware that enforces the security policy. It is not a development technique for sandboxing your own code."
+      ]
+    },
+    {
+      "id": "OPT4-C03-010",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "What concept describes the degree of confidence that an organization has that its controls satisfy security requirements?",
+      "options": [
+        "Trust",
+        "Credentialing",
+        "Verification",
+        "Assurance"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Assurance is the degree of confidence that an organization has that its security controls are correctly implemented. It must be continually monitored and reverified.",
+      "optionNotes": [
+        "Incorrect. In OSG terms, trust means a security mechanism or capability is present: a trusted system is one whose protections work together. It does not measure how confident you are that those controls meet requirements, which is what assurance does.",
+        "Incorrect. Credentialing means issuing and managing identity credentials, such as badges or certificates, to subjects. It has nothing to do with how confident an organization is that its controls satisfy security requirements.",
+        "Incorrect. Verification is an activity that checks whether a product was built correctly against its specifications (\"building the product right\"). It helps produce assurance but is not the term for the degree of confidence itself.",
+        "Correct. Assurance is the degree of confidence that security controls are correctly implemented and meet requirements. It has to be continually monitored and reverified."
+      ]
+    },
+    {
+      "id": "OPT4-C03-011",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "What type of security vulnerability are developers most likely to introduce into code when they seek to facilitate their own access, for testing purposes, to software they developed?",
+      "options": [
+        "Maintenance hook",
+        "Cross-site scripting",
+        "SQL injection",
+        "Buffer overflow"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Maintenance hooks, otherwise known as backdoors, provide developers with easy access to a system, bypassing normal security controls. If not removed prior to finalizing code, they pose a significant security vulnerability if an attacker discovers the maintenance hook.",
+      "optionNotes": [
+        "Correct. A maintenance hook, also called a backdoor, is something developers add on purpose so they can get in easily and skip normal security controls. If it isn't removed before release, an attacker who finds it can use it.",
+        "Incorrect. Cross-site scripting is an input-handling flaw where an attacker injects a script that runs in a victim's browser. It's an accidental coding mistake, not an access path a developer adds on purpose for testing.",
+        "Incorrect. SQL injection happens when unsanitized input gets built into database queries. It's an accidental input-validation weakness, not a deliberate shortcut a developer adds to get into their own code.",
+        "Incorrect. A buffer overflow happens when code writes past the end of a memory buffer because bounds aren't checked. It's an accidental flaw, not a purposely added way for developers to get in during testing."
+      ]
+    },
+    {
+      "id": "OPT4-C03-012",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "In the figure shown here, Sally is blocked from reading the file due to the Biba integrity model. Sally has a Secret security clearance, and the file has a Confidential classification. What principle of the Biba model is being enforced?\n[Figure, described in text: Sally sends a Read Request toward a Data File; the request arrow is marked with an X (blocked).]",
+      "options": [
+        "Simple Security Property",
+        "Simple Integrity Property",
+        "*-Security Property",
+        "*-Integrity Property"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Simple Integrity Property states that an individual may not read a file classified at a lower security level than the individual's security clearance.",
+      "optionNotes": [
+        "Incorrect. The Simple Security Property belongs to Bell-LaPadula and prevents reading up to protect confidentiality. Sally is reading down, and the model here is Biba, so this doesn't apply.",
+        "Correct. Biba's Simple Integrity Property means no read down. Sally (Secret) can't read a file at a lower level (Confidential), which keeps lower-integrity data from contaminating her.",
+        "Incorrect. The *-Security Property is Bell-LaPadula's no-write-down rule for confidentiality. It covers writes, not reads, and it isn't part of Biba.",
+        "Incorrect. Biba's *-Integrity Property is no write up and controls writing to higher-integrity objects. This scenario blocks a read request, so it's not the rule at work."
+      ]
+    },
+    {
+      "id": "OPT4-C03-013",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.7,
+      "stem": "Tom is responsible for maintaining the security of systems used to control industrial processes located within a power plant. What term is used to describe these systems?",
+      "options": [
+        "POWER",
+        "SCADA",
+        "HAVAL",
+        "COBOL"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Supervisory control and data acquisition (SCADA) systems are used to control and gather data from industrial processes. They are commonly found in power plants and other industrial environments.",
+      "optionNotes": [
+        "Incorrect. POWER isn't a recognized security term or acronym for industrial control systems. It's a distractor that plays on the power-plant setting.",
+        "Correct. SCADA (supervisory control and data acquisition) systems control industrial processes and collect data from them. They are common in power plants and other industrial environments.",
+        "Incorrect. HAVAL is a cryptographic hash function (a variant of MD5), not a kind of system. The industrial control system types are SCADA, DCS, and PLC.",
+        "Incorrect. COBOL is an older programming language used mostly for business applications. It is not a term for systems that control industrial processes."
+      ]
+    },
+    {
+      "id": "OPT4-C03-014",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Sonia recently removed an encrypted hard drive from a laptop and moved it to a new device because of a hardware failure. She is having difficulty accessing encrypted content on the drive despite that she knows the user's password. What hardware security feature is likely causing this problem?",
+      "options": [
+        "TCB",
+        "TPM",
+        "NIACAP",
+        "RSA"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Trusted Platform Module (TPM) is a hardware security technique that stores an encryption key on a chip on the motherboard and prevents someone from accessing an encrypted drive by installing it in another computer.",
+      "optionNotes": [
+        "Incorrect. The Trusted Computing Base is the full set of hardware, software, and firmware that enforces a system's security policy. It's an architectural concept, not a motherboard chip that ties a drive's encryption key to one machine.",
+        "Correct. The TPM chip on the original laptop's motherboard stores the drive's encryption key. When the drive is moved to another computer, that key isn't available, so the content stays locked even with the right password.",
+        "Incorrect. NIACAP is the U.S. National Information Assurance Certification and Accreditation Process, a government process for certifying and accrediting systems. It isn't a hardware feature and has no effect on drive decryption.",
+        "Incorrect. RSA is an asymmetric encryption algorithm, not a hardware security feature. Using it alone wouldn't stop a drive from being decrypted in a different computer."
+      ]
+    },
+    {
+      "id": "OPT4-C03-015",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.27,
+      "stem": "Chris wants to verify that a software package that he downloaded matches the original version. What hashing tool should he use if he believes that technically sophisticated attackers may have replaced the software package with a version containing a backdoor?",
+      "options": [
+        "MD5",
+        "3DES",
+        "SHA1",
+        "SHA 256"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Intentional collisions have been created with MD5, and a real-world collision attack against SHA 1was announced in early 2017. 3DES is not a hashing tool, leaving SHA 256 (sometimes called SHA 2) as the only real choice that Chris has in this list.",
+      "optionNotes": [
+        "Incorrect. MD5 is broken: attackers have deliberately created MD5 collisions, so a sophisticated adversary could build a backdoored package with the same MD5 hash as the original.",
+        "Incorrect. 3DES is a symmetric block cipher used for encryption, not a hashing algorithm, so it can't produce a digest to check the package's integrity.",
+        "Incorrect. A real-world SHA-1 collision attack was announced in 2017, so SHA-1 can't be trusted against technically sophisticated attackers who might forge a matching malicious file.",
+        "Correct. SHA-256 (part of the SHA-2 family) has no known practical collision attacks, which makes it the only reliable hashing choice here for confirming the download matches the original."
+      ]
+    },
+    {
+      "id": "OPT4-C03-016",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.77,
+      "stem": "Scenario:\nAlice and Bob would like to use an asymmetric cryptosystem to communicate with each other. They are located in different parts of the country but have exchanged encryption keys by using digital certificates signed by a mutually trusted certificate authority.\n\nIf Alice wants to send Bob a message that is encrypted for confidentiality, what key does she use to encrypt the message?",
+      "options": [
+        "Alice's public key",
+        "Alice's private key",
+        "Bob's public key",
+        "Bob's private key"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In an asymmetric cryptosystem, the sender of a message encrypts the message using the recipient's public key. The recipient may then decrypt that message using their own private key, which only they should possess.",
+      "optionNotes": [
+        "Incorrect. Anyone holding Alice's private key could decrypt something encrypted with her public key, and only Alice has that key, so Bob couldn't read it. The book says the sender encrypts with the recipient's public key.",
+        "Incorrect. Encrypting with Alice's private key gives a digital signature (authenticity), not confidentiality. Anyone can decrypt it with her public key, which is freely available.",
+        "Correct. For confidentiality, the sender encrypts with the recipient's public key, so only Bob can decrypt the message, using the private key that only he holds.",
+        "Incorrect. Bob's private key should be held only by Bob, so Alice should never have it. Bob uses it to decrypt messages, not to have them encrypted for him."
+      ]
+    },
+    {
+      "id": "OPT4-C03-017",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.34,
+      "stem": "Scenario:\nAlice and Bob would like to use an asymmetric cryptosystem to communicate with each other. They are located in different parts of the country but have exchanged encryption keys by using digital certificates signed by a mutually trusted certificate authority.\n\nWhen Bob receives the encrypted message from Alice, what key does he use to decrypt the message's plaintext content?",
+      "options": [
+        "Alice's public key",
+        "Alice's private key",
+        "Bob's public key",
+        "Bob's private key"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "When Bob receives the message, he uses his own private key to decrypt it. Since he is the only one with his private key, he is the only one who should be able to decrypt it, thus preserving confidentiality.",
+      "optionNotes": [
+        "Incorrect. Alice's public key verifies her digital signature. It doesn't decrypt a message that was encrypted for Bob, because Alice would have encrypted it with Bob's public key.",
+        "Incorrect. Alice's private key belongs only to Alice and Bob never has it. She uses it to sign messages, not to encrypt messages meant for Bob.",
+        "Incorrect. Alice uses Bob's public key to encrypt the message. In an asymmetric system, the key that encrypts can't also decrypt, so Bob needs the other key in his pair.",
+        "Correct. Bob decrypts with his own private key. He is the only one who holds it, so only he can read the message, which keeps it confidential."
+      ]
+    },
+    {
+      "id": "OPT4-C03-018",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.77,
+      "stem": "Scenario:\nAlice and Bob would like to use an asymmetric cryptosystem to communicate with each other. They are located in different parts of the country but have exchanged encryption keys by using digital certificates signed by a mutually trusted certificate authority.\n\nWhich one of the following keys would Bob not possess in this scenario?",
+      "options": [
+        "Alice's public key",
+        "Alice's private key",
+        "Bob's public key",
+        "Bob's private key"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Each user retains their own private key as secret information. In this scenario, Bob would only have access to his own private key and would not have access to the private key of Alice or any other user.",
+      "optionNotes": [
+        "Incorrect. Bob would have Alice's public key. Public keys are shared openly, and in this scenario they were exchanged through CA-signed certificates. Bob uses it to encrypt messages to Alice and to check her signatures.",
+        "Correct. Each user keeps their own private key secret, so Bob never has Alice's private key. He only has access to his own private key.",
+        "Incorrect. Bob would have his own public key. He generated it as part of his key pair and published it in his certificate so Alice could use it.",
+        "Incorrect. Bob would have his own private key. Each user keeps their own private key and uses it to decrypt messages and create signatures."
+      ]
+    },
+    {
+      "id": "OPT4-C03-019",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.77,
+      "stem": "Scenario:\nAlice and Bob would like to use an asymmetric cryptosystem to communicate with each other. They are located in different parts of the country but have exchanged encryption keys by using digital certificates signed by a mutually trusted certificate authority.\n\nAlice would also like to digitally sign the message that she sends to Bob. What key should she use to create the digital signature?",
+      "options": [
+        "Alice's public key",
+        "Alice's private key",
+        "Bob's public key",
+        "Bob's private key"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Alice creates the digital signature using her own private key. Then Bob, or any other user, can verify the digital signature using Alice's public key.",
+      "optionNotes": [
+        "Incorrect. Alice's public key is what Bob and everyone else use to verify her signature. Anyone can get it, so a signature made with it couldn't prove that Alice wrote the message.",
+        "Correct. Alice signs with her own private key, which only she holds. That gives non-repudiation, and anyone can verify the signature with her public key.",
+        "Incorrect. Bob's public key is for encrypting messages to Bob so they stay confidential. It plays no part in signing, and it doesn't tie the message to Alice.",
+        "Incorrect. Only Bob holds his private key, which he uses to decrypt messages sent to him. Alice can't access it, and it couldn't prove she sent the message anyway."
+      ]
+    },
+    {
+      "id": "OPT4-C03-020",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.7,
+      "stem": "What name is given to the random value added to a password in an attempt to defeat rainbow table attacks?",
+      "options": [
+        "Hash",
+        "Salt",
+        "Extender",
+        "Rebar"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The salt is a random value added to a password before it is hashed by the operating system. The salt is then stored in a password file with the hashed password. This increases the complexity of cryptanalytic attacks by negating the usefulness of attacks that use precomputed hash values, such as rainbow tables.",
+      "optionNotes": [
+        "Incorrect. A hash is the fixed-length output the one-way function produces from the password. Rainbow tables are built from precomputed hashes, so the hash is what gets attacked, not the random value that defends it.",
+        "Correct. A salt is a random value added to the password before hashing and stored alongside the hash. Because of it, precomputed hash values such as rainbow tables no longer match.",
+        "Incorrect. 'Extender' isn't a recognized term for a random password value. The study guides call the defense against rainbow tables salting, and key stretching is a separate technique.",
+        "Incorrect. 'Rebar' is a distractor, not a cryptographic term. The study guides name salting as the way to reduce rainbow table risk. (Pepper is a related term, but rebar is not.)"
+      ]
+    },
+    {
+      "id": "OPT4-C03-021",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Which one of the following is not an attribute of a typical hashing algorithm?",
+      "options": [
+        "They require a cryptographic key.",
+        "They are irreversible.",
+        "It is very difficult to find two messages with the same hash value.",
+        "They take variable-length input."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Hash functions do not include any element of secrecy and, therefore, do not require a cryptographic key.",
+      "optionNotes": [
+        "Correct. A typical hash function has no secret element, so it needs no cryptographic key. Keyed constructions such as HMAC are a separate case.",
+        "Incorrect. Hashes really are irreversible. They are one-way functions, so you cannot work back from the digest to the original message.",
+        "Incorrect. Collision resistance is a property a good hash should have. It should be extremely hard to find two different messages that give the same digest.",
+        "Incorrect. Hash functions do accept input of any length and always produce a fixed-length digest, so this is a real attribute."
+      ]
+    },
+    {
+      "id": "OPT4-C03-022",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "What type of fire suppression system fills with water after a valve opens when the initial stages of a fire are detected and then requires a sprinkler head heat activation before dispensing water?",
+      "options": [
+        "Wet pipe",
+        "Dry pipe",
+        "Deluge",
+        "Preaction"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "A preaction fire suppression system activates in two steps. The pipes fill with water once the early signs of a fire are detected. The system does not dispense water until heat sensors on the sprinkler heads trigger the second phase.",
+      "optionNotes": [
+        "Incorrect. A wet pipe system always has water in its pipes and discharges as soon as a sprinkler head's heat link opens. There is no first stage where the pipes fill on early detection.",
+        "Incorrect. A dry pipe system holds compressed inert gas. When suppression triggers, the gas releases, the pipes fill, and water discharges moments later. There is no separate early-detection fill stage.",
+        "Incorrect. A deluge system uses larger pipes to deliver a much bigger volume of water. When one head opens, all of them open, so it lacks the two-stage fill-then-head-activation design.",
+        "Correct. A preaction system works in two steps. The pipes fill with water when early signs of fire are detected, and water is released only after heat activates a sprinkler head."
+      ]
+    },
+    {
+      "id": "OPT4-C03-023",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Susan would like to configure IPsec in a manner that provides confidentiality for the content of packets. What component of IPsec provides this capability?",
+      "options": [
+        "AH",
+        "ESP",
+        "IKE",
+        "ISAKMP"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Encapsulating Security Payload (ESP) protocol provides confidentiality and integrity for packet contents. It encrypts packet payloads and provides limited authentication and protection against replay attacks.",
+      "optionNotes": [
+        "Incorrect. The Authentication Header provides integrity, data-origin authentication, nonrepudiation and replay protection. It does not encrypt the payload, so it gives no confidentiality.",
+        "Correct. ESP encrypts the packet payload, which gives confidentiality. It also adds integrity, limited authentication and replay protection, so it is the component that protects packet contents.",
+        "Incorrect. Internet Key Exchange generates and negotiates the session keys shared by the two ends. It does not encrypt the packet payloads itself.",
+        "Incorrect. ISAKMP organizes and manages the keys and security associations that OAKLEY and SKEME exchange. It is a key-management framework and does not encrypt the payload."
+      ]
+    },
+    {
+      "id": "OPT4-C03-024",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Which one of the following cryptographic goals protects against the risks posed when a device is lost or stolen?",
+      "options": [
+        "Nonrepudiation",
+        "Authentication",
+        "Integrity",
+        "Confidentiality"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The greatest risk when a device is lost or stolen is that sensitive data contained on the device will fall into the wrong hands. Confidentiality processes protect against this risk. Nonrepudiation is when the recipient of a message can prove the originator's identity to a third party. Authentication is a means of proving one's identity. Integrity demonstrates that information has not been modified since transmission.",
+      "optionNotes": [
+        "Incorrect. Nonrepudiation lets a message recipient prove to a third party who sent it. That doesn't stop anyone from reading data on a lost or stolen device.",
+        "Incorrect. Authentication is a way of proving identity. It doesn't deal with the main risk of a lost device, which is sensitive stored data ending up in the wrong hands.",
+        "Incorrect. Integrity shows that information hasn't been changed since it was sent. It detects tampering but doesn't stop a thief from seeing the data.",
+        "Correct. The biggest risk with a lost or stolen device is that someone unauthorized sees its sensitive data. Confidentiality controls, such as encrypting the data on the device, protect against this."
+      ]
+    },
+    {
+      "id": "OPT4-C03-025",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.02,
+      "stem": "Joanna wants to review the status of the industrial control systems her organization uses for building control. What type of systems should she inquire about access to?",
+      "options": [
+        "SCADA",
+        "DSS",
+        "BAS",
+        "ICS-CSS"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Supervisory Control and Data Acquisition systems, or SCADA systems, provide a graphical interface to monitor industrial control systems (ICS). Joanna should ask about access to her organization's SCADA systems.",
+      "optionNotes": [
+        "Correct. SCADA systems give operators a graphical supervisory interface for monitoring and controlling industrial control systems, so asking for SCADA access lets Joanna review ICS status.",
+        "Incorrect. A decision support system (DSS) is a business analytics tool that helps managers make decisions. It doesn't monitor or control industrial equipment.",
+        "Incorrect. BAS (building automation system) sounds close because the question mentions building control. However, the answer key treats SCADA as the interface used to monitor ICS status, so BAS is the distractor here.",
+        "Incorrect. ICS-CSS isn't a standard category of system. It's a made-up acronym meant to sound plausible next to real ICS terms."
+      ]
+    },
+    {
+      "id": "OPT4-C03-026",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.31,
+      "stem": "In the figure shown here, Harry's request to write to the data file is blocked. Harry has a Secret security clearance, and the data file has a Confidential classification. What principle of the Bell-LaPadula model blocked this request?\n[Figure, described in text: Harry sends a Write Request toward a Data File; the request arrow is marked with an X (blocked).]",
+      "options": [
+        "Simple Security Property",
+        "Simple Integrity Property",
+        "*-Security Property",
+        "Discretionary Security Property"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The *-Security Property states that an individual may not write to a file at a lower classification level than that of the individual. This is also known as the confinement property.",
+      "optionNotes": [
+        "Incorrect. The Simple Security Property is the 'no read up' rule and only covers reads. Harry was blocked from writing, so this property doesn't apply here.",
+        "Incorrect. The Simple Integrity Property ('no read down') comes from the Biba integrity model, not Bell-LaPadula, and it also deals with reading rather than writing.",
+        "Correct. The *-Security Property (the confinement property, 'no write down') stops a subject from writing to an object classified lower than its clearance. That's Harry's case: Secret clearance writing to a Confidential file.",
+        "Incorrect. The Discretionary Security Property uses an access matrix to enforce need-to-know. It is not the rule that blocks writing to a lower classification level."
+      ]
+    },
+    {
+      "id": "OPT4-C03-027",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Florian and Tobias would like to begin communicating using a symmetric cryptosystem, but they have no prearranged secret and are not able to meet in person to exchange keys. What algorithm can they use to securely exchange the secret key?",
+      "options": [
+        "IDEA",
+        "Diffie-Hellman",
+        "RSA",
+        "MD5"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The Diffie-Hellman algorithm allows for the secure exchange of symmetric encryption keys over a public network. IDEA and RSA are encryption algorithms. MD5 is a hashing function.",
+      "optionNotes": [
+        "Incorrect. IDEA is a symmetric block cipher. It needs a shared key to work, so it can't be used to set up that key when no secret exists yet.",
+        "Correct. Diffie-Hellman lets two parties with no prior shared secret agree on a symmetric key over a public network without sending the key itself.",
+        "Incorrect. The book classes RSA as an encryption algorithm, not a dedicated key-agreement protocol like Diffie-Hellman. Diffie-Hellman is the algorithm made specifically for this kind of key exchange.",
+        "Incorrect. MD5 is a one-way hash function used for integrity checks. It provides no confidentiality and can't be used to exchange keys."
+      ]
+    },
+    {
+      "id": "OPT4-C03-028",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Carl's organization recently underwent a user access review. At the conclusion of the review, the auditors noted several cases of privilege creep. What security principle was violated?",
+      "options": [
+        "Fail securely",
+        "Keep it simple and secure",
+        "Trust but verify",
+        "Least privilege"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The principle of least privilege says that an employee should have only the minimum necessary privileges required to perform their jobs. Privilege creep indicates that an employee has accumulated permissions that they no longer require, indicating a violation of the least privilege principle. The trust but verify principle says that organizations should use auditing to ensure that control objectives are met. The fail securely principle says that security controls should default to a secure state in the event of a control failure. The keep it simple and secure principle says that security controls and other technologies should remain as simple as possible while still completing their objectives.",
+      "optionNotes": [
+        "Incorrect. Fail securely means controls drop into a secure state when they fail. Privilege creep is permissions piling up over time, not a control failure.",
+        "Incorrect. Keep it simple and secure is about making controls and technology no more complex than needed to do their job. It says nothing about users building up extra permissions.",
+        "Incorrect. Trust but verify uses auditing to confirm that control objectives are met. The access review here is that verification step. It found the problem; it isn't the principle that was broken.",
+        "Correct. Least privilege means users get only the access their job needs. Privilege creep means someone has kept permissions they no longer need, which breaks this principle directly."
+      ]
+    },
+    {
+      "id": "OPT4-C03-029",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.17,
+      "stem": "Matt's organization recently adopted a zero trust network architecture. Under this approach, which one of the following criteria would be LEAST appropriate to use when granting a subject access to resources?",
+      "options": [
+        "Password",
+        "Two-factor authentication",
+        "IP address",
+        "Biometric scan"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In a zero trust network architecture, access control decisions should never be made based upon a system's location on the network. Therefore, an IP address should never be used and would be the least appropriate of these options. While the other options have differing levels of security (two-factor authentication is clearly stronger than a password or biometrics alone), they do not violate the principles of a zero trust network architecture.",
+      "optionNotes": [
+        "Incorrect. A password is a weak credential, but it still verifies who the user is, not where the device sits on the network. That means it doesn't break zero trust principles.",
+        "Incorrect. Two-factor authentication is the strongest choice listed. It ties access to verified identity, which is exactly what zero trust's strong-authentication approach calls for.",
+        "Correct. An IP address only shows where a system sits on the network. Zero trust never grants access based on network location, so this is the least appropriate criterion.",
+        "Incorrect. A biometric scan confirms who the user is. One factor alone is weaker than 2FA, but it is still identity-based and fits zero trust's emphasis on strong user authentication."
+      ]
+    },
+    {
+      "id": "OPT4-C03-030",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "Colin is the chief privacy officer for a nonprofit organization and is assisting with the team's transition to a Privacy by Design approach. Under this approach, which is not one of the Privacy by Design principles?",
+      "options": [
+        "Proactive, not reactive",
+        "Privacy as the default setting",
+        "End-to-end security",
+        "Defense in depth"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "While defense in depth is a strong security principle, it is not a component of Privacy by Design. The following are the seven principles of the Privacy by Design model:\n1. Proactive, not reactive; preventative not remedial\n2. Privacy as the default\n3. Privacy embedded into design\n4. Full functionality—positive-sum, not zero-sum\n5. End-to-end life-cycle protection\n6. Visibility and transparency\n7. Respect for user privacy",
+      "optionNotes": [
+        "Incorrect. \"Proactive, not reactive; preventative not remedial\" is the first of the seven Privacy by Design principles, so it can't be the answer to a NOT question.",
+        "Incorrect. Privacy as the default setting is one of the seven Privacy by Design principles. Systems should protect personal data automatically, without the user having to do anything.",
+        "Incorrect. End-to-end security, or full life-cycle protection, is a Privacy by Design principle. Data must be protected from collection all the way through to destruction.",
+        "Correct. Defense in depth is a sound security principle of layering controls, but it is not one of the seven Privacy by Design principles."
+      ]
+    },
+    {
+      "id": "OPT4-C03-031",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.13,
+      "stem": "What cryptographic principle stands behind the idea that cryptographic algorithms should be open to public inspection?",
+      "options": [
+        "Security through obscurity",
+        "Kerckhoffs' principle",
+        "Defense in depth",
+        "Heisenburg principle"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Kerckhoffs' principle says that a cryptographic system should be secure even if everything about the system, except the key, is public knowledge.",
+      "optionNotes": [
+        "Incorrect. Security through obscurity is the opposite idea. It keeps the algorithm secret so outsiders can't learn its details. Kerckhoffs' supporters reject it because public review exposes weaknesses faster.",
+        "Correct. Kerckhoffs' principle says a cryptosystem should stay secure even if everything except the key is public. That's why algorithms can be opened to public inspection.",
+        "Incorrect. Defense in depth means stacking several layers of controls, such as zones, rings, and segmentation. It says nothing about publishing algorithms for review.",
+        "Incorrect. The Heisenberg (uncertainty) principle comes from quantum physics; it's spelled 'Heisenburg' in the option. It underpins ideas like quantum key distribution, not the case for public inspection of algorithms."
+      ]
+    },
+    {
+      "id": "OPT4-C03-032",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Ryan is developing a physical access plan for his organization's data center and wants to implement the security control indicated by the arrow in this diagram. What is the name of this control?\n[Figure, described in text: a fenced facility containing a building. The arrow points to a small enclosed booth with a door, built into the perimeter fence, through which people enter the fenced area.]",
+      "options": [
+        "Access control vestibule",
+        "Turnstile",
+        "Intrusion prevention system",
+        "Portal"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Access control vestibules use two sets of doors to control access to a facility. This may be used to prevent piggybacking by monitoring use of the vestibule to allow only a single individual to enter a facility at a time. They may also be used to allow manual inspection of individuals or perform other security screening. Access control vestibules are also commonly known as mantraps.",
+      "optionNotes": [
+        "Correct. The arrow points to an enclosed booth that has doors, which is an access control vestibule (mantrap). Its two sets of doors let one person through at a time, which stops piggybacking and leaves room to inspect people.",
+        "Incorrect. A turnstile is a rotating gate that lets one person through at a time, usually in one direction. It has no enclosed booth with two sets of doors, so it doesn't match what the diagram shows.",
+        "Incorrect. An intrusion prevention system is a network security control that detects and blocks malicious traffic. It isn't a physical entry structure built into a fence.",
+        "Incorrect. \"Portal\" is a vague word for any doorway or entry point. It isn't the name of the two-door security control described in the diagram."
+      ]
+    },
+    {
+      "id": "OPT4-C03-033",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "Which one of the following does not describe a standard physical security requirement for wiring closets?",
+      "options": [
+        "Place only in areas monitored by security guards.",
+        "Do not store flammable items in the closet.",
+        "Use sensors on doors to log entries.",
+        "Perform regular inspections of the closet."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "While it would be ideal to have wiring closets in a location where they are monitored by security staff, this is not feasible in most environments. Wiring closets must be distributed geographically in multiple locations across each building used by an organization.",
+      "optionNotes": [
+        "Correct. Placing closets only where guards can watch them is not a standard requirement and usually can't be done, since wiring closets have to be spread across many locations in every building.",
+        "Incorrect. This is a standard rule: a wiring closet or equipment room should never be used for general storage, especially of flammable materials that create fire risk next to critical cabling.",
+        "Incorrect. This is a standard requirement: the guidance calls for a door-open sensor that logs entries into the wiring closet, along with video surveillance.",
+        "Incorrect. This is a standard requirement: wiring-closet guidance calls for regular physical inspections of the closet's security and contents."
+      ]
+    },
+    {
+      "id": "OPT4-C03-034",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "In the figure shown here, Sally is blocked from writing to the data file by the Biba integrity model. Sally has a Secret security clearance, and the file is classified Top Secret. What principle is preventing her from writing to the file?\n[Figure, described in text: Sally sends a Write Request toward a Data File; the request arrow is marked with an X (blocked).]",
+      "options": [
+        "Simple Security Property",
+        "Simple Integrity Property",
+        "*-Security Property",
+        "*-Integrity Property"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The *-Integrity Property states that a subject cannot modify an object at a higher integrity level than that possessed by the subject.",
+      "optionNotes": [
+        "Incorrect. The Simple Security Property belongs to Bell–LaPadula and means \"no read up,\" so it governs reading for confidentiality. Sally is writing, and the question says Biba is the model blocking her.",
+        "Incorrect. Biba's Simple Integrity Property means \"no read down,\" so it limits reading objects at a lower integrity level. It does not cover write requests like Sally's.",
+        "Incorrect. The *-Security Property is Bell–LaPadula's \"no write down\" rule, which protects confidentiality. It is the wrong model, and it would not stop someone writing to a higher level anyway.",
+        "Correct. Biba's *-Integrity Property (\"no write up\") stops a subject from modifying an object at a higher integrity level. Sally is at Secret and the file is Top Secret, so her write is blocked."
+      ]
+    },
+    {
+      "id": "OPT4-C03-035",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Lana recently implemented a new process in her organization where managers who are responsible for granting users access to a system are not permitted to participate in access reviews. What principle is she enforcing?",
+      "options": [
+        "Two-person control",
+        "Least privilege",
+        "Privilege creep",
+        "Segregation of duties"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The segregation of duties principle says that no employee should have permission to perform two tasks that, when combined, would pose a security risk. In this situation, an employee auditing their own work would create a conflict of interest, so Lana has implemented a segregation of duties. Two-person control is closely related, but it requires that two different employees approve an action. If she required that two managers approve new accounts, that would be an example of two-person control.",
+      "optionNotes": [
+        "Incorrect. Two-person control means two different employees must approve one action, e.g., two managers signing off on a new account. Lana's rule keeps one person from both granting and reviewing access, which is a different control.",
+        "Incorrect. Least privilege limits users to only the access their job needs. It doesn't stop the person who grants access from also reviewing it, which is what this question is about.",
+        "Incorrect. Privilege creep is a problem, not a principle: users pile up privileges over time as their roles change. Access reviews help catch it, but barring granting managers from reviews doesn't enforce anything called privilege creep.",
+        "Correct. Segregation of duties stops one employee from holding two tasks that together create risk. A manager reviewing access they granted would be auditing their own work, which is a conflict of interest."
+      ]
+    },
+    {
+      "id": "OPT4-C03-037",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Alan is reviewing a system that has been assigned the EAL1 evaluation assurance level under the Common Criteria. What is the degree of assurance that he may have about the system?",
+      "options": [
+        "It has been functionally tested.",
+        "It has been structurally tested.",
+        "It has been formally verified, designed, and tested.",
+        "It has been methodically designed, tested, and reviewed."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "EAL1 assurance applies when the system in question has been functionally tested. It is the lowest level of assurance under the Common Criteria.",
+      "optionNotes": [
+        "Correct. EAL1 means the system has been functionally tested. It is the lowest assurance level in the Common Criteria and fits when some confidence in correct operation is needed but threats are not serious.",
+        "Incorrect. \"Structurally tested\" is EAL2, one level above EAL1. It requires the developer to deliver design information and test results, which goes beyond the functional testing of EAL1.",
+        "Incorrect. \"Formally verified, designed, and tested\" is EAL7, the highest Common Criteria assurance level. It is far more than an EAL1 rating provides.",
+        "Incorrect. \"Methodically designed, tested, and reviewed\" is EAL4, a mid-level assurance rating. An EAL1 system has only been functionally tested."
+      ]
+    },
+    {
+      "id": "OPT4-C03-038",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 2.5,
+      "stem": "Jake works for a research organization that is seeking to deploy a grid computing system that will perform cycle scavenging on user workstations to conduct research tasks that require high-performance computing. What is the most significant risk associated with this operation?",
+      "options": [
+        "Data confidentiality",
+        "Isolation breach",
+        "Data integrity",
+        "Data availability"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The system can be designed in a manner that protects the confidentiality, integrity, and availability of data. The research workstations included in the grid are from internal users, minimizing the risk of distributing the data. However, an isolation breach in the distributed computing client could be catastrophic, allowing someone who compromises the controller to assume control of every device in the organization.",
+      "optionNotes": [
+        "Incorrect. The grid can be built to protect confidentiality, and because the participating workstations belong to internal users, the risk of sending research data out is low.",
+        "Correct. If the grid client's isolation fails, anyone who compromises the central controller could take control of every participating workstation in the organization, which would be catastrophic.",
+        "Incorrect. Integrity can be protected through good system design, for example by validating results. With internal-only participants, it is less of a concern than a compromise of the controller spreading to every workstation.",
+        "Incorrect. Availability can also be handled in the design, since cycle scavenging only uses idle capacity. It is not the most serious risk compared with an isolation breach."
+      ]
+    },
+    {
+      "id": "OPT4-C03-039",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Eimear's software development team uses an approach that creates many discrete software objects and then binds them together using APIs. What term best describes this architecture?",
+      "options": [
+        "Microservices",
+        "Function-as-a-service",
+        "Containerization",
+        "Virtualization"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "This is an example of a microservices architecture. Each of the component microservices performs a discrete task and then communicates with other microservices using APIs. This might be accomplished using function-as-a-service (FaaS) cloud computing, containerization, and/or virtualization, but there is no indication whether those services are being used in the scenario.",
+      "optionNotes": [
+        "Correct. In a microservices architecture, each small, separate service does one task and talks to the others through APIs, which is exactly what the scenario describes.",
+        "Incorrect. FaaS is a serverless cloud model for running single functions on demand. It is one possible way to host microservices, but nothing in the scenario says it is being used.",
+        "Incorrect. Containerization packages applications into isolated containers. It is a deployment technology that may host microservices, but it is not the API-linked component architecture the question asks about.",
+        "Incorrect. Virtualization abstracts hardware so that several virtual machines can run on one host. It is infrastructure, not a software design pattern of separate objects joined through APIs."
+      ]
+    },
+    {
+      "id": "OPT4-C03-040",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Adam recently configured permissions on an NTFS filesystem to describe the access that different users may have to a file by listing each user individually. What did Adam create?",
+      "options": [
+        "An access control list",
+        "An access control entry",
+        "Role-based access control",
+        "Mandatory access control"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Adam created a list of individual users who may access the file. This is an access control list, which consists of multiple access control entries. It includes the names of users, so it is not role-based, and Adam was able to modify the list, so it is not mandatory access control.",
+      "optionNotes": [
+        "Correct. Listing each user and that user's access to a file is exactly what an access control list (ACL) is, and NTFS stores file permissions this way.",
+        "Incorrect. An access control entry (ACE) is one line in an ACL, covering a single user or group. Adam listed several users, so he built the whole list, not one entry.",
+        "Incorrect. Role-based access control gives permissions to job roles, not to named people. Adam's list names individual users, so it isn't RBAC.",
+        "Incorrect. Under mandatory access control, the system enforces permissions using labels, and users can't change them. Adam was able to edit the permissions himself, so this isn't MAC."
+      ]
+    },
+    {
+      "id": "OPT4-C03-041",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.27,
+      "stem": "Betty is concerned about the use of buffer overflow attacks against a custom application developed for use in her organization. What security control would provide the strongest defense against these attacks?",
+      "options": [
+        "Firewall",
+        "Intrusion detection system",
+        "Parameter checking",
+        "Vulnerability scanning"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Parameter checking, or input validation, is used to ensure that input provided by users to an application matches the expected parameters for the application. Developers may use parameter checking to ensure that input does not exceed the expected length, preventing a buffer overflow attack.",
+      "optionNotes": [
+        "Incorrect. A firewall filters traffic by address, port, or protocol. It can't tell whether a legitimate request carries input too long for the custom app's buffer, so it can't fix the code flaw.",
+        "Incorrect. An IDS detects and alerts on suspicious activity, but it doesn't prevent anything. It may also miss overflows aimed at a custom app it has no signatures for. The root cause, unchecked input length, stays in place.",
+        "Correct. Parameter checking (input validation) makes sure user input matches what the application expects, including length limits. That stops oversized input before it can overflow a buffer.",
+        "Incorrect. Vulnerability scanning can find weaknesses, but it doesn't block attacks. Scanners also tend to have little coverage of custom in-house code. The study guide stresses fixing the flaw itself, for example by patching, rather than just detecting it."
+      ]
+    },
+    {
+      "id": "OPT4-C03-042",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.17,
+      "stem": "Which one of the following combinations of controls best embodies the defense-in-depth principle?",
+      "options": [
+        "Encryption of email and network intrusion detection",
+        "Cloud access security brokers (CASBs) and security awareness training",
+        "Data loss prevention and multifactor authentication",
+        "Network firewall and host firewall"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The defense-in-depth principle suggests using multiple overlapping security controls to achieve the same control objective. Network and host firewalls are both designed to limit network traffic and therefore are an example of defense in depth. The encryption of email and network intrusion detection are unrelated controls and do not satisfy the same objective. The same is true for the combination of CASB and security awareness training and the combination of DLP and multifactor authentication.",
+      "optionNotes": [
+        "Incorrect. Email encryption protects message confidentiality, and network IDS detects malicious traffic. They serve unrelated objectives, so they don't overlap the way defense in depth requires.",
+        "Incorrect. A CASB enforces data protection policy for cloud use, and awareness training targets user behavior. These are unrelated controls with different objectives, not overlapping layers toward one goal.",
+        "Incorrect. DLP is a preventive control against data exfiltration, while MFA strengthens authentication. They meet different objectives, so together they don't show defense in depth.",
+        "Correct. Network and host firewalls both limit network traffic at different layers. These are overlapping controls aimed at the same objective, which is the core of defense in depth."
+      ]
+    },
+    {
+      "id": "OPT4-C03-043",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "James is working with a Department of Defense system that is authorized to simultaneously handle information classified at the Secret and Top Secret levels. What type of system is he using?",
+      "options": [
+        "Single state",
+        "Unclassified",
+        "Compartmented",
+        "Multistate"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Multistate systems are certified to handle data from different security classifications simultaneously by implementing protection mechanisms that segregate data appropriately.",
+      "optionNotes": [
+        "Incorrect. A single-state system handles only one security level at a time and depends on administrative controls to keep levels apart, so it cannot process Secret and Top Secret data at the same moment.",
+        "Incorrect. Unclassified is a classification label, not a type of system. The system here processes Secret and Top Secret data, which is classified information.",
+        "Incorrect. Compartmented mode means users need formal access approval and need-to-know for specific compartments of information. It does not describe a system certified to process multiple classification levels at once.",
+        "Correct. Multistate systems are certified to handle data from different classification levels at the same time, using protection mechanisms that keep the data properly separated."
+      ]
+    },
+    {
+      "id": "OPT4-C03-044",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 2.31,
+      "stem": "Kyle is being granted access to a military computer system that uses System High mode. What is not true about Kyle's security clearance requirements?",
+      "options": [
+        "Kyle must have a clearance for the highest level of classification processed by the system, regardless of his access.",
+        "Kyle must have access approval for all information processed by the system.",
+        "Kyle must have a valid need to know for all information processed by the system.",
+        "Kyle must have a valid security clearance."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "For systems running in System High mode, the user must have a valid security clearance for all information processed by the system, access approval for all information processed by the system, and a valid need to know for some, but not necessarily all, information processed by the system.",
+      "optionNotes": [
+        "Incorrect. This is true, so it isn't the answer. In System High mode every user must be cleared for the highest classification the system processes, whatever data they actually access.",
+        "Incorrect. This is true, so it isn't the answer. System High mode requires the user to have formal access approval for all information processed by the system.",
+        "Correct. This statement is false. System High mode only requires need to know for some of the information. Need to know for all of it is the requirement of Dedicated mode.",
+        "Incorrect. This is true, so it isn't the answer. Every security mode, System High included, requires the user to hold a valid security clearance."
+      ]
+    },
+    {
+      "id": "OPT4-C03-045",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.13,
+      "stem": "Gary intercepts a communication between two individuals and suspects that they are exchanging secret messages. The content of the communication appears to be the image shown here. What type of technique may the individuals use to hide messages inside this image?\n[Figure, described in text: an ordinary photograph of a tropical beach with swimmers and a cruise ship offshore.]",
+      "options": [
+        "Visual cryptography",
+        "Steganography",
+        "Cryptographic hashing",
+        "Transport layer security"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Steganography is the art of using cryptographic techniques to embed secret messages within other content. Some steganographic algorithms work by making alterations to the least significant bits of the many bits that make up image files.",
+      "optionNotes": [
+        "Incorrect. Visual cryptography splits an image into shares that reveal a secret only when overlaid. It doesn't hide a message inside an ordinary-looking photo, so it doesn't fit this scenario.",
+        "Correct. Steganography embeds secret messages inside other content, often by changing the least significant bits of an image file. The beach photo would look normal while carrying the hidden data.",
+        "Incorrect. Cryptographic hashing produces a fixed-length digest of a message to verify its integrity. It's one-way and can't hide a message that someone later recovers from an image.",
+        "Incorrect. TLS is a transport-layer protocol that encrypts data in transit. It protects the communication channel but doesn't hide messages inside image content."
+      ]
+    },
+    {
+      "id": "OPT4-C03-046",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "Philip is developing a new security tool that will be used by individuals in many different subsidiaries of his organization. He chooses to use Docker to deploy the tool to simplify configuration. What term best describes this approach?",
+      "options": [
+        "Virtualization",
+        "Abstraction",
+        "Simplification",
+        "Containerization"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "All of these terms accurately describe this use of technology. However, the use of Docker is best described as a containerization technology, so this is the best possible answer choice.",
+      "optionNotes": [
+        "Incorrect. Virtualization does technically describe Docker, but it's a broad term that also covers full hypervisor VMs. Docker's lightweight, OS-level packaging has a more specific name, so this isn't the best choice.",
+        "Incorrect. Docker does abstract the application away from the host configuration, so the term is accurate. However, abstraction is a general design principle rather than the specific name for Docker-based deployment.",
+        "Incorrect. Simplification is accurate, since Philip is using Docker to make configuration simpler. But it names his goal, not the technology, so it is less precise than containerization.",
+        "Correct. Docker is a containerization platform: it packages an application with its dependencies into a portable container that runs the same way everywhere. That makes containerization the most precise answer."
+      ]
+    },
+    {
+      "id": "OPT4-C03-047",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.41,
+      "stem": "In the ring protection model shown here, what ring contains the operating system's kernel?\n[Figure, described in text: four concentric circles labeled RING 0 (innermost), RING 1, RING 2 and RING 3 (outermost).]",
+      "options": [
+        "Ring 0",
+        "Ring 1",
+        "Ring 2",
+        "Ring 3"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The kernel lies within the central ring, Ring 0. Conceptually, Ring 1 contains other operating system components. Ring 2 is used for drivers and protocols. User-level programs and applications run at Ring 3. Rings 0 through 2 run in privileged mode, while Ring 3 runs in user mode. It is important to note that many modern operating systems do not fully implement this model.",
+      "optionNotes": [
+        "Correct. Ring 0 is the innermost, most privileged ring and holds the OS kernel, which needs direct access to hardware and memory.",
+        "Incorrect. Ring 1 is the privileged ring for other operating system components. The kernel itself is not here; it sits in Ring 0.",
+        "Incorrect. Ring 2 is used for device drivers and protocols. It runs in privileged mode, but it is not the kernel's ring.",
+        "Incorrect. Ring 3 is the outermost ring, where user programs and applications run in user mode. It is the least privileged ring, the opposite of the kernel's."
+      ]
+    },
+    {
+      "id": "OPT4-C03-048",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "In an infrastructure-as-a-service environment where a vendor supplies a customer with access to storage services, who is normally responsible for removing sensitive data from drives that are taken out of service?",
+      "options": [
+        "Customer's security team",
+        "Customer's storage team",
+        "Customer's vendor management team",
+        "Vendor"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In an infrastructure-as-a-service environment, security duties follow a shared responsibility model. Since the vendor is responsible for managing the storage hardware, the vendor would retain responsibility for destroying or wiping drives as they are taken out of service. However, it is still the customer's responsibility to validate that the vendor's sanitization procedures meet their requirements prior to utilizing the vendor's storage services.",
+      "optionNotes": [
+        "Incorrect. In IaaS the customer never has physical control of the vendor's drives, so its security team can't wipe them. Its job is to check that the vendor's sanitization procedures meet requirements before using the service.",
+        "Incorrect. The customer's storage team manages logical volumes and data, not the provider's physical hardware. Under shared responsibility, wiping or destroying retired physical drives stays with the vendor that owns them.",
+        "Incorrect. Vendor management oversees the contract and can require proof of sanitization. Responsibilities are shared and should be spelled out, but this team doesn't actually wipe the provider's hardware.",
+        "Correct. Under the IaaS shared responsibility model, the vendor manages the physical storage hardware, so it is responsible for wiping or destroying drives when they are taken out of service."
+      ]
+    },
+    {
+      "id": "OPT4-C03-049",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 2.31,
+      "stem": "During a system audit, Casey notices that the private key for her organization's web server has been stored in a public Amazon S3 storage bucket for more than a year. Which one of the following actions should she take first?",
+      "options": [
+        "Remove the key from the bucket.",
+        "Notify all customers that their data may have been exposed.",
+        "Request a new certificate using a new key.",
+        "Nothing, because the private key should be accessible for validation."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The first thing Casey should do is notify her management, but after that, replacing the certificate and using proper key management practices with the new certificate's key should be at the top of her list.",
+      "optionNotes": [
+        "Incorrect. Removing the key is not the first priority. After more than a year in public storage, the key has to be treated as compromised. Only a new certificate built on a new key fixes the exposure.",
+        "Incorrect. Telling customers their data may be exposed is premature. Management should be told first, and the compromised certificate has to be replaced before anyone decides whether customers need to be notified.",
+        "Correct. Once management knows, replacing the certificate with one built on a new key, and managing that key properly, is the top priority. The exposed key has to be treated as compromised.",
+        "Incorrect. Validation uses the public key, and the private key must stay secret with its owner. Leaving a private key in public storage is a compromise, so doing nothing is not acceptable."
+      ]
+    },
+    {
+      "id": "OPT4-C03-050",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.88,
+      "stem": "Which one of the following systems assurance processes provides an independent third-party evaluation of a system's controls that may be trusted by many different organizations?",
+      "options": [
+        "Certification",
+        "Definition",
+        "Verification",
+        "Accreditation"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The verification process is similar to the certification process in that it validates security controls. Verification may go a step further by involving a third-party testing service and compiling results that may be trusted by many different organizations. Accreditation is the act of management formally accepting a system, not evaluating the system itself.",
+      "optionNotes": [
+        "Incorrect. Certification does validate security controls, but it is usually done for one organization's own accreditation decision. It doesn't add the independent third-party testing whose results many organizations can trust.",
+        "Incorrect. Definition is not a recognized systems assurance or evaluation process. In schemes like the Common Criteria, assurance comes from evaluating and testing controls, not from a 'definition' step.",
+        "Correct. Like certification, verification validates security controls. It goes a step further by using an independent third-party testing service whose results many different organizations can trust.",
+        "Incorrect. Accreditation is management formally accepting a system for operation and its risk. It does not evaluate the system's controls, and it is not a third-party assessment."
+      ]
+    },
+    {
+      "id": "OPT4-C03-051",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.27,
+      "stem": "Darcy's organization is deploying serverless computing technology to better meet the needs of developers and users. In a serverless model, who is normally responsible for configuring operating system security controls?",
+      "options": [
+        "Software developer",
+        "Cybersecurity professional",
+        "Cloud architect",
+        "Vendor"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In a serverless computing model, the vendor does not expose details of the operating system to its customers. Therefore, the vendor retains full responsibility for configuring it securely under the shared responsibility model of cloud computing.",
+      "optionNotes": [
+        "Incorrect. In serverless, the developer manages only the function code and its logic. The CSP manages the platform and server underneath, so the developer never touches OS settings.",
+        "Incorrect. The organization's security staff set OS security controls on systems they run themselves, such as baseline images. In serverless, the customer has no access to the OS, so these controls are out of their reach.",
+        "Incorrect. A customer-side cloud architect designs how services are used but can't configure an OS that the CSP manages and never exposes in a serverless model.",
+        "Correct. The serverless vendor doesn't expose the OS to customers, so under the shared responsibility model the vendor alone is responsible for configuring it securely."
+      ]
+    },
+    {
+      "id": "OPT4-C03-052",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Harold is assessing the susceptibility of his environment to hardware failures and would like to identify the expected lifetime of a piece of hardware. What measure should he use for this?",
+      "options": [
+        "MTTR",
+        "MTTF",
+        "RTO",
+        "MTO"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The mean time to failure (MTTF) provides the average amount of time before a device of that particular specification fails.",
+      "optionNotes": [
+        "Incorrect. MTTR (mean time to repair) is the average time needed to repair a failed device. It tells you about recovery effort, not how long the hardware is expected to last.",
+        "Correct. MTTF (mean time to failure) is the average time before a device of a given specification fails. That makes it the expected functional lifetime of the hardware, which is exactly what Harold wants to know.",
+        "Incorrect. RTO (recovery time objective) is a business continuity/disaster recovery target for how quickly a business function must be restored after a disruption. It is not a measure of hardware lifetime.",
+        "Incorrect. MTO (maximum tolerable outage, also called MTD) is the longest a business function can be down before the damage becomes unacceptable. It is a BIA metric, not a measure of how long a device lasts."
+      ]
+    },
+    {
+      "id": "OPT4-C03-053",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "Chris is designing a cryptographic system for use within his company. The company has 1,000 employees, and they plan to use an asymmetric encryption system. They would like the system to be set up so that any pair of arbitrary users may communicate privately. How many total keys will they need?",
+      "options": [
+        "500",
+        "1,000",
+        "2,000",
+        "499,500"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Asymmetric cryptosystems use a pair of keys for each user. In this case, with 1,000 users, the system will require 2,000 keys. 499,500 would be the correct answer for a symmetric system.",
+      "optionNotes": [
+        "Incorrect. 500 is half the number of users. Asymmetric systems give every user a full key pair, so the total can't be smaller than the user count.",
+        "Incorrect. 1,000 counts only one key per user. Each user actually needs both a public key and a private key, which doubles the total.",
+        "Correct. In an asymmetric system each user has one key pair (public and private), so 1,000 users × 2 keys = 2,000 keys. With those, any two users can communicate privately.",
+        "Incorrect. 499,500 is n(n−1)/2 = 1,000×999/2, which is the number of keys a symmetric system would need, with one shared key for every pair of users. This question is about an asymmetric system."
+      ]
+    },
+    {
+      "id": "OPT4-C03-054",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Gary is concerned about applying consistent security settings to the many mobile devices used throughout his organization. What technology would best assist with this challenge?",
+      "options": [
+        "MDM",
+        "IPS",
+        "IDS",
+        "SIEM"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Mobile Device Management (MDM) products provide a consistent, centralized interface for applying security configuration settings to mobile devices.",
+      "optionNotes": [
+        "Correct. Mobile Device Management gives you one central console for pushing and enforcing the same security configuration across all of the organization's mobile devices. That is exactly Gary's problem.",
+        "Incorrect. An intrusion prevention system inspects network traffic and blocks malicious activity it detects. It does not push or enforce configuration settings on mobile devices.",
+        "Incorrect. An intrusion detection system watches traffic or hosts and raises alerts on suspicious activity. It is a detective tool only and cannot apply consistent settings to devices.",
+        "Incorrect. A SIEM collects and correlates log data from many sources so analysts can monitor and alert. It analyzes events but does not manage or push device configurations."
+      ]
+    },
+    {
+      "id": "OPT4-C03-055",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Alice sent a message to Bob. Bob would like to demonstrate to Charlie that the message he received definitely came from Alice. What goal of cryptography is Bob attempting to achieve?",
+      "options": [
+        "Authentication",
+        "Confidentiality",
+        "Nonrepudiation",
+        "Integrity"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Nonrepudiation occurs when the recipient of a message is able to demonstrate to a third party that the message came from the purported sender.",
+      "optionNotes": [
+        "Incorrect. Authentication shows Bob himself that the message came from Alice. It doesn't give him a way to prove that to a third party like Charlie, and proving it to a third party is the point of the question.",
+        "Incorrect. Confidentiality keeps the message content secret from unauthorized readers. It says nothing about proving who sent the message, and a digital signature alone doesn't provide it.",
+        "Correct. Nonrepudiation lets the recipient prove to a third party, here Charlie, that the message came from the claimed sender, so Alice can't deny sending it.",
+        "Incorrect. Integrity checks that the message wasn't changed in transit, by comparing hash values. It doesn't prove to Charlie who sent the message."
+      ]
+    },
+    {
+      "id": "OPT4-C03-056",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.13,
+      "stem": "Rhonda is considering the use of new identification cards for physical access control in her organization. She comes across a military system that uses the card shown here. What type of card is this?\n[Figure, described in text: a sample U.S. Government Geneva Conventions Identification Card (Uniformed Services, Army) with a photo, a barcode, and a gold contact chip beneath an American flag.]",
+      "options": [
+        "Smart card",
+        "Proximity card",
+        "Magnetic stripe card",
+        "Phase three card"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The card shown in the image has a smart chip underneath the American flag. Therefore, it is an example of a smart card. This is the most secure type of identification card technology.",
+      "optionNotes": [
+        "Correct. The gold contact chip under the flag is an integrated circuit, which makes this a smart card. Smart cards are the most secure type of ID card technology.",
+        "Incorrect. A proximity card talks to the reader wirelessly through an embedded antenna and has no visible contact chip. The card shown has a contact chip, so it is a contact smart card.",
+        "Incorrect. A magnetic stripe card keeps a small amount of data on a stripe and cannot process data. This card has an IC chip, not just a stripe.",
+        "Incorrect. \"Phase three card\" is not a recognized type of identification card technology. It's a made-up distractor."
+      ]
+    },
+    {
+      "id": "OPT4-C03-057",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Gordon is concerned about the possibility that hackers may be able to use the Van Eck radiation phenomenon to remotely read the contents of computer monitors in a restricted work area within his facility. What technology would protect against this type of attack?",
+      "options": [
+        "TCSEC",
+        "SCSI",
+        "GHOST",
+        "TEMPEST"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The TEMPEST program creates technology that is not susceptible to Van Eck phreaking attacks because it reduces or suppresses natural electromagnetic emanations.",
+      "optionNotes": [
+        "Incorrect. TCSEC (the Orange Book) is a set of DoD criteria for rating how trustworthy a computer system is. It doesn't suppress electromagnetic emanations, so it can't stop Van Eck monitoring.",
+        "Incorrect. SCSI is an interface standard for connecting storage and other peripherals. It has no role in shielding or reducing the emanations that Van Eck attacks pick up.",
+        "Incorrect. GHOST is a disk-imaging and cloning tool. It doesn't defend against attackers reading electromagnetic radiation from monitors.",
+        "Correct. TEMPEST technology reduces or suppresses a device's natural electromagnetic emanations. That makes monitors resistant to Van Eck phreaking, where an attacker reconstructs screen contents from those emissions."
+      ]
+    },
+    {
+      "id": "OPT4-C03-058",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.02,
+      "stem": "Jorge believes that an attacker has obtained the hash of the Kerberos service account from one of his organization's Active Directory servers. What type of attack would this enable?",
+      "options": [
+        "Golden ticket",
+        "Kerberoasting",
+        "Pass the ticket",
+        "Brute force"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Golden ticket attacks use the hash of the Kerberos service account to create tickets in an Active Directory environment. Kerberoasting attacks rely on collected TGS tickets. Pass the ticket attacks rely on tickets harvested from the LSASS process. Brute-force attacks depend on random guessing without any additional information.",
+      "optionNotes": [
+        "Correct. Once attackers have the KRBTGT (Kerberos service account) hash, they can forge golden tickets and create valid Kerberos tickets whenever they like across Active Directory.",
+        "Incorrect. Kerberoasting works on TGS tickets the attacker collects and then cracks offline to recover service account passwords. It does not need the KRBTGT hash.",
+        "Incorrect. Pass the ticket reuses existing tickets taken from the LSASS process. The attacker doesn't forge new tickets from a stolen service account hash.",
+        "Incorrect. Brute force means guessing at random with no extra information. Having the KRBTGT hash removes any need to guess, because it allows direct ticket forgery."
+      ]
+    },
+    {
+      "id": "OPT4-C03-059",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Sherry conducted an inventory of the cryptographic technologies in use within her organization and found the following algorithms and protocols in use. Which one of these technologies should she replace because it is no longer considered secure?",
+      "options": [
+        "MD5",
+        "AES",
+        "PGP",
+        "WPA3"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The MD5 hashing algorithm has known collisions and, as of 2005, is no longer considered secure for use in modern environments. The AES, PGP, and WPA3 algorithms are all still considered secure.",
+      "optionNotes": [
+        "Correct. MD5 is a hashing algorithm with demonstrated collisions. It has been considered insecure since about 2005, so it is the technology Sherry should replace.",
+        "Incorrect. AES is the current symmetric encryption standard and is still considered secure, so there's no reason to replace it.",
+        "Incorrect. PGP combines symmetric and asymmetric encryption to protect email and files. It is still considered secure, so it doesn't need replacing.",
+        "Incorrect. WPA3 is the newest Wi-Fi security protocol and is still considered secure. It succeeds WPA2, which itself replaced the broken WEP, so WPA3 doesn't need replacing."
+      ]
+    },
+    {
+      "id": "OPT4-C03-060",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.02,
+      "stem": "Robert is investigating a security breach and discovers the Mimikatz tool installed on a system in his environment. What type of attack has likely taken place?",
+      "options": [
+        "Password cracking",
+        "Pass the hash",
+        "MAC spoofing",
+        "ARP poisoning"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The use of the Mimikatz tool is indicative of an attempt to capture user password hashes for use in a pass-the-hash attack against Microsoft Active Directory accounts.",
+      "optionNotes": [
+        "Incorrect. Password cracking tries to recover plaintext passwords from hashes or by guessing. Mimikatz is known for dumping credential hashes from memory so an attacker can reuse them directly, without cracking them.",
+        "Correct. Mimikatz captures user password hashes from memory. Those hashes can then be replayed against Microsoft Active Directory accounts in a pass-the-hash attack.",
+        "Incorrect. MAC spoofing means faking a network interface's hardware address to impersonate a device or get past port filtering. It has nothing to do with Mimikatz, which steals credentials on the host.",
+        "Incorrect. ARP poisoning sends forged ARP replies that map IP addresses to the attacker's MAC address, so traffic can be intercepted. It's a network-layer spoofing attack, not what Mimikatz does."
+      ]
+    },
+    {
+      "id": "OPT4-C03-061",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Tom is a cryptanalyst and is working on breaking a cryptographic algorithm's secret key. He has a copy of an intercepted message that is encrypted, and he also has a copy of the decrypted version of that message. He wants to use both the encrypted message and its decrypted plaintext to retrieve the secret key for use in decrypting other messages. What type of attack is Tom engaging in?",
+      "options": [
+        "Chosen ciphertext",
+        "Chosen plaintext",
+        "Known plaintext",
+        "Brute force"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In a known plaintext attack, the attacker has a copy of the encrypted message along with the plaintext message used to generate that ciphertext. In a chosen plaintext attack, the attacker has the ability to choose the plaintext to be encrypted. In a chosen ciphertext attack, the attacker can choose the ciphertext output. In a brute-force attack, the attacker simply tries all possible key combinations.",
+      "optionNotes": [
+        "Incorrect. In a chosen ciphertext attack, the attacker picks ciphertexts and gets them decrypted. Tom was handed an intercepted ciphertext and its plaintext. He didn't choose either one.",
+        "Incorrect. A chosen plaintext attack needs the ability to pick arbitrary plaintext and have it encrypted. Tom only has one existing message pair that he didn't choose.",
+        "Correct. In a known plaintext attack, the attacker holds both a ciphertext and the plaintext that produced it, then uses the pair to work out the key. That is exactly Tom's situation.",
+        "Incorrect. A brute-force attack just tries every possible key. It doesn't depend on having a plaintext/ciphertext pair, which is the defining detail in this scenario."
+      ]
+    },
+    {
+      "id": "OPT4-C03-062",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.27,
+      "stem": "A hacker recently violated the integrity of data in James's company by modifying a file using a precise timing attack. The attacker waited until James verified the integrity of a file's contents using a hash value and then modified the file between the time that James verified the integrity and read the contents of the file. What type of attack took place?",
+      "options": [
+        "Social engineering",
+        "TOCTOU",
+        "Data diddling",
+        "Parameter checking"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In a time of check to time of use (TOCTOU) attack, the attacker exploits the difference in time between when a security control is verified and the data protected by the control is actually used.",
+      "optionNotes": [
+        "Incorrect. Social engineering tricks people into revealing information or taking actions. Here the attacker exploited a timing gap in a technical check, not a human target.",
+        "Correct. A TOCTOU attack uses the gap between checking a control (the hash verification) and using the protected data (reading the file) to slip in a change.",
+        "Incorrect. Data diddling means small, unauthorized changes to data, often made by insiders. Integrity monitoring tools can detect it. The key feature here is the timing window between check and use, which makes this TOCTOU.",
+        "Incorrect. Parameter checking is a defense that validates inputs to prevent buffer overflows and similar attacks. It is not a type of attack."
+      ]
+    },
+    {
+      "id": "OPT4-C03-063",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.16,
+      "stem": "Carl is deploying a set of video sensors that will be placed in remote locations as part of a research project. Because of connectivity limitations, he would like to perform as much image processing and computation as possible on the device itself before sending results back to the cloud for further analysis. What computing model would best meet his needs?",
+      "options": [
+        "Serverless computing",
+        "Edge computing",
+        "IaaS computing",
+        "SaaS computing"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In this case, most cloud service models (including IaaS, SaaS, and serverless/FaaS) would require transmitting most information back to the cloud. The edge computing service model would be far more appropriate, as it places computing power at the sensor, minimizing the data that must be sent back to the cloud over limited connectivity network links.",
+      "optionNotes": [
+        "Incorrect. Serverless (FaaS) runs code in the provider's cloud, so the sensor data would still have to go back over the limited link before any processing could happen.",
+        "Correct. Edge computing puts processing power at the sensor itself, so images are analyzed locally and only the results travel over the limited network link to the cloud.",
+        "Incorrect. IaaS provides virtual machines and infrastructure in the provider's data center. The raw video would have to be sent to the cloud to be processed, which defeats Carl's goal.",
+        "Incorrect. SaaS delivers complete applications hosted by the provider, so the data has to be sent to the cloud. It does not put computing power on the remote device."
+      ]
+    },
+    {
+      "id": "OPT4-C03-064",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.88,
+      "stem": "What action can you take to prevent accidental data disclosure due to wear leveling on an SSD device before reusing the drive?",
+      "options": [
+        "Reformatting",
+        "Disk encryption",
+        "Degaussing",
+        "Physical destruction"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Wear leveling is about writing to the disk evenly. Encrypting the data would protect against the disclosure of data on portions of the disk that have remnants due to too much wear and having been set aside as no longer usable. Disk formatting does not effectively remove data from any device. Degaussing is effective only for magnetic media. Physically destroying the drive would not permit reuse.",
+      "optionNotes": [
+        "Incorrect. Reformatting only rewrites file-system structures and doesn't actually remove data on any device. On an SSD it can't reach the worn-out or reserved blocks that wear leveling has set aside.",
+        "Correct. Disk encryption keeps the data in remnant blocks unreadable, including blocks that wear leveling retired as unusable. The drive can then be reused without exposing that data.",
+        "Incorrect. Degaussing works only on magnetic media. SSDs store data in flash memory cells, so a degausser does nothing to them.",
+        "Incorrect. Physical destruction would deal with data remanence, but it ruins the drive. The question requires the SSD to be reused, so this option doesn't fit."
+      ]
+    },
+    {
+      "id": "OPT4-C03-065",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.59,
+      "stem": "Johnson Widgets strictly limits access to total sales volume information, classifying it as a competitive secret. However, shipping clerks have unrestricted access to order records to facilitate transaction completion. A shipping clerk recently pulled all of the individual sales records for a quarter from the database and totaled them up to determine the total sales volume. What type of attack occurred?",
+      "options": [
+        "Social engineering",
+        "Inference",
+        "Aggregation",
+        "Data diddling"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "In an aggregation attack, individual(s) use their access to specific pieces of information to piece together a larger picture that they are not authorized to access.",
+      "optionNotes": [
+        "Incorrect. Social engineering means deceiving or intimidating people into giving up sensitive information. The clerk didn't manipulate anyone. They only used database access they were already allowed to have.",
+        "Incorrect. Inference means deducing sensitive information indirectly from what you can see. Here the clerk directly added up authorized records to produce the restricted total, which is aggregation, not deduction.",
+        "Correct. Aggregation means combining individual pieces of data you're allowed to see into a larger picture you're not allowed to see. Totaling the quarter's order records to get the classified sales volume is exactly that.",
+        "Incorrect. Data diddling means changing data in an unauthorized way, often before or during input. The clerk only read and summed the records and changed nothing."
+      ]
+    },
+    {
+      "id": "OPT4-C03-066",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "What physical security control broadcasts false emanations constantly to mask the presence of true electromagnetic emanations from computing equipment?",
+      "options": [
+        "Faraday cage",
+        "Copper-infused windows",
+        "Shielded cabling",
+        "White noise"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "While all of the controls mentioned protect against unwanted electromagnetic emanations, only white noise is an active control. White noise generates false emanations that effectively “jam” the true emanations from electronic equipment.",
+      "optionNotes": [
+        "Incorrect. A Faraday cage is a passive TEMPEST control. Its metal mesh enclosure absorbs or blocks emanations so they can't leave the area, but it doesn't broadcast any false signals.",
+        "Incorrect. Copper-infused windows are passive shielding. The metal in the glass stops emanations from escaping through windows, but nothing is transmitted to mask the real signals.",
+        "Incorrect. Shielded cabling is passive. It keeps emanations from leaking out of cable runs, but it doesn't generate any jamming or decoy signals.",
+        "Correct. White noise is the only active control here. It keeps broadcasting false emanations that jam, or hide, the real emanations coming from computing equipment."
+      ]
+    },
+    {
+      "id": "OPT4-C03-067",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "In a software-as-a-service cloud computing environment, who is normally responsible for ensuring that appropriate firewall controls are in place to protect the application?",
+      "options": [
+        "Customer's security team",
+        "Vendor",
+        "Customer's networking team",
+        "Customer's infrastructure management team"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In a software-as-a-service environment, the customer has no access to any underlying infrastructure, so firewall management is a vendor responsibility under the cloud computing shared responsibility model.",
+      "optionNotes": [
+        "Incorrect. In SaaS the customer can't reach the underlying infrastructure, so its security team has no firewall to configure. The customer stays accountable for its data, but it hands responsibility for infrastructure controls to the provider.",
+        "Correct. In SaaS the vendor runs the whole stack, including the network and infrastructure, so under the shared responsibility model firewall management belongs to the vendor.",
+        "Incorrect. The customer's networking team would handle firewalls on premises or in IaaS. In SaaS the network sits inside the provider's environment, which the customer can't access.",
+        "Incorrect. In SaaS the customer has no infrastructure of its own to manage for the application, so this team has no role in its firewall controls. The vendor handles them."
+      ]
+    },
+    {
+      "id": "OPT4-C03-068",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Alice has read permissions on an object, and she would like Bob to have those same rights. Which one of the rules in the Take-Grant protection model would allow her to complete this operation?",
+      "options": [
+        "Create rule",
+        "Remove rule",
+        "Grant rule",
+        "Take rule"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The grant rule allows a subject to grant rights that it possesses on an object to another subject.",
+      "optionNotes": [
+        "Incorrect. The create rule lets a subject create a new object or subject. Alice isn't creating anything. She wants to pass along a right she already holds.",
+        "Incorrect. The remove rule lets a subject delete rights it holds. That takes rights away and doesn't give Bob anything.",
+        "Correct. The grant rule lets a subject give another subject the rights it holds on an object. That is exactly Alice passing her read permission to Bob.",
+        "Incorrect. The take rule lets a subject take rights from another subject. Bob would have to be the one acting, but in this question Alice is handing the right over."
+      ]
+    },
+    {
+      "id": "OPT4-C03-069",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 2.1,
+      "stem": "As part of his incident response process, Charles securely wipes the drive of a compromised machine and reinstalls the operating system (OS) from original media. Once he is done, he patches the machine fully and applies his organization's security templates before reconnecting the system to the network. Almost immediately after the system is returned to service, he discovers that it has reconnected to the same botnet it was part of before. Where should Charles look for the malware that is causing this behavior?",
+      "options": [
+        "The operating system partition",
+        "The system BIOS or firmware",
+        "The system memory",
+        "The installation media"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The system Charles is remediating may have a firmware or BIOS infection, with malware resident on the system board. While uncommon, this type of malware can be difficult to find and remove. Since he used original media, it is unlikely that the malware came from the software vendor. Charles wiped the system partition, and the system would have been rebooted before being rebuilt, thus clearing system memory.",
+      "optionNotes": [
+        "Incorrect. Charles securely wiped the OS partition and reinstalled from original media, so any malware stored there would have been destroyed. It can't explain the reinfection.",
+        "Correct. Firmware or BIOS malware lives on the system board, so wiping the drive and reinstalling the OS doesn't remove it. That explains the immediate reinfection. It's uncommon and hard to detect.",
+        "Incorrect. Memory is volatile. The system would have been rebooted during the rebuild, which clears any malware held in memory, so memory can't keep an infection alive across a reinstall.",
+        "Incorrect. He used original vendor media, so it's unlikely the installation media was carrying the malware. Infected shared media is a known way to spread infections, but it doesn't fit this case."
+      ]
+    },
+    {
+      "id": "OPT4-C03-070",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Lauren implements ASLR to help prevent system compromises. What technique has she used to protect her system?",
+      "options": [
+        "Encryption",
+        "Mandatory access control",
+        "Memory address randomization",
+        "Discretionary access control"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Lauren has implemented address space layout randomization, a memory protection methodology that randomizes memory locations, which prevents attackers from using known address spaces and contiguous memory regions to execute code via overflow or stack smashing attacks.",
+      "optionNotes": [
+        "Incorrect. ASLR doesn't encrypt anything. It moves where executables and data are loaded in memory so attackers can't guess addresses. It doesn't make memory contents unreadable.",
+        "Incorrect. Mandatory access control is an access-control model in which the system enforces access using labels and clearances. It's about who can reach which objects, not where code sits in memory.",
+        "Correct. Address space layout randomization places code and data at random memory locations. Attackers can't count on known addresses, which blocks overflow and stack-smashing exploits.",
+        "Incorrect. Discretionary access control is an access-control model in which owners set permissions on their own objects. It has nothing to do with randomizing memory layout to stop buffer overflow exploits."
+      ]
+    },
+    {
+      "id": "OPT4-C03-071",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.17,
+      "stem": "Alan intercepts an encrypted message and wants to determine what type of algorithm was used to create the message. He first performs a frequency analysis and notes that the frequency of letters in the message closely matches the distribution of letters in the English language. What type of cipher was most likely used to create this message?",
+      "options": [
+        "Substitution cipher",
+        "AES",
+        "Transposition cipher",
+        "3DES"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "This message was most likely encrypted with a transposition cipher. The use of a substitution cipher, a category that includes AES and 3DES, would change the frequency distribution so that it did not mirror that of the English language. This type of attack, where the attacker only has access to an encrypted message, is also known as a ciphertext-only attack.",
+      "optionNotes": [
+        "Incorrect. A substitution cipher swaps letters for other symbols, so the ciphertext letter frequencies would no longer match normal English. That rules it out here.",
+        "Incorrect. AES is a modern cipher that uses substitution. Its output looks statistically random and would not mirror English letter frequencies.",
+        "Correct. A transposition cipher only rearranges the order of the original letters. The letters themselves stay the same, so their frequencies still match English.",
+        "Incorrect. 3DES is a substitution-based block cipher. It hides plaintext statistics, so frequency analysis would not show an English-like distribution."
+      ]
+    },
+    {
+      "id": "OPT4-C03-072",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.31,
+      "stem": "In a zero trust network architecture, what component is responsible for making policy decisions based upon rules and external data sources?",
+      "options": [
+        "Policy engine",
+        "Policy administrator",
+        "Policy enforcement point",
+        "Subject"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In a zero trust network architecture, the policy engine is responsible for making policy decisions based upon rules and external data sources. It uses a trust algorithm to decide whether to grant, deny, or revoke access, considering factors like identity management, threat intelligence, and security information and event management (SIEM) data. The policy administrator, on the other hand, acts based on the decisions made by the policy engine, establishing or removing communication paths and managing session-specific credentials. The policy enforcement point enforces these decisions by controlling access to resources based on instructions from the policy administrator. Lastly, the subject refers to users, services, or systems that request access or attempt to use rights and is not involved in decision-making.",
+      "optionNotes": [
+        "Correct. The policy engine runs a trust algorithm over rules and external inputs such as identity management, threat intelligence, and SIEM data. It then decides whether to grant, deny, or revoke access.",
+        "Incorrect. The policy administrator carries out the engine's decisions. It sets up or tears down communication paths and handles session-specific credentials, but it doesn't make the decision itself.",
+        "Incorrect. The policy enforcement point controls access to resources on instructions from the policy administrator. It enforces decisions and doesn't make them.",
+        "Incorrect. The subject is the user, service, or system asking for access. It requests access and plays no part in deciding policy."
+      ]
+    },
+    {
+      "id": "OPT4-C03-073",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Grace would like to implement application control technology in her organization. Users often need to install new applications for research and testing purposes, and she does not want to interfere with that process. At the same time, she would like to block the use of known malicious software. What type of application control would be appropriate in this situation?",
+      "options": [
+        "Blacklisting",
+        "Graylisting",
+        "Whitelisting",
+        "Bluelisting"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The blacklisting approach to application control allows users to install any software they want except for packages specifically identified by the administrator as prohibited. This would be an appropriate approach in a scenario where users should be able to install any nonmalicious software they want to use.",
+      "optionNotes": [
+        "Correct. Blacklisting (deny list) lets users install any software except packages the administrator has specifically prohibited. That blocks known malware without getting in the way of research installs.",
+        "Incorrect. Graylisting is not a standard application control model. The term usually refers to email anti-spam, where mail from unknown senders is temporarily deferred. It does not provide a list of blocked malicious software.",
+        "Incorrect. Whitelisting allows only applications on an approved list and blocks everything else. Users could not freely install new research software, which is exactly the problem Grace wants to avoid.",
+        "Incorrect. Bluelisting is not a recognized application control approach. The standard models are allow lists (whitelisting) and deny lists (blacklisting)."
+      ]
+    },
+    {
+      "id": "OPT4-C03-074",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.31,
+      "stem": "Warren is designing a physical intrusion detection system for use in a sensitive media storage facility and wants to include technology that issues an alert if the communications lines for the alarm system are unexpectedly cut. What technology would meet this requirement?",
+      "options": [
+        "Heartbeat sensor",
+        "Emanation security",
+        "Motion detector",
+        "Faraday cage"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Heartbeat sensors send periodic status messages from the alarm system to the monitoring center. The monitoring center triggers an alarm if it does not receive a status message for a prolonged period of time, indicating that communications were disrupted.",
+      "optionNotes": [
+        "Correct. A heartbeat sensor sends periodic status signals to the monitoring center. If those signals stop for too long, the center raises an alarm, so a cut communication line gets detected.",
+        "Incorrect. Emanation security (TEMPEST) protects against eavesdropping on electromagnetic signals that equipment leaks. It does not watch the alarm communication path or detect a cut line.",
+        "Incorrect. A motion detector picks up movement inside a monitored area. It detects intruders, but it can't tell whether the alarm's communication line still works. Line supervision needs a heartbeat sensor.",
+        "Incorrect. A Faraday cage is an enclosure that blocks electromagnetic signals from getting in or out. It is an emanation control and gives no alert when alarm communication lines are cut."
+      ]
+    },
+    {
+      "id": "OPT4-C03-075",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "John and Gary are negotiating a business transaction, and John must demonstrate to Gary that he has access to a system. He engages in an electronic version of the “magic door” scenario shown here. What technique is John using?\n[Figure, described in text: the \"magic door\" illustration: a person stands at the entrance of a looped cave; the two paths around the loop (1 and 2) meet at a locked door at the far side.]",
+      "options": [
+        "Split-knowledge proof",
+        "Zero-knowledge proof",
+        "Logical proof",
+        "Mathematical proof"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "In a zero-knowledge proof, one individual demonstrates to another that they can achieve a result that requires sensitive information without actually disclosing the sensitive information.",
+      "optionNotes": [
+        "Incorrect. Split knowledge divides a secret among several people so no single person holds all of it, much like M-of-N control. Here John proves he has access without revealing the secret at all, which is a zero-knowledge proof.",
+        "Correct. In the magic door (Peggy and Victor) example, the prover shows they can produce a result that needs secret knowledge without disclosing that secret. That is exactly what a zero-knowledge proof is.",
+        "Incorrect. \"Logical proof\" is just a general term for reasoning, not a named cryptographic technique. The cave-and-door scenario is the textbook example of a zero-knowledge proof.",
+        "Incorrect. \"Mathematical proof\" means formally proving a theorem. It is not the cryptographic way of showing you know a secret without revealing it, which is what the magic door illustrates."
+      ]
+    },
+    {
+      "id": "OPT4-C03-076",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "After scanning all of the systems on his wireless network, Mike notices that one system is identified as an iOS device running a massively out-of-date version of Apple's mobile operating system. When he investigates further, he discovers that the device is an original iPad and that it cannot be updated to a current secure version of the operating system. What would be the best option for handling this device?",
+      "options": [
+        "Retire or replace the device.",
+        "Isolate the device on a dedicated wireless network.",
+        "Install a firewall on the tablet.",
+        "Reinstall the OS."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "When operating system patches are no longer available for mobile devices, the best option is typically to retire or replace the device. Building isolated networks will not stop the device from being used for browsing or other purposes, which means it is likely to continue to be exposed to threats. Installing a firewall will not remediate the security flaws in the OS, although it may help somewhat. Finally, reinstalling the OS will not allow new updates or fix the root issue.",
+      "optionNotes": [
+        "Correct. The device can no longer get OS patches, so its vulnerabilities will never be fixed. Retiring or replacing it is the only option that removes the risk at its source.",
+        "Incorrect. Putting it on its own wireless network doesn't stop people browsing or otherwise using the device. It stays exposed to threats while the OS flaws remain unpatched.",
+        "Incorrect. A firewall on the tablet might help a little, but it does nothing to fix the security flaws in the outdated OS.",
+        "Incorrect. Reinstalling puts the same outdated, unsupported OS back on the device. No new updates become available, so the root problem stays."
+      ]
+    },
+    {
+      "id": "OPT4-C03-077",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.16,
+      "stem": "Tonya believes that an attacker was able to eavesdrop on legitimate HTTPS communications between her users and remote web servers by engaging in a DNS poisoning attack. After conducting DNS poisoning, what technique would an attacker likely use to conduct this eavesdropping?",
+      "options": [
+        "Man-in-the-middle",
+        "Brute-force",
+        "Timing",
+        "Meet-in-the-middle"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In a man-in-the-middle attack, the attacker tricks the user into establishing a connection with the attacker. The attacker then establishes a connection to the legitimate server and relays communications between the two, eavesdropping on the contents. A meet-in-the-middle attack is an attack against cryptographic algorithms that use multiple rounds of encryption. There is no indication in the scenario that the attacker used an exhaustive brute-force attack or a specialized timing attack to achieve their goals.",
+      "optionNotes": [
+        "Correct. DNS poisoning sends users to the attacker's host. The attacker then opens its own connection to the real server and relays traffic in both directions, so it can read everything that passes through. That relay is a man-in-the-middle attack.",
+        "Incorrect. A brute-force attack tries every possible key or password until one works. Nothing in the scenario suggests an exhaustive key search; the eavesdropping comes from redirecting the traffic.",
+        "Incorrect. A timing attack works out secrets by measuring how long cryptographic operations take, which is a side channel. It has nothing to do with relaying traffic after DNS redirection.",
+        "Incorrect. Meet-in-the-middle is a cryptanalytic attack on ciphers that use multiple rounds of encryption, such as double DES. Despite the similar name, it does not intercept network sessions."
+      ]
+    },
+    {
+      "id": "OPT4-C03-078",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Howard is choosing a cryptographic algorithm for his organization, and he would like to choose an algorithm that supports the creation of digital signatures. Which one of the following algorithms would meet his requirement?",
+      "options": [
+        "RSA",
+        "3DES",
+        "AES",
+        "Blowfish"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Digital signatures are possible only when using an asymmetric encryption algorithm. Of the algorithms listed, only RSA is asymmetric and supports digital signature capabilities.",
+      "optionNotes": [
+        "Correct. RSA is an asymmetric algorithm. Signing with the private key and verifying with the public key gives digital signature capability, which is what Howard needs.",
+        "Incorrect. 3DES is a symmetric block cipher that applies DES three times. Both parties share the same key, so it cannot prove which one signed, and it can't create digital signatures.",
+        "Incorrect. AES is a symmetric block cipher (Rijndael) used for bulk encryption. With a shared secret key it gives no nonrepudiation, so it can't produce digital signatures.",
+        "Incorrect. Blowfish is a symmetric block cipher designed by Bruce Schneier. Like other shared-key ciphers, it can't create digital signatures, which require an asymmetric key pair."
+      ]
+    },
+    {
+      "id": "OPT4-C03-079",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Laura is responsible for securing her company's web-based applications and wants to conduct an educational program for developers on common web application security vulnerabilities. Where can she turn for a concise listing of the most common web application issues?",
+      "options": [
+        "CVE",
+        "NSA",
+        "OWASP",
+        "CSA"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The Open Worldwide Application Security Project (OWASP) produces an annual list of the top 10 web application security issues that developers and security professionals around the world rely upon for education and training purposes. The OWASP vulnerabilities form the basis for many web application security testing products.",
+      "optionNotes": [
+        "Incorrect. CVE is a public dictionary of individually disclosed vulnerabilities in specific products. It is a huge catalog of specific flaws, not a short list of the most common types of web application issues for teaching developers.",
+        "Incorrect. The NSA is a US intelligence agency. It issues some security guidance, but it does not publish the widely used short ranking of common web application vulnerabilities.",
+        "Correct. OWASP publishes the Top 10, a short list of the most critical web application security risks. Developers and security staff around the world use it for education and training, and many web app testing tools are built on it.",
+        "Incorrect. The Cloud Security Alliance (CSA) focuses on cloud security best practices, such as the Cloud Controls Matrix (CCM) and STAR. It is not the standard source for a list of common web application vulnerabilities."
+      ]
+    },
+    {
+      "id": "OPT4-C03-080",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.74,
+      "stem": "The Bell-LaPadula and Biba models implement state machines in a fashion that uses what specific state machine model?",
+      "options": [
+        "Information flow",
+        "Noninterference",
+        "Cascading",
+        "Feedback"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The information flow model applies state machines to the flow of information. The Bell-LaPadula model applies the information flow model to confidentiality, while the Biba model applies it to integrity.",
+      "optionNotes": [
+        "Correct. The information flow model applies state machines to how information moves between levels. Bell-LaPadula uses it for confidentiality and Biba uses it for integrity.",
+        "Incorrect. The noninterference model is a separate model. It makes sure actions at a higher security level can't affect or be seen by lower-level subjects. It isn't the flow-based state machine model that Bell-LaPadula and Biba are built on.",
+        "Incorrect. Cascading is a composition theory. It describes how input to one system becomes output from another when systems are chained together. It is not the state machine model behind Bell-LaPadula or Biba.",
+        "Incorrect. Feedback is a composition theory in which one system's output returns as input to another system. It describes how systems are linked, not the information flow model used by Bell-LaPadula and Biba."
+      ]
+    },
+    {
+      "id": "OPT4-C03-081",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.02,
+      "stem": "During a third-party vulnerability scan and security test, Danielle's employer recently discovered that the embedded systems that were installed to manage her company's new buildings have a severe remote access vulnerability. The manufacturer has gone out of business, and there is no patch or update for the devices. What should Danielle recommend that her employer do about the hundreds of devices that are vulnerable?",
+      "options": [
+        "Identify a replacement device model and replace every device.",
+        "Turn off all of the devices.",
+        "Move the devices to a secure and isolated network segment.",
+        "Reverse engineer the devices and build an in-house patch."
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The most reasonable choice presented is to move the devices to a secure and isolated network segment. This will allow the devices to continue to serve their intended function while preventing them from being compromised. All of the other scenarios either create major new costs or deprive her organization of the functionality that the devices were purchased to provide.",
+      "optionNotes": [
+        "Incorrect. Swapping out hundreds of devices that were only just installed would cost a great deal. Isolating them deals with the risk for much less money, so full replacement isn't the most reasonable first recommendation.",
+        "Incorrect. Turning the devices off removes the vulnerability, but the company also loses the building-management function it bought them for. Isolating them keeps them working while blocking remote compromise.",
+        "Correct. Putting the devices on a secure, isolated network segment is a compensating control. They keep doing their job, and the remote access vulnerability can't be reached, with no big new costs.",
+        "Incorrect. Reverse engineering the firmware and writing an in-house patch would need specialised skills, time and money. It's also risky, and the result can't be supported. That makes it a major new cost compared with segmentation."
+      ]
+    },
+    {
+      "id": "OPT4-C03-082",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "What type of motion detector senses changes in the electromagnetic fields in monitored areas?",
+      "options": [
+        "Infrared",
+        "Wave pattern",
+        "Capacitance",
+        "Photoelectric"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Capacitance motion detectors monitor the electromagnetic field in a monitored area, sensing disturbances that correspond to motion.",
+      "optionNotes": [
+        "Incorrect. Infrared (heat-based) detectors pick up changes in heat or infrared radiation in the area, not disturbances in an electromagnetic field.",
+        "Incorrect. Wave pattern detectors send a steady ultrasonic or microwave signal into the area and watch for changes in the reflected pattern. They don't watch an electromagnetic field.",
+        "Correct. Capacitance detectors monitor the electromagnetic (electrical or magnetic) field in an area and treat disturbances in it as motion.",
+        "Incorrect. Photoelectric detectors sense changes in visible light levels. They're usually used in dark rooms with no windows, not for sensing electromagnetic fields."
+      ]
+    },
+    {
+      "id": "OPT4-C03-083",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.13,
+      "stem": "Mike has been tasked with preventing an outbreak of malware like Mirai, a botnet that targeted IP-based cameras and routers. What type of systems should be protected in his organization?",
+      "options": [
+        "Servers",
+        "SCADA",
+        "Mobile devices",
+        "Internet of Things (IoT) devices"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Mirai targeted “Internet of Things” devices, including routers, cameras, and DVRs. As organizations bring an increasing number of devices like these into their corporate networks, protecting both internal and external targets from insecure, infrequently updated, and often vulnerable IoT devices is increasingly important.",
+      "optionNotes": [
+        "Incorrect. Servers weren't Mirai's recruits. In the Dyn attack, DNS servers were the DDoS victims, and the infected bots were IoT devices such as cameras and DVRs.",
+        "Incorrect. SCADA systems are industrial control systems that run physical processes like utilities. Mirai went after consumer-grade IP cameras, routers and DVRs, not ICS environments.",
+        "Incorrect. Mobile devices such as phones and tablets weren't Mirai's targets. It scanned for internet-connected embedded IoT devices with default or weak credentials.",
+        "Correct. Mirai infected IoT devices such as routers, cameras and DVRs. These devices are often insecure and rarely updated, so they need protection to keep them out of botnets."
+      ]
+    },
+    {
+      "id": "OPT4-C03-084",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Which one of the following statements is correct about the Biba model of access control?",
+      "options": [
+        "It addresses confidentiality and integrity.",
+        "It addresses integrity and availability.",
+        "It prevents covert channel attacks.",
+        "It focuses on protecting objects from integrity threats."
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "The Biba model focuses only on protecting integrity and does not provide protection against confidentiality or availability threats. It also does not provide protection against covert channel attacks. The Biba model focuses on external threats and assumes that internal threats are addressed programmatically.",
+      "optionNotes": [
+        "Incorrect. Biba covers integrity only and offers no confidentiality protection. Confidentiality is what Bell-LaPadula handles.",
+        "Incorrect. Biba covers integrity, but it does nothing for availability, so this pairing is wrong.",
+        "Incorrect. Biba gives no protection against covert channel attacks. It only enforces integrity rules such as no read down and no write up.",
+        "Correct. Biba is concerned only with protecting objects from integrity threats, especially external ones, and assumes internal threats are handled programmatically."
+      ]
+    },
+    {
+      "id": "OPT4-C03-085",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.27,
+      "stem": "In Transport Layer Security, what type of key is used to encrypt the actual content of communications between a web server and a client?",
+      "options": [
+        "Ephemeral session key",
+        "Client's public key",
+        "Server's public key",
+        "Server's private key"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "In TLS, both the server and the client communicate using an ephemeral symmetric session key. They generate this key using the Diffie-Hellman key exchange algorithm and then communicate using it throughout the rest of the session.",
+      "optionNotes": [
+        "Correct. TLS peers derive an ephemeral symmetric session key (e.g., via Diffie-Hellman) and use it to encrypt all session content efficiently.",
+        "Incorrect. Clients usually have no certificate or key pair in TLS, and asymmetric keys are too slow for bulk data. The content is encrypted with the symmetric session key.",
+        "Incorrect. The server's public key, sent in its certificate, is used for authentication and key establishment during the handshake. It does not encrypt the session content.",
+        "Incorrect. The server's private key signs or decrypts handshake material to prove the server's identity. It is never used to encrypt the bulk data exchanged in the session."
+      ]
+    },
+    {
+      "id": "OPT4-C03-086",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.84,
+      "stem": "Beth would like to include technology in a secure area of her data center to protect against unwanted electromagnetic emanations. What technology would assist her with this goal?",
+      "options": [
+        "Heartbeat sensor",
+        "Faraday cage",
+        "Piggybacking",
+        "WPA2"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A Faraday cage is a metal skin that prevents electromagnetic emanations from exiting. It is a rarely used technology because it is unwieldy and expensive, but it is quite effective at blocking unwanted electromagnetic radiation.",
+      "optionNotes": [
+        "Incorrect. A heartbeat sensor checks that a device or communication link is still working (a liveness or tamper check). It does nothing to stop electromagnetic emanations from leaving an area.",
+        "Correct. A Faraday cage is a metal skin around an area that stops electromagnetic emanations from getting out. It's expensive and awkward to build, but it blocks unwanted EM radiation very well.",
+        "Incorrect. Piggybacking is a physical-access attack, where someone follows an authorized person through a secure entrance. It's a threat, not a control, and has nothing to do with emanations.",
+        "Incorrect. WPA2 is a wireless encryption protocol. It protects the content of Wi-Fi traffic, but it doesn't stop electromagnetic signals from leaving the secure area."
+      ]
+    },
+    {
+      "id": "OPT4-C03-087",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.13,
+      "stem": "In a virtualized computing environment, what component is responsible for enforcing separation between guest machines?",
+      "options": [
+        "Guest operating system",
+        "Hypervisor",
+        "Kernel",
+        "Protection manager"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The hypervisor is responsible for coordinating access to physical hardware and enforcing isolation between different virtual machines running on the same physical platform.",
+      "optionNotes": [
+        "Incorrect. Each guest OS runs inside its own VM and controls only that VM. It can't see or police other guests, so it has no way to keep them apart. Isolation is enforced underneath the guest, by the hypervisor, and VM escape is an attack that breaks out past that boundary.",
+        "Correct. The hypervisor, also called the virtual machine monitor (VMM), coordinates access to the physical hardware and enforces isolation between the VMs that share a platform.",
+        "Incorrect. A kernel is the core of a single operating system and enforces separation between processes inside that OS. Separating whole guest VMs is the job of the hypervisor, which creates, manages and runs the VMs.",
+        "Incorrect. \"Protection manager\" is not a standard virtualization component. The study guide names the hypervisor/VMM as the part that creates and manages VMs and provides isolation between them."
+      ]
+    },
+    {
+      "id": "OPT4-C03-088",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Rick is an application developer who works primarily in Python. He recently decided to evaluate a new service where he provides his Python code to a vendor who then executes it on their server environment. What type of cloud computing environment is this service?",
+      "options": [
+        "SaaS",
+        "PaaS",
+        "IaaS",
+        "CaaS"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Cloud computing systems where the customer only provides application code for execution on a vendor-supplied computing platform are examples of platform-as-a-service (PaaS) computing.",
+      "optionNotes": [
+        "Incorrect. With SaaS, the vendor delivers a finished application for the customer to use. Rick is supplying his own code to be run, so this isn't SaaS.",
+        "Correct. Rick only supplies application code, and the vendor provides the platform that runs it: hardware, operating system and Python runtime. That is the definition of PaaS.",
+        "Incorrect. With IaaS, the vendor provides servers, storage and networking, and the customer installs and manages the operating system and runtime. Rick isn't managing any of that, so this isn't IaaS.",
+        "Incorrect. Containers as a Service (CaaS) is for deploying and running containers that the customer builds and manages. Rick is handing over raw code to be run on a vendor platform, not managing containers."
+      ]
+    },
+    {
+      "id": "OPT4-C03-089",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "A component failure in the primary HVAC system leads to a high temperature alarm in the data center that Kim manages. After resolving the issue, what should Kim consider to prevent future issues like this?",
+      "options": [
+        "A closed loop chiller",
+        "Redundant cooling systems",
+        "Swamp coolers",
+        "Relocating the data center to a colder climate"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "A well-designed data center should have redundant systems and capabilities for each critical part of its infrastructure. That means that power, cooling, and network connectivity should all be redundant. Kim should determine how to ensure that a single system failure cannot take her data center offline.",
+      "optionNotes": [
+        "Incorrect. A closed loop chiller is just another type of cooling unit. If it's the only one, it is still a single point of failure, so a component failure could cause the same overheating again.",
+        "Correct. Redundant cooling removes the single point of failure. If one HVAC component fails, another system keeps the data center cool, matching the book's point that power, cooling and network should all be redundant.",
+        "Incorrect. Swamp (evaporative) coolers are another cooling technology that adds humidity and works poorly in a data center. Swapping in a different single system does not fix the single-point-of-failure problem.",
+        "Incorrect. Moving to a colder climate is costly and impractical. Equipment can still overheat if the only cooling system fails, so it does not give the resilience that removing the single point of failure provides."
+      ]
+    },
+    {
+      "id": "OPT4-C03-090",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.31,
+      "stem": "Tommy is planning to implement a power conditioning UPS for a rack of servers in his data center. Which one of the following conditions will the UPS be unable to protect against if it persists for an extended period of time?",
+      "options": [
+        "Fault",
+        "Blackout",
+        "Sag",
+        "Noise"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "UPSs are designed to protect against short-term power losses, such as power faults. When they conduct power conditioning, they are also able to protect against sags and noise. UPSs have limited-life batteries and are not able to maintain continuous operating during a sustained blackout.",
+      "optionNotes": [
+        "Incorrect. A fault is a momentary loss of power. That is exactly the kind of short outage a UPS battery is built to cover, so it isn't the condition a UPS fails against.",
+        "Correct. A blackout is a long-term total loss of power. UPS batteries only last a limited time, usually minutes, so they can't keep servers running through a sustained blackout. That needs a generator.",
+        "Incorrect. A sag is a brief drop in voltage. A UPS that does power conditioning cleans up the incoming power and smooths out sags, so it does protect against this.",
+        "Incorrect. Noise is electrical interference on the power line. A UPS's power-conditioning function filters it out, so noise is a condition the UPS can handle."
+      ]
+    },
+    {
+      "id": "OPT4-C03-091",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.41,
+      "stem": "Which one of the following humidity values is within the acceptable range for a data center operation?",
+      "options": [
+        "0%",
+        "10%",
+        "15%",
+        "40%"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Data center humidity should be maintained between 20% and 80%. Values below this range increase the risk of static electricity, while values above this range may generate moisture that damages equipment.",
+      "optionNotes": [
+        "Incorrect. 0% humidity is far below the 20% minimum. Air that dry creates a serious risk of static electricity that can damage equipment.",
+        "Incorrect. 10% is below the acceptable 20–80% range. At that level, static electricity discharge becomes a real risk.",
+        "Incorrect. 15% is close to the range but still below the 20% lower limit, so the risk of static buildup goes up.",
+        "Correct. 40% falls inside the recommended 20–80% data center humidity range. It is dry enough to avoid condensation damage and humid enough to limit static."
+      ]
+    },
+    {
+      "id": "OPT4-C03-092",
+      "domain": 3,
+      "type": "multi",
+      "difficulty": 1.74,
+      "stem": "Kristen's organization suffered a ransomware infection and has lost access to critical business data. She is considering paying the ransom to regain access to her data. Which of the following statements about this payment are correct? (Select all that apply.)",
+      "options": [
+        "Payment of the ransom may be illegal.",
+        "Payment of the ransom may result in further demands for payments.",
+        "Payment of the ransom guarantees access to the decryption key.",
+        "Payment of the ransom may cause a data breach."
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Payment of a ransom often results in the release of a decryption key, but this is not guaranteed by any means. There is also no link between the payment of a ransom and a future data breach, as an attacker may choose to release confidential information regardless of whether the ransom was paid. Depending upon applicable jurisdictions, payment of a ransom may be illegal under corrupt practices laws or embargoes against terrorist organizations. For example, the U.S. Office of Foreign Assets Control (OFAC) issued an advisory in 2020 stating that ransom payments may violate sanctions. Payment of a ransom may also cause attackers to consider the victim a “mark” and demand future payments in exchange for continued access to their data.",
+      "optionNotes": [
+        "Correct. Depending on jurisdiction, paying a ransom can break corrupt-practices laws or sanctions and embargoes. OFAC's 2020 advisory, for example, warned that ransom payments may violate sanctions.",
+        "Correct. Once a victim pays, attackers may treat them as a 'mark' and keep demanding money in exchange for continued access to the data.",
+        "Incorrect. Paying often gets a decryption key released, but there is no guarantee. Criminals have no obligation to deliver the key, and it may not work.",
+        "Incorrect. Paying a ransom doesn't cause a breach. An attacker may leak confidential data whether or not the ransom is paid, so the two aren't linked."
+      ]
+    },
+    {
+      "id": "OPT4-C03-093",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.02,
+      "stem": "Alex's employer creates most of their work output as PDF files. Alex is concerned about limiting the audience for the PDF files to those individuals who have paid for them. What technology can he use to most effectively control the access to and distribution of these files?",
+      "options": [
+        "EDM",
+        "Encryption",
+        "Digital signatures",
+        "DRM"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Alex can use digital rights management technology to limit use of the PDFs to paying customers. While DRM is rarely a perfect solution, in this case, it may fit his organization's needs. EDM is electronic dance music, which his customers may appreciate but which won't solve the problem. Encryption and digital signatures can help to keep the files secure and to prove who they came from but won't solve the rights management issue Alex is tackling.",
+      "optionNotes": [
+        "Incorrect. EDM is electronic dance music, not a security technology. It can't limit who views or shares the PDFs.",
+        "Incorrect. Encryption keeps files confidential, but once a paying customer decrypts a PDF, it doesn't control further use or redistribution. It isn't a rights-management solution.",
+        "Incorrect. Digital signatures prove who created a file and that it hasn't been altered. They don't restrict who can open or share the PDFs.",
+        "Correct. Digital rights management (DRM) enforces usage rights on content, limiting access and distribution of the PDFs to paying customers. It isn't perfect, but it fits Alex's need."
+      ]
+    },
+    {
+      "id": "OPT4-C03-094",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -1.41,
+      "stem": "As part of his team's forensic investigation process, Matt signs out drives and other evidence from an evidence storage facility before working with them. What type of documentation is he creating?",
+      "options": [
+        "Criminal",
+        "Chain of custody",
+        "Civil",
+        "CYA"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Matt is helping to maintain the chain of custody documentation for his electronic evidence. This can be important if his organization needs to prove that the digital evidence they handled has not been tampered with. A better process would involve more than one person to ensure that no tampering was possible.",
+      "optionNotes": [
+        "Incorrect. Criminal is a type of investigation or case, not a kind of documentation. Signing evidence in and out of storage is evidence-handling documentation, whatever kind of case it supports.",
+        "Correct. Recording each sign-out of evidence keeps the chain of custody, which proves the digital evidence was not tampered with. Having more than one person involved would make the process stronger.",
+        "Incorrect. Civil is an investigation or case type, and it uses the preponderance-of-evidence standard. It is not a form of documentation for tracking who handles evidence.",
+        "Incorrect. CYA (\"cover your assets\") is slang for protecting yourself, not a formal type of forensic documentation. The formal term for tracking evidence possession is chain of custody."
+      ]
+    },
+    {
+      "id": "OPT4-C03-095",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.27,
+      "stem": "Todd believes that a digital certificate used by his organization has been compromised, and he wants to add it to the certificate revocation list (CRL). What element of the certificate goes on the CRL?",
+      "options": [
+        "Serial number",
+        "Public key",
+        "Digital signature",
+        "Private key"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The certificate revocation list contains the serial numbers of digital certificates issued by a certificate authority that have later been revoked.",
+      "optionNotes": [
+        "Correct. A CRL lists the serial numbers of certificates the CA issued and later revoked, so each revoked certificate is identified by its serial number.",
+        "Incorrect. Revocation does end trust in the public key, but the CRL doesn't list public keys. It names revoked certificates by serial number, which is shorter and unique within each CA.",
+        "Incorrect. The CA signs the CRL as a whole so people can trust it. The individual certificates' signatures aren't what gets listed; entries are serial numbers.",
+        "Incorrect. A compromised private key is often why a certificate gets revoked, but private keys are never published. Putting one on a public CRL would expose it even further."
+      ]
+    },
+    {
+      "id": "OPT4-C03-096",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.02,
+      "stem": "Alison is examining a digital certificate presented to her by her bank's website. Which one of the following requirements is not necessary for her to trust the digital certificate?",
+      "options": [
+        "She knows that the server belongs to the bank.",
+        "She trusts the certificate authority.",
+        "She verifies that the certificate is not listed on a CRL.",
+        "She verifies the digital signature on the certificate."
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "The point of the digital certificate is to prove to Alison that the server belongs to the bank, so she does not need to have this trust in advance. To trust the certificate, she must verify the CA's digital signature on the certificate, trust the CA, verify that the certificate is not listed on a CRL, and verify that the certificate contains the name of the bank.",
+      "optionNotes": [
+        "Correct. Proving the server belongs to the bank is the whole purpose of the certificate, so Alison doesn't need to know this beforehand. The certificate gives her that trust.",
+        "Incorrect. This is required. A certificate is only as trustworthy as the CA that issued and signed it. If Alison doesn't trust the CA, its vouching for the bank's identity means nothing to her.",
+        "Incorrect. This is required. Alison must check that the certificate doesn't appear on a certificate revocation list (CRL), because a revoked certificate, for example one with a compromised key, can no longer be trusted.",
+        "Incorrect. This is required. Checking the CA's digital signature on the certificate proves the certificate is authentic and hasn't been altered since the CA signed it."
+      ]
+    },
+    {
+      "id": "OPT4-C03-097",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 0.31,
+      "stem": "Which one of the following is an example of a covert timing channel when used to exfiltrate information from an organization?",
+      "options": [
+        "Sending an electronic mail message",
+        "Posting a file on a peer-to-peer file sharing service",
+        "Typing with the rhythm of Morse code",
+        "Writing data to a shared memory space"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Covert channels use surreptitious communications' paths. Covert timing channels alter the use of a resource in a measurable fashion to exfiltrate information. If a user types using a specific rhythm of Morse code, this is an example of a covert timing channel. Someone watching or listening to the keystrokes could receive a secret message with no trace of the message left in logs.",
+      "optionNotes": [
+        "Incorrect. Email is an ordinary, overt communication channel. It leaves logs and doesn't encode data by changing the timing of a resource, so it isn't a covert timing channel.",
+        "Incorrect. Posting a file to a P2P service is an overt way to move data. Nothing is signalled by changing how fast or how often a system resource is used, so it isn't a timing channel.",
+        "Correct. Typing in a Morse code rhythm changes the timing of a resource in a way someone else can measure. A person watching or listening to the keystrokes gets the message, and nothing shows up in the logs.",
+        "Incorrect. Writing data to a shared memory area where another process can read it is a covert storage channel, not a timing channel."
+      ]
+    },
+    {
+      "id": "OPT4-C03-098",
+      "domain": 3,
+      "type": "single",
+      "difficulty": -0.7,
+      "stem": "Which one of the following would be a reasonable application for the use of self-signed digital certificates?",
+      "options": [
+        "Digital commerce website",
+        "Banking application",
+        "Internal scheduling application",
+        "Customer portal"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Self-signed digital certificates should be used only for internal-facing applications, where the user base trusts the internally generated digital certificate.",
+      "optionNotes": [
+        "Incorrect. A digital commerce site serves outside customers, and their browsers won't trust a self-signed certificate. A public site like this needs a certificate from a trusted public CA so customers can verify its identity.",
+        "Incorrect. A banking application is public-facing and handles sensitive money transactions, so customers need a certificate signed by a trusted CA. A self-signed certificate can't prove the bank's identity to outside users.",
+        "Correct. An internal scheduling application is used only inside the organization, where users can trust the internally generated self-signed certificate. That's the only setting where self-signed certificates fit.",
+        "Incorrect. A customer portal is used by outside parties who have no reason to trust the organization's self-signed certificate. They would get browser warnings, so the portal needs a certificate signed by a trusted CA."
+      ]
+    },
+    {
+      "id": "OPT4-C03-099",
+      "domain": 3,
+      "type": "single",
+      "difficulty": 1.45,
+      "stem": "Ron is investigating a security incident that took place at a highly secure government facility. He believes that encryption keys were stolen during the attack and finds evidence that the attackers used dry ice to freeze an encryption component. What type of attack was likely attempted?",
+      "options": [
+        "Side channel attack",
+        "Brute-force attack",
+        "Timing attack",
+        "Fault injection attack"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "In a fault injection attack, the attacker attempts to compromise the integrity of a cryptographic device by causing some type of external fault. For example, they might use high-voltage electricity, high or low temperature, or other factors to cause a malfunction that undermines the security of the device. Side-channel attacks seek to use information about system activity and retrieve information that is actively being encrypted. Brute-force attacks attempt every possible valid combination for a key or password. In a timing attack, the attacker measures precisely how long cryptographic operations take to complete, gaining information about the cryptographic process that may be used to undermine its security.",
+      "optionNotes": [
+        "Incorrect. A side-channel attack passively watches system activity, such as power use or emissions, to pull out data being encrypted. Freezing the device with dry ice actively causes a fault, so this is not side-channel monitoring.",
+        "Incorrect. A brute-force attack tries every possible key or password combination. It does not involve physically tampering with hardware or changing its temperature.",
+        "Incorrect. A timing attack measures exactly how long cryptographic operations take in order to infer secrets. Freezing a component is not a way of measuring timing.",
+        "Correct. A fault injection attack uses an outside stress, such as extreme temperature (here, dry ice) or high voltage, to make the device malfunction and weaken its cryptographic security."
+      ]
+    },
+    {
+      "id": "OPT4-C03-100",
+      "domain": 3,
+      "type": "ordering",
+      "difficulty": 2.46,
+      "stem": "Match the following numbered security models with the appropriate lettered security descriptions:\nSecurity models:\n1. Clark-Wilson\n2. Bell-LaPadula\n3. Biba\n\n(Arrange the options in the order of the numbered items 1–3.)",
+      "options": [
+        "This model blocks lower-classified objects from accessing higher-classified objects, thus ensuring confidentiality.",
+        "The * property of this model can be summarized as “no write-up.”",
+        "This model uses security labels to grant access to objects via transformation procedures and a restricted interface model."
+      ],
+      "answer": [
+        2,
+        0,
+        1
+      ],
+      "explanation": "The security models match with the descriptions as follows:\n1. Clark-Wilson: C. This model uses security labels to grant access to objects via transformation procedures and a restricted interface model.\n2. Bell-LaPadula: A. This model blocks lower-classified objects from accessing higher-classified objects, thus ensuring confidentiality.\n3. Biba: B. The * property of this model can be summarized as “no write-up.”",
+      "optionNotes": [
+        "Goes with item 2, Bell-LaPadula. It is a confidentiality model that stops lower-cleared subjects from reading higher-classified objects (no read-up).",
+        "Goes with item 3, Biba. Biba's * (integrity) property means \"no write-up\": lower-integrity subjects can't write to higher-integrity objects. Bell-LaPadula's * property is the opposite, \"no write-down\".",
+        "Goes with item 1, Clark-Wilson. That model controls access through transformation procedures and a restricted interface (the access triple), so subjects never reach constrained data items directly."
+      ]
+    },
+    {
+      "id": "OPT4-C03-101",
+      "domain": 3,
+      "type": "ordering",
+      "difficulty": 1.6,
+      "stem": "Match each of these following numbered architecture security concepts with the appropriate lettered description:\nArchitectural security concepts:\n1. Time of check\n2. Covert channel\n3. Time of use\n4. Maintenance hooks\n5. Parameter checking\n6. Race condition\n\n(Arrange the options in the order of the numbered items 1–6.)",
+      "options": [
+        "A method used to pass information over a path not normally used for communication",
+        "The exploitation of the reliance of a system's behavior on the sequence of events that occur externally",
+        "The time at which the subject checks whether an object is available",
+        "The time at which a subject can access an object",
+        "An access method known only to the developer of the system",
+        "A method that can help prevent buffer overflow attacks"
+      ],
+      "answer": [
+        2,
+        0,
+        3,
+        4,
+        5,
+        1
+      ],
+      "explanation": "The architecture security concepts match with the descriptions as follows:\n1. Time of check: C. The time at which the subject checks whether an object is available\n2. Covert channel: A. A method used to pass information over a path not normally used for communication\n3. Time of use: D. The time at which a subject can access an object\n4. Maintenance hooks: E. An access method known only to the developer of the system\n5. Parameter checking: F. A method that can help prevent buffer overflow attacks\n6. Race condition: B. The exploitation of the reliance of a system's behavior on the sequence of events that occur externally",
+      "optionNotes": [
+        "Goes with item 2, covert channel. A covert channel moves information over a path that isn't normally used for communication, which gets around the security policy.",
+        "Goes with item 6, race condition. A race condition exploits the fact that a system's behavior depends on the order or timing of outside events, as TOCTOU attacks do.",
+        "Goes with item 1, time of check. This is the moment the subject checks whether an object is available, before it actually uses it.",
+        "Goes with item 3, time of use. This is the moment the subject actually accesses the object. A gap between check and use is what TOCTOU attacks exploit.",
+        "Goes with item 4, maintenance hooks. These are back-door entry points known only to the developer, and they can bypass normal access controls.",
+        "Goes with item 5, parameter checking. Checking input length and type helps prevent buffer overflow attacks."
+      ]
+    }
+  ]
+}
