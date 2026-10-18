@@ -1,0 +1,533 @@
+{
+  "name": "CISSP Domain 1 – Security and Risk Management",
+  "questions": [
+    {
+      "id": "D1-001",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "A newly hired CISO discovers the organization has no documented information security program. What should the CISO do FIRST?",
+      "options": [
+        "Purchase a SIEM to gain visibility",
+        "Write technical hardening standards",
+        "Run a vulnerability scan of all systems",
+        "Obtain senior management support and define governance"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Security programs must be driven top-down; without executive sponsorship and governance, later activities lack authority and funding. Tools, scans and standards are useful but come after the mandate is established."
+    },
+    {
+      "id": "D1-002",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -2.2,
+      "stem": "Which document is mandatory, high-level, and states management's intent regarding security?",
+      "options": [
+        "Guideline",
+        "Procedure",
+        "Policy",
+        "Baseline"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "A policy is a high-level, mandatory statement of management intent. Procedures are step-by-step, baselines define minimum configurations, and guidelines are discretionary recommendations."
+    },
+    {
+      "id": "D1-003",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.8,
+      "stem": "An asset is valued at $200,000. A flood would destroy 25% of it, and floods occur once every 10 years. What is the ALE?",
+      "options": [
+        "$5,000",
+        "$50,000",
+        "$20,000",
+        "$2,000"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "SLE = 200,000 x 0.25 = 50,000; ARO = 0.1; ALE = 5,000. $50,000 is the SLE, and the other values misapply the factors."
+    },
+    {
+      "id": "D1-004",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -2.0,
+      "stem": "A company purchases cyber insurance to cover breach-notification costs. Which risk response is this?",
+      "options": [
+        "Risk avoidance",
+        "Risk mitigation",
+        "Risk acceptance",
+        "Risk transference"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Insurance shifts financial impact to a third party, which is transference. It does not reduce likelihood (mitigation), stop the activity (avoidance), or simply absorb the loss (acceptance). Note accountability is not transferred."
+    },
+    {
+      "id": "D1-005",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.8,
+      "stem": "Who is ultimately accountable for protecting an organization's data?",
+      "options": [
+        "The data custodian",
+        "The end users",
+        "The security administrator",
+        "Senior management"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Senior management bears ultimate accountability for due care. Custodians implement controls and users follow policy, but neither carries ultimate responsibility."
+    },
+    {
+      "id": "D1-006",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.3,
+      "stem": "A security manager wants to ensure that controls continue to operate effectively over time after implementation. This is BEST described as:",
+      "options": [
+        "Due diligence",
+        "Due care",
+        "Separation of duties",
+        "Least privilege"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Due diligence is the ongoing investigation and monitoring that ensures controls stay effective; due care is acting as a reasonable person by implementing the controls. The other options are specific control principles, not the concept."
+    },
+    {
+      "id": "D1-007",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.0,
+      "stem": "Under the (ISC)2 Code of Ethics, which canon has the HIGHEST priority?",
+      "options": [
+        "Act honorably, honestly, justly, responsibly, and legally",
+        "Provide diligent and competent service to principals",
+        "Protect society, the common good, necessary public trust and confidence, and the infrastructure",
+        "Advance and protect the profession"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "The canons are applied in order, and protecting society and infrastructure comes first. Serving principals and advancing the profession are lower priorities."
+    },
+    {
+      "id": "D1-008",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.6,
+      "stem": "A European company transfers personal data of EU residents to a processor in a country without an adequacy decision. Which mechanism MOST directly legitimizes the transfer under GDPR?",
+      "options": [
+        "A non-disclosure agreement",
+        "Standard contractual clauses",
+        "An ISO 27001 certificate held by the processor",
+        "A service level agreement"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Standard contractual clauses are an approved GDPR transfer safeguard. NDAs and SLAs do not address data subject rights, and ISO certification alone is not a transfer mechanism."
+    },
+    {
+      "id": "D1-009",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.5,
+      "stem": "During a business impact analysis, which metric defines the maximum time a business function can be unavailable before causing irrecoverable harm?",
+      "options": [
+        "Recovery point objective",
+        "Mean time to repair",
+        "Maximum tolerable downtime",
+        "Work recovery time"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "MTD is the total time a function can be down before unacceptable harm. RPO concerns data loss, MTTR is a component reliability metric, and WRT is the verification time after systems are restored."
+    },
+    {
+      "id": "D1-010",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -2.3,
+      "stem": "A risk assessment uses ratings such as 'high', 'medium', and 'low' based on expert opinion. This is an example of:",
+      "options": [
+        "Quantitative analysis",
+        "Delphi-based actuarial modeling",
+        "Monte Carlo simulation",
+        "Qualitative analysis"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Descriptive scales based on judgment are qualitative. Quantitative and simulation methods produce numeric monetary or probabilistic values."
+    },
+    {
+      "id": "D1-011",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.2,
+      "stem": "An employee is found to have stolen trade secrets. Which legal protection is MOST appropriate for a manufacturing formula the company never wants to disclose publicly?",
+      "options": [
+        "Patent",
+        "Trade secret",
+        "Copyright",
+        "Trademark"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Trade secret protection lasts as long as secrecy is maintained, without public disclosure. A patent requires publication and expires, copyright protects expression not formulas, and trademarks protect brand identifiers."
+    },
+    {
+      "id": "D1-012",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.2,
+      "stem": "Management has formally accepted a risk that exceeds the documented risk appetite without justification. What should the security professional do FIRST?",
+      "options": [
+        "Implement compensating controls anyway",
+        "Report the matter to the regulator",
+        "Escalate through the governance process to ensure the decision is properly authorized and documented",
+        "Ignore it, since management owns the risk"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Accepting risk beyond appetite requires appropriate authority; the professional should escalate via governance. Unilateral controls bypass management, external reporting is premature, and ignoring it fails due care."
+    },
+    {
+      "id": "D1-013",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.6,
+      "stem": "Which control type is a security awareness training program primarily?",
+      "options": [
+        "Technical detective",
+        "Physical preventive",
+        "Administrative preventive",
+        "Technical corrective"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Training is an administrative (managerial) control intended to prevent incidents by changing behavior. It is neither technical nor physical, and it is not primarily corrective or detective."
+    },
+    {
+      "id": "D1-014",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.0,
+      "stem": "A cloud provider is selected to host payroll data. Which activity BEST addresses supply chain risk before the contract is signed?",
+      "options": [
+        "Performing a third-party assessment, such as reviewing a SOC 2 Type II report",
+        "Requiring the provider to use the company's antivirus",
+        "Encrypting payroll data after migration",
+        "Training payroll staff on phishing"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Pre-contract due diligence using independent assurance like a SOC 2 Type II report evaluates control effectiveness over time. The other options are post-selection or unrelated controls."
+    },
+    {
+      "id": "D1-015",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -2.0,
+      "stem": "Which threat modeling methodology categorizes threats as spoofing, tampering, repudiation, information disclosure, denial of service, and elevation of privilege?",
+      "options": [
+        "PASTA",
+        "DREAD",
+        "STRIDE",
+        "VAST"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "STRIDE is Microsoft's threat categorization mnemonic. DREAD is a risk rating model, PASTA is a seven-stage risk-centric process, and VAST focuses on scalable agile modeling."
+    },
+    {
+      "id": "D1-016",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.2,
+      "stem": "An organization's residual risk is calculated as total risk minus the risk reduced by controls. If residual risk remains above appetite, the BEST next step is to:",
+      "options": [
+        "Accept the residual risk without review",
+        "Evaluate additional controls or alternative treatments",
+        "Remove existing controls to cut costs",
+        "Recalculate using a lower asset value"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "If residual risk exceeds appetite, further treatment must be considered. Accepting without review violates appetite, removing controls raises risk, and manipulating values is dishonest."
+    },
+    {
+      "id": "D1-017",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.9,
+      "stem": "A financial firm requires that no single employee can both create a vendor and approve payments to that vendor. This is an example of:",
+      "options": [
+        "Job rotation",
+        "Mandatory vacation",
+        "Need to know",
+        "Separation of duties"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Splitting a sensitive transaction across people is separation of duties, preventing fraud without collusion. Job rotation and mandatory vacations are detective measures, and need to know governs data access."
+    },
+    {
+      "id": "D1-018",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.4,
+      "stem": "Which BEST describes the purpose of a security control framework such as NIST SP 800-53 or ISO/IEC 27002 for an organization?",
+      "options": [
+        "To replace the need for a risk assessment",
+        "To provide a catalog of controls that can be tailored to the organization's risk",
+        "To certify the organization's products",
+        "To define legal penalties for noncompliance"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Control frameworks provide catalogs to be selected and tailored based on risk. They do not replace risk assessment, certify products, or impose legal penalties by themselves."
+    },
+    {
+      "id": "D1-019",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.9,
+      "stem": "A company operating in multiple countries suffers a breach involving personal data. Which consideration is MOST important when deciding notification obligations?",
+      "options": [
+        "The jurisdictions of the affected data subjects",
+        "The location of the company headquarters only",
+        "The vendor that supplied the breached system",
+        "The number of security staff employed"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Breach notification laws generally depend on where affected individuals reside, so multiple regimes may apply. Headquarters location alone is insufficient, and vendor or staffing details do not determine legal obligations."
+    },
+    {
+      "id": "D1-020",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "An employee is leaving the company on unfriendly terms. Which action should occur FIRST?",
+      "options": [
+        "Conduct an exit interview",
+        "Retrieve company-issued equipment",
+        "Disable the employee's system access",
+        "Update the organizational chart"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "For hostile terminations, access must be revoked at or before notification to prevent sabotage. Exit interviews and equipment return follow, and org chart updates are administrative."
+    },
+    {
+      "id": "D1-021",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 0.7,
+      "stem": "A security manager presents a project's return on security investment to the board. Which factor makes the safeguard cost-justified?",
+      "options": [
+        "Its annual cost is less than the reduction in ALE it provides",
+        "It is recommended by a vendor",
+        "It has the highest detection rate available",
+        "Its ALE after implementation is zero"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "A safeguard is justified when ALE before minus ALE after minus annual safeguard cost is positive. Vendor recommendations and detection rates do not prove value, and zero residual ALE is rarely achievable or required."
+    },
+    {
+      "id": "D1-022",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -0.6,
+      "stem": "Which of the following is the PRIMARY reason to perform a business impact analysis before developing a business continuity plan?",
+      "options": [
+        "To select backup technologies",
+        "To identify critical processes and their recovery priorities",
+        "To satisfy auditors",
+        "To train staff on evacuation"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "The BIA identifies critical functions, impacts, and recovery objectives that drive the BCP. Technology selection comes later, audit satisfaction is a side effect, and evacuation is life-safety planning."
+    },
+    {
+      "id": "D1-023",
+      "domain": 1,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "A regulator requires a bank to retain transaction records for seven years. The security team wants to delete logs after one year to reduce storage costs. What should the security manager do?",
+      "options": [
+        "Delete logs after one year to reduce cost",
+        "Retain records per the legal requirement and document the retention policy",
+        "Encrypt the logs and then delete keys after one year",
+        "Let each department decide independently"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Legal and regulatory requirements override cost preferences, and retention must be formalized in policy. Crypto-shredding early is effectively deletion, and decentralized decisions create compliance gaps."
+    },
+    {
+      "id": "D1-024",
+      "domain": 1,
+      "type": "single",
+      "difficulty": 1.0,
+      "stem": "An organization adopts a framework that maps business goals to IT goals and focuses on governance and management of enterprise IT. Which framework is this?",
+      "options": [
+        "COBIT",
+        "OCTAVE",
+        "ITIL",
+        "SABSA"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "COBIT is an enterprise IT governance framework with a goals cascade. ITIL focuses on service management, OCTAVE on risk assessment, and SABSA on security architecture."
+    },
+    {
+      "id": "D1-025",
+      "domain": 1,
+      "type": "multi",
+      "difficulty": 1.5,
+      "stem": "Which TWO are elements typically required to establish negligence in a civil case involving a data breach? (Select TWO.)",
+      "options": [
+        "The defendant had a legal duty of care",
+        "The breach of duty proximately caused damages",
+        "The defendant held a CISSP certification",
+        "The attacker was prosecuted criminally"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Negligence requires a duty, a breach of that duty, and resulting damages proximately caused by the breach. Certifications and criminal prosecution of the attacker are not elements."
+    },
+    {
+      "id": "D1-026",
+      "domain": 1,
+      "type": "multi",
+      "difficulty": 1.8,
+      "stem": "Which THREE are part of the 'protect' function's goals in a security program as opposed to detect or respond? (Select THREE.)",
+      "options": [
+        "Identity management and access control",
+        "Security awareness and training",
+        "Analyzing incident root cause",
+        "Data security such as encryption at rest",
+        "Monitoring for anomalous events"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "In the NIST CSF, access control, awareness training, and data security belong to Protect. Monitoring anomalies is Detect and root-cause analysis of incidents is Respond."
+    },
+    {
+      "id": "D1-027",
+      "domain": 1,
+      "type": "multi",
+      "difficulty": -0.3,
+      "stem": "A security manager is creating a personnel security program. Which TWO controls are BEST applied before hiring? (Select TWO.)",
+      "options": [
+        "Background checks appropriate to the role",
+        "Signed NDAs and acceptable use agreements",
+        "Periodic access reviews",
+        "Exit interviews"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Background screening and signing agreements happen during pre-employment and onboarding. Access reviews occur during employment and exit interviews at termination."
+    },
+    {
+      "id": "D1-028",
+      "domain": 1,
+      "type": "ordering",
+      "difficulty": 1.3,
+      "stem": "Drag the steps of the NIST SP 800-37 Risk Management Framework into the correct order (starting after Prepare).",
+      "options": [
+        "Authorize",
+        "Categorize",
+        "Implement",
+        "Select",
+        "Assess"
+      ],
+      "answer": [
+        1,
+        3,
+        2,
+        4,
+        0
+      ],
+      "explanation": "RMF proceeds Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor. Authorization depends on assessment results, which require implemented controls."
+    },
+    {
+      "id": "D1-029",
+      "domain": 1,
+      "type": "ordering",
+      "difficulty": -0.7,
+      "stem": "Drag the steps of a risk assessment into the correct order.",
+      "options": [
+        "Determine likelihood and impact",
+        "Identify assets and their value",
+        "Recommend risk treatments",
+        "Identify threats and vulnerabilities"
+      ],
+      "answer": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "explanation": "Assets must be identified first, then threats and vulnerabilities against them, then likelihood and impact are determined, and finally treatments are recommended."
+    },
+    {
+      "id": "D1-030",
+      "domain": 1,
+      "type": "ordering",
+      "difficulty": 2.2,
+      "stem": "Drag the business continuity planning activities into the correct order.",
+      "options": [
+        "Develop recovery strategies",
+        "Conduct the business impact analysis",
+        "Test, train, and maintain the plan",
+        "Obtain management approval and define project scope",
+        "Develop the plan document"
+      ],
+      "answer": [
+        3,
+        1,
+        0,
+        4,
+        2
+      ],
+      "explanation": "Per NIST SP 800-34 style lifecycle: initiate with policy and scope, perform BIA, identify strategies, develop the plan, then test, train, and maintain."
+    }
+  ]
+}

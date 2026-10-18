@@ -1,0 +1,428 @@
+{
+  "name": "CISSP Domain 8 – Software Development Security",
+  "questions": [
+    {
+      "id": "D8-001",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.6,
+      "stem": "Mid-way through a sprint, a developer notices that a third-party library used for JSON parsing has a newly disclosed critical vulnerability. What should the team do FIRST?",
+      "options": [
+        "Rewrite the parser in-house",
+        "Wait for the next scheduled release",
+        "Remove the library from the build immediately",
+        "Assess whether the vulnerable function is reachable and the risk to the application"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Assessing exploitability and impact comes first so remediation is prioritized correctly. Removing or rewriting without analysis may break functionality, and waiting ignores a critical risk."
+    },
+    {
+      "id": "D8-002",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -2.3,
+      "stem": "Which software development methodology is MOST closely associated with sequential phases where each must be completed before the next begins?",
+      "options": [
+        "Rapid Application Development",
+        "Scrum",
+        "Spiral",
+        "Waterfall"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Waterfall is strictly sequential. Scrum and RAD are iterative, and Spiral iterates through risk-driven cycles."
+    },
+    {
+      "id": "D8-003",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.4,
+      "stem": "An organization wants to measure and improve the maturity of its software security practices against a prescriptive, open framework. Which model is the BEST fit?",
+      "options": [
+        "ITIL",
+        "COBIT",
+        "OWASP SAMM",
+        "ISO/IEC 27035"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "OWASP SAMM is an open maturity model specifically for software assurance. ITIL and COBIT address IT service and governance, and ISO 27035 covers incident management."
+    },
+    {
+      "id": "D8-004",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.5,
+      "stem": "A web form passes user input directly into a SQL statement built by string concatenation. Which control BEST prevents exploitation?",
+      "options": [
+        "Client-side JavaScript validation",
+        "Web application firewall only",
+        "Parameterized queries",
+        "Encrypting the database"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Parameterized queries separate code from data, eliminating SQL injection at its root. Client-side validation is bypassable, a WAF is a compensating layer, and encryption does not stop injection."
+    },
+    {
+      "id": "D8-005",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -2.0,
+      "stem": "Which testing technique analyzes source code without executing it?",
+      "options": [
+        "DAST",
+        "Fuzzing",
+        "Penetration testing",
+        "SAST"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Static application security testing inspects code at rest. DAST, fuzzing and penetration testing all exercise running software."
+    },
+    {
+      "id": "D8-006",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.0,
+      "stem": "A security architect is asked when threat modeling provides the GREATEST value in the SDLC. What is the BEST answer?",
+      "options": [
+        "During decommissioning",
+        "Immediately before production release",
+        "After the first penetration test",
+        "During design, and revisited as the design changes"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Threat modeling is most valuable during design when flaws are cheapest to fix, and should be updated as the architecture evolves. Later phases make remediation costlier."
+    },
+    {
+      "id": "D8-007",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.2,
+      "stem": "In the STRIDE model, an attacker altering a price field in a request in transit maps to which threat category?",
+      "options": [
+        "Spoofing",
+        "Repudiation",
+        "Tampering",
+        "Elevation of privilege"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Unauthorized modification of data is Tampering. Spoofing concerns identity, Repudiation concerns denying actions, and Elevation concerns gaining privileges."
+    },
+    {
+      "id": "D8-008",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 0.2,
+      "stem": "A company acquires commercial off-the-shelf software for processing payroll. What is the MOST effective way to gain assurance of its security?",
+      "options": [
+        "Rely on the vendor's marketing claims",
+        "Decompile the binary and review it internally",
+        "Review the vendor's independent assessment results and contractual security commitments",
+        "Run SAST on the binary without a license review"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "For COTS, independent attestations and contractual obligations provide practical assurance. Decompiling may violate licenses, and marketing claims offer no evidence."
+    },
+    {
+      "id": "D8-009",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.8,
+      "stem": "Which database concurrency control prevents two transactions from updating the same record simultaneously?",
+      "options": [
+        "Aggregation",
+        "Locking",
+        "Polyinstantiation",
+        "Normalization"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Locking serializes access to records to preserve integrity. Polyinstantiation addresses inference, aggregation is a confidentiality concern, and normalization reduces redundancy."
+    },
+    {
+      "id": "D8-010",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 2.1,
+      "stem": "A multilevel database stores two different versions of the same record at different classification levels to prevent lower-cleared users from inferring classified data. This technique is called:",
+      "options": [
+        "Cell suppression",
+        "Noise and perturbation",
+        "Partitioning",
+        "Polyinstantiation"
+      ],
+      "answer": [
+        3
+      ],
+      "explanation": "Polyinstantiation creates multiple instances of a record at different levels to defeat inference. Cell suppression hides fields, perturbation adds false data, and partitioning splits the database."
+    },
+    {
+      "id": "D8-011",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.3,
+      "stem": "Developers on a DevSecOps team want to catch hard-coded secrets before code reaches the shared repository. Where is the control MOST effective?",
+      "options": [
+        "Pre-commit hooks and CI pipeline secret scanning",
+        "Annual code audits",
+        "Production log monitoring",
+        "Quarterly penetration tests"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Shifting left with pre-commit and pipeline scanning stops secrets before they propagate. Periodic audits and production monitoring detect exposure only after the fact."
+    },
+    {
+      "id": "D8-012",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.7,
+      "stem": "Which characteristic of object-oriented programming BEST supports security by hiding internal data and exposing only defined interfaces?",
+      "options": [
+        "Polymorphism",
+        "Inheritance",
+        "Encapsulation",
+        "Instantiation"
+      ],
+      "answer": [
+        2
+      ],
+      "explanation": "Encapsulation (data hiding) restricts direct access to object internals. Polymorphism and inheritance relate to behavior reuse, and instantiation creates objects."
+    },
+    {
+      "id": "D8-013",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -2.5,
+      "stem": "A software module performs one well-defined function and has minimal dependency on other modules. This is described as:",
+      "options": [
+        "High cohesion and low coupling",
+        "Low cohesion and high coupling",
+        "High cohesion and high coupling",
+        "Low cohesion and low coupling"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "High cohesion and low coupling yield modules that are easier to test and secure. Higher coupling increases the impact of changes and flaws."
+    },
+    {
+      "id": "D8-014",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.3,
+      "stem": "An application's API returns detailed stack traces to callers on errors. What is the PRIMARY risk?",
+      "options": [
+        "Denial of service",
+        "Information disclosure useful to attackers",
+        "Privilege escalation by default",
+        "Data integrity loss"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Verbose errors leak internals such as frameworks and paths that aid reconnaissance. They do not directly cause the other listed impacts."
+    },
+    {
+      "id": "D8-015",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.9,
+      "stem": "A development manager must ensure that only approved code changes reach production. Which process provides this assurance MOST directly?",
+      "options": [
+        "Configuration and change management with peer review and approval gates",
+        "Developer self-testing",
+        "Daily standups",
+        "Load testing"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Change management with review and approval gates controls what is deployed. The other options do not authorize changes."
+    },
+    {
+      "id": "D8-016",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.5,
+      "stem": "Software composition analysis (SCA) tools are PRIMARILY used to:",
+      "options": [
+        "Find logic flaws in custom code",
+        "Identify open-source components, their licenses, and known vulnerabilities",
+        "Test runtime behavior under load",
+        "Measure code coverage"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "SCA inventories third-party components and flags known CVEs and license issues, supporting an SBOM. It does not analyze custom logic or performance."
+    },
+    {
+      "id": "D8-017",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 2.4,
+      "stem": "During acceptance testing, a business owner signs off that the software meets security requirements. Which concept does this formally support?",
+      "options": [
+        "Accreditation/authorization to operate",
+        "Certification only",
+        "Regression testing",
+        "Code signing"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Management's formal acceptance of residual risk to operate the system is accreditation (authorization). Certification is the technical evaluation preceding it; regression testing and code signing are unrelated."
+    },
+    {
+      "id": "D8-018",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -0.2,
+      "stem": "A memory-safe language is being considered to reduce vulnerabilities. Which class of flaw is MOST directly mitigated?",
+      "options": [
+        "Cross-site request forgery",
+        "Buffer overflows and use-after-free",
+        "Business logic errors",
+        "Weak password policy"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "Memory-safe languages prevent unchecked memory access such as overflows and use-after-free. CSRF, logic errors and password policy are unaffected by memory safety."
+    },
+    {
+      "id": "D8-019",
+      "domain": 8,
+      "type": "single",
+      "difficulty": 1.6,
+      "stem": "An attacker exploits the time gap between when a program checks a file's permissions and when it opens the file. This is a:",
+      "options": [
+        "Race condition (TOCTOU)",
+        "Covert timing channel",
+        "Logic bomb",
+        "Maintenance hook"
+      ],
+      "answer": [
+        0
+      ],
+      "explanation": "Time-of-check to time-of-use is a race condition. A covert timing channel leaks information, while logic bombs and maintenance hooks are malicious or hidden code."
+    },
+    {
+      "id": "D8-020",
+      "domain": 8,
+      "type": "single",
+      "difficulty": -1.1,
+      "stem": "Which of the following BEST describes the purpose of a software bill of materials (SBOM)?",
+      "options": [
+        "To license software to customers",
+        "To list the components and dependencies within a software product to support vulnerability and supply-chain management",
+        "To document test cases",
+        "To track developer hours"
+      ],
+      "answer": [
+        1
+      ],
+      "explanation": "An SBOM is a nested inventory of components that enables rapid identification of affected software when vulnerabilities emerge."
+    },
+    {
+      "id": "D8-021",
+      "domain": 8,
+      "type": "multi",
+      "difficulty": 0.8,
+      "stem": "A team wants to reduce cross-site scripting risk in a web application. Which TWO controls are MOST effective? (Select TWO.)",
+      "options": [
+        "Context-aware output encoding",
+        "Content Security Policy",
+        "Increasing password length",
+        "Using HTTPS only",
+        "Disabling database triggers"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Output encoding neutralizes injected script, and CSP restricts which scripts can execute. HTTPS protects transit, not XSS; passwords and triggers are unrelated."
+    },
+    {
+      "id": "D8-022",
+      "domain": 8,
+      "type": "multi",
+      "difficulty": 1.2,
+      "stem": "Which THREE are characteristics of a secure CI/CD pipeline? (Select THREE.)",
+      "options": [
+        "Signed build artifacts",
+        "Least-privilege pipeline credentials",
+        "Developers deploy directly to production from laptops",
+        "Automated security testing gates",
+        "Shared admin account for all stages"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Artifact signing, least privilege and automated security gates protect pipeline integrity. Direct laptop deployments and shared admin accounts undermine accountability and integrity."
+    },
+    {
+      "id": "D8-023",
+      "domain": 8,
+      "type": "ordering",
+      "difficulty": -0.4,
+      "stem": "Drag the steps of a typical secure SDLC into the correct order.",
+      "options": [
+        "Testing and validation",
+        "Requirements gathering including security requirements",
+        "Deployment",
+        "Design and threat modeling",
+        "Development with secure coding"
+      ],
+      "answer": [
+        1,
+        3,
+        4,
+        0,
+        2
+      ],
+      "explanation": "Security requirements drive the design and threat model, which guide coding, followed by validation testing and then deployment."
+    },
+    {
+      "id": "D8-024",
+      "domain": 8,
+      "type": "ordering",
+      "difficulty": 1.8,
+      "stem": "Drag the steps for handling a reported vulnerability in released software into the correct order.",
+      "options": [
+        "Release patch and advisory",
+        "Triage and validate the report",
+        "Develop and test the fix",
+        "Assess severity and impact",
+        "Verify remediation deployment"
+      ],
+      "answer": [
+        1,
+        3,
+        2,
+        0,
+        4
+      ],
+      "explanation": "Validate the report, assess impact to prioritize, build and test the fix, release it with an advisory, then verify deployment."
+    }
+  ]
+}

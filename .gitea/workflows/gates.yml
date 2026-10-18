@@ -11,6 +11,8 @@ on: [push]
 jobs:
   lint:
     runs-on: linux
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
       - name: lint (make lint, or npm run lint)
@@ -25,6 +27,8 @@ jobs:
 
   test:
     runs-on: linux
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
       - name: test (make check, npm test, or pytest)
@@ -41,3 +45,17 @@ jobs:
           else
             echo "PLACEHOLDER: no test command in this repository (make check / npm test / pytest); passing without checks"
           fi
+
+  smoke:
+    # Starts the real Electron app headless (Xvfb) and drives a full exam and a training session through
+    # the screens (src/main/smoke.ts). Linux only: no Windows hand exists for this product.
+    runs-on: linux
+    steps:
+      - uses: actions/checkout@v4
+      - name: smoke (npm run smoke under Xvfb)
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq xvfb xauth libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libgtk-3-0 \
+            libgbm1 libasound2 libxss1 libxshmfence1 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 >/dev/null
+          npm ci
+          xvfb-run -a npm run smoke
