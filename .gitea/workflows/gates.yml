@@ -111,7 +111,8 @@ jobs:
           unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk/cmdline-tools
           mv /opt/android-sdk/cmdline-tools/cmdline-tools /opt/android-sdk/cmdline-tools/latest
           export JAVA_HOME=/opt/jdk
-          yes | /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null
+          # The runner uses `set -o pipefail`: `yes | …` fails with SIGPIPE (141) once sdkmanager stops reading.
+          /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses < <(yes) >/dev/null
           /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;36.0.0" >/dev/null
           echo "JAVA_HOME=/opt/jdk" >> "$GITHUB_ENV"
           echo "ANDROID_HOME=/opt/android-sdk" >> "$GITHUB_ENV"
