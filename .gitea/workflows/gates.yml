@@ -129,8 +129,10 @@ jobs:
           ls -l release/CATExam-android.apk
           "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging release/CATExam-android.apk | grep -E "^package: name='com.uxsystems.catexam'"
           "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify release/CATExam-android.apk
-          unzip -l release/CATExam-android.apk | grep -q 'assets/public/index.html' || { echo "web app missing from the APK"; exit 1; }
-          unzip -l release/CATExam-android.apk | grep -q 'assets/public/questions/index.json' || { echo "question banks missing from the APK"; exit 1; }
+          # A file, not `unzip | grep -q`: under pipefail, grep -q quitting early makes unzip fail with SIGPIPE.
+          unzip -l release/CATExam-android.apk > /tmp/apk-files.txt
+          grep -q 'assets/public/index.html' /tmp/apk-files.txt || { echo "web app missing from the APK"; exit 1; }
+          grep -q 'assets/public/questions/index.json' /tmp/apk-files.txt || { echo "question banks missing from the APK"; exit 1; }
       - uses: actions/upload-artifact@v3 # v4 needs Gitea's newer artifact API; it fails on this server
         with:
           name: CATExam-android-apk
