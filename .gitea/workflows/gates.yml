@@ -66,17 +66,18 @@ jobs:
     runs-on: linux
     steps:
       - uses: actions/checkout@v4
-      - name: install wine
+      - name: install wine (32-bit too; electron-builder runs the 32-bit NSIS uninstaller stub under wine)
         run: |
+          dpkg --add-architecture i386
           apt-get update -qq
-          apt-get install -y -qq --no-install-recommends wine wine64 file >/dev/null
+          apt-get install -y -qq --no-install-recommends wine wine32 wine64 file >/dev/null
           wine --version
       - name: build installer (npm run dist:win)
         env:
           WINEDEBUG: "-all"
         run: |
           npm ci
-          npm run dist:win
+          npm run dist:win -- --publish never
       - name: check installer
         run: |
           ls -l release/*.exe
