@@ -94,6 +94,10 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await waitFor('#review-list');
     const reviewed = await js<number>(`document.querySelectorAll('#review-list article').length`);
     check(reviewed === answered, `review lists every answered question (${reviewed})`);
+    await js(`(() => { const b = document.querySelector('#review-wrong'); b.click(); })()`);
+    const wrongShown = await js<number>(`document.querySelectorAll('#review-list article:not([hidden])').length`);
+    const wrongTotal = await js<number>(`document.querySelectorAll('#review-list article.wrong').length`);
+    check(wrongShown === wrongTotal, `review filter shows only incorrect answers (${wrongShown})`);
 
     await click('#review-home');
     await waitFor('#history');
@@ -102,10 +106,18 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await js(`document.querySelector('#practice-count').value = '2'`);
     await click('#start-practice');
     await waitFor('#practice');
-    await js(`(() => { const b = document.querySelector('#practice input'); if (b) b.click(); })()`);
-    await click('#check');
+    const key = (k: string): Promise<void> => js(`document.dispatchEvent(new KeyboardEvent('keydown', { key: ${JSON.stringify(k)} }))`);
+    await key('a');
+    await key('b');
+    await key('Enter');
     await waitFor('#feedback .explanation');
-    check(true, 'training mode shows the explanation after answering');
+    check(true, 'training mode answers by keyboard and shows the explanation');
+    await key('Enter');
+    await waitFor('#practice:not(:has(#feedback .explanation))');
+    check((await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 2 of 2', 'Enter moves to the next training question');
+    await click('#practice ~ footer button');
+    await waitFor('#practice-domains');
+    check(true, 'training summary shows accuracy by domain');
 
     console.log('SMOKE OK');
     return true;

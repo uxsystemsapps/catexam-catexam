@@ -11,15 +11,18 @@ Electron + TypeScript.
   you pass only if your estimate stayed above the standard over the last 75 scored items.
 - **Blueprint**: questions follow the 8 domain weights (16/10/13/13/13/12/13/10 %).
 - **Test-centre flow**: NDA (5 minutes to accept), tutorial, one question at a time, every question
-  must be answered, no going back, no flagging for review. Right-click strikes out an option. Breaks
-  are allowed, but the clock keeps running. "End Exam" scores the exam as a fail.
+  must be answered, no going back, no flagging for review. Right-click strikes out an option. Letter
+  keys (A, B, C…) select an option and Enter moves on. Breaks are allowed, but the clock keeps running.
+  "End Exam" asks for confirmation and scores the exam as a fail.
 - **Lockdown** from the NDA screen until the score report: kiosk full screen, always on top, hidden
   from screen capture, no close/reload/devtools/clipboard, common shortcuts blocked, no display sleep.
   Each time the window loses focus it is recorded as an incident and the window is brought back.
   Ctrl+Alt+Del and other OS-reserved keys cannot be blocked by an application.
-- **Training**: a score report with a pass/fail result, a 0–1000 estimate (700 = pass) and a
-  proficiency band per domain. Afterwards you can review every answer with its explanation. History is
-  kept. A training mode (no lock, no clock) runs chosen domains and explains each answer as you go.
+- **Training**: a score report with a pass/fail result, a 0–1000 estimate shown against the 700 pass
+  line, and a proficiency band per domain. Afterwards you can review every answer with its explanation,
+  filtered by domain, by incorrect answers or by text. History is kept, with pass count and best score.
+  A training mode (no lock, no clock) runs chosen domains, explains each answer as you go, keeps a running
+  score and ends with accuracy per domain.
 
 ## Question bank
 
