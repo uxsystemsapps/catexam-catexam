@@ -86,7 +86,7 @@ jobs:
             file "$f" | grep -q 'PE32.*Windows' || { echo "not a Windows executable: $f"; exit 1; }
             grep -aq 'Nullsoft' "$f" || { echo "not an NSIS installer: $f"; exit 1; }
           done
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3 # v4 needs Gitea's newer artifact API; it fails on this server
         with:
           name: CATExam-windows-installer
           path: release/*.exe
