@@ -31,10 +31,21 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await writeFile(path.join(dir, `${name}.png`), (await win.webContents.capturePage()).toPNG());
   };
   const text = (selector: string): Promise<string> => js<string>(`document.querySelector(${JSON.stringify(selector)}).textContent`);
+  /** Whether `selector` sits in the middle of its `main` (within a scroll bar's width), and `main` spans the window. */
+  const centred = (selector: string): Promise<boolean> =>
+    js<boolean>(`(() => {
+      const el = document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();
+      const main = document.querySelector('main');
+      const m = main.getBoundingClientRect();
+      const scrollbar = main.offsetWidth - main.clientWidth;
+      const fullWidth = main.closest('.workspace') ? true : Math.abs(m.width - window.innerWidth) < 1;
+      return fullWidth && Math.abs((el.left - m.left) - (m.right - scrollbar - el.right)) <= 2;
+    })()`);
 
   try {
     await waitFor('#start-exam');
     check((await js<number>(`document.querySelectorAll('#home .stat').length`)) === 4, 'home shows the progress summary');
+    check((await js<number>(`document.querySelector('#bank-card').compareDocumentPosition(document.querySelector('#study-card'))`)) === 4, 'question bank card comes before the study plan');
     await shot('home');
     const total = await js<number>(`window.examApi.info().then((i) => i.bank.total)`);
     check(total >= 150, `question bank loaded (${total} questions)`);
@@ -42,6 +53,15 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     // Profile & settings: saved, applied and used as training defaults.
     await click('#open-settings');
     await waitFor('#settings-save');
+    check(await centred('#settings .card'), 'settings are centred and scroll at the window edge');
+    check(
+      await js<boolean>(`(() => {
+        const r = ['#settings-name', '#settings-exam-date', '#settings-goal'].map((id) => document.querySelector(id).getBoundingClientRect());
+        return r.every((x) => x.top === r[0].top && x.height === r[0].height);
+      })()`),
+      'profile fields line up',
+    );
+    await shot('settings');
     await js(`(() => {
       const set = (id, v) => { const el = document.querySelector(id); el.value = v; el.dispatchEvent(new Event('change')); };
       set('#settings-name', 'Smoke Test');
@@ -79,6 +99,13 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     check((await text('#question-progress')).startsWith('0 answered'), 'question progress bar starts at 0 answered');
     check(/^0:00:0\d of 3:00:00$/.test(await text('#time-progress')), `time progress bar shows elapsed of 3 hours (${await text('#time-progress')})`);
     check((await text('#pace')) === 'On pace', 'pace hint shows On pace at the start');
+    check(await centred('#exam .stem') && await centred('#exam .options, #exam #ordering'), 'exam question is centred');
+    check(
+      (await js<number>(`document.querySelectorAll('#navigator .nav-box:not(.nav-legend *)').length`)) === 150 &&
+        (await js<number>(`document.querySelectorAll('#navigator button').length`)) === 0 &&
+        (await js<string>(`document.querySelector('#navigator .current').textContent`)) === '1',
+      'exam navigator shows every question, read-only',
+    );
     await shot('exam');
     win.close();
     check(!win.isDestroyed(), 'window cannot be closed during the exam');
@@ -134,6 +161,7 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
         const shown = await text('#question-progress');
         const width = await js<string>(`document.querySelector('#question-bar .bar-fill').style.width`);
         check(shown.startsWith('10 answered') && width === `${Math.round((10 / 150) * 1000) / 10}%`, `question progress bar follows the answers (${shown}, ${width})`);
+        check((await js<number>(`document.querySelectorAll('#navigator .nav-box.answered:not(.nav-legend *)').length`)) === 10, 'exam navigator marks the answered questions');
         await shot('exam-question-11');
       }
     }
@@ -159,9 +187,15 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     check((await text('#stat-exams')).startsWith('1'), 'home summary counts the exam');
     await shot('home-after-exam');
 
-    await js(`document.querySelector('#practice-count').value = '2'`);
+    await js(`document.querySelector('#practice-count').value = '3'`);
     await click('#start-practice');
     await waitFor('#practice');
+    check(await centred('#practice .stem'), 'training question is centred');
+    const box = (n: number): Promise<string> => js<string>(`document.querySelector('#navigator .nav-box[data-number="${n}"]').className`);
+    check((await js<number>(`document.querySelectorAll('#navigator button.nav-box').length`)) === 3 && (await js<boolean>(`document.querySelector('#practice-back').disabled`)), 'training navigator has a box per question; Back is off on the first');
+    await click('#practice-skip');
+    await waitFor('#navigator .nav-box.current[data-number="2"]');
+    check((await box(1)).includes('skipped') && (await text('#qnum')) === 'Question 2 of 3', 'Skip moves on and marks the question skipped');
     const key = (k: string): Promise<void> => js(`document.dispatchEvent(new KeyboardEvent('keydown', { key: ${JSON.stringify(k)} }))`);
     await key('a');
     await key('b');
@@ -171,13 +205,26 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     const verdict = await text('#feedback .verdict');
     const marked = await js<number>(`document.querySelectorAll('#practice .is-answer').length`);
     check(/^(✔ Correct!|✘ Incorrect\.)/.test(verdict) && marked > 0, `answer marked right or wrong at once, correct option highlighted (${verdict.slice(0, 12)})`);
-    await shot('training-feedback');
+    const state = verdict.startsWith('✔') ? 'correct' : 'wrong';
+    check((await box(2)).includes(state), `navigator marks the answer ${state}`);
     await click('#bookmark');
     await waitFor('#bookmark[aria-pressed="true"]');
-    check(true, 'a training question can be bookmarked');
+    check((await box(2)).includes('marked'), 'a training question can be bookmarked and shows as marked');
+    await shot('training-feedback');
     await key('Enter');
     await waitFor('#practice:not(:has(#feedback .explanation))');
-    check((await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 2 of 2', 'Enter moves to the next training question');
+    check((await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 3 of 3', 'Enter moves to the next unanswered question');
+    await click('#practice-back');
+    await waitFor('#feedback .explanation');
+    check(
+      (await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 2 of 3' &&
+        (await js<boolean>(`!document.querySelector('#check') && [...document.querySelectorAll('#practice .options input')].every((i) => i.disabled)`)),
+      'Back reopens the answered question, locked with its feedback',
+    );
+    await click('#navigator .nav-box[data-number="1"]');
+    await waitFor('#practice:not(:has(#feedback .explanation))');
+    check((await js<string>(`document.querySelector('#qnum').textContent`)) === 'Question 1 of 3' && (await box(1)).includes('current'), 'a navigator box opens its question');
+    await shot('training-navigator');
     await click('#practice-stop');
     await waitFor('#practice-domains');
     check(true, 'training summary shows accuracy by domain');
@@ -199,6 +246,7 @@ export async function runSmoke(win: BrowserWindow, lockdown: Lockdown): Promise<
     await waitFor('#open-history');
     await click('#open-history');
     await waitFor('#history-screen');
+    check(await centred('#history-screen .card'), 'history is centred and scrolls at the window edge');
     const sessions = await js<number>(`document.querySelectorAll('#training-history tr.entry').length`);
     check(sessions === 2, `history lists both training sessions (${sessions})`);
     check((await js<number>(`document.querySelectorAll('#domain-progress tr').length`)) === 9, 'history shows training accuracy for all 8 domains');

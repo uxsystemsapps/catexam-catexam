@@ -30,32 +30,47 @@ export interface PracticeSummary {
   missed: { id: string; stem: string; explanation: string }[];
 }
 
-/** Training mode: questions chosen up front, immediate feedback with the explanation after each item. */
+/** State of one training question, as shown on the question navigator. */
+export type PracticeItemState = 'unanswered' | 'skipped' | 'correct' | 'wrong' | 'timedout';
+
+/** A question opened from the navigator: its feedback when it was already answered, otherwise null. */
+export interface PracticeVisit {
+  question: QuestionView;
+  feedback: PracticeFeedback | null;
+}
+
+/**
+ * Training mode: questions chosen up front, immediate feedback with the explanation after each item.
+ * The student may skip a question and open any question again; an answered question stays answered.
+ */
 export class PracticeSession {
   private readonly items: Question[];
-  private index = 0;
-  private readonly results: { question: Question; correct: boolean; timedOut: boolean }[] = [];
+  /** Index of the question on screen. */
+  private cursor = 0;
+  private readonly feedback: (PracticeFeedback | null)[];
+  private readonly skipped = new Set<number>();
 
   constructor(items: readonly Question[]) {
     if (items.length === 0) throw new Error('no questions match these training settings');
     this.items = [...items];
+    this.feedback = this.items.map(() => null);
   }
 
   get total(): number {
     return this.items.length;
   }
 
+  get ids(): string[] {
+    return this.items.map((q) => q.id);
+  }
+
+  /** The question on screen, or null once every question is answered. */
   current(): QuestionView | null {
-    const q = this.items[this.index];
-    if (!q) return null;
-    return {
-      id: q.id,
-      number: this.index + 1,
-      type: q.type,
-      stem: q.stem,
-      options: [...q.options],
-      selectCount: q.type === 'multi' ? q.answer.length : 1,
-    };
+    return this.finished ? null : this.view(this.cursor);
+  }
+
+  states(): PracticeItemState[] {
+    return this.feedback.map((f, i) => (f ? (f.timedOut ? 'timedout' : f.correct ? 'correct' : 'wrong') : this.skipped.has(i) ? 'skipped' : 'unanswered'));
   }
 
   answer(questionId: string, response: number[]): PracticeFeedback {
@@ -69,33 +84,78 @@ export class PracticeSession {
     return this.record(this.currentItem(questionId), [], false, true);
   }
 
+  /** Leaves the current question unanswered and moves to the next unanswered one (the same one when it is the last). */
+  skip(questionId: string): QuestionView {
+    this.currentItem(questionId);
+    this.skipped.add(this.cursor);
+    this.cursor = this.nextUnanswered() ?? this.cursor;
+    return this.view(this.cursor);
+  }
+
+  /** Opens question `number` (1-based), answered or not. */
+  goTo(number: number): PracticeVisit {
+    const index = number - 1;
+    if (!Number.isInteger(index) || index < 0 || index >= this.items.length) throw new Error('no such question');
+    this.cursor = index;
+    const f = this.feedback[index];
+    return { question: this.view(index), feedback: f ? structuredClone(f) : null };
+  }
+
   summary(): PracticeSummary {
+    const results = this.items.flatMap((question, i) => {
+      const f = this.feedback[i];
+      return f ? [{ question, correct: f.correct, timedOut: f.timedOut }] : [];
+    });
     const domains = [...new Set(this.items.map((q) => q.domain))].sort();
     return {
-      answered: this.results.length,
-      correct: this.results.filter((r) => r.correct).length,
-      timedOut: this.results.filter((r) => r.timedOut).length,
+      answered: results.length,
+      correct: results.filter((r) => r.correct).length,
+      timedOut: results.filter((r) => r.timedOut).length,
       byDomain: domains.map((domain) => {
-        const rs = this.results.filter((r) => r.question.domain === domain);
+        const rs = results.filter((r) => r.question.domain === domain);
         return { domain, answered: rs.length, correct: rs.filter((r) => r.correct).length };
       }),
-      missed: this.results
+      missed: results
         .filter((r) => !r.correct)
         .map((r) => ({ id: r.question.id, stem: r.question.stem, explanation: r.question.explanation })),
     };
   }
 
+  private get finished(): boolean {
+    return this.feedback.every((f) => f !== null);
+  }
+
+  private view(index: number): QuestionView {
+    const q = this.items[index];
+    return {
+      id: q.id,
+      number: index + 1,
+      type: q.type,
+      stem: q.stem,
+      options: [...q.options],
+      selectCount: q.type === 'multi' ? q.answer.length : 1,
+    };
+  }
+
+  /** First unanswered question after the cursor, wrapping round; null when there is none besides the cursor. */
+  private nextUnanswered(): number | null {
+    for (let step = 1; step < this.items.length; step++) {
+      const i = (this.cursor + step) % this.items.length;
+      if (!this.feedback[i]) return i;
+    }
+    return null;
+  }
+
   private currentItem(questionId: string): Question {
-    const q = this.items[this.index];
-    if (!q || q.id !== questionId) throw new Error('only the current question can be answered');
+    const q = this.items[this.cursor];
+    if (q.id !== questionId) throw new Error('only the current question can be answered');
+    if (this.feedback[this.cursor]) throw new Error('this question is already answered');
     return q;
   }
 
   private record(q: Question, response: number[], correct: boolean, timedOut: boolean): PracticeFeedback {
-    this.results.push({ question: q, correct, timedOut });
-    this.index++;
     const ordering = q.type === 'ordering';
-    return {
+    const feedback: PracticeFeedback = {
       correct,
       timedOut,
       response,
@@ -107,7 +167,12 @@ export class PracticeSession {
       positions: ordering ? q.answer.map((a, i) => response[i] === a) : [],
       domain: q.domain,
       difficulty: difficultyOf(q.difficulty),
-      finished: this.index >= this.items.length,
+      finished: false,
     };
+    this.feedback[this.cursor] = feedback;
+    this.skipped.delete(this.cursor);
+    feedback.finished = this.finished;
+    this.cursor = this.nextUnanswered() ?? this.cursor;
+    return structuredClone(feedback);
   }
 }

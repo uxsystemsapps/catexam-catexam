@@ -3,7 +3,7 @@ import { mkdtempSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { DOMAINS } from '../engine/domains';
-import { PracticeSession } from '../engine/practice';
+import { PracticeSession, type PracticeFeedback } from '../engine/practice';
 import {
   normalizePracticeOptions,
   normalizeProfile,
@@ -212,22 +212,35 @@ function registerIpc(): void {
     practice = new PracticeSession(selectPracticeItems(questions, options, progress));
     practiceOptions = options;
     practiceSaved = false;
-    return { question: practice.current(), total: practice.total, secondsPerQuestion: options.secondsPerQuestion, bookmarks: [...progress.bookmarks] };
+    return {
+      question: practice.current(),
+      total: practice.total,
+      secondsPerQuestion: options.secondsPerQuestion,
+      bookmarks: [...progress.bookmarks],
+      ids: practice.ids,
+      states: practice.states(),
+    };
   });
-  const recordPractice = async (session: PracticeSession, questionId: string, correct: boolean) => {
-    recordAnswer(progress, questionId, correct, today(), new Date().toISOString());
+  const recordPractice = async (session: PracticeSession, questionId: string, feedback: PracticeFeedback) => {
+    recordAnswer(progress, questionId, feedback.correct, today(), new Date().toISOString());
     await persistProgress();
-    return session.current();
+    return { feedback, states: session.states() };
   };
   ipcMain.handle('practice:answer', async (_e, questionId: string, response: number[]) => {
     if (!practice) throw new Error('no practice in progress');
-    const feedback = practice.answer(questionId, response);
-    return { feedback, next: await recordPractice(practice, questionId, feedback.correct) };
+    return recordPractice(practice, questionId, practice.answer(questionId, response));
   });
   ipcMain.handle('practice:timeout', async (_e, questionId: string) => {
     if (!practice) throw new Error('no practice in progress');
-    const feedback = practice.timeout(questionId);
-    return { feedback, next: await recordPractice(practice, questionId, false) };
+    return recordPractice(practice, questionId, practice.timeout(questionId));
+  });
+  ipcMain.handle('practice:skip', (_e, questionId: string) => {
+    if (!practice) throw new Error('no practice in progress');
+    return { question: practice.skip(questionId), feedback: null, states: practice.states() };
+  });
+  ipcMain.handle('practice:goto', (_e, number: number) => {
+    if (!practice) throw new Error('no practice in progress');
+    return { ...practice.goTo(number), states: practice.states() };
   });
   ipcMain.handle('practice:bookmark', async (_e, questionId: unknown) => {
     if (typeof questionId !== 'string' || !questions.some((q) => q.id === questionId)) throw new Error('unknown question');

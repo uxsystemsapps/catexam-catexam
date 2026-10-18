@@ -1,9 +1,10 @@
-import type { PracticeFeedback, PracticeSummary } from '../engine/practice';
+import type { PracticeFeedback, PracticeItemState, PracticeSummary } from '../engine/practice';
 import type { DifficultyFilter, PracticeOptions, PracticeSource, Profile, ProgressSummary } from '../engine/profile';
 import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView } from '../engine/types';
 
 export type {
   PracticeFeedback,
+  PracticeItemState,
   PracticeSummary,
   PracticeOptions,
   Profile,
@@ -97,6 +98,22 @@ export interface PracticeStart {
   secondsPerQuestion: number;
   /** Bookmarked question ids, so the screen can show the bookmark state of each question. */
   bookmarks: string[];
+  /** Question ids and states, in order, for the question navigator. */
+  ids: string[];
+  states: PracticeItemState[];
+}
+
+/** After an answer or a time-out: the feedback and the state of every question (`feedback.finished` once all are answered). */
+export interface PracticeAnswer {
+  feedback: PracticeFeedback;
+  states: PracticeItemState[];
+}
+
+/** A question opened by Skip, Back or the navigator; `feedback` is set when it was already answered. */
+export interface PracticeVisit {
+  question: QuestionView;
+  feedback: PracticeFeedback | null;
+  states: PracticeItemState[];
 }
 
 /** Exposed by the preload script as `window.examApi`. */
@@ -125,9 +142,13 @@ export interface ExamApi {
   onTimeout(callback: () => void): void;
   onIncident(callback: (message: string) => void): void;
   startPractice(options: PracticeOptions): Promise<PracticeStart>;
-  answerPractice(questionId: string, response: number[]): Promise<{ feedback: PracticeFeedback; next: QuestionView | null }>;
+  answerPractice(questionId: string, response: number[]): Promise<PracticeAnswer>;
   /** The time limit of the current training question ran out. */
-  timeoutPractice(questionId: string): Promise<{ feedback: PracticeFeedback; next: QuestionView | null }>;
+  timeoutPractice(questionId: string): Promise<PracticeAnswer>;
+  /** Leaves the current training question unanswered and opens the next unanswered one. */
+  skipPractice(questionId: string): Promise<PracticeVisit>;
+  /** Opens training question `number` (1-based), answered or not. */
+  gotoPractice(number: number): Promise<PracticeVisit>;
   /** Returns whether the question is now bookmarked. */
   toggleBookmark(questionId: string): Promise<boolean>;
   /** Summary of the training session; the first call also saves it to the training history. */

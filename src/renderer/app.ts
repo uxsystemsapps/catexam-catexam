@@ -33,6 +33,7 @@ function show(...nodes: Node[]): void {
   keyHandler = null;
   root.replaceChildren(...nodes);
   root.querySelector('main')?.scrollTo(0, 0);
+  root.querySelector('.navigator .current')?.scrollIntoView({ block: 'nearest' });
 }
 
 function percent(correct: number, answered: number): string {
@@ -287,6 +288,83 @@ async function home(): Promise<void> {
       ),
       h(
         'section',
+        { class: 'card', id: 'bank-card' },
+        h(
+          'div',
+          { class: 'row between' },
+          h('h2', {}, 'Question bank'),
+          h(
+            'button',
+            {
+              id: 'import-bank',
+              onclick: async () => {
+                const summary = await api.importBanks();
+                if (summary) showImportSummary(summary);
+              },
+            },
+            'Import a folder of question banks…',
+          ),
+        ),
+        h('p', { class: 'small' }, `${info.bank.total} questions. Imported banks: ${info.importedBanks.length === 0 ? 'none' : info.importedBanks.length}.`),
+        info.importedBanks.length > 0 &&
+          h(
+            'ul',
+            { id: 'imported-banks', class: 'imported-banks' },
+            ...info.importedBanks.map((b) =>
+              h(
+                'li',
+                {},
+                h('span', { class: 'bank-name', title: b.file }, `${b.name} (${b.questions} questions)`),
+                h(
+                  'button',
+                  {
+                    class: 'remove-bank',
+                    onclick: () =>
+                      modal('Remove question bank', `Remove "${b.name}" and its ${b.questions} questions? The training progress is kept.`, [
+                        { label: 'Cancel', id: 'remove-cancel', onClick: () => undefined },
+                        {
+                          label: 'Remove',
+                          id: 'remove-confirm',
+                          primary: true,
+                          onClick: () =>
+                            void api.removeBank(b.file).then(
+                              () => {
+                                toast(`Removed ${b.name}.`);
+                                void home();
+                              },
+                              (err: unknown) => toast(errorText(err)),
+                            ),
+                        },
+                      ]),
+                  },
+                  'Remove',
+                ),
+              ),
+            ),
+          ),
+        h(
+          'div',
+          { class: 'bank-bars' },
+          ...info.bank.byDomain.map((d) => {
+            const share = info.bank.total === 0 ? 0 : d.count / info.bank.total;
+            const fill = h('span', { class: 'bar-fill' });
+            fill.style.width = `${Math.round(share * 1000) / 10}%`;
+            const target = h('span', { class: 'bar-mark', title: `Blueprint weight ${Math.round(d.weight * 100)}%` });
+            target.style.left = `${d.weight * 100}%`;
+            return h(
+              'div',
+              { class: 'bank-row' },
+              h('span', { class: 'bank-name' }, `${d.domain}. ${d.name}`),
+              h('div', { class: 'bar thin' }, fill, target),
+              h('span', { class: 'bank-count' }, `${d.count} · ${Math.round(d.weight * 100)}%`),
+            );
+          }),
+        ),
+        h('p', { class: 'small' }, 'Bar: share of the bank per domain; marker: blueprint weight.'),
+        info.bankErrors.length > 0 && h('p', { class: 'warn' }, `Skipped: ${info.bankErrors.slice(0, 3).join('; ')}`),
+      ),
+      h(
+        'section',
         { class: 'card study', id: 'study-card' },
         h('h2', {}, 'Study plan'),
         h(
@@ -358,83 +436,6 @@ async function home(): Promise<void> {
             ? h('p', { class: 'empty' }, 'No exams taken yet. Your results appear here after each simulation.')
             : examTable('history', info.history.slice(0, 10), false),
           h('p', { class: 'small' }, '* Training estimate on the 0–1000 scale; 700 is the passing standard.'),
-        ),
-        h(
-          'section',
-          { class: 'card wide', id: 'bank-card' },
-          h(
-            'div',
-            { class: 'row between' },
-            h('h2', {}, 'Question bank'),
-            h(
-              'button',
-              {
-                id: 'import-bank',
-                onclick: async () => {
-                  const summary = await api.importBanks();
-                  if (summary) showImportSummary(summary);
-                },
-              },
-              'Import a folder of question banks…',
-            ),
-          ),
-          h('p', { class: 'small' }, `${info.bank.total} questions. Imported banks: ${info.importedBanks.length === 0 ? 'none' : info.importedBanks.length}.`),
-          info.importedBanks.length > 0 &&
-            h(
-              'ul',
-              { id: 'imported-banks', class: 'imported-banks' },
-              ...info.importedBanks.map((b) =>
-                h(
-                  'li',
-                  {},
-                  h('span', { class: 'bank-name', title: b.file }, `${b.name} (${b.questions} questions)`),
-                  h(
-                    'button',
-                    {
-                      class: 'remove-bank',
-                      onclick: () =>
-                        modal('Remove question bank', `Remove "${b.name}" and its ${b.questions} questions? The training progress is kept.`, [
-                          { label: 'Cancel', id: 'remove-cancel', onClick: () => undefined },
-                          {
-                            label: 'Remove',
-                            id: 'remove-confirm',
-                            primary: true,
-                            onClick: () =>
-                              void api.removeBank(b.file).then(
-                                () => {
-                                  toast(`Removed ${b.name}.`);
-                                  void home();
-                                },
-                                (err: unknown) => toast(errorText(err)),
-                              ),
-                          },
-                        ]),
-                    },
-                    'Remove',
-                  ),
-                ),
-              ),
-            ),
-          h(
-            'div',
-            { class: 'bank-bars' },
-            ...info.bank.byDomain.map((d) => {
-              const share = info.bank.total === 0 ? 0 : d.count / info.bank.total;
-              const fill = h('span', { class: 'bar-fill' });
-              fill.style.width = `${Math.round(share * 1000) / 10}%`;
-              const target = h('span', { class: 'bar-mark', title: `Blueprint weight ${Math.round(d.weight * 100)}%` });
-              target.style.left = `${d.weight * 100}%`;
-              return h(
-                'div',
-                { class: 'bank-row' },
-                h('span', { class: 'bank-name' }, `${d.domain}. ${d.name}`),
-                h('div', { class: 'bar thin' }, fill, target),
-                h('span', { class: 'bank-count' }, `${d.count} · ${Math.round(d.weight * 100)}%`),
-              );
-            }),
-          ),
-          h('p', { class: 'small' }, 'Bar: share of the bank per domain; marker: blueprint weight.'),
-          info.bankErrors.length > 0 && h('p', { class: 'warn' }, `Skipped: ${info.bankErrors.slice(0, 3).join('; ')}`),
         ),
       ),
     ),
@@ -512,51 +513,63 @@ async function historyScreen(): Promise<void> {
     h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Your history'), h('span', {}, `${info.history.length} exams · ${info.trainingHistory.length} training sessions`)),
     h(
       'main',
-      { class: 'page', id: 'history-screen' },
-      h('h2', {}, 'Accuracy by domain (all training)'),
+      { class: 'page panel', id: 'history-screen' },
       h(
-        'table',
-        { id: 'domain-progress' },
-        h('tr', {}, h('th', {}, 'Domain'), h('th', {}, 'Questions practised'), h('th', {}, 'Answers'), h('th', {}, 'Accuracy')),
-        ...info.progress.byDomain.map((d) =>
-          h(
-            'tr',
-            { class: d.domain === info.progress.weakestDomain ? 'weak' : '' },
-            h('td', {}, `${d.domain}. ${domainNames.get(d.domain) ?? ''}`),
-            h('td', {}, `${d.seen} of ${d.total}`),
-            h('td', {}, String(d.answered)),
-            h('td', {}, meter(d.correct, d.answered), ` ${percent(d.correct, d.answered)}`),
+        'section',
+        { class: 'card' },
+        h('h2', {}, 'Accuracy by domain (all training)'),
+        h(
+          'table',
+          { id: 'domain-progress' },
+          h('tr', {}, h('th', {}, 'Domain'), h('th', {}, 'Questions practised'), h('th', {}, 'Answers'), h('th', {}, 'Accuracy')),
+          ...info.progress.byDomain.map((d) =>
+            h(
+              'tr',
+              { class: d.domain === info.progress.weakestDomain ? 'weak' : '' },
+              h('td', {}, `${d.domain}. ${domainNames.get(d.domain) ?? ''}`),
+              h('td', {}, `${d.seen} of ${d.total}`),
+              h('td', {}, String(d.answered)),
+              h('td', {}, meter(d.correct, d.answered), ` ${percent(d.correct, d.answered)}`),
+            ),
           ),
         ),
       ),
-      h('div', { class: 'row between' }, h('h2', {}, 'Exam simulations'), info.history.length > 0 && h('button', { id: 'clear-exams', class: 'mini', onclick: () => confirmClear('exam', 'exam history') }, 'Clear all')),
-      exams.length > 1 && h('div', {}, h('p', { class: 'small' }, 'Score estimates, oldest first (700 to pass):'), trend('exam-trend', exams.map((e) => ({ value: e.scaledScore / 10, label: `${new Date(e.date).toLocaleDateString()}: ${e.scaledScore}`, good: e.passed })))),
-      info.history.length === 0
-        ? h('p', { class: 'empty' }, 'No exams taken yet.')
-        : h('div', {}, examTable('exam-history', info.history, true), h('p', { class: 'small' }, '* Training estimate on the 0–1000 scale; 700 is the passing standard.')),
-      h('div', { class: 'row between' }, h('h2', {}, 'Training sessions'), info.trainingHistory.length > 0 && h('button', { id: 'clear-training', class: 'mini', onclick: () => confirmClear('training', 'training history') }, 'Clear all')),
-      sessions.length > 1 && h('div', {}, h('p', { class: 'small' }, 'Accuracy per session, oldest first:'), trend('training-trend', sessions.map((t) => ({ value: (t.correct / Math.max(1, t.answered)) * 100, label: `${new Date(t.date).toLocaleDateString()}: ${percent(t.correct, t.answered)}`, good: t.correct / Math.max(1, t.answered) >= 0.7 })))),
-      info.trainingHistory.length === 0
-        ? h('p', { class: 'empty' }, 'No training sessions yet.')
-        : h(
-            'table',
-            { id: 'training-history' },
-            h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Questions'), h('th', {}, 'Correct'), h('th', {}, 'Accuracy'), h('th', {}, 'Difficulty'), h('th', {}, 'From'), h('th', {}, 'Domains'), h('th', {}, '')),
-            ...info.trainingHistory.map((t) =>
-              h(
-                'tr',
-                { class: 'entry' },
-                h('td', {}, new Date(t.date).toLocaleString()),
-                h('td', {}, String(t.answered)),
-                h('td', {}, String(t.correct)),
-                h('td', {}, meter(t.correct, t.answered), ` ${percent(t.correct, t.answered)}`),
-                h('td', {}, DIFFICULTY_LABELS[t.difficulty] ?? t.difficulty),
-                h('td', {}, SOURCE_LABELS[t.source] ?? t.source),
-                h('td', {}, t.byDomain.filter((d) => d.answered > 0).map((d) => d.domain).join(', ')),
-                h('td', { class: 'actions' }, h('button', { class: 'mini delete-entry', onclick: () => void api.deleteHistory('training', [t.date]).then(historyScreen) }, 'Delete')),
+      h(
+        'section',
+        { class: 'card' },
+        h('div', { class: 'row between' }, h('h2', {}, 'Exam simulations'), info.history.length > 0 && h('button', { id: 'clear-exams', class: 'mini', onclick: () => confirmClear('exam', 'exam history') }, 'Clear all')),
+        exams.length > 1 && h('div', {}, h('p', { class: 'small' }, 'Score estimates, oldest first (700 to pass):'), trend('exam-trend', exams.map((e) => ({ value: e.scaledScore / 10, label: `${new Date(e.date).toLocaleDateString()}: ${e.scaledScore}`, good: e.passed })))),
+        info.history.length === 0
+          ? h('p', { class: 'empty' }, 'No exams taken yet.')
+          : h('div', {}, examTable('exam-history', info.history, true), h('p', { class: 'small' }, '* Training estimate on the 0–1000 scale; 700 is the passing standard.')),
+      ),
+      h(
+        'section',
+        { class: 'card' },
+        h('div', { class: 'row between' }, h('h2', {}, 'Training sessions'), info.trainingHistory.length > 0 && h('button', { id: 'clear-training', class: 'mini', onclick: () => confirmClear('training', 'training history') }, 'Clear all')),
+        sessions.length > 1 && h('div', {}, h('p', { class: 'small' }, 'Accuracy per session, oldest first:'), trend('training-trend', sessions.map((t) => ({ value: (t.correct / Math.max(1, t.answered)) * 100, label: `${new Date(t.date).toLocaleDateString()}: ${percent(t.correct, t.answered)}`, good: t.correct / Math.max(1, t.answered) >= 0.7 })))),
+        info.trainingHistory.length === 0
+          ? h('p', { class: 'empty' }, 'No training sessions yet.')
+          : h(
+              'table',
+              { id: 'training-history' },
+              h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Questions'), h('th', {}, 'Correct'), h('th', {}, 'Accuracy'), h('th', {}, 'Difficulty'), h('th', {}, 'From'), h('th', {}, 'Domains'), h('th', {}, '')),
+              ...info.trainingHistory.map((t) =>
+                h(
+                  'tr',
+                  { class: 'entry' },
+                  h('td', {}, new Date(t.date).toLocaleString()),
+                  h('td', {}, String(t.answered)),
+                  h('td', {}, String(t.correct)),
+                  h('td', {}, meter(t.correct, t.answered), ` ${percent(t.correct, t.answered)}`),
+                  h('td', {}, DIFFICULTY_LABELS[t.difficulty] ?? t.difficulty),
+                  h('td', {}, SOURCE_LABELS[t.source] ?? t.source),
+                  h('td', {}, t.byDomain.filter((d) => d.answered > 0).map((d) => d.domain).join(', ')),
+                  h('td', { class: 'actions' }, h('button', { class: 'mini delete-entry', onclick: () => void api.deleteHistory('training', [t.date]).then(historyScreen) }, 'Delete')),
+                ),
               ),
             ),
-          ),
+      ),
     ),
     h('footer', { class: 'bottombar' }, h('span', {}), h('button', { id: 'history-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
   );
@@ -599,28 +612,38 @@ async function settingsScreen(): Promise<void> {
     h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Profile & settings'), h('span', {}, `CATExam ${info.version}`)),
     h(
       'main',
-      { class: 'page settings', id: 'settings' },
+      { class: 'page panel', id: 'settings' },
       h(
         'section',
         { class: 'card' },
         h('h2', {}, 'Profile'),
-        h('div', { class: 'form-grid' }, h('label', { class: 'field' }, 'Name', name), h('label', { class: 'field' }, 'Exam date', examDate), h('label', { class: 'field' }, 'Daily goal (training questions, 0 = none)', goal)),
-      ),
-      h('section', { class: 'card' }, h('h2', {}, 'Appearance'), h('div', { class: 'form-grid' }, h('label', { class: 'field' }, 'Theme', theme), h('label', { class: 'field' }, 'Text size', textSize))),
-      h('section', { class: 'card' }, h('h2', {}, 'Training defaults'), h('p', { class: 'small' }, 'Used to fill in the training form and by the quick buttons of the study plan.'), form.node),
-      h(
-        'section',
-        { class: 'card' },
-        h('h2', {}, 'Your data'),
-        h('p', { class: 'small' }, 'Kept only on this computer, in the application profile folder.'),
         h(
           'div',
-          { class: 'row wrap' },
-          danger('reset-progress', 'Reset training progress', 'Reset training progress', 'Forget which questions you answered, your bookmarks and daily counts?', () => api.resetProgress()),
-          danger('settings-clear-exams', 'Clear exam history', 'Clear exam history', 'Delete every exam result?', () => api.deleteHistory('exam', null)),
-          danger('settings-clear-training', 'Clear training history', 'Clear training history', 'Delete every training session?', () => api.deleteHistory('training', null)),
+          { class: 'form-grid cols-3' },
+          h('label', { class: 'field' }, 'Name', name),
+          h('label', { class: 'field' }, 'Exam date', examDate),
+          h('label', { class: 'field' }, 'Daily goal', goal, h('span', { class: 'field-hint' }, 'Training questions per day; 0 = no goal')),
         ),
       ),
+      h(
+        'div',
+        { class: 'home-grid' },
+        h('section', { class: 'card' }, h('h2', {}, 'Appearance'), h('div', { class: 'form-grid cols-2' }, h('label', { class: 'field' }, 'Theme', theme), h('label', { class: 'field' }, 'Text size', textSize))),
+        h(
+          'section',
+          { class: 'card' },
+          h('h2', {}, 'Your data'),
+          h('p', { class: 'small' }, 'Kept only on this computer, in the application profile folder.'),
+          h(
+            'div',
+            { class: 'row wrap' },
+            danger('reset-progress', 'Reset training progress', 'Reset training progress', 'Forget which questions you answered, your bookmarks and daily counts?', () => api.resetProgress()),
+            danger('settings-clear-exams', 'Clear exam history', 'Clear exam history', 'Delete every exam result?', () => api.deleteHistory('exam', null)),
+            danger('settings-clear-training', 'Clear training history', 'Clear training history', 'Delete every training session?', () => api.deleteHistory('training', null)),
+          ),
+        ),
+      ),
+      h('section', { class: 'card' }, h('h2', {}, 'Training defaults'), h('p', { class: 'small' }, 'Used to fill in the training form and by the quick buttons of the study plan.'), form.node),
     ),
     h(
       'footer',
@@ -884,7 +907,7 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
       h('span', { class: 'right' }, h('span', { id: 'candidate-name' }, candidate), h('span', {}, 'Time Remaining ', clock), h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number}`)),
     ),
     progress.node,
-    h('main', { class: 'question', id: 'exam' }, h('p', { class: 'stem' }, q.stem), body.node),
+    h('div', { class: 'workspace' }, examNavigator(state, q.number), h('main', { class: 'question', id: 'exam' }, h('p', { class: 'stem' }, q.stem), body.node)),
     h(
       'footer',
       { class: 'bottombar' },
@@ -910,6 +933,27 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
     ),
   );
   keyHandler = questionKeys(body.select, () => { if (!nextButton.disabled) void next(); });
+}
+
+/**
+ * Read-only side panel of the exam: answered questions, the current one and those still to come. The exam
+ * has no going back, so the boxes are not buttons; questions past the minimum may not be delivered.
+ */
+function examNavigator(state: ExamState, current: number): HTMLElement {
+  const boxes = Array.from({ length: state.maxItems }, (_, i) => {
+    const n = i + 1;
+    const kind = n < current ? 'answered' : n === current ? 'unanswered current' : n <= state.minItems ? 'unanswered' : 'optional';
+    return h('span', { class: `nav-box ${kind}`, title: `Question ${n}` }, String(n));
+  });
+  const legend: [string, string][] = [['answered', 'Answered'], ['unanswered', 'Not answered yet'], ['optional', `May follow (after ${state.minItems})`]];
+  return h(
+    'aside',
+    { class: 'navigator', id: 'navigator', 'aria-label': 'Questions' },
+    h('h3', {}, 'Questions'),
+    h('p', { class: 'small', id: 'navigator-count' }, `${current - 1} answered · at least ${Math.max(0, state.minItems - current + 1)} to go`),
+    h('div', { class: 'nav-grid' }, ...boxes),
+    h('ul', { class: 'nav-legend' }, ...legend.map(([cls, text]) => h('li', {}, h('span', { class: `nav-box ${cls}`, 'aria-hidden': 'true' }), text))),
+  );
 }
 
 async function takeBreak(clock: HTMLElement): Promise<void> {
@@ -1072,7 +1116,11 @@ interface PracticeContext {
   total: number;
   seconds: number;
   bookmarks: Set<string>;
-  score: { correct: number; answered: number; streak: number; best: number };
+  /** Question ids and states, in session order, as last reported by the main process. */
+  ids: string[];
+  states: PracticeItemState[];
+  /** Correct answers in a row in this session. */
+  streak: number;
 }
 
 let practiceTimer: number | undefined;
@@ -1085,12 +1133,60 @@ async function startPractice(options: PracticeOptions): Promise<void> {
     toast(errorText(err));
     return;
   }
-  renderPractice(start.question, {
+  renderPractice(start.question, null, {
     total: start.total,
     seconds: start.secondsPerQuestion,
     bookmarks: new Set(start.bookmarks),
-    score: { correct: 0, answered: 0, streak: 0, best: 0 },
+    ids: start.ids,
+    states: start.states,
+    streak: 0,
   });
+}
+
+/** Opens a training question by Skip, Back or the navigator. */
+async function visitPractice(visit: Promise<PracticeVisit>, ctx: PracticeContext): Promise<void> {
+  try {
+    const v = await visit;
+    ctx.states = v.states;
+    renderPractice(v.question, v.feedback, ctx);
+  } catch (err) {
+    toast(errorText(err));
+  }
+}
+
+const STATE_LABELS: Record<PracticeItemState, string> = { unanswered: 'Not answered', skipped: 'Skipped', correct: 'Correct', wrong: 'Wrong', timedout: 'Time ran out' };
+
+/** Side panel with one box per training question: its state, whether it is marked, and a click opens it. */
+function practiceNavigator(current: number, ctx: PracticeContext): HTMLElement {
+  const count = (s: PracticeItemState): number => ctx.states.filter((x) => x === s).length;
+  const done = ctx.states.length - count('unanswered') - count('skipped');
+  const boxes = ctx.states.map((state, i) => {
+    const marked = ctx.bookmarks.has(ctx.ids[i]);
+    const label = `Question ${i + 1}: ${STATE_LABELS[state]}${marked ? ', marked' : ''}`;
+    return h(
+      'button',
+      {
+        class: `nav-box ${state}${marked ? ' marked' : ''}${i + 1 === current ? ' current' : ''}`,
+        'data-number': String(i + 1),
+        title: label,
+        'aria-label': label,
+        'aria-current': i + 1 === current ? 'true' : false,
+        onclick: () => {
+          if (i + 1 !== current) void visitPractice(api.gotoPractice(i + 1), ctx);
+        },
+      },
+      String(i + 1),
+    );
+  });
+  const legend: [string, string][] = [['correct', 'Correct'], ['wrong', 'Wrong'], ['timedout', 'Time ran out'], ['skipped', 'Skipped'], ['unanswered', 'Not answered'], ['marked', 'Marked (bookmark)']];
+  return h(
+    'aside',
+    { class: 'navigator', id: 'navigator', 'aria-label': 'Questions' },
+    h('h3', {}, 'Questions'),
+    h('p', { class: 'small', id: 'navigator-count' }, `${done} of ${ctx.total} answered · ${count('skipped')} skipped`),
+    h('div', { class: 'nav-grid' }, ...boxes),
+    h('ul', { class: 'nav-legend' }, ...legend.map(([cls, text]) => h('li', {}, h('span', { class: `nav-box ${cls}`, 'aria-hidden': 'true' }), text))),
+  );
 }
 
 function optionList(options: string[], indices: number[]): string {
@@ -1146,44 +1242,69 @@ function markOptions(q: QuestionView, f: PracticeFeedback): void {
   });
 }
 
-function renderPractice(q: QuestionView, ctx: PracticeContext): void {
+/** Shows a training question; with `answered`, the question was answered before and is shown locked with its feedback. */
+function renderPractice(q: QuestionView, answered: PracticeFeedback | null, ctx: PracticeContext): void {
   clearInterval(practiceTimer);
   const body = questionBody(q);
   const feedback = h('div', { id: 'feedback', 'aria-live': 'polite' });
-  const { score } = ctx;
-  const tally = h('span', { id: 'practice-score' }, `${score.correct} of ${score.answered} correct`);
-  const streak = h('span', { id: 'practice-streak' }, `Streak ${score.streak}`);
+  const tally = h('span', { id: 'practice-score' });
+  const showTally = (): void => {
+    const done = ctx.states.filter((s) => s === 'correct' || s === 'wrong' || s === 'timedout').length;
+    tally.textContent = `${ctx.states.filter((s) => s === 'correct').length} of ${done} correct`;
+  };
+  showTally();
+  const streak = h('span', { id: 'practice-streak' }, `Streak ${ctx.streak}`);
   const timeLeft = h('span', { id: 'practice-time-left' });
   const button = h('button', { id: 'check', class: 'primary' }, 'Check answer');
+  const index = q.number - 1;
+  /** Number of the first unanswered question after this one, wrapping round; null when every other one is answered. */
+  const nextOpen = (): number | null => {
+    for (let step = 1; step < ctx.total; step++) {
+      const i = (index + step) % ctx.total;
+      if (ctx.states[i] === 'unanswered' || ctx.states[i] === 'skipped') return i + 1;
+    }
+    return null;
+  };
+  const back = h('button', { id: 'practice-back', disabled: q.number === 1, onclick: () => void visitPractice(api.gotoPractice(q.number - 1), ctx) }, '◀ Back');
+  const skip = h('button', { id: 'practice-skip', disabled: nextOpen() === null, onclick: () => void visitPractice(api.skipPractice(q.id), ctx) }, 'Skip ▶');
+  let sidebar = practiceNavigator(q.number, ctx);
   const bookmark = h('button', { id: 'bookmark', 'aria-pressed': String(ctx.bookmarks.has(q.id)) });
   const showBookmark = (): void => {
     const on = ctx.bookmarks.has(q.id);
     bookmark.textContent = on ? '★ Bookmarked' : '☆ Bookmark';
     bookmark.setAttribute('aria-pressed', String(on));
+    sidebar.querySelector(`.nav-box[data-number="${q.number}"]`)?.classList.toggle('marked', on);
   };
-  showBookmark();
   bookmark.addEventListener('click', async () => {
     if (await api.toggleBookmark(q.id)) ctx.bookmarks.add(q.id);
     else ctx.bookmarks.delete(q.id);
     showBookmark();
   });
   let go: HTMLButtonElement | null = null;
-  const reveal = (f: PracticeFeedback, next: QuestionView | null): void => {
+  /** Locks the question, shows its feedback and turns the main button into "next". */
+  const reveal = (f: PracticeFeedback): void => {
     clearInterval(practiceTimer);
-    score.answered++;
-    if (f.correct) {
-      score.correct++;
-      score.streak++;
-      score.best = Math.max(score.best, score.streak);
-    } else score.streak = 0;
-    tally.textContent = `${score.correct} of ${score.answered} correct`;
-    streak.textContent = `Streak ${score.streak}`;
-    for (const input of document.querySelectorAll<HTMLInputElement>('#practice .options input')) input.disabled = true;
+    for (const input of document.querySelectorAll<HTMLInputElement>('#practice .options input')) {
+      input.checked = f.response.includes(Number(input.value));
+      input.disabled = true;
+    }
     feedback.replaceChildren(...feedbackNodes(q, f));
     markOptions(q, f);
+    const next = nextOpen();
     go = h('button', { id: 'practice-next', class: 'primary' }, next ? 'Next question ▶' : 'See summary');
-    go.addEventListener('click', () => (next ? renderPractice(next, ctx) : void practiceSummary()));
+    go.addEventListener('click', () => (next ? void visitPractice(api.gotoPractice(next), ctx) : void practiceSummary()));
     button.replaceWith(go);
+    skip.hidden = true;
+  };
+  const answeredNow = (r: PracticeAnswer): void => {
+    ctx.states = r.states;
+    ctx.streak = r.feedback.correct ? ctx.streak + 1 : 0;
+    showTally();
+    streak.textContent = `Streak ${ctx.streak}`;
+    const fresh = practiceNavigator(q.number, ctx);
+    sidebar.replaceWith(fresh);
+    sidebar = fresh;
+    reveal(r.feedback);
     feedback.scrollIntoView({ block: 'nearest' });
   };
   const check = async (): Promise<void> => {
@@ -1191,11 +1312,10 @@ function renderPractice(q: QuestionView, ctx: PracticeContext): void {
     const needed = q.type === 'multi' ? q.selectCount : q.type === 'single' ? 1 : q.options.length;
     if (response.length !== needed) return toast(q.type === 'multi' ? `Select ${q.selectCount} options.` : 'Choose an answer.');
     button.disabled = true;
-    const r = await api.answerPractice(q.id, response);
-    reveal(r.feedback, r.next);
+    answeredNow(await api.answerPractice(q.id, response));
   };
   button.addEventListener('click', () => void check());
-  if (ctx.seconds > 0) {
+  if (ctx.seconds > 0 && !answered) {
     const deadline = Date.now() + ctx.seconds * 1000;
     const tick = (): void => {
       const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
@@ -1203,7 +1323,7 @@ function renderPractice(q: QuestionView, ctx: PracticeContext): void {
       timeLeft.classList.toggle('low', left <= 10);
       if (left > 0 || go || button.disabled) return;
       button.disabled = true;
-      void api.timeoutPractice(q.id).then((r) => reveal(r.feedback, r.next));
+      void api.timeoutPractice(q.id).then(answeredNow);
     };
     tick();
     practiceTimer = window.setInterval(tick, 250);
@@ -1213,17 +1333,29 @@ function renderPractice(q: QuestionView, ctx: PracticeContext): void {
       'header',
       { class: 'topbar' },
       h('span', { class: 'brand' }, 'Training mode'),
-      h('span', { class: 'right' }, tally, streak, ctx.seconds > 0 && timeLeft, h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number} of ${ctx.total}`)),
+      h('span', { class: 'right' }, tally, streak, ctx.seconds > 0 && !answered && timeLeft, h('span', { id: 'qnum', class: 'qnum' }, `Question ${q.number} of ${ctx.total}`)),
     ),
-    h('main', { class: 'question', id: 'practice' }, h('p', { class: 'stem' }, q.stem), body.node, feedback),
+    h('div', { class: 'workspace' }, sidebar, h('main', { class: 'question', id: 'practice' }, h('p', { class: 'stem' }, q.stem), body.node, feedback)),
     h(
       'footer',
       { class: 'bottombar' },
-      h('div', {}, h('button', { id: 'practice-stop', onclick: () => void practiceSummary() }, 'Stop'), bookmark),
+      h('div', {}, back, h('button', { id: 'practice-stop', onclick: () => void practiceSummary() }, 'Stop'), bookmark),
       h('span', { class: 'small keys' }, q.type === 'ordering' ? 'Enter: Check / Next' : `Keys: A–${LETTERS[q.options.length - 1]} select · Enter: Check / Next`),
-      button,
+      h('div', {}, skip, button),
     ),
   );
+  showBookmark();
+  if (answered) {
+    if (q.type === 'ordering') {
+      // Put the items back in the order the student submitted, so each position is marked against it.
+      const list = document.getElementById('ordering');
+      for (const i of answered.response) {
+        const li = list?.querySelector(`li[data-index="${i}"]`);
+        if (li) list?.append(li);
+      }
+    }
+    reveal(answered);
+  }
   keyHandler = questionKeys(
     (i) => { if (!go) body.select(i); },
     () => { if (go) go.click(); else if (!button.disabled) void check(); },

@@ -13,6 +13,9 @@ declare global {
   type PracticeFeedback = Api.PracticeFeedback;
   type PracticeOptions = Api.PracticeOptions;
   type PracticeStart = Api.PracticeStart;
+  type PracticeAnswer = Api.PracticeAnswer;
+  type PracticeVisit = Api.PracticeVisit;
+  type PracticeItemState = Api.PracticeItemState;
   type Profile = Api.Profile;
   type HistoryEntry = Api.HistoryEntry;
   type TrainingEntry = Api.TrainingEntry;
