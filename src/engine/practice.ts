@@ -117,6 +117,11 @@ export class PracticeSession {
     return this.record(this.currentItem(questionId), [], false, true);
   }
 
+  /** The open question with its answer, for the game's power-ups; only while it is unanswered. */
+  currentQuestion(questionId: string): Readonly<Question> {
+    return this.currentItem(questionId);
+  }
+
   /** Leaves the current question unanswered and moves to the next unanswered one (the same one when it is the last). */
   skip(questionId: string): QuestionView {
     this.currentItem(questionId);

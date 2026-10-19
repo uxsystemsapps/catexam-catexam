@@ -157,8 +157,11 @@ const api: ExamApi = {
   startGame: (options) => call((s) => s.startGame(options)),
   startIsland: (domain) => call((s) => s.startIsland(domain)),
   startBoss: (domain) => call((s) => s.startBoss(domain)),
+  startDaily: () => call((s) => s.startDaily()),
+  startLightning: () => call((s) => s.startLightning()),
   answerGame: (questionId, response) => call((s) => s.answerGame(questionId, response)),
   timeoutGame: (questionId) => call((s) => s.timeoutGame(questionId)),
+  usePowerUp: (id, questionId) => call((s) => s.usePowerUp(id, questionId)),
   gameSummary: () => call((s) => s.gameSummary()),
   saveGameSettings: (settings) => call((s) => s.saveGameSettings(settings)),
   quit: async () => {

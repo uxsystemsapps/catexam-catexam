@@ -6,7 +6,28 @@ import path from 'node:path';
 import { describe, it } from 'node:test';
 import { isCorrect, validateBank } from '../src/engine/bank';
 import { CatexamService } from '../src/core/service';
-import { BOSS_BONUS_XP, BOSS_HP, BOSS_QUESTIONS, GameRun, levelInfo, normalizeGameProgress, selectIslandItems, STAGE_QUESTIONS, xpForLevel } from '../src/engine/game';
+import {
+  achievementList,
+  addDays,
+  BOSS_BONUS_XP,
+  BOSS_HP,
+  BOSS_QUESTIONS,
+  completeDaily,
+  dailyStreak,
+  DAILY_QUESTIONS,
+  defaultGameProgress,
+  GameRun,
+  LIGHTNING_GRACE_MS,
+  LIGHTNING_SECONDS,
+  levelInfo,
+  normalizeGameProgress,
+  POWER_UP_CAP,
+  selectDailyItems,
+  selectIslandItems,
+  STAGE_QUESTIONS,
+  unlockAchievements,
+  xpForLevel,
+} from '../src/engine/game';
 import { DOMAINS } from '../src/engine/domains';
 import { estimateAbility, probabilityCorrect } from '../src/engine/irt';
 import { PracticeSession } from '../src/engine/practice';
@@ -568,7 +589,23 @@ describe('game mode', () => {
     assert.equal(last.feedback.explanation, 'why L2');
     assert.equal(run.current(), null);
     assert.throws(() => run.answer('L3', [0]), /over/);
-    assert.deepEqual(run.summary(), { answered: 3, correct: 0, total: 6, xpEarned: 0, bestCombo: 0, end: 'lives', level: levelInfo(0), island: null, boss: null });
+    assert.deepEqual(run.summary(), {
+      kind: 'quick',
+      answered: 3,
+      correct: 0,
+      total: 6,
+      xpEarned: 0,
+      bestCombo: 0,
+      end: 'lives',
+      level: levelInfo(0),
+      island: null,
+      boss: null,
+      review: [],
+      best: 0,
+      newBest: false,
+      daily: null,
+      unlocked: [],
+    });
   });
 
   it('clears the round when every question is answered with hearts left; a time-out costs a heart', () => {
@@ -617,7 +654,7 @@ describe('game mode', () => {
     assert.equal(items.stage.length, STAGE_QUESTIONS);
     assert.ok(items.stage.every((x) => x.domain === 4 && !items.boss.includes(x)), 'the stage gets other questions of the domain');
     // Few hard questions: the boss is topped up with the hardest of the rest.
-    const few = selectIslandItems([q('H', 2, 6), q('M1', 0.4, 6), q('M2', 0.2, 6), ...Array.from({ length: 8 }, (_, i) => q(`L${i}`, -2, 6))], 6);
+    const few = selectIslandItems([q('H', 2, 6), q('M1', 0.4, 6), q('M2', 0.2, 6), ...Array.from({ length: 11 }, (_, i) => q(`L${i}`, -2, 6))], 6);
     assert.equal(few.boss.length, BOSS_QUESTIONS);
     assert.ok(['H', 'M1', 'M2'].every((id) => few.boss.some((x) => x.id === id)));
     assert.equal(few.stage.length, 4);
@@ -682,7 +719,7 @@ describe('game mode', () => {
       const start = await service.startGame({ ...DEFAULT_PROFILE.training, domains: [2], count: 3 });
       const right = await service.answerGame(start.question.id, [0]);
       await service.answerGame((right.next as QuestionView).id, [3]);
-      assert.equal(service.gameSummary().end, 'quit');
+      assert.equal((await service.gameSummary()).end, 'quit');
 
       const reopened = await CatexamService.open(host);
       const info = await reopened.info();
@@ -729,6 +766,150 @@ describe('game mode', () => {
       world = (await reopened.info()).game.world;
       assert.deepEqual(world.islands[6], { domain: 7, cleared: true, bossReached: true, victories: 1 });
       assert.ok(world.islands.filter((i) => i.domain !== 7).every((i) => !i.cleared && !i.bossReached));
+    } finally {
+      await rm(tmp, { recursive: true, force: true });
+    }
+  });
+
+  it('earns power-ups with every five in a row and for a beaten boss, up to a small inventory', () => {
+    const run = new GameRun(Array.from({ length: 16 }, (_, i) => q(`P${i}`, 0)), 0, null, { powerUps: { fifty: 0, auditor: 0, patch: POWER_UP_CAP } });
+    const earned = Array.from({ length: 15 }, () => play(run, true).earned);
+    assert.deepEqual([earned[4], earned[9], earned[14]], [['fifty'], ['auditor'], []], 'a full stack of Patch Tuesday takes no more');
+    assert.deepEqual(earned.flat(), ['fifty', 'auditor']);
+    assert.deepEqual(run.powerUps, { fifty: 1, auditor: 1, patch: POWER_UP_CAP });
+    const fight = new GameRun([], 0, { domain: 1, boss: Array.from({ length: BOSS_QUESTIONS }, (_, i) => q(`B${i}`, 1)) });
+    let last = play(fight, true);
+    while (last.end === null) last = play(fight, true);
+    assert.deepEqual([last.end, last.earned], ['victory', ['fifty', 'patch']], 'five hits in a row and the boss beaten');
+  });
+
+  it('50/50 takes two wrong options away, the Auditor rules one out with its reason, Patch Tuesday mends a heart', () => {
+    const noted: Question = { ...q('N', 0), optionNotes: ['right', 'not b', 'not c', 'not d'] };
+    const run = new GameRun([q('F', 0), noted, q('X', 0)], 0, null, { powerUps: { fifty: 1, auditor: 1, patch: 1 }, rng: seeded(3) });
+    assert.throws(() => run.usePowerUp('patch', 'F'), /full/);
+    const fifty = run.usePowerUp('fifty', 'F');
+    assert.equal(fifty.removed.length, 2);
+    assert.ok(!fifty.removed.includes(0), 'never the right answer');
+    assert.deepEqual(fifty.powerUps, { fifty: 0, auditor: 1, patch: 1 });
+    assert.throws(() => run.usePowerUp('auditor', 'F'), /one 50\/50 or hint/);
+    assert.throws(() => run.usePowerUp('fifty', 'F'), /none of this/);
+    play(run, false);
+    const hint = run.usePowerUp('auditor', 'N');
+    const out = hint.removed[0];
+    assert.deepEqual([hint.removed.length, hint.hint], [1, `Not ${'ABCD'[out]}. not ${'abcd'[out]}`]);
+    assert.notEqual(out, 0);
+    const patch = run.usePowerUp('patch', 'N');
+    assert.deepEqual([patch.lives, run.livesLeft, run.heartsLost, patch.powerUps], [3, 3, 1, { fifty: 0, auditor: 0, patch: 0 }]);
+
+    const ordering: Question = { id: 'O', domain: 1, type: 'ordering', difficulty: 0, stem: 's', options: ['x', 'y', 'z'], answer: [2, 0, 1], explanation: 'e' };
+    const twoOptions: Question = { ...q('T', 0), options: ['a', 'b'] };
+    const other = new GameRun([ordering, twoOptions], 0, null, { powerUps: { fifty: 3, auditor: 3, patch: 0 } });
+    assert.throws(() => other.usePowerUp('fifty', 'O'), /does not fit/);
+    assert.equal(other.usePowerUp('auditor', 'O').hint, '“z” comes first.');
+    other.answer('O', [2, 0, 1]);
+    assert.throws(() => other.usePowerUp('fifty', 'T'), /does not fit/);
+    assert.throws(() => other.usePowerUp('auditor', 'T'), /nothing to rule out/);
+
+    const daily = new GameRun([q('D', 0)], 0, null, { kind: 'daily', powerUps: { fifty: 1, auditor: 1, patch: 1 } });
+    assert.equal(daily.livesLeft, 0);
+    assert.throws(() => daily.usePowerUp('patch', 'D'), /no hearts/);
+    const flash = new GameRun([q('L', 0)], 0, null, { kind: 'lightning', powerUps: { fifty: 1, auditor: 1, patch: 1 } });
+    assert.throws(() => flash.usePowerUp('fifty', 'L'), /lightning/);
+  });
+
+  it('picks the same daily challenge all day, counts the streak, and rewards it', () => {
+    const bank = Array.from({ length: 40 }, (_, i) => q(`D${i}`, 0));
+    const today = selectDailyItems(bank, '2026-10-19').map((x) => x.id);
+    assert.equal(today.length, DAILY_QUESTIONS);
+    assert.deepEqual(selectDailyItems([...bank].reverse(), '2026-10-19').map((x) => x.id), today, 'the same questions all day, whatever the order of the bank');
+    assert.notDeepEqual(selectDailyItems(bank, '2026-10-20').map((x) => x.id), today);
+    assert.equal(addDays('2026-12-31', 1), '2027-01-01');
+    assert.equal(dailyStreak(['2026-10-17', '2026-10-18'], '2026-10-19'), 2, 'today still open: the streak runs to yesterday');
+    assert.equal(dailyStreak(['2026-10-16', '2026-10-18', '2026-10-19'], '2026-10-19'), 2);
+    assert.equal(dailyStreak(['2026-10-17'], '2026-10-19'), 0, 'a missed day breaks the streak');
+
+    const p = { ...defaultGameProgress('desktop'), powerUps: { fifty: 0, auditor: 0, patch: 0 } };
+    const rewards = Array.from({ length: 7 }, (_, i) => completeDaily(p, addDays('2026-10-13', i)));
+    assert.deepEqual(rewards[0], { day: '2026-10-13', streak: 1, xp: 50, powerUps: ['fifty'] });
+    assert.deepEqual(rewards.map((r) => r?.xp), [50, 60, 70, 80, 90, 100, 110], 'a longer streak, a bigger bonus');
+    assert.deepEqual(rewards[6]?.powerUps, ['fifty', 'auditor', 'patch'], 'the 7th day in a row brings one of each');
+    assert.deepEqual([p.xp, p.stats.bestStreak, p.powerUps], [560, 7, { fifty: 3, auditor: 3, patch: 3 }]);
+    assert.equal(completeDaily(p, '2026-10-19'), null, 'once a day');
+  });
+
+  it('runs the lightning round on the clock, with no hearts, and keeps every answer for the review', () => {
+    let now = 1_000_000;
+    const run = new GameRun(Array.from({ length: 30 }, (_, i) => q(`Z${i}`, 0)), 0, null, { kind: 'lightning', now: () => now });
+    for (let i = 0; i < 4; i++) play(run, false);
+    const right = play(run, true);
+    assert.deepEqual([right.end, right.lives], [null, 0], 'wrong answers cost no heart');
+    now += LIGHTNING_SECONDS * 1000 + LIGHTNING_GRACE_MS - 1;
+    assert.equal(play(run, true).feedback.correct, true, 'an answer sent just before the end still counts');
+    now += 2;
+    assert.throws(() => play(run, true), /time is up/);
+    const s = run.summary();
+    assert.deepEqual([s.kind, s.end, s.answered, s.correct, s.review.length], ['lightning', 'time', 6, 2, 6]);
+    assert.deepEqual([s.review[0].question.id, s.review[0].feedback.explanation, s.review[0].feedback.correct], ['Z0', 'why Z0', false]);
+    const quitter = new GameRun([q('E', 0)], 0, null, { kind: 'lightning', now: () => now });
+    quitter.quit();
+    assert.equal(quitter.summary().end, 'quit', 'quitting before the end');
+    const late = new GameRun([q('E', 0)], 0, null, { kind: 'lightning', now: () => now });
+    now += LIGHTNING_SECONDS * 1000;
+    late.quit();
+    assert.equal(late.summary().end, 'time', 'the screen ends the round when the clock runs out');
+  });
+
+  it('unlocks each achievement once, on the day it is earned, and keeps badges and power-ups through a damaged save', () => {
+    const p = defaultGameProgress('desktop');
+    assert.deepEqual(unlockAchievements(p, '2026-10-19'), []);
+    p.stats.right = 1;
+    p.bestCombo = 5;
+    assert.deepEqual(unlockAchievements(p, '2026-10-19').map((a) => a.name), ["Didn't click the link", 'Hashed it out']);
+    p.xp = xpForLevel(5);
+    assert.deepEqual(unlockAchievements(p, '2026-10-20').map((a) => a.name), ['Least Privilege, Most Points', 'Script Kiddie No More']);
+    assert.deepEqual(unlockAchievements(p, '2026-10-21'), [], 'never twice');
+    const list = achievementList(p);
+    assert.equal(list.filter((a) => a.unlocked).length, 4);
+    assert.equal(list.find((a) => a.id === 'combo-5')?.unlocked, '2026-10-19');
+    const saved = normalizeGameProgress(JSON.parse(JSON.stringify({ ...p, achievements: { ...p.achievements, bogus: '2026-01-01', 'combo-10': 'yesterday' } })), 'desktop');
+    assert.deepEqual(Object.keys(saved.achievements).sort(), ['combo-5', 'first-right', 'level-5', 'xp-1000']);
+    assert.deepEqual(normalizeGameProgress({ powerUps: { fifty: 9, auditor: -1 } }, 'mobile').powerUps, { fifty: POWER_UP_CAP, auditor: 0, patch: 1 });
+  });
+
+  it('plays the daily challenge once a day with its reward, and keeps power-ups, the lightning high score and badges', async () => {
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-stage3-'));
+    try {
+      await mkdir(path.join(tmp, 'builtin'));
+      const bank = Array.from({ length: 12 }, (_, i) => q(`Q${i}`, 0, 3));
+      await writeFile(path.join(tmp, 'builtin', 'stage3.json'), JSON.stringify({ name: 'Stage 3', questions: bank }));
+      const host = { version: 't', platform: 'desktop' as const, data: fsDir(path.join(tmp, 'user')), builtin: fsDir(path.join(tmp, 'builtin')), displays: () => 1, onTimeout: () => undefined };
+      const service = await CatexamService.open(host);
+      let game = (await service.info()).game;
+      assert.deepEqual([game.daily.done, game.daily.streak, game.daily.reward, game.powerUps], [false, 0, { xp: 50, powerUps: ['fifty'] }, { fifty: 1, auditor: 1, patch: 1 }]);
+      const start = await service.startDaily();
+      assert.deepEqual([start.kind, start.total, start.lives], ['daily', DAILY_QUESTIONS, 0]);
+      const used = await service.usePowerUp('fifty', start.question.id);
+      assert.deepEqual(used.unlocked.map((a) => a.id), ['power-up']);
+      let r = await service.answerGame(start.question.id, [0]);
+      for (let i = 1; i < DAILY_QUESTIONS; i++) r = await service.answerGame((r.next as QuestionView).id, i % 2 ? [1] : [0]);
+      assert.equal(r.end, 'cleared', 'wrong answers do not end the daily challenge');
+      assert.ok(r.unlocked.some((a) => a.id === 'daily'));
+      const s = await service.gameSummary();
+      assert.deepEqual(s.daily, { day: game.daily.today, streak: 1, xp: 50, powerUps: ['fifty'] });
+      await assert.rejects(service.startDaily(), /done/);
+
+      const flash = await service.startLightning();
+      assert.deepEqual([flash.kind, flash.roundSeconds, flash.lives], ['lightning', LIGHTNING_SECONDS, 0]);
+      const f = await service.answerGame(flash.question.id, [0]);
+      await service.answerGame((f.next as QuestionView).id, [0]);
+      const ls = await service.gameSummary();
+      assert.deepEqual([ls.correct, ls.best, ls.newBest, ls.review.length], [2, 2, true, 2]);
+      assert.equal((await service.gameSummary()).newBest, true, 'a second summary says the same');
+
+      game = (await (await CatexamService.open(host)).info()).game;
+      assert.deepEqual([game.daily.done, game.daily.streak, game.lightningBest], [true, 1, 2]);
+      assert.deepEqual(game.powerUps, { fifty: 1, auditor: 1, patch: 1 }, 'the 50/50 used, and another one won');
+      assert.ok(['power-up', 'daily', 'first-right'].every((id) => game.achievements.find((a) => a.id === id)?.unlocked));
     } finally {
       await rm(tmp, { recursive: true, force: true });
     }

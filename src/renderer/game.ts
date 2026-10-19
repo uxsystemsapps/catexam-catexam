@@ -1,6 +1,7 @@
 // Game mode: the training questions as a pixel-art arcade game, with XP, ranks, combos, hearts and a hoodie cat
-// that reacts to every answer (stage 1), and a world map of eight islands, one per domain, each ending with a
-// boss fight, with music (stage 2). Loaded before app.js and shares its global scope: it uses the app's helpers
+// that reacts to every answer (stage 1), a world map of eight islands, one per domain, each ending with a boss
+// fight, with music (stage 2), and power-ups, achievements, the daily challenge and the lightning round
+// (stage 3). Loaded before app.js and shares its global scope: it uses the app's helpers
 // (h, show, api, questionBody, feedbackNodes…) when its screens open. Scoring, hearts, bosses and saving live in
 // the service (src/engine/game.ts); this script only shows them.
 //
@@ -16,14 +17,15 @@ const GAME_ASSETS = 'game/';
 /** Assets of the game and where they come from; listed in Profile & settings and in assets/CREDITS.md. */
 const GAME_CREDITS: { what: string; source: string; author: string; licence: string; url: string }[] = [
   { what: 'Hoodie cat mascot (adapted: hoodie, padlock print, cheering, facepalm, sweating and crying frames added)', source: 'Pixel cat', author: 'scofanogd', licence: 'CC0 1.0', url: 'https://opengameart.org/content/pixel-cat' },
-  { what: 'Hearts, gem, coin, and the islands and props of the world map', source: 'Pixel Platformer', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-platformer' },
+  { what: 'Hearts, gem, coin, the islands and props of the world map, and eight achievement badges (link, lock, key, ! block, flag, lever, coin, gem)', source: 'Pixel Platformer', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-platformer' },
+  { what: 'Power-up icons (double axe, wizard, red potion) and seven achievement badges (sword, shields, chests, blue potion, helmet)', source: 'Tiny Dungeon', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/tiny-dungeon' },
   { what: 'Combo flame', source: 'Simple animate fire', author: 'XenosNS', licence: 'CC0 1.0', url: 'https://opengameart.org/content/simple-animate-fire' },
   { what: 'Bosses (hydra, jelly, iron golem, kraken, lich, orb of eyes, shadow dragon, spider)', source: 'Dungeon Crawl Stone Soup tiles', author: 'the Dungeon Crawl Stone Soup tile artists', licence: 'CC0 1.0', url: 'https://github.com/crawl/tiles' },
   { what: 'Boss explosion', source: 'Pixel Shmup', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-shmup' },
   { what: 'Pixel font (Kenney Mini Square)', source: 'Kenney Fonts', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/kenney-fonts' },
-  { what: 'Right-answer ding and wrong-answer buzz', source: 'Interface Sounds', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/interface-sounds' },
-  { what: 'Combo whoosh', source: 'Digital Audio', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/digital-audio' },
-  { what: 'Level-up fanfare', source: 'Music Jingles', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/music-jingles' },
+  { what: 'Right-answer ding, wrong-answer buzz and the lightning round countdown tick', source: 'Interface Sounds', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/interface-sounds' },
+  { what: 'Combo whoosh, power-up zap and power-up pickup', source: 'Digital Audio', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/digital-audio' },
+  { what: 'Level-up fanfare and achievement jingle', source: 'Music Jingles', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/music-jingles' },
   { what: 'Coin clink', source: 'RPG Audio', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/rpg-audio' },
   { what: 'Music: map, boss fight and lightning round tracks (Level 1, 3 and 2)', source: 'Retro Game Music Pack', author: 'Juhani Junkala', licence: 'CC0 1.0', url: 'https://opengameart.org/content/5-chiptunes-action' },
 ];
@@ -74,7 +76,17 @@ const QUIPS = {
     'The boss just lost a hit point and some dignity.',
   ],
   victory: ['Write it up in the lessons-learned report.', 'Somebody update the risk register.', 'The SOC is buying pizza.'],
+  time: ['Time! The packets have stopped flowing.', 'Session expired. Your score did not.', 'Rate limit reached. Nice throughput, though.'],
+  daily: ['Daily stand-up done. Nobody even had to share their screen.', 'Another day, another audit passed.', 'Streak secured. The SOC salutes you.'],
 };
+
+/** The power-ups: name, what they do, and the shout when one is used. */
+const POWER_UPS: Record<PowerUpId, { name: string; short: string; what: string; shout: string }> = {
+  fifty: { name: '50/50', short: '50/50', what: 'removes two wrong options', shout: '50/50! TWO OPTIONS DELETED' },
+  auditor: { name: 'Ask the Auditor', short: 'Auditor', what: 'rules out one wrong option and says why', shout: 'THE AUDITOR IS IN' },
+  patch: { name: 'Patch Tuesday', short: 'Patch', what: 'mends a broken heart', shout: 'PATCH TUESDAY! +1 HEART' },
+};
+const POWER_UP_ORDER: PowerUpId[] = ['fifty', 'auditor', 'patch'];
 
 function pick(lines: readonly string[]): string {
   return lines[Math.floor(Math.random() * lines.length)];
@@ -82,7 +94,7 @@ function pick(lines: readonly string[]): string {
 
 // ---------- Sound and effects ----------
 
-type Sfx = 'ding' | 'buzz' | 'whoosh' | 'fanfare' | 'coin';
+type Sfx = 'ding' | 'buzz' | 'whoosh' | 'fanfare' | 'coin' | 'powerup' | 'pickup' | 'achievement' | 'tick';
 
 /** Settings of the last `info()` call; the HUD sound and music buttons and Profile & settings change them. */
 let gameSettings: GameSettings = { sound: false, volume: 70, music: false, musicVolume: 50, lite: false };
@@ -278,6 +290,46 @@ function hearts(lives: number, max: number): HTMLElement {
   return row;
 }
 
+/** A power-up icon (16×16 tiles of game/powerups.png). */
+function powerIcon(id: PowerUpId): HTMLElement {
+  return h('span', { class: `pu-icon pu-${id}`, 'aria-hidden': 'true' });
+}
+
+/** The power-ups held: icon and count of each. */
+function inventory(powerUps: PowerUps, id: string): HTMLElement {
+  return h(
+    'div',
+    { class: 'inventory', id, role: 'img', 'aria-label': `Power-ups: ${POWER_UP_ORDER.map((p) => `${POWER_UPS[p].name} ${powerUps[p]}`).join(', ')}` },
+    ...POWER_UP_ORDER.map((p) => h('span', { class: `inv-slot${powerUps[p] === 0 ? ' empty' : ''}`, title: `${POWER_UPS[p].name}: ${POWER_UPS[p].what}` }, powerIcon(p), h('span', { class: 'inv-count' }, `×${powerUps[p]}`))),
+  );
+}
+
+/** An achievement badge: its picture (18×18 tiles of game/badges.png) on a medal, grey while locked. */
+function badge(a: AchievementInfo): HTMLElement {
+  return h('span', { class: `badge-medal${a.unlocked ? '' : ' locked'}`, 'aria-hidden': 'true' }, cssVars(h('span', { class: 'badge-icon' }), { b: a.badge }));
+}
+
+/**
+ * Pop-ups of newly unlocked achievements, one after the other at the top of the screen, each with a jingle. They
+ * sit in their own layer, which ignores the pointer and outlives a change of screen (the lightning round moves on fast).
+ */
+function announceAchievements(list: readonly AchievementInfo[]): void {
+  list.forEach((a, i) =>
+    setTimeout(() => {
+      const layer = document.getElementById('pop-layer') ?? document.body.appendChild(h('div', { id: 'pop-layer', class: 'pop-layer', role: 'status' }));
+      const pop = h(
+        'div',
+        { class: 'achievement-pop', 'data-achievement': a.id },
+        badge(a),
+        h('span', { class: 'pop-text' }, h('span', { class: 'pop-title' }, 'ACHIEVEMENT UNLOCKED'), h('span', { class: 'pop-name' }, a.name)),
+      );
+      layer.append(pop);
+      playSfx('achievement');
+      setTimeout(() => pop.remove(), 3400);
+    }, i * 1800),
+  );
+}
+
 /** Level, rank and the XP bar of the current level. */
 function levelBar(level: LevelInfo, id: string): HTMLElement {
   const fill = h('span', { class: 'xp-fill' });
@@ -328,7 +380,7 @@ function gameCard(info: AppInfo): HTMLElement {
       'div',
       { class: 'game-card-text' },
       h('h2', {}, 'Game mode'),
-      h('p', { class: 'small' }, 'The same questions as an arcade game: a world map with a boss on every island, XP, ranks, combos and three hearts. The explanation always follows each answer.'),
+      h('p', { class: 'small' }, 'The same questions as an arcade game: a world map with a boss on every island, a daily challenge, a lightning round, power-ups and achievements, XP, ranks, combos and three hearts. The explanation always follows each answer.'),
       levelBar(info.game.level, 'home-level'),
     ),
     h('button', { id: 'open-game', class: 'px-button', disabled: info.bank.total === 0, onclick: () => void gameHub() }, 'Play ▶'),
@@ -349,7 +401,7 @@ function gameSettingsCard(settings: GameSettings): { node: HTMLElement; read: ()
       h('h2', {}, 'Game mode'),
       h('label', { class: 'check' }, sound, ' Sound effects'),
       h('label', { class: 'field' }, 'Volume', volume),
-      h('label', { class: 'check' }, music, ' Music (world map and boss fights)'),
+      h('label', { class: 'check' }, music, ' Music (world map, boss fights and lightning round)'),
       h('label', { class: 'field' }, 'Music volume', musicVolume),
       h('label', { class: 'check' }, lite, ' Lite effects (no particles, shaking or bouncing)'),
       h('p', { class: 'small' }, 'When the system asks to reduce motion, the game shows no animations at all.'),
@@ -421,17 +473,25 @@ function mapPath(layout: 'wide' | 'tall', world: WorldProgress): SVGSVGElement {
   return svg;
 }
 
+/** A big button of the game hub that opens another way to play. */
+function modeButton(id: string, picture: HTMLElement, title: string, sub: string, open: () => void): HTMLElement {
+  return h('button', { id, class: 'mode-button', onclick: open }, h('span', { class: 'mode-pic' }, picture), h('span', { class: 'mode-text' }, h('span', { class: 'mode-title' }, title), h('span', { class: 'mode-sub' }, sub)));
+}
+
 /**
- * Game start screen: the player's rank and the world map. The cat stands on the island played last; tap an
- * island and it walks there along the path, and the panel below shows the island and its boss, with Play (the
- * domain's questions, then the boss) and, once the stage has been won, a direct boss fight. Cleared islands are
- * lit and alive, and so is the path leaving them. Quick round opens the stage 1 round picker.
+ * Game start screen: the player's rank, power-ups, the other ways to play (daily challenge, lightning round,
+ * achievements) and the world map. The cat stands on the island played last; tap an island and it walks there
+ * along the path, and the panel below shows the island and its boss, with Play (the domain's questions, then the
+ * boss) and, once the stage has been won, a direct boss fight. Cleared islands are lit and alive, and so is the
+ * path leaving them. Quick round opens the stage 1 round picker.
  */
 async function gameHub(): Promise<void> {
   const info = await api.info();
   gameSettings = info.game.settings;
   const world = info.game.world;
   const cleared = world.islands.filter((i) => i.cleared).length;
+  const daily = info.game.daily;
+  const unlocked = info.game.achievements.filter((a) => a.unlocked).length;
   let at = world.at;
   let target = at;
   let walking = false;
@@ -535,7 +595,14 @@ async function gameHub(): Promise<void> {
         'section',
         { class: 'px-panel game-hero' },
         cat('idle', 'hub-cat'),
-        h('div', { class: 'game-hero-text' }, h('h1', { class: 'px-title' }, 'CISSP Quest'), rankBadge(info.game.level), levelBar(info.game.level, 'hub-level')),
+        h('div', { class: 'game-hero-text' }, h('h1', { class: 'px-title' }, 'CISSP Quest'), rankBadge(info.game.level), levelBar(info.game.level, 'hub-level'), inventory(info.game.powerUps, 'hub-powerups')),
+      ),
+      h(
+        'section',
+        { class: 'game-modes', 'aria-label': 'More ways to play' },
+        modeButton('open-daily', h('span', { class: 'flame mode-flame', 'aria-hidden': 'true' }), 'Daily challenge', daily.done ? `✔ Done today · streak ${daily.streak}` : `10 questions · streak ${daily.streak}`, () => void dailyScreen()),
+        modeButton('open-lightning', h('span', { class: 'mode-bolt', 'aria-hidden': 'true' }, '60s'), 'Lightning round', `High score ${info.game.lightningBest}`, () => void lightningScreen()),
+        modeButton('open-achievements', badge(info.game.achievements.find((a) => a.unlocked) ?? info.game.achievements[0]), 'Achievements', `${unlocked}/${info.game.achievements.length} badges`, () => void achievementsScreen()),
       ),
       h(
         'section',
@@ -689,12 +756,152 @@ async function quickRound(): Promise<void> {
   backAction = () => void gameHub();
 }
 
+// ---------- Daily challenge, lightning round and achievements (stage 3) ----------
+
+/** Days of the streak calendar: the last five weeks, today last. */
+const CALENDAR_DAYS = 35;
+const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+/** The power-ups of a reward as icons with their names. */
+function rewardPowerUps(ids: readonly PowerUpId[]): HTMLElement {
+  return h('span', { class: 'reward-powerups' }, ...ids.map((id) => h('span', { class: 'reward-pu' }, powerIcon(id), ` ${POWER_UPS[id].name}`)));
+}
+
+/** A day (YYYY-MM-DD) as the system writes dates. */
+function dayText(day: string): string {
+  const [y, m, d] = day.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString();
+}
+
+/**
+ * The daily challenge: today's ten questions (the same all day), the streak with a calendar of the last five
+ * weeks (a coin on every day done), what finishing today gives, and Start (once a day).
+ */
+async function dailyScreen(): Promise<void> {
+  const info = await api.info();
+  gameSettings = info.game.settings;
+  const d = info.game.daily;
+  const done = new Set(d.days);
+  const [y, m, dd] = d.today.split('-').map(Number);
+  const first = new Date(Date.UTC(y, m - 1, dd - (CALENDAR_DAYS - 1))).getUTCDay();
+  const cells = Array.from({ length: CALENDAR_DAYS }, (_, i) => {
+    const date = new Date(Date.UTC(y, m - 1, dd - (CALENDAR_DAYS - 1 - i)));
+    const key = date.toISOString().slice(0, 10);
+    const isDone = done.has(key);
+    return h(
+      'span',
+      { class: `day${isDone ? ' done' : ''}${key === d.today ? ' today' : ''}`, title: dayText(key), 'aria-label': `${dayText(key)}${isDone ? ': done' : ''}` },
+      isDone ? icon('coin') : String(date.getUTCDate()),
+    );
+  });
+  gameScreen(
+    'map',
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Daily challenge'), h('span', { class: 'px-text' }, dayText(d.today))),
+    h(
+      'main',
+      { class: 'page game', id: 'daily' },
+      h(
+        'section',
+        { class: 'px-panel daily-panel' },
+        h('div', { class: 'daily-head' }, h('span', { class: 'flame streak-flame', 'aria-hidden': 'true' }), h('div', {}, h('h1', { class: 'px-title small-title' }, 'Daily challenge'), h('p', { class: 'px-text', id: 'daily-streak' }, `Streak: ${d.streak} day${d.streak === 1 ? '' : 's'} · best ${d.bestStreak}`))),
+        h('p', { class: 'px-help' }, 'Ten questions, the same all day long. No hearts: every answer counts, the explanation follows each one, and wrong answers join your questions to retry. Finish all ten to keep your streak.'),
+        h('div', { class: 'calendar', id: 'daily-calendar', role: 'group', 'aria-label': 'Daily challenges of the last five weeks' }, ...WEEKDAYS.map((_, c) => h('span', { class: 'weekday', 'aria-hidden': 'true' }, WEEKDAYS[(first + c) % 7])), ...cells),
+        h(
+          'p',
+          { class: 'daily-reward', id: 'daily-next-reward' },
+          h('strong', {}, d.done ? 'Today’s reward: ' : 'Finish today for: '),
+          `+${d.reward.xp} XP and `,
+          rewardPowerUps(d.reward.powerUps),
+          '.',
+        ),
+        h('p', { class: 'small' }, 'Every day in a row adds 10 XP to the bonus; every 7th day in a row brings one of each power-up.'),
+      ),
+    ),
+    h(
+      'footer',
+      { class: 'bottombar game-bar' },
+      h('button', { id: 'daily-back', class: 'px-button ghosted', onclick: () => void gameHub() }, '◀ Map'),
+      h('button', { id: 'daily-start', class: 'px-button', disabled: d.done || info.bank.total === 0, onclick: () => void playRound(() => api.startDaily()) }, d.done ? 'Done for today ✔' : 'Start ▶'),
+    ),
+    tabbar('game'),
+  );
+  backAction = () => void gameHub();
+}
+
+/** The lightning round's start screen: the rules, the high score, and its own music already playing. */
+async function lightningScreen(): Promise<void> {
+  const info = await api.info();
+  gameSettings = info.game.settings;
+  gameScreen(
+    'lightning',
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Lightning round'), h('span', { class: 'px-text', id: 'lightning-best' }, `High score ${info.game.lightningBest}`)),
+    h(
+      'main',
+      { class: 'page game', id: 'lightning' },
+      h(
+        'section',
+        { class: 'px-panel lightning-panel' },
+        h('h1', { class: 'px-title lightning-title', 'aria-label': 'Lightning round' }, ...dropLetters('LIGHTNING ROUND')),
+        cat('sweat'),
+        h('p', { class: 'px-help' }, `${info.game.lightningBest > 0 ? `Your high score: ${info.game.lightningBest} right answers. ` : ''}60 seconds: as many right answers as you can. No hearts and no power-ups; a wrong answer only breaks your combo. To keep the clock fair, the explanations wait for you on the review screen after the round, every one of them.`),
+      ),
+    ),
+    h(
+      'footer',
+      { class: 'bottombar game-bar' },
+      h('button', { id: 'lightning-back', class: 'px-button ghosted', onclick: () => void gameHub() }, '◀ Map'),
+      h('button', { id: 'lightning-start', class: 'px-button', disabled: info.bank.total === 0, onclick: () => void playRound(() => api.startLightning()) }, 'START ▶'),
+    ),
+    tabbar('game'),
+  );
+  backAction = () => void gameHub();
+}
+
+/** Every badge: unlocked ones shine with the day they were won, locked ones are grey with how to win them. */
+async function achievementsScreen(): Promise<void> {
+  const info = await api.info();
+  gameSettings = info.game.settings;
+  const list = info.game.achievements;
+  const won = list.filter((a) => a.unlocked).length;
+  gameScreen(
+    'map',
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Achievements'), h('span', { class: 'px-text', id: 'achievements-count' }, `${won}/${list.length}`)),
+    h(
+      'main',
+      { class: 'page game', id: 'achievements' },
+      h(
+        'section',
+        { class: 'badge-grid' },
+        ...list.map((a) =>
+          h(
+            'div',
+            { class: `badge-card ${a.unlocked ? 'unlocked' : 'locked'}`, id: `badge-${a.id}` },
+            badge(a),
+            h(
+              'div',
+              { class: 'badge-text' },
+              h('p', { class: 'badge-name' }, a.name),
+              h('p', { class: 'small' }, a.description),
+              h('p', { class: 'badge-state' }, a.unlocked ? `Unlocked ${dayText(a.unlocked)}` : 'Locked'),
+            ),
+          ),
+        ),
+      ),
+    ),
+    h('footer', { class: 'bottombar game-bar' }, h('button', { id: 'achievements-back', class: 'px-button ghosted', onclick: () => void gameHub() }, '◀ Map')),
+    tabbar('game'),
+  );
+  backAction = () => void gameHub();
+}
+
 // ---------- Playing ----------
 
 let gameTimer: number | undefined;
 
 interface GameContext {
+  kind: GameKind;
   total: number;
+  /** Hearts at the start (0: a round without hearts) and now. */
   maxLives: number;
   lives: number;
   seconds: number;
@@ -702,16 +909,28 @@ interface GameContext {
   multiplier: number;
   level: LevelInfo;
   answered: number;
-  /** Island of the round (null for a quick round), the phase on screen, and the boss once the fight is on. */
+  /** Island of the round (null for the other kinds), the phase on screen, and the boss once the fight is on. */
   island: DomainId | null;
   phase: GamePhase;
   boss: BossState | null;
+  powerUps: PowerUps;
+  /** Lightning round: its length and end (epoch ms), right answers so far, the last second that ticked, and whether the time is up. */
+  roundMs: number;
+  deadline: number;
+  score: number;
+  ticked: number;
+  over: boolean;
 }
+
+/** Lightning round: how long the verdict of an answer stays before the next question comes. */
+const LIGHTNING_PAUSE_MS = 650;
+/** Lightning round: the clock ticks in the last seconds. */
+const LIGHTNING_TICK_FROM = 10;
 
 /** How the last round started, for Retry. */
 let lastRound: (() => Promise<GameStart>) | null = null;
 
-/** Starts a round (quick round, island or boss fight) with READY/GO, or a boss entrance when it opens on the boss. */
+/** Starts a round (any kind) with READY/GO, or a boss entrance when it opens on the boss; the lightning clock starts at once. */
 async function playRound(begin: () => Promise<GameStart>): Promise<void> {
   let start: GameStart;
   try {
@@ -723,6 +942,7 @@ async function playRound(begin: () => Promise<GameStart>): Promise<void> {
   lastRound = begin;
   playSfx('whoosh');
   const ctx: GameContext = {
+    kind: start.kind,
     total: start.total,
     maxLives: start.lives,
     lives: start.lives,
@@ -734,20 +954,37 @@ async function playRound(begin: () => Promise<GameStart>): Promise<void> {
     island: start.island,
     phase: start.phase,
     boss: start.boss,
+    powerUps: start.powerUps,
+    roundMs: start.roundSeconds * 1000,
+    deadline: Date.now() + start.roundSeconds * 1000,
+    score: 0,
+    ticked: 0,
+    over: false,
   };
   renderGameQuestion(start.question, ctx);
   if (ctx.island !== null && ctx.phase === 'boss') {
     floatText(`${ISLANDS[ctx.island - 1].boss.toUpperCase()}!`, null, 0, 'boss-in');
     return;
   }
-  floatText(ctx.island !== null ? ISLANDS[ctx.island - 1].name.toUpperCase() : 'READY?', null, 0, 'ready');
+  if (ctx.kind === 'lightning') return floatText(`${start.roundSeconds} SECONDS! GO!`, null, 0, 'go');
+  floatText(ctx.island !== null ? ISLANDS[ctx.island - 1].name.toUpperCase() : ctx.kind === 'daily' ? 'DAILY CHALLENGE' : 'READY?', null, 0, 'ready');
   setTimeout(() => floatText('GO!', null, 0, 'go'), 750);
 }
 
-function quitGame(): void {
-  modal('Quit this round?', 'Your XP so far is saved. Wrong answers are already in your questions to retry.', [
+/** Asks before quitting; once confirmed, nothing of the round (the lightning clock, a pending next question) goes on. */
+function quitGame(ctx: GameContext): void {
+  const note = ctx.kind === 'daily' ? ' The streak needs all ten answers: you can start today’s challenge again.' : ctx.kind === 'lightning' ? ' The round ends now, with the review of your answers.' : '';
+  modal('Quit this round?', `Your XP so far is saved. Wrong answers are already in your questions to retry.${note}`, [
     { label: 'Keep playing', id: 'game-quit-cancel', onClick: () => undefined },
-    { label: 'Quit', id: 'game-quit-confirm', primary: true, onClick: () => void gameOver() },
+    {
+      label: 'Quit',
+      id: 'game-quit-confirm',
+      primary: true,
+      onClick: () => {
+        ctx.over = true;
+        void gameOver();
+      },
+    },
   ]);
 }
 
@@ -799,8 +1036,21 @@ function bossDefeat(sprite: HTMLElement): void {
   burst(at.x, at.y, 'confetti');
 }
 
+/** A used power-up: its icon leaps from the button, spins and bursts (sparks only with full effects). */
+function powerUpFx(id: PowerUpId, from: Element): void {
+  if (effectLevel() === 'still') return;
+  const at = centre(from);
+  const leap = h('span', { class: 'fx-powerup' }, powerIcon(id));
+  leap.style.left = `${at.x}px`;
+  leap.style.top = `${at.y}px`;
+  fxLayer().append(leap);
+  expire(leap, 1200);
+  burst(at.x, at.y, 'spark');
+}
+
 function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
   clearInterval(gameTimer);
+  const lightning = ctx.kind === 'lightning';
   const body = questionBody(q);
   const feedback = h('div', { id: 'feedback', 'aria-live': 'polite' });
   const feedbackPanel = h('section', { class: 'px-panel q-panel', hidden: true }, feedback);
@@ -809,10 +1059,12 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
   // Between the options and the feedback: after an answer the cat's reaction and the joke sit right above the
   // verdict and the explanation, on a phone too.
   const stage = h('div', { class: 'game-stage', id: 'game-stage' }, mascot, bubble);
-  const heartRow = hearts(ctx.lives, ctx.maxLives);
+  let heartRow = ctx.maxLives > 0 ? hearts(ctx.lives, ctx.maxLives) : null;
   let levelNode = levelBar(ctx.level, 'game-level');
   let comboNode = comboMeter(ctx.combo, ctx.multiplier);
   const timeLeft = h('span', { id: 'game-time-left', class: 'px-text' });
+  const scoreNode = lightning ? h('span', { id: 'lightning-score', class: 'px-text' }, `★ ${ctx.score}`) : null;
+  const clockFill = h('span', { class: 'lightning-fill' });
   /** HUD switch for the sound effects or the music (icon only: a phone HUD is narrow); saved like Profile & settings. */
   const toggle = (id: string, label: string, symbol: string, setting: 'sound' | 'music'): HTMLButtonElement => {
     const b = h('button', { id, class: 'px-button mini-px hud-toggle', 'aria-pressed': String(gameSettings[setting]), 'aria-label': label, title: label }, symbol);
@@ -846,8 +1098,111 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
     if (back > 0) poseTimer = window.setTimeout(() => (mascot.dataset.pose = 'idle'), back);
   };
 
+  // Power-ups (not in the lightning round): one 50/50 or hint per question, Patch Tuesday while a heart is broken.
+  // The service has the last word; the buttons only show what it would accept.
+  const zapped = new Set<number>();
+  let helped = false;
+  const fits: Record<PowerUpId, boolean> = {
+    fifty: q.type !== 'ordering' && q.options.length - 2 > q.selectCount,
+    auditor: q.type === 'ordering' || q.options.length - 1 > q.selectCount,
+    patch: true,
+  };
+  const hint = h('p', { class: 'auditor-hint', id: 'auditor-hint', hidden: true, 'aria-live': 'polite' });
+  const puButtons: Partial<Record<PowerUpId, HTMLButtonElement>> = {};
+  const refreshPowerUps = (): void => {
+    for (const id of POWER_UP_ORDER) {
+      const b = puButtons[id];
+      if (!b) continue;
+      const usable = id === 'patch' ? ctx.lives < ctx.maxLives : !helped && fits[id];
+      b.disabled = go !== null || ctx.powerUps[id] === 0 || !usable;
+      (b.querySelector('.pu-count') as HTMLElement).textContent = `×${ctx.powerUps[id]}`;
+      b.setAttribute('aria-label', `${POWER_UPS[id].name} (${ctx.powerUps[id]} left): ${POWER_UPS[id].what}`);
+    }
+  };
+  const usePowerUp = async (id: PowerUpId, from: HTMLElement): Promise<void> => {
+    for (const b of Object.values(puButtons)) b.disabled = true;
+    let effect: PowerUpEffect;
+    try {
+      effect = await api.usePowerUp(id, q.id);
+    } catch (err) {
+      toast(errorText(err));
+      return refreshPowerUps();
+    }
+    ctx.powerUps = effect.powerUps;
+    playSfx('powerup');
+    powerUpFx(id, from);
+    floatText(POWER_UPS[id].shout, null, 0, `pu-shout shout-${id}`);
+    if (id === 'patch' && heartRow) {
+      ctx.lives = effect.lives;
+      const fresh = hearts(ctx.lives, ctx.maxLives);
+      fresh.children[ctx.lives - 1]?.classList.add('mended');
+      heartRow.replaceWith(fresh);
+      heartRow = fresh;
+    } else {
+      helped = true;
+      const rows = body.node.querySelectorAll<HTMLElement>('.option');
+      for (const i of effect.removed) {
+        zapped.add(i);
+        rows[i]?.classList.add('zapped');
+        const input = rows[i]?.querySelector('input');
+        if (input) Object.assign(input, { checked: false, disabled: true });
+      }
+      if (effect.hint) {
+        hint.replaceChildren(powerIcon('auditor'), h('span', {}, h('strong', {}, 'The Auditor: '), effect.hint));
+        hint.hidden = false;
+      }
+    }
+    announceAchievements(effect.unlocked);
+    refreshPowerUps();
+  };
+  const powerBar = lightning
+    ? null
+    : h(
+        'div',
+        { class: 'powerup-bar', id: 'powerups', role: 'group', 'aria-label': 'Power-ups' },
+        ...POWER_UP_ORDER.map((id) => {
+          const b = h('button', { id: `pu-${id}`, class: 'pu-button', title: `${POWER_UPS[id].name}: ${POWER_UPS[id].what}` }, powerIcon(id), h('span', { class: 'pu-name' }, POWER_UPS[id].short), h('span', { class: 'pu-count' }));
+          b.addEventListener('click', () => void usePowerUp(id, b));
+          puButtons[id] = b;
+          return b;
+        }),
+      );
+  refreshPowerUps();
+
+  /** Lightning round: a quick verdict, then the next question at once; the explanations wait for the review. */
+  const quickVerdict = (r: GameAnswer): void => {
+    const f = r.feedback;
+    Object.assign(ctx, { combo: r.combo, multiplier: r.multiplier, level: r.level, answered: ctx.answered + 1, score: ctx.score + (f.correct ? 1 : 0) });
+    if (scoreNode) scoreNode.textContent = `★ ${ctx.score}`;
+    const freshCombo = comboMeter(ctx.combo, ctx.multiplier);
+    comboNode.replaceWith(freshCombo);
+    comboNode = freshCombo;
+    const freshLevel = levelBar(ctx.level, 'game-level');
+    levelNode.replaceWith(freshLevel);
+    levelNode = freshLevel;
+    bubble.hidden = false;
+    bubble.className = `bubble ${f.correct ? 'good' : 'bad'}`;
+    bubble.textContent = f.correct ? `✔ Right! +${r.xpGained} XP` : '✘ Wrong. The explanation waits for you after the round.';
+    if (f.correct) {
+      pose('cheer');
+      playSfx('ding');
+      const at = centre(mascot);
+      burst(at.x, at.y, 'spark');
+      floatText(`+${r.xpGained} XP`, at.x, at.y - 20, 'xp');
+    } else {
+      pose('facepalm');
+      playSfx('buzz');
+    }
+    announceAchievements(r.unlocked);
+    setTimeout(() => {
+      if (ctx.over) return;
+      if (r.next) renderGameQuestion(r.next, ctx);
+      else void gameOver();
+    }, LIGHTNING_PAUSE_MS);
+  };
+
   const answered = (r: GameAnswer): void => {
-    clearInterval(gameTimer);
+    if (ctx.over) return;
     const f = r.feedback;
     const main = document.getElementById('game') as HTMLElement;
     for (const input of main.querySelectorAll<HTMLInputElement>('.options input')) {
@@ -855,6 +1210,8 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       input.disabled = true;
     }
     markOptions(q, f, main);
+    if (lightning) return quickVerdict(r);
+    clearInterval(gameTimer);
     bubble.hidden = false;
     const taunt = boss && !f.correct ? `${ISLANDS[boss.domain - 1].boss}: “${pick(ISLANDS[boss.domain - 1].taunts)}”` : null;
     bubble.textContent = taunt ?? pick(f.timedOut ? QUIPS.timeout : !f.correct ? QUIPS.wrong : boss ? QUIPS.hit : QUIPS.right);
@@ -866,7 +1223,7 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
     const lostHeart = r.lives < ctx.lives;
     const frenzyStarts = r.multiplier > ctx.multiplier;
     const comboGrew = r.combo > ctx.combo;
-    Object.assign(ctx, { lives: r.lives, combo: r.combo, multiplier: r.multiplier, level: r.level, answered: ctx.answered + 1 });
+    Object.assign(ctx, { lives: r.lives, combo: r.combo, multiplier: r.multiplier, level: r.level, answered: ctx.answered + 1, powerUps: r.powerUps });
     const freshCombo = comboMeter(ctx.combo, ctx.multiplier);
     if (comboGrew) freshCombo.classList.add('pop');
     comboNode.replaceWith(freshCombo);
@@ -903,7 +1260,7 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       pose('facepalm');
       poseTimer = window.setTimeout(() => pose('cry', 3000), 900);
       playSfx('buzz');
-      if (lostHeart) {
+      if (lostHeart && heartRow) {
         const heart = heartRow.children[r.lives] as HTMLElement | undefined;
         if (heart) heartFall(heart);
         heart?.classList.replace('heart', 'heart-empty');
@@ -917,6 +1274,13 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       // The boss strikes back.
       if (bossNode) replay(bossNode, 'attack');
     }
+    // A power-up earned (five in a row, a boss beaten) drops into the inventory.
+    if (r.earned.length > 0 && powerBar) {
+      playSfx('pickup', 450);
+      const at = centre(powerBar);
+      floatText(`+ ${r.earned.map((id) => POWER_UPS[id].name).join(' + ')}`, at.x, at.y, 'pu-earned');
+    }
+    announceAchievements(r.unlocked);
     const next = r.next;
     const label = r.bossStarts ? 'BOSS FIGHT ▶' : next ? 'Next ▶' : r.end === 'victory' ? 'Victory ▶' : r.end === 'lives' ? 'Game over ▶' : 'Results ▶';
     go = h('button', { id: 'game-next', class: 'px-button' }, label);
@@ -934,6 +1298,7 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       else onward();
     });
     button.replaceWith(go);
+    refreshPowerUps();
   };
 
   const check = async (): Promise<void> => {
@@ -950,7 +1315,27 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
   };
   button.addEventListener('click', () => void check());
 
-  if (ctx.seconds > 0) {
+  if (lightning) {
+    // One clock for the whole round: the time, a draining bar, ticks in the last seconds, and the end.
+    const tick = (): void => {
+      const ms = Math.max(0, ctx.deadline - Date.now());
+      const left = Math.ceil(ms / 1000);
+      timeLeft.textContent = `TIME ${left}`;
+      timeLeft.classList.toggle('low', left <= LIGHTNING_TICK_FROM);
+      clockFill.style.setProperty('--left', String(ms / ctx.roundMs));
+      if (left <= LIGHTNING_TICK_FROM && left > 0 && left !== ctx.ticked) {
+        ctx.ticked = left;
+        playSfx('tick');
+        if (mascot.dataset.pose === 'idle') pose('sweat');
+      }
+      if (left > 0 || ctx.over) return;
+      ctx.over = true;
+      clearInterval(gameTimer);
+      void gameOver();
+    };
+    tick();
+    gameTimer = window.setInterval(tick, 250);
+  } else if (ctx.seconds > 0) {
     const deadline = Date.now() + ctx.seconds * 1000;
     /** The cat sweats in the last 30% of the time (at least the last 5 seconds). */
     const sweatAt = Math.max(5, Math.ceil(ctx.seconds * 0.3));
@@ -968,42 +1353,45 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
   }
 
   gameScreen(
-    boss ? 'boss' : 'map',
+    lightning ? 'lightning' : boss ? 'boss' : 'map',
     h(
       'header',
-      { class: 'game-hud' },
+      { class: `game-hud${lightning ? ' lightning-hud' : ''}` },
       heartRow,
       levelNode,
       comboNode,
       h(
         'span',
         { class: 'hud-right' },
-        ctx.seconds > 0 && timeLeft,
-        h('span', { id: 'game-qnum', class: 'px-text' }, boss ? 'BOSS' : `Q ${ctx.answered + 1}/${ctx.total}`),
+        (ctx.seconds > 0 || lightning) && timeLeft,
+        scoreNode,
+        !lightning && h('span', { id: 'game-qnum', class: 'px-text' }, boss ? 'BOSS' : `Q ${ctx.answered + 1}/${ctx.total}`),
         soundButton,
         musicButton,
       ),
+      lightning && h('div', { class: 'lightning-clock', id: 'lightning-clock', 'aria-hidden': 'true' }, clockFill),
     ),
     h(
       'main',
-      { class: `question game${ctx.multiplier > 1 ? ' frenzy' : ''}${boss ? ' boss-fight' : ''}`, id: 'game' },
+      { class: `question game${ctx.multiplier > 1 ? ' frenzy' : ''}${boss ? ' boss-fight' : ''}${lightning ? ' lightning-round' : ''}`, id: 'game' },
       arena,
-      h('section', { class: 'px-panel q-panel q-enter', id: 'game-question', 'data-question': q.id }, h('p', { class: 'stem' }, q.stem), body.node),
+      powerBar,
+      h('section', { class: 'px-panel q-panel q-enter', id: 'game-question', 'data-question': q.id }, h('p', { class: 'stem' }, q.stem), body.node, hint),
       stage,
       feedbackPanel,
     ),
     h(
       'footer',
       { class: 'bottombar game-bar' },
-      h('button', { id: 'game-quit', class: 'px-button ghosted', onclick: quitGame }, 'Quit'),
+      h('button', { id: 'game-quit', class: 'px-button ghosted', onclick: () => quitGame(ctx) }, 'Quit'),
       button,
     ),
   );
   keyHandler = questionKeys(
-    (i) => { if (!go) body.select(i); },
+    (i) => { if (!go && !zapped.has(i)) body.select(i); },
     () => { if (go) go.click(); else if (!button.disabled) void check(); },
   );
-  backAction = quitGame;
+  backAction = () => quitGame(ctx);
 }
 
 /** Full-screen level-up moment with the new rank badge; shown after "Next", so it never covers an explanation. */
@@ -1040,7 +1428,8 @@ function levelUpScreen(level: LevelInfo, rankUp: boolean, onward: () => void): v
 /**
  * End of the round: why it ended, with a funny line, the score and a retry. After a boss fight: the victory
  * screen (the island is cleared and lights up on the map), or a game over where the boss gloats and Retry goes
- * straight back to the boss once it was reached.
+ * straight back to the boss once it was reached. After the daily challenge: the streak and its reward. After
+ * the lightning round: the score, the high score, and the review of every answer with its explanation.
  */
 async function gameOver(): Promise<void> {
   clearInterval(gameTimer);
@@ -1052,19 +1441,56 @@ async function gameOver(): Promise<void> {
     return void gameHub();
   }
   const island = s.island !== null ? ISLANDS[s.island - 1] : null;
-  const title = s.end === 'victory' ? 'VICTORY!' : s.end === 'lives' ? 'GAME OVER' : s.end === 'cleared' ? 'ROUND CLEAR!' : 'LOGGED OFF';
-  const won = s.end === 'victory' || s.end === 'cleared';
+  const lightning = s.kind === 'lightning';
+  const dailyDone = s.daily !== null;
+  const title =
+    s.end === 'victory' ? 'VICTORY!' : s.end === 'lives' ? 'GAME OVER' : s.end === 'time' ? 'TIME!' : s.end === 'cleared' ? (dailyDone ? 'DAILY DONE!' : 'ROUND CLEAR!') : 'LOGGED OFF';
+  const won = s.end === 'victory' || s.end === 'cleared' || (s.end === 'time' && s.correct > 0);
   if (won) playSfx('fanfare');
   else if (s.end === 'lives') playSfx('buzz');
   if (s.end === 'victory') justCleared = s.island;
-  const line = island && s.end === 'victory' ? `${island.boss} is defeated! ${island.name} is free. ${pick(QUIPS.victory)}` : island && s.boss && s.end === 'lives' ? island.wins : pick(QUIPS[s.end === 'victory' ? 'cleared' : s.end]);
-  // Retry: the boss again once it was reached, otherwise the round as it started.
+  const line =
+    island && s.end === 'victory'
+      ? `${island.boss} is defeated! ${island.name} is free. ${pick(QUIPS.victory)}`
+      : island && s.boss && s.end === 'lives'
+        ? island.wins
+        : pick(dailyDone ? QUIPS.daily : QUIPS[s.end === 'victory' ? 'cleared' : s.end]);
+  // Retry: the boss again once it was reached, otherwise the round as it started (the daily challenge only until it is done).
   const domain = s.island;
   const retry = domain !== null && s.boss ? () => api.startBoss(domain) : lastRound;
   const xp = h('span', { class: 'xp-count' }, `+${s.xpEarned}`);
+  const wrong = s.answered - s.correct;
+  const stats = lightning
+    ? [
+        h('div', {}, h('span', { class: 'px-big', id: 'lightning-final' }, String(s.correct)), h('span', {}, 'right answers')),
+        h('div', { class: s.newBest ? 'new-best' : '' }, h('span', { class: 'px-big', id: 'lightning-high' }, String(s.best)), h('span', {}, s.newBest ? 'NEW HIGH SCORE!' : 'high score')),
+        h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ' ', xp), h('span', {}, 'XP earned')),
+      ]
+    : [
+        h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ' ', xp), h('span', {}, s.end === 'victory' ? 'XP earned (boss bonus included)' : 'XP earned')),
+        h('div', {}, h('span', { class: 'px-big' }, `${s.correct}/${s.answered}`), h('span', {}, 'right answers')),
+        h('div', {}, h('span', { class: 'px-big' }, String(s.bestCombo)), h('span', {}, 'best combo')),
+      ];
+  const reward =
+    s.daily &&
+    h(
+      'div',
+      { class: 'daily-reward-box', id: 'daily-reward' },
+      h('p', { class: 'px-text reward-streak' }, h('span', { class: 'flame', 'aria-hidden': 'true' }), ` Streak: ${s.daily.streak} day${s.daily.streak === 1 ? '' : 's'}!`),
+      h('p', {}, `Reward: +${s.daily.xp} bonus XP`, s.daily.powerUps.length > 0 ? h('span', {}, ' and ', rewardPowerUps(s.daily.powerUps)) : ' (your power-up inventory is full)', '.'),
+    );
+  const review =
+    lightning &&
+    h(
+      'section',
+      { class: 'lightning-review', id: 'lightning-review', 'aria-label': 'Review of your answers' },
+      h('h2', { class: 'px-title small-title' }, 'Review: every answer, explained'),
+      s.review.length === 0 && h('p', { class: 'px-help' }, 'No answers this round.'),
+      ...s.review.map((item, i) => h('div', { class: 'px-panel q-panel review-item' }, h('p', { class: 'stem' }, h('strong', {}, `${i + 1}. `), item.question.stem), ...feedbackNodes(item.question, item.feedback))),
+    );
   gameScreen(
     null,
-    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, island ? island.name : 'Game mode'), h('span', { class: 'px-text' }, `${s.correct} of ${s.answered} right`)),
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, island ? island.name : lightning ? 'Lightning round' : s.kind === 'daily' ? 'Daily challenge' : 'Game mode'), h('span', { class: 'px-text' }, `${s.correct} of ${s.answered} right`)),
     h(
       'main',
       { class: 'page game', id: 'game-over' },
@@ -1079,24 +1505,25 @@ async function gameOver(): Promise<void> {
           domain !== null && s.boss && h('span', { class: `over-boss${s.end === 'victory' ? ' beaten' : ''}` }, bossSprite(domain, 'over-boss')),
         ),
         h('p', { class: 'bubble', id: 'game-over-line' }, line),
-        h(
-          'div',
-          { class: 'game-stats' },
-          h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ' ', xp), h('span', {}, s.end === 'victory' ? 'XP earned (boss bonus included)' : 'XP earned')),
-          h('div', {}, h('span', { class: 'px-big' }, `${s.correct}/${s.answered}`), h('span', {}, 'right answers')),
-          h('div', {}, h('span', { class: 'px-big' }, String(s.bestCombo)), h('span', {}, 'best combo')),
-        ),
+        reward,
+        h('div', { class: 'game-stats' }, ...stats),
         rankBadge(s.level),
         levelBar(s.level, 'over-level'),
-        h('p', { class: 'px-help' }, s.answered > s.correct ? `${s.answered - s.correct} wrong answer${s.answered - s.correct === 1 ? '' : 's'} joined your questions to retry.` : 'No wrong answers this round.'),
+        h(
+          'p',
+          { class: 'px-help' },
+          wrong > 0 ? `${wrong} wrong answer${wrong === 1 ? '' : 's'} joined your questions to retry.` : 'No wrong answers this round.',
+          lightning && s.answered > 0 ? ' The explanation of every answer is below.' : '',
+        ),
       ),
+      review,
     ),
     h(
       'footer',
       { class: 'bottombar game-bar' },
       h('button', { id: 'game-home', class: 'px-button ghosted', onclick: () => void home() }, 'Home'),
-      h('button', { id: 'game-menu', class: `px-button${s.end === 'victory' ? '' : ' ghosted'}`, onclick: () => void gameHub() }, '◀ Map'),
-      s.end !== 'victory' && h('button', { id: 'game-retry', class: 'px-button', onclick: () => void (retry ? playRound(retry) : gameHub()) }, domain !== null && s.boss ? 'Retry boss ▶' : 'Retry ▶'),
+      h('button', { id: 'game-menu', class: `px-button${s.end === 'victory' || dailyDone ? '' : ' ghosted'}`, onclick: () => void gameHub() }, '◀ Map'),
+      s.end !== 'victory' && !dailyDone && h('button', { id: 'game-retry', class: 'px-button', onclick: () => void (retry ? playRound(retry) : gameHub()) }, domain !== null && s.boss ? 'Retry boss ▶' : lightning ? 'Play again ▶' : 'Retry ▶'),
     ),
   );
   countUp(xp, s.xpEarned, '+');
@@ -1104,5 +1531,7 @@ async function gameOver(): Promise<void> {
     const at = centre(document.getElementById('over-cat') as HTMLElement);
     burst(at.x, at.y, 'confetti');
   }
+  if (s.newBest) floatText('NEW HIGH SCORE!', null, 0, 'victory');
+  announceAchievements(s.unlocked);
   backAction = () => void gameHub();
 }

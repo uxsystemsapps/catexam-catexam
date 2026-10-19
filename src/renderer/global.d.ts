@@ -31,6 +31,13 @@ declare global {
   type BossState = Api.BossState;
   type GamePhase = Api.GamePhase;
   type WorldProgress = Api.WorldProgress;
+  type GameKind = Api.GameKind;
+  type PowerUpId = Api.PowerUpId;
+  type PowerUps = Api.PowerUps;
+  type PowerUpEffect = Api.PowerUpEffect;
+  type AchievementInfo = Api.AchievementInfo;
+  type DailyStatus = Api.DailyStatus;
+  type DailyReward = Api.DailyReward;
   interface Window {
     examApi: ExamApi;
   }

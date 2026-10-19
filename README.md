@@ -68,13 +68,29 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   Each answer gets a cheeky security joke (or a boss taunt), and then always the verdict and the bank's
   explanation; effects never cover it (the level-up, victory and game-over screens come after **Next**).
   Answers count as training answers: wrong ones join the questions to retry, and they count towards the
-  daily goal. Sound effects (right ding, wrong buzz, combo whoosh, level-up fanfare, coin clink) and **music**
-  (a looping track for the map and the rounds before a boss, another for boss fights; a third is ready for the
-  lightning round of stage 3) each have their own on/off switch and volume, in Profile & settings and as ♪ and
-  ♫ buttons on the game screen; both are **off by default on Android**, and the music pauses while the app is
-  in the background. **Lite effects** drops particles, shaking and bouncing (a boss still flashes when hit and
-  fades when beaten); when the system asks to reduce motion, nothing animates. Art, font, sounds and music are
-  CC0 assets listed in `assets/CREDITS.md` and under **Credits** in Profile & settings.
+  daily goal. **Power-ups** sit in a small inventory (one of each to start, at most three of each, shown on
+  the map and above the question): **50/50** removes two wrong options, **Ask the Auditor** rules out one
+  wrong option and says why (for an ordering question: which item comes first), **Patch Tuesday** mends a
+  broken heart; one 50/50 or hint per question. Five right answers in a row earn one (50/50, then the Auditor,
+  then Patch Tuesday), a beaten boss earns a Patch Tuesday, and the daily challenge earns one more. Using one
+  zaps with its own sound, a leaping icon and a shout. **Achievements**: fifteen badges with funny names
+  (Didn't click the link, Hashed it out, Least Privilege, Most Points, Incident Closed, Zero Trust, Full Map,
+  Five Nines Uptime, Race Condition…) unlock with a pop-up and a jingle and are kept; the **Achievements**
+  screen shows the unlocked ones with their day and the locked ones with how to win them. The **daily
+  challenge** is ten questions from the whole bank, the same all day, with no hearts (all ten keep the
+  streak), once a day: its screen shows the streak and a calendar of the last five weeks, and finishing gives
+  50 XP plus 10 per day of the streak (up to +90) and a power-up (one of each on every 7th day in a row). The
+  **lightning round** is 60 seconds of single- and multiple-answer questions with its own music: as many right
+  answers as possible, no hearts and no power-ups, a ticking clock in the last ten seconds, and a local high
+  score; so as not to stop the clock, each answer only gets a quick verdict, and the review screen after the
+  round shows every answer with its explanation. Sound effects (right ding, wrong buzz, combo whoosh, level-up
+  fanfare, coin clink, power-up zap and pickup, achievement jingle, countdown tick) and **music** (a looping
+  track for the map and the rounds before a boss, one for boss fights and one for the lightning round) each
+  have their own on/off switch and volume, in Profile & settings and as ♪ and ♫ buttons on the game screen;
+  both are **off by default on Android**, and the music pauses while the app is in the background. **Lite
+  effects** drops particles, shaking and bouncing (a boss still flashes when hit and fades when beaten); when
+  the system asks to reduce motion, nothing animates. Art, font, sounds and music are CC0 assets listed in
+  `assets/CREDITS.md` and under **Credits** in Profile & settings.
 - **Study plan** on the home screen: countdown to your exam date, today's answers against your daily
   goal, how much of the bank you have practised, your weakest domain (once it has 5 training answers) and
   one-click sessions for missed, bookmarked or new questions.
@@ -88,7 +104,8 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   default training settings, the game's sound and music (each with its volume) and lite effects, and the credits of the game assets.
   Training progress can be reset. Everything is stored in the application's profile folder (on the desktop it
   is still named `CATExam`, the app's former name): `profile.json`, `progress.json`, `history.json`,
-  `training-history.json` and `game.json` (XP, best combo, game settings, cleared islands), plus one file
+  `training-history.json` and `game.json` (XP, best combo, game settings, cleared islands, power-ups,
+  achievements, daily challenge days and the lightning high score), plus one file
   per exam with its answered questions (`history/`) and one per paused training session (`paused/`).
 
 ## Android app
@@ -173,9 +190,9 @@ and favicon use `icon.svg`. The Android launcher icons (`android/app/src/main/re
 colour in `values/ic_launcher_background.xml`) are PNG renders of the same cat: re-render them from the SVG
 if the cat changes.
 
-Game mode: scoring, hearts, levels, ranks, islands and bosses are in `src/engine/game.ts` (stage 3, with power-ups,
-achievements, the daily challenge and the lightning round, builds on `GameRun` and `GameProgress`; the
-lightning round's music track is already in `assets/game/music/` and the `Track` type); its screens, effects
+Game mode: scoring, hearts, levels, ranks, islands, bosses, power-ups, achievements, the daily challenge and
+the lightning round are in `src/engine/game.ts` (`GameRun` plays a round of any kind, `GameProgress` is what
+`game.json` keeps); its screens, effects
 and music player are in `src/renderer/game.ts`, a second renderer script loaded before `app.js` that shares its
 global scope. The game's art, font, sounds and music are in `assets/game/` (copied next to the renderer by the
 build) and their sources and licences in `assets/CREDITS.md`; add a new asset to both that file and `GAME_CREDITS`.
