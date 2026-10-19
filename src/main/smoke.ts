@@ -121,6 +121,12 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
         (await visible('.tabbar #tab-settings')) && !(await visible('#open-settings')) && !(await visible('#quit')),
         'phone: bottom tab bar instead of the top buttons, no Quit button',
       );
+      check(
+        (await js<boolean>(`[...document.querySelectorAll('.tabbar .tab')].every((b) => b.querySelector('svg path') && !b.textContent.trim() && b.getAttribute('aria-label'))`)) &&
+          (await js<string>(`[...document.querySelectorAll('.tabbar .tab')].map((b) => b.getAttribute('aria-label')).join()`)) === 'Home,Train,History,Settings' &&
+          (await heights('.tabbar .tab')).every((hgt) => hgt >= 44),
+        'phone: tab bar shows icons with names for screen readers, large enough to tap',
+      );
       check((await heights('#home button')).every((hgt) => hgt >= 36), 'phone: buttons are large enough to tap');
       await click('#tab-train');
       await waitFor('#tab-train.active');

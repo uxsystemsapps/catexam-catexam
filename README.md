@@ -61,8 +61,9 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
 
 The phone app has every feature of the desktop app, laid out for a touch screen:
 
-- **Navigation**: a bottom tab bar (Home, Train, History, Settings) on the start and history screens, with the
-  current section marked (Train opens the start screen at the training card); the
+- **Navigation**: a bottom tab bar of icons (house: Home, cap: Train, clock: History, gear: Settings; screen
+  readers read the names) on the start and history screens, with the current section marked (Train opens the
+  start screen at the training card); the
   Android back button closes a dialog or the question list, then goes back one screen. During the exam it
   does nothing (no going back); during training it offers to pause or stop the session.
 - **Questions**: large options to tap; touch and hold an option to strike it out; ordering items are dragged by
