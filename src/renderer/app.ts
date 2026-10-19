@@ -38,6 +38,7 @@ function h<K extends keyof HTMLElementTagNameMap>(
 function show(...nodes: Node[]): void {
   keyHandler = null;
   backAction = null;
+  stopGameMusic();
   root.replaceChildren(...nodes);
   root.querySelector('main')?.scrollTo(0, 0);
   root.querySelector('.navigator .current')?.scrollIntoView({ block: 'nearest' });

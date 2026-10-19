@@ -1,14 +1,16 @@
-// Game mode, stage 1: the training questions as a pixel-art arcade round, with XP, ranks, combos, hearts and a
-// hoodie cat that reacts to every answer. Loaded before app.js and shares its global scope: it uses the app's
-// helpers (h, show, api, trainingForm, questionBody, feedbackNodes…) when its screens open. Scoring, hearts and
-// saving live in the service (src/engine/game.ts); this script only shows them.
+// Game mode: the training questions as a pixel-art arcade game, with XP, ranks, combos, hearts and a hoodie cat
+// that reacts to every answer (stage 1), and a world map of eight islands, one per domain, each ending with a
+// boss fight, with music (stage 2). Loaded before app.js and shares its global scope: it uses the app's helpers
+// (h, show, api, questionBody, feedbackNodes…) when its screens open. Scoring, hearts, bosses and saving live in
+// the service (src/engine/game.ts); this script only shows them.
 //
-// Effects never stand between the player and the explanation: they sit in a layer that ignores the pointer,
-// the explanation is part of the feedback, and the level-up and game-over screens come after "Next".
+// Effects never stand between the player and the explanation: they sit in a layer that ignores the pointer (or,
+// for the boss, in the arena above the question), the explanation is part of the feedback, and the level-up,
+// victory and game-over screens come after "Next".
 
-/* exported gameCard, gameSettingsCard, creditsCard */
+/* exported gameCard, gameSettingsCard, creditsCard, stopGameMusic */
 
-/** Art, font and sounds (assets/game, copied next to this script). */
+/** Art, font, sounds and music (assets/game, copied next to this script). */
 const GAME_ASSETS = 'game/';
 
 /** Assets of the game and where they come from; listed in Profile & settings and in assets/CREDITS.md. */
@@ -16,11 +18,14 @@ const GAME_CREDITS: { what: string; source: string; author: string; licence: str
   { what: 'Hoodie cat mascot (adapted: hoodie, padlock print, cheering, facepalm, sweating and crying frames added)', source: 'Pixel cat', author: 'scofanogd', licence: 'CC0 1.0', url: 'https://opengameart.org/content/pixel-cat' },
   { what: 'Hearts, gem, coin, and the islands and props of the world map', source: 'Pixel Platformer', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-platformer' },
   { what: 'Combo flame', source: 'Simple animate fire', author: 'XenosNS', licence: 'CC0 1.0', url: 'https://opengameart.org/content/simple-animate-fire' },
+  { what: 'Bosses (hydra, jelly, iron golem, kraken, lich, orb of eyes, shadow dragon, spider)', source: 'Dungeon Crawl Stone Soup tiles', author: 'the Dungeon Crawl Stone Soup tile artists', licence: 'CC0 1.0', url: 'https://github.com/crawl/tiles' },
+  { what: 'Boss explosion', source: 'Pixel Shmup', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-shmup' },
   { what: 'Pixel font (Kenney Mini Square)', source: 'Kenney Fonts', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/kenney-fonts' },
   { what: 'Right-answer ding and wrong-answer buzz', source: 'Interface Sounds', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/interface-sounds' },
   { what: 'Combo whoosh', source: 'Digital Audio', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/digital-audio' },
   { what: 'Level-up fanfare', source: 'Music Jingles', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/music-jingles' },
   { what: 'Coin clink', source: 'RPG Audio', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/rpg-audio' },
+  { what: 'Music: map, boss fight and lightning round tracks (Level 1, 3 and 2)', source: 'Retro Game Music Pack', author: 'Juhani Junkala', licence: 'CC0 1.0', url: 'https://opengameart.org/content/5-chiptunes-action' },
 ];
 
 const QUIPS = {
@@ -61,6 +66,14 @@ const QUIPS = {
   ],
   cleared: ['Round clear! Every question survived your audit.', 'Perimeter secured. For now.', 'Clean audit. Somebody frame this.'],
   quit: ['You logged off early. The attackers did not.', 'Rage-quit detected. Logged for the SIEM.'],
+  hit: [
+    'Critical hit! Straight through its firewall.',
+    'Patched! The boss felt that one.',
+    'Direct hit. The boss is filing an incident report.',
+    'Boom. That is what defence in depth looks like.',
+    'The boss just lost a hit point and some dignity.',
+  ],
+  victory: ['Write it up in the lessons-learned report.', 'Somebody update the risk register.', 'The SOC is buying pizza.'],
 };
 
 function pick(lines: readonly string[]): string {
@@ -71,8 +84,8 @@ function pick(lines: readonly string[]): string {
 
 type Sfx = 'ding' | 'buzz' | 'whoosh' | 'fanfare' | 'coin';
 
-/** Settings of the last `info()` call; the HUD sound button and Profile & settings change them. */
-let gameSettings: GameSettings = { sound: false, volume: 70, lite: false };
+/** Settings of the last `info()` call; the HUD sound and music buttons and Profile & settings change them. */
+let gameSettings: GameSettings = { sound: false, volume: 70, music: false, musicVolume: 50, lite: false };
 const sfxCache: Partial<Record<Sfx, HTMLAudioElement>> = {};
 
 function playSfx(name: Sfx, delay = 0): void {
@@ -90,6 +103,44 @@ function playSfx(name: Sfx, delay = 0): void {
     void sound.play().catch(() => undefined);
   }, delay);
 }
+
+/** Looping music tracks: the world map (and the rounds before a boss), boss fights, and the stage 3 lightning round. */
+type Track = 'map' | 'boss' | 'lightning';
+const musicCache: Partial<Record<Track, HTMLAudioElement>> = {};
+/** Track of the screen on show (null: no music), playing or not (music off, or the app in the background). */
+let musicWanted: Track | null = null;
+let musicStop: number | undefined;
+
+/**
+ * Plays `track` in a loop (null: silence), with the music settings; a track picks up where it was left. The
+ * track playing is `html[data-music]` (`off` when nothing plays).
+ */
+function playMusic(track: Track | null): void {
+  clearTimeout(musicStop);
+  musicWanted = track;
+  const on = track !== null && gameSettings.music && gameSettings.musicVolume > 0 && !document.hidden;
+  for (const [name, audio] of Object.entries(musicCache)) if (!on || name !== track) audio.pause();
+  document.documentElement.dataset.music = on ? track : 'off';
+  if (!on) return;
+  let audio = musicCache[track];
+  if (!audio) {
+    audio = new Audio(`${GAME_ASSETS}music/${track}.ogg`);
+    audio.loop = true;
+    musicCache[track] = audio;
+  }
+  audio.volume = gameSettings.musicVolume / 100;
+  // Autoplay rules or a missing codec must never break the game.
+  if (audio.paused) void audio.play().catch(() => undefined);
+}
+
+/** Called by `show()` for every screen: the music stops unless a game screen follows at once (see `gameScreen`). */
+function stopGameMusic(): void {
+  clearTimeout(musicStop);
+  musicStop = window.setTimeout(() => playMusic(null), 0);
+}
+
+// The music pauses while the app is in the background (phone locked, another app or window in front).
+document.addEventListener('visibilitychange', () => playMusic(musicWanted));
 
 /**
  * How much moves: `full`; `lite` (the setting: no particles, shake or bouncing); `still` (the system asks to
@@ -256,11 +307,12 @@ function comboMeter(combo: number, multiplier: number): HTMLElement {
   );
 }
 
-/** Wraps a game screen: pixel look, and the effect level as a data attribute for the CSS. */
-function gameScreen(...nodes: Node[]): void {
+/** Wraps a game screen: pixel look, the effect level as a data attribute for the CSS, and its music. */
+function gameScreen(track: Track | null, ...nodes: Node[]): void {
   document.getElementById('fx-layer')?.remove();
   show(...nodes);
   document.documentElement.dataset.fx = effectLevel();
+  playMusic(track);
 }
 
 // ---------- Home card, settings and credits (used by app.ts) ----------
@@ -276,17 +328,19 @@ function gameCard(info: AppInfo): HTMLElement {
       'div',
       { class: 'game-card-text' },
       h('h2', {}, 'Game mode'),
-      h('p', { class: 'small' }, 'The same questions as an arcade game: XP, ranks, combos and three hearts. The explanation always follows each answer.'),
+      h('p', { class: 'small' }, 'The same questions as an arcade game: a world map with a boss on every island, XP, ranks, combos and three hearts. The explanation always follows each answer.'),
       levelBar(info.game.level, 'home-level'),
     ),
     h('button', { id: 'open-game', class: 'px-button', disabled: info.bank.total === 0, onclick: () => void gameHub() }, 'Play ▶'),
   );
 }
 
-/** Game settings for Profile & settings: sound on/off and volume, lite effects. */
+/** Game settings for Profile & settings: sound effects and music, each on/off with its volume, and lite effects. */
 function gameSettingsCard(settings: GameSettings): { node: HTMLElement; read: () => GameSettings } {
   const sound = h('input', { id: 'settings-sound', type: 'checkbox', checked: settings.sound });
   const volume = h('input', { id: 'settings-volume', type: 'range', min: '0', max: '100', step: '5', value: String(settings.volume) });
+  const music = h('input', { id: 'settings-music', type: 'checkbox', checked: settings.music });
+  const musicVolume = h('input', { id: 'settings-music-volume', type: 'range', min: '0', max: '100', step: '5', value: String(settings.musicVolume) });
   const lite = h('input', { id: 'settings-lite', type: 'checkbox', checked: settings.lite });
   return {
     node: h(
@@ -295,10 +349,12 @@ function gameSettingsCard(settings: GameSettings): { node: HTMLElement; read: ()
       h('h2', {}, 'Game mode'),
       h('label', { class: 'check' }, sound, ' Sound effects'),
       h('label', { class: 'field' }, 'Volume', volume),
+      h('label', { class: 'check' }, music, ' Music (world map and boss fights)'),
+      h('label', { class: 'field' }, 'Music volume', musicVolume),
       h('label', { class: 'check' }, lite, ' Lite effects (no particles, shaking or bouncing)'),
       h('p', { class: 'small' }, 'When the system asks to reduce motion, the game shows no animations at all.'),
     ),
-    read: () => ({ sound: sound.checked, volume: Number(volume.value), lite: lite.checked }),
+    read: () => ({ sound: sound.checked, volume: Number(volume.value), music: music.checked, musicVolume: Number(musicVolume.value), lite: lite.checked }),
   };
 }
 
@@ -307,24 +363,203 @@ function creditsCard(): HTMLElement {
     'section',
     { class: 'card', id: 'credits' },
     h('h2', {}, 'Credits'),
-    h('p', { class: 'small' }, 'Game art, font and sounds are free assets used under their licences:'),
+    h('p', { class: 'small' }, 'Game art, font, sounds and music are free assets used under their licences:'),
     h('ul', { class: 'credits' }, ...GAME_CREDITS.map((c) => h('li', {}, h('strong', {}, c.what), `: “${c.source}” by ${c.author}, ${c.licence} (${c.url})`))),
   );
 }
 
-// ---------- Hub: the world map ----------
+// ---------- The world map ----------
 
-/** One island per CISSP domain (in domain order): its name on the map and its ground; its prop is `.prop-<domain>` in the CSS. */
-const ISLANDS: { name: string; ground: 'grass' | 'sand' | 'snow' }[] = [
-  { name: 'Risk Reef', ground: 'grass' },
-  { name: 'Asset Atoll', ground: 'grass' },
-  { name: 'Crypto Crag', ground: 'snow' },
-  { name: 'Packet Peninsula', ground: 'grass' },
-  { name: 'Identity Isle', ground: 'sand' },
-  { name: 'Pentest Dunes', ground: 'sand' },
-  { name: 'SOC Glacier', ground: 'snow' },
-  { name: 'Code Cove', ground: 'grass' },
+/**
+ * One island per CISSP domain (in domain order): its name, its ground (its prop is `.prop-<domain>` in the CSS),
+ * its boss (sprite `n` of game/bosses.png is the boss of domain n + 1) with what it says when you miss and when
+ * it wins, and where it sits on the map in % (`wide`: two rows of four; `tall`, on a phone: four rows of two).
+ */
+const ISLANDS: { name: string; ground: 'grass' | 'sand' | 'snow'; boss: string; taunts: [string, string]; wins: string; wide: [number, number]; tall: [number, number] }[] = [
+  { name: 'Risk Reef', ground: 'grass', boss: 'The Risk Hydra', taunts: ['Cut off one risk and two more grow back!', 'Risk accepted. By me. On your behalf.'], wins: 'The Risk Hydra filed you under “residual risk”.', wide: [12, 28], tall: [27, 11] },
+  { name: 'Asset Atoll', ground: 'grass', boss: 'The Data Leak Blob', taunts: ['Nobody labelled this data. Mine now!', 'Unclassified and unencrypted: delicious.'], wins: 'The Data Leak Blob oozed off with your crown jewels.', wide: [37, 22], tall: [73, 14] },
+  { name: 'The Crypto Caves', ground: 'snow', boss: 'The Side-Channel Golem', taunts: ['I can hear your keys through the power line.', 'Nice cipher. Shame about the timing.'], wins: 'The Side-Channel Golem read your private key off the fan noise.', wide: [62, 30], tall: [72, 38] },
+  { name: 'Packet Peninsula', ground: 'grass', boss: 'The Phishing Kraken', taunts: ['URGENT: verify your password here!', 'Click the link. All the cool admins do.'], wins: 'The Phishing Kraken says thanks for the credentials.', wide: [87, 24], tall: [28, 36] },
+  { name: 'Fortress of Access Control', ground: 'sand', boss: 'The Privilege Lich', taunts: ['Least privilege? I prefer MOST privilege.', 'My account never expires. Neither do I.'], wins: 'The Privilege Lich just granted itself Domain Admin.', wide: [86, 74], tall: [27, 61] },
+  { name: 'Pentest Dunes', ground: 'sand', boss: 'The Orb of a Thousand Scans', taunts: ['4,096 findings, all critical. Probably.', 'Your scope document? Never read it.'], wins: 'The Orb of a Thousand Scans marked you as a false negative.', wide: [61, 68], tall: [73, 64] },
+  { name: 'SOC Glacier', ground: 'snow', boss: 'The Ransomware Dragon', taunts: ['Your files are mine. Pay in Bitcoin.', 'Backups? How quaint. Were they offline?'], wins: 'The Ransomware Dragon encrypted your hearts. Restore from backup: retry.', wide: [37, 76], tall: [72, 88] },
+  { name: 'Code Cove', ground: 'grass', boss: 'The Zero-Day Bug', taunts: ['Nobody has patched me. Nobody even knows me!', 'Input validation? Never heard of her.'], wins: 'The Zero-Day Bug shipped to production. Again.', wide: [12, 70], tall: [28, 86] },
 ];
+
+/** Island cleared by the last boss fight: it lights up when the map opens next. */
+let justCleared: DomainId | null = null;
+/** Milliseconds per island when the cat walks along the path. */
+const WALK_STEP_MS = 380;
+
+/** Sets CSS custom properties through the CSSOM: the Content-Security-Policy blocks `style` attributes. */
+function cssVars<E extends HTMLElement>(el: E, vars: Record<string, number>): E {
+  for (const [name, value] of Object.entries(vars)) el.style.setProperty(`--${name}`, String(value));
+  return el;
+}
+
+/** A boss sprite (32×32, scaled by `--bs` in the CSS). */
+function bossSprite(domain: DomainId, id?: string): HTMLElement {
+  return cssVars(h('span', { class: 'boss-sprite', id: id ?? false, role: 'img', 'aria-label': ISLANDS[domain - 1].boss }), { b: domain - 1 });
+}
+
+/** The dotted path between the islands (one line per leg) in one layout; a leg is lit and marches once the island it leaves is cleared. */
+function mapPath(layout: 'wide' | 'tall', world: WorldProgress): SVGSVGElement {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', `map-path path-${layout}`);
+  svg.setAttribute('viewBox', '0 0 100 100');
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.setAttribute('aria-hidden', 'true');
+  for (let i = 0; i < ISLANDS.length - 1; i++) {
+    const [x1, y1] = ISLANDS[i][layout];
+    const [x2, y2] = ISLANDS[i + 1][layout];
+    const leg = document.createElementNS(ns, 'line');
+    for (const [k, v] of Object.entries({ x1, y1, x2, y2 })) leg.setAttribute(k, String(v));
+    if (world.islands[i].cleared) leg.setAttribute('class', 'lit');
+    svg.append(leg);
+  }
+  return svg;
+}
+
+/**
+ * Game start screen: the player's rank and the world map. The cat stands on the island played last; tap an
+ * island and it walks there along the path, and the panel below shows the island and its boss, with Play (the
+ * domain's questions, then the boss) and, once the stage has been won, a direct boss fight. Cleared islands are
+ * lit and alive, and so is the path leaving them. Quick round opens the stage 1 round picker.
+ */
+async function gameHub(): Promise<void> {
+  const info = await api.info();
+  gameSettings = info.game.settings;
+  const world = info.game.world;
+  const cleared = world.islands.filter((i) => i.cleared).length;
+  let at = world.at;
+  let target = at;
+  let walking = false;
+  const walker = h('div', { class: 'map-walker', id: 'map-cat', 'data-at': String(at) }, h('div', { class: 'walker-flip' }, cat('idle')));
+  const place = (d: DomainId): void => {
+    const { wide, tall } = ISLANDS[d - 1];
+    cssVars(walker, { wx: wide[0], wy: wide[1], tx: tall[0], ty: tall[1] });
+    walker.dataset.at = String(d);
+  };
+  place(at);
+  /** Walks the cat island by island to `target` (which may change on the way); it jumps when nothing may move. */
+  const walk = (): void => {
+    if (walking) return;
+    walking = true;
+    walker.classList.add('walking');
+    const layout = matchMedia('(max-width: 760px)').matches ? 'tall' : 'wide';
+    const step = (): void => {
+      if (at === target || !walker.isConnected) {
+        walker.classList.remove('walking');
+        walking = false;
+        return;
+      }
+      const next = (at + (target > at ? 1 : -1)) as DomainId;
+      walker.classList.toggle('left', ISLANDS[next - 1][layout][0] < ISLANDS[at - 1][layout][0]);
+      at = next;
+      place(at);
+      if (effectLevel() === 'still') step();
+      else setTimeout(step, WALK_STEP_MS);
+    };
+    step();
+  };
+  const panel = h('section', { class: 'px-panel island-panel', id: 'island-panel', 'aria-live': 'polite' });
+  const showIsland = (d: DomainId): void => {
+    const island = ISLANDS[d - 1];
+    const progress = world.islands[d - 1];
+    const bank = info.bank.byDomain[d - 1];
+    const status = progress.cleared
+      ? `★ Cleared${progress.victories > 1 ? ` ×${progress.victories}` : ''}: the island is free.`
+      : progress.bossReached
+        ? 'Boss reached: beat it to light up the island.'
+        : 'The boss is waiting at the end of the island.';
+    panel.replaceChildren(
+      h('div', { class: 'island-card' }, bossSprite(d, 'island-boss-sprite'), h(
+        'div',
+        { class: 'island-card-text' },
+        h('h2', { class: 'px-title small-title', id: 'island-title' }, `${d}. ${island.name}`),
+        h('p', { class: 'small' }, `Domain ${d}: ${bank.name} · ${bank.count} questions`),
+        h('p', { class: 'island-boss-name' }, `Boss: ${island.boss}`),
+        h('p', { class: 'small', id: 'island-status' }, status),
+      )),
+      h('p', { class: 'px-help' }, 'Six questions of this domain, then the boss with its hardest questions: each right answer is a hit, five hits win. Three hearts for the whole island; wrong answers join your questions to retry.'),
+      h(
+        'div',
+        { class: 'row' },
+        h('button', { id: 'island-play', class: 'px-button', disabled: bank.count === 0, onclick: () => void playRound(() => api.startIsland(d)) }, progress.cleared ? 'Play again ▶' : 'Play island ▶'),
+        progress.bossReached && h('button', { id: 'island-boss', class: 'px-button ghosted', disabled: bank.count === 0, onclick: () => void playRound(() => api.startBoss(d)) }, 'Fight the boss ▶'),
+      ),
+    );
+  };
+  const islands = info.bank.byDomain.map((d) => {
+    const island = ISLANDS[d.domain - 1];
+    const progress = world.islands[d.domain - 1];
+    const button = cssVars(
+      h(
+        'button',
+        {
+          id: `map-island-${d.domain}`,
+          class: `map-island ground-${island.ground}${progress.cleared ? ' cleared' : ''}${justCleared === d.domain ? ' lights-up' : ''}`,
+          'data-domain': String(d.domain),
+          'aria-pressed': String(d.domain === at),
+          'aria-label': `${island.name}: domain ${d.domain}, ${d.name}; ${progress.cleared ? 'cleared' : `boss ${island.boss} not beaten yet`}`,
+          title: d.name,
+        },
+        progress.cleared && h('span', { class: 'island-glow', 'aria-hidden': 'true' }),
+        h('span', { class: 'isle-top', 'aria-hidden': 'true' }, h('span', { class: `island-prop prop-${d.domain}` }), progress.cleared ? h('span', { class: 'island-flag' }) : bossSprite(d.domain)),
+        h('span', { class: 'island-ground', 'aria-hidden': 'true' }),
+        h('span', { class: 'island-name' }, island.name),
+        progress.cleared && h('span', { class: 'sparkle s1', 'aria-hidden': 'true' }),
+        progress.cleared && h('span', { class: 'sparkle s2', 'aria-hidden': 'true' }),
+      ),
+      { x: island.wide[0], y: island.wide[1], tx: island.tall[0], ty: island.tall[1] },
+    );
+    button.addEventListener('click', () => {
+      for (const b of islands) b.setAttribute('aria-pressed', String(b === button));
+      showIsland(d.domain);
+      playSfx('coin');
+      target = d.domain;
+      walk();
+    });
+    return button;
+  });
+  justCleared = null;
+  showIsland(at);
+  gameScreen(
+    'map',
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Game mode'), h('span', { class: 'px-text' }, `Rounds ${info.game.games} · Best combo ${info.game.bestCombo}`)),
+    h(
+      'main',
+      { class: 'page game', id: 'game-hub' },
+      h(
+        'section',
+        { class: 'px-panel game-hero' },
+        cat('idle', 'hub-cat'),
+        h('div', { class: 'game-hero-text' }, h('h1', { class: 'px-title' }, 'CISSP Quest'), rankBadge(info.game.level), levelBar(info.game.level, 'hub-level')),
+      ),
+      h(
+        'section',
+        { class: 'world', 'aria-label': 'World map: one island per domain' },
+        h('div', { class: 'world-head' }, h('h2', { class: 'px-title small-title' }, 'World map'), h('span', { class: 'px-text', id: 'world-progress' }, `★ ${cleared}/8 islands`)),
+        h('p', { class: 'world-help' }, 'Tap an island: the cat walks there. Beat its boss to light it up.'),
+        h('div', { class: 'quest-map', id: 'quest-map' }, mapPath('wide', world), mapPath('tall', world), ...islands, walker),
+      ),
+      panel,
+    ),
+    h(
+      'footer',
+      { class: 'bottombar game-bar' },
+      h('button', { id: 'game-hub-home', class: 'px-button ghosted', onclick: () => void home() }, '◀ Back'),
+      h('button', { id: 'game-quick', class: 'px-button ghosted', onclick: () => void quickRound() }, 'Quick round'),
+    ),
+    tabbar('game'),
+  );
+  // The island where the cat stands is in view (on a phone the map starts below the fold).
+  document.getElementById(`map-island-${at}`)?.scrollIntoView({ block: 'nearest' });
+  backAction = () => void home();
+}
+
+// ---------- Quick round (stage 1) ----------
 
 /** Stars (0–3) for a domain's training accuracy, once it has a few answers. */
 function islandStars(correct: number, answered: number): number {
@@ -346,11 +581,14 @@ function chooser<T extends string | number>(id: string, label: string, choices: 
   return h('div', { class: 'chooser', role: 'group', 'aria-label': label }, h('span', { class: 'chooser-label' }, label), h('span', { class: 'chooser-buttons' }, ...buttons));
 }
 
+/** Settings of the last quick round. */
+let lastGameOptions: PracticeOptions | null = null;
+
 /**
- * Game start screen: the player's rank, and a world map with one island per domain. Tap islands to pick the
- * domains of the round, then pick difficulty, length, timer and question pool, and press start.
+ * Quick round picker: tap islands to pick the domains of the round, then pick difficulty, length, timer and
+ * question pool, and press start.
  */
-async function gameHub(): Promise<void> {
+async function quickRound(): Promise<void> {
   const info = await api.info();
   gameSettings = info.game.settings;
   const options: PracticeOptions = { ...(lastGameOptions ?? info.profile.training), types: ['single', 'multi', 'ordering'], order: 'random' };
@@ -403,26 +641,23 @@ async function gameHub(): Promise<void> {
   const start = (): void => {
     const domains = info.bank.byDomain.map((d) => d.domain).filter((d) => chosen.has(d));
     if (domains.length === 0) return toast('Pick at least one island on the map.');
-    void startGame({ ...options, domains });
+    const picked = { ...options, domains };
+    lastGameOptions = picked;
+    void playRound(() => api.startGame(picked));
   };
   gameScreen(
-    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Game mode'), h('span', { class: 'px-text' }, `Rounds ${info.game.games} · Best combo ${info.game.bestCombo}`)),
+    'map',
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Quick round'), h('span', { class: 'px-text' }, `Rounds ${info.game.games} · Best combo ${info.game.bestCombo}`)),
     h(
       'main',
-      { class: 'page game', id: 'game-hub' },
+      { class: 'page game', id: 'quick-round' },
       h(
         'section',
-        { class: 'px-panel game-hero' },
-        cat('idle', 'hub-cat'),
-        h('div', { class: 'game-hero-text' }, h('h1', { class: 'px-title' }, 'CISSP Quest'), rankBadge(info.game.level), levelBar(info.game.level, 'hub-level')),
-      ),
-      h(
-        'section',
-        { class: 'world', id: 'world-map', 'aria-label': 'World map: pick the islands (domains) to play' },
+        { class: 'world', id: 'world-map', 'aria-label': 'Pick the islands (domains) of the round' },
         h(
           'div',
           { class: 'world-head' },
-          h('h2', { class: 'px-title small-title' }, 'World map'),
+          h('h2', { class: 'px-title small-title' }, 'Quick round'),
           h(
             'span',
             { class: 'row' },
@@ -446,12 +681,12 @@ async function gameHub(): Promise<void> {
     h(
       'footer',
       { class: 'bottombar game-bar' },
-      h('button', { id: 'game-hub-home', class: 'px-button ghosted', onclick: () => void home() }, '◀ Back'),
+      h('button', { id: 'game-quick-back', class: 'px-button ghosted', onclick: () => void gameHub() }, '◀ Map'),
       h('button', { id: 'game-start', class: 'px-button', onclick: start }, 'PRESS START'),
     ),
     tabbar('game'),
   );
-  backAction = () => void home();
+  backAction = () => void gameHub();
 }
 
 // ---------- Playing ----------
@@ -467,23 +702,45 @@ interface GameContext {
   multiplier: number;
   level: LevelInfo;
   answered: number;
+  /** Island of the round (null for a quick round), the phase on screen, and the boss once the fight is on. */
+  island: DomainId | null;
+  phase: GamePhase;
+  boss: BossState | null;
 }
 
-/** Settings of the last round, for Retry. */
-let lastGameOptions: PracticeOptions | null = null;
+/** How the last round started, for Retry. */
+let lastRound: (() => Promise<GameStart>) | null = null;
 
-async function startGame(options: PracticeOptions): Promise<void> {
+/** Starts a round (quick round, island or boss fight) with READY/GO, or a boss entrance when it opens on the boss. */
+async function playRound(begin: () => Promise<GameStart>): Promise<void> {
   let start: GameStart;
   try {
-    start = await api.startGame(options);
+    start = await begin();
   } catch (err) {
     toast(errorText(err));
     return;
   }
-  lastGameOptions = options;
+  lastRound = begin;
   playSfx('whoosh');
-  renderGameQuestion(start.question, { total: start.total, maxLives: start.lives, lives: start.lives, seconds: start.secondsPerQuestion, combo: 0, multiplier: 1, level: start.level, answered: 0 });
-  floatText('READY?', null, 0, 'ready');
+  const ctx: GameContext = {
+    total: start.total,
+    maxLives: start.lives,
+    lives: start.lives,
+    seconds: start.secondsPerQuestion,
+    combo: 0,
+    multiplier: 1,
+    level: start.level,
+    answered: 0,
+    island: start.island,
+    phase: start.phase,
+    boss: start.boss,
+  };
+  renderGameQuestion(start.question, ctx);
+  if (ctx.island !== null && ctx.phase === 'boss') {
+    floatText(`${ISLANDS[ctx.island - 1].boss.toUpperCase()}!`, null, 0, 'boss-in');
+    return;
+  }
+  floatText(ctx.island !== null ? ISLANDS[ctx.island - 1].name.toUpperCase() : 'READY?', null, 0, 'ready');
   setTimeout(() => floatText('GO!', null, 0, 'go'), 750);
 }
 
@@ -492,6 +749,54 @@ function quitGame(): void {
     { label: 'Keep playing', id: 'game-quit-cancel', onClick: () => undefined },
     { label: 'Quit', id: 'game-quit-confirm', primary: true, onClick: () => void gameOver() },
   ]);
+}
+
+/** The boss's hit points: a bar that drops (a pale ghost bar follows it down) and the count. */
+function bossHpBar(boss: BossState): HTMLElement {
+  const bar = h(
+    'div',
+    { class: 'boss-hp', id: 'boss-hp', role: 'progressbar', 'aria-label': 'Boss hit points', 'aria-valuemin': '0', 'aria-valuemax': String(boss.max) },
+    h('span', { class: 'boss-hp-ghost' }),
+    h('span', { class: 'boss-hp-fill' }),
+    h('span', { class: 'boss-hp-text' }),
+  );
+  setBossHp(bar, boss);
+  return bar;
+}
+
+function setBossHp(bar: HTMLElement, boss: BossState): void {
+  bar.style.setProperty('--hp', String(boss.hp / boss.max));
+  bar.setAttribute('aria-valuenow', String(boss.hp));
+  (bar.querySelector('.boss-hp-text') as HTMLElement).textContent = `HP ${boss.hp}/${boss.max}`;
+}
+
+/** Restarts a CSS animation class on an element (hit, attack, hop…). */
+function replay(el: HTMLElement, cls: string): void {
+  el.classList.remove(cls);
+  void el.offsetWidth;
+  el.classList.add(cls);
+}
+
+/** The boss blows up: a flash, explosions over the sprite (none when nothing may move), confetti and a banner. */
+function bossDefeat(sprite: HTMLElement): void {
+  sprite.classList.add('defeated');
+  playSfx('fanfare', 250);
+  floatText('BOSS DEFEATED!', null, 0, 'victory');
+  const level = effectLevel();
+  if (level === 'still') return;
+  const spots = level === 'full' ? [[50, 50, 0], [25, 35, 180], [72, 30, 320], [40, 72, 470], [65, 65, 600]] : [[50, 50, 0]];
+  const stage = sprite.parentElement as HTMLElement;
+  for (const [x, y, delay] of spots) {
+    setTimeout(() => {
+      const boom = h('span', { class: 'boss-boom', 'aria-hidden': 'true' });
+      boom.style.left = `${x}%`;
+      boom.style.top = `${y}%`;
+      stage.append(boom);
+      expire(boom, 1000);
+    }, delay);
+  }
+  const at = centre(sprite);
+  burst(at.x, at.y, 'confetti');
 }
 
 function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
@@ -508,12 +813,30 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
   let levelNode = levelBar(ctx.level, 'game-level');
   let comboNode = comboMeter(ctx.combo, ctx.multiplier);
   const timeLeft = h('span', { id: 'game-time-left', class: 'px-text' });
-  const soundButton = h('button', { id: 'game-sound', class: 'px-button mini-px', 'aria-pressed': String(gameSettings.sound), title: 'Sound effects' }, gameSettings.sound ? '♪ On' : '♪ Off');
-  soundButton.addEventListener('click', async () => {
-    gameSettings = await api.saveGameSettings({ ...gameSettings, sound: !gameSettings.sound });
-    soundButton.textContent = gameSettings.sound ? '♪ On' : '♪ Off';
-    soundButton.setAttribute('aria-pressed', String(gameSettings.sound));
-  });
+  /** HUD switch for the sound effects or the music (icon only: a phone HUD is narrow); saved like Profile & settings. */
+  const toggle = (id: string, label: string, symbol: string, setting: 'sound' | 'music'): HTMLButtonElement => {
+    const b = h('button', { id, class: 'px-button mini-px hud-toggle', 'aria-pressed': String(gameSettings[setting]), 'aria-label': label, title: label }, symbol);
+    b.addEventListener('click', async () => {
+      gameSettings = await api.saveGameSettings({ ...gameSettings, [setting]: !gameSettings[setting] });
+      b.setAttribute('aria-pressed', String(gameSettings[setting]));
+      playMusic(musicWanted);
+    });
+    return b;
+  };
+  const soundButton = toggle('game-sound', 'Sound effects', '♪', 'sound');
+  const musicButton = toggle('game-music', 'Music', '♫', 'music');
+  // The boss fight: the boss above the question, idling, with its hit points.
+  const boss = ctx.phase === 'boss' && ctx.island !== null && ctx.boss ? { domain: ctx.island, state: ctx.boss } : null;
+  const bossNode = boss && bossSprite(boss.domain, 'boss-sprite');
+  const hpNode = boss && bossHpBar(boss.state);
+  const arena =
+    boss &&
+    h(
+      'section',
+      { class: 'boss-arena', id: 'boss-arena' },
+      h('div', { class: 'boss-stage' }, bossNode),
+      h('div', { class: 'boss-info' }, h('p', { class: 'boss-name' }, ISLANDS[boss.domain - 1].boss), hpNode),
+    );
   const button = h('button', { id: 'game-check', class: 'px-button' }, 'Check');
   let go: HTMLButtonElement | null = null;
   let poseTimer: number | undefined;
@@ -533,7 +856,8 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
     }
     markOptions(q, f, main);
     bubble.hidden = false;
-    bubble.textContent = pick(f.timedOut ? QUIPS.timeout : f.correct ? QUIPS.right : QUIPS.wrong);
+    const taunt = boss && !f.correct ? `${ISLANDS[boss.domain - 1].boss}: “${pick(ISLANDS[boss.domain - 1].taunts)}”` : null;
+    bubble.textContent = taunt ?? pick(f.timedOut ? QUIPS.timeout : !f.correct ? QUIPS.wrong : boss ? QUIPS.hit : QUIPS.right);
     bubble.className = `bubble ${f.correct ? 'good' : 'bad'}`;
     // The real explanation follows the joke, always.
     feedback.replaceChildren(...feedbackNodes(q, f));
@@ -562,8 +886,17 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       if (frenzyStarts) {
         playSfx('whoosh', 120);
         floatText(r.multiplier === 2 ? 'ENCRYPTION FRENZY! x2' : `MEGA FRENZY! x${r.multiplier}`, null, 0, 'frenzy');
-      } else if (STREAK_SHOUTS[r.combo]) {
+      } else if (STREAK_SHOUTS[r.combo] && !boss) {
         floatText(STREAK_SHOUTS[r.combo], null, 0, 'shout');
+      }
+      if (bossNode && hpNode && r.boss && r.bossHit) {
+        // The hit: the boss flashes white and shakes, its health bar drops.
+        replay(bossNode, 'hit');
+        setBossHp(hpNode, r.boss);
+        const b = centre(bossNode);
+        floatText(r.multiplier > 1 ? 'CRITICAL! -1 HP' : '-1 HP', b.x, b.y, 'hit');
+        playSfx('whoosh', 80);
+        if (r.end === 'victory') bossDefeat(bossNode);
       }
     } else {
       // Facepalm first, then the tears.
@@ -579,15 +912,24 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       }
       if (effectLevel() === 'full') {
         flash();
-        main.classList.remove('shake');
-        void main.offsetWidth;
-        main.classList.add('shake');
+        replay(main, 'shake');
       }
+      // The boss strikes back.
+      if (bossNode) replay(bossNode, 'attack');
     }
     const next = r.next;
-    go = h('button', { id: 'game-next', class: 'px-button' }, next ? 'Next ▶' : r.end === 'lives' ? 'Game over ▶' : 'Results ▶');
+    const label = r.bossStarts ? 'BOSS FIGHT ▶' : next ? 'Next ▶' : r.end === 'victory' ? 'Victory ▶' : r.end === 'lives' ? 'Game over ▶' : 'Results ▶';
+    go = h('button', { id: 'game-next', class: 'px-button' }, label);
     go.addEventListener('click', () => {
-      const onward = (): void => (next ? renderGameQuestion(next, ctx) : void gameOver());
+      const onward = (): void => {
+        if (!next) return void gameOver();
+        if (!r.bossStarts || ctx.island === null) return renderGameQuestion(next, ctx);
+        // The stage is won: the boss arrives, with its music.
+        Object.assign(ctx, { phase: 'boss', boss: r.boss });
+        renderGameQuestion(next, ctx);
+        playSfx('whoosh');
+        floatText(`${ISLANDS[ctx.island - 1].boss.toUpperCase()}!`, null, 0, 'boss-in');
+      };
       if (r.levelUp) levelUpScreen(r.level, r.rankUp, onward);
       else onward();
     });
@@ -626,18 +968,27 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
   }
 
   gameScreen(
+    boss ? 'boss' : 'map',
     h(
       'header',
       { class: 'game-hud' },
       heartRow,
       levelNode,
       comboNode,
-      h('span', { class: 'hud-right' }, ctx.seconds > 0 && timeLeft, h('span', { id: 'game-qnum', class: 'px-text' }, `Q ${ctx.answered + 1}/${ctx.total}`), soundButton),
+      h(
+        'span',
+        { class: 'hud-right' },
+        ctx.seconds > 0 && timeLeft,
+        h('span', { id: 'game-qnum', class: 'px-text' }, boss ? 'BOSS' : `Q ${ctx.answered + 1}/${ctx.total}`),
+        soundButton,
+        musicButton,
+      ),
     ),
     h(
       'main',
-      { class: `question game${ctx.multiplier > 1 ? ' frenzy' : ''}`, id: 'game' },
-      h('section', { class: 'px-panel q-panel q-enter' }, h('p', { class: 'stem' }, q.stem), body.node),
+      { class: `question game${ctx.multiplier > 1 ? ' frenzy' : ''}${boss ? ' boss-fight' : ''}`, id: 'game' },
+      arena,
+      h('section', { class: 'px-panel q-panel q-enter', id: 'game-question', 'data-question': q.id }, h('p', { class: 'stem' }, q.stem), body.node),
       stage,
       feedbackPanel,
     ),
@@ -686,7 +1037,11 @@ function levelUpScreen(level: LevelInfo, rankUp: boolean, onward: () => void): v
   };
 }
 
-/** End of the round: why it ended, with a funny line, the score and a retry. */
+/**
+ * End of the round: why it ended, with a funny line, the score and a retry. After a boss fight: the victory
+ * screen (the island is cleared and lights up on the map), or a game over where the boss gloats and Retry goes
+ * straight back to the boss once it was reached.
+ */
 async function gameOver(): Promise<void> {
   clearInterval(gameTimer);
   let s: GameSummary;
@@ -696,12 +1051,20 @@ async function gameOver(): Promise<void> {
     toast(errorText(err));
     return void gameHub();
   }
-  const title = s.end === 'lives' ? 'GAME OVER' : s.end === 'cleared' ? 'ROUND CLEAR!' : 'LOGGED OFF';
-  if (s.end === 'cleared') playSfx('fanfare');
+  const island = s.island !== null ? ISLANDS[s.island - 1] : null;
+  const title = s.end === 'victory' ? 'VICTORY!' : s.end === 'lives' ? 'GAME OVER' : s.end === 'cleared' ? 'ROUND CLEAR!' : 'LOGGED OFF';
+  const won = s.end === 'victory' || s.end === 'cleared';
+  if (won) playSfx('fanfare');
   else if (s.end === 'lives') playSfx('buzz');
+  if (s.end === 'victory') justCleared = s.island;
+  const line = island && s.end === 'victory' ? `${island.boss} is defeated! ${island.name} is free. ${pick(QUIPS.victory)}` : island && s.boss && s.end === 'lives' ? island.wins : pick(QUIPS[s.end === 'victory' ? 'cleared' : s.end]);
+  // Retry: the boss again once it was reached, otherwise the round as it started.
+  const domain = s.island;
+  const retry = domain !== null && s.boss ? () => api.startBoss(domain) : lastRound;
   const xp = h('span', { class: 'xp-count' }, `+${s.xpEarned}`);
   gameScreen(
-    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Game mode'), h('span', { class: 'px-text' }, `${s.correct} of ${s.answered} right`)),
+    null,
+    h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, island ? island.name : 'Game mode'), h('span', { class: 'px-text' }, `${s.correct} of ${s.answered} right`)),
     h(
       'main',
       { class: 'page game', id: 'game-over' },
@@ -709,12 +1072,17 @@ async function gameOver(): Promise<void> {
         'section',
         { class: `px-panel game-over end-${s.end}` },
         h('h1', { class: 'px-title', id: 'game-over-title', 'aria-label': title }, ...dropLetters(title)),
-        cat(s.end === 'cleared' ? 'cheer' : s.end === 'lives' ? 'cry' : 'facepalm', 'over-cat'),
-        h('p', { class: 'bubble', id: 'game-over-line' }, pick(QUIPS[s.end])),
+        h(
+          'div',
+          { class: 'over-scene' },
+          cat(won ? 'cheer' : s.end === 'lives' ? 'cry' : 'facepalm', 'over-cat'),
+          domain !== null && s.boss && h('span', { class: `over-boss${s.end === 'victory' ? ' beaten' : ''}` }, bossSprite(domain, 'over-boss')),
+        ),
+        h('p', { class: 'bubble', id: 'game-over-line' }, line),
         h(
           'div',
           { class: 'game-stats' },
-          h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ' ', xp), h('span', {}, 'XP earned')),
+          h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ' ', xp), h('span', {}, s.end === 'victory' ? 'XP earned (boss bonus included)' : 'XP earned')),
           h('div', {}, h('span', { class: 'px-big' }, `${s.correct}/${s.answered}`), h('span', {}, 'right answers')),
           h('div', {}, h('span', { class: 'px-big' }, String(s.bestCombo)), h('span', {}, 'best combo')),
         ),
@@ -727,12 +1095,12 @@ async function gameOver(): Promise<void> {
       'footer',
       { class: 'bottombar game-bar' },
       h('button', { id: 'game-home', class: 'px-button ghosted', onclick: () => void home() }, 'Home'),
-      h('button', { id: 'game-menu', class: 'px-button ghosted', onclick: () => void gameHub() }, '◀ Map'),
-      h('button', { id: 'game-retry', class: 'px-button', onclick: () => void (lastGameOptions ? startGame(lastGameOptions) : gameHub()) }, 'Retry ▶'),
+      h('button', { id: 'game-menu', class: `px-button${s.end === 'victory' ? '' : ' ghosted'}`, onclick: () => void gameHub() }, '◀ Map'),
+      s.end !== 'victory' && h('button', { id: 'game-retry', class: 'px-button', onclick: () => void (retry ? playRound(retry) : gameHub()) }, domain !== null && s.boss ? 'Retry boss ▶' : 'Retry ▶'),
     ),
   );
   countUp(xp, s.xpEarned, '+');
-  if (s.end === 'cleared') {
+  if (won) {
     const at = centre(document.getElementById('over-cat') as HTMLElement);
     burst(at.x, at.y, 'confetti');
   }

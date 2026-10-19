@@ -1,14 +1,17 @@
-import type { GameAnswer, GameEnd, GameSettings, GameSummary, LevelInfo } from '../engine/game';
+import type { BossState, GameAnswer, GameEnd, GamePhase, GameSettings, GameSummary, LevelInfo, WorldProgress } from '../engine/game';
 import type { PracticeFeedback, PracticeItemState, PracticeSummary } from '../engine/practice';
 import type { DifficultyFilter, PracticeOptions, PracticeSource, Profile, ProgressSummary } from '../engine/profile';
 import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView, ReviewItem } from '../engine/types';
 
 export type {
+  BossState,
   GameAnswer,
   GameEnd,
+  GamePhase,
   GameSettings,
   GameSummary,
   LevelInfo,
+  WorldProgress,
   PracticeFeedback,
   PracticeItemState,
   PracticeSummary,
@@ -113,14 +116,21 @@ export interface GameStatus {
   bestCombo: number;
   games: number;
   settings: GameSettings;
+  /** Islands of the world map and where the cat stands. */
+  world: WorldProgress;
 }
 
 export interface GameStart {
   question: QuestionView;
+  /** Questions of the first phase (the stage, or the boss fight of a boss retry). */
   total: number;
   lives: number;
   secondsPerQuestion: number;
   level: LevelInfo;
+  /** Island being played (null for a quick round); `boss` is set when the round opens on the boss fight. */
+  island: DomainId | null;
+  phase: GamePhase;
+  boss: BossState | null;
 }
 
 export interface ExamState {
@@ -207,14 +217,18 @@ export interface ExamApi {
   resumePractice(id: string): Promise<PracticeStart>;
   /** Forgets a paused training session. */
   deletePaused(id: string): Promise<void>;
-  /** Starts a game round with questions chosen as for training. */
+  /** Starts a quick game round with questions chosen as for training. */
   startGame(options: PracticeOptions): Promise<GameStart>;
+  /** Starts an island of the world map (its domain's questions, then its boss). */
+  startIsland(domain: DomainId): Promise<GameStart>;
+  /** Fights an island's boss again, once its stage has been won. */
+  startBoss(domain: DomainId): Promise<GameStart>;
   answerGame(questionId: string, response: number[]): Promise<GameAnswer>;
   /** The time limit of the current game question ran out (a wrong answer). */
   timeoutGame(questionId: string): Promise<GameAnswer>;
   /** Ends the round if it is still running and returns its summary. */
   gameSummary(): Promise<GameSummary>;
-  /** Saves the game's sound and effect settings (invalid fields fall back to defaults); returns what was saved. */
+  /** Saves the game's sound, music and effect settings (invalid fields fall back to defaults); returns what was saved. */
   saveGameSettings(settings: GameSettings): Promise<GameSettings>;
   quit(): Promise<void>;
 }

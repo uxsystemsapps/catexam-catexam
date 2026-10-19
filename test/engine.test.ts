@@ -6,7 +6,7 @@ import path from 'node:path';
 import { describe, it } from 'node:test';
 import { isCorrect, validateBank } from '../src/engine/bank';
 import { CatexamService } from '../src/core/service';
-import { GameRun, levelInfo, normalizeGameProgress, xpForLevel } from '../src/engine/game';
+import { BOSS_BONUS_XP, BOSS_HP, BOSS_QUESTIONS, GameRun, levelInfo, normalizeGameProgress, selectIslandItems, STAGE_QUESTIONS, xpForLevel } from '../src/engine/game';
 import { DOMAINS } from '../src/engine/domains';
 import { estimateAbility, probabilityCorrect } from '../src/engine/irt';
 import { PracticeSession } from '../src/engine/practice';
@@ -568,7 +568,7 @@ describe('game mode', () => {
     assert.equal(last.feedback.explanation, 'why L2');
     assert.equal(run.current(), null);
     assert.throws(() => run.answer('L3', [0]), /over/);
-    assert.deepEqual(run.summary(), { answered: 3, correct: 0, total: 6, xpEarned: 0, bestCombo: 0, end: 'lives', level: levelInfo(0) });
+    assert.deepEqual(run.summary(), { answered: 3, correct: 0, total: 6, xpEarned: 0, bestCombo: 0, end: 'lives', level: levelInfo(0), island: null, boss: null });
   });
 
   it('clears the round when every question is answered with hearts left; a time-out costs a heart', () => {
@@ -589,15 +589,85 @@ describe('game mode', () => {
     assert.deepEqual([up.level.xp, up.level.level, up.levelUp, up.rankUp], [120, 2, true, true]);
   });
 
-  it('starts with sound off on phones and on on the desktop, and repairs a damaged save', () => {
-    assert.equal(normalizeGameProgress(undefined, 'mobile').settings.sound, false);
-    assert.equal(normalizeGameProgress(undefined, 'desktop').settings.sound, true);
-    assert.deepEqual(normalizeGameProgress({ xp: -5, bestCombo: 3.6, games: 'x', settings: { sound: true, volume: 250, lite: 1 } }, 'mobile'), {
-      xp: 0,
-      bestCombo: 4,
-      games: 0,
-      settings: { sound: true, volume: 100, lite: false },
-    });
+  it('starts with sound and music off on phones and on on the desktop, and repairs a damaged save', () => {
+    assert.deepEqual([normalizeGameProgress(undefined, 'mobile').settings.sound, normalizeGameProgress(undefined, 'mobile').settings.music], [false, false]);
+    assert.deepEqual([normalizeGameProgress(undefined, 'desktop').settings.sound, normalizeGameProgress(undefined, 'desktop').settings.music], [true, true]);
+    const repaired = normalizeGameProgress(
+      { xp: -5, bestCombo: 3.6, games: 'x', settings: { sound: true, volume: 250, music: 'yes', musicVolume: -3, lite: 1 }, world: { at: 9, islands: [{ domain: 3, cleared: true }, { domain: 4, bossReached: true, victories: 2.2 }, 'junk'] } },
+      'mobile',
+    );
+    assert.deepEqual([repaired.xp, repaired.bestCombo, repaired.games], [0, 4, 0]);
+    assert.deepEqual(repaired.settings, { sound: true, volume: 100, music: false, musicVolume: 0, lite: false });
+    assert.equal(repaired.world.at, 1, 'an unknown island falls back to the first');
+    assert.deepEqual(repaired.world.islands.map((i) => i.domain), [1, 2, 3, 4, 5, 6, 7, 8]);
+    assert.deepEqual(repaired.world.islands[2], { domain: 3, cleared: true, bossReached: true, victories: 1 }, 'a cleared island had its boss reached and beaten');
+    assert.deepEqual(repaired.world.islands[3], { domain: 4, cleared: false, bossReached: true, victories: 2 });
+    assert.deepEqual(repaired.world.islands[0], { domain: 1, cleared: false, bossReached: false, victories: 0 });
+  });
+
+  it('keeps the hardest questions of an island for its boss and gives the stage the rest of the domain', () => {
+    const bank = [
+      ...Array.from({ length: 10 }, (_, i) => q(`H${i}`, 1 + i / 10, 4)),
+      ...Array.from({ length: 10 }, (_, i) => q(`E${i}`, -1, 4)),
+      q('OTHER', 2, 5),
+    ];
+    const items = selectIslandItems(bank, 4);
+    assert.equal(items.boss.length, BOSS_QUESTIONS);
+    assert.ok(items.boss.every((x) => x.id.startsWith('H')), 'the boss only gets hard questions when the domain has enough');
+    assert.equal(items.stage.length, STAGE_QUESTIONS);
+    assert.ok(items.stage.every((x) => x.domain === 4 && !items.boss.includes(x)), 'the stage gets other questions of the domain');
+    // Few hard questions: the boss is topped up with the hardest of the rest.
+    const few = selectIslandItems([q('H', 2, 6), q('M1', 0.4, 6), q('M2', 0.2, 6), ...Array.from({ length: 8 }, (_, i) => q(`L${i}`, -2, 6))], 6);
+    assert.equal(few.boss.length, BOSS_QUESTIONS);
+    assert.ok(['H', 'M1', 'M2'].every((id) => few.boss.some((x) => x.id === id)));
+    assert.equal(few.stage.length, 4);
+  });
+
+  it('opens the boss fight once the stage is won: right answers hit it, wrong ones cost hearts, and beating it pays a bonus', () => {
+    const boss = Array.from({ length: BOSS_QUESTIONS }, (_, i) => q(`B${i}`, 1));
+    const run = new GameRun([q('S1', 0), q('S2', 0)], 0, { domain: 1, boss });
+    assert.deepEqual([run.currentPhase, run.bossState], ['stage', null]);
+    play(run, false);
+    const won = play(run, true);
+    assert.deepEqual([won.phase, won.bossStarts, won.end, won.lives], ['stage', true, null, 2]);
+    assert.deepEqual(won.boss, { hp: BOSS_HP, max: BOSS_HP });
+    assert.equal((won.next as QuestionView).id.startsWith('B'), true, 'the next question is the boss’s');
+    const hit = play(run, true);
+    assert.deepEqual([hit.phase, hit.bossHit, hit.boss, hit.xpGained], ['boss', true, { hp: BOSS_HP - 1, max: BOSS_HP }, 30]);
+    const miss = play(run, false);
+    assert.deepEqual([miss.bossHit, miss.boss?.hp, miss.lives], [false, BOSS_HP - 1, 1]);
+    let last = miss;
+    for (let i = 1; i < BOSS_HP; i++) last = play(run, true);
+    assert.deepEqual([last.end, last.next, last.boss?.hp, last.bonusXp], ['victory', null, 0, BOSS_BONUS_XP]);
+    assert.equal(last.xpGained, 30 + BOSS_BONUS_XP);
+    const s = run.summary();
+    assert.deepEqual([s.end, s.island, s.boss, s.answered, s.correct, s.total], ['victory', 1, { hp: 0, max: BOSS_HP }, 2 + BOSS_HP + 1, 1 + BOSS_HP, 2 + BOSS_QUESTIONS]);
+  });
+
+  it('loses the island when the hearts run out, before or during the boss fight', () => {
+    const boss = Array.from({ length: BOSS_QUESTIONS }, (_, i) => q(`B${i}`, 1));
+    const stageLost = new GameRun(Array.from({ length: 4 }, (_, i) => q(`S${i}`, 0)), 0, { domain: 2, boss });
+    for (let i = 0; i < 2; i++) play(stageLost, false);
+    const out = play(stageLost, false);
+    assert.deepEqual([out.end, out.phase, out.boss, stageLost.summary().boss], ['lives', 'stage', null, null]);
+    // A boss retry: no stage, the fight at once, and three misses end it.
+    const retry = new GameRun([], 0, { domain: 2, boss });
+    assert.deepEqual([retry.currentPhase, retry.bossState, retry.total], ['boss', { hp: BOSS_HP, max: BOSS_HP }, BOSS_QUESTIONS]);
+    play(retry, true);
+    play(retry, false);
+    play(retry, false);
+    const lost = play(retry, false);
+    assert.deepEqual([lost.end, lost.boss], ['lives', { hp: BOSS_HP - 1, max: BOSS_HP }]);
+  });
+
+  it('gives a boss fewer hit points when its domain has too few questions, so the fight always has a winner', () => {
+    const boss = [q('B0', 1), q('B1', 1), q('B2', 1), q('B3', 1)];
+    const run = new GameRun([], 0, { domain: 3, boss });
+    assert.deepEqual(run.bossState, { hp: 2, max: 2 }, 'four questions and three hearts: two hits win, three misses lose');
+    play(run, false);
+    play(run, false);
+    play(run, true);
+    assert.equal(play(run, true).end, 'victory');
   });
 
   it('feeds wrong answers to the training retry list and keeps XP between sessions', async () => {
@@ -618,8 +688,47 @@ describe('game mode', () => {
       const info = await reopened.info();
       assert.deepEqual([info.game.level.xp, info.game.bestCombo, info.game.games], [30, 1, 1]);
       assert.deepEqual([info.progress.seen, info.progress.missed, info.progress.today], [2, 1, 2]);
+      assert.equal(info.game.settings.music, false, 'music is off by default on the phone');
       const retry = await reopened.startPractice({ ...DEFAULT_PROFILE.training, domains: [2], source: 'missed' });
       assert.equal(retry.total, 1, 'the wrong game answer is a question to retry in training');
+    } finally {
+      await rm(tmp, { recursive: true, force: true });
+    }
+  });
+
+  it('saves the islands: the boss reached, then beaten, and where the cat stands', async () => {
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-world-'));
+    try {
+      await mkdir(path.join(tmp, 'builtin'));
+      // Domain 7: twelve easy stage questions and seven hard boss questions; every answer is option 0.
+      const bank = [...Array.from({ length: 12 }, (_, i) => q(`S${i}`, -1, 7)), ...Array.from({ length: BOSS_QUESTIONS }, (_, i) => q(`B${i}`, 1.5, 7))];
+      await writeFile(path.join(tmp, 'builtin', 'world.json'), JSON.stringify({ name: 'World', questions: bank }));
+      const host = { version: 't', platform: 'desktop' as const, data: fsDir(path.join(tmp, 'user')), builtin: fsDir(path.join(tmp, 'builtin')), displays: () => 1, onTimeout: () => undefined };
+      const service = await CatexamService.open(host);
+      await assert.rejects(service.startBoss(7), /stage/, 'the boss alone needs the stage won first');
+      await assert.rejects(service.startIsland(9), /unknown island/);
+      const start = await service.startIsland(7);
+      assert.deepEqual([start.island, start.phase, start.boss, start.total], [7, 'stage', null, STAGE_QUESTIONS]);
+      assert.ok(start.question.id.startsWith('S'));
+      let r = await service.answerGame(start.question.id, [0]);
+      while (!r.bossStarts) r = await service.answerGame((r.next as QuestionView).id, [0]);
+      assert.ok((r.next as QuestionView).id.startsWith('B'), 'the boss asks the hard questions');
+      service.gameSummary();
+
+      let reopened = await CatexamService.open(host);
+      let world = (await reopened.info()).game.world;
+      assert.equal(world.at, 7, 'the cat stands on the island played last');
+      assert.deepEqual(world.islands[6], { domain: 7, cleared: false, bossReached: true, victories: 0 });
+      const fight = await reopened.startBoss(7);
+      assert.deepEqual([fight.phase, fight.boss], ['boss', { hp: BOSS_HP, max: BOSS_HP }]);
+      r = await reopened.answerGame(fight.question.id, [0]);
+      while (r.end === null) r = await reopened.answerGame((r.next as QuestionView).id, [0]);
+      assert.equal(r.end, 'victory');
+
+      reopened = await CatexamService.open(host);
+      world = (await reopened.info()).game.world;
+      assert.deepEqual(world.islands[6], { domain: 7, cleared: true, bossReached: true, victories: 1 });
+      assert.ok(world.islands.filter((i) => i.domain !== 7).every((i) => !i.cleared && !i.bossReached));
     } finally {
       await rm(tmp, { recursive: true, force: true });
     }
