@@ -154,8 +154,10 @@ jobs:
           apt-get update -qq
           apt-get install -y -qq --no-install-recommends unzip >/dev/null
           mkdir -p /opt/jdk /opt/android-sdk/cmdline-tools
-          curl -fsSL "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse" | tar xz -C /opt/jdk --strip-components=1
-          curl -fsSL -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+          # Downloads to a file with retries: a connection reset mid-stream used to break a piped `curl | tar`.
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 -o /tmp/jdk.tar.gz "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse"
+          tar xzf /tmp/jdk.tar.gz -C /opt/jdk --strip-components=1
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
           unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk/cmdline-tools
           mv /opt/android-sdk/cmdline-tools/cmdline-tools /opt/android-sdk/cmdline-tools/latest
           export JAVA_HOME=/opt/jdk
