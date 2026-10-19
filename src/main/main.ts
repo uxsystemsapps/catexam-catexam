@@ -85,8 +85,11 @@ function registerIpc(): void {
   ipcMain.handle('game:start', (_e, raw: unknown) => service.startGame(raw));
   ipcMain.handle('game:island', (_e, domain: unknown) => service.startIsland(domain));
   ipcMain.handle('game:boss', (_e, domain: unknown) => service.startBoss(domain));
+  ipcMain.handle('game:daily', () => service.startDaily());
+  ipcMain.handle('game:lightning', () => service.startLightning());
   ipcMain.handle('game:answer', (_e, questionId: string, response: number[]) => service.answerGame(questionId, response));
   ipcMain.handle('game:timeout', (_e, questionId: string) => service.timeoutGame(questionId));
+  ipcMain.handle('game:power-up', (_e, id: unknown, questionId: unknown) => service.usePowerUp(id, questionId));
   ipcMain.handle('game:summary', () => service.gameSummary());
   ipcMain.handle('game:settings', (_e, raw: unknown) => service.saveGameSettings(raw));
 

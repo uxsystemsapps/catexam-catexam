@@ -1,16 +1,39 @@
-import type { BossState, GameAnswer, GameEnd, GamePhase, GameSettings, GameSummary, LevelInfo, WorldProgress } from '../engine/game';
+import type {
+  AchievementInfo,
+  BossState,
+  DailyReward,
+  GameAnswer,
+  GameEnd,
+  GameKind,
+  GamePhase,
+  GameReviewItem,
+  GameSettings,
+  GameSummary,
+  LevelInfo,
+  PowerUpEffect,
+  PowerUpId,
+  PowerUps,
+  WorldProgress,
+} from '../engine/game';
 import type { PracticeFeedback, PracticeItemState, PracticeSummary } from '../engine/practice';
 import type { DifficultyFilter, PracticeOptions, PracticeSource, Profile, ProgressSummary } from '../engine/profile';
 import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView, ReviewItem } from '../engine/types';
 
 export type {
+  AchievementInfo,
   BossState,
+  DailyReward,
   GameAnswer,
   GameEnd,
+  GameKind,
   GamePhase,
+  GameReviewItem,
   GameSettings,
   GameSummary,
   LevelInfo,
+  PowerUpEffect,
+  PowerUpId,
+  PowerUps,
   WorldProgress,
   PracticeFeedback,
   PracticeItemState,
@@ -118,19 +141,41 @@ export interface GameStatus {
   settings: GameSettings;
   /** Islands of the world map and where the cat stands. */
   world: WorldProgress;
+  powerUps: PowerUps;
+  /** Every achievement, unlocked or not, in badge order. */
+  achievements: AchievementInfo[];
+  daily: DailyStatus;
+  lightningBest: number;
+}
+
+/** The daily challenge as its screen shows it: today, whether it is done, the streak and the recent days done. */
+export interface DailyStatus {
+  today: string;
+  done: boolean;
+  streak: number;
+  bestStreak: number;
+  /** Days done in the last five weeks (YYYY-MM-DD). */
+  days: string[];
+  /** What finishing today's challenge gives (or gave): bonus XP and power-ups. */
+  reward: { xp: number; powerUps: PowerUpId[] };
 }
 
 export interface GameStart {
   question: QuestionView;
+  kind: GameKind;
   /** Questions of the first phase (the stage, or the boss fight of a boss retry). */
   total: number;
+  /** Hearts (0 in the daily challenge and the lightning round, which have none). */
   lives: number;
   secondsPerQuestion: number;
+  /** Lightning round: its length in seconds (0 for the other kinds). */
+  roundSeconds: number;
   level: LevelInfo;
-  /** Island being played (null for a quick round); `boss` is set when the round opens on the boss fight. */
+  /** Island being played (null for the other kinds); `boss` is set when the round opens on the boss fight. */
   island: DomainId | null;
   phase: GamePhase;
   boss: BossState | null;
+  powerUps: PowerUps;
 }
 
 export interface ExamState {
@@ -223,9 +268,15 @@ export interface ExamApi {
   startIsland(domain: DomainId): Promise<GameStart>;
   /** Fights an island's boss again, once its stage has been won. */
   startBoss(domain: DomainId): Promise<GameStart>;
+  /** Starts today's daily challenge (refused once it is done for the day). */
+  startDaily(): Promise<GameStart>;
+  /** Starts a 60-second lightning round. */
+  startLightning(): Promise<GameStart>;
   answerGame(questionId: string, response: number[]): Promise<GameAnswer>;
   /** The time limit of the current game question ran out (a wrong answer). */
   timeoutGame(questionId: string): Promise<GameAnswer>;
+  /** Uses a power-up from the inventory on the open game question. */
+  usePowerUp(id: PowerUpId, questionId: string): Promise<PowerUpEffect>;
   /** Ends the round if it is still running and returns its summary. */
   gameSummary(): Promise<GameSummary>;
   /** Saves the game's sound, music and effect settings (invalid fields fall back to defaults); returns what was saved. */

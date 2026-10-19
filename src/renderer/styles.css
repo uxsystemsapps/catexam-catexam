@@ -792,6 +792,130 @@ button.px-button.hud-toggle[aria-pressed='false'] { background: #4a4380; color: 
 .over-boss.beaten .boss-sprite { filter: grayscale(1) brightness(0.75); transform: rotate(90deg); transform-origin: 50% 50%; animation: none; }
 .game-over.end-victory .px-title { color: var(--gold); text-shadow: 3px 3px 0 #0d0b1e; animation: px-bounce 0.8s ease-out 2; }
 
+/* Stage 3: power-ups (16×16 tiles in game/powerups.png: 50/50, Auditor, Patch Tuesday), achievement badges
+   (18×18 tiles in game/badges.png, `--b`: index), the daily challenge with its calendar, and the lightning round. */
+.pu-icon {
+  --pu: 32px; display: inline-block; flex: none; width: var(--pu); height: var(--pu); vertical-align: middle; image-rendering: pixelated;
+  background: url('game/powerups.png') no-repeat; background-size: calc(var(--pu) * 3) var(--pu);
+}
+.pu-auditor { background-position-x: calc(var(--pu) * -1); }
+.pu-patch { background-position-x: calc(var(--pu) * -2); }
+.badge-medal {
+  --m: 2; position: relative; display: inline-flex; flex: none; align-items: center; justify-content: center; width: calc(26px * var(--m)); height: calc(26px * var(--m));
+  background: #ffd23f; box-shadow: 0 -3px 0 0 #0d0b1e, 0 3px 0 0 #0d0b1e, -3px 0 0 0 #0d0b1e, 3px 0 0 0 #0d0b1e, inset 0 -4px 0 0 #c99a1e, inset 0 4px 0 0 #fff1a8; margin: 3px;
+}
+.badge-icon {
+  display: block; width: calc(18px * var(--m)); height: calc(18px * var(--m)); image-rendering: pixelated;
+  background: url('game/badges.png') no-repeat; background-size: calc(270px * var(--m)) calc(18px * var(--m)); background-position-x: calc(var(--b) * -18px * var(--m));
+}
+.badge-medal.locked { background: #4a4380; box-shadow: 0 -3px 0 0 #0d0b1e, 0 3px 0 0 #0d0b1e, -3px 0 0 0 #0d0b1e, 3px 0 0 0 #0d0b1e, inset 0 -4px 0 0 #332d63; }
+.badge-medal.locked .badge-icon { filter: grayscale(1) brightness(0.45); opacity: 0.7; }
+.inventory { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.inv-slot { display: inline-flex; align-items: center; gap: 4px; font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 16px; }
+.inv-slot .pu-icon { --pu: 28px; }
+.inv-slot.empty { opacity: 0.45; }
+
+/* Hub: the other ways to play */
+.game-modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 4px; }
+button.mode-button {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 0; border-radius: 0; text-align: left; color: #fff; background: #2c2657; cursor: pointer;
+  box-shadow: 0 -4px 0 0 #0d0b1e, 0 4px 0 0 #0d0b1e, -4px 0 0 0 #0d0b1e, 4px 0 0 0 #0d0b1e, inset 0 -5px 0 0 #221d45; transition: transform 0.08s;
+}
+button.mode-button:hover { background: #3a3175; }
+button.mode-button:active { transform: translateY(3px); }
+.mode-pic { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; flex: none; }
+.mode-pic .badge-medal { --m: 1.6; }
+.mode-flame { --f: 40px; }
+.mode-bolt { font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 18px; color: #231f3a; background: #ffd23f; padding: 6px 5px; box-shadow: 0 0 0 3px #0d0b1e; }
+.mode-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.mode-title { font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 17px; color: var(--gold, #ffd23f); }
+.mode-sub { font-size: 13px; opacity: 0.85; }
+
+/* Daily challenge and its streak calendar */
+.daily-panel, .lightning-panel { display: flex; flex-direction: column; gap: 12px; }
+.daily-head { display: flex; align-items: center; gap: 14px; }
+.daily-head p { margin: 4px 0 0; }
+.streak-flame { --f: 48px; flex: none; }
+.calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; max-width: 420px; }
+.calendar .weekday { text-align: center; font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 13px; color: #4a4466; }
+.calendar .day {
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 1; font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 14px;
+  background: #fffaf0; color: #8a8270; box-shadow: inset 0 0 0 2px #d8ccae;
+}
+.calendar .day.done { background: #ffe9a8; box-shadow: inset 0 0 0 2px #c99a1e; }
+.calendar .day .px-icon { --icon: 22px; }
+.calendar .day.today { box-shadow: inset 0 0 0 3px #231f3a; color: #231f3a; }
+.daily-reward { margin: 0; line-height: 1.8; }
+.reward-powerups { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; vertical-align: middle; }
+.reward-pu { display: inline-flex; align-items: center; gap: 2px; font-weight: bold; }
+.reward-pu .pu-icon { --pu: 24px; }
+.daily-reward-box { width: 100%; max-width: 520px; background: #ffe9a8; padding: 8px 12px; box-shadow: 0 0 0 3px #c99a1e; }
+.daily-reward-box p { margin: 4px 0; }
+.reward-streak { font-size: 20px; display: flex; align-items: flex-end; justify-content: center; gap: 6px; }
+.game-stats .new-best { background: #ffe9a8; font-weight: bold; }
+
+/* Lightning round */
+.lightning-panel { align-items: center; text-align: center; }
+.lightning-title { color: #5be0ff; text-shadow: 3px 3px 0 #0d0b1e; }
+.lightning-panel .px-title { background: #231f3a; padding: 6px 12px; }
+.lightning-hud { background: #1d2a52; }
+.lightning-clock { flex: 1 1 100%; height: 8px; background: #0d0b1e; }
+.lightning-fill { display: block; height: 100%; background: repeating-linear-gradient(90deg, #5be0ff 0 6px, #2fb6e0 6px 8px); transform-origin: left; transform: scaleX(var(--left, 1)); transition: transform 0.25s linear; }
+.lightning-hud:has(#game-time-left.low) .lightning-fill { background: #e8433f; }
+#lightning-score { color: var(--gold, #ffd23f); font-size: 18px; }
+.lightning-review { display: flex; flex-direction: column; gap: 10px; }
+.lightning-review > .px-title { color: #fff; text-shadow: 2px 2px 0 #0d0b1e; margin: 6px 4px 0; }
+.review-item .stem { font-weight: bold; }
+
+/* Achievements */
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.badge-card { display: flex; align-items: center; gap: 14px; padding: 12px; margin: 4px; background: var(--paper); color: var(--ink); box-shadow: 0 -4px 0 0 #0d0b1e, 0 4px 0 0 #0d0b1e, -4px 0 0 0 #0d0b1e, 4px 0 0 0 #0d0b1e, inset 0 -5px 0 0 #e2d6b8; }
+.badge-card.locked { background: #d9d2c0; }
+.badge-card.locked .badge-name { color: #5b5670; }
+.badge-text { min-width: 0; }
+.badge-text p { margin: 2px 0; }
+.badge-name { font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 17px; }
+.badge-state { font-size: 12px; color: #4a4466; }
+.badge-card.unlocked .badge-state { color: #16692b; font-weight: bold; }
+
+/* Power-ups while playing */
+.powerup-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px; }
+button.pu-button {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 6px; border: 0; border-radius: 0; background: #4a4380; color: #fff; cursor: pointer;
+  font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 15px; transition: transform 0.08s;
+  box-shadow: 0 -3px 0 0 #0d0b1e, 0 3px 0 0 #0d0b1e, -3px 0 0 0 #0d0b1e, 3px 0 0 0 #0d0b1e, inset 0 -4px 0 0 #332d63; margin: 3px;
+}
+button.pu-button:hover:not(:disabled) { background: #5a52a0; }
+button.pu-button:active:not(:disabled) { transform: translateY(3px); }
+button.pu-button:disabled { opacity: 0.45; cursor: default; }
+.pu-count { color: var(--gold, #ffd23f); }
+.game .q-panel .option.zapped { opacity: 0.35; text-decoration: line-through; pointer-events: none; animation: zap 0.5s steps(4); }
+@keyframes zap { 0% { opacity: 1; filter: brightness(2.5); } 50% { opacity: 0.2; } 100% { opacity: 0.35; } }
+.auditor-hint {
+  display: flex; align-items: center; gap: 10px; margin: 12px 0 0; padding: 8px 12px; background: #efe6ff; color: var(--ink); line-height: 1.4;
+  box-shadow: 0 0 0 3px #7b3fe4; animation: pop-in 0.3s ease-out;
+}
+.auditor-hint[hidden] { display: none; }
+.hearts .px-icon.mended { animation: heart-mend 0.8s ease-out; }
+@keyframes heart-mend { 0% { transform: scale(0.2); filter: brightness(3); } 60% { transform: scale(1.5); } 100% { transform: none; filter: none; } }
+.fx-powerup { position: absolute; margin: -16px 0 0 -16px; animation: pu-leap 1s ease-out forwards; }
+@keyframes pu-leap { 0% { transform: scale(1); } 40% { transform: translateY(-70px) scale(2.6) rotate(-12deg); opacity: 1; } 100% { transform: translateY(-110px) scale(3.2) rotate(8deg); opacity: 0; } }
+.fx-banner.pu-shout { background: #7b3fe4; }
+.fx-banner.shout-patch { background: #34c763; color: #0d0b1e; }
+.fx-float.pu-earned { font-size: 18px; color: #9be7ff; }
+
+/* Achievement pop-ups: a dark plaque that drops in at the top, outside the game screens' layers. */
+.pop-layer { position: fixed; left: 0; right: 0; top: 8px; z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
+.achievement-pop {
+  display: flex; align-items: center; gap: 12px; max-width: 92vw; padding: 8px 16px 8px 10px; background: #231f3a; color: #fff;
+  box-shadow: 0 -4px 0 0 #ffd23f, 0 4px 0 0 #ffd23f, -4px 0 0 0 #ffd23f, 4px 0 0 0 #ffd23f, 0 8px 0 0 #0d0b1e; animation: achievement-pop 3.3s ease-out forwards;
+}
+.achievement-pop .badge-medal { --m: 1.6; }
+.pop-text { display: flex; flex-direction: column; gap: 2px; font-family: 'Kenney Mini Square', 'Courier New', monospace; }
+.pop-title { font-size: 12px; color: #ffd23f; letter-spacing: 0.08em; }
+.pop-name { font-size: 18px; }
+@keyframes achievement-pop { 0% { transform: translateY(-140%); } 10% { transform: translateY(6px); } 14%, 88% { transform: none; opacity: 1; } 100% { transform: translateY(-140%); opacity: 0; } }
+
 /* Fewer or no effects */
 html[data-fx='lite'] button.px-button:hover:not(:disabled), html[data-fx='lite'] .game.shake, html[data-fx='lite'] .cat, html[data-fx='lite'] .levelup-title,
 html[data-fx='lite'] button.island, html[data-fx='lite'] .drop-letter, html[data-fx='lite'] .levelup-rays, html[data-fx='lite'] .game-over .px-title,
@@ -802,11 +926,11 @@ html[data-fx='lite'] .boss-sprite.defeated { animation: boss-fade 0.6s forwards;
 @keyframes boss-flash { 0%, 50% { filter: brightness(3.5) saturate(0); } 25%, 75% { filter: none; } }
 @keyframes boss-fade { from { opacity: 1; filter: brightness(3.5) saturate(0); } to { opacity: 0; } }
 html[data-fx='still'] .game, html[data-fx='still'] .game *, html[data-fx='still'] .game-hud, html[data-fx='still'] .game-hud *,
-html[data-fx='still'] .levelup, html[data-fx='still'] .levelup *, html[data-fx='still'] .fx-layer *, html[data-fx='still'] .px-button, html[data-fx='still'] .game::before {
+html[data-fx='still'] .levelup, html[data-fx='still'] .levelup *, html[data-fx='still'] .fx-layer *, html[data-fx='still'] .pop-layer *, html[data-fx='still'] .px-button, html[data-fx='still'] .game::before {
   animation: none !important; transition: none !important;
 }
 @media (prefers-reduced-motion: reduce) {
-  .game, .game *, .game::before, .game-hud, .game-hud *, .levelup, .levelup *, .fx-layer *, .game-card *, .px-button { animation: none !important; transition: none !important; }
+  .game, .game *, .game::before, .game-hud, .game-hud *, .levelup, .levelup *, .fx-layer *, .pop-layer *, .game-card *, .px-button { animation: none !important; transition: none !important; }
 }
 
 @media (max-width: 760px) {
@@ -846,4 +970,15 @@ html[data-fx='still'] .levelup, html[data-fx='still'] .levelup *, html[data-fx='
   .over-boss .boss-sprite { --bs: 2; }
   .chooser-label { min-width: 0; flex: 1 1 100%; }
   button.px-chip { min-height: 40px; }
+  .game-modes { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  button.mode-button { padding: 8px 10px; }
+  .badge-grid { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .badge-card { padding: 8px 10px; gap: 10px; }
+  .badge-card .badge-medal { --m: 1.6; }
+  .powerup-bar { gap: 4px; }
+  button.pu-button { padding: 4px 8px 4px 4px; font-size: 14px; min-height: 40px; }
+  .pu-button .pu-icon { --pu: 26px; }
+  .calendar .day { font-size: 12px; }
+  .calendar .day .px-icon { --icon: 18px; }
+  .lightning-title { font-size: 24px; }
 }

@@ -1,14 +1,26 @@
 import { DOMAINS } from '../engine/domains';
 import {
+  achievementList,
+  addDays,
+  completeDaily,
+  dailyRewardFor,
+  dailyStreak,
   GameRun,
   levelInfo,
+  LIGHTNING_SECONDS,
   normalizeGameSettings,
+  selectDailyItems,
   selectIslandItems,
+  selectLightningItems,
+  unlockAchievements,
+  type DailyReward,
   type GameAnswer,
   type GameProgress,
   type GameSettings,
   type GameSummary,
   type IslandProgress,
+  type PowerUpEffect,
+  type PowerUpId,
 } from '../engine/game';
 import { PracticeSession, type PracticeFeedback } from '../engine/practice';
 import {
@@ -25,9 +37,11 @@ import {
 import { ExamSession } from '../engine/session';
 import type { ExamResult, Question, QuestionView, ReviewItem } from '../engine/types';
 import type {
+  AchievementInfo,
   AppInfo,
   BankImportSummary,
   ExamState,
+  DailyStatus,
   GameStart,
   ImportedBank,
   PracticeAnswer,
@@ -99,6 +113,11 @@ export class CatexamService {
   private progressWrite: Promise<void> = Promise.resolve();
   private game: GameRun | null = null;
   private gameWrite: Promise<void> = Promise.resolve();
+  /** Day the daily challenge being played was started, and its reward once finished. */
+  private gameDay = '';
+  private dailyReward: DailyReward | null = null;
+  /** What the end of the round gave (kept at the first summary, so a second summary says the same). */
+  private roundEnd: { newBest: boolean; unlocked: AchievementInfo[] } | null = null;
 
   private constructor(
     private readonly host: ServiceHost,
@@ -164,6 +183,10 @@ export class CatexamService {
         games: this.gameProgress.games,
         settings: this.gameProgress.settings,
         world: structuredClone(this.gameProgress.world),
+        powerUps: { ...this.gameProgress.powerUps },
+        achievements: achievementList(this.gameProgress),
+        daily: this.dailyStatus(),
+        lightningBest: this.gameProgress.lightningBest,
       },
     };
   }
@@ -385,7 +408,8 @@ export class CatexamService {
   /** Starts a quick round; its questions are chosen as for a training session with these options. */
   async startGame(raw: unknown): Promise<GameStart> {
     const options = normalizePracticeOptions(raw);
-    return this.beginGame(new GameRun(selectPracticeItems(this.questions, options, this.progress), this.gameProgress.xp), options.secondsPerQuestion, null);
+    const items = selectPracticeItems(this.questions, options, this.progress);
+    return this.beginGame(new GameRun(items, this.gameProgress.xp, null, { powerUps: this.gameProgress.powerUps }), options.secondsPerQuestion, null);
   }
 
   /** Starts an island of the world map: a stage of the domain's questions, then its boss. */
@@ -393,7 +417,7 @@ export class CatexamService {
     const island = this.island(domain);
     const items = selectIslandItems(this.questions, island.domain);
     if (items.boss.length === 0) throw new Error('this island has no questions in the bank');
-    return this.beginGame(new GameRun(items.stage, this.gameProgress.xp, { domain: island.domain, boss: items.boss }), 0, island);
+    return this.beginGame(new GameRun(items.stage, this.gameProgress.xp, { domain: island.domain, boss: items.boss }, { powerUps: this.gameProgress.powerUps }), 0, island);
   }
 
   /** Fights the boss of an island again, without its stage; only once the stage has been won. */
@@ -402,7 +426,25 @@ export class CatexamService {
     if (!island.bossReached) throw new Error('win the stage of this island first');
     const items = selectIslandItems(this.questions, island.domain);
     if (items.boss.length === 0) throw new Error('this island has no questions in the bank');
-    return this.beginGame(new GameRun([], this.gameProgress.xp, { domain: island.domain, boss: items.boss }), 0, island);
+    return this.beginGame(new GameRun([], this.gameProgress.xp, { domain: island.domain, boss: items.boss }, { powerUps: this.gameProgress.powerUps }), 0, island);
+  }
+
+  /** Starts today's daily challenge: the same ten questions all day; once finished, it is done until tomorrow. */
+  async startDaily(): Promise<GameStart> {
+    const day = today();
+    if (this.gameProgress.dailyDays.includes(day)) throw new Error("today's challenge is done: come back tomorrow");
+    const items = selectDailyItems(this.questions, day);
+    if (items.length === 0) throw new Error('the question bank is empty');
+    this.gameDay = day;
+    return this.beginGame(new GameRun(items, this.gameProgress.xp, null, { kind: 'daily', powerUps: this.gameProgress.powerUps }), 0, null);
+  }
+
+  /** Starts a lightning round: 60 seconds of single- and multiple-answer questions. */
+  async startLightning(): Promise<GameStart> {
+    const items = selectLightningItems(this.questions);
+    if (items.length === 0) throw new Error('the question bank has no questions for a lightning round');
+    // The inventory rides along unused, so that saving after each answer keeps it.
+    return this.beginGame(new GameRun(items, this.gameProgress.xp, null, { kind: 'lightning', powerUps: this.gameProgress.powerUps }), 0, null);
   }
 
   private island(domain: unknown): IslandProgress {
@@ -411,20 +453,41 @@ export class CatexamService {
     return island;
   }
 
+  private dailyStatus(): DailyStatus {
+    const day = today();
+    const days = this.gameProgress.dailyDays;
+    const from = addDays(day, -34);
+    const done = days.includes(day);
+    const streak = dailyStreak(days, day);
+    return {
+      today: day,
+      done,
+      streak,
+      bestStreak: this.gameProgress.stats.bestStreak,
+      days: days.filter((d) => d >= from),
+      reward: dailyRewardFor(done ? streak : streak + 1),
+    };
+  }
+
   private async beginGame(game: GameRun, secondsPerQuestion: number, island: IslandProgress | null): Promise<GameStart> {
     this.game = game;
+    this.dailyReward = null;
+    this.roundEnd = null;
     this.gameProgress.games++;
     if (island) this.gameProgress.world.at = island.domain;
     await this.persistGame();
     return {
       question: game.current() as QuestionView,
+      kind: game.kind,
       total: game.total,
       lives: game.livesLeft,
       secondsPerQuestion,
+      roundSeconds: game.kind === 'lightning' ? LIGHTNING_SECONDS : 0,
       level: levelInfo(game.totalXp),
       island: island?.domain ?? null,
       phase: game.currentPhase,
       boss: game.bossState,
+      powerUps: game.powerUps,
     };
   }
 
@@ -434,20 +497,28 @@ export class CatexamService {
   }
 
   /**
-   * A game answer counts as a training answer (daily count, questions to retry) and adds its XP. On an island,
-   * reaching the boss and beating it are kept on the world map.
+   * A game answer counts as a training answer (daily count, questions to retry) and adds its XP and the power-ups
+   * it earned. On an island, reaching the boss and beating it are kept on the world map; the last answer of the
+   * daily challenge keeps the day and gives its reward. Achievements unlock as they are earned.
    */
   private async recordGame(game: GameRun, questionId: string, result: GameAnswer): Promise<GameAnswer> {
     recordAnswer(this.progress, questionId, result.feedback.correct, today(), new Date().toISOString());
-    this.gameProgress.xp = game.totalXp;
-    this.gameProgress.bestCombo = Math.max(this.gameProgress.bestCombo, result.combo);
-    const domain = game.summary().island;
-    const island = this.gameProgress.world.islands.find((i) => i.domain === domain);
+    const p = this.gameProgress;
+    p.xp = game.totalXp;
+    p.bestCombo = Math.max(p.bestCombo, result.combo);
+    p.powerUps = result.powerUps;
+    if (result.feedback.correct) p.stats.right++;
+    const domain = game.kind === 'island' ? game.summary().island : null;
+    const island = p.world.islands.find((i) => i.domain === domain);
     if (island && result.bossStarts) island.bossReached = true;
     if (island && result.end === 'victory') {
       island.cleared = true;
       island.victories++;
+      if (game.heartsLost === 0) p.stats.flawless++;
+      if (result.lives === 1) p.stats.clutch++;
     }
+    if (game.kind === 'daily' && result.end === 'cleared') this.dailyReward = completeDaily(p, this.gameDay);
+    result.unlocked = unlockAchievements(p, today());
     await Promise.all([this.persistProgress(), this.persistGame()]);
     return result;
   }
@@ -462,10 +533,37 @@ export class CatexamService {
     return this.recordGame(game, questionId, game.timeout(questionId));
   }
 
-  gameSummary(): GameSummary {
+  async usePowerUp(id: unknown, questionId: unknown): Promise<PowerUpEffect> {
+    const effect = this.activeGame().usePowerUp(id as PowerUpId, String(questionId));
+    this.gameProgress.powerUps = effect.powerUps;
+    this.gameProgress.stats.powerUpsUsed++;
+    effect.unlocked = unlockAchievements(this.gameProgress, today());
+    await this.persistGame();
+    return effect;
+  }
+
+  /**
+   * Ends the round if it is still running and returns its summary; the first call after a lightning round keeps
+   * its high score. With the daily challenge's reward, and the achievements the end of the round unlocked.
+   */
+  async gameSummary(): Promise<GameSummary> {
     const game = this.activeGame();
     game.quit();
-    return game.summary();
+    const summary = game.summary();
+    if (!this.roundEnd) {
+      const newBest = game.kind === 'lightning' && summary.correct > this.gameProgress.lightningBest;
+      if (newBest) this.gameProgress.lightningBest = summary.correct;
+      this.roundEnd = { newBest, unlocked: unlockAchievements(this.gameProgress, today()) };
+      await this.persistGame();
+    }
+    return {
+      ...summary,
+      level: levelInfo(this.gameProgress.xp),
+      best: this.gameProgress.lightningBest,
+      newBest: this.roundEnd.newBest,
+      daily: this.dailyReward,
+      unlocked: this.roundEnd.unlocked,
+    };
   }
 
   async saveGameSettings(raw: unknown): Promise<GameSettings> {

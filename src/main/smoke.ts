@@ -37,11 +37,11 @@ export type SmokeTarget = { lockdown: Lockdown; mobile?: undefined } | { lockdow
 export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise<boolean> {
   const { lockdown, mobile } = target;
   const js = <T>(code: string): Promise<T> => win.webContents.executeJavaScript(code, true) as Promise<T>;
-  const waitFor = (selector: string): Promise<void> =>
+  const waitFor = (selector: string, ms = 10000): Promise<void> =>
     js(`new Promise((resolve, reject) => {
       const t0 = Date.now();
       const poll = () => document.querySelector(${JSON.stringify(selector)}) ? resolve()
-        : Date.now() - t0 > 10000 ? reject(new Error('timeout waiting for ${selector}')) : setTimeout(poll, 20);
+        : Date.now() - t0 > ${ms} ? reject(new Error('timeout waiting for ${selector}')) : setTimeout(poll, 20);
       poll();
     })`);
   const click = (selector: string): Promise<void> => js(`document.querySelector(${JSON.stringify(selector)}).click()`);
@@ -477,7 +477,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await waitFor('#game-settings');
     check((await js<boolean>(`document.querySelector('#settings-sound').checked`)) === !mobile, `game sound is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
     check((await js<boolean>(`document.querySelector('#settings-music').checked`)) === !mobile, `music is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
-    check((await js<number>(`document.querySelectorAll('#credits li').length`)) === 11, 'settings list the credits of every game asset');
+    check((await js<number>(`document.querySelectorAll('#credits li').length`)) === 12, 'settings list the credits of every game asset');
     await js(`(() => {
       document.querySelector('#settings-sound').checked = false;
       document.querySelector('#settings-lite').checked = true;
@@ -494,6 +494,11 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await click(mobile ? '#tab-game' : '#open-game');
     await waitFor('#game-hub');
     check(await visible('#hub-cat') && (await text('#rank-badge')).includes('Intern'), 'game hub shows the cat and the rank');
+    check(
+      (await js<string>(`[...document.querySelectorAll('#hub-powerups .inv-count')].map((c) => c.textContent).join()`)) === '×1,×1,×1' &&
+        (await visible('#open-daily')) && (await visible('#open-lightning')) && (await text('#open-achievements')).includes('0/15'),
+      'the hub shows one of each power-up to start with, the daily challenge, the lightning round and the achievements',
+    );
     check((await js<number>(`document.querySelectorAll('#quest-map button.map-island').length`)) === 8, 'the world map has an island per domain');
     check(
       (await js<number>(`document.querySelectorAll('#quest-map .map-island.cleared').length`)) === 0 && (await text('#world-progress')).includes('0/8'),
@@ -647,10 +652,49 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     const stageDomains = new Set<number>();
     stageDomains.add((await answer(false)).domain);
     check((await heartsLeft()) === 2, 'a wrong answer on an island costs a heart');
-    while ((await text('#game-next')) !== 'BOSS FIGHT ▶') {
-      await goOn();
+    // Power-ups: Patch Tuesday mends the broken heart, then 50/50 and Ask the Auditor help on the next questions.
+    const enabled = (selector: string): Promise<boolean> => js<boolean>(`!!document.querySelector(${JSON.stringify(selector)}) && !document.querySelector(${JSON.stringify(selector)}).disabled`);
+    const zappedOptions = (): Promise<number[]> => js<number[]>(`[...document.querySelectorAll('#game .option')].flatMap((row, i) => row.classList.contains('zapped') ? [i] : [])`);
+    const currentQuestion = async (): Promise<Question> => bank.get(await js<string>(`document.querySelector('#game-question').dataset.question`)) as Question;
+    await goOn();
+    check(await enabled('#pu-patch'), 'with a broken heart, Patch Tuesday can be used');
+    await click('#pu-patch');
+    await waitFor('#game-hearts .px-icon.mended');
+    check((await heartsLeft()) === 3 && !(await enabled('#pu-patch')) && (await text('#pu-patch .pu-count')) === '×0', 'Patch Tuesday mends a heart and leaves the inventory');
+    await waitFor('#pop-layer .achievement-pop[data-achievement="power-up"]');
+    check((await text('#pop-layer [data-achievement="power-up"]')).includes('Turned It Off and On Again'), 'the first power-up unlocks an achievement, with a pop-up');
+    let fiftyUsed = false;
+    let auditorUsed = false;
+    for (;;) {
+      const q = await currentQuestion();
+      if (!fiftyUsed && (await enabled('#pu-fifty'))) {
+        // The quick round above may have earned another 50/50 (five in a row).
+        const held = Number((await text('#pu-fifty .pu-count')).slice(1));
+        await click('#pu-fifty');
+        await waitFor('#game .option.zapped');
+        const zapped = await zappedOptions();
+        check(
+          zapped.length === 2 && !zapped.some((i) => q.answer.includes(i)) && (await text('#pu-fifty .pu-count')) === `×${held - 1}` && !(await enabled('#pu-auditor')),
+          '50/50 takes two wrong options away (never a right one); one help per question',
+        );
+        fiftyUsed = true;
+        await fitsPhone('power-ups');
+        await shot('game-powerup');
+      } else if (fiftyUsed && !auditorUsed && (await enabled('#pu-auditor'))) {
+        await click('#pu-auditor');
+        await waitFor('#auditor-hint:not([hidden])');
+        const zapped = await zappedOptions();
+        check(
+          (await text('#auditor-hint')).startsWith('The Auditor: ') && zapped.length === (q.type === 'ordering' ? 0 : 1) && !zapped.some((i) => q.answer.includes(i)),
+          'Ask the Auditor rules out a wrong option and says why',
+        );
+        auditorUsed = true;
+      }
       stageDomains.add((await answer(true)).domain);
+      if ((await text('#game-next')) === 'BOSS FIGHT ▶') break;
+      await goOn();
     }
+    check(fiftyUsed && auditorUsed, 'the stage used 50/50 and Ask the Auditor');
     check([...stageDomains].join() === '7', 'the island asks questions of its domain only');
     await goOn();
     await waitFor('#boss-arena');
@@ -671,7 +715,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await goOn();
     await answer(false);
     check(
-      (await heartsLeft()) === 1 && (await js<boolean>(`document.querySelector('#boss-sprite').classList.contains('attack')`)) && (await text('#game-quip')).startsWith('The Ransomware Dragon:'),
+      (await heartsLeft()) === 2 && (await js<boolean>(`document.querySelector('#boss-sprite').classList.contains('attack')`)) && (await text('#game-quip')).startsWith('The Ransomware Dragon:'),
       'a wrong answer in the boss fight costs a heart, and the boss strikes back and gloats',
     );
     check(await explanationVisible(), 'the explanation follows a wrong boss answer too');
@@ -684,6 +728,8 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
       'the last hit defeats the boss (explosion), and the explanation still shows',
     );
     await shot('game-boss-defeat');
+    await waitFor('#pop-layer .achievement-pop[data-achievement="first-boss"]');
+    check((await text('#pop-layer [data-achievement="first-boss"]')).includes('Incident Closed'), 'beating the first boss unlocks “Incident Closed”');
     await goOn();
     await waitFor('#game-over-title');
     check((await text('#game-over-title')) === 'VICTORY!' && (await text('#game-over-line')).includes('The Ransomware Dragon is defeated'), 'the victory screen names the beaten boss');
@@ -728,6 +774,113 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     check(todayAfterIsland === todayBeforeIsland + islandAnswers, `island and boss answers count as training answers (${islandAnswers})`);
     await click('#game-menu');
     await waitFor('#game-hub');
+
+    // Achievements: every badge, the ones won so far unlocked with their day, the others locked.
+    await click('#open-achievements');
+    await waitFor('#achievements');
+    check(
+      (await js<number>(`document.querySelectorAll('#achievements .badge-card').length`)) === 15 &&
+        (await js<boolean>(`['first-boss', 'power-up'].every((id) => document.querySelector('#badge-' + id).classList.contains('unlocked'))`)) &&
+        (await js<number>(`document.querySelectorAll('#achievements .badge-card.locked .badge-medal.locked').length`)) > 0,
+      'the achievements screen shows unlocked and locked badges',
+    );
+    check((await text('#badge-first-boss')).includes('Unlocked') && (await text('#badge-streak-7')).includes('Locked'), 'unlocked badges say when, locked ones how');
+    await fitsPhone('achievements');
+    await shot('game-achievements');
+    await click('#achievements-back');
+    await waitFor('#game-hub');
+
+    // The daily challenge: ten questions with no hearts, the streak calendar, its reward, and once a day.
+    await click('#open-daily');
+    await waitFor('#daily');
+    check(
+      (await js<number>(`document.querySelectorAll('#daily-calendar .day').length`)) === 35 &&
+        (await js<number>(`document.querySelectorAll('#daily-calendar .day.today:not(.done)').length`)) === 1 &&
+        (await text('#daily-streak')).startsWith('Streak: 0 days') &&
+        (await text('#daily-next-reward')).includes('+50 XP'),
+      'the daily challenge shows the streak calendar and what finishing today gives',
+    );
+    await fitsPhone('daily challenge');
+    await shot('game-daily');
+    await click('#daily-start');
+    await waitFor('#game-check');
+    check(
+      (await text('#game-qnum')) === 'Q 1/10' && !(await js<boolean>(`!!document.querySelector('#game-hearts')`)) && !(await enabled('#pu-patch')),
+      'the daily challenge has ten questions and no hearts (so no Patch Tuesday)',
+    );
+    for (let i = 0; i < 10; i++) {
+      if (i > 0) await goOn();
+      await answer(i !== 0);
+      if (i === 0) check(await explanationVisible(), 'the explanation follows every daily challenge answer');
+    }
+    check((await text('#game-next')) === 'Results ▶', 'a wrong answer does not end the daily challenge');
+    await goOn();
+    await waitFor('#game-over-title');
+    check(
+      (await text('#game-over-title')) === 'DAILY DONE!' && (await text('#daily-reward')).includes('Streak: 1 day!') && !(await js<boolean>(`!!document.querySelector('#game-retry')`)),
+      'finishing the daily challenge starts the streak and gives its reward, once a day',
+    );
+    await fitsPhone('daily challenge done');
+    await shot('game-daily-done');
+    await click('#game-menu');
+    await waitFor('#game-hub');
+    check((await text('#open-daily')).includes('Done today'), 'the hub shows the daily challenge done');
+    await click('#open-daily');
+    await waitFor('#daily');
+    check((await js<boolean>(`document.querySelector('#daily-start').disabled`)) && (await js<number>(`document.querySelectorAll('#daily-calendar .day.today.done').length`)) === 1, 'today is marked on the calendar and the challenge is done until tomorrow');
+    await click('#daily-back');
+    await waitFor('#game-hub');
+
+    // The lightning round: 60 seconds on one clock, its own music, no hearts, no power-ups, the explanations on
+    // the review screen after the round, and a high score.
+    await click('#open-lightning');
+    await waitFor('#lightning-start');
+    check((await js<string>(`document.documentElement.dataset.music`)) === (mobile ? 'off' : 'lightning'), 'the lightning round has its own music (when music is on)');
+    await fitsPhone('lightning round start');
+    await click('#lightning-start');
+    await waitFor('#game-check');
+    check(
+      (await text('#game-time-left')).startsWith('TIME ') && !(await js<boolean>(`!!document.querySelector('#game-hearts, #powerups, #game-qnum')`)) &&
+        (await js<string>(`document.documentElement.dataset.music`)) === (mobile ? 'off' : 'lightning'),
+      'the lightning round shows the clock and the score, no hearts and no power-ups',
+    );
+    await fitsPhone('lightning round');
+    await shot('game-lightning');
+    const flashAnswers = [true, false, true];
+    for (const right of flashAnswers) {
+      const q = await currentQuestion();
+      await js(`(() => {
+        const response = ${JSON.stringify(right ? q.answer : wrongResponse(q))};
+        for (const box of document.querySelectorAll('#game .options input')) if (box.checked !== response.includes(Number(box.value))) box.click();
+      })()`);
+      await click('#game-check');
+      check(await js<boolean>(`document.querySelector('#feedback').textContent === ''`), 'a lightning answer does not stop the clock for its explanation');
+      // The next question comes on its own, at once.
+      await js(`(() => {
+        const { promise, resolve, reject } = Promise.withResolvers();
+        const t0 = Date.now();
+        const poll = () => document.querySelector('#game-question')?.dataset.question !== ${JSON.stringify(q.id)} ? resolve()
+          : Date.now() - t0 > 5000 ? reject(new Error('no next lightning question')) : setTimeout(poll, 20);
+        poll();
+        return promise;
+      })()`);
+    }
+    check((await text('#lightning-score')) === '★ 2', 'the score counts the right answers');
+    // The clock ends the round by itself.
+    await waitFor('#game-over-title', 75_000);
+    check((await text('#game-over-title')) === 'TIME!' && (await text('#lightning-final')) === '2' && (await text('#lightning-high')) === '2', `the round ends when the time is up, with the score (${await text('#game-over-title')})`);
+    check((await text('#game-over .new-best')).includes('NEW HIGH SCORE!'), 'a first score is a new high score');
+    check(
+      (await js<number>(`document.querySelectorAll('#lightning-review .review-item').length`)) === flashAnswers.length &&
+        (await js<boolean>(`[...document.querySelectorAll('#lightning-review .review-item')].every((r) => r.querySelector('.explanation')?.textContent.length > 20)`)),
+      'the review after the round explains every answer',
+    );
+    check((await text('#game-retry')) === 'Play again ▶', 'the lightning round can be played again');
+    await fitsPhone('lightning review');
+    await shot('game-lightning-review');
+    await click('#game-menu');
+    await waitFor('#game-hub');
+    check((await text('#open-lightning')).includes('High score 2'), 'the high score is kept');
 
     if (!mobile) {
       // The system's reduce-motion setting turns every game animation off.

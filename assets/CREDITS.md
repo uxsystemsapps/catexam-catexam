@@ -22,7 +22,13 @@ https://creativecommons.org/publicdomain/zero/1.0/): no attribution is required,
 | `sounds/coin.ogg` | Coin clink with the XP (`handleCoins2.ogg`) | [RPG Audio](https://kenney.nl/assets/rpg-audio) | Kenney (kenney.nl) | CC0 1.0 |
 | `music/map.ogg` | World map music, looping (`Level 1.wav`) | [Retro Game Music Pack](https://opengameart.org/content/5-chiptunes-action) (“5 Action Chiptunes”) | Juhani Junkala | CC0 1.0 (stated in the pack's `INFO.txt`) |
 | `music/boss.ogg` | Boss fight music, looping (`Level 3.wav`) | [Retro Game Music Pack](https://opengameart.org/content/5-chiptunes-action) | Juhani Junkala | CC0 1.0 |
-| `music/lightning.ogg` | Lightning round music (stage 3), looping (`Level 2.wav`) | [Retro Game Music Pack](https://opengameart.org/content/5-chiptunes-action) | Juhani Junkala | CC0 1.0 |
+| `music/lightning.ogg` | Lightning round music, looping (`Level 2.wav`) | [Retro Game Music Pack](https://opengameart.org/content/5-chiptunes-action) | Juhani Junkala | CC0 1.0 |
+| `powerups.png` | Power-ups, 3 tiles of 16×16 px: 50/50 (double axe, tile 118), Ask the Auditor (wizard, tile 84), Patch Tuesday (red potion, tile 115) of `Tilemap/tilemap_packed.png` | [Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) | Kenney (kenney.nl) | CC0 1.0 |
+| `badges.png` | Achievement badges, 15 cells of 18×18 px in the order of `ACHIEVEMENTS` (`src/engine/game.ts`): Pixel Platformer tiles 7, 28, 27, 10, 111, 66, 151, 67 and Tiny Dungeon tiles 104, 102, 90, 92, 116, 96, 101 | [Pixel Platformer](https://kenney.nl/assets/pixel-platformer) and [Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) | Kenney (kenney.nl) | CC0 1.0 |
+| `sounds/powerup.ogg` | A power-up used (`powerUp2.ogg`) | [Digital Audio](https://kenney.nl/assets/digital-audio) | Kenney (kenney.nl) | CC0 1.0 |
+| `sounds/pickup.ogg` | A power-up earned (`threeTone1.ogg`) | [Digital Audio](https://kenney.nl/assets/digital-audio) | Kenney (kenney.nl) | CC0 1.0 |
+| `sounds/achievement.ogg` | Achievement unlocked (`jingles_NES14.ogg`, 8-Bit jingles) | [Music Jingles](https://kenney.nl/assets/music-jingles) | Kenney (kenney.nl) | CC0 1.0 |
+| `sounds/tick.ogg` | Lightning round countdown, last ten seconds (`tick_002.ogg`) | [Interface Sounds](https://kenney.nl/assets/interface-sounds) | Kenney (kenney.nl) | CC0 1.0 |
 
 ## Changes made to the assets
 
@@ -34,6 +40,9 @@ https://creativecommons.org/publicdomain/zero/1.0/): no attribution is required,
   the raised paws.
 - **Icons**: five tiles of the Pixel Platformer pack copied side by side into one sprite sheet.
 - **Map**: Pixel Platformer tiles composed into three 4×2-tile islands and a row of props.
+- **Power-ups and badges**: Tiny Dungeon (16×16) and Pixel Platformer (18×18) tiles copied unchanged side by
+  side into two sprite sheets; the 16×16 badge tiles are centred in 18×18 cells. The medal behind a badge, its
+  grey locked look and the use animations are CSS.
 - **Bosses**: eight Dungeon Crawl tiles copied unchanged side by side into one sprite sheet (the idle breathing,
   hit flash, shake and defeat are CSS animations).
 - **Explosion**: five Pixel Shmup tiles copied side by side into one strip.
