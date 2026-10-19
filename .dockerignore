@@ -1,0 +1,8 @@
+.git
+node_modules
+dist
+build
+release
+www
+android/app/build
+android/.gradle
