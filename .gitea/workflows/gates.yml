@@ -15,6 +15,12 @@ jobs:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
+      - name: cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
       - name: lint (make lint, or npm run lint)
         run: |
           if [ -f Makefile ] && grep -qE '^lint:' Makefile; then
@@ -31,6 +37,12 @@ jobs:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
+      - name: cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
       - name: test (make check, npm test, or pytest)
         run: |
           if [ -f Makefile ] && grep -qE '^check:' Makefile; then
@@ -53,6 +65,12 @@ jobs:
     runs-on: linux
     steps:
       - uses: actions/checkout@v4
+      - name: cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
       - name: smoke (npm run smoke under Xvfb)
         run: |
           apt-get update -qq
@@ -67,6 +85,20 @@ jobs:
     runs-on: linux
     steps:
       - uses: actions/checkout@v4
+      - name: cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      - name: cache Electron and electron-builder downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/electron
+            ~/.cache/electron-builder
+          key: electron-win-${{ hashFiles('package-lock.json') }}
+          restore-keys: electron-win-
       - name: install wine (32-bit too; electron-builder runs the 32-bit NSIS uninstaller stub under wine)
         run: |
           dpkg --add-architecture i386
@@ -101,6 +133,20 @@ jobs:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
+      - name: cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      - name: cache Gradle downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ hashFiles('android/**/*.gradle', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-
       - name: install JDK 21 and the Android SDK (platform 36, build tools 36.0.0)
         run: |
           apt-get update -qq
