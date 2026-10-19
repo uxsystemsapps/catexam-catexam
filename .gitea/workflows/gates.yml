@@ -110,7 +110,9 @@ jobs:
           WINEDEBUG: "-all"
         run: |
           npm ci
-          npm run dist:win -- --publish never
+          # electron-builder fetches NSIS/winCodeSign from GitHub, which sometimes times out here (10 min). One retry;
+          # what was downloaded stays in ~/.cache/electron-builder (cached across runs), and the check below still runs.
+          npm run dist:win -- --publish never || { echo "dist:win failed, retrying once"; npm run dist:win -- --publish never; }
       - name: check installer
         run: |
           ls -l release/*.exe
