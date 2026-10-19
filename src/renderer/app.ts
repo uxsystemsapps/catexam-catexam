@@ -111,10 +111,35 @@ function workspace(navigator: HTMLElement, main: HTMLElement): HTMLElement {
 
 type Tab = 'home' | 'train' | 'history' | 'settings';
 
-/** Bottom navigation of the start and history screens on phones (hidden on the desktop, which has the top buttons). */
+/** Outline icons of the tab bar (24×24 stroke paths): house, graduation cap, clock, gear. */
+const TAB_ICONS: Record<Tab, string[]> = {
+  home: ['M3 10.5 12 3l9 7.5', 'M5 9v12h5v-6h4v6h5V9'],
+  train: ['M2 9l10-5 10 5-10 5z', 'M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5', 'M22 9v6'],
+  history: ['M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z', 'M12 7v5l3 2'],
+  settings: [
+    'M18 12a6 6 0 1 1-12 0 6 6 0 0 1 12 0z',
+    'M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z',
+    'M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1',
+  ],
+};
+
+function tabIcon(id: Tab): SVGSVGElement {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  for (const [k, v] of Object.entries({ viewBox: '0 0 24 24', width: '26', height: '26', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true', focusable: 'false' }))
+    svg.setAttribute(k, v);
+  for (const d of TAB_ICONS[id]) {
+    const path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', d);
+    svg.append(path);
+  }
+  return svg;
+}
+
+/** Bottom navigation of the start and history screens on phones (hidden on the desktop, which has the top buttons). Icons only; the name is the button's label. */
 function tabbar(active: Tab): HTMLElement {
   const tab = (id: Tab, label: string, open: () => void): HTMLElement =>
-    h('button', { id: `tab-${id}`, class: id === active ? 'tab active' : 'tab', 'aria-current': id === active ? 'page' : false, onclick: open }, label);
+    h('button', { id: `tab-${id}`, class: id === active ? 'tab active' : 'tab', 'aria-label': label, title: label, 'aria-current': id === active ? 'page' : false, onclick: open }, tabIcon(id));
   return h(
     'nav',
     { class: 'tabbar', 'aria-label': 'Sections' },
