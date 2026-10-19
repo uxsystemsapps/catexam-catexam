@@ -82,6 +82,12 @@ function registerIpc(): void {
   ipcMain.handle('practice:resume', (_e, id: unknown) => service.resumePractice(id));
   ipcMain.handle('practice:delete-paused', (_e, id: unknown) => service.deletePaused(id));
 
+  ipcMain.handle('game:start', (_e, raw: unknown) => service.startGame(raw));
+  ipcMain.handle('game:answer', (_e, questionId: string, response: number[]) => service.answerGame(questionId, response));
+  ipcMain.handle('game:timeout', (_e, questionId: string) => service.timeoutGame(questionId));
+  ipcMain.handle('game:summary', () => service.gameSummary());
+  ipcMain.handle('game:settings', (_e, raw: unknown) => service.saveGameSettings(raw));
+
   ipcMain.handle('app:quit', () => {
     if (!lockdown?.isLocked) app.quit();
   });

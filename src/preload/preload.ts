@@ -34,6 +34,11 @@ const api: ExamApi = {
   pausePractice: () => ipcRenderer.invoke('practice:pause'),
   resumePractice: (id) => ipcRenderer.invoke('practice:resume', id),
   deletePaused: (id) => ipcRenderer.invoke('practice:delete-paused', id),
+  startGame: (options) => ipcRenderer.invoke('game:start', options),
+  answerGame: (questionId, response) => ipcRenderer.invoke('game:answer', questionId, response),
+  timeoutGame: (questionId) => ipcRenderer.invoke('game:timeout', questionId),
+  gameSummary: () => ipcRenderer.invoke('game:summary'),
+  saveGameSettings: (settings) => ipcRenderer.invoke('game:settings', settings),
   quit: () => ipcRenderer.invoke('app:quit'),
 };
 

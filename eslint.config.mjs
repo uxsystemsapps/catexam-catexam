@@ -9,4 +9,10 @@ export default tseslint.config(
     files: ['scripts/**/*.mjs'],
     languageOptions: { globals: { process: 'readonly', console: 'readonly', setTimeout: 'readonly', clearTimeout: 'readonly' } },
   },
+  {
+    // The renderer scripts are classic scripts sharing one global scope (see src/renderer/index.html); names one
+    // script defines for the other are listed in an `/* exported … */` comment.
+    files: ['src/renderer/*.ts'],
+    languageOptions: { sourceType: 'script' },
+  },
 );

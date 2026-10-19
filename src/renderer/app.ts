@@ -109,12 +109,13 @@ function workspace(navigator: HTMLElement, main: HTMLElement): HTMLElement {
   return h('div', { class: 'workspace' }, navigator, h('div', { class: 'nav-backdrop', onclick: () => setNavOpen(false) }), main);
 }
 
-type Tab = 'home' | 'train' | 'history' | 'settings';
+type Tab = 'home' | 'train' | 'game' | 'history' | 'settings';
 
-/** Outline icons of the tab bar (24×24 stroke paths): house, graduation cap, clock, gear. */
+/** Outline icons of the tab bar (24×24 stroke paths): house, graduation cap, gamepad, clock, gear. */
 const TAB_ICONS: Record<Tab, string[]> = {
   home: ['M3 10.5 12 3l9 7.5', 'M5 9v12h5v-6h4v6h5V9'],
   train: ['M2 9l10-5 10 5-10 5z', 'M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5', 'M22 9v6'],
+  game: ['M7 6h10a5 5 0 0 1 5 5v2a4 4 0 0 1-7 2.6L14 14h-4l-1 1.6A4 4 0 0 1 2 13v-2a5 5 0 0 1 5-5z', 'M7 9v4M5 11h4', 'M15.5 10.5h.01M17.5 12.5h.01'],
   history: ['M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z', 'M12 7v5l3 2'],
   settings: [
     'M18 12a6 6 0 1 1-12 0 6 6 0 0 1 12 0z',
@@ -145,6 +146,7 @@ function tabbar(active: Tab): HTMLElement {
     { class: 'tabbar', 'aria-label': 'Sections' },
     tab('home', 'Home', () => void home()),
     tab('train', 'Train', () => void home('train').then(() => document.getElementById('training-card')?.scrollIntoView({ block: 'start' }))),
+    tab('game', 'Game', () => void gameHub()),
     tab('history', 'History', () => void historyScreen()),
     tab('settings', 'Settings', () => void settingsScreen()),
   );
@@ -465,6 +467,7 @@ async function home(tab: Tab = 'home'): Promise<void> {
           ),
         ),
       ),
+      gameCard(info),
       h(
         'div',
         { class: 'home-grid' },
@@ -692,6 +695,7 @@ async function settingsScreen(): Promise<void> {
   const p = info.profile;
   const { fields, read } = profileFields('settings', p);
   const form = trainingForm(info, 'default', p.training);
+  const game = gameSettingsCard(info.game.settings);
   const danger = (id: string, label: string, title: string, text: string, run: () => Promise<void>): HTMLElement =>
     h('button', {
       id,
@@ -705,6 +709,7 @@ async function settingsScreen(): Promise<void> {
     const training = form.read();
     if (!training) return;
     profile = await api.saveProfile({ ...read(), setupDone: true, training });
+    gameSettings = await api.saveGameSettings(game.read());
     toast('Settings saved.');
     void home();
   };
@@ -745,6 +750,7 @@ async function settingsScreen(): Promise<void> {
         ),
       ),
       h('section', { class: 'card' }, h('h2', {}, 'Training defaults'), h('p', { class: 'small' }, 'Used to fill in the training form and by the quick buttons of the study plan.'), form.node),
+      h('div', { class: 'home-grid' }, game.node, creditsCard()),
     ),
     h(
       'footer',
@@ -1512,17 +1518,17 @@ function feedbackNodes(q: QuestionView, f: PracticeFeedback): Node[] {
   return nodes;
 }
 
-/** Colours the options and adds the per-option notes next to them. */
-function markOptions(q: QuestionView, f: PracticeFeedback): void {
+/** Colours the options of the question shown in `scope` and adds the per-option notes next to them. */
+function markOptions(q: QuestionView, f: PracticeFeedback, scope: ParentNode): void {
   if (q.type === 'ordering') {
-    document.querySelectorAll<HTMLElement>('#practice .drag-item').forEach((li, i) => {
+    scope.querySelectorAll<HTMLElement>('.drag-item').forEach((li, i) => {
       li.draggable = false;
       li.classList.add(f.positions[i] ? 'is-answer' : 'is-wrong');
     });
-    for (const b of document.querySelectorAll<HTMLButtonElement>('#practice .drag-item button')) b.disabled = true;
+    for (const b of scope.querySelectorAll<HTMLButtonElement>('.drag-item button')) b.disabled = true;
     return;
   }
-  document.querySelectorAll('#practice .option').forEach((row, i) => {
+  scope.querySelectorAll('.option').forEach((row, i) => {
     const isAnswer = f.answer.includes(i);
     const chosen = f.response.includes(i);
     row.classList.add(isAnswer ? 'is-answer' : chosen ? 'is-wrong' : 'is-other');
@@ -1579,7 +1585,7 @@ function renderPractice(q: QuestionView, answered: PracticeFeedback | null, ctx:
       input.disabled = true;
     }
     feedback.replaceChildren(...feedbackNodes(q, f));
-    markOptions(q, f);
+    markOptions(q, f, root);
     const next = nextOpen();
     go = h('button', { id: 'practice-next', class: 'primary' }, next ? 'Next question ▶' : 'See summary');
     go.addEventListener('click', () => (next ? void visitPractice(api.gotoPractice(next), ctx) : void practiceSummary()));

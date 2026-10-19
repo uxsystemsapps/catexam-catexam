@@ -1,8 +1,14 @@
+import type { GameAnswer, GameEnd, GameSettings, GameSummary, LevelInfo } from '../engine/game';
 import type { PracticeFeedback, PracticeItemState, PracticeSummary } from '../engine/practice';
 import type { DifficultyFilter, PracticeOptions, PracticeSource, Profile, ProgressSummary } from '../engine/profile';
 import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView, ReviewItem } from '../engine/types';
 
 export type {
+  GameAnswer,
+  GameEnd,
+  GameSettings,
+  GameSummary,
+  LevelInfo,
   PracticeFeedback,
   PracticeItemState,
   PracticeSummary,
@@ -98,6 +104,23 @@ export interface AppInfo {
   paused: PausedTraining[];
   profile: Profile;
   progress: ProgressSummary;
+  game: GameStatus;
+}
+
+/** The player's game progress, as the game screens show it. */
+export interface GameStatus {
+  level: LevelInfo;
+  bestCombo: number;
+  games: number;
+  settings: GameSettings;
+}
+
+export interface GameStart {
+  question: QuestionView;
+  total: number;
+  lives: number;
+  secondsPerQuestion: number;
+  level: LevelInfo;
 }
 
 export interface ExamState {
@@ -184,5 +207,14 @@ export interface ExamApi {
   resumePractice(id: string): Promise<PracticeStart>;
   /** Forgets a paused training session. */
   deletePaused(id: string): Promise<void>;
+  /** Starts a game round with questions chosen as for training. */
+  startGame(options: PracticeOptions): Promise<GameStart>;
+  answerGame(questionId: string, response: number[]): Promise<GameAnswer>;
+  /** The time limit of the current game question ran out (a wrong answer). */
+  timeoutGame(questionId: string): Promise<GameAnswer>;
+  /** Ends the round if it is still running and returns its summary. */
+  gameSummary(): Promise<GameSummary>;
+  /** Saves the game's sound and effect settings (invalid fields fall back to defaults); returns what was saved. */
+  saveGameSettings(settings: GameSettings): Promise<GameSettings>;
   quit(): Promise<void>;
 }

@@ -5,6 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { isCorrect, validateBank } from '../src/engine/bank';
+import { CatexamService } from '../src/core/service';
+import { GameRun, levelInfo, normalizeGameProgress, xpForLevel } from '../src/engine/game';
 import { DOMAINS } from '../src/engine/domains';
 import { estimateAbility, probabilityCorrect } from '../src/engine/irt';
 import { PracticeSession } from '../src/engine/practice';
@@ -529,6 +531,95 @@ describe('question bank folder import', () => {
 
       const missing = await importBankFolder(path.join(tmp, 'nope'));
       assert.ok(missing.error && missing.files.length === 0);
+    } finally {
+      await rm(tmp, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('game mode', () => {
+  /** A question whose answer is option 0; `logits` sets its difficulty band. */
+  const q = (id: string, logits: number, domain: DomainId = 1): Question => ({ id, domain, type: 'single', difficulty: logits, stem: 's', options: ['a', 'b', 'c', 'd'], answer: [0], explanation: `why ${id}` });
+  const play = (run: GameRun, right: boolean) => {
+    const view = run.current() as QuestionView;
+    return run.answer(view.id, right ? [0] : [1]);
+  };
+
+  it('pays more XP for harder questions and doubles, then triples it in a combo', () => {
+    const run = new GameRun([q('E', -1), q('M', 0), q('H', 1), ...Array.from({ length: 12 }, (_, i) => q(`X${i}`, 0))], 0);
+    assert.deepEqual([play(run, true).xpGained, play(run, true).xpGained, play(run, true).xpGained], [10, 20, 30]);
+    play(run, true);
+    const fifth = play(run, true);
+    assert.deepEqual([fifth.combo, fifth.multiplier, fifth.xpGained], [5, 2, 40]);
+    for (let i = 6; i < 10; i++) play(run, true);
+    const tenth = play(run, true);
+    assert.deepEqual([tenth.combo, tenth.multiplier, tenth.xpGained], [10, 3, 60]);
+    const miss = play(run, false);
+    assert.deepEqual([miss.combo, miss.multiplier, miss.xpGained, miss.lives], [0, 1, 0, 2]);
+    assert.equal(play(run, true).xpGained, 20, 'a wrong answer ends the frenzy');
+  });
+
+  it('ends the round when the hearts run out, keeps the explanation, and refuses more answers', () => {
+    const run = new GameRun(Array.from({ length: 6 }, (_, i) => q(`L${i}`, 0)), 0);
+    play(run, false);
+    play(run, false);
+    const last = play(run, false);
+    assert.deepEqual([last.lives, last.end, last.next], [0, 'lives', null]);
+    assert.equal(last.feedback.explanation, 'why L2');
+    assert.equal(run.current(), null);
+    assert.throws(() => run.answer('L3', [0]), /over/);
+    assert.deepEqual(run.summary(), { answered: 3, correct: 0, total: 6, xpEarned: 0, bestCombo: 0, end: 'lives', level: levelInfo(0) });
+  });
+
+  it('clears the round when every question is answered with hearts left; a time-out costs a heart', () => {
+    const run = new GameRun([q('A', 0), q('B', 0)], 0);
+    const view = run.current() as QuestionView;
+    const timedOut = run.timeout(view.id);
+    assert.deepEqual([timedOut.feedback.timedOut, timedOut.lives, timedOut.end], [true, 2, null]);
+    assert.equal(play(run, true).end, 'cleared');
+  });
+
+  it('turns XP into levels and funny ranks, and reports a level-up', () => {
+    assert.deepEqual([levelInfo(0).level, levelInfo(0).rank, levelInfo(99).level, levelInfo(100).level, levelInfo(100).rank], [1, 'Intern', 1, 2, 'Password123 Survivor']);
+    assert.deepEqual(levelInfo(150), { xp: 150, level: 2, rank: 'Password123 Survivor', levelStart: 100, nextLevel: 300 });
+    assert.equal(levelInfo(xpForLevel(16)).rank, 'CISO of Doom');
+    assert.equal(levelInfo(xpForLevel(16) - 1).rank, 'Crypto Wizard');
+    const run = new GameRun([q('H', 1)], 90);
+    const up = play(run, true);
+    assert.deepEqual([up.level.xp, up.level.level, up.levelUp, up.rankUp], [120, 2, true, true]);
+  });
+
+  it('starts with sound off on phones and on on the desktop, and repairs a damaged save', () => {
+    assert.equal(normalizeGameProgress(undefined, 'mobile').settings.sound, false);
+    assert.equal(normalizeGameProgress(undefined, 'desktop').settings.sound, true);
+    assert.deepEqual(normalizeGameProgress({ xp: -5, bestCombo: 3.6, games: 'x', settings: { sound: true, volume: 250, lite: 1 } }, 'mobile'), {
+      xp: 0,
+      bestCombo: 4,
+      games: 0,
+      settings: { sound: true, volume: 100, lite: false },
+    });
+  });
+
+  it('feeds wrong answers to the training retry list and keeps XP between sessions', async () => {
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-game-'));
+    try {
+      await mkdir(path.join(tmp, 'builtin'));
+      const bank = [q('G1', 1, 2), q('G2', 1, 2), q('G3', 1, 2)];
+      await writeFile(path.join(tmp, 'builtin', 'game.json'), JSON.stringify({ name: 'Game', questions: bank }));
+      const host = { version: 't', platform: 'mobile' as const, data: fsDir(path.join(tmp, 'user')), builtin: fsDir(path.join(tmp, 'builtin')), displays: () => 1, onTimeout: () => undefined };
+      const service = await CatexamService.open(host);
+      assert.equal((await service.info()).game.settings.sound, false);
+      const start = await service.startGame({ ...DEFAULT_PROFILE.training, domains: [2], count: 3 });
+      const right = await service.answerGame(start.question.id, [0]);
+      await service.answerGame((right.next as QuestionView).id, [3]);
+      assert.equal(service.gameSummary().end, 'quit');
+
+      const reopened = await CatexamService.open(host);
+      const info = await reopened.info();
+      assert.deepEqual([info.game.level.xp, info.game.bestCombo, info.game.games], [30, 1, 1]);
+      assert.deepEqual([info.progress.seen, info.progress.missed, info.progress.today], [2, 1, 2]);
+      const retry = await reopened.startPractice({ ...DEFAULT_PROFILE.training, domains: [2], source: 'missed' });
+      assert.equal(retry.total, 1, 'the wrong game answer is a question to retry in training');
     } finally {
       await rm(tmp, { recursive: true, force: true });
     }

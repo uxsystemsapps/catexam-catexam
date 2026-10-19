@@ -42,6 +42,20 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   sessions** page (from the training card) lists paused sessions with their progress, and **Resume** reopens
   one on the question where it was left, with its answers and skips. The session ends with accuracy per
   domain and a button to retry the missed questions.
+- **Game mode** (stage 1; no lock): the same question bank as a pixel-art arcade round. Choose domains,
+  difficulty and the rest as in training, then play: a right answer earns XP (10 easy, 20 medium, 30 hard),
+  five in a row start **Encryption Frenzy** (double XP, a growing flame, x2 and then x3 from ten in a row),
+  and a wrong or timed-out answer breaks one of three hearts; the round ends when the hearts or the questions
+  run out, with a funny line, the score and **Retry**. XP fills a level bar and earns ranks (Intern →
+  Password123 Survivor → … → Firewall Whisperer → … → CISO of Doom); XP, best combo and rounds are kept.
+  A pixel cat in a hoodie cheers on a right answer, facepalms on a wrong one and sweats when the timer runs
+  low. Each answer gets a cheeky security joke, and then always the verdict and the bank's explanation;
+  effects never cover it (the level-up moment comes after **Next**). Answers count as training answers:
+  wrong ones join the questions to retry, and they count towards the daily goal. Sound effects (right ding,
+  wrong buzz, combo whoosh, level-up fanfare, coin clink) can be turned off, with a volume; they are **off
+  by default on Android**. **Lite effects** drops particles, shaking and bouncing; when the system asks to
+  reduce motion, nothing animates. Art, font and sounds are CC0 assets listed in `assets/CREDITS.md` and
+  under **Credits** in Profile & settings.
 - **Study plan** on the home screen: countdown to your exam date, today's answers against your daily
   goal, how much of the bank you have practised, your weakest domain (once it has 5 training answers) and
   one-click sessions for missed, bookmarked or new questions.
@@ -51,17 +65,18 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   versions have no saved answers).
 - **Setup wizard** on first start: first and second name, exam date and daily goal, training preferences,
   and appearance. The exam screens use the name from the profile; the home screen has no name box.
-- **Profile & settings**: first and second name, exam date, daily goal, light or dark theme, text size, and
-  the default training settings. Training progress can be reset. Everything is stored in the application's
-  profile folder (on the desktop it is still named `CATExam`, the app's former name):
-  `profile.json`, `progress.json`, `history.json` and `training-history.json`, plus one file
+- **Profile & settings**: first and second name, exam date, daily goal, light or dark theme, text size, the
+  default training settings, the game's sound, volume and lite effects, and the credits of the game assets.
+  Training progress can be reset. Everything is stored in the application's profile folder (on the desktop it
+  is still named `CATExam`, the app's former name): `profile.json`, `progress.json`, `history.json`,
+  `training-history.json` and `game.json` (XP, best combo, game settings), plus one file
   per exam with its answered questions (`history/`) and one per paused training session (`paused/`).
 
 ## Android app
 
 The phone app has every feature of the desktop app, laid out for a touch screen:
 
-- **Navigation**: a bottom tab bar of icons (house: Home, cap: Train, clock: History, gear: Settings; screen
+- **Navigation**: a bottom tab bar of icons (house: Home, cap: Train, gamepad: Game, clock: History, gear: Settings; screen
   readers read the names) on the start and history screens, with the current section marked (Train opens the
   start screen at the training card); the
   Android back button closes a dialog or the question list, then goes back one screen. During the exam it
@@ -138,6 +153,12 @@ so no font is needed). `assets/icon.png` (512 px) is the Windows installer and a
 and favicon use `icon.svg`. The Android launcher icons (`android/app/src/main/res/mipmap-*`, background
 colour in `values/ic_launcher_background.xml`) are PNG renders of the same cat: re-render them from the SVG
 if the cat changes.
+
+Game mode: scoring, hearts, levels and ranks are in `src/engine/game.ts` (built so later stages, such as the
+world map, bosses, power-ups and achievements, can build on `GameRun` and `GameProgress`); its screens and
+effects are in `src/renderer/game.ts`, a second renderer script loaded before `app.js` that shares its global
+scope. The game's art, font and sounds are in `assets/game/` (copied next to the renderer by the build) and
+their sources and licences in `assets/CREDITS.md`; add a new asset to both that file and `GAME_CREDITS`.
 
 The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. The
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the

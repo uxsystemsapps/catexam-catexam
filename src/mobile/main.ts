@@ -154,6 +154,11 @@ const api: ExamApi = {
   pausePractice: () => call((s) => s.pausePractice()),
   resumePractice: (id) => call((s) => s.resumePractice(id)),
   deletePaused: (id) => call((s) => s.deletePaused(id)),
+  startGame: (options) => call((s) => s.startGame(options)),
+  answerGame: (questionId, response) => call((s) => s.answerGame(questionId, response)),
+  timeoutGame: (questionId) => call((s) => s.timeoutGame(questionId)),
+  gameSummary: () => call((s) => s.gameSummary()),
+  saveGameSettings: (settings) => call((s) => s.saveGameSettings(settings)),
   quit: async () => {
     if (native && !locked) await App.exitApp();
   },

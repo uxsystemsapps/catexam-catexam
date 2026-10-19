@@ -16,8 +16,10 @@ await build({
   logLevel: 'warning',
 });
 cpSync('dist/src/renderer/app.js', 'www/app.js');
+cpSync('dist/src/renderer/game.js', 'www/game.js');
 cpSync('dist/src/renderer/styles.css', 'www/styles.css');
 cpSync('dist/src/renderer/icon.svg', 'www/icon.svg');
+cpSync('dist/src/renderer/game', 'www/game', { recursive: true });
 cpSync('src/mobile/index.html', 'www/index.html');
 const banks = readdirSync('questions').filter((n) => n.endsWith('.json')).sort();
 for (const name of banks) cpSync(`questions/${name}`, `www/questions/${name}`);

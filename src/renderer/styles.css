@@ -270,8 +270,8 @@ html[data-theme='dark'] .small, html[data-theme='dark'] .stat-label, html[data-t
 html[data-theme='dark'] .field, html[data-theme='dark'] .label, html[data-theme='dark'] .progress-label, html[data-theme='dark'] .keys,
 html[data-theme='dark'] .empty, html[data-theme='dark'] .verdict-meta, html[data-theme='dark'] .option-note, html[data-theme='dark'] .hint { color: #a9b3c1; }
 html[data-theme='dark'] .bottombar { background: #1a1f28; border-color: #2c3442; }
-html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle) { background: #262d38; color: #e4e8ee; border-color: #4a5668; }
-html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):hover:not(:disabled) { background: #2f3846; }
+html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):not(.px-button) { background: #262d38; color: #e4e8ee; border-color: #4a5668; }
+html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):not(.px-button):hover:not(:disabled) { background: #2f3846; }
 html[data-theme='dark'] input[type='text'], html[data-theme='dark'] input[type='number'], html[data-theme='dark'] input[type='date'],
 html[data-theme='dark'] select { background: #14181f; color: #e4e8ee; border-color: #4a5668; color-scheme: dark; }
 html[data-theme='dark'] .field input { color: #e4e8ee; }
@@ -409,4 +409,205 @@ html[data-theme='dark'] button.nav-toggle { background: transparent; color: #fff
   button.nav-toggle:hover:not(:disabled) { background: rgba(255, 255, 255, 0.12); }
   button.tab:hover:not(:disabled) { background: transparent; }
   html[data-theme='dark'] .option { border-color: #2c3442; }
+}
+
+/* Game mode (src/renderer/game.ts): pixel art on a dark arcade background, parchment panels for the questions so
+   the text stays easy to read, in the light and the dark theme alike. Art in game/ (assets/game, see
+   assets/CREDITS.md). `html[data-fx]` is `full`, `lite` (no particles, shaking or bouncing) or `still` (the
+   system asks to reduce motion: nothing animates). Only transforms and opacity animate, for mid-range phones. */
+@font-face { font-family: 'Kenney Mini Square'; src: url('game/kenney-mini-square.ttf') format('truetype'); font-display: swap; }
+.game, .game-hud, .levelup, .game-card { --px: 2; --icon: 36px; --ink: #231f3a; --paper: #f7f1e3; --night: #1f1b3a; --gold: #ffd23f; }
+.px-title, .px-text, .px-big, .px-button, .game-hud, .fx-float, .fx-banner, .rank-badge, .level-line, .xp-text, .combo {
+  font-family: 'Kenney Mini Square', 'Courier New', monospace; letter-spacing: 0.04em;
+}
+.px-icon, .cat, .flame { image-rendering: pixelated; background-repeat: no-repeat; }
+
+/* Pixel buttons: square, hard shadow, a bounce on hover and a press on tap. */
+button.px-button {
+  background: var(--gold, #ffd23f); color: #231f3a; border: 0; border-radius: 0; padding: 10px 18px; font-size: 18px;
+  box-shadow: 0 -3px 0 0 #231f3a, 0 3px 0 0 #231f3a, -3px 0 0 0 #231f3a, 3px 0 0 0 #231f3a, inset 0 -4px 0 0 #c99a1e;
+  margin: 3px; transition: transform 0.08s;
+}
+button.px-button:hover:not(:disabled) { background: #ffe066; animation: px-bounce 0.45s ease-out; }
+button.px-button:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 -3px 0 0 #231f3a, 0 3px 0 0 #231f3a, -3px 0 0 0 #231f3a, 3px 0 0 0 #231f3a; }
+button.px-button.ghosted { background: #4a4380; color: #fff; box-shadow: 0 -3px 0 0 #0d0b1e, 0 3px 0 0 #0d0b1e, -3px 0 0 0 #0d0b1e, 3px 0 0 0 #0d0b1e, inset 0 -4px 0 0 #332d63; }
+button.px-button.ghosted:hover:not(:disabled) { background: #5a52a0; }
+button.px-button.mini-px { font-size: 14px; padding: 4px 10px; }
+@keyframes px-bounce { 0% { transform: translateY(0); } 30% { transform: translateY(-4px); } 60% { transform: translateY(1px); } 100% { transform: translateY(0); } }
+
+/* Screens */
+main.game { background: var(--night) repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.025) 3px 4px); color: #f4f1ff; animation: screen-in 0.3s ease-out; }
+main.page.game { display: flex; flex-direction: column; gap: 20px; }
+main.question.game > * { max-width: 900px; }
+@keyframes screen-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.topbar.game-top, .game-hud { background: #16132b; border-bottom: 4px solid #0d0b1e; color: #fff; }
+footer.bottombar.game-bar { background: #16132b; border-top: 4px solid #0d0b1e; padding: 10px 16px; }
+.px-title { margin: 0; font-size: 34px; color: var(--gold); text-shadow: 3px 3px 0 #0d0b1e; font-weight: normal; }
+.px-title.small-title { font-size: 22px; color: var(--ink); text-shadow: none; }
+.px-help { line-height: 1.5; font-size: 14px; }
+.px-panel {
+  background: var(--paper); color: var(--ink); padding: 16px 20px; margin: 4px;
+  box-shadow: 0 -4px 0 0 #0d0b1e, 0 4px 0 0 #0d0b1e, -4px 0 0 0 #0d0b1e, 4px 0 0 0 #0d0b1e, inset 0 -5px 0 0 #e2d6b8;
+}
+.game-hero { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; background: #2c2657; color: #fff; box-shadow: 0 -4px 0 0 #0d0b1e, 0 4px 0 0 #0d0b1e, -4px 0 0 0 #0d0b1e, 4px 0 0 0 #0d0b1e, inset 0 -5px 0 0 #221d45; }
+.game-hero-text { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 12px; }
+
+/* The training form inside a parchment panel: same colours in both themes. */
+.game .px-panel .field, .game .px-panel .label, .game .px-panel .small, .game .px-panel .chip-count, .game .px-panel .check, .game .px-panel .field-hint { color: #4a4466; }
+.game .px-panel .chip-num { color: var(--ink); }
+.game .px-panel .chip { border-color: #cbbf9f; background: #fffaf0; }
+.game .px-panel .chip:has(input:checked) { background: #ffe9a8; border-color: var(--ink); }
+.game .px-panel select, .game .px-panel input[type='number'] { background: #fff; color: var(--ink); border-color: #9a8f74; color-scheme: light; }
+.game .px-panel button.mini { background: #fff; color: var(--ink); border-color: #9a8f74; }
+
+/* Hoodie cat: a 72×64 sprite sheet with the poses idle, blink, cheer, facepalm and sweat side by side. */
+.cat {
+  flex: none; width: calc(72px * var(--px)); height: calc(64px * var(--px));
+  background-image: url('game/cat.png'); background-size: calc(360px * var(--px)) calc(64px * var(--px));
+}
+.cat[data-pose='idle'] { animation: cat-blink 4s step-end infinite, cat-bob 1.2s steps(2) infinite; }
+.cat[data-pose='cheer'] { background-position-x: calc(-144px * var(--px)); animation: cat-jump 0.5s ease-out 2; }
+.cat[data-pose='facepalm'] { background-position-x: calc(-216px * var(--px)); animation: cat-droop 0.4s ease-out forwards; }
+.cat[data-pose='sweat'] { background-position-x: calc(-288px * var(--px)); animation: cat-jitter 0.24s steps(2) infinite; }
+@keyframes cat-blink { 0%, 100% { background-position-x: 0; } 93% { background-position-x: calc(-72px * var(--px)); } 97% { background-position-x: 0; } }
+@keyframes cat-bob { 0% { transform: translateY(0); } 50% { transform: translateY(calc(-1px * var(--px))); } }
+@keyframes cat-jump { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-14px); } }
+@keyframes cat-droop { to { transform: translateY(4px) rotate(-3deg); } }
+@keyframes cat-jitter { 0% { transform: translateX(-1px); } 50% { transform: translateX(1px); } }
+
+/* Hearts, gem and coin: 18×18 tiles side by side. */
+.px-icon { display: inline-block; width: var(--icon); height: var(--icon); background-image: url('game/icons.png'); background-size: calc(var(--icon) * 5) var(--icon); vertical-align: middle; }
+.px-icon.heart { background-position-x: 0; }
+.px-icon.heart-empty { background-position-x: calc(var(--icon) * -2); }
+.px-icon.gem { background-position-x: calc(var(--icon) * -3); }
+.px-icon.coin { background-position-x: calc(var(--icon) * -4); }
+.px-icon.breaking { animation: heart-break 0.7s steps(1) forwards; }
+@keyframes heart-break {
+  0% { background-position-x: 0; transform: scale(1.25); }
+  25% { background-position-x: calc(var(--icon) * -1); transform: translateX(-3px) scale(1.2); }
+  50% { background-position-x: calc(var(--icon) * -1); transform: translateX(3px) scale(1.1); }
+  75%, 100% { background-position-x: calc(var(--icon) * -2); transform: none; }
+}
+.hearts { display: inline-flex; gap: 2px; }
+
+/* Level, XP bar and rank badge */
+.level-bar { min-width: 180px; }
+.level-line { display: flex; gap: 10px; align-items: baseline; font-size: 16px; }
+.level-num { color: var(--gold); }
+.rank { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.xp-track { height: 12px; background: #0d0b1e; border: 2px solid #0d0b1e; margin-top: 4px; }
+.xp-fill { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, #4be37a 0 6px, #34c763 6px 8px); transition: width 0.6s ease-out; }
+.xp-text { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+.game-card .level-line, .game .px-panel .level-line { color: inherit; }
+.rank-badge {
+  display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 6px 14px 6px 8px; background: #4a4380; color: #fff;
+  box-shadow: 0 -3px 0 0 #0d0b1e, 0 3px 0 0 #0d0b1e, -3px 0 0 0 #0d0b1e, 3px 0 0 0 #0d0b1e, inset 0 -4px 0 0 #332d63; margin: 3px;
+}
+.badge-level { color: var(--gold); font-size: 20px; }
+.badge-rank { font-size: 16px; }
+
+/* Combo meter and its flame (three 32×32 frames) */
+.combo { display: inline-flex; align-items: flex-end; gap: 6px; font-size: 15px; white-space: nowrap; }
+.combo-mult { background: #e8433f; color: #fff; padding: 2px 6px; font-size: 16px; }
+.combo.tier-0 { opacity: 0.6; }
+.flame { --f: 24px; width: var(--f); height: var(--f); background-image: url('game/flame.png'); background-size: calc(var(--f) * 3) var(--f); animation: flame 0.45s steps(3) infinite; }
+.combo.tier-2 .flame { --f: 32px; }
+.combo.tier-3 .flame { --f: 44px; }
+.combo.tier-3 .combo-mult { background: #b12ad6; }
+@keyframes flame { from { background-position-x: 0; } to { background-position-x: calc(var(--f) * -3); } }
+
+/* Playing */
+.game-hud { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding: 8px 16px; animation: screen-in 0.3s ease-out; }
+.game-hud .level-bar { flex: 1; max-width: 360px; }
+.hud-right { margin-left: auto; display: flex; align-items: center; gap: 14px; white-space: nowrap; }
+#game-time-left.low { color: #ff8a80; }
+.game-stage { display: flex; align-items: flex-end; gap: 16px; min-height: calc(64px * var(--px)); }
+.bubble {
+  position: relative; margin: 0 0 16px; padding: 10px 14px; background: #fff; color: var(--ink); font-weight: bold; line-height: 1.4;
+  box-shadow: 0 -3px 0 0 #0d0b1e, 0 3px 0 0 #0d0b1e, -3px 0 0 0 #0d0b1e, 3px 0 0 0 #0d0b1e; animation: screen-in 0.25s ease-out;
+}
+.bubble.good { background: #dff7e4; }
+.bubble.bad { background: #ffe1dc; }
+.q-panel { margin-top: 12px; }
+.game .q-panel .stem { margin-top: 0; }
+.game .q-panel .option { border: 2px solid #d8ccae; background: #fffaf0; color: var(--ink); }
+.game .q-panel .option:hover { border-color: var(--ink); }
+.game .q-panel .option:has(input:checked) { background: #ffe9a8; border-color: var(--ink); }
+.game .q-panel .option.is-answer, .game .q-panel .drag-item.is-answer { background: #d9f5df; border-color: #2e8b47; animation: glow 0.8s ease-out 2; }
+.game .q-panel .option.is-wrong, .game .q-panel .drag-item.is-wrong { background: #fde2df; border-color: #b52a2a; }
+.game .q-panel .drag-item { background: #fffaf0; color: var(--ink); border-color: #d8ccae; }
+.game .q-panel .explanation { background: #fff; color: var(--ink); border-left-color: #4a4380; }
+.game .q-panel .verdict-meta, .game .q-panel .option-note, .game .q-panel .hint { color: #4a4466; }
+.game .q-panel .pass { color: #16692b; }
+.game .q-panel .fail { color: #a11b1b; }
+@keyframes glow { 0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0.9); } 100% { box-shadow: 0 0 0 10px rgba(255, 210, 63, 0); } }
+/* Up and down only: a sideways shake would make the page scroll sideways on a phone for a moment. */
+.game.shake { animation: shake 0.35s steps(6); }
+@keyframes shake { 0%, 100% { transform: none; } 20% { transform: translateY(-6px); } 40% { transform: translateY(6px); } 60% { transform: translateY(-4px); } 80% { transform: translateY(3px); } }
+
+/* Effects layer: above everything, never takes the pointer. */
+.fx-layer { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 30; }
+.fx-bit { position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; animation: fx-fly 0.8s ease-out forwards; }
+.fx-bit.confetti { width: 10px; height: 6px; animation-duration: 1.4s; }
+.fx-bit.c0 { background: #ffd23f; } .fx-bit.c1 { background: #5be0ff; } .fx-bit.c2 { background: #ff6fae; } .fx-bit.c3 { background: #4be37a; } .fx-bit.c4 { background: #fff; }
+@keyframes fx-fly { to { transform: translate(var(--dx), var(--dy)) rotate(200deg); opacity: 0; } }
+.fx-float { position: absolute; transform: translate(-50%, -50%); font-size: 26px; color: var(--gold, #ffd23f); text-shadow: 2px 2px 0 #0d0b1e, -2px -2px 0 #0d0b1e, 2px -2px 0 #0d0b1e, -2px 2px 0 #0d0b1e; animation: fx-rise 1.2s ease-out forwards; white-space: nowrap; }
+@keyframes fx-rise { to { transform: translate(-50%, -260%); opacity: 0; } }
+.fx-banner {
+  position: absolute; left: 50%; top: 28%; transform: translate(-50%, -50%); max-width: 92vw; text-align: center; font-size: 28px; color: #fff;
+  background: #e8433f; padding: 12px 18px; box-shadow: 0 -4px 0 0 #0d0b1e, 0 4px 0 0 #0d0b1e, -4px 0 0 0 #0d0b1e, 4px 0 0 0 #0d0b1e; animation: fx-banner 1.6s ease-out forwards;
+}
+@keyframes fx-banner { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; } 15% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } 25%, 80% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -80%); opacity: 0; } }
+
+/* Level up and game over */
+.levelup {
+  position: fixed; inset: 0; z-index: 25; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 20px; text-align: center;
+  background: radial-gradient(circle, #3a3175 0%, #1f1b3a 70%); color: #fff; animation: screen-in 0.3s ease-out;
+}
+.levelup-title { font-size: 46px; animation: px-bounce 0.8s ease-out 2; }
+.levelup .rank-badge { align-self: center; max-width: 100%; padding: 10px 18px 10px 12px; margin: 10px; }
+.levelup .badge-level { font-size: 28px; }
+.levelup .badge-rank { font-size: 22px; }
+.levelup-rank { font-size: 20px; margin: 0; }
+.game-over { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.game-over .px-title { text-shadow: 3px 3px 0 #c99a1e; color: #e8433f; }
+.game-over .level-bar { width: 100%; max-width: 420px; text-align: left; }
+.game-over .xp-track { background: #3a3460; }
+.game-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; max-width: 520px; }
+.game-stats > div { display: flex; flex-direction: column; align-items: center; background: #fff; padding: 8px; font-size: 13px; }
+.px-big { font-size: 26px; }
+
+/* Start screen card and credits */
+.game-card { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; --px: 1.25; }
+.game-card-text { flex: 1; min-width: 220px; }
+.game-card .xp-track { background: #3a3460; border-color: #3a3460; }
+.game-card .level-num { color: #a8741a; }
+.credits { margin: 6px 0; padding-left: 18px; font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+
+/* Fewer or no effects */
+html[data-fx='lite'] button.px-button:hover:not(:disabled), html[data-fx='lite'] .game.shake, html[data-fx='lite'] .cat, html[data-fx='lite'] .levelup-title { animation: none; }
+html[data-fx='still'] .game, html[data-fx='still'] .game *, html[data-fx='still'] .game-hud, html[data-fx='still'] .game-hud *,
+html[data-fx='still'] .levelup, html[data-fx='still'] .levelup *, html[data-fx='still'] .fx-layer *, html[data-fx='still'] .px-button {
+  animation: none !important; transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .game, .game *, .game-hud, .game-hud *, .levelup, .levelup *, .fx-layer *, .game-card *, .px-button { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 760px) {
+  .game, .game-hud, .levelup { --px: 1.25; --icon: 28px; }
+  .game-hud { gap: 6px 12px; padding: 6px 10px; }
+  .game-hud .level-bar { order: 3; flex: 1 1 100%; max-width: none; min-width: 0; }
+  .hud-right { gap: 8px; }
+  .level-line { font-size: 14px; }
+  .px-title { font-size: 26px; }
+  .levelup-title { font-size: 34px; }
+  .game-stage { gap: 10px; }
+  .bubble { font-size: 15px; margin-bottom: 8px; }
+  .px-panel { padding: 12px; }
+  .q-panel { margin-top: 8px; }
+  footer.bottombar.game-bar { padding: 8px 10px; }
+  footer.bottombar.game-bar > button { flex: 1; min-height: 48px; padding: 8px; }
+  .game-stats { gap: 6px; }
+  .px-big { font-size: 22px; }
 }

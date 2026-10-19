@@ -22,6 +22,12 @@ declare global {
   type BankImportSummary = Api.BankImportSummary;
   type ReviewItem = Api.ReviewItem;
   type PausedTraining = Api.PausedTraining;
+  type GameStart = Api.GameStart;
+  type GameAnswer = Api.GameAnswer;
+  type GameSummary = Api.GameSummary;
+  type GameSettings = Api.GameSettings;
+  type GameStatus = Api.GameStatus;
+  type LevelInfo = Api.LevelInfo;
   interface Window {
     examApi: ExamApi;
   }
