@@ -119,7 +119,7 @@ function tabbar(active: Tab): HTMLElement {
     'nav',
     { class: 'tabbar', 'aria-label': 'Sections' },
     tab('home', 'Home', () => void home()),
-    tab('train', 'Train', () => void home().then(() => document.getElementById('training-card')?.scrollIntoView({ block: 'start' }))),
+    tab('train', 'Train', () => void home('train').then(() => document.getElementById('training-card')?.scrollIntoView({ block: 'start' }))),
     tab('history', 'History', () => void historyScreen()),
     tab('settings', 'Settings', () => void settingsScreen()),
   );
@@ -248,7 +248,8 @@ function daysUntil(date: string): number {
   return Math.round((new Date(y, m - 1, d).getTime() - new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) / 86_400_000);
 }
 
-async function home(): Promise<void> {
+/** Start screen; `tab` is the bottom tab marked as current (Train shows this screen scrolled to the training card). */
+async function home(tab: Tab = 'home'): Promise<void> {
   const info = await api.info();
   profile = info.profile;
   applyAppearance(profile);
@@ -279,7 +280,7 @@ async function home(): Promise<void> {
     h(
       'header',
       { class: 'topbar' },
-      h('span', { class: 'brand' }, h('img', { class: 'brand-logo', src: 'icon.svg', alt: '' }), 'CATExam', h('span', { class: 'brand-sub' }, 'CISSP Computerized Adaptive Testing simulator')),
+      h('span', { class: 'brand' }, h('img', { class: 'brand-logo', src: 'icon.svg', alt: '' }), 'CAT CISSP Exams', h('span', { class: 'brand-sub' }, 'CISSP Computerized Adaptive Testing simulator')),
       h(
         'span',
         { class: 'row top-actions' },
@@ -480,7 +481,7 @@ async function home(): Promise<void> {
         ),
       ),
     ),
-    tabbar('home'),
+    tabbar(tab),
   );
 }
 
@@ -683,7 +684,7 @@ async function settingsScreen(): Promise<void> {
     void home();
   };
   show(
-    h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Profile & settings'), h('span', {}, `CATExam ${info.version}`)),
+    h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Profile & settings'), h('span', {}, `CAT CISSP Exams ${info.version}`)),
     h(
       'main',
       { class: 'page panel', id: 'settings' },
@@ -735,7 +736,7 @@ function setupWizard(info: AppInfo): void {
   const { fields, read } = profileFields('setup', profile);
   const form = trainingForm(info, 'setup', profile.training);
   const steps: { title: string; text: string; body: HTMLElement }[] = [
-    { title: 'Welcome to CATExam', text: 'A few questions to set the app up for you. You can change every answer later in Profile & settings. Your name appears on the exam screens and in your history.', body: h('div', { class: 'form-grid cols-2' }, fields.firstName, fields.lastName) },
+    { title: 'Welcome to CAT CISSP Exams', text: 'A few questions to set the app up for you. You can change every answer later in Profile & settings. Your name appears on the exam screens and in your history.', body: h('div', { class: 'form-grid cols-2' }, fields.firstName, fields.lastName) },
     { title: 'Your exam plan', text: 'When is your CISSP exam, and how many training questions do you want to answer each day? Both are optional.', body: h('div', { class: 'form-grid cols-2' }, fields.examDate, fields.goal) },
     { title: 'Training preferences', text: 'What your training sessions ask by default: domains, question types, length, difficulty, order and timer.', body: form.node },
     { title: 'Appearance', text: 'How the app looks. Large text applies once you finish.', body: h('div', { class: 'form-grid cols-2' }, fields.theme, fields.textSize) },
@@ -756,7 +757,7 @@ function setupWizard(info: AppInfo): void {
   const render = (): void => {
     const last = step === steps.length - 1;
     show(
-      h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Set up CATExam'), h('span', { id: 'setup-step' }, `Step ${step + 1} of ${steps.length}`)),
+      h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Set up CAT CISSP Exams'), h('span', { id: 'setup-step' }, `Step ${step + 1} of ${steps.length}`)),
       h(
         'main',
         { class: 'page panel', id: 'setup' },
@@ -853,7 +854,7 @@ async function nda(candidate: string): Promise<void> {
     h(
       'footer',
       { class: 'bottombar' },
-      h('button', { id: 'nda-decline', onclick: () => { clearInterval(timer); void api.unlock().then(home); } }, 'I do not accept'),
+      h('button', { id: 'nda-decline', onclick: () => { clearInterval(timer); void api.unlock().then(() => home()); } }, 'I do not accept'),
       h('button', { id: 'nda-accept', class: 'primary', onclick: () => { clearInterval(timer); tutorial(candidate); } }, 'I accept'),
     ),
   );

@@ -1,6 +1,6 @@
 {
   "appId": "com.uxsystems.catexam",
-  "appName": "CATExam",
+  "appName": "CAT CISSP Exams",
   "webDir": "www",
   "android": {
     "allowMixedContent": false,

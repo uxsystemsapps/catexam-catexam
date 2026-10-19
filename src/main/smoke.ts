@@ -122,6 +122,11 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
         'phone: bottom tab bar instead of the top buttons, no Quit button',
       );
       check((await heights('#home button')).every((hgt) => hgt >= 36), 'phone: buttons are large enough to tap');
+      await click('#tab-train');
+      await waitFor('#tab-train.active');
+      check(!(await js<boolean>(`!!document.querySelector('#tab-home.active')`)), 'phone: Train tab is marked as the current section');
+      await click('#tab-home');
+      await waitFor('#tab-home.active');
     }
 
     // Profile & settings: saved, applied and used as training defaults.

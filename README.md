@@ -1,6 +1,6 @@
-![CATExam](assets/logo.png)
+![CAT CISSP Exams](assets/logo.png)
 
-# CATExam
+# CAT CISSP Exams
 
 Simulator of the CISSP Computerized Adaptive Testing (CAT) exam, for training candidates: a Windows desktop app
 and an Android phone app with the same features. Electron + TypeScript; the Android app is built with Capacitor.
@@ -53,14 +53,16 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   and appearance. The exam screens use the name from the profile; the home screen has no name box.
 - **Profile & settings**: first and second name, exam date, daily goal, light or dark theme, text size, and
   the default training settings. Training progress can be reset. Everything is stored in the application's
-  profile folder: `profile.json`, `progress.json`, `history.json` and `training-history.json`, plus one file
+  profile folder (on the desktop it is still named `CATExam`, the app's former name):
+  `profile.json`, `progress.json`, `history.json` and `training-history.json`, plus one file
   per exam with its answered questions (`history/`) and one per paused training session (`paused/`).
 
 ## Android app
 
 The phone app has every feature of the desktop app, laid out for a touch screen:
 
-- **Navigation**: a bottom tab bar (Home, Train, History, Settings) on the start and history screens; the
+- **Navigation**: a bottom tab bar (Home, Train, History, Settings) on the start and history screens, with the
+  current section marked (Train opens the start screen at the training card); the
   Android back button closes a dialog or the question list, then goes back one screen. During the exam it
   does nothing (no going back); during training it offers to pause or stop the session.
 - **Questions**: large options to tap; touch and hold an option to strike it out; ordering items are dragged by
