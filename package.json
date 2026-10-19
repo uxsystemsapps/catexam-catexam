@@ -1,6 +1,6 @@
 {
   "name": "catexam",
-  "productName": "CATExam",
+  "productName": "CAT CISSP Exams",
   "version": "0.1.0",
   "description": "CISSP computerized adaptive testing (CAT) exam simulator for Windows and Android",
   "main": "dist/src/main/main.js",
@@ -18,7 +18,7 @@
   },
   "build": {
     "appId": "com.uxsystems.catexam",
-    "productName": "CATExam",
+    "productName": "CAT CISSP Exams",
     "directories": {
       "output": "release"
     },

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">CATExam</string>
-    <string name="title_activity_main">CATExam</string>
+    <string name="app_name">CAT CISSP Exams</string>
+    <string name="title_activity_main">CAT CISSP Exams</string>
     <string name="package_name">com.uxsystems.catexam</string>
     <string name="custom_url_scheme">com.uxsystems.catexam</string>
 </resources>

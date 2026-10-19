@@ -14,7 +14,8 @@ import { runSmoke } from './smoke';
 const SMOKE = process.env.CATEXAM_SMOKE;
 const MOBILE_SMOKE = SMOKE === 'mobile';
 const DEV = process.env.CATEXAM_DEV === '1';
-if (SMOKE) app.setPath('userData', mkdtempSync(path.join(os.tmpdir(), 'catexam-smoke-')));
+// The profile folder keeps the app's former name, CATExam, so renaming the app does not lose existing profiles.
+app.setPath('userData', SMOKE ? mkdtempSync(path.join(os.tmpdir(), 'catexam-smoke-')) : path.join(app.getPath('appData'), 'CATExam'));
 // The Android app's pages are served from a secure origin, as in the Android WebView (fetch and IndexedDB need one).
 if (MOBILE_SMOKE) protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { standard: true, secure: true, supportFetchAPI: true } }]);
 
@@ -92,7 +93,7 @@ async function createWindow(): Promise<void> {
     height: 800,
     minWidth: 1024,
     minHeight: 700,
-    title: 'CATExam – CISSP CAT Simulator',
+    title: 'CAT CISSP Exams – CISSP CAT Simulator',
     backgroundColor: '#ffffff',
     autoHideMenuBar: true,
     show: false,
