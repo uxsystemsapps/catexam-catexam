@@ -42,14 +42,18 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   sessions** page (from the training card) lists paused sessions with their progress, and **Resume** reopens
   one on the question where it was left, with its answers and skips. The session ends with accuracy per
   domain and a button to retry the missed questions.
-- **Game mode** (stage 1; no lock): the same question bank as a pixel-art arcade round. Choose domains,
-  difficulty and the rest as in training, then play: a right answer earns XP (10 easy, 20 medium, 30 hard),
-  five in a row start **Encryption Frenzy** (double XP, a growing flame, x2 and then x3 from ten in a row),
-  and a wrong or timed-out answer breaks one of three hearts; the round ends when the hearts or the questions
-  run out, with a funny line, the score and **Retry**. XP fills a level bar and earns ranks (Intern →
+- **Game mode** (stage 1; no lock): the same question bank as a pixel-art arcade round. The **world map**
+  shows one island per domain (with your accuracy as stars): tap islands to plant your flag on the domains to
+  play, pick difficulty, round length (5–30), timer and pool (whole bank or your mistakes) with pixel buttons,
+  and press start. A right answer earns XP (10 easy, 20 medium, 30 hard),
+  five in a row start **Encryption Frenzy** (double XP, a growing flame, glowing screen edges, x2 and then x3
+  from ten in a row), and a wrong or timed-out answer breaks one of three hearts; the round ends when the hearts
+  or the questions run out, with a funny line, the score and **Retry**. XP fills a level bar and earns ranks (Intern →
   Password123 Survivor → … → Firewall Whisperer → … → CISO of Doom); XP, best combo and rounds are kept.
-  A pixel cat in a hoodie cheers on a right answer, facepalms on a wrong one and sweats when the timer runs
-  low. Each answer gets a cheeky security joke, and then always the verdict and the bank's explanation;
+  A pixel cat in a hoodie cheers on a right answer, facepalms and then cries on a wrong one, sweats when the
+  timer runs low and cries at game over. Effects: READY/GO, coins flying into the XP bar, sparks, streak
+  shouts, a red flash and a falling heart, drop-in titles and a level-up screen with spinning rays.
+  Each answer gets a cheeky security joke, and then always the verdict and the bank's explanation;
   effects never cover it (the level-up moment comes after **Next**). Answers count as training answers:
   wrong ones join the questions to retry, and they count towards the daily goal. Sound effects (right ding,
   wrong buzz, combo whoosh, level-up fanfare, coin clink) can be turned off, with a volume; they are **off

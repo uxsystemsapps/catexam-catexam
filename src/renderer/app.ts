@@ -143,7 +143,7 @@ function tabbar(active: Tab): HTMLElement {
     h('button', { id: `tab-${id}`, class: id === active ? 'tab active' : 'tab', 'aria-label': label, title: label, 'aria-current': id === active ? 'page' : false, onclick: open }, tabIcon(id));
   return h(
     'nav',
-    { class: 'tabbar', 'aria-label': 'Sections' },
+    { class: active === 'game' ? 'tabbar game-tabs' : 'tabbar', 'aria-label': 'Sections' },
     tab('home', 'Home', () => void home()),
     tab('train', 'Train', () => void home('train').then(() => document.getElementById('training-card')?.scrollIntoView({ block: 'start' }))),
     tab('game', 'Game', () => void gameHub()),

@@ -13,8 +13,8 @@ const GAME_ASSETS = 'game/';
 
 /** Assets of the game and where they come from; listed in Profile & settings and in assets/CREDITS.md. */
 const GAME_CREDITS: { what: string; source: string; author: string; licence: string; url: string }[] = [
-  { what: 'Hoodie cat mascot (adapted: hoodie, padlock print and five poses added)', source: 'Pixel cat', author: 'scofanogd', licence: 'CC0 1.0', url: 'https://opengameart.org/content/pixel-cat' },
-  { what: 'Hearts, gem and coin', source: 'Pixel Platformer', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-platformer' },
+  { what: 'Hoodie cat mascot (adapted: hoodie, padlock print, cheering, facepalm, sweating and crying frames added)', source: 'Pixel cat', author: 'scofanogd', licence: 'CC0 1.0', url: 'https://opengameart.org/content/pixel-cat' },
+  { what: 'Hearts, gem, coin, and the islands and props of the world map', source: 'Pixel Platformer', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-platformer' },
   { what: 'Combo flame', source: 'Simple animate fire', author: 'XenosNS', licence: 'CC0 1.0', url: 'https://opengameart.org/content/simple-animate-fire' },
   { what: 'Pixel font (Kenney Mini Square)', source: 'Kenney Fonts', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/kenney-fonts' },
   { what: 'Right-answer ding and wrong-answer buzz', source: 'Interface Sounds', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/interface-sounds' },
@@ -145,9 +145,73 @@ function centre(el: Element): { x: number; y: number } {
   return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
 }
 
+/** Shouts for streaks that do not start a frenzy (5 and 10 have their own banners). */
+const STREAK_SHOUTS: Record<number, string> = { 3: 'NICE!', 7: 'ON FIRE!', 15: 'UNSTOPPABLE!', 20: 'ROOT ACCESS!' };
+
+/** Coins flying from `from` into `to` (the XP bar), which pulses as they land. */
+function coinsTo(from: Element, to: Element, n: number): void {
+  if (effectLevel() !== 'full') return;
+  const a = centre(from);
+  const b = centre(to);
+  for (let i = 0; i < n; i++) {
+    const coin = h('span', { class: 'fx-coin px-icon coin' });
+    coin.style.left = `${a.x + (i - n / 2) * 10}px`;
+    coin.style.top = `${a.y}px`;
+    coin.style.setProperty('--tx', `${Math.round(b.x - a.x - (i - n / 2) * 10)}px`);
+    coin.style.setProperty('--ty', `${Math.round(b.y - a.y)}px`);
+    coin.style.animationDelay = `${i * 70}ms`;
+    fxLayer().append(coin);
+    expire(coin, 1500);
+  }
+  setTimeout(() => {
+    to.classList.remove('pulse');
+    void (to as HTMLElement).offsetWidth;
+    to.classList.add('pulse');
+  }, 600);
+}
+
+/** A broken heart tumbling off the HUD. */
+function heartFall(heart: Element): void {
+  if (effectLevel() !== 'full') return;
+  const r = heart.getBoundingClientRect();
+  const falling = h('span', { class: 'fx-heart px-icon heart' });
+  falling.style.left = `${r.left}px`;
+  falling.style.top = `${r.top}px`;
+  fxLayer().append(falling);
+  expire(falling, 1400);
+}
+
+/** A short red flash at the screen edges after a wrong answer. */
+function flash(): void {
+  const el = h('span', { class: 'fx-flash' });
+  fxLayer().append(el);
+  expire(el, 700);
+}
+
+/** The letters of a title as spans that drop in one after the other. */
+function dropLetters(text: string): HTMLElement[] {
+  return [...text].map((ch, i) => {
+    const s = h('span', { class: 'drop-letter', 'aria-hidden': 'true' }, ch);
+    s.style.animationDelay = `${i * 60}ms`;
+    return s;
+  });
+}
+
+/** Counts a number up from 0 (shown at once when nothing may move). */
+function countUp(el: HTMLElement, to: number, prefix: string): void {
+  if (effectLevel() === 'still' || to === 0) return;
+  const t0 = performance.now();
+  const step = (now: number): void => {
+    const k = Math.min(1, (now - t0) / 900);
+    el.textContent = `${prefix}${Math.round(to * k * (2 - k))}`;
+    if (k < 1 && el.isConnected) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
 // ---------- Pixel parts ----------
 
-type CatPose = 'idle' | 'cheer' | 'facepalm' | 'sweat';
+type CatPose = 'idle' | 'cheer' | 'facepalm' | 'sweat' | 'cry';
 
 function cat(pose: CatPose, id?: string): HTMLElement {
   return h('div', { class: 'cat', 'data-pose': pose, id: id ?? false, role: 'img', 'aria-label': `Hoodie cat (${pose})` });
@@ -248,16 +312,98 @@ function creditsCard(): HTMLElement {
   );
 }
 
-// ---------- Hub ----------
+// ---------- Hub: the world map ----------
 
-/** Game start screen: the player's level and rank, and the round settings (as in training mode). */
+/** One island per CISSP domain (in domain order): its name on the map and its ground; its prop is `.prop-<domain>` in the CSS. */
+const ISLANDS: { name: string; ground: 'grass' | 'sand' | 'snow' }[] = [
+  { name: 'Risk Reef', ground: 'grass' },
+  { name: 'Asset Atoll', ground: 'grass' },
+  { name: 'Crypto Crag', ground: 'snow' },
+  { name: 'Packet Peninsula', ground: 'grass' },
+  { name: 'Identity Isle', ground: 'sand' },
+  { name: 'Pentest Dunes', ground: 'sand' },
+  { name: 'SOC Glacier', ground: 'snow' },
+  { name: 'Code Cove', ground: 'grass' },
+];
+
+/** Stars (0–3) for a domain's training accuracy, once it has a few answers. */
+function islandStars(correct: number, answered: number): number {
+  if (answered < 5) return 0;
+  const accuracy = correct / answered;
+  return accuracy >= 0.85 ? 3 : accuracy >= 0.7 ? 2 : accuracy >= 0.5 ? 1 : 0;
+}
+
+/** A row of pixel buttons of which one is chosen (difficulty, round length, timer, question pool). */
+function chooser<T extends string | number>(id: string, label: string, choices: [T, string][], value: T, onPick: (v: T) => void): HTMLElement {
+  const buttons = choices.map(([v, text]) => {
+    const b = h('button', { id: `${id}-${v}`, class: 'px-chip', 'aria-pressed': String(v === value) }, text);
+    b.addEventListener('click', () => {
+      for (const other of buttons) other.setAttribute('aria-pressed', String(other === b));
+      onPick(v);
+    });
+    return b;
+  });
+  return h('div', { class: 'chooser', role: 'group', 'aria-label': label }, h('span', { class: 'chooser-label' }, label), h('span', { class: 'chooser-buttons' }, ...buttons));
+}
+
+/**
+ * Game start screen: the player's rank, and a world map with one island per domain. Tap islands to pick the
+ * domains of the round, then pick difficulty, length, timer and question pool, and press start.
+ */
 async function gameHub(): Promise<void> {
   const info = await api.info();
   gameSettings = info.game.settings;
-  const form = trainingForm(info, 'game', info.profile.training);
+  const options: PracticeOptions = { ...(lastGameOptions ?? info.profile.training), types: ['single', 'multi', 'ordering'], order: 'random' };
+  if (![5, 10, 20, 30].includes(options.count)) options.count = 10;
+  if (![0, 30, 60].includes(options.secondsPerQuestion)) options.secondsPerQuestion = 0;
+  if (options.source === 'bookmarked') options.source = 'all';
+  const chosen = new Set(options.domains);
+  const islands = info.bank.byDomain.map((d) => {
+    const island = ISLANDS[d.domain - 1];
+    const p = info.progress.byDomain[d.domain - 1];
+    const stars = islandStars(p.correct, p.answered);
+    const button = h(
+      'button',
+      {
+        id: `island-${d.domain}`,
+        class: `island ground-${island.ground}`,
+        'data-domain': String(d.domain),
+        disabled: d.count === 0,
+        'aria-pressed': String(chosen.has(d.domain) && d.count > 0),
+        'aria-label': `${island.name}: domain ${d.domain}, ${d.name}, ${d.count} questions${stars ? `, ${stars} of 3 stars` : ''}`,
+        title: d.name,
+      },
+      h('span', { class: 'island-flag', 'aria-hidden': 'true' }),
+      h('span', { class: `island-prop prop-${d.domain}`, 'aria-hidden': 'true' }),
+      h('span', { class: 'island-ground', 'aria-hidden': 'true' }),
+      h('span', { class: 'island-name' }, `${d.domain}. ${island.name}`),
+      h('span', { class: 'island-domain' }, d.name),
+      h('span', { class: 'island-stars', 'aria-hidden': 'true' }, '★'.repeat(stars) + '☆'.repeat(3 - stars), ` ${d.count} Q`),
+    );
+    button.addEventListener('click', () => {
+      if (chosen.has(d.domain)) chosen.delete(d.domain);
+      else chosen.add(d.domain);
+      button.setAttribute('aria-pressed', String(chosen.has(d.domain)));
+      button.classList.remove('hop');
+      void button.offsetWidth;
+      button.classList.add('hop');
+      if (chosen.has(d.domain)) playSfx('coin');
+    });
+    return button;
+  });
+  const setAll = (on: boolean): void => {
+    for (const b of islands) {
+      if (b.disabled) continue;
+      const domain = Number(b.dataset.domain) as DomainId;
+      if (on) chosen.add(domain);
+      else chosen.delete(domain);
+      b.setAttribute('aria-pressed', String(on));
+    }
+  };
   const start = (): void => {
-    const options = form.read();
-    if (options) void startGame(options);
+    const domains = info.bank.byDomain.map((d) => d.domain).filter((d) => chosen.has(d));
+    if (domains.length === 0) return toast('Pick at least one island on the map.');
+    void startGame({ ...options, domains });
   };
   gameScreen(
     h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Game mode'), h('span', { class: 'px-text' }, `Rounds ${info.game.games} · Best combo ${info.game.bestCombo}`)),
@@ -272,16 +418,35 @@ async function gameHub(): Promise<void> {
       ),
       h(
         'section',
-        { class: 'px-panel' },
-        h('h2', { class: 'px-title small-title' }, 'Choose your quest'),
+        { class: 'world', id: 'world-map', 'aria-label': 'World map: pick the islands (domains) to play' },
+        h(
+          'div',
+          { class: 'world-head' },
+          h('h2', { class: 'px-title small-title' }, 'World map'),
+          h(
+            'span',
+            { class: 'row' },
+            h('button', { id: 'game-all-islands', class: 'px-button mini-px ghosted', onclick: () => setAll(true) }, 'All'),
+            h('button', { id: 'game-no-islands', class: 'px-button mini-px ghosted', onclick: () => setAll(false) }, 'None'),
+          ),
+        ),
+        h('p', { class: 'world-help' }, 'Tap islands to plant your flag: the round asks questions from those domains. Stars show your accuracy there.'),
+        h('div', { class: 'islands' }, ...islands),
+      ),
+      h(
+        'section',
+        { class: 'px-panel quest-rules' },
+        chooser<PracticeOptions['difficulty']>('game-diff', 'Difficulty', [['mixed', 'Mixed'], ['easy', 'Easy'], ['medium', 'Medium'], ['hard', 'Hard']], options.difficulty, (v) => (options.difficulty = v)),
+        chooser<number>('game-len', 'Questions', [[5, '5'], [10, '10'], [20, '20'], [30, '30']], options.count, (v) => (options.count = v)),
+        chooser<number>('game-timer', 'Timer', [[0, 'Off'], [30, '30 s'], [60, '60 s']], options.secondsPerQuestion, (v) => (options.secondsPerQuestion = v)),
+        chooser<PracticeOptions['source']>('game-src', 'Questions from', [['all', 'Whole bank'], ['missed', 'My mistakes']], options.source, (v) => (options.source = v)),
         h('p', { class: 'px-help' }, 'Right answers earn XP: 10 easy, 20 medium, 30 hard. Five in a row starts Encryption Frenzy (x2), ten in a row x3. A wrong answer breaks a heart; three and it is game over. Wrong answers join your questions to retry.'),
-        form.node,
       ),
     ),
     h(
       'footer',
       { class: 'bottombar game-bar' },
-      h('button', { id: 'game-hub-home', class: 'px-button ghosted', onclick: () => void home() }, '◀ Start'),
+      h('button', { id: 'game-hub-home', class: 'px-button ghosted', onclick: () => void home() }, '◀ Back'),
       h('button', { id: 'game-start', class: 'px-button', onclick: start }, 'PRESS START'),
     ),
     tabbar('game'),
@@ -318,6 +483,8 @@ async function startGame(options: PracticeOptions): Promise<void> {
   lastGameOptions = options;
   playSfx('whoosh');
   renderGameQuestion(start.question, { total: start.total, maxLives: start.lives, lives: start.lives, seconds: start.secondsPerQuestion, combo: 0, multiplier: 1, level: start.level, answered: 0 });
+  floatText('READY?', null, 0, 'ready');
+  setTimeout(() => floatText('GO!', null, 0, 'go'), 750);
 }
 
 function quitGame(): void {
@@ -374,13 +541,16 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
     stage.scrollIntoView({ block: 'start' });
     const lostHeart = r.lives < ctx.lives;
     const frenzyStarts = r.multiplier > ctx.multiplier;
+    const comboGrew = r.combo > ctx.combo;
     Object.assign(ctx, { lives: r.lives, combo: r.combo, multiplier: r.multiplier, level: r.level, answered: ctx.answered + 1 });
     const freshCombo = comboMeter(ctx.combo, ctx.multiplier);
+    if (comboGrew) freshCombo.classList.add('pop');
     comboNode.replaceWith(freshCombo);
     comboNode = freshCombo;
     const freshLevel = levelBar(ctx.level, 'game-level');
     levelNode.replaceWith(freshLevel);
     levelNode = freshLevel;
+    main.classList.toggle('frenzy', ctx.multiplier > 1);
     if (f.correct) {
       pose('cheer', 2600);
       playSfx('ding');
@@ -388,20 +558,27 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       const at = centre(mascot);
       burst(at.x, at.y, 'spark');
       floatText(`+${r.xpGained} XP`, at.x, at.y - 20, 'xp');
+      coinsTo(mascot, freshLevel.querySelector('.xp-track') ?? freshLevel, Math.min(6, 2 + Math.round(r.xpGained / 20)));
       if (frenzyStarts) {
         playSfx('whoosh', 120);
         floatText(r.multiplier === 2 ? 'ENCRYPTION FRENZY! x2' : `MEGA FRENZY! x${r.multiplier}`, null, 0, 'frenzy');
+      } else if (STREAK_SHOUTS[r.combo]) {
+        floatText(STREAK_SHOUTS[r.combo], null, 0, 'shout');
       }
     } else {
-      pose('facepalm', 2600);
+      // Facepalm first, then the tears.
+      pose('facepalm');
+      poseTimer = window.setTimeout(() => pose('cry', 3000), 900);
       playSfx('buzz');
       if (lostHeart) {
         const heart = heartRow.children[r.lives] as HTMLElement | undefined;
+        if (heart) heartFall(heart);
         heart?.classList.replace('heart', 'heart-empty');
         heart?.classList.add('breaking');
         heartRow.setAttribute('aria-label', `${r.lives} of ${ctx.maxLives} hearts left`);
       }
       if (effectLevel() === 'full') {
+        flash();
         main.classList.remove('shake');
         void main.offsetWidth;
         main.classList.add('shake');
@@ -459,8 +636,8 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
     ),
     h(
       'main',
-      { class: 'question game', id: 'game' },
-      h('section', { class: 'px-panel q-panel' }, h('p', { class: 'stem' }, q.stem), body.node),
+      { class: `question game${ctx.multiplier > 1 ? ' frenzy' : ''}`, id: 'game' },
+      h('section', { class: 'px-panel q-panel q-enter' }, h('p', { class: 'stem' }, q.stem), body.node),
       stage,
       feedbackPanel,
     ),
@@ -485,7 +662,8 @@ function levelUpScreen(level: LevelInfo, rankUp: boolean, onward: () => void): v
   const overlay = h(
     'div',
     { class: 'levelup', id: 'levelup', role: 'dialog', 'aria-label': 'Level up' },
-    h('p', { class: 'px-title levelup-title' }, 'LEVEL UP!'),
+    h('span', { class: 'levelup-rays', 'aria-hidden': 'true' }),
+    h('p', { class: 'px-title levelup-title' }, ...dropLetters('LEVEL UP!')),
     cat('cheer'),
     rankBadge(level),
     h('p', { class: 'px-text levelup-rank' }, rankUp ? `New rank: ${level.rank}` : `Still ${level.rank}, but shinier`),
@@ -521,6 +699,7 @@ async function gameOver(): Promise<void> {
   const title = s.end === 'lives' ? 'GAME OVER' : s.end === 'cleared' ? 'ROUND CLEAR!' : 'LOGGED OFF';
   if (s.end === 'cleared') playSfx('fanfare');
   else if (s.end === 'lives') playSfx('buzz');
+  const xp = h('span', { class: 'xp-count' }, `+${s.xpEarned}`);
   gameScreen(
     h('header', { class: 'topbar game-top' }, h('span', { class: 'brand' }, 'Game mode'), h('span', { class: 'px-text' }, `${s.correct} of ${s.answered} right`)),
     h(
@@ -528,14 +707,14 @@ async function gameOver(): Promise<void> {
       { class: 'page game', id: 'game-over' },
       h(
         'section',
-        { class: 'px-panel game-over' },
-        h('h1', { class: 'px-title', id: 'game-over-title' }, title),
-        cat(s.end === 'cleared' ? 'cheer' : 'facepalm'),
+        { class: `px-panel game-over end-${s.end}` },
+        h('h1', { class: 'px-title', id: 'game-over-title', 'aria-label': title }, ...dropLetters(title)),
+        cat(s.end === 'cleared' ? 'cheer' : s.end === 'lives' ? 'cry' : 'facepalm', 'over-cat'),
         h('p', { class: 'bubble', id: 'game-over-line' }, pick(QUIPS[s.end])),
         h(
           'div',
           { class: 'game-stats' },
-          h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ` +${s.xpEarned}`), h('span', {}, 'XP earned')),
+          h('div', {}, h('span', { class: 'px-big', id: 'game-over-xp' }, icon('coin'), ' ', xp), h('span', {}, 'XP earned')),
           h('div', {}, h('span', { class: 'px-big' }, `${s.correct}/${s.answered}`), h('span', {}, 'right answers')),
           h('div', {}, h('span', { class: 'px-big' }, String(s.bestCombo)), h('span', {}, 'best combo')),
         ),
@@ -547,10 +726,15 @@ async function gameOver(): Promise<void> {
     h(
       'footer',
       { class: 'bottombar game-bar' },
-      h('button', { id: 'game-home', class: 'px-button ghosted', onclick: () => void home() }, '◀ Start'),
-      h('button', { id: 'game-menu', class: 'px-button ghosted', onclick: () => void gameHub() }, 'Quests'),
+      h('button', { id: 'game-home', class: 'px-button ghosted', onclick: () => void home() }, 'Home'),
+      h('button', { id: 'game-menu', class: 'px-button ghosted', onclick: () => void gameHub() }, '◀ Map'),
       h('button', { id: 'game-retry', class: 'px-button', onclick: () => void (lastGameOptions ? startGame(lastGameOptions) : gameHub()) }, 'Retry ▶'),
     ),
   );
+  countUp(xp, s.xpEarned, '+');
+  if (s.end === 'cleared') {
+    const at = centre(document.getElementById('over-cat') as HTMLElement);
+    burst(at.x, at.y, 'confetti');
+  }
   backAction = () => void gameHub();
 }

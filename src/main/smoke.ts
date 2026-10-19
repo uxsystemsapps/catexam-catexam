@@ -466,12 +466,20 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await click(mobile ? '#tab-game' : '#open-game');
     await waitFor('#game-hub');
     check(await visible('#hub-cat') && (await text('#rank-badge')).includes('Intern'), 'game hub shows the cat and the rank');
+    check((await js<number>(`document.querySelectorAll('#world-map button.island').length`)) === 8, 'the world map has an island per domain');
+    await click('#game-no-islands');
+    await click('#game-start');
+    check(await js<boolean>(`new Promise((r) => setTimeout(() => r(!!document.querySelector('#game-hub') && !document.querySelector('#game-check')), 300))`), 'a round needs at least one island');
+    await click('#island-1');
+    await click('#island-3');
+    check((await js<string>(`[...document.querySelectorAll('#world-map .island[aria-pressed="true"]')].map((b) => b.dataset.domain).join()`)) === '1,3', 'tapping islands picks the domains of the round');
+    await click('#game-len-5');
+    check((await js<string>(`document.querySelector('#game-len-5').getAttribute('aria-pressed')`)) === 'true', 'the round length is picked with pixel buttons');
     await fitsPhone('game hub');
     await shot('game-hub');
-    await js(`document.querySelector('#game-count').value = '3'`);
     await click('#game-start');
     await waitFor('#game-check');
-    check((await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 && (await text('#game-qnum')) === 'Q 1/3', 'a round starts with three hearts');
+    check((await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 && (await text('#game-qnum')) === 'Q 1/5', 'a round starts with three hearts');
     check((await js<string>(`document.querySelector('#game-cat').dataset.pose`)) === 'idle', 'the cat idles while the question is open');
     await fitsPhone('game question');
     await shot('game-question');
@@ -493,7 +501,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
       const right = (await text('#feedback .verdict')).startsWith('✔');
       if (!right) wrong++;
       const pose = await js<string>(`document.querySelector('#game-cat').dataset.pose`);
-      check(pose === (right ? 'cheer' : 'facepalm'), `the cat ${right ? 'cheers on a right' : 'facepalms on a wrong'} answer`);
+      check(right ? pose === 'cheer' : pose === 'facepalm' || pose === 'cry', `the cat ${right ? 'cheers on a right' : 'facepalms, then cries, on a wrong'} answer`);
       check(
         (await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 - wrong,
         `hearts: ${3 - wrong} left after ${wrong} wrong answer${wrong === 1 ? '' : 's'}`,
@@ -533,6 +541,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await waitFor('#game-over-title');
     const title = await text('#game-over-title');
     check(title === (wrong === 3 ? 'GAME OVER' : 'ROUND CLEAR!'), `the round ends with ${title} after ${rounds} answers`);
+    check((await js<string>(`document.querySelector('#over-cat').dataset.pose`)) === (wrong === 3 ? 'cry' : 'cheer'), `the cat ${wrong === 3 ? 'cries at game over' : 'cheers at a cleared round'}`);
     check((await text('#game-over-line')).length > 10 && (await visible('#game-retry')), 'the end screen has a funny line and a retry');
     await fitsPhone('game over');
     await shot('game-over');
