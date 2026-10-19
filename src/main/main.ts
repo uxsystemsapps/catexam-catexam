@@ -83,6 +83,8 @@ function registerIpc(): void {
   ipcMain.handle('practice:delete-paused', (_e, id: unknown) => service.deletePaused(id));
 
   ipcMain.handle('game:start', (_e, raw: unknown) => service.startGame(raw));
+  ipcMain.handle('game:island', (_e, domain: unknown) => service.startIsland(domain));
+  ipcMain.handle('game:boss', (_e, domain: unknown) => service.startBoss(domain));
   ipcMain.handle('game:answer', (_e, questionId: string, response: number[]) => service.answerGame(questionId, response));
   ipcMain.handle('game:timeout', (_e, questionId: string) => service.timeoutGame(questionId));
   ipcMain.handle('game:summary', () => service.gameSummary());

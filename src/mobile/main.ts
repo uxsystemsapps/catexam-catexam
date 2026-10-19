@@ -155,6 +155,8 @@ const api: ExamApi = {
   resumePractice: (id) => call((s) => s.resumePractice(id)),
   deletePaused: (id) => call((s) => s.deletePaused(id)),
   startGame: (options) => call((s) => s.startGame(options)),
+  startIsland: (domain) => call((s) => s.startIsland(domain)),
+  startBoss: (domain) => call((s) => s.startBoss(domain)),
   answerGame: (questionId, response) => call((s) => s.answerGame(questionId, response)),
   timeoutGame: (questionId) => call((s) => s.timeoutGame(questionId)),
   gameSummary: () => call((s) => s.gameSummary()),

@@ -270,8 +270,8 @@ html[data-theme='dark'] .small, html[data-theme='dark'] .stat-label, html[data-t
 html[data-theme='dark'] .field, html[data-theme='dark'] .label, html[data-theme='dark'] .progress-label, html[data-theme='dark'] .keys,
 html[data-theme='dark'] .empty, html[data-theme='dark'] .verdict-meta, html[data-theme='dark'] .option-note, html[data-theme='dark'] .hint { color: #a9b3c1; }
 html[data-theme='dark'] .bottombar { background: #1a1f28; border-color: #2c3442; }
-html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):not(.px-button):not(.px-chip):not(.island) { background: #262d38; color: #e4e8ee; border-color: #4a5668; }
-html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):not(.px-button):not(.px-chip):not(.island):hover:not(:disabled) { background: #2f3846; }
+html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):not(.px-button):not(.px-chip):not(.island):not(.map-island) { background: #262d38; color: #e4e8ee; border-color: #4a5668; }
+html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):not(.px-button):not(.px-chip):not(.island):not(.map-island):hover:not(:disabled) { background: #2f3846; }
 html[data-theme='dark'] input[type='text'], html[data-theme='dark'] input[type='number'], html[data-theme='dark'] input[type='date'],
 html[data-theme='dark'] select { background: #14181f; color: #e4e8ee; border-color: #4a5668; color-scheme: dark; }
 html[data-theme='dark'] .field input { color: #e4e8ee; }
@@ -691,9 +691,116 @@ html[data-theme='dark'] .tabbar.game-tabs { background: #16132b; border-color: #
 .game-over.end-lives .px-title { animation: px-shiver 0.3s steps(2) 4; }
 @keyframes px-shiver { 50% { transform: translateY(3px); } }
 
+/* World map (stage 2): eight islands along a dotted path, two rows of four (four rows of two on a phone). An
+   island is grey and still, its boss lurking on it, until the boss is beaten: then it lights up and comes alive
+   (glow, bobbing, waving flag, sparkles) and the path leaving it turns gold and marches. Positions are in % of
+   the map (`--x`/`--y`, `--tx`/`--ty` on a phone); the cat walks with `translate` in container units. */
+.quest-map { position: relative; aspect-ratio: 2 / 1; container-type: size; margin-top: 4px; }
+.map-path { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.map-path line { stroke: #f7f1e3; stroke-opacity: 0.45; stroke-width: 4; stroke-dasharray: 3 9; vector-effect: non-scaling-stroke; }
+.map-path line.lit { stroke: var(--gold, #ffd23f); stroke-opacity: 1; animation: path-march 0.9s linear infinite; }
+@keyframes path-march { to { stroke-dashoffset: -12; } }
+.path-tall { display: none; }
+button.map-island {
+  --t: 1.5; position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); translate: -50% -50%; z-index: 1; max-width: 24%;
+  display: flex; flex-direction: column; align-items: center; padding: 4px; background: transparent; border: 0; border-radius: 0; color: #fff; cursor: pointer;
+}
+button.map-island:hover { background: rgba(255, 255, 255, 0.08); }
+button.map-island[aria-pressed='true'] { background: rgba(255, 210, 63, 0.16); box-shadow: 0 0 0 3px var(--gold, #ffd23f); }
+.map-island .isle-top { display: flex; align-items: flex-end; gap: 2px; min-height: calc(18px * var(--t)); }
+.map-island .island-flag { position: static; visibility: visible; animation: flag-wave 0.6s steps(2) infinite alternate; }
+.map-island .island-name { font-size: 13px; line-height: 1.15; }
+.map-island:not(.cleared) .island-ground, .map-island:not(.cleared) .island-prop { filter: grayscale(0.75) brightness(0.7); }
+.map-island.cleared { animation: island-bob 2.4s ease-in-out infinite; }
+.map-island.lights-up .island-ground, .map-island.lights-up .island-prop { animation: light-up 1.4s ease-out; }
+@keyframes light-up { 0% { filter: grayscale(0.75) brightness(0.7); } 40% { filter: brightness(2.2); } 100% { filter: none; } }
+.island-glow {
+  position: absolute; left: 50%; top: 50%; width: 150%; height: 100%; translate: -50% -50%; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255, 226, 120, 0.6), transparent); animation: glow-pulse 1.8s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse { from { opacity: 0.45; } to { opacity: 1; } }
+.sparkle { position: absolute; width: 6px; height: 6px; background: #fff; box-shadow: 0 0 0 2px rgba(255, 210, 63, 0.6); animation: twinkle 1.4s steps(2) infinite; }
+.sparkle.s1 { left: 10%; top: 15%; }
+.sparkle.s2 { right: 12%; top: 42%; animation-delay: -0.7s; }
+@keyframes twinkle { 50% { opacity: 0; transform: scale(0.4); } }
+/* The cat stands at the left edge of its island's ground (half a ground is 36 px × --t of the islands). */
+.map-walker {
+  position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none;
+  translate: calc(var(--wx) * 1cqw - 100% - 50px) calc(var(--wy) * 1cqh - 100% + 30px); transition: translate 0.38s linear;
+}
+.map-walker .cat { --px: 0.75; }
+button.px-button.hud-toggle { min-width: 36px; padding: 4px 8px; }
+button.px-button.hud-toggle[aria-pressed='false'] { background: #4a4380; color: #a9a3d6; text-decoration: line-through; }
+.map-walker.left .walker-flip { transform: scaleX(-1); }
+.map-walker.walking .cat { animation: cat-walk 0.19s steps(2) infinite; }
+@keyframes cat-walk { 50% { transform: translateY(-4px); } }
+.island-card { display: flex; align-items: center; gap: 16px; }
+.island-card .boss-sprite { --bs: 2.5; }
+.island-card-text { flex: 1; min-width: 0; }
+.island-card-text p { margin: 4px 0; }
+.island-boss-name { font-family: 'Kenney Mini Square', 'Courier New', monospace; color: #a11b1b; }
+.island-panel .row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Bosses: 32×32 sprites side by side in game/bosses.png (`--b`: index, `--bs`: scale), breathing while idle. */
+.boss-sprite {
+  --bs: 1; display: inline-block; flex: none; width: calc(32px * var(--bs)); height: calc(32px * var(--bs)); image-rendering: pixelated;
+  background: url('game/bosses.png') no-repeat; background-size: calc(256px * var(--bs)) calc(32px * var(--bs));
+  background-position-x: calc(var(--b) * -32px * var(--bs)); transform-origin: 50% 100%; animation: boss-idle 1.4s steps(2) infinite;
+}
+@keyframes boss-idle { 50% { transform: translateY(calc(-1px * var(--bs))) scale(1.04, 0.96); } }
+.boss-arena {
+  position: relative; display: flex; align-items: center; gap: 18px; padding: 12px 16px; margin: 4px; overflow: hidden; color: #fff;
+  background: radial-gradient(ellipse at 25% 60%, #5a2048 0%, #2a1030 60%, #16081c 100%);
+  box-shadow: 0 -4px 0 0 #0d0b1e, 0 4px 0 0 #0d0b1e, -4px 0 0 0 #0d0b1e, 4px 0 0 0 #0d0b1e, inset 0 -5px 0 0 #3a1440;
+}
+.boss-stage { position: relative; flex: none; }
+.boss-arena .boss-sprite { --bs: 4; }
+.boss-info { flex: 1; min-width: 0; }
+.boss-name { margin: 0 0 8px; font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 20px; color: #ff8a80; text-shadow: 2px 2px 0 #0d0b1e; }
+.boss-hp { position: relative; height: 20px; background: #0d0b1e; border: 2px solid #0d0b1e; }
+.boss-hp-fill, .boss-hp-ghost { position: absolute; inset: 0; transform-origin: left; transform: scaleX(var(--hp)); }
+.boss-hp-fill { background: repeating-linear-gradient(90deg, #e8433f 0 6px, #c22d2a 6px 8px); transition: transform 0.35s steps(4); }
+.boss-hp-ghost { background: #fff3c4; transition: transform 0.6s ease-in 0.35s; }
+.boss-hp-text { position: relative; display: block; text-align: center; font-family: 'Kenney Mini Square', 'Courier New', monospace; font-size: 13px; line-height: 20px; text-shadow: 1px 1px 0 #0d0b1e; }
+.boss-sprite.hit { animation: boss-hit 0.45s steps(1); }
+@keyframes boss-hit {
+  0% { filter: brightness(3.5) saturate(0); transform: translateX(-6px); }
+  25% { filter: none; transform: translateX(6px); }
+  50% { filter: brightness(3.5) saturate(0); transform: translateX(-4px); }
+  75% { filter: none; transform: translateX(3px); }
+}
+.boss-sprite.attack { animation: boss-attack 0.45s ease-out; }
+@keyframes boss-attack { 40% { transform: translateY(8px) scale(1.25); } }
+.boss-sprite.defeated { opacity: 0.25; filter: grayscale(1); animation: boss-defeat 0.9s steps(6) forwards; }
+@keyframes boss-defeat {
+  0% { opacity: 1; filter: brightness(3.5) saturate(0); transform: none; }
+  50% { opacity: 1; filter: brightness(2); transform: scale(1.1) rotate(-6deg); }
+  100% { opacity: 0; transform: scale(0.6) rotate(10deg) translateY(10px); }
+}
+/* Explosion: five 16×16 frames of game/explosion.png; the last step runs past the sheet and shows nothing. */
+.boss-boom {
+  --k: 4; position: absolute; width: calc(16px * var(--k)); height: calc(16px * var(--k)); margin: calc(-8px * var(--k)) 0 0 calc(-8px * var(--k)); pointer-events: none;
+  background: url('game/explosion.png') no-repeat; background-size: calc(80px * var(--k)) calc(16px * var(--k)); image-rendering: pixelated;
+  animation: boom 0.6s steps(5) forwards;
+}
+@keyframes boom { from { background-position-x: 0; } to { background-position-x: calc(-80px * var(--k)); } }
+.fx-banner.boss-in { background: #7a1f5c; }
+.fx-banner.victory { background: #34c763; color: #0d0b1e; }
+.fx-float.hit { color: #ff8a80; }
+.over-scene { display: flex; align-items: flex-end; justify-content: center; gap: 28px; }
+.over-boss .boss-sprite { --bs: 3; }
+.over-boss.beaten .boss-sprite { filter: grayscale(1) brightness(0.75); transform: rotate(90deg); transform-origin: 50% 50%; animation: none; }
+.game-over.end-victory .px-title { color: var(--gold); text-shadow: 3px 3px 0 #0d0b1e; animation: px-bounce 0.8s ease-out 2; }
+
 /* Fewer or no effects */
 html[data-fx='lite'] button.px-button:hover:not(:disabled), html[data-fx='lite'] .game.shake, html[data-fx='lite'] .cat, html[data-fx='lite'] .levelup-title,
-html[data-fx='lite'] button.island, html[data-fx='lite'] .drop-letter, html[data-fx='lite'] .levelup-rays, html[data-fx='lite'] .game-over .px-title { animation: none; }
+html[data-fx='lite'] button.island, html[data-fx='lite'] .drop-letter, html[data-fx='lite'] .levelup-rays, html[data-fx='lite'] .game-over .px-title,
+html[data-fx='lite'] .map-island.cleared, html[data-fx='lite'] .sparkle, html[data-fx='lite'] .boss-sprite, html[data-fx='lite'] .map-walker .cat { animation: none; }
+/* Lite: the boss still flashes when hit and fades when beaten, without shaking, lunging or spinning. */
+html[data-fx='lite'] .boss-sprite.hit { animation: boss-flash 0.45s steps(1); }
+html[data-fx='lite'] .boss-sprite.defeated { animation: boss-fade 0.6s forwards; }
+@keyframes boss-flash { 0%, 50% { filter: brightness(3.5) saturate(0); } 25%, 75% { filter: none; } }
+@keyframes boss-fade { from { opacity: 1; filter: brightness(3.5) saturate(0); } to { opacity: 0; } }
 html[data-fx='still'] .game, html[data-fx='still'] .game *, html[data-fx='still'] .game-hud, html[data-fx='still'] .game-hud *,
 html[data-fx='still'] .levelup, html[data-fx='still'] .levelup *, html[data-fx='still'] .fx-layer *, html[data-fx='still'] .px-button, html[data-fx='still'] .game::before {
   animation: none !important; transition: none !important;
@@ -721,6 +828,22 @@ html[data-fx='still'] .levelup, html[data-fx='still'] .levelup *, html[data-fx='
   .world { padding: 10px 8px 14px; }
   .islands { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 8px; }
   button.island { --t: 1.5; }
+  .quest-map { aspect-ratio: 5 / 8; }
+  .path-wide { display: none; }
+  .path-tall { display: block; }
+  button.map-island { --t: 1.15; left: calc(var(--tx) * 1%); top: calc(var(--ty) * 1%); max-width: 46%; }
+  .map-island .island-name { font-size: 12px; }
+  .map-walker { translate: calc(var(--tx) * 1cqw - 100% - 38px) calc(var(--ty) * 1cqh - 100% + 18px); }
+  .map-walker .cat { --px: 0.6; }
+  #game-hub .game-hero { flex-wrap: nowrap; gap: 12px; }
+  #game-hub .game-hero .cat { --px: 0.8; }
+  #game-hub .game-hero .rank-badge { display: none; }
+  .island-card { gap: 10px; }
+  .island-card .boss-sprite { --bs: 2; }
+  .boss-arena { gap: 12px; padding: 10px; }
+  .boss-arena .boss-sprite { --bs: 2.5; }
+  .boss-name { font-size: 16px; }
+  .over-boss .boss-sprite { --bs: 2; }
   .chooser-label { min-width: 0; flex: 1 1 100%; }
   button.px-chip { min-height: 40px; }
 }

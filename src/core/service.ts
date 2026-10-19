@@ -1,5 +1,15 @@
 import { DOMAINS } from '../engine/domains';
-import { GameRun, levelInfo, normalizeGameSettings, type GameAnswer, type GameProgress, type GameSettings, type GameSummary } from '../engine/game';
+import {
+  GameRun,
+  levelInfo,
+  normalizeGameSettings,
+  selectIslandItems,
+  type GameAnswer,
+  type GameProgress,
+  type GameSettings,
+  type GameSummary,
+  type IslandProgress,
+} from '../engine/game';
 import { PracticeSession, type PracticeFeedback } from '../engine/practice';
 import {
   normalizePracticeOptions,
@@ -148,7 +158,13 @@ export class CatexamService {
       paused: await listPaused(this.host.data),
       profile: this.profile,
       progress: summarizeProgress(questions, this.progress, today()),
-      game: { level: levelInfo(this.gameProgress.xp), bestCombo: this.gameProgress.bestCombo, games: this.gameProgress.games, settings: this.gameProgress.settings },
+      game: {
+        level: levelInfo(this.gameProgress.xp),
+        bestCombo: this.gameProgress.bestCombo,
+        games: this.gameProgress.games,
+        settings: this.gameProgress.settings,
+        world: structuredClone(this.gameProgress.world),
+      },
     };
   }
 
@@ -366,14 +382,50 @@ export class CatexamService {
     return summary;
   }
 
-  /** Starts a game round; its questions are chosen as for a training session with these options. */
+  /** Starts a quick round; its questions are chosen as for a training session with these options. */
   async startGame(raw: unknown): Promise<GameStart> {
     const options = normalizePracticeOptions(raw);
-    const game = new GameRun(selectPracticeItems(this.questions, options, this.progress), this.gameProgress.xp);
+    return this.beginGame(new GameRun(selectPracticeItems(this.questions, options, this.progress), this.gameProgress.xp), options.secondsPerQuestion, null);
+  }
+
+  /** Starts an island of the world map: a stage of the domain's questions, then its boss. */
+  async startIsland(domain: unknown): Promise<GameStart> {
+    const island = this.island(domain);
+    const items = selectIslandItems(this.questions, island.domain);
+    if (items.boss.length === 0) throw new Error('this island has no questions in the bank');
+    return this.beginGame(new GameRun(items.stage, this.gameProgress.xp, { domain: island.domain, boss: items.boss }), 0, island);
+  }
+
+  /** Fights the boss of an island again, without its stage; only once the stage has been won. */
+  async startBoss(domain: unknown): Promise<GameStart> {
+    const island = this.island(domain);
+    if (!island.bossReached) throw new Error('win the stage of this island first');
+    const items = selectIslandItems(this.questions, island.domain);
+    if (items.boss.length === 0) throw new Error('this island has no questions in the bank');
+    return this.beginGame(new GameRun([], this.gameProgress.xp, { domain: island.domain, boss: items.boss }), 0, island);
+  }
+
+  private island(domain: unknown): IslandProgress {
+    const island = this.gameProgress.world.islands.find((i) => i.domain === domain);
+    if (!island) throw new Error(`unknown island ${String(domain)}`);
+    return island;
+  }
+
+  private async beginGame(game: GameRun, secondsPerQuestion: number, island: IslandProgress | null): Promise<GameStart> {
     this.game = game;
     this.gameProgress.games++;
+    if (island) this.gameProgress.world.at = island.domain;
     await this.persistGame();
-    return { question: game.current() as QuestionView, total: game.total, lives: game.livesLeft, secondsPerQuestion: options.secondsPerQuestion, level: levelInfo(game.totalXp) };
+    return {
+      question: game.current() as QuestionView,
+      total: game.total,
+      lives: game.livesLeft,
+      secondsPerQuestion,
+      level: levelInfo(game.totalXp),
+      island: island?.domain ?? null,
+      phase: game.currentPhase,
+      boss: game.bossState,
+    };
   }
 
   private activeGame(): GameRun {
@@ -381,11 +433,21 @@ export class CatexamService {
     return this.game;
   }
 
-  /** A game answer counts as a training answer (daily count, questions to retry) and adds its XP. */
+  /**
+   * A game answer counts as a training answer (daily count, questions to retry) and adds its XP. On an island,
+   * reaching the boss and beating it are kept on the world map.
+   */
   private async recordGame(game: GameRun, questionId: string, result: GameAnswer): Promise<GameAnswer> {
     recordAnswer(this.progress, questionId, result.feedback.correct, today(), new Date().toISOString());
     this.gameProgress.xp = game.totalXp;
     this.gameProgress.bestCombo = Math.max(this.gameProgress.bestCombo, result.combo);
+    const domain = game.summary().island;
+    const island = this.gameProgress.world.islands.find((i) => i.domain === domain);
+    if (island && result.bossStarts) island.bossReached = true;
+    if (island && result.end === 'victory') {
+      island.cleared = true;
+      island.victories++;
+    }
     await Promise.all([this.persistProgress(), this.persistGame()]);
     return result;
   }

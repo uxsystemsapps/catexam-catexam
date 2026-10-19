@@ -42,10 +42,22 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   sessions** page (from the training card) lists paused sessions with their progress, and **Resume** reopens
   one on the question where it was left, with its answers and skips. The session ends with accuracy per
   domain and a button to retry the missed questions.
-- **Game mode** (stage 1; no lock): the same question bank as a pixel-art arcade round. The **world map**
-  shows one island per domain (with your accuracy as stars): tap islands to plant your flag on the domains to
-  play, pick difficulty, round length (5–30), timer and pool (whole bank or your mistakes) with pixel buttons,
-  and press start. A right answer earns XP (10 easy, 20 medium, 30 hard),
+- **Game mode** (no lock): the same question bank as a pixel-art arcade game. The **world map** has eight
+  islands, one per domain (Risk Reef, Asset Atoll, The Crypto Caves, Packet Peninsula, Fortress of Access
+  Control, Pentest Dunes, SOC Glacier, Code Cove) along a dotted path. Tap an island and the hoodie cat walks
+  there; the panel below shows the island and its boss. **Play island** asks six questions of that domain,
+  then its **boss** (The Risk Hydra, The Data Leak Blob, The Side-Channel Golem, The Phishing Kraken, The
+  Privilege Lich, The Orb of a Thousand Scans, The Ransomware Dragon, The Zero-Day Bug) fights with the
+  domain's hardest questions (above 0.5 logits, topped up with the hardest of the rest): each right answer
+  hits it (its health bar drops, it flashes white and shakes; five hits win, plus a 100 XP bonus), each wrong
+  one costs a heart (it lunges and gloats), with three hearts for the whole island. The boss idles, explodes
+  when beaten and a victory screen follows; losing gives a funny game over and **Retry boss** (once the stage
+  is won, the boss can also be fought again from the map). A beaten boss clears its island: it lights up and
+  comes alive (glow, bobbing, a waving flag, sparkles) and the path leaving it turns gold and marches. Cleared
+  islands and the island where the cat stands are kept between sessions. **Quick round** keeps the stage 1
+  round: tap islands to plant your flag on the domains to play, pick difficulty, round length (5–30), timer
+  and pool (whole bank or your mistakes) with pixel buttons, and press start. A right answer earns XP (10 easy,
+  20 medium, 30 hard),
   five in a row start **Encryption Frenzy** (double XP, a growing flame, glowing screen edges, x2 and then x3
   from ten in a row), and a wrong or timed-out answer breaks one of three hearts; the round ends when the hearts
   or the questions run out, with a funny line, the score and **Retry**. XP fills a level bar and earns ranks (Intern →
@@ -53,13 +65,16 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   A pixel cat in a hoodie cheers on a right answer, facepalms and then cries on a wrong one, sweats when the
   timer runs low and cries at game over. Effects: READY/GO, coins flying into the XP bar, sparks, streak
   shouts, a red flash and a falling heart, drop-in titles and a level-up screen with spinning rays.
-  Each answer gets a cheeky security joke, and then always the verdict and the bank's explanation;
-  effects never cover it (the level-up moment comes after **Next**). Answers count as training answers:
-  wrong ones join the questions to retry, and they count towards the daily goal. Sound effects (right ding,
-  wrong buzz, combo whoosh, level-up fanfare, coin clink) can be turned off, with a volume; they are **off
-  by default on Android**. **Lite effects** drops particles, shaking and bouncing; when the system asks to
-  reduce motion, nothing animates. Art, font and sounds are CC0 assets listed in `assets/CREDITS.md` and
-  under **Credits** in Profile & settings.
+  Each answer gets a cheeky security joke (or a boss taunt), and then always the verdict and the bank's
+  explanation; effects never cover it (the level-up, victory and game-over screens come after **Next**).
+  Answers count as training answers: wrong ones join the questions to retry, and they count towards the
+  daily goal. Sound effects (right ding, wrong buzz, combo whoosh, level-up fanfare, coin clink) and **music**
+  (a looping track for the map and the rounds before a boss, another for boss fights; a third is ready for the
+  lightning round of stage 3) each have their own on/off switch and volume, in Profile & settings and as ♪ and
+  ♫ buttons on the game screen; both are **off by default on Android**, and the music pauses while the app is
+  in the background. **Lite effects** drops particles, shaking and bouncing (a boss still flashes when hit and
+  fades when beaten); when the system asks to reduce motion, nothing animates. Art, font, sounds and music are
+  CC0 assets listed in `assets/CREDITS.md` and under **Credits** in Profile & settings.
 - **Study plan** on the home screen: countdown to your exam date, today's answers against your daily
   goal, how much of the bank you have practised, your weakest domain (once it has 5 training answers) and
   one-click sessions for missed, bookmarked or new questions.
@@ -70,10 +85,10 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
 - **Setup wizard** on first start: first and second name, exam date and daily goal, training preferences,
   and appearance. The exam screens use the name from the profile; the home screen has no name box.
 - **Profile & settings**: first and second name, exam date, daily goal, light or dark theme, text size, the
-  default training settings, the game's sound, volume and lite effects, and the credits of the game assets.
+  default training settings, the game's sound and music (each with its volume) and lite effects, and the credits of the game assets.
   Training progress can be reset. Everything is stored in the application's profile folder (on the desktop it
   is still named `CATExam`, the app's former name): `profile.json`, `progress.json`, `history.json`,
-  `training-history.json` and `game.json` (XP, best combo, game settings), plus one file
+  `training-history.json` and `game.json` (XP, best combo, game settings, cleared islands), plus one file
   per exam with its answered questions (`history/`) and one per paused training session (`paused/`).
 
 ## Android app
@@ -158,11 +173,12 @@ and favicon use `icon.svg`. The Android launcher icons (`android/app/src/main/re
 colour in `values/ic_launcher_background.xml`) are PNG renders of the same cat: re-render them from the SVG
 if the cat changes.
 
-Game mode: scoring, hearts, levels and ranks are in `src/engine/game.ts` (built so later stages, such as the
-world map, bosses, power-ups and achievements, can build on `GameRun` and `GameProgress`); its screens and
-effects are in `src/renderer/game.ts`, a second renderer script loaded before `app.js` that shares its global
-scope. The game's art, font and sounds are in `assets/game/` (copied next to the renderer by the build) and
-their sources and licences in `assets/CREDITS.md`; add a new asset to both that file and `GAME_CREDITS`.
+Game mode: scoring, hearts, levels, ranks, islands and bosses are in `src/engine/game.ts` (stage 3, with power-ups,
+achievements, the daily challenge and the lightning round, builds on `GameRun` and `GameProgress`; the
+lightning round's music track is already in `assets/game/music/` and the `Track` type); its screens, effects
+and music player are in `src/renderer/game.ts`, a second renderer script loaded before `app.js` that shares its
+global scope. The game's art, font, sounds and music are in `assets/game/` (copied next to the renderer by the
+build) and their sources and licences in `assets/CREDITS.md`; add a new asset to both that file and `GAME_CREDITS`.
 
 The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. The
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the

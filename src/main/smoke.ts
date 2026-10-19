@@ -1,8 +1,29 @@
+import { readdirSync, readFileSync } from 'node:fs';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import type { BrowserWindow } from 'electron';
+import { app, type BrowserWindow } from 'electron';
+import type { Question } from '../engine/types';
 import type { Lockdown } from './lockdown';
+
+/** Every shipped question by id (questions/ of the app), so the smoke can answer right or wrong on purpose. */
+function answerKey(): Map<string, Question> {
+  const dir = path.join(app.getAppPath(), 'questions');
+  const key = new Map<string, Question>();
+  for (const name of readdirSync(dir).filter((n) => n.endsWith('.json'))) {
+    // The shipped banks, checked by the bank validation tests.
+    const bank = JSON.parse(readFileSync(path.join(dir, name), 'utf8')) as { questions: Question[] };
+    for (const q of bank.questions) if (!key.has(q.id)) key.set(q.id, q);
+  }
+  return key;
+}
+
+/** A wrong response of the right shape: another option, one wrong pick among the right ones, or the order reversed. */
+function wrongResponse(q: Question): number[] {
+  if (q.type === 'ordering') return [...q.answer].reverse();
+  const other = q.options.findIndex((_, i) => !q.answer.includes(i));
+  return q.type === 'single' ? [other] : [...q.answer.slice(0, -1), other].sort((a, b) => a - b);
+}
 
 /** Desktop run: the app window and its lockdown. Phone run: the Android web app (www/) in a phone-sized window. */
 export type SmokeTarget = { lockdown: Lockdown; mobile?: undefined } | { lockdown?: undefined; mobile: true };
@@ -450,33 +471,55 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     check((await js<number>(`window.examApi.info().then((i) => i.bank.total)`)) === before, 'an imported bank can be removed');
     await rm(folder, { recursive: true, force: true });
 
-    // Game mode: the settings, a short round with its HUD, feedback and explanation, and the end screen.
+    // Game mode: the settings, the world map, a quick round with its HUD, feedback and explanation, and the end
+    // screen, then an island with its boss fight.
     await click(mobile ? '#tab-settings' : '#open-settings');
     await waitFor('#game-settings');
     check((await js<boolean>(`document.querySelector('#settings-sound').checked`)) === !mobile, `game sound is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
-    check((await js<number>(`document.querySelectorAll('#credits li').length`)) === 8, 'settings list the credits of every game asset');
-    await js(`(() => { document.querySelector('#settings-sound').checked = false; document.querySelector('#settings-lite').checked = true; document.querySelector('#settings-volume').value = '40'; })()`);
+    check((await js<boolean>(`document.querySelector('#settings-music').checked`)) === !mobile, `music is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
+    check((await js<number>(`document.querySelectorAll('#credits li').length`)) === 11, 'settings list the credits of every game asset');
+    await js(`(() => {
+      document.querySelector('#settings-sound').checked = false;
+      document.querySelector('#settings-lite').checked = true;
+      document.querySelector('#settings-volume').value = '40';
+      document.querySelector('#settings-music-volume').value = '30';
+    })()`);
     await fitsPhone('settings with game settings and credits');
     await click('#settings-save');
     await waitFor('#game-card');
-    const settings = await js<{ sound: boolean; lite: boolean; volume: number }>(`window.examApi.info().then((i) => i.game.settings)`);
-    check(!settings.sound && settings.lite && settings.volume === 40, 'game settings are saved');
-    await js(`window.examApi.saveGameSettings({ sound: false, volume: 40, lite: false })`);
+    const settings = await js<{ sound: boolean; lite: boolean; volume: number; music: boolean; musicVolume: number }>(`window.examApi.info().then((i) => i.game.settings)`);
+    check(!settings.sound && settings.lite && settings.volume === 40 && settings.music === !mobile && settings.musicVolume === 30, 'game settings are saved, music apart from the sound effects');
+    await js(`window.examApi.saveGameSettings({ sound: false, volume: 40, music: ${!mobile}, musicVolume: 30, lite: false })`);
     const todayBefore = await js<number>(`window.examApi.info().then((i) => i.progress.today)`);
     await click(mobile ? '#tab-game' : '#open-game');
     await waitFor('#game-hub');
     check(await visible('#hub-cat') && (await text('#rank-badge')).includes('Intern'), 'game hub shows the cat and the rank');
-    check((await js<number>(`document.querySelectorAll('#world-map button.island').length`)) === 8, 'the world map has an island per domain');
+    check((await js<number>(`document.querySelectorAll('#quest-map button.map-island').length`)) === 8, 'the world map has an island per domain');
+    check(
+      (await js<number>(`document.querySelectorAll('#quest-map .map-island.cleared').length`)) === 0 && (await text('#world-progress')).includes('0/8'),
+      'no island is cleared at first',
+    );
+    check((await js<string>(`document.documentElement.dataset.music`)) === (mobile ? 'off' : 'map'), `the map ${mobile ? 'is silent: music is off on the phone' : 'plays the map music'}`);
+    check((await js<string>(`document.querySelector('#map-cat').dataset.at`)) === '1' && (await text('#island-title')).includes('Risk Reef'), 'the cat starts on the first island');
+    await click('#map-island-3');
+    await waitFor('#map-cat[data-at="3"]');
+    check((await text('#island-title')).includes('The Crypto Caves') && (await text('#island-panel')).includes('The Side-Channel Golem'), 'tapping an island walks the cat there and shows the island and its boss');
+    check(!(await js<boolean>(`!!document.querySelector('#island-boss')`)), 'the boss alone is offered only once the stage is won');
+    await fitsPhone('world map');
+    await shot('game-map');
+    await click('#game-quick');
+    await waitFor('#quick-round');
+    check((await js<number>(`document.querySelectorAll('#world-map button.island').length`)) === 8, 'the quick round picker has an island per domain');
     await click('#game-no-islands');
     await click('#game-start');
-    check(await js<boolean>(`new Promise((r) => setTimeout(() => r(!!document.querySelector('#game-hub') && !document.querySelector('#game-check')), 300))`), 'a round needs at least one island');
+    check(await js<boolean>(`new Promise((r) => setTimeout(() => r(!!document.querySelector('#quick-round') && !document.querySelector('#game-check')), 300))`), 'a round needs at least one island');
     await click('#island-1');
     await click('#island-3');
     check((await js<string>(`[...document.querySelectorAll('#world-map .island[aria-pressed="true"]')].map((b) => b.dataset.domain).join()`)) === '1,3', 'tapping islands picks the domains of the round');
     await click('#game-len-5');
     check((await js<string>(`document.querySelector('#game-len-5').getAttribute('aria-pressed')`)) === 'true', 'the round length is picked with pixel buttons');
-    await fitsPhone('game hub');
-    await shot('game-hub');
+    await fitsPhone('quick round picker');
+    await shot('game-quick');
     await click('#game-start');
     await waitFor('#game-check');
     check((await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 && (await text('#game-qnum')) === 'Q 1/5', 'a round starts with three hearts');
@@ -555,11 +598,145 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await shot('game-levelup');
     await click('#levelup-continue');
     await waitFor('#game-hub');
+
+    // An island: its stage (questions of its domain), then the boss. The answers come from the shipped banks, so
+    // the smoke wins and loses on purpose.
+    const bank = answerKey();
+    let islandAnswers = 0;
+    const todayBeforeIsland = await js<number>(`window.examApi.info().then((i) => i.progress.today)`);
+    const answer = async (right: boolean): Promise<Question> => {
+      const q = bank.get(await js<string>(`document.querySelector('#game-question').dataset.question`)) as Question;
+      islandAnswers++;
+      await js(`(() => {
+        const response = ${JSON.stringify(right ? q.answer : wrongResponse(q))};
+        const list = document.querySelector('#game #ordering');
+        if (list) return response.forEach((i) => list.append(list.querySelector('li[data-index="' + i + '"]')));
+        for (const box of document.querySelectorAll('#game .options input')) if (box.checked !== response.includes(Number(box.value))) box.click();
+      })()`);
+      await click('#game-check');
+      await waitFor('#game-next');
+      return q;
+    };
+    /** Next: through the level-up moment when one comes, to the next question or the end screen. */
+    const goOn = async (): Promise<void> => {
+      await click('#game-next');
+      for (;;) {
+        const screen = await js<string>(`new Promise((resolve) => {
+          const poll = () => document.querySelector('#levelup') ? resolve('levelup') : document.querySelector('#game-over') ? resolve('over')
+            : document.querySelector('#game-check:not(:disabled)') ? resolve('question') : setTimeout(poll, 20);
+          poll();
+        })`);
+        if (screen !== 'levelup') return;
+        await click('#levelup-continue');
+      }
+    };
+    const heartsLeft = (): Promise<number> => js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`);
+    const explanationVisible = (): Promise<boolean> =>
+      js<boolean>(`(() => {
+        const ex = document.querySelector('#feedback .explanation');
+        ex.scrollIntoView({ block: 'start' });
+        const r = ex.getBoundingClientRect();
+        return ex.textContent.length > 20 && ex.contains(document.elementFromPoint(r.left + r.width / 2, r.top + 12));
+      })()`);
+    await click('#map-island-7');
+    await waitFor('#map-cat[data-at="7"]');
+    await click('#island-play');
+    await waitFor('#game-check');
+    check((await text('#game-qnum')) === 'Q 1/6' && (await heartsLeft()) === 3 && !(await js<boolean>(`!!document.querySelector('#boss-arena')`)), 'an island starts with its stage: six questions, three hearts');
+    check((await js<string>(`document.documentElement.dataset.music`)) === (mobile ? 'off' : 'map'), 'the stage plays the map music (when music is on)');
+    const stageDomains = new Set<number>();
+    stageDomains.add((await answer(false)).domain);
+    check((await heartsLeft()) === 2, 'a wrong answer on an island costs a heart');
+    while ((await text('#game-next')) !== 'BOSS FIGHT ▶') {
+      await goOn();
+      stageDomains.add((await answer(true)).domain);
+    }
+    check([...stageDomains].join() === '7', 'the island asks questions of its domain only');
+    await goOn();
+    await waitFor('#boss-arena');
+    check((await text('#boss-arena .boss-name')) === 'The Ransomware Dragon' && (await text('#boss-hp')) === 'HP 5/5' && (await text('#game-qnum')) === 'BOSS', 'the stage won, the boss arrives with full health');
+    check((await js<string>(`getComputedStyle(document.querySelector('#boss-sprite')).animationName`)) === 'boss-idle', 'the boss idles');
+    check((await js<string>(`document.documentElement.dataset.music`)) === (mobile ? 'off' : 'boss'), 'the boss fight has its own music (when music is on)');
+    await fitsPhone('boss arena');
+    await shot('game-boss-start');
+    const firstBoss = await answer(true);
+    check(firstBoss.domain === 7 && firstBoss.difficulty > 0.5, `the boss asks hard questions of its domain (${firstBoss.difficulty} logits)`);
+    check(
+      (await text('#boss-hp')) === 'HP 4/5' && (await js<boolean>(`document.querySelector('#boss-sprite').classList.contains('hit')`)),
+      'a right answer hits the boss: it flashes and shakes, and its health drops',
+    );
+    check(await explanationVisible(), 'the explanation follows a boss answer and nothing covers it');
+    await fitsPhone('boss fight');
+    await shot('game-boss');
+    await goOn();
+    await answer(false);
+    check(
+      (await heartsLeft()) === 1 && (await js<boolean>(`document.querySelector('#boss-sprite').classList.contains('attack')`)) && (await text('#game-quip')).startsWith('The Ransomware Dragon:'),
+      'a wrong answer in the boss fight costs a heart, and the boss strikes back and gloats',
+    );
+    check(await explanationVisible(), 'the explanation follows a wrong boss answer too');
+    for (let hp = 4; hp > 0; hp--) {
+      await goOn();
+      await answer(true);
+    }
+    check(
+      (await text('#game-next')) === 'Victory ▶' && (await js<boolean>(`document.querySelector('#boss-sprite').classList.contains('defeated')`)) && (await explanationVisible()),
+      'the last hit defeats the boss (explosion), and the explanation still shows',
+    );
+    await shot('game-boss-defeat');
+    await goOn();
+    await waitFor('#game-over-title');
+    check((await text('#game-over-title')) === 'VICTORY!' && (await text('#game-over-line')).includes('The Ransomware Dragon is defeated'), 'the victory screen names the beaten boss');
+    check((await js<string>(`document.querySelector('#over-cat').dataset.pose`)) === 'cheer' && !(await js<boolean>(`!!document.querySelector('#game-retry')`)), 'the cat cheers at the victory');
+    await fitsPhone('victory');
+    await shot('game-victory');
+    await click('#game-menu');
+    await waitFor('#game-hub');
+    check(
+      (await js<boolean>(`document.querySelector('#map-island-7').classList.contains('cleared')`)) &&
+        (await js<number>(`document.querySelectorAll('.path-${mobile ? 'tall' : 'wide'} line.lit').length`)) === 1 &&
+        (await text('#world-progress')).includes('1/8') &&
+        (await js<string>(`document.querySelector('#map-cat').dataset.at`)) === '7',
+      'the cleared island lights up, the path from it is lit, and the cat stands on it',
+    );
+    await fitsPhone('world map with a cleared island');
+    await shot('game-map-cleared');
+    // A lost boss fight: a funny game over, and Retry goes straight back to the boss.
+    await click('#island-boss');
+    await waitFor('#boss-arena');
+    for (let miss = 0; miss < 3; miss++) {
+      if (miss > 0) await goOn();
+      await answer(false);
+    }
+    check((await text('#game-next')) === 'Game over ▶', 'three wrong answers lose the boss fight');
+    await goOn();
+    await waitFor('#game-over-title');
+    check(
+      (await text('#game-over-title')) === 'GAME OVER' && (await text('#game-over-line')).includes('Ransomware Dragon') && (await text('#game-retry')) === 'Retry boss ▶',
+      'losing to the boss ends in a funny game over with a retry of the boss',
+    );
+    check((await js<string>(`document.querySelector('#over-cat').dataset.pose`)) === 'cry', 'the cat cries when the boss wins');
+    await shot('game-boss-over');
+    await click('#game-retry');
+    await waitFor('#boss-arena');
+    check((await text('#boss-hp')) === 'HP 5/5', 'Retry starts the boss fight again');
+    await click('#game-quit');
+    await waitFor('#game-quit-confirm');
+    await click('#game-quit-confirm');
+    await waitFor('#game-over-title');
+    const todayAfterIsland = await js<number>(`window.examApi.info().then((i) => i.progress.today)`);
+    check(todayAfterIsland === todayBeforeIsland + islandAnswers, `island and boss answers count as training answers (${islandAnswers})`);
+    await click('#game-menu');
+    await waitFor('#game-hub');
+
     if (!mobile) {
       // The system's reduce-motion setting turns every game animation off.
       const devtools = win.webContents.debugger;
       devtools.attach('1.3');
       await devtools.sendCommand('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+      check((await js<string>(`getComputedStyle(document.querySelector('.path-wide line.lit')).animationName`)) === 'none', 'reduce motion: the lit path stands still');
+      await click('#game-quick');
+      await waitFor('#game-start');
       await click('#game-start');
       await waitFor('#game-check');
       check(

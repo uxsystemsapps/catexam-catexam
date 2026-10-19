@@ -28,6 +28,9 @@ declare global {
   type GameSettings = Api.GameSettings;
   type GameStatus = Api.GameStatus;
   type LevelInfo = Api.LevelInfo;
+  type BossState = Api.BossState;
+  type GamePhase = Api.GamePhase;
+  type WorldProgress = Api.WorldProgress;
   interface Window {
     examApi: ExamApi;
   }
