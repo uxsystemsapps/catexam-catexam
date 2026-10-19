@@ -187,8 +187,9 @@ run as the `CATExam-windows-installer` artefact; the `android-apk` job builds th
 The jobs run in the CI build image `catexam/catexam-ci` (`ci/Dockerfile`: JDK 21, Android SDK, Gradle, wine and
 warm npm/Electron/Gradle caches) from Gitea's container registry. The first job, `image`, builds and pushes it
 (kaniko) only when `ci/Dockerfile`, `package-lock.json` or the Gradle wrapper changed; then lint and test run,
-then smoke, then `windows-installer` and `android-apk`. Registry access uses the repository secrets
-`REGISTRY_USER` and `REGISTRY_TOKEN` (a Gitea token with read and write on packages) when they are set.
+then smoke, then `windows-installer` and `android-apk`. Registry access needs the repository secrets
+`REGISTRY_USER` and `REGISTRY_TOKEN` (an access token of that user with read and write on packages); the jobs' own
+token cannot use Gitea's container registry.
 There is no Windows runner and no Android device or emulator, so nobody runs the installer, the Windows
 lockdown or the APK automatically; the smoke test checks the Android screens in a phone-sized Chromium
 window instead. Windows SmartScreen warns about the unsigned installer ("More info" → "Run anyway").
