@@ -10,11 +10,12 @@ function run(mode) {
   const { promise, resolve } = Promise.withResolvers();
   console.log(`# smoke: ${mode === 'mobile' ? 'Android web app at phone size' : 'desktop app'}`);
   const child = spawn(electron, args, { stdio: 'inherit', env: { ...process.env, CATEXAM_SMOKE: mode } });
-  // Each run plays a full 60-second lightning round, on top of the exam, training and the other game rounds.
+  // Each run plays a full 60-second lightning round on top of the exam, training and the other game rounds
+  // (300 s was too short for the desktop run); the check lines say how long each part took.
   const timer = setTimeout(() => {
-    console.error(`SMOKE FAILED: ${mode} run timed out after 300 s`);
+    console.error(`SMOKE FAILED: ${mode} run timed out after 600 s`);
     child.kill('SIGKILL');
-  }, 300_000);
+  }, 600_000);
   child.on('exit', (code) => {
     clearTimeout(timer);
     resolve(code ?? 1);

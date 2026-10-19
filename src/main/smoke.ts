@@ -45,9 +45,11 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
       poll();
     })`);
   const click = (selector: string): Promise<void> => js(`document.querySelector(${JSON.stringify(selector)}).click()`);
+  // Seconds since the start in every line, so that a run that runs out of time shows where the time went.
+  const t0 = Date.now();
   const check = (ok: boolean, what: string): void => {
     if (!ok) throw new Error(`check failed: ${what}`);
-    console.log(`ok - ${what}`);
+    console.log(`ok - ${what} [${Math.round((Date.now() - t0) / 1000)} s]`);
   };
   const shot = async (name: string): Promise<void> => {
     const dir = process.env.CATEXAM_SMOKE_SHOTS;
