@@ -1,3 +1,5 @@
+![CATExam](assets/logo.png)
+
 # CATExam
 
 Simulator of the CISSP Computerized Adaptive Testing (CAT) exam, for training candidates: a Windows desktop app
@@ -127,6 +129,12 @@ The application logic (question banks, profile, history, exam and training sessi
 files; the Android app runs it inside the web view (`src/mobile`) and stores the profile in IndexedDB. Both
 show the same screens (`src/renderer`); the phone layout is the `max-width: 760px` part of `styles.css`.
 `android/` is the Capacitor Android project; `ExamLockPlugin.java` is the exam lock.
+
+The cat icon and the logo are drawn in `assets/icon.svg` and `assets/logo.svg` (the logo's text is in paths,
+so no font is needed). `assets/icon.png` (512 px) is the Windows installer and app icon; the app's top bar
+and favicon use `icon.svg`. The Android launcher icons (`android/app/src/main/res/mipmap-*`, background
+colour in `values/ic_launcher_background.xml`) are PNG renders of the same cat: re-render them from the SVG
+if the cat changes.
 
 The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. The
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the

@@ -279,7 +279,7 @@ async function home(): Promise<void> {
     h(
       'header',
       { class: 'topbar' },
-      h('span', { class: 'brand' }, 'CATExam', h('span', { class: 'brand-sub' }, 'CISSP Computerized Adaptive Testing simulator')),
+      h('span', { class: 'brand' }, h('img', { class: 'brand-logo', src: 'icon.svg', alt: '' }), 'CATExam', h('span', { class: 'brand-sub' }, 'CISSP Computerized Adaptive Testing simulator')),
       h(
         'span',
         { class: 'row top-actions' },

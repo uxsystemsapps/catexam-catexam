@@ -19,7 +19,8 @@ body {
   background: #1d3b66; color: #fff; padding: 10px 18px; font-size: 15px;
   border-bottom: 3px solid #0f2442;
 }
-.topbar .brand { font-weight: bold; }
+.topbar .brand { font-weight: bold; display: inline-flex; align-items: center; }
+.topbar .brand-logo { width: 26px; height: 26px; margin-right: 8px; }
 .topbar .right { display: flex; gap: 28px; align-items: center; }
 .topbar .right > span { white-space: nowrap; }
 .topbar .qnum { background: #0f2442; padding: 3px 10px; border-radius: 3px; font-weight: bold; }
