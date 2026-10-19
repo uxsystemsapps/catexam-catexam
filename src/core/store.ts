@@ -1,4 +1,5 @@
 import { mergeBanks, validateBank } from '../engine/bank';
+import { normalizeGameProgress, type GameProgress } from '../engine/game';
 import { normalizeProfile, normalizeProgress, type Profile, type Progress } from '../engine/profile';
 import type { Question, QuestionBank } from '../engine/types';
 import type { PracticeSnapshot } from '../engine/practice';
@@ -263,4 +264,13 @@ export async function readProgress(user: DataDir): Promise<Progress> {
 
 export async function saveProgress(user: DataDir, progress: Progress): Promise<void> {
   await writeJson(user, 'progress.json', progress);
+}
+
+/** XP, best combo and settings of the game mode; `platform` picks the default settings of a new profile. */
+export async function readGame(user: DataDir, platform: 'desktop' | 'mobile'): Promise<GameProgress> {
+  return normalizeGameProgress(await readJson(user, 'game.json'), platform);
+}
+
+export async function saveGame(user: DataDir, game: GameProgress): Promise<void> {
+  await writeJson(user, 'game.json', game);
 }

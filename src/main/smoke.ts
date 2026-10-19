@@ -9,8 +9,8 @@ export type SmokeTarget = { lockdown: Lockdown; mobile?: undefined } | { lockdow
 
 /**
  * Headless end-to-end run (CATEXAM_SMOKE=1 for the desktop app, CATEXAM_SMOKE=mobile for the Android web app;
- * `npm run smoke` runs both in the gates): drives the real screens through a full exam and a short training
- * session, checking the lockdown (desktop) or the phone layout (Android) along the way.
+ * `npm run smoke` runs both in the gates): drives the real screens through a full exam, a short training
+ * session and a short game round, checking the lockdown (desktop) or the phone layout (Android) along the way.
  * With CATEXAM_SMOKE_SHOTS=<dir>, it also saves PNG screenshots of the main screens there (`phone-*` for Android).
  */
 export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise<boolean> {
@@ -123,7 +123,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
       );
       check(
         (await js<boolean>(`[...document.querySelectorAll('.tabbar .tab')].every((b) => b.querySelector('svg path') && !b.textContent.trim() && b.getAttribute('aria-label'))`)) &&
-          (await js<string>(`[...document.querySelectorAll('.tabbar .tab')].map((b) => b.getAttribute('aria-label')).join()`)) === 'Home,Train,History,Settings' &&
+          (await js<string>(`[...document.querySelectorAll('.tabbar .tab')].map((b) => b.getAttribute('aria-label')).join()`)) === 'Home,Train,Game,History,Settings' &&
           (await heights('.tabbar .tab')).every((hgt) => hgt >= 44),
         'phone: tab bar shows icons with names for screen readers, large enough to tap',
       );
@@ -449,6 +449,125 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await waitFor('#bank-card:not(:has(#imported-banks))');
     check((await js<number>(`window.examApi.info().then((i) => i.bank.total)`)) === before, 'an imported bank can be removed');
     await rm(folder, { recursive: true, force: true });
+
+    // Game mode: the settings, a short round with its HUD, feedback and explanation, and the end screen.
+    await click(mobile ? '#tab-settings' : '#open-settings');
+    await waitFor('#game-settings');
+    check((await js<boolean>(`document.querySelector('#settings-sound').checked`)) === !mobile, `game sound is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
+    check((await js<number>(`document.querySelectorAll('#credits li').length`)) === 8, 'settings list the credits of every game asset');
+    await js(`(() => { document.querySelector('#settings-sound').checked = false; document.querySelector('#settings-lite').checked = true; document.querySelector('#settings-volume').value = '40'; })()`);
+    await fitsPhone('settings with game settings and credits');
+    await click('#settings-save');
+    await waitFor('#game-card');
+    const settings = await js<{ sound: boolean; lite: boolean; volume: number }>(`window.examApi.info().then((i) => i.game.settings)`);
+    check(!settings.sound && settings.lite && settings.volume === 40, 'game settings are saved');
+    await js(`window.examApi.saveGameSettings({ sound: false, volume: 40, lite: false })`);
+    const todayBefore = await js<number>(`window.examApi.info().then((i) => i.progress.today)`);
+    await click(mobile ? '#tab-game' : '#open-game');
+    await waitFor('#game-hub');
+    check(await visible('#hub-cat') && (await text('#rank-badge')).includes('Intern'), 'game hub shows the cat and the rank');
+    check((await js<number>(`document.querySelectorAll('#world-map button.island').length`)) === 8, 'the world map has an island per domain');
+    await click('#game-no-islands');
+    await click('#game-start');
+    check(await js<boolean>(`new Promise((r) => setTimeout(() => r(!!document.querySelector('#game-hub') && !document.querySelector('#game-check')), 300))`), 'a round needs at least one island');
+    await click('#island-1');
+    await click('#island-3');
+    check((await js<string>(`[...document.querySelectorAll('#world-map .island[aria-pressed="true"]')].map((b) => b.dataset.domain).join()`)) === '1,3', 'tapping islands picks the domains of the round');
+    await click('#game-len-5');
+    check((await js<string>(`document.querySelector('#game-len-5').getAttribute('aria-pressed')`)) === 'true', 'the round length is picked with pixel buttons');
+    await fitsPhone('game hub');
+    await shot('game-hub');
+    await click('#game-start');
+    await waitFor('#game-check');
+    check((await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 && (await text('#game-qnum')) === 'Q 1/5', 'a round starts with three hearts');
+    check((await js<string>(`document.querySelector('#game-cat').dataset.pose`)) === 'idle', 'the cat idles while the question is open');
+    await fitsPhone('game question');
+    await shot('game-question');
+    let rounds = 0;
+    let wrong = 0;
+    for (let screen = 'question'; screen === 'question' && rounds < 5; ) {
+      // Strategy as in the exam: the first option (two for multi-select); ordering items keep their order.
+      await js(`(() => {
+        const boxes = [...document.querySelectorAll('#game .options input')];
+        boxes.slice(0, boxes[0]?.type === 'radio' ? 1 : 2).forEach((b) => b.click());
+      })()`);
+      await click('#game-check');
+      // A multi-select question with another count of answers: tick one more box until accepted.
+      for (let k = 3; k <= 6 && !(await js<boolean>(`new Promise((r) => setTimeout(() => r(!!document.querySelector('#game-next')), 150))`)); k++) {
+        await js(`[...document.querySelectorAll('#game .options input')].forEach((b, i) => { if ((i < ${k}) !== b.checked) b.click(); })`);
+        await click('#game-check');
+      }
+      await waitFor('#game-next');
+      const right = (await text('#feedback .verdict')).startsWith('✔');
+      if (!right) wrong++;
+      const pose = await js<string>(`document.querySelector('#game-cat').dataset.pose`);
+      check(right ? pose === 'cheer' : pose === 'facepalm' || pose === 'cry', `the cat ${right ? 'cheers on a right' : 'facepalms, then cries, on a wrong'} answer`);
+      check(
+        (await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 - wrong,
+        `hearts: ${3 - wrong} left after ${wrong} wrong answer${wrong === 1 ? '' : 's'}`,
+      );
+      check((await text('#game-quip')).length > 10, 'a joke follows the answer');
+      // The explanation from the question bank is shown and nothing covers it, effects included.
+      check(
+        await js<boolean>(`(() => {
+          const ex = document.querySelector('#feedback .explanation');
+          // Its first line, scrolled to the top of the screen: long explanations are taller than a phone screen.
+          ex.scrollIntoView({ block: 'start' });
+          const r = ex.getBoundingClientRect();
+          const hit = document.elementFromPoint(r.left + r.width / 2, r.top + 12);
+          return ex.textContent.length > 20 && ex.contains(hit);
+        })()`),
+        'the explanation follows every answer and is never covered by effects',
+      );
+      if (rounds === 0) {
+        await fitsPhone('game feedback');
+        await shot('game-feedback');
+      }
+      rounds++;
+      await click('#game-next');
+      // Next opens the level-up moment (when earned), then the next question or the end screen.
+      const nextScreen = (): Promise<string> =>
+        js<string>(`new Promise((resolve) => {
+          const poll = () => document.querySelector('#levelup') ? resolve('levelup') : document.querySelector('#game-over') ? resolve('over')
+            : document.querySelector('#game-check:not(:disabled)') ? resolve('question') : setTimeout(poll, 20);
+          poll();
+        })`);
+      screen = await nextScreen();
+      if (screen === 'levelup') {
+        await click('#levelup-continue');
+        screen = await nextScreen();
+      }
+    }
+    await waitFor('#game-over-title');
+    const title = await text('#game-over-title');
+    check(title === (wrong === 3 ? 'GAME OVER' : 'ROUND CLEAR!'), `the round ends with ${title} after ${rounds} answers`);
+    check((await js<string>(`document.querySelector('#over-cat').dataset.pose`)) === (wrong === 3 ? 'cry' : 'cheer'), `the cat ${wrong === 3 ? 'cries at game over' : 'cheers at a cleared round'}`);
+    check((await text('#game-over-line')).length > 10 && (await visible('#game-retry')), 'the end screen has a funny line and a retry');
+    await fitsPhone('game over');
+    await shot('game-over');
+    const after = await js<{ today: number; xp: number }>(`window.examApi.info().then((i) => ({ today: i.progress.today, xp: i.game.level.xp }))`);
+    check(after.today === todayBefore + rounds && (after.xp > 0) === (wrong < rounds), `game answers count as training answers and earn XP (${after.xp} XP)`);
+    // The level-up moment: full screen with the rank badge, after "Next", and Continue goes on.
+    await js(`levelUpScreen({ xp: 120, level: 2, rank: 'Password123 Survivor', levelStart: 100, nextLevel: 300 }, true, () => void gameHub())`);
+    await waitFor('#levelup-continue');
+    check((await text('#levelup')).includes('New rank: Password123 Survivor'), 'level-up screen shows the new rank');
+    await fitsPhone('level up');
+    await shot('game-levelup');
+    await click('#levelup-continue');
+    await waitFor('#game-hub');
+    if (!mobile) {
+      // The system's reduce-motion setting turns every game animation off.
+      const devtools = win.webContents.debugger;
+      devtools.attach('1.3');
+      await devtools.sendCommand('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+      await click('#game-start');
+      await waitFor('#game-check');
+      check(
+        (await js<string>(`document.documentElement.dataset.fx`)) === 'still' && (await js<string>(`getComputedStyle(document.querySelector('#game-cat')).animationName`)) === 'none',
+        'reduce motion: the game shows no animations',
+      );
+      devtools.detach();
+    }
 
     console.log('SMOKE OK');
     return true;

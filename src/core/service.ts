@@ -1,4 +1,5 @@
 import { DOMAINS } from '../engine/domains';
+import { GameRun, levelInfo, normalizeGameSettings, type GameAnswer, type GameProgress, type GameSettings, type GameSummary } from '../engine/game';
 import { PracticeSession, type PracticeFeedback } from '../engine/practice';
 import {
   normalizePracticeOptions,
@@ -12,11 +13,12 @@ import {
   type Progress,
 } from '../engine/profile';
 import { ExamSession } from '../engine/session';
-import type { ExamResult, Question, ReviewItem } from '../engine/types';
+import type { ExamResult, Question, QuestionView, ReviewItem } from '../engine/types';
 import type {
   AppInfo,
   BankImportSummary,
   ExamState,
+  GameStart,
   ImportedBank,
   PracticeAnswer,
   PracticeStart,
@@ -32,6 +34,7 @@ import {
   listPaused,
   loadQuestions,
   readExamReview,
+  readGame,
   readHistory,
   readPaused,
   readProfile,
@@ -39,6 +42,7 @@ import {
   readTrainingHistory,
   removeBank,
   removePaused,
+  saveGame,
   saveProfile,
   savePaused,
   saveProgress,
@@ -83,15 +87,18 @@ export class CatexamService {
   /** When the current training session was first started (kept across pause and resume); its paused file id derives from it. */
   private practiceStartedAt = '';
   private progressWrite: Promise<void> = Promise.resolve();
+  private game: GameRun | null = null;
+  private gameWrite: Promise<void> = Promise.resolve();
 
   private constructor(
     private readonly host: ServiceHost,
     private profile: Profile,
     private progress: Progress,
+    private gameProgress: GameProgress,
   ) {}
 
   static async open(host: ServiceHost): Promise<CatexamService> {
-    const service = new CatexamService(host, await readProfile(host.data), await readProgress(host.data));
+    const service = new CatexamService(host, await readProfile(host.data), await readProgress(host.data), await readGame(host.data, host.platform));
     await service.reloadBank();
     return service;
   }
@@ -118,6 +125,12 @@ export class CatexamService {
     return this.progressWrite;
   }
 
+  /** Game progress is saved after every game answer, chained like the training progress. */
+  private persistGame(): Promise<void> {
+    this.gameWrite = this.gameWrite.then(() => saveGame(this.host.data, this.gameProgress)).catch((err: unknown) => console.error(err));
+    return this.gameWrite;
+  }
+
   async info(): Promise<AppInfo> {
     const { questions } = this;
     return {
@@ -135,6 +148,7 @@ export class CatexamService {
       paused: await listPaused(this.host.data),
       profile: this.profile,
       progress: summarizeProgress(questions, this.progress, today()),
+      game: { level: levelInfo(this.gameProgress.xp), bestCombo: this.gameProgress.bestCombo, games: this.gameProgress.games, settings: this.gameProgress.settings },
     };
   }
 
@@ -350,5 +364,51 @@ export class CatexamService {
       });
     }
     return summary;
+  }
+
+  /** Starts a game round; its questions are chosen as for a training session with these options. */
+  async startGame(raw: unknown): Promise<GameStart> {
+    const options = normalizePracticeOptions(raw);
+    const game = new GameRun(selectPracticeItems(this.questions, options, this.progress), this.gameProgress.xp);
+    this.game = game;
+    this.gameProgress.games++;
+    await this.persistGame();
+    return { question: game.current() as QuestionView, total: game.total, lives: game.livesLeft, secondsPerQuestion: options.secondsPerQuestion, level: levelInfo(game.totalXp) };
+  }
+
+  private activeGame(): GameRun {
+    if (!this.game) throw new Error('no game in progress');
+    return this.game;
+  }
+
+  /** A game answer counts as a training answer (daily count, questions to retry) and adds its XP. */
+  private async recordGame(game: GameRun, questionId: string, result: GameAnswer): Promise<GameAnswer> {
+    recordAnswer(this.progress, questionId, result.feedback.correct, today(), new Date().toISOString());
+    this.gameProgress.xp = game.totalXp;
+    this.gameProgress.bestCombo = Math.max(this.gameProgress.bestCombo, result.combo);
+    await Promise.all([this.persistProgress(), this.persistGame()]);
+    return result;
+  }
+
+  answerGame(questionId: string, response: number[]): Promise<GameAnswer> {
+    const game = this.activeGame();
+    return this.recordGame(game, questionId, game.answer(questionId, response));
+  }
+
+  timeoutGame(questionId: string): Promise<GameAnswer> {
+    const game = this.activeGame();
+    return this.recordGame(game, questionId, game.timeout(questionId));
+  }
+
+  gameSummary(): GameSummary {
+    const game = this.activeGame();
+    game.quit();
+    return game.summary();
+  }
+
+  async saveGameSettings(raw: unknown): Promise<GameSettings> {
+    this.gameProgress.settings = normalizeGameSettings(raw, this.host.platform);
+    await this.persistGame();
+    return this.gameProgress.settings;
   }
 }

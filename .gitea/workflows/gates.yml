@@ -47,8 +47,8 @@ jobs:
           fi
 
   smoke:
-    # Starts the real Electron app headless (Xvfb) and drives a full exam and a training session through
-    # the screens (src/main/smoke.ts), then does the same with the Android web app (www/) in a phone-sized
+    # Starts the real Electron app headless (Xvfb) and drives a full exam, a training session and a game round
+    # through the screens (src/main/smoke.ts), then does the same with the Android web app (www/) in a phone-sized
     # window, checking the phone layout. Linux only: no Windows or Android hand exists for this product.
     runs-on: linux
     steps:

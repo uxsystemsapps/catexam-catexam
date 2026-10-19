@@ -12,5 +12,5 @@
     "rootDir": "src",
     "outDir": "build/renderer"
   },
-  "files": ["src/renderer/app.ts", "src/renderer/global.d.ts"]
+  "files": ["src/renderer/game.ts", "src/renderer/app.ts", "src/renderer/global.d.ts"]
 }
