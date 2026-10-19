@@ -8,7 +8,7 @@ https://creativecommons.org/publicdomain/zero/1.0/): no attribution is required,
 
 | File | What | Source | Author | Licence |
 | --- | --- | --- | --- | --- |
-| `cat.png` | Hoodie cat mascot, 8 frames of 72×64 px (idle, blink, cheer, facepalm, sweat, crying ×2, cheer with lower paws) | [Pixel cat](https://opengameart.org/content/pixel-cat) (`cat_5.png`) | scofanogd | CC0 1.0 |
+| `cat.png` | Hoodie cat mascot, 8 frames of 72×64 px (idle, blink, cheer, sad, sweat, crying ×2, cheer with a grin) | [Pixel cat](https://opengameart.org/content/pixel-cat) (`cat_5.png`) | scofanogd | CC0 1.0 |
 | `icons.png` | Heart, half heart, empty heart, gem, coin (18×18 px tiles 44, 45, 46, 67, 151) | [Pixel Platformer](https://kenney.nl/assets/pixel-platformer) | Kenney (kenney.nl) | CC0 1.0 |
 | `map.png` | World map: grass, sand and snow islands (tiles 21–23, 41–43, 81–83 over 141–143), props (tiles 86, 27, 28, 129, 130, 127, 145, 11) and a flag (111) | [Pixel Platformer](https://kenney.nl/assets/pixel-platformer) | Kenney (kenney.nl) | CC0 1.0 |
 | `bosses.png` | The eight bosses, 32×32 px each in domain order: hydra (`mon/dragons/hydra5.png`), azure jelly, iron golem, kraken head, lich, great orb of eyes, shadow dragon, spider | [Dungeon Crawl Stone Soup tiles](https://github.com/crawl/tiles) (CC0 release `releases/Nov-2015/mon/`) | Dungeon Crawl Stone Soup tile artists (listed in the repository's `ARTISTS.md`) | CC0 1.0 |
@@ -34,10 +34,10 @@ https://creativecommons.org/publicdomain/zero/1.0/): no attribution is required,
 
 - **Hoodie cat**: no free pack has a pixel cat in a hoodie, so `cat_5.png` was adapted for this app: the
   torso is recoloured as a blue hoodie with a folded hood, drawstrings, a pocket seam and a padlock print, and
-  extra frames were drawn from it (blink; cheer with raised paws and an open smile, and a second cheer frame
-  with lower paws; facepalm with a paw over the eyes; sweat with drops and wide eyes; two crying frames with
-  slanted brows, tear streams, falling drops and a wailing mouth). The canvas grew from 57×56 to 72×64 px for
-  the raised paws.
+  extra frames were drawn from it (blink; cheer with closed happy eyes, an open smile and gold sparkles, and a
+  second cheer frame with a grin and the sparkles moved; sad with slanted brows and a wailing mouth; sweat with
+  drops and wide eyes; two crying frames with slanted brows, tear streams, falling drops and a wailing mouth).
+  The cat never raises paws. The canvas grew from 57×56 to 72×64 px (room for the sparkles).
 - **Icons**: five tiles of the Pixel Platformer pack copied side by side into one sprite sheet.
 - **Map**: Pixel Platformer tiles composed into three 4×2-tile islands and a row of props.
 - **Power-ups and badges**: Tiny Dungeon (16×16) and Pixel Platformer (18×18) tiles copied unchanged side by

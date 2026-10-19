@@ -45,12 +45,16 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
 - **Game mode** (no lock): the same question bank as a pixel-art arcade game. The **world map** has eight
   islands, one per domain (Risk Reef, Asset Atoll, The Crypto Caves, Packet Peninsula, Fortress of Access
   Control, Pentest Dunes, SOC Glacier, Code Cove) along a dotted path. Tap an island and the hoodie cat walks
-  there; the panel below shows the island and its boss. **Play island** asks six questions of that domain,
-  then its **boss** (The Risk Hydra, The Data Leak Blob, The Side-Channel Golem, The Phishing Kraken, The
+  there; the panel below shows the island, its boss and the rules. **Play island** asks six questions of that
+  domain, then its **boss** (The Risk Hydra, The Data Leak Blob, The Side-Channel Golem, The Phishing Kraken, The
   Privilege Lich, The Orb of a Thousand Scans, The Ransomware Dragon, The Zero-Day Bug) fights with the
   domain's hardest questions (above 0.5 logits, topped up with the hardest of the rest): each right answer
-  hits it (its health bar drops, it flashes white and shakes; five hits win, plus a 100 XP bonus), each wrong
-  one costs a heart (it lunges and gloats), with three hearts for the whole island. The boss idles, explodes
+  hits it (its health bar drops for good, it flashes white and shakes; five hits win, plus a 100 XP bonus), each
+  wrong one costs a heart (it lunges and gloats), with three hearts for the whole island. **Game rules** in
+  Profile & settings change this: island difficulty (easy: easy stage questions and a boss with medium ones;
+  normal; hard: medium and hard stage questions), questions per island (3–20), hits to beat a boss (1–15),
+  hearts (1–5, also for the quick round) and an island timer (off or 15–120 s per question); a domain with too
+  few questions gives fewer, or a weaker boss. The boss idles, explodes
   when beaten and a victory screen follows; losing gives a funny game over and **Retry boss** (once the stage
   is won, the boss can also be fought again from the map). A beaten boss clears its island: it lights up and
   comes alive (glow, bobbing, a waving flag, sparkles) and the path leaving it turns gold and marches. Cleared
@@ -59,10 +63,11 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   and pool (whole bank or your mistakes) with pixel buttons, and press start. A right answer earns XP (10 easy,
   20 medium, 30 hard),
   five in a row start **Encryption Frenzy** (double XP, a growing flame, glowing screen edges, x2 and then x3
-  from ten in a row), and a wrong or timed-out answer breaks one of three hearts; the round ends when the hearts
+  from ten in a row), and a wrong or timed-out answer breaks a heart (three by default); the round ends when the hearts
   or the questions run out, with a funny line, the score and **Retry**. XP fills a level bar and earns ranks (Intern →
   Password123 Survivor → … → Firewall Whisperer → … → CISO of Doom); XP, best combo and rounds are kept.
-  A pixel cat in a hoodie cheers on a right answer, facepalms and then cries on a wrong one, sweats when the
+  A pixel cat in a hoodie cheers on a right answer (a happy face, sparkles and hops, no paws in the air), droops
+  with a sad face and then cries on a wrong one, sweats when the
   timer runs low and cries at game over. Effects: READY/GO, coins flying into the XP bar, sparks, streak
   shouts, a red flash and a falling heart, drop-in titles and a level-up screen with spinning rays.
   Each answer gets a cheeky security joke (or a boss taunt), and then always the verdict and the bank's

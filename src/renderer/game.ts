@@ -16,7 +16,7 @@ const GAME_ASSETS = 'game/';
 
 /** Assets of the game and where they come from; listed in Profile & settings and in assets/CREDITS.md. */
 const GAME_CREDITS: { what: string; source: string; author: string; licence: string; url: string }[] = [
-  { what: 'Hoodie cat mascot (adapted: hoodie, padlock print, cheering, facepalm, sweating and crying frames added)', source: 'Pixel cat', author: 'scofanogd', licence: 'CC0 1.0', url: 'https://opengameart.org/content/pixel-cat' },
+  { what: 'Hoodie cat mascot (adapted: hoodie, padlock print, cheering, sad, sweating and crying frames added)', source: 'Pixel cat', author: 'scofanogd', licence: 'CC0 1.0', url: 'https://opengameart.org/content/pixel-cat' },
   { what: 'Hearts, gem, coin, the islands and props of the world map, and eight achievement badges (link, lock, key, ! block, flag, lever, coin, gem)', source: 'Pixel Platformer', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/pixel-platformer' },
   { what: 'Power-up icons (double axe, wizard, red potion) and seven achievement badges (sword, shields, chests, blue potion, helmet)', source: 'Tiny Dungeon', author: 'Kenney', licence: 'CC0 1.0', url: 'https://kenney.nl/assets/tiny-dungeon' },
   { what: 'Combo flame', source: 'Simple animate fire', author: 'XenosNS', licence: 'CC0 1.0', url: 'https://opengameart.org/content/simple-animate-fire' },
@@ -97,7 +97,7 @@ function pick(lines: readonly string[]): string {
 type Sfx = 'ding' | 'buzz' | 'whoosh' | 'fanfare' | 'coin' | 'powerup' | 'pickup' | 'achievement' | 'tick';
 
 /** Settings of the last `info()` call; the HUD sound and music buttons and Profile & settings change them. */
-let gameSettings: GameSettings = { sound: false, volume: 70, music: false, musicVolume: 50, lite: false };
+let gameSettings: GameSettings = { sound: false, volume: 70, music: false, musicVolume: 50, lite: false, difficulty: 'normal', stageQuestions: 6, bossHp: 5, hearts: 3, islandSeconds: 0 };
 const sfxCache: Partial<Record<Sfx, HTMLAudioElement>> = {};
 
 function playSfx(name: Sfx, delay = 0): void {
@@ -274,7 +274,7 @@ function countUp(el: HTMLElement, to: number, prefix: string): void {
 
 // ---------- Pixel parts ----------
 
-type CatPose = 'idle' | 'cheer' | 'facepalm' | 'sweat' | 'cry';
+type CatPose = 'idle' | 'cheer' | 'sad' | 'sweat' | 'cry';
 
 function cat(pose: CatPose, id?: string): HTMLElement {
   return h('div', { class: 'cat', 'data-pose': pose, id: id ?? false, role: 'img', 'aria-label': `Hoodie cat (${pose})` });
@@ -380,20 +380,40 @@ function gameCard(info: AppInfo): HTMLElement {
       'div',
       { class: 'game-card-text' },
       h('h2', {}, 'Game mode'),
-      h('p', { class: 'small' }, 'The same questions as an arcade game: a world map with a boss on every island, a daily challenge, a lightning round, power-ups and achievements, XP, ranks, combos and three hearts. The explanation always follows each answer.'),
+      h('p', { class: 'small' }, 'The same questions as an arcade game: a world map with a boss on every island, a daily challenge, a lightning round, power-ups and achievements, XP, ranks, combos and hearts. The explanation always follows each answer.'),
       levelBar(info.game.level, 'home-level'),
     ),
     h('button', { id: 'open-game', class: 'px-button', disabled: info.bank.total === 0, onclick: () => void gameHub() }, 'Play ▶'),
   );
 }
 
-/** Game settings for Profile & settings: sound effects and music, each on/off with its volume, and lite effects. */
+/** Whole numbers from `min` to `max`, for a select. */
+const choices = (min: number, max: number): [number, string][] => Array.from({ length: max - min + 1 }, (_, i): [number, string] => [min + i, String(min + i)]);
+
+const ISLAND_DIFFICULTY_LABELS: Record<GameSettings['difficulty'], string> = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
+
+/** What an island holds with these rules, for the island panel. */
+function islandRulesText(s: GameSettings): string {
+  const plural = (n: number, word: string): string => `${n} ${word}${n === 1 ? '' : 's'}`;
+  const timer = s.islandSeconds > 0 ? ` ${s.islandSeconds} seconds per question.` : '';
+  return `${plural(s.stageQuestions, 'question')} of this domain, then the boss: each right answer is a hit, ${plural(s.bossHp, 'hit')} to win, and it never heals. ${plural(s.hearts, 'heart')} for the whole island; wrong answers join your questions to retry.${timer} Change the rules in Profile & settings.`;
+}
+
+/**
+ * Game settings for Profile & settings: sound effects and music, each on/off with its volume, lite effects, and the
+ * game rules (island difficulty, stage length, boss hit points, hearts, island timer).
+ */
 function gameSettingsCard(settings: GameSettings): { node: HTMLElement; read: () => GameSettings } {
   const sound = h('input', { id: 'settings-sound', type: 'checkbox', checked: settings.sound });
   const volume = h('input', { id: 'settings-volume', type: 'range', min: '0', max: '100', step: '5', value: String(settings.volume) });
   const music = h('input', { id: 'settings-music', type: 'checkbox', checked: settings.music });
   const musicVolume = h('input', { id: 'settings-music-volume', type: 'range', min: '0', max: '100', step: '5', value: String(settings.musicVolume) });
   const lite = h('input', { id: 'settings-lite', type: 'checkbox', checked: settings.lite });
+  const difficulty = select('settings-game-difficulty', Object.entries(ISLAND_DIFFICULTY_LABELS) as [GameSettings['difficulty'], string][], settings.difficulty);
+  const stageQuestions = select('settings-stage-questions', choices(3, 20), settings.stageQuestions);
+  const bossHp = select('settings-boss-hp', choices(1, 15), settings.bossHp);
+  const hearts = select('settings-hearts', choices(1, 5), settings.hearts);
+  const islandSeconds = select('settings-island-timer', [0, 15, 30, 45, 60, 90, 120].map((s): [number, string] => [s, s === 0 ? 'Off' : `${s} s per question`]), settings.islandSeconds);
   return {
     node: h(
       'section',
@@ -405,8 +425,30 @@ function gameSettingsCard(settings: GameSettings): { node: HTMLElement; read: ()
       h('label', { class: 'field' }, 'Music volume', musicVolume),
       h('label', { class: 'check' }, lite, ' Lite effects (no particles, shaking or bouncing)'),
       h('p', { class: 'small' }, 'When the system asks to reduce motion, the game shows no animations at all.'),
+      h('h3', {}, 'Game rules'),
+      h(
+        'div',
+        { class: 'form-grid', id: 'game-rules' },
+        h('label', { class: 'field' }, 'Island difficulty', difficulty, h('span', { class: 'field-hint' }, 'Easy: easier stage, gentler boss')),
+        h('label', { class: 'field' }, 'Questions per island', stageQuestions, h('span', { class: 'field-hint' }, 'Before the boss')),
+        h('label', { class: 'field' }, 'Hits to beat a boss', bossHp, h('span', { class: 'field-hint' }, 'Right answers in the boss fight')),
+        h('label', { class: 'field' }, 'Hearts', hearts, h('span', { class: 'field-hint' }, 'Islands and quick rounds')),
+        h('label', { class: 'field' }, 'Island timer', islandSeconds),
+      ),
+      h('p', { class: 'small' }, 'The rules apply from the next round. Small domains may give fewer questions or a weaker boss.'),
     ),
-    read: () => ({ sound: sound.checked, volume: Number(volume.value), music: music.checked, musicVolume: Number(musicVolume.value), lite: lite.checked }),
+    read: () => ({
+      sound: sound.checked,
+      volume: Number(volume.value),
+      music: music.checked,
+      musicVolume: Number(musicVolume.value),
+      lite: lite.checked,
+      difficulty: difficulty.value as GameSettings['difficulty'],
+      stageQuestions: Number(stageQuestions.value),
+      bossHp: Number(bossHp.value),
+      hearts: Number(hearts.value),
+      islandSeconds: Number(islandSeconds.value),
+    }),
   };
 }
 
@@ -542,7 +584,7 @@ async function gameHub(): Promise<void> {
         h('p', { class: 'island-boss-name' }, `Boss: ${island.boss}`),
         h('p', { class: 'small', id: 'island-status' }, status),
       )),
-      h('p', { class: 'px-help' }, 'Six questions of this domain, then the boss with its hardest questions: each right answer is a hit, five hits win. Three hearts for the whole island; wrong answers join your questions to retry.'),
+      h('p', { class: 'px-help', id: 'island-rules' }, islandRulesText(gameSettings)),
       h(
         'div',
         { class: 'row' },
@@ -1190,7 +1232,7 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
       burst(at.x, at.y, 'spark');
       floatText(`+${r.xpGained} XP`, at.x, at.y - 20, 'xp');
     } else {
-      pose('facepalm');
+      pose('sad');
       playSfx('buzz');
     }
     announceAchievements(r.unlocked);
@@ -1223,7 +1265,8 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
     const lostHeart = r.lives < ctx.lives;
     const frenzyStarts = r.multiplier > ctx.multiplier;
     const comboGrew = r.combo > ctx.combo;
-    Object.assign(ctx, { lives: r.lives, combo: r.combo, multiplier: r.multiplier, level: r.level, answered: ctx.answered + 1, powerUps: r.powerUps });
+    // The boss's health rides along: the next question's arena is drawn from it (it never heals between questions).
+    Object.assign(ctx, { lives: r.lives, combo: r.combo, multiplier: r.multiplier, level: r.level, answered: ctx.answered + 1, powerUps: r.powerUps, boss: r.boss ?? ctx.boss });
     const freshCombo = comboMeter(ctx.combo, ctx.multiplier);
     if (comboGrew) freshCombo.classList.add('pop');
     comboNode.replaceWith(freshCombo);
@@ -1256,8 +1299,8 @@ function renderGameQuestion(q: QuestionView, ctx: GameContext): void {
         if (r.end === 'victory') bossDefeat(bossNode);
       }
     } else {
-      // Facepalm first, then the tears.
-      pose('facepalm');
+      // Dismay first, then the tears.
+      pose('sad');
       poseTimer = window.setTimeout(() => pose('cry', 3000), 900);
       playSfx('buzz');
       if (lostHeart && heartRow) {
@@ -1501,7 +1544,7 @@ async function gameOver(): Promise<void> {
         h(
           'div',
           { class: 'over-scene' },
-          cat(won ? 'cheer' : s.end === 'lives' ? 'cry' : 'facepalm', 'over-cat'),
+          cat(won ? 'cheer' : s.end === 'lives' ? 'cry' : 'sad', 'over-cat'),
           domain !== null && s.boss && h('span', { class: `over-boss${s.end === 'victory' ? ' beaten' : ''}` }, bossSprite(domain, 'over-boss')),
         ),
         h('p', { class: 'bubble', id: 'game-over-line' }, line),

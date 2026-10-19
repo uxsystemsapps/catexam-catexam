@@ -460,15 +460,16 @@ footer.bottombar.game-bar { background: #16132b; border-top: 4px solid #0d0b1e; 
 .game .px-panel select, .game .px-panel input[type='number'] { background: #fff; color: var(--ink); border-color: #9a8f74; color-scheme: light; }
 .game .px-panel button.mini { background: #fff; color: var(--ink); border-color: #9a8f74; }
 
-/* Hoodie cat: a 72×64 sprite sheet with the poses idle, blink, cheer, facepalm and sweat side by side. */
+/* Hoodie cat: a 72×64 sprite sheet of poses side by side; it never raises paws (it has no hands to wave). */
 .cat {
   flex: none; width: calc(72px * var(--px)); height: calc(64px * var(--px));
   background-image: url('game/cat.png'); background-size: calc(576px * var(--px)) calc(64px * var(--px));
 }
-/* Frames: 0 idle, 1 blink, 2 cheer, 3 facepalm, 4 sweat, 5–6 crying, 7 cheer with lower paws. */
+/* Frames: 0 idle, 1 blink, 2 cheer (happy face, sparkles), 3 sad, 4 sweat, 5–6 crying, 7 cheer (grin, sparkles).
+   Cheering is a happy face, twinkling sparkles and hops; a wrong answer droops, then cries. */
 .cat[data-pose='idle'] { animation: cat-blink 4s step-end infinite, cat-bob 1.2s steps(2) infinite; }
 .cat[data-pose='cheer'] { background-position-x: calc(-144px * var(--px)); animation: cat-cheer 0.36s steps(1) infinite, cat-jump 0.5s ease-out 3; }
-.cat[data-pose='facepalm'] { background-position-x: calc(-216px * var(--px)); animation: cat-droop 0.4s ease-out forwards; }
+.cat[data-pose='sad'] { background-position-x: calc(-216px * var(--px)); animation: cat-droop 0.4s ease-out forwards; }
 .cat[data-pose='cry'] { background-position-x: calc(-360px * var(--px)); animation: cat-cry 0.5s steps(1) infinite, cat-sob 0.5s steps(2) infinite; }
 @keyframes cat-cheer { 0% { background-position-x: calc(-144px * var(--px)); } 50% { background-position-x: calc(-504px * var(--px)); } }
 @keyframes cat-cry { 0% { background-position-x: calc(-360px * var(--px)); } 50% { background-position-x: calc(-432px * var(--px)); } }
