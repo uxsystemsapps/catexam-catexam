@@ -3,6 +3,7 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { app, type BrowserWindow } from 'electron';
+import type { GameSettings } from '../engine/game';
 import type { Question } from '../engine/types';
 import type { Lockdown } from './lockdown';
 
@@ -480,17 +481,25 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     check((await js<boolean>(`document.querySelector('#settings-sound').checked`)) === !mobile, `game sound is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
     check((await js<boolean>(`document.querySelector('#settings-music').checked`)) === !mobile, `music is ${mobile ? 'off by default on the phone' : 'on by default on the desktop'}`);
     check((await js<number>(`document.querySelectorAll('#credits li').length`)) === 12, 'settings list the credits of every game asset');
+    check((await js<string>(`document.querySelector('#settings-stage-questions').value + '/' + document.querySelector('#settings-boss-hp').value + '/' + document.querySelector('#settings-hearts').value + '/' + document.querySelector('#settings-game-difficulty').value`)) === '6/5/3/normal', 'game rules start at six questions, five hits, three hearts, normal difficulty');
     await js(`(() => {
       document.querySelector('#settings-sound').checked = false;
       document.querySelector('#settings-lite').checked = true;
       document.querySelector('#settings-volume').value = '40';
       document.querySelector('#settings-music-volume').value = '30';
+      document.querySelector('#settings-stage-questions').value = '4';
+      document.querySelector('#settings-boss-hp').value = '8';
+      document.querySelector('#settings-hearts').value = '2';
+      document.querySelector('#settings-game-difficulty').value = 'hard';
+      document.querySelector('#settings-island-timer').value = '30';
     })()`);
     await fitsPhone('settings with game settings and credits');
     await click('#settings-save');
     await waitFor('#game-card');
-    const settings = await js<{ sound: boolean; lite: boolean; volume: number; music: boolean; musicVolume: number }>(`window.examApi.info().then((i) => i.game.settings)`);
+    const settings = await js<GameSettings>(`window.examApi.info().then((i) => i.game.settings)`);
     check(!settings.sound && settings.lite && settings.volume === 40 && settings.music === !mobile && settings.musicVolume === 30, 'game settings are saved, music apart from the sound effects');
+    check(settings.stageQuestions === 4 && settings.bossHp === 8 && settings.hearts === 2 && settings.difficulty === 'hard' && settings.islandSeconds === 30, 'the game rules are saved');
+    // Back to the default rules (the fields left out fall back to them) for the rounds below.
     await js(`window.examApi.saveGameSettings({ sound: false, volume: 40, music: ${!mobile}, musicVolume: 30, lite: false })`);
     const todayBefore = await js<number>(`window.examApi.info().then((i) => i.progress.today)`);
     await click(mobile ? '#tab-game' : '#open-game');
@@ -511,6 +520,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await click('#map-island-3');
     await waitFor('#map-cat[data-at="3"]');
     check((await text('#island-title')).includes('The Crypto Caves') && (await text('#island-panel')).includes('The Side-Channel Golem'), 'tapping an island walks the cat there and shows the island and its boss');
+    check((await text('#island-rules')).startsWith('6 questions of this domain, then the boss') && (await text('#island-rules')).includes('5 hits to win') && (await text('#island-rules')).includes('3 hearts'), 'the island panel states the game rules of the settings');
     check(!(await js<boolean>(`!!document.querySelector('#island-boss')`)), 'the boss alone is offered only once the stage is won');
     await fitsPhone('world map');
     await shot('game-map');
@@ -551,7 +561,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
       const right = (await text('#feedback .verdict')).startsWith('✔');
       if (!right) wrong++;
       const pose = await js<string>(`document.querySelector('#game-cat').dataset.pose`);
-      check(right ? pose === 'cheer' : pose === 'facepalm' || pose === 'cry', `the cat ${right ? 'cheers on a right' : 'facepalms, then cries, on a wrong'} answer`);
+      check(right ? pose === 'cheer' : pose === 'sad' || pose === 'cry', `the cat ${right ? 'cheers on a right' : 'droops, then cries, on a wrong'} answer`);
       check(
         (await js<number>(`document.querySelectorAll('#game-hearts .px-icon.heart').length`)) === 3 - wrong,
         `hearts: ${3 - wrong} left after ${wrong} wrong answer${wrong === 1 ? '' : 's'}`,
@@ -715,6 +725,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await fitsPhone('boss fight');
     await shot('game-boss');
     await goOn();
+    check((await text('#boss-hp')) === 'HP 4/5', 'the next boss question keeps the boss wounded (it does not heal)');
     await answer(false);
     check(
       (await heartsLeft()) === 2 && (await js<boolean>(`document.querySelector('#boss-sprite').classList.contains('attack')`)) && (await text('#game-quip')).startsWith('The Ransomware Dragon:'),
@@ -723,6 +734,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     check(await explanationVisible(), 'the explanation follows a wrong boss answer too');
     for (let hp = 4; hp > 0; hp--) {
       await goOn();
+      check((await text('#boss-hp')) === `HP ${hp}/5`, `the boss stays at ${hp} HP between questions`);
       await answer(true);
     }
     check(

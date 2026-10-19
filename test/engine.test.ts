@@ -11,16 +11,18 @@ import {
   addDays,
   BOSS_BONUS_XP,
   BOSS_HP,
-  BOSS_QUESTIONS,
+  bossQuestionCount,
   completeDaily,
   dailyStreak,
   DAILY_QUESTIONS,
   defaultGameProgress,
+  GAME_LIVES,
   GameRun,
   LIGHTNING_GRACE_MS,
   LIGHTNING_SECONDS,
   levelInfo,
   normalizeGameProgress,
+  normalizeGameSettings,
   POWER_UP_CAP,
   selectDailyItems,
   selectIslandItems,
@@ -565,6 +567,9 @@ describe('game mode', () => {
     const view = run.current() as QuestionView;
     return run.answer(view.id, right ? [0] : [1]);
   };
+  /** The default rules, and the questions they keep for a boss. */
+  const RULES = { difficulty: 'normal', stageQuestions: STAGE_QUESTIONS, bossHp: BOSS_HP, hearts: GAME_LIVES } as const;
+  const BOSS_QUESTIONS = bossQuestionCount(BOSS_HP, GAME_LIVES);
 
   it('pays more XP for harder questions and doubles, then triples it in a combo', () => {
     const run = new GameRun([q('E', -1), q('M', 0), q('H', 1), ...Array.from({ length: 12 }, (_, i) => q(`X${i}`, 0))], 0);
@@ -634,12 +639,19 @@ describe('game mode', () => {
       'mobile',
     );
     assert.deepEqual([repaired.xp, repaired.bestCombo, repaired.games], [0, 4, 0]);
-    assert.deepEqual(repaired.settings, { sound: true, volume: 100, music: false, musicVolume: 0, lite: false });
+    assert.deepEqual(repaired.settings, { sound: true, volume: 100, music: false, musicVolume: 0, lite: false, difficulty: 'normal', stageQuestions: STAGE_QUESTIONS, bossHp: BOSS_HP, hearts: GAME_LIVES, islandSeconds: 0 });
     assert.equal(repaired.world.at, 1, 'an unknown island falls back to the first');
     assert.deepEqual(repaired.world.islands.map((i) => i.domain), [1, 2, 3, 4, 5, 6, 7, 8]);
     assert.deepEqual(repaired.world.islands[2], { domain: 3, cleared: true, bossReached: true, victories: 1 }, 'a cleared island had its boss reached and beaten');
     assert.deepEqual(repaired.world.islands[3], { domain: 4, cleared: false, bossReached: true, victories: 2 });
     assert.deepEqual(repaired.world.islands[0], { domain: 1, cleared: false, bossReached: false, victories: 0 });
+  });
+
+  it('keeps the game rules of the settings within their limits', () => {
+    const s = normalizeGameSettings({ difficulty: 'nightmare', stageQuestions: 99, bossHp: 0, hearts: 2.6, islandSeconds: 50 }, 'desktop');
+    assert.deepEqual([s.difficulty, s.stageQuestions, s.bossHp, s.hearts, s.islandSeconds], ['normal', 20, 1, 3, 45], 'clamped, rounded, and the nearest time limit on offer');
+    const t = normalizeGameSettings({ difficulty: 'hard', stageQuestions: 2, bossHp: 40, hearts: 9, islandSeconds: 1000 }, 'desktop');
+    assert.deepEqual([t.difficulty, t.stageQuestions, t.bossHp, t.hearts, t.islandSeconds], ['hard', 3, 15, 5, 120]);
   });
 
   it('keeps the hardest questions of an island for its boss and gives the stage the rest of the domain', () => {
@@ -648,16 +660,44 @@ describe('game mode', () => {
       ...Array.from({ length: 10 }, (_, i) => q(`E${i}`, -1, 4)),
       q('OTHER', 2, 5),
     ];
-    const items = selectIslandItems(bank, 4);
+    const items = selectIslandItems(bank, 4, RULES);
     assert.equal(items.boss.length, BOSS_QUESTIONS);
     assert.ok(items.boss.every((x) => x.id.startsWith('H')), 'the boss only gets hard questions when the domain has enough');
     assert.equal(items.stage.length, STAGE_QUESTIONS);
     assert.ok(items.stage.every((x) => x.domain === 4 && !items.boss.includes(x)), 'the stage gets other questions of the domain');
     // Few hard questions: the boss is topped up with the hardest of the rest.
-    const few = selectIslandItems([q('H', 2, 6), q('M1', 0.4, 6), q('M2', 0.2, 6), ...Array.from({ length: 11 }, (_, i) => q(`L${i}`, -2, 6))], 6);
+    const few = selectIslandItems([q('H', 2, 6), q('M1', 0.4, 6), q('M2', 0.2, 6), ...Array.from({ length: 11 }, (_, i) => q(`L${i}`, -2, 6))], 6, RULES);
     assert.equal(few.boss.length, BOSS_QUESTIONS);
     assert.ok(['H', 'M1', 'M2'].every((id) => few.boss.some((x) => x.id === id)));
     assert.equal(few.stage.length, 4);
+  });
+
+  it('sizes an island by the rules and picks its questions by difficulty', () => {
+    const bank = [
+      ...Array.from({ length: 15 }, (_, i) => q(`E${i}`, -1 - i / 10, 2)),
+      ...Array.from({ length: 15 }, (_, i) => q(`M${i}`, i / 50, 2)),
+      ...Array.from({ length: 15 }, (_, i) => q(`H${i}`, 1 + i / 10, 2)),
+    ];
+    const easy = selectIslandItems(bank, 2, { difficulty: 'easy', stageQuestions: 4, bossHp: 3, hearts: 1 });
+    assert.deepEqual([easy.stage.length, easy.boss.length], [4, bossQuestionCount(3, 1)]);
+    assert.ok(easy.stage.every((x) => x.id.startsWith('E')) && easy.boss.every((x) => x.id.startsWith('M')), 'easy: easy stage, medium boss');
+    const hard = selectIslandItems(bank, 2, { difficulty: 'hard', stageQuestions: 10, bossHp: 8, hearts: 3 });
+    assert.ok(hard.boss.every((x) => x.id.startsWith('H')), 'hard: the boss gets the hard questions');
+    assert.ok(hard.stage.every((x) => !x.id.startsWith('E')), 'hard: no easy questions in the stage while harder ones are left');
+  });
+
+  it('plays with the hearts and boss hit points of the rules', () => {
+    const boss = Array.from({ length: bossQuestionCount(2, 1) }, (_, i) => q(`B${i}`, 1));
+    const run = new GameRun([q('S', 0)], 0, { domain: 1, boss, bossHp: 2 }, { hearts: 1, powerUps: { fifty: 0, auditor: 0, patch: 1 } });
+    assert.equal(run.livesLeft, 1);
+    assert.throws(() => run.usePowerUp('patch', (run.current() as QuestionView).id), /full/, 'Patch Tuesday mends up to the hearts of the rules');
+    assert.deepEqual(play(run, true).boss, { hp: 2, max: 2 });
+    const hit = play(run, true);
+    assert.deepEqual(hit.boss, { hp: 1, max: 2 });
+    assert.equal(play(run, true).end, 'victory');
+    const one = new GameRun([q('A', 0), q('B', 0)], 0, null, { hearts: 1 });
+    assert.equal(play(one, false).end, 'lives', 'one heart: one miss ends a quick round');
+    assert.equal(new GameRun([q('A', 0)], 0, null, { kind: 'daily', hearts: 5 }).livesLeft, 0, 'the daily challenge has no hearts whatever the rules');
   });
 
   it('opens the boss fight once the stage is won: right answers hit it, wrong ones cost hearts, and beating it pays a bonus', () => {
@@ -766,6 +806,14 @@ describe('game mode', () => {
       world = (await reopened.info()).game.world;
       assert.deepEqual(world.islands[6], { domain: 7, cleared: true, bossReached: true, victories: 1 });
       assert.ok(world.islands.filter((i) => i.domain !== 7).every((i) => !i.cleared && !i.bossReached));
+
+      // The game rules of the settings shape the next island.
+      const rules = await reopened.saveGameSettings({ ...(await reopened.info()).game.settings, stageQuestions: 3, bossHp: 2, hearts: 1, islandSeconds: 30 });
+      assert.deepEqual([rules.stageQuestions, rules.bossHp, rules.hearts, rules.islandSeconds], [3, 2, 1, 30]);
+      const short = await reopened.startIsland(7);
+      assert.deepEqual([short.total, short.lives, short.secondsPerQuestion], [3, 1, 30]);
+      const quickFight = await reopened.startBoss(7);
+      assert.deepEqual([quickFight.boss, quickFight.lives], [{ hp: 2, max: 2 }, 1]);
     } finally {
       await rm(tmp, { recursive: true, force: true });
     }

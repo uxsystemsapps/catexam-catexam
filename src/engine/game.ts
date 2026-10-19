@@ -40,6 +40,10 @@ export const RANKS: readonly { level: number; title: string }[] = [
   { level: 16, title: 'CISO of Doom' },
 ];
 
+/** How hard the islands are: which questions the stage and the boss get (see `selectIslandItems`). */
+export type IslandDifficulty = 'easy' | 'normal' | 'hard';
+export const ISLAND_DIFFICULTIES: readonly IslandDifficulty[] = ['easy', 'normal', 'hard'];
+
 export interface GameSettings {
   sound: boolean;
   /** Sound effect volume, 0–100. */
@@ -50,12 +54,26 @@ export interface GameSettings {
   musicVolume: number;
   /** Fewer effects (no particles, shake or bouncing), for slower phones or by taste. */
   lite: boolean;
+  /** Island difficulty. */
+  difficulty: IslandDifficulty;
+  /** Questions of an island's stage before its boss. */
+  stageQuestions: number;
+  /** Hit points of a boss: right answers needed to beat it. */
+  bossHp: number;
+  /** Hearts of a quick round and of an island (the daily challenge and the lightning round have none). */
+  hearts: number;
+  /** Seconds per question on an island (0: no time limit). */
+  islandSeconds: number;
 }
 
-/** Questions of an island before its boss. */
+/** Defaults and limits of the game rules in `GameSettings`. */
 export const STAGE_QUESTIONS = 6;
-/** Hit points of a boss: one right answer takes one. */
+export const STAGE_QUESTIONS_RANGE = { min: 3, max: 20 };
 export const BOSS_HP = 5;
+export const BOSS_HP_RANGE = { min: 1, max: 15 };
+export const HEARTS_RANGE = { min: 1, max: 5 };
+/** Island time limits on offer, in seconds per question (0: none). */
+export const ISLAND_SECONDS: readonly number[] = [0, 15, 30, 45, 60, 90, 120];
 /** XP for beating a boss, on top of the XP of the answers. */
 export const BOSS_BONUS_XP = 100;
 
@@ -75,7 +93,9 @@ export const POWER_UP_COMBO = 5;
  * Questions kept for a boss fight: one per hit point, one more per heart but the last, and a spare for each
  * Patch Tuesday the player may hold, so a fight always ends with a winner.
  */
-export const BOSS_QUESTIONS = BOSS_HP + GAME_LIVES - 1 + POWER_UP_CAP;
+export function bossQuestionCount(bossHp: number, hearts: number): number {
+  return bossHp + hearts - 1 + POWER_UP_CAP;
+}
 
 /** Questions of the daily challenge. */
 export const DAILY_QUESTIONS = 10;
@@ -253,7 +273,7 @@ export function defaultGameProgress(platform: 'desktop' | 'mobile'): GameProgres
     xp: 0,
     bestCombo: 0,
     games: 0,
-    settings: { sound: desktop, volume: 70, music: desktop, musicVolume: 50, lite: false },
+    settings: { sound: desktop, volume: 70, music: desktop, musicVolume: 50, lite: false, difficulty: 'normal', stageQuestions: STAGE_QUESTIONS, bossHp: BOSS_HP, hearts: GAME_LIVES, islandSeconds: 0 },
     world: { at: 1, islands },
     // One of each power-up to start with, so that the inventory explains itself.
     powerUps: { fifty: 1, auditor: 1, patch: 1 },
@@ -276,15 +296,27 @@ function flag(value: unknown, fallback: boolean): boolean {
   return typeof value === 'boolean' ? value : fallback;
 }
 
+function inRange(value: unknown, range: { min: number; max: number }): number | undefined {
+  const n = count(value);
+  return n === undefined ? undefined : Math.min(range.max, Math.max(range.min, n));
+}
+
 export function normalizeGameSettings(raw: unknown, platform: 'desktop' | 'mobile'): GameSettings {
   const r = obj(raw);
   const d = defaultGameProgress(platform).settings;
+  const seconds = count(r.islandSeconds);
   return {
     sound: flag(r.sound, d.sound),
     volume: count(r.volume, 100) ?? d.volume,
     music: flag(r.music, d.music),
     musicVolume: count(r.musicVolume, 100) ?? d.musicVolume,
     lite: flag(r.lite, d.lite),
+    difficulty: ISLAND_DIFFICULTIES.find((x) => x === r.difficulty) ?? d.difficulty,
+    stageQuestions: inRange(r.stageQuestions, STAGE_QUESTIONS_RANGE) ?? d.stageQuestions,
+    bossHp: inRange(r.bossHp, BOSS_HP_RANGE) ?? d.bossHp,
+    hearts: inRange(r.hearts, HEARTS_RANGE) ?? d.hearts,
+    // The nearest time limit on offer.
+    islandSeconds: seconds === undefined ? d.islandSeconds : ISLAND_SECONDS.reduce((best, s) => (Math.abs(s - seconds) < Math.abs(best - seconds) ? s : best)),
   };
 }
 
@@ -350,18 +382,36 @@ function shuffled<T>(items: readonly T[], rng: () => number): T[] {
   return out;
 }
 
+/** The rules of an island round, from `GameSettings`. */
+export type IslandRules = Pick<GameSettings, 'difficulty' | 'stageQuestions' | 'bossHp' | 'hearts'>;
+
+/** `n` questions: the preferred ones in random order, topped up from the rest in `fallback` order. */
+function pick(pool: readonly Question[], n: number, preferred: (q: Question) => boolean, fallback: (a: Question, b: Question) => number, rng: () => number): Question[] {
+  const first = shuffled(pool.filter(preferred), rng).slice(0, n);
+  const rest = pool.filter((q) => !preferred(q)).sort(fallback).slice(0, n - first.length);
+  return shuffled([...first, ...rest], rng);
+}
+
+const hardestFirst = (a: Question, b: Question): number => b.difficulty - a.difficulty;
+
 /**
- * Questions of an island (one domain): the boss gets the hard ones (above 0.5 logits) in random order, topped up
- * with the hardest of the rest when the domain has too few; the stage gets random questions of the rest.
+ * Questions of an island (one domain), by difficulty. The boss gets the hard ones (above 0.5 logits), or the
+ * medium ones on easy, topped up with the hardest of the rest when the domain has too few. The stage gets the rest:
+ * easy ones first (then the easiest) on easy, any on normal, medium and hard ones first (then the hardest) on hard.
  */
-export function selectIslandItems(bank: readonly Question[], domain: DomainId, rng: () => number = Math.random): IslandItems {
+export function selectIslandItems(bank: readonly Question[], domain: DomainId, rules: IslandRules, rng: () => number = Math.random): IslandItems {
   const pool = bank.filter((q) => q.domain === domain);
-  const hard = shuffled(pool.filter((q) => difficultyOf(q.difficulty) === 'hard'), rng).slice(0, BOSS_QUESTIONS);
-  const chosen = new Set(hard);
-  const topUp = pool.filter((q) => !chosen.has(q)).sort((a, b) => b.difficulty - a.difficulty).slice(0, BOSS_QUESTIONS - hard.length);
-  const boss = shuffled([...hard, ...topUp], rng);
-  for (const q of topUp) chosen.add(q);
-  return { stage: shuffled(pool.filter((q) => !chosen.has(q)), rng).slice(0, STAGE_QUESTIONS), boss };
+  const bossBand = rules.difficulty === 'easy' ? 'medium' : 'hard';
+  const boss = pick(pool, bossQuestionCount(rules.bossHp, rules.hearts), (q) => difficultyOf(q.difficulty) === bossBand, hardestFirst, rng);
+  const left = pool.filter((q) => !boss.includes(q));
+  const n = rules.stageQuestions;
+  const stage =
+    rules.difficulty === 'easy'
+      ? pick(left, n, (q) => difficultyOf(q.difficulty) === 'easy', (a, b) => a.difficulty - b.difficulty, rng)
+      : rules.difficulty === 'hard'
+        ? pick(left, n, (q) => difficultyOf(q.difficulty) !== 'easy', hardestFirst, rng)
+        : shuffled(left, rng).slice(0, n);
+  return { stage, boss };
 }
 
 // ---------- Power-ups ----------
@@ -528,16 +578,21 @@ export function comboMultiplier(combo: number): number {
   return COMBO_TIERS.find((t) => combo >= t.combo)?.multiplier ?? 1;
 }
 
-/** An island round: its domain and the questions kept for its boss. */
+/** An island round: its domain, the questions kept for its boss and the boss's hit points (`BOSS_HP` when unset). */
 export interface IslandRound {
   domain: DomainId;
   boss: readonly Question[];
+  bossHp?: number;
 }
 
-/** Options of a round that is not an island: its kind, the inventory, and (for tests) the clock and the dice. */
+/**
+ * Options of a round: its kind (not for an island), the inventory, the hearts of a quick round or an island
+ * (`GAME_LIVES` when unset), and (for tests) the clock and the dice.
+ */
 export interface RunOptions {
   kind?: Exclude<GameKind, 'island'>;
   powerUps?: PowerUps;
+  hearts?: number;
   now?: () => number;
   rng?: () => number;
 }
@@ -560,6 +615,8 @@ export class GameRun {
   /** Questions of the phases already finished, for the summary. */
   private earlierTotal = 0;
   private readonly hearts: boolean;
+  /** Hearts at the start of the round (0 in the rounds without hearts), and now. */
+  private readonly maxLives: number;
   private lives: number;
   private livesLost = 0;
   private combo = 0;
@@ -584,7 +641,8 @@ export class GameRun {
   ) {
     this.kind = island ? 'island' : options.kind ?? 'quick';
     this.hearts = this.kind === 'quick' || this.kind === 'island';
-    this.lives = this.hearts ? GAME_LIVES : 0;
+    this.maxLives = this.hearts ? options.hearts ?? GAME_LIVES : 0;
+    this.lives = this.maxLives;
     this.inventory = { ...(options.powerUps ?? { fifty: 0, auditor: 0, patch: 0 }) };
     this.now = options.now ?? Date.now;
     this.rng = options.rng ?? Math.random;
@@ -660,7 +718,7 @@ export class GameRun {
     let hint: string | null = null;
     if (id === 'patch') {
       if (!this.hearts) throw new Error('this round has no hearts to mend');
-      if (this.lives >= GAME_LIVES) throw new Error('your hearts are already full');
+      if (this.lives >= this.maxLives) throw new Error('your hearts are already full');
       this.lives++;
     } else {
       if (this.helped === questionId) throw new Error('one 50/50 or hint per question');
@@ -719,7 +777,7 @@ export class GameRun {
    */
   private startBoss(island: IslandRound): PracticeSession {
     const session = new PracticeSession(island.boss);
-    const max = Math.min(BOSS_HP, Math.max(1, island.boss.length - (this.lives - 1)));
+    const max = Math.min(island.bossHp ?? BOSS_HP, Math.max(1, island.boss.length - (this.lives - 1)));
     this.phase = 'boss';
     this.boss = { hp: max, max };
     return session;

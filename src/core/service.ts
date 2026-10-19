@@ -409,24 +409,29 @@ export class CatexamService {
   async startGame(raw: unknown): Promise<GameStart> {
     const options = normalizePracticeOptions(raw);
     const items = selectPracticeItems(this.questions, options, this.progress);
-    return this.beginGame(new GameRun(items, this.gameProgress.xp, null, { powerUps: this.gameProgress.powerUps }), options.secondsPerQuestion, null);
+    const { hearts } = this.gameProgress.settings;
+    return this.beginGame(new GameRun(items, this.gameProgress.xp, null, { powerUps: this.gameProgress.powerUps, hearts }), options.secondsPerQuestion, null);
   }
 
-  /** Starts an island of the world map: a stage of the domain's questions, then its boss. */
+  /** Starts an island of the world map: a stage of the domain's questions, then its boss, with the game rules of the settings. */
   async startIsland(domain: unknown): Promise<GameStart> {
-    const island = this.island(domain);
-    const items = selectIslandItems(this.questions, island.domain);
-    if (items.boss.length === 0) throw new Error('this island has no questions in the bank');
-    return this.beginGame(new GameRun(items.stage, this.gameProgress.xp, { domain: island.domain, boss: items.boss }, { powerUps: this.gameProgress.powerUps }), 0, island);
+    return this.islandRound(this.island(domain), true);
   }
 
   /** Fights the boss of an island again, without its stage; only once the stage has been won. */
   async startBoss(domain: unknown): Promise<GameStart> {
     const island = this.island(domain);
     if (!island.bossReached) throw new Error('win the stage of this island first');
-    const items = selectIslandItems(this.questions, island.domain);
+    return this.islandRound(island, false);
+  }
+
+  private islandRound(island: IslandProgress, withStage: boolean): Promise<GameStart> {
+    const rules = this.gameProgress.settings;
+    const items = selectIslandItems(this.questions, island.domain, rules);
     if (items.boss.length === 0) throw new Error('this island has no questions in the bank');
-    return this.beginGame(new GameRun([], this.gameProgress.xp, { domain: island.domain, boss: items.boss }, { powerUps: this.gameProgress.powerUps }), 0, island);
+    const round = { domain: island.domain, boss: items.boss, bossHp: rules.bossHp };
+    const game = new GameRun(withStage ? items.stage : [], this.gameProgress.xp, round, { powerUps: this.gameProgress.powerUps, hearts: rules.hearts });
+    return this.beginGame(game, rules.islandSeconds, island);
   }
 
   /** Starts today's daily challenge: the same ten questions all day; once finished, it is done until tomorrow. */
