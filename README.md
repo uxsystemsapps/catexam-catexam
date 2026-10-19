@@ -1,7 +1,7 @@
 # CATExam
 
-Windows desktop simulator of the CISSP Computerized Adaptive Testing (CAT) exam, for training candidates.
-Electron + TypeScript.
+Simulator of the CISSP Computerized Adaptive Testing (CAT) exam, for training candidates: a Windows desktop app
+and an Android phone app with the same features. Electron + TypeScript; the Android app is built with Capacitor.
 
 ## What it simulates
 
@@ -47,6 +47,33 @@ Electron + TypeScript.
   training settings. Training progress can be reset. Everything is stored in the application's profile
   folder (`profile.json`, `progress.json`, `history.json`, `training-history.json`).
 
+## Android app
+
+The phone app has every feature of the desktop app, laid out for a touch screen:
+
+- **Navigation**: a bottom tab bar (Home, Train, History, Settings) on the start and history screens; the
+  Android back button closes a dialog or the question list, then goes back one screen. During the exam it
+  does nothing (no going back); during training it asks before stopping the session.
+- **Questions**: large options to tap; touch and hold an option to strike it out; ordering items are dragged by
+  their handle (⋮⋮) or moved with the arrows. The question list opens as a sheet from the **Questions** button.
+  Long tables hide their less important columns.
+- **Exam lock**: from the NDA screen until the score report, the app is pinned to the screen (Android asks the
+  candidate to confirm the pinning), screenshots and screen recording are blocked, and the screen stays on.
+  Leaving the app is recorded as an incident. Android does not let an ordinary app block the home button
+  completely, so the lock is weaker than on the desktop.
+- **Question banks**: the 2,821 questions are inside the app. **Import question bank files** opens the system
+  file picker (choose one or several `.json` files; Android has no folder picker for this); the summary is
+  the same as on the desktop.
+- **Data** (profile, progress, history, imported banks) stays in the app's private storage on the phone. It
+  is deleted when the app is uninstalled.
+- **Text size** (Profile & settings) zooms the whole screen, as on the desktop.
+
+Installing: download the `CATExam-android-apk` artefact of a gates run (Gitea → Actions), copy
+`CATExam-android.apk` to the phone and open it; Android asks to allow installing apps from that source.
+The APK is signed with a debug key that changes with each build, so installing a newer build over an older
+one fails: uninstall the old one first (this deletes its data). Publishing on Google Play needs a release
+signing key.
+
 ## Question bank
 
 The app ships 2,821 questions in `questions/`: 198 original starter questions (`domain-*.json`), the
@@ -76,16 +103,28 @@ Node 22.12 or newer.
 
 ```
 npm ci
-npm start              # run the app
+npm start              # run the desktop app
 npm run lint           # tsc + eslint
-npm test               # engine unit tests
-npm run smoke          # full exam driven through the real UI (Linux CI: xvfb-run -a npm run smoke)
-                       # CATEXAM_SMOKE_SHOTS=<dir> also saves screenshots of the main screens
+npm test               # engine and storage unit tests
+npm run smoke          # full exam driven through the real UI, desktop then Android web app at phone size
+                       # (Linux CI: xvfb-run -a npm run smoke)
+                       # CATEXAM_SMOKE_SHOTS=<dir> also saves screenshots of the main screens (phone-*.png)
 npm run dist:win       # Windows NSIS installer in release/ (on Linux it needs wine)
+npm run build:mobile   # Android web app in www/
+npm run dist:android   # Android APK in android/app/build/outputs/apk/debug/ (needs JDK 21 and the
+                       # Android SDK: JAVA_HOME, ANDROID_HOME)
 ```
+
+The application logic (question banks, profile, history, exam and training sessions) is in `src/core` and
+`src/engine`. The desktop app runs it in the Electron main process (`src/main`) and stores the profile in
+files; the Android app runs it inside the web view (`src/mobile`) and stores the profile in IndexedDB. Both
+show the same screens (`src/renderer`); the phone layout is the `max-width: 760px` part of `styles.css`.
+`android/` is the Capacitor Android project; `ExamLockPlugin.java` is the exam lock.
 
 The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. The
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the
-run as the `CATExam-windows-installer` artefact: open the run in Gitea → Actions and download it there.
-There is no Windows runner, so nobody runs the installer or tests the Windows-specific lockdown
-automatically. Windows SmartScreen warns about the unsigned installer ("More info" → "Run anyway").
+run as the `CATExam-windows-installer` artefact; the `android-apk` job builds the APK and attaches it as the
+`CATExam-android-apk` artefact: open the run in Gitea → Actions and download them there.
+There is no Windows runner and no Android device or emulator, so nobody runs the installer, the Windows
+lockdown or the APK automatically; the smoke test checks the Android screens in a phone-sized Chromium
+window instead. Windows SmartScreen warns about the unsigned installer ("More info" → "Run anyway").

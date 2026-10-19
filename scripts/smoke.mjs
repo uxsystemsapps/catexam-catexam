@@ -1,16 +1,27 @@
-// Launches the built app in smoke mode (see src/main/smoke.ts). On Linux without a display, run under xvfb-run.
+// Launches the built app in smoke mode (see src/main/smoke.ts): first the desktop app, then the Android web app
+// (www/, built by `npm run build:mobile`) in a phone-sized window. On Linux without a display, run under xvfb-run.
 import { spawn } from 'node:child_process';
 import electron from 'electron';
 
 const args = ['.'];
 if (process.platform === 'linux') args.push('--no-sandbox', '--disable-gpu');
-const child = spawn(electron, args, { stdio: 'inherit', env: { ...process.env, CATEXAM_SMOKE: '1' } });
-const timer = setTimeout(() => {
-  console.error('SMOKE FAILED: timed out after 180 s');
-  child.kill('SIGKILL');
-  process.exit(1);
-}, 180_000);
-child.on('exit', (code) => {
-  clearTimeout(timer);
-  process.exit(code ?? 1);
-});
+
+function run(mode) {
+  const { promise, resolve } = Promise.withResolvers();
+  console.log(`# smoke: ${mode === 'mobile' ? 'Android web app at phone size' : 'desktop app'}`);
+  const child = spawn(electron, args, { stdio: 'inherit', env: { ...process.env, CATEXAM_SMOKE: mode } });
+  const timer = setTimeout(() => {
+    console.error(`SMOKE FAILED: ${mode} run timed out after 180 s`);
+    child.kill('SIGKILL');
+  }, 180_000);
+  child.on('exit', (code) => {
+    clearTimeout(timer);
+    resolve(code ?? 1);
+  });
+  return promise;
+}
+
+for (const mode of ['1', 'mobile']) {
+  const code = await run(mode);
+  if (code !== 0) process.exit(code);
+}

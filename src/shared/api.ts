@@ -71,6 +71,8 @@ export interface BankImportSummary {
 
 export interface AppInfo {
   version: string;
+  /** `mobile`: the Android app (touch screen, no folders, no window to lock). */
+  platform: 'desktop' | 'mobile';
   bank: { total: number; byDomain: { domain: DomainId; name: string; weight: number; count: number }[] };
   bankErrors: string[];
   importedBanks: ImportedBank[];
@@ -119,7 +121,7 @@ export interface PracticeVisit {
 /** Exposed by the preload script as `window.examApi`. */
 export interface ExamApi {
   info(): Promise<AppInfo>;
-  /** Lets the user pick a folder and imports every bank file in it; null when the picker was cancelled. */
+  /** Lets the user pick a folder (desktop) or bank files (Android) and imports every bank file; null when the picker was cancelled. */
   importBanks(): Promise<BankImportSummary | null>;
   /** Deletes an imported bank (by its file name in `importedBanks`) and reloads the questions. */
   removeBank(file: string): Promise<void>;
@@ -141,6 +143,8 @@ export interface ExamApi {
   result(): Promise<ExamResult>;
   onTimeout(callback: () => void): void;
   onIncident(callback: (message: string) => void): void;
+  /** Android back button: `callback` returns whether the screen handled it; otherwise the app goes to the background. Never fires on the desktop. */
+  onBack(callback: () => boolean): void;
   startPractice(options: PracticeOptions): Promise<PracticeStart>;
   answerPractice(questionId: string, response: number[]): Promise<PracticeAnswer>;
   /** The time limit of the current training question ran out. */

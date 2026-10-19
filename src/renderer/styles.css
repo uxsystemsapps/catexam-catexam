@@ -7,8 +7,13 @@ body {
   color: #1a1a1a;
   background: #fff;
   user-select: none;
+  /* Text size of the Android app (the desktop zooms the window instead). */
+  zoom: var(--text-zoom, 1);
+  -webkit-tap-highlight-color: transparent;
 }
-#app { display: flex; flex-direction: column; height: 100vh; }
+#app { display: flex; flex-direction: column; height: 100%; }
+/* Phone-only parts (see the phone layout at the end). */
+.nav-toggle, .nav-backdrop, .tabbar, .narrow-only { display: none; }
 .topbar {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   background: #1d3b66; color: #fff; padding: 10px 18px; font-size: 15px;
@@ -221,10 +226,6 @@ button.nav-box:hover:not(:disabled) { border-color: #1d3b66; background: #eef2f7
 .nav-legend .nav-box { width: 18px; height: 18px; }
 .nav-legend .nav-box.marked { border-color: transparent; background: transparent; }
 .nav-legend .nav-box.marked::after { top: -1px; right: 1px; }
-@media (max-width: 760px) {
-  .navigator { width: 160px; }
-  .nav-grid { grid-template-columns: repeat(3, 1fr); }
-}
 tr.details > td { background: #f6f8fb; }
 tr.weak td { background: #fff4e0; }
 td.actions { white-space: nowrap; }
@@ -267,8 +268,8 @@ html[data-theme='dark'] .small, html[data-theme='dark'] .stat-label, html[data-t
 html[data-theme='dark'] .field, html[data-theme='dark'] .label, html[data-theme='dark'] .progress-label, html[data-theme='dark'] .keys,
 html[data-theme='dark'] .empty, html[data-theme='dark'] .verdict-meta, html[data-theme='dark'] .option-note, html[data-theme='dark'] .hint { color: #a9b3c1; }
 html[data-theme='dark'] .bottombar { background: #1a1f28; border-color: #2c3442; }
-html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box) { background: #262d38; color: #e4e8ee; border-color: #4a5668; }
-html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):hover:not(:disabled) { background: #2f3846; }
+html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle) { background: #262d38; color: #e4e8ee; border-color: #4a5668; }
+html[data-theme='dark'] button:not(.primary):not(.ghost):not(.nav-box):not(.tab):not(.nav-toggle):hover:not(:disabled) { background: #2f3846; }
 html[data-theme='dark'] input[type='text'], html[data-theme='dark'] input[type='number'], html[data-theme='dark'] input[type='date'],
 html[data-theme='dark'] select { background: #14181f; color: #e4e8ee; border-color: #4a5668; color-scheme: dark; }
 html[data-theme='dark'] .field input { color: #e4e8ee; }
@@ -286,3 +287,122 @@ html[data-theme='dark'] .pass, html[data-theme='dark'] .order-check li.ok { colo
 html[data-theme='dark'] .fail, html[data-theme='dark'] .order-check li.ko { color: #f08080; }
 html[data-theme='dark'] .warn, html[data-theme='dark'] tr.weak td { background: #3a2e14; color: #f3c77a; }
 html[data-theme='dark'] tr.details > td { background: #1a1f28; }
+
+/* Phone layout (the Android app, and any window this narrow): one column, large touch targets, the question
+   list as a sheet over the question, a bottom tab bar on the start and history screens. */
+@media (max-width: 760px) {
+  .wide-only, .opt, .keys, .top-actions, .topbar .brand-sub, .bottombar.has-tabs { display: none; }
+  .narrow-only { display: inline; }
+  body { font-size: 16px; }
+  button { min-height: 44px; padding: 8px 14px; }
+  button.mini { min-height: 36px; padding: 4px 12px; font-size: 14px; }
+  input[type='text'], input[type='number'], input[type='date'], select { min-height: 44px; font-size: 16px; }
+  .field input { max-width: none; }
+
+  .topbar { padding: 8px 12px; font-size: 14px; gap: 10px; flex-wrap: wrap; }
+  .topbar .brand { font-size: 16px; }
+  .question-top .brand { display: none; }
+  .question-top .right { flex: 1; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; font-size: 14px; }
+  .topbar .qnum { padding: 3px 8px; }
+  .nav-toggle { display: inline-block; min-height: 36px; padding: 4px 12px; background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.6); }
+
+  /* Long words and links in questions and explanations wrap instead of widening the screen. */
+  main, .dialog { padding: 16px; overflow-wrap: break-word; }
+  .page { padding: 16px 16px 24px; }
+  .page h1 { font-size: 26px; margin: 4px 0 12px; }
+  .page h2 { font-size: 20px; }
+  .home { padding: 12px 12px 20px; gap: 12px; }
+  .page.panel { gap: 12px; }
+  .hero { padding: 18px 16px; gap: 16px; border-radius: 6px; }
+  .hero h1 { font-size: 22px; }
+  .hero .lead { font-size: 15px; margin-bottom: 12px; }
+  .hero-action { padding: 14px; }
+  .big-button { width: 100%; white-space: normal; }
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat { padding: 10px 12px; }
+  .stat-value { font-size: 20px; }
+  .card { padding: 14px; }
+  .card h2 { font-size: 18px; }
+  .card > .row.between { flex-wrap: wrap; }
+  .hero, .home-grid, .study-grid, .bank-bars { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .bank-row { grid-template-columns: minmax(0, 1fr) 64px 80px; }
+  .bank-count { white-space: nowrap; }
+  .domains { grid-template-columns: minmax(0, 1fr); }
+  .chip { min-height: 44px; font-size: 14px; }
+  .chip input, .check input { width: 20px; height: 20px; }
+  .training-form .row.wrap { gap: 4px 14px; }
+  .check { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; }
+  .form-grid, .form-grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }
+  .form-grid .field select, .form-grid .field input { height: 44px; }
+  .row.end { justify-content: stretch; }
+  .row.end > button { flex: 1; }
+  .study-actions .row.wrap > button { flex: 1 1 auto; }
+  .imported-banks li { flex-wrap: wrap; }
+
+  table { display: block; overflow-x: auto; max-width: 100%; }
+  td, th { padding: 6px 8px; font-size: 14px; }
+  td.actions { white-space: normal; }
+  td.actions button + button { margin-left: 0; margin-top: 4px; }
+  td.actions button { display: block; }
+  .meter { width: 48px; }
+
+  /* Question screens */
+  .progress { grid-template-columns: 1fr 1fr; gap: 6px 12px; padding: 6px 12px 8px; }
+  .progress-label { font-size: 12px; gap: 6px; }
+  .progress-pace { grid-column: 1 / -1; }
+  .pace { font-size: 12px; padding: 2px 8px; }
+  .question .stem { font-size: 17px; margin-top: 0; }
+  .options { gap: 8px; }
+  .option { padding: 12px; min-height: 52px; border: 1px solid #c9d1dc; border-radius: 8px; align-items: center; }
+  .option input { width: 22px; height: 22px; margin: 0; flex: none; }
+  .ordering { padding-left: 22px; }
+  .drag-item { padding: 6px 6px 6px 0; gap: 6px; border-radius: 8px; }
+  .grip { touch-action: none; align-self: stretch; display: flex; align-items: center; padding: 0 10px; font-size: 18px; cursor: grab; }
+  .drag-item button.move { min-width: 44px; min-height: 44px; padding: 0; font-size: 16px; }
+  .drag-item.dragging { opacity: 0.7; box-shadow: 0 4px 12px rgba(15, 36, 66, 0.3); }
+  .verdict { font-size: 18px; }
+
+  .workspace { position: relative; }
+  .navigator {
+    display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9; width: auto; max-height: 72vh;
+    padding: 16px; border-right: 0; border-top: 1px solid #c9d1dc; border-radius: 14px 14px 0 0;
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.25);
+  }
+  .workspace.nav-open .navigator { display: block; }
+  .workspace.nav-open .nav-backdrop { display: block; position: fixed; inset: 0; z-index: 8; background: rgba(10, 20, 40, 0.45); }
+  .nav-grid { grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 8px; }
+  .nav-box { height: 44px; font-size: 14px; }
+  .nav-legend { grid-template-columns: 1fr 1fr; }
+
+  .bottombar { padding: 8px 12px; gap: 8px; }
+  .bottombar > div { gap: 8px; }
+  .practice-bar { flex-wrap: wrap; }
+  .practice-bar > div { flex: 1 1 100%; }
+  .practice-bar > div > button { flex: 1; padding: 8px 6px; white-space: nowrap; font-size: 15px; }
+
+  /* Start and history screens */
+  .tabbar { display: flex; border-top: 1px solid #b8c2cf; background: #fff; }
+  .tab { flex: 1; min-height: 56px; border: 0; border-radius: 0; background: transparent; color: #44516a; font-size: 14px; font-weight: bold; border-top: 3px solid transparent; }
+  .tab.active { color: #1d3b66; border-top-color: #1d3b66; }
+
+  .filters { top: -16px; gap: 8px; }
+  .filters input[type='text'], .filters select { min-width: 0; max-width: 100%; flex: 1 1 100%; margin: 0; }
+  .review article, #practice-summary article { padding: 4px 10px; }
+
+  .overlay { align-items: flex-end; }
+  .dialog { min-width: 0; width: 100%; max-width: none; max-height: 85vh; overflow-y: auto; padding: 20px 16px; border-radius: 14px 14px 0 0; }
+  .dialog-buttons { flex-wrap: wrap; }
+  .dialog-buttons > button { flex: 1 1 40%; }
+  .overlay.break { align-items: center; }
+  .overlay.break .dialog { border-radius: 8px; margin: 16px; }
+  .toast { left: 12px; right: 12px; bottom: 76px; max-width: none; }
+}
+html[data-theme='dark'] .tabbar { background: #1a1f28; border-color: #2c3442; }
+html[data-theme='dark'] .tab { color: #a9b3c1; background: transparent; }
+html[data-theme='dark'] .tab.active { color: #9cc0f0; border-top-color: #9cc0f0; }
+html[data-theme='dark'] button.nav-toggle { background: transparent; color: #fff; }
+@media (max-width: 760px) {
+  button.nav-toggle:hover:not(:disabled) { background: rgba(255, 255, 255, 0.12); }
+  button.tab:hover:not(:disabled) { background: transparent; }
+  html[data-theme='dark'] .option { border-color: #2c3442; }
+}
