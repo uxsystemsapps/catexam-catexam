@@ -8,7 +8,7 @@
 # Order: image, then lint and test, then smoke, then windows-installer and android-apk (the heavy builds never run
 # alongside the smoke test).
 # Registry access: the secrets REGISTRY_USER and REGISTRY_TOKEN (a Gitea token with read and write on packages),
-# falling back to the job's own token. The jobs reach Gitea as gitea:3000; the VM's Docker pulls from 127.0.0.1:3000.
+# falling back to the job's own token (secrets.GITEA_TOKEN). The jobs reach Gitea as gitea:3000; the VM's Docker pulls from 127.0.0.1:3000.
 #
 # PLACEHOLDERS: each job runs the product's own command when the repository has one, and otherwise PASSES WITHOUT
 # CHECKING ANYTHING (it says so in its log). Replace them with the product's real checks as the product grows.
@@ -25,7 +25,7 @@ jobs:
       image: ${{ steps.tag.outputs.image }}
     env:
       REGISTRY_USER: ${{ secrets.REGISTRY_USER || gitea.actor }}
-      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN || gitea.token }}
+      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN || secrets.GITEA_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: image tag (hash of what the image is built from)
@@ -41,6 +41,7 @@ jobs:
           DOCKER_CONFIG: /kaniko/.docker
           SSL_CERT_DIR: /kaniko/ssl/certs
         run: |
+          [ -n "$REGISTRY_TOKEN" ] || { echo "no registry token: set the secret REGISTRY_TOKEN or allow GITEA_TOKEN"; exit 1; }
           curl -fsSL https://github.com/google/go-containerregistry/releases/download/v0.20.3/go-containerregistry_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin crane
           crane export gcr.io/kaniko-project/executor:v1.23.2 - | tar -x -C / kaniko
           printf '{"auths":{"gitea:3000":{"auth":"%s"}}}' "$(printf '%s:%s' "$REGISTRY_USER" "$REGISTRY_TOKEN" | base64 -w0)" > /kaniko/.docker/config.json
@@ -63,7 +64,7 @@ jobs:
       image: ${{ needs.image.outputs.image }}
       credentials:
         username: ${{ secrets.REGISTRY_USER || gitea.actor }}
-        password: ${{ secrets.REGISTRY_TOKEN || gitea.token }}
+        password: ${{ secrets.REGISTRY_TOKEN || secrets.GITEA_TOKEN }}
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
@@ -85,7 +86,7 @@ jobs:
       image: ${{ needs.image.outputs.image }}
       credentials:
         username: ${{ secrets.REGISTRY_USER || gitea.actor }}
-        password: ${{ secrets.REGISTRY_TOKEN || gitea.token }}
+        password: ${{ secrets.REGISTRY_TOKEN || secrets.GITEA_TOKEN }}
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
@@ -115,7 +116,7 @@ jobs:
       image: ${{ needs.image.outputs.image }}
       credentials:
         username: ${{ secrets.REGISTRY_USER || gitea.actor }}
-        password: ${{ secrets.REGISTRY_TOKEN || gitea.token }}
+        password: ${{ secrets.REGISTRY_TOKEN || secrets.GITEA_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: smoke (npm run smoke under Xvfb)
@@ -132,7 +133,7 @@ jobs:
       image: ${{ needs.image.outputs.image }}
       credentials:
         username: ${{ secrets.REGISTRY_USER || gitea.actor }}
-        password: ${{ secrets.REGISTRY_TOKEN || gitea.token }}
+        password: ${{ secrets.REGISTRY_TOKEN || secrets.GITEA_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: build installer (npm run dist:win)
@@ -164,7 +165,7 @@ jobs:
       image: ${{ needs.image.outputs.image }}
       credentials:
         username: ${{ secrets.REGISTRY_USER || gitea.actor }}
-        password: ${{ secrets.REGISTRY_TOKEN || gitea.token }}
+        password: ${{ secrets.REGISTRY_TOKEN || secrets.GITEA_TOKEN }}
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:

@@ -3,6 +3,8 @@
 # registry as catexam/catexam-ci:<hash of this file, package-lock.json and the Gradle wrapper properties>.
 # Build context: the repository root.
 FROM node:22-bookworm
+# Links the package to this repository in Gitea, so the jobs' own token (GITEA_TOKEN) may push and pull it.
+LABEL org.opencontainers.image.source="https://factory-core.taildc5540.ts.net:8443/catexam/catexam"
 
 # Caches at fixed paths, so they are found whatever HOME the runner gives the job.
 ENV npm_config_cache=/root/.npm \
