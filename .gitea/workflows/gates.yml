@@ -1,5 +1,6 @@
 # Gates of this product (seeded by the UXSYSTEMS software factory when the product was created).
-# They run on every push, on the factory's runner factory-core-1. The factory waits for them after each build: a task
+# They run on every branch push (not on tag pushes: the factory's signed releases create `android-*` tags), on the
+# factory's runner factory-core-1. The factory waits for them after each build: a task
 # is done only with green gates, and the owner's `merge` is refused while they are red.
 #
 # Every job runs in the CI build image (ci/Dockerfile: JDK 21, Android SDK, Gradle, wine, warm npm/Electron/Gradle
@@ -14,7 +15,9 @@
 # PLACEHOLDERS: each job runs the product's own command when the repository has one, and otherwise PASSES WITHOUT
 # CHECKING ANYTHING (it says so in its log). Replace them with the product's real checks as the product grows.
 name: gates
-on: [push]
+on:
+  push:
+    branches: ['**']
 
 jobs:
   image:
@@ -158,8 +161,9 @@ jobs:
           if-no-files-found: error
 
   android-apk:
-    # Builds the Android app (Capacitor, debug-signed APK) on Linux and attaches it to the run as a downloadable
-    # artefact. Not installed or run here: no Android hand (device or emulator) exists.
+    # Builds the Android app (Capacitor, unsigned release APK) on Linux and attaches it to the run as a downloadable
+    # artefact. Not signed here (no signing secrets in the repository): the factory signs it after merge. Not
+    # installed or run here: no Android hand (device or emulator) exists.
     needs: [image, smoke]
     runs-on: linux
     container:
@@ -176,18 +180,18 @@ jobs:
           npm ci
           npm run dist:android
           mkdir -p release
-          cp android/app/build/outputs/apk/debug/app-debug.apk release/CATExam-android.apk
+          cp android/app/build/outputs/apk/release/app-release-unsigned.apk release/CATExam-android-unsigned.apk
       - name: check APK
         run: |
-          ls -l release/CATExam-android.apk
-          "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging release/CATExam-android.apk | grep -E "^package: name='com.uxsystems.catexam'"
-          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify release/CATExam-android.apk
+          ls -l release/CATExam-android-unsigned.apk
+          "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging release/CATExam-android-unsigned.apk | grep -E "^package: name='com.uxsystems.catexam'"
+          # No apksigner verify: the APK is unsigned on purpose; the factory signs it after merge.
           # A file, not `unzip | grep -q`: under pipefail, grep -q quitting early makes unzip fail with SIGPIPE.
-          unzip -l release/CATExam-android.apk > /tmp/apk-files.txt
+          unzip -l release/CATExam-android-unsigned.apk > /tmp/apk-files.txt
           grep -q 'assets/public/index.html' /tmp/apk-files.txt || { echo "web app missing from the APK"; exit 1; }
           grep -q 'assets/public/questions/index.json' /tmp/apk-files.txt || { echo "question banks missing from the APK"; exit 1; }
       - uses: actions/upload-artifact@v3 # v4 needs Gitea's newer artifact API; it fails on this server
         with:
-          name: CATExam-android-apk
-          path: release/CATExam-android.apk
+          name: CATExam-android-unsigned
+          path: release/CATExam-android-unsigned.apk
           if-no-files-found: error

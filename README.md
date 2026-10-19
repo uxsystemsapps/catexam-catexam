@@ -136,11 +136,10 @@ The phone app has every feature of the desktop app, laid out for a touch screen:
   is deleted when the app is uninstalled.
 - **Text size** (Profile & settings) zooms the whole screen, as on the desktop.
 
-Installing: download the `CATExam-android-apk` artefact of a gates run (Gitea → Actions), copy
-`CATExam-android.apk` to the phone and open it; Android asks to allow installing apps from that source.
-The APK is signed with a debug key that changes with each build, so installing a newer build over an older
-one fails: uninstall the old one first (this deletes its data). Publishing on Google Play needs a release
-signing key.
+Installing: the gates build an unsigned release APK (`CATExam-android-unsigned` artefact of a gates run, Gitea →
+Actions, containing `CATExam-android-unsigned.apk`); Android does not install unsigned APKs. The factory signs it
+after merge; copy the signed APK to the phone and open it; Android asks to allow installing apps from that source.
+Publishing on Google Play needs that release signing key.
 
 ## Question bank
 
@@ -179,7 +178,7 @@ npm run smoke          # full exam driven through the real UI, desktop then Andr
                        # CATEXAM_SMOKE_SHOTS=<dir> also saves screenshots of the main screens (phone-*.png)
 npm run dist:win       # Windows NSIS installer in release/ (on Linux it needs wine)
 npm run build:mobile   # Android web app in www/
-npm run dist:android   # Android APK in android/app/build/outputs/apk/debug/ (needs JDK 21 and the
+npm run dist:android   # unsigned Android release APK in android/app/build/outputs/apk/release/ (needs JDK 21 and the
                        # Android SDK: JAVA_HOME, ANDROID_HOME)
 ```
 
@@ -202,10 +201,11 @@ and music player are in `src/renderer/game.ts`, a second renderer script loaded 
 global scope. The game's art, font, sounds and music are in `assets/game/` (copied next to the renderer by the
 build) and their sources and licences in `assets/CREDITS.md`; add a new asset to both that file and `GAME_CREDITS`.
 
-The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test on Linux. The
+The gates (`.gitea/workflows/gates.yml`) run on branch pushes (not on tag pushes) and run lint, the tests and the
+smoke test on Linux. The
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the
-run as the `CATExam-windows-installer` artefact; the `android-apk` job builds the APK and attaches it as the
-`CATExam-android-apk` artefact: open the run in Gitea → Actions and download them there.
+run as the `CATExam-windows-installer` artefact; the `android-apk` job builds the unsigned release APK and attaches
+it as the `CATExam-android-unsigned` artefact: open the run in Gitea → Actions and download them there.
 The jobs run in the CI build image `catexam/catexam-ci` (`ci/Dockerfile`: JDK 21, Android SDK, Gradle, wine and
 warm npm/Electron/Gradle caches) from Gitea's container registry. The first job, `image`, builds and pushes it
 (kaniko) only when `ci/Dockerfile`, `package-lock.json` or the Gradle wrapper changed; then lint and test run,
