@@ -1,6 +1,6 @@
 import type { PracticeFeedback, PracticeItemState, PracticeSummary } from '../engine/practice';
 import type { DifficultyFilter, PracticeOptions, PracticeSource, Profile, ProgressSummary } from '../engine/profile';
-import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView } from '../engine/types';
+import type { DomainId, DomainReport, ExamResult, FinishReason, QuestionType, QuestionView, ReviewItem } from '../engine/types';
 
 export type {
   PracticeFeedback,
@@ -14,6 +14,7 @@ export type {
   ExamResult,
   QuestionType,
   QuestionView,
+  ReviewItem,
 };
 
 export interface HistoryEntry {
@@ -25,6 +26,8 @@ export interface HistoryEntry {
   itemsAnswered: number;
   elapsedSeconds: number;
   domains: DomainReport[];
+  /** Every answered question was saved with the entry, so it can be reviewed (not for exams of older versions). */
+  hasReview?: boolean;
 }
 
 /** One finished training session. */
@@ -39,6 +42,18 @@ export interface TrainingEntry {
 }
 
 export type HistoryKind = 'exam' | 'training';
+
+/** A training session paused to be resumed later, as listed on the paused sessions page. */
+export interface PausedTraining {
+  id: string;
+  /** When the session was started and when it was last paused (ISO). */
+  startedAt: string;
+  pausedAt: string;
+  total: number;
+  answered: number;
+  correct: number;
+  options: PracticeOptions;
+}
 
 /** A bank the user imported into the profile folder. */
 export interface ImportedBank {
@@ -79,6 +94,8 @@ export interface AppInfo {
   displays: number;
   history: HistoryEntry[];
   trainingHistory: TrainingEntry[];
+  /** Paused training sessions, last paused first. */
+  paused: PausedTraining[];
   profile: Profile;
   progress: ProgressSummary;
 }
@@ -96,6 +113,8 @@ export interface ExamState {
 
 export interface PracticeStart {
   question: QuestionView;
+  /** Set when a resumed session opens on a question that was already answered. */
+  feedback: PracticeFeedback | null;
   total: number;
   secondsPerQuestion: number;
   /** Bookmarked question ids, so the screen can show the bookmark state of each question. */
@@ -129,6 +148,8 @@ export interface ExamApi {
   saveProfile(profile: Profile): Promise<Profile>;
   /** Deletes history entries by date, or the whole history of that kind when `dates` is null. */
   deleteHistory(kind: HistoryKind, dates: string[] | null): Promise<void>;
+  /** Every answered question of a past exam (by its history date), with the correct answers and explanations. */
+  examReview(date: string): Promise<ReviewItem[]>;
   /** Forgets training progress: per-question results, bookmarks and daily counts. */
   resetProgress(): Promise<void>;
   /** Enters the locked exam environment (before the NDA and tutorial screens). */
@@ -157,5 +178,11 @@ export interface ExamApi {
   toggleBookmark(questionId: string): Promise<boolean>;
   /** Summary of the training session; the first call also saves it to the training history. */
   practiceSummary(): Promise<PracticeSummary>;
+  /** Saves the training session as it stands, to be resumed later from the paused sessions page. */
+  pausePractice(): Promise<void>;
+  /** Continues a paused training session where it was left. */
+  resumePractice(id: string): Promise<PracticeStart>;
+  /** Forgets a paused training session. */
+  deletePaused(id: string): Promise<void>;
   quit(): Promise<void>;
 }

@@ -111,6 +111,7 @@ const api: ExamApi = {
       return saved;
     }),
   deleteHistory: (kind, dates) => call((s) => s.deleteHistory(kind, dates)),
+  examReview: (date) => call((s) => s.examReview(date)),
   resetProgress: () => call((s) => s.resetProgress()),
   lock,
   unlock: async () => {
@@ -150,6 +151,9 @@ const api: ExamApi = {
   gotoPractice: (number) => call((s) => s.gotoPractice(number)),
   toggleBookmark: (questionId) => call((s) => s.toggleBookmark(questionId)),
   practiceSummary: () => call((s) => s.practiceSummary()),
+  pausePractice: () => call((s) => s.pausePractice()),
+  resumePractice: (id) => call((s) => s.resumePractice(id)),
+  deletePaused: (id) => call((s) => s.deletePaused(id)),
   quit: async () => {
     if (native && !locked) await App.exitApp();
   },

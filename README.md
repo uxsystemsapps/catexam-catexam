@@ -36,16 +36,23 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
   bookmark a question. A side panel shows one box per question, coloured as correct, wrong, timed out,
   skipped or not answered, with a star when bookmarked; click a box to open that question. **Skip** leaves
   a question for later (it comes back after the others) and **Back** opens the previous one; an answered
-  question reopens locked, with its feedback. The session ends with accuracy per domain and a button to
-  retry the missed questions.
+  question reopens locked, with its feedback. **Pause** saves the session to finish later: the **Paused
+  sessions** page (from the training card) lists paused sessions with their progress, and **Resume** reopens
+  one on the question where it was left, with its answers and skips. The session ends with accuracy per
+  domain and a button to retry the missed questions.
 - **Study plan** on the home screen: countdown to your exam date, today's answers against your daily
   goal, how much of the bank you have practised, your weakest domain (once it has 5 training answers) and
   one-click sessions for missed, bookmarked or new questions.
 - **History**: every exam (with its domain report) and training session, score and accuracy trends,
-  training accuracy per domain; entries can be deleted one by one or all at once.
-- **Profile & settings**: name, exam date, daily goal, light or dark theme, text size, and the default
-  training settings. Training progress can be reset. Everything is stored in the application's profile
-  folder (`profile.json`, `progress.json`, `history.json`, `training-history.json`).
+  training accuracy per domain; entries can be deleted one by one or all at once. **Review** reopens a past
+  exam with every question, your answer, the correct answer and the explanation (exams taken with earlier
+  versions have no saved answers).
+- **Setup wizard** on first start: first and second name, exam date and daily goal, training preferences,
+  and appearance. The exam screens use the name from the profile; the home screen has no name box.
+- **Profile & settings**: first and second name, exam date, daily goal, light or dark theme, text size, and
+  the default training settings. Training progress can be reset. Everything is stored in the application's
+  profile folder: `profile.json`, `progress.json`, `history.json` and `training-history.json`, plus one file
+  per exam with its answered questions (`history/`) and one per paused training session (`paused/`).
 
 ## Android app
 
@@ -53,7 +60,7 @@ The phone app has every feature of the desktop app, laid out for a touch screen:
 
 - **Navigation**: a bottom tab bar (Home, Train, History, Settings) on the start and history screens; the
   Android back button closes a dialog or the question list, then goes back one screen. During the exam it
-  does nothing (no going back); during training it asks before stopping the session.
+  does nothing (no going back); during training it offers to pause or stop the session.
 - **Questions**: large options to tap; touch and hold an option to strike it out; ordering items are dragged by
   their handle (⋮⋮) or moved with the arrows. The question list opens as a sheet from the **Questions** button.
   Long tables hide their less important columns.

@@ -187,8 +187,9 @@ article.wrong { border-left-color: #b52a2a; }
 .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 4px 16px; align-items: start; }
 .form-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .form-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.form-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 700px) {
-  .form-grid.cols-2, .form-grid.cols-3 { grid-template-columns: 1fr; }
+  .form-grid.cols-2, .form-grid.cols-3, .form-grid.cols-4 { grid-template-columns: 1fr; }
 }
 .form-grid .field select, .form-grid .field input { margin: 0; width: 100%; max-width: none; height: 36px; }
 .field-hint { font-size: 12px; color: #6b7a8f; margin-top: 2px; }
@@ -332,7 +333,7 @@ html[data-theme='dark'] tr.details > td { background: #1a1f28; }
   .chip input, .check input { width: 20px; height: 20px; }
   .training-form .row.wrap { gap: 4px 14px; }
   .check { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; }
-  .form-grid, .form-grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }
+  .form-grid, .form-grid.cols-3, .form-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }
   .form-grid .field select, .form-grid .field input { height: 44px; }
   .row.end { justify-content: stretch; }
   .row.end > button { flex: 1; }

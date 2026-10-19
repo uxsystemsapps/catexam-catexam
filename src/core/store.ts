@@ -1,7 +1,8 @@
 import { mergeBanks, validateBank } from '../engine/bank';
 import { normalizeProfile, normalizeProgress, type Profile, type Progress } from '../engine/profile';
 import type { Question, QuestionBank } from '../engine/types';
-import type { BankImportFile, BankImportSummary, HistoryEntry, HistoryKind, ImportedBank, TrainingEntry } from '../shared/api';
+import type { PracticeSnapshot } from '../engine/practice';
+import type { BankImportFile, BankImportSummary, HistoryEntry, HistoryKind, ImportedBank, PausedTraining, ReviewItem, TrainingEntry } from '../shared/api';
 
 /**
  * A folder of files, addressed by relative names such as `profile.json` or `banks/a.json`. The desktop app
@@ -27,6 +28,33 @@ const HISTORY_LIMIT = 100;
 const TRAINING_HISTORY_LIMIT = 200;
 const HISTORY_FILES: Record<HistoryKind, string> = { exam: 'history.json', training: 'training-history.json' };
 const BANKS = 'banks';
+/** One file per exam of the history with its answered questions, so `history.json` stays small. */
+const REVIEWS = 'history';
+/** One file per paused training session. */
+const PAUSED = 'paused';
+
+/** File name part for an ISO date: `:` and `.` are not allowed in Windows file names. Also the id of a paused session. */
+export function dateKey(date: string): string {
+  return date.replace(/[^0-9A-Za-z-]/g, '-');
+}
+
+/** Removes a file that may already be gone. */
+async function removeIfThere(user: DataDir, name: string): Promise<void> {
+  try {
+    await user.remove(name);
+  } catch {
+    // Missing already: nothing to remove.
+  }
+}
+
+/** Names of the files in `dir`, or none when it does not exist yet. */
+async function listIfThere(user: DataDir, dir: string): Promise<string[]> {
+  try {
+    return await user.list(dir);
+  } catch {
+    return [];
+  }
+}
 
 async function readBanksFrom(dir: DataDir, sub: string): Promise<{ banks: QuestionBank[]; files: string[]; errors: string[] }> {
   const banks: QuestionBank[] = [];
@@ -153,18 +181,72 @@ export async function readTrainingHistory(user: DataDir): Promise<TrainingEntry[
   return Array.isArray(data) ? (data as TrainingEntry[]) : [];
 }
 
-export async function appendHistory(user: DataDir, entry: HistoryEntry): Promise<void> {
-  await writeJson(user, HISTORY_FILES.exam, [entry, ...(await readHistory(user))].slice(0, HISTORY_LIMIT));
+/** Adds a finished exam, with its answered questions in a file of their own; the oldest exams beyond the limit are dropped. */
+export async function appendHistory(user: DataDir, entry: HistoryEntry, review: ReviewItem[]): Promise<void> {
+  await writeJson(user, `${REVIEWS}/${dateKey(entry.date)}.json`, review);
+  const entries = [{ ...entry, hasReview: true }, ...(await readHistory(user))];
+  await writeJson(user, HISTORY_FILES.exam, entries.slice(0, HISTORY_LIMIT));
+  for (const dropped of entries.slice(HISTORY_LIMIT)) await removeIfThere(user, `${REVIEWS}/${dateKey(dropped.date)}.json`);
+}
+
+/** The answered questions of the exam of the history with this date. */
+export async function readExamReview(user: DataDir, date: string): Promise<ReviewItem[]> {
+  const data = await readJson(user, `${REVIEWS}/${dateKey(date)}.json`);
+  if (!Array.isArray(data)) throw new Error('the answers of this exam were not saved');
+  return data as ReviewItem[];
 }
 
 export async function appendTrainingHistory(user: DataDir, entry: TrainingEntry): Promise<void> {
   await writeJson(user, HISTORY_FILES.training, [entry, ...(await readTrainingHistory(user))].slice(0, TRAINING_HISTORY_LIMIT));
 }
 
-/** Deletes the entries of one history with the given dates (all of them when `dates` is null). */
+/** Deletes the entries of one history with the given dates (all of them when `dates` is null), and the answers of deleted exams. */
 export async function deleteHistory(user: DataDir, kind: HistoryKind, dates: readonly string[] | null): Promise<void> {
   const entries = kind === 'exam' ? await readHistory(user) : await readTrainingHistory(user);
   await writeJson(user, HISTORY_FILES[kind], dates === null ? [] : entries.filter((e) => !dates.includes(e.date)));
+  if (kind !== 'exam') return;
+  if (dates === null) {
+    for (const file of await listIfThere(user, REVIEWS)) await removeIfThere(user, `${REVIEWS}/${file}`);
+  } else {
+    for (const date of dates) await removeIfThere(user, `${REVIEWS}/${dateKey(date)}.json`);
+  }
+}
+
+/** A paused training session as saved: what the list shows, and the session itself. */
+export interface PausedFile extends PausedTraining {
+  snapshot: PracticeSnapshot;
+}
+
+function pausedFile(id: string): string {
+  if (!/^[0-9A-Za-z-]+$/.test(id)) throw new Error('unknown paused session');
+  return `${PAUSED}/${id}.json`;
+}
+
+export async function savePaused(user: DataDir, paused: PausedFile): Promise<void> {
+  await writeJson(user, pausedFile(paused.id), paused);
+}
+
+/** One paused session; throws when there is none with this id. */
+export async function readPaused(user: DataDir, id: string): Promise<PausedFile> {
+  const data = await readJson(user, pausedFile(id));
+  if (typeof data !== 'object' || data === null) throw new Error('this paused session no longer exists');
+  return data as PausedFile;
+}
+
+/** Every paused session (without its questions), last paused first; unreadable files are left out. */
+export async function listPaused(user: DataDir): Promise<PausedTraining[]> {
+  const list: PausedTraining[] = [];
+  for (const file of await listIfThere(user, PAUSED)) {
+    const data = await readJson(user, `${PAUSED}/${file}`);
+    if (typeof data !== 'object' || data === null || typeof (data as PausedFile).id !== 'string') continue;
+    const { id, startedAt, pausedAt, total, answered, correct, options } = data as PausedFile;
+    list.push({ id, startedAt, pausedAt, total, answered, correct, options });
+  }
+  return list.sort((a, b) => b.pausedAt.localeCompare(a.pausedAt));
+}
+
+export async function removePaused(user: DataDir, id: string): Promise<void> {
+  await removeIfThere(user, pausedFile(id));
 }
 
 export async function readProfile(user: DataDir): Promise<Profile> {

@@ -7,6 +7,7 @@ const api: ExamApi = {
   removeBank: (file) => ipcRenderer.invoke('bank:remove', file),
   saveProfile: (profile) => ipcRenderer.invoke('profile:save', profile),
   deleteHistory: (kind, dates) => ipcRenderer.invoke('history:delete', kind, dates),
+  examReview: (date) => ipcRenderer.invoke('history:review', date),
   resetProgress: () => ipcRenderer.invoke('progress:reset'),
   lock: () => ipcRenderer.invoke('exam:lock'),
   unlock: () => ipcRenderer.invoke('exam:unlock'),
@@ -30,6 +31,9 @@ const api: ExamApi = {
   gotoPractice: (number) => ipcRenderer.invoke('practice:goto', number),
   toggleBookmark: (questionId) => ipcRenderer.invoke('practice:bookmark', questionId),
   practiceSummary: () => ipcRenderer.invoke('practice:summary'),
+  pausePractice: () => ipcRenderer.invoke('practice:pause'),
+  resumePractice: (id) => ipcRenderer.invoke('practice:resume', id),
+  deletePaused: (id) => ipcRenderer.invoke('practice:delete-paused', id),
   quit: () => ipcRenderer.invoke('app:quit'),
 };
 
