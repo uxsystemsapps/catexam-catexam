@@ -36,6 +36,7 @@ function registerIpc(): void {
     return saved;
   });
   ipcMain.handle('history:delete', (_e, kind: unknown, dates: unknown) => service.deleteHistory(kind, dates));
+  ipcMain.handle('history:review', (_e, date: unknown) => service.examReview(date));
   ipcMain.handle('progress:reset', () => service.resetProgress());
   ipcMain.handle('bank:import', async (): Promise<BankImportSummary | null> => {
     if (!win) return null;
@@ -76,6 +77,9 @@ function registerIpc(): void {
   ipcMain.handle('practice:goto', (_e, number: number) => service.gotoPractice(number));
   ipcMain.handle('practice:bookmark', (_e, questionId: unknown) => service.toggleBookmark(questionId));
   ipcMain.handle('practice:summary', () => service.practiceSummary());
+  ipcMain.handle('practice:pause', () => service.pausePractice());
+  ipcMain.handle('practice:resume', (_e, id: unknown) => service.resumePractice(id));
+  ipcMain.handle('practice:delete-paused', (_e, id: unknown) => service.deletePaused(id));
 
   ipcMain.handle('app:quit', () => {
     if (!lockdown?.isLocked) app.quit();

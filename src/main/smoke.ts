@@ -74,7 +74,42 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
   const visible = (selector: string): Promise<boolean> => js<boolean>(`(() => { const el = document.querySelector(${JSON.stringify(selector)}); return !!el && el.offsetParent !== null; })()`);
 
   try {
+    // First start: the setup wizard asks for the names, the exam plan, training preferences and appearance.
+    await waitFor('#setup-step-1');
+    check(!(await js<boolean>(`!!document.querySelector('#home')`)), 'first start opens the setup wizard, not the home screen');
+    await fitsPhone('setup wizard: names');
+    await shot('setup-names');
+    await click('#setup-next');
+    check((await text('#setup-step')) === 'Step 1 of 4', 'the wizard needs a first name to go on');
+    await js(`(() => {
+      const set = (id, v) => { const el = document.querySelector(id); el.value = v; el.dispatchEvent(new Event('input')); };
+      set('#setup-first-name', 'Smoke');
+      set('#setup-last-name', 'Test');
+    })()`);
+    await click('#setup-next');
+    await waitFor('#setup-step-2');
+    await js(`document.querySelector('#setup-goal').value = '7'`);
+    await fitsPhone('setup wizard: exam plan');
+    await click('#setup-next');
+    await waitFor('#setup-step-3');
+    await js(`document.querySelector('#setup-count').value = '4'`);
+    await fitsPhone('setup wizard: training preferences');
+    await shot('setup-training');
+    await click('#setup-back');
+    await waitFor('#setup-step-2');
+    check((await js<string>(`document.querySelector('#setup-goal').value`)) === '7', 'Back in the wizard keeps the answers');
+    await click('#setup-next');
+    await waitFor('#setup-step-3');
+    await click('#setup-next');
+    await waitFor('#setup-finish');
+    await fitsPhone('setup wizard: appearance');
+    await click('#setup-finish');
     await waitFor('#start-exam');
+    const setup = await js<{ first: string; last: string; goal: number; count: number; done: boolean }>(
+      `window.examApi.info().then((i) => ({ first: i.profile.firstName, last: i.profile.lastName, goal: i.profile.dailyGoal, count: i.profile.training.count, done: i.profile.setupDone }))`,
+    );
+    check(setup.first === 'Smoke' && setup.last === 'Test' && setup.goal === 7 && setup.count === 4 && setup.done, 'the wizard saves the profile and is done');
+    check(!(await js<boolean>(`!!document.querySelector('#candidate')`)) && (await text('#candidate-label')) === 'Candidate: Smoke Test', 'home shows the profile name instead of a name box');
     check((await js<number>(`document.querySelectorAll('#home .stat').length`)) === 4, 'home shows the progress summary');
     check((await js<number>(`document.querySelector('#bank-card').compareDocumentPosition(document.querySelector('#study-card'))`)) === 4, 'question bank card comes before the study plan');
     await fitsPhone('home');
@@ -96,7 +131,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     if (!mobile)
       check(
         await js<boolean>(`(() => {
-          const r = ['#settings-name', '#settings-exam-date', '#settings-goal'].map((id) => document.querySelector(id).getBoundingClientRect());
+          const r = ['#settings-first-name', '#settings-last-name', '#settings-exam-date', '#settings-goal'].map((id) => document.querySelector(id).getBoundingClientRect());
           return r.every((x) => x.top === r[0].top && x.height === r[0].height);
         })()`),
         'profile fields line up',
@@ -105,7 +140,7 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await shot('settings');
     await js(`(() => {
       const set = (id, v) => { const el = document.querySelector(id); el.value = v; el.dispatchEvent(new Event('change')); };
-      set('#settings-name', 'Smoke Test');
+      set('#settings-last-name', 'Tester');
       set('#settings-exam-date', '2099-01-01');
       set('#settings-goal', '5');
       set('#settings-theme', 'dark');
@@ -116,16 +151,16 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     await click('#settings-save');
     await waitFor('#home');
     const saved = await js<{ name: string; theme: string; count: number; difficulty: string }>(
-      `window.examApi.info().then((i) => ({ name: i.profile.name, theme: i.profile.theme, count: i.profile.training.count, difficulty: i.profile.training.difficulty }))`,
+      `window.examApi.info().then((i) => ({ name: i.profile.firstName + ' ' + i.profile.lastName, theme: i.profile.theme, count: i.profile.training.count, difficulty: i.profile.training.difficulty }))`,
     );
-    check(saved.name === 'Smoke Test' && saved.theme === 'dark' && saved.count === 3 && saved.difficulty === 'easy', 'settings saved to the profile');
+    check(saved.name === 'Smoke Tester' && saved.theme === 'dark' && saved.count === 3 && saved.difficulty === 'easy', 'settings saved to the profile');
     const zoomed = mobile
       ? (await js<string>(`getComputedStyle(document.body).zoom`)) === '1.15'
       : win.webContents.getZoomFactor() === 1.15;
     check((await js<string>(`document.documentElement.dataset.theme`)) === 'dark' && zoomed, 'dark theme and large text applied');
     await fitsPhone('home with large text');
     check(
-      (await js<string>(`document.querySelector('#candidate').value`)) === 'Smoke Test' &&
+      (await text('#candidate-label')) === 'Candidate: Smoke Tester' &&
         (await js<string>(`document.querySelector('#practice-count').value`)) === '3' &&
         (await js<string>(`document.querySelector('#practice-difficulty').value`)) === 'easy',
       'home uses the profile name and training defaults',
@@ -133,7 +168,6 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     check(/Your exam is in \d+ days/.test(await text('#exam-countdown')), 'study plan counts down to the exam date');
     await shot('home-dark');
     await js(`document.querySelector('#practice-difficulty').value = 'mixed'`);
-    await js(`document.querySelector('#candidate').value = 'Smoke Test'`);
     await click('#start-exam');
     await waitFor('#nda-accept');
     if (lockdown) check(lockdown.isLocked && win.isKiosk() && win.isAlwaysOnTop(), 'locked from the NDA screen: kiosk, always on top');
@@ -327,6 +361,28 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
 
     await click('#practice-home');
     await waitFor('#home');
+    // Pause a training session and resume it later from the paused sessions page.
+    await js(`startPractice({ ...profile.training, count: 3, secondsPerQuestion: 0 })`);
+    await waitFor('#practice');
+    await click('#practice-skip');
+    await waitFor('#navigator .nav-box.current[data-number="2"]');
+    await fitsPhone('training with Pause');
+    await click('#practice-pause');
+    await waitFor('#open-paused');
+    check((await text('#open-paused')) === 'Paused sessions (1)', 'Pause saves the session and goes back to the start');
+    await click('#open-paused');
+    await waitFor('#paused-screen');
+    check((await js<number>(`document.querySelectorAll('#paused-list tr.entry').length`)) === 1 && (await text('#paused-list tr.entry td:nth-child(2)')) === '0 of 3', 'the paused session is listed with its progress');
+    await fitsPhone('paused sessions');
+    await shot('paused-sessions');
+    await click('#paused-list .resume-paused');
+    await waitFor('#practice');
+    check((await text('#qnum')) === 'Question 2 of 3' && (await box(1)).includes('skipped'), 'a resumed session opens where it was paused, with its skipped question');
+    await click('#practice-stop');
+    await waitFor('#practice-summary');
+    check((await js<number>(`window.examApi.info().then((i) => i.paused.length)`)) === 0, 'a resumed session that ends leaves the paused list');
+    await click('#practice-home');
+    await waitFor('#home');
     await click(mobile ? '#tab-history' : '#open-history');
     await waitFor('#history-screen');
     check(await centred('#history-screen .card'), 'history is centred and scrolls at the window edge');
@@ -335,6 +391,13 @@ export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise
     check((await js<number>(`document.querySelectorAll('#domain-progress tr').length`)) === 9, 'history shows training accuracy for all 8 domains');
     await fitsPhone('history');
     await shot('history');
+    // A past exam can be reviewed: questions, answers, correct answers and explanations.
+    await click('#exam-history .review-entry');
+    await waitFor('#review-list');
+    check((await js<number>(`document.querySelectorAll('#review-list article').length`)) === answered && (await js<number>(`document.querySelectorAll('#review-list .explanation').length`)) === answered, `a past exam reopens with every answered question and its explanation (${answered})`);
+    await fitsPhone('past exam review');
+    await click('#review-back');
+    await waitFor('#history-screen');
     await click('#exam-history .delete-entry');
     await waitFor('#history-screen:not(:has(#exam-history))');
     check((await js<number>(`window.examApi.info().then((i) => i.history.length)`)) === 0, 'an exam can be deleted from the history');

@@ -33,7 +33,11 @@ export interface PracticeOptions {
 }
 
 export interface Profile {
-  name: string;
+  firstName: string;
+  /** Second (family) name. */
+  lastName: string;
+  /** The first-start setup wizard was completed. */
+  setupDone: boolean;
   /** Planned exam date as YYYY-MM-DD, or '' when not set. */
   examDate: string;
   /** Training questions per day the student aims for; 0 hides the goal. */
@@ -80,7 +84,9 @@ export interface ProgressSummary {
 }
 
 export const DEFAULT_PROFILE: Profile = {
-  name: '',
+  firstName: '',
+  lastName: '',
+  setupDone: false,
   examDate: '',
   dailyGoal: 0,
   theme: 'light',
@@ -139,8 +145,16 @@ export function normalizePracticeOptions(raw: unknown): PracticeOptions {
 export function normalizeProfile(raw: unknown): Profile {
   const r = obj(raw);
   const examDate = typeof r.examDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.examDate) && !Number.isNaN(Date.parse(r.examDate)) ? r.examDate : '';
+  // Profiles saved before the first/second name split have one `name`: its first word is the first name.
+  const legacy = r.firstName === undefined && r.lastName === undefined && typeof r.name === 'string' ? r.name.trim() : '';
+  const split = legacy.search(/\s/);
+  const [firstName, lastName] = (legacy ? (split < 0 ? [legacy, ''] : [legacy.slice(0, split), legacy.slice(split)]) : [r.firstName, r.lastName]).map((v) =>
+    typeof v === 'string' ? v.trim().slice(0, 40).trim() : '',
+  );
   return {
-    name: typeof r.name === 'string' ? r.name.trim().slice(0, 80) : '',
+    firstName,
+    lastName,
+    setupDone: r.setupDone === true,
     examDate,
     dailyGoal: int(r.dailyGoal, 0, 500, DEFAULT_PROFILE.dailyGoal),
     theme: pick(THEMES, r.theme, DEFAULT_PROFILE.theme),

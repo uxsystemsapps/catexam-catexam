@@ -255,8 +255,9 @@ async function home(): Promise<void> {
   for (const d of info.bank.byDomain) domainNames.set(d.domain, d.name);
   platform = info.platform;
   document.documentElement.dataset.platform = platform;
+  if (!profile.setupDone) return setupWizard(info);
   const mobile = platform === 'mobile';
-  const nameInput = h('input', { id: 'candidate', type: 'text', placeholder: 'Your name', maxlength: '80', value: profile.name });
+  const candidate = `${profile.firstName} ${profile.lastName}`.trim();
   const form = trainingForm(info, 'practice', profile.training);
   const shortBank = info.bank.total < 150;
   const emptyBank = info.bank.total === 0;
@@ -264,14 +265,6 @@ async function home(): Promise<void> {
   const best = info.history.reduce((m, e) => Math.max(m, e.scaledScore), 0);
   const last = info.history[0];
   const p = info.progress;
-  const startExamNow = async (): Promise<void> => {
-    const name = nameInput.value.trim();
-    if (name !== profile.name) profile = await api.saveProfile({ ...profile, name });
-    void nda(name || 'Candidate');
-  };
-  nameInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !emptyBank) void startExamNow();
-  });
   /** Quick training with the saved defaults, changed by `override`. */
   const quick = (override: Partial<PracticeOptions>): void => void startPractice({ ...profile.training, ...override });
   const days = profile.examDate ? daysUntil(profile.examDate) : null;
@@ -304,7 +297,7 @@ async function home(): Promise<void> {
         h(
           'div',
           { class: 'hero-text' },
-          h('h1', {}, profile.name ? `Welcome back, ${profile.name}` : 'Exam simulation'),
+          h('h1', {}, profile.firstName ? `Welcome back, ${profile.firstName}` : 'Exam simulation'),
           h('p', { class: 'lead' }, `The full CISSP CAT experience: 100–150 adaptive questions in 3 hours, no going back. ${mobile ? 'The app is pinned to the screen and screenshots are blocked' : 'The screen locks as in a test centre'} until the exam ends.`),
           h(
             'ul',
@@ -320,8 +313,8 @@ async function home(): Promise<void> {
         h(
           'div',
           { class: 'hero-action' },
-          h('label', { class: 'field' }, 'Candidate name', nameInput),
-          h('button', { id: 'start-exam', class: 'primary big-button', disabled: emptyBank, onclick: () => void startExamNow() }, 'Start exam simulation ▶'),
+          h('p', { id: 'candidate-label' }, candidate ? `Candidate: ${candidate}` : 'Set your name in Profile & settings to see it on the exam screens.'),
+          h('button', { id: 'start-exam', class: 'primary big-button', disabled: emptyBank, onclick: () => void nda(candidate || 'Candidate') }, 'Start exam simulation ▶'),
           h('p', { class: 'small' }, 'You accept the NDA and see a short tutorial before the clock starts.'),
         ),
       ),
@@ -458,6 +451,7 @@ async function home(): Promise<void> {
           h(
             'div',
             { class: 'row end' },
+            h('button', { id: 'open-paused', onclick: () => void pausedScreen() }, `Paused sessions (${info.paused.length})`),
             h(
               'button',
               {
@@ -526,6 +520,19 @@ function examTable(id: string, entries: HistoryEntry[], actions: boolean): HTMLE
             'td',
             { class: 'actions' },
             h('button', { class: 'mini', onclick: () => { details.hidden = !details.hidden; } }, 'Domains'),
+            e.hasReview === true &&
+              h(
+                'button',
+                {
+                  class: 'mini review-entry',
+                  onclick: () =>
+                    void api.examReview(e.date).then(
+                      (items) => reviewScreen(items, '◀ History', () => void historyScreen()),
+                      (err: unknown) => toast(errorText(err)),
+                    ),
+                },
+                'Review',
+              ),
             h('button', { class: 'mini delete-entry', onclick: () => void api.deleteHistory('exam', [e.date]).then(historyScreen) }, 'Delete'),
           ),
       ),
@@ -625,15 +632,39 @@ async function historyScreen(): Promise<void> {
   backAction = () => void home();
 }
 
+/** Profile and appearance fields (labelled), shared by the settings screen (prefix `settings`) and the setup wizard (prefix `setup`). */
+function profileFields(prefix: string, p: Profile): { fields: Record<'firstName' | 'lastName' | 'examDate' | 'goal' | 'theme' | 'textSize', HTMLElement>; read: () => Omit<Profile, 'training' | 'setupDone'> } {
+  const firstName = h('input', { id: `${prefix}-first-name`, type: 'text', maxlength: '40', autocomplete: 'given-name', value: p.firstName });
+  const lastName = h('input', { id: `${prefix}-last-name`, type: 'text', maxlength: '40', autocomplete: 'family-name', value: p.lastName });
+  const examDate = h('input', { id: `${prefix}-exam-date`, type: 'date', value: p.examDate });
+  const goal = h('input', { id: `${prefix}-goal`, type: 'number', min: '0', max: '500', value: String(p.dailyGoal) });
+  const theme = select(`${prefix}-theme`, [['light', 'Light'], ['dark', 'Dark']], p.theme);
+  const textSize = select(`${prefix}-text`, [['normal', 'Normal'], ['large', 'Large'], ['larger', 'Larger']], p.textSize);
+  theme.addEventListener('change', () => applyAppearance({ ...p, theme: theme.value as Profile['theme'] }));
+  return {
+    fields: {
+      firstName: h('label', { class: 'field' }, 'First name', firstName),
+      lastName: h('label', { class: 'field' }, 'Second name', lastName),
+      examDate: h('label', { class: 'field' }, 'Exam date', examDate),
+      goal: h('label', { class: 'field' }, 'Daily goal', goal, h('span', { class: 'field-hint' }, 'Training questions per day; 0 = no goal')),
+      theme: h('label', { class: 'field' }, 'Theme', theme),
+      textSize: h('label', { class: 'field' }, 'Text size', textSize),
+    },
+    read: () => ({
+      firstName: firstName.value,
+      lastName: lastName.value,
+      examDate: examDate.value,
+      dailyGoal: Number(goal.value) || 0,
+      theme: theme.value as Profile['theme'],
+      textSize: textSize.value as Profile['textSize'],
+    }),
+  };
+}
+
 async function settingsScreen(): Promise<void> {
   const info = await api.info();
   const p = info.profile;
-  const name = h('input', { id: 'settings-name', type: 'text', maxlength: '80', value: p.name });
-  const examDate = h('input', { id: 'settings-exam-date', type: 'date', value: p.examDate });
-  const goal = h('input', { id: 'settings-goal', type: 'number', min: '0', max: '500', value: String(p.dailyGoal) });
-  const theme = select('settings-theme', [['light', 'Light'], ['dark', 'Dark']], p.theme);
-  const textSize = select('settings-text', [['normal', 'Normal'], ['large', 'Large'], ['larger', 'Larger']], p.textSize);
-  theme.addEventListener('change', () => applyAppearance({ ...p, theme: theme.value as Profile['theme'] }));
+  const { fields, read } = profileFields('settings', p);
   const form = trainingForm(info, 'default', p.training);
   const danger = (id: string, label: string, title: string, text: string, run: () => Promise<void>): HTMLElement =>
     h('button', {
@@ -647,14 +678,7 @@ async function settingsScreen(): Promise<void> {
   const save = async (): Promise<void> => {
     const training = form.read();
     if (!training) return;
-    profile = await api.saveProfile({
-      name: name.value,
-      examDate: examDate.value,
-      dailyGoal: Number(goal.value) || 0,
-      theme: theme.value as Profile['theme'],
-      textSize: textSize.value as Profile['textSize'],
-      training,
-    });
+    profile = await api.saveProfile({ ...read(), setupDone: true, training });
     toast('Settings saved.');
     void home();
   };
@@ -669,16 +693,17 @@ async function settingsScreen(): Promise<void> {
         h('h2', {}, 'Profile'),
         h(
           'div',
-          { class: 'form-grid cols-3' },
-          h('label', { class: 'field' }, 'Name', name),
-          h('label', { class: 'field' }, 'Exam date', examDate),
-          h('label', { class: 'field' }, 'Daily goal', goal, h('span', { class: 'field-hint' }, 'Training questions per day; 0 = no goal')),
+          { class: 'form-grid cols-4' },
+          fields.firstName,
+          fields.lastName,
+          fields.examDate,
+          fields.goal,
         ),
       ),
       h(
         'div',
         { class: 'home-grid' },
-        h('section', { class: 'card' }, h('h2', {}, 'Appearance'), h('div', { class: 'form-grid cols-2' }, h('label', { class: 'field' }, 'Theme', theme), h('label', { class: 'field' }, 'Text size', textSize))),
+        h('section', { class: 'card' }, h('h2', {}, 'Appearance'), h('div', { class: 'form-grid cols-2' }, fields.theme, fields.textSize)),
         h(
           'section',
           { class: 'card' },
@@ -701,6 +726,100 @@ async function settingsScreen(): Promise<void> {
       h('button', { id: 'settings-cancel', onclick: () => void home() }, 'Cancel'),
       h('button', { id: 'settings-save', class: 'primary', onclick: () => void save() }, 'Save settings'),
     ),
+  );
+  backAction = () => void home();
+}
+
+/** First start: names, exam plan, training preferences and appearance, one step at a time; saved at the end. */
+function setupWizard(info: AppInfo): void {
+  const { fields, read } = profileFields('setup', profile);
+  const form = trainingForm(info, 'setup', profile.training);
+  const steps: { title: string; text: string; body: HTMLElement }[] = [
+    { title: 'Welcome to CATExam', text: 'A few questions to set the app up for you. You can change every answer later in Profile & settings. Your name appears on the exam screens and in your history.', body: h('div', { class: 'form-grid cols-2' }, fields.firstName, fields.lastName) },
+    { title: 'Your exam plan', text: 'When is your CISSP exam, and how many training questions do you want to answer each day? Both are optional.', body: h('div', { class: 'form-grid cols-2' }, fields.examDate, fields.goal) },
+    { title: 'Training preferences', text: 'What your training sessions ask by default: domains, question types, length, difficulty, order and timer.', body: form.node },
+    { title: 'Appearance', text: 'How the app looks. Large text applies once you finish.', body: h('div', { class: 'form-grid cols-2' }, fields.theme, fields.textSize) },
+  ];
+  let step = 0;
+  const go = async (to: number): Promise<void> => {
+    if (to > step && step === 0 && read().firstName.trim() === '') return toast('Enter your first name.');
+    if (to > step && step === 2 && !form.read()) return;
+    if (to < steps.length) {
+      step = to;
+      return render();
+    }
+    const training = form.read();
+    if (!training) return;
+    profile = await api.saveProfile({ ...read(), setupDone: true, training });
+    await home();
+  };
+  const render = (): void => {
+    const last = step === steps.length - 1;
+    show(
+      h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Set up CATExam'), h('span', { id: 'setup-step' }, `Step ${step + 1} of ${steps.length}`)),
+      h(
+        'main',
+        { class: 'page panel', id: 'setup' },
+        h('section', { class: 'card', id: `setup-step-${step + 1}` }, h('h2', {}, steps[step].title), h('p', { class: 'small' }, steps[step].text), steps[step].body),
+      ),
+      h(
+        'footer',
+        { class: 'bottombar' },
+        h('button', { id: 'setup-back', disabled: step === 0, onclick: () => void go(step - 1) }, '◀ Back'),
+        h('button', { id: last ? 'setup-finish' : 'setup-next', class: 'primary', onclick: () => void go(step + 1) }, last ? 'Finish' : 'Next ▶'),
+      ),
+    );
+    if (step > 0) backAction = () => void go(step - 1);
+  };
+  render();
+}
+
+/** Paused training sessions: resume one where it was left, or delete it. */
+async function pausedScreen(): Promise<void> {
+  const info = await api.info();
+  const remove = (s: PausedTraining): void =>
+    modal('Delete paused session', `Delete the session paused on ${new Date(s.pausedAt).toLocaleString()}? Answers already given stay in your training progress.`, [
+      { label: 'Cancel', id: 'delete-paused-cancel', onClick: () => undefined },
+      { label: 'Delete', id: 'delete-paused-confirm', primary: true, onClick: () => void api.deletePaused(s.id).then(pausedScreen, (err: unknown) => toast(errorText(err))) },
+    ]);
+  show(
+    h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Paused training'), h('span', {}, `${info.paused.length} paused session${info.paused.length === 1 ? '' : 's'}`)),
+    h(
+      'main',
+      { class: 'page panel', id: 'paused-screen' },
+      h(
+        'section',
+        { class: 'card' },
+        h('h2', {}, 'Paused training sessions'),
+        info.paused.length === 0
+          ? h('p', { class: 'empty' }, 'No paused sessions. Use Pause during a training session to continue it later.')
+          : h(
+              'table',
+              { id: 'paused-list' },
+              h('tr', {}, h('th', {}, 'Paused'), h('th', {}, 'Answered'), h('th', {}, 'Accuracy'), h('th', { class: 'opt' }, 'Difficulty'), h('th', { class: 'opt' }, 'From'), h('th', { class: 'opt' }, 'Domains'), h('th', {}, '')),
+              ...info.paused.map((s) =>
+                h(
+                  'tr',
+                  { class: 'entry' },
+                  h('td', {}, new Date(s.pausedAt).toLocaleString()),
+                  h('td', {}, `${s.answered} of ${s.total}`),
+                  h('td', {}, meter(s.correct, s.answered), ` ${percent(s.correct, s.answered)}`),
+                  h('td', { class: 'opt' }, DIFFICULTY_LABELS[s.options.difficulty]),
+                  h('td', { class: 'opt' }, SOURCE_LABELS[s.options.source]),
+                  h('td', { class: 'opt' }, s.options.domains.join(', ')),
+                  h(
+                    'td',
+                    { class: 'actions' },
+                    h('button', { class: 'mini primary resume-paused', onclick: () => void openPractice(api.resumePractice(s.id)) }, 'Resume'),
+                    h('button', { class: 'mini delete-paused', onclick: () => remove(s) }, 'Delete'),
+                  ),
+                ),
+              ),
+            ),
+      ),
+    ),
+    h('footer', { class: 'bottombar has-tabs' }, h('span', {}), h('button', { id: 'paused-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
+    tabbar('train'),
   );
   backAction = () => void home();
 }
@@ -1166,7 +1285,7 @@ function resultScreen(r: ExamResult): void {
     h(
       'footer',
       { class: 'bottombar' },
-      h('button', { id: 'review', onclick: () => reviewScreen(r) }, 'Review answers'),
+      h('button', { id: 'review', onclick: () => reviewScreen(r.review, '◀ Score report', () => resultScreen(r)) }, 'Review answers'),
       h('button', { id: 'result-home', class: 'primary', onclick: () => void home() }, 'Back to start'),
     ),
   );
@@ -1178,17 +1297,18 @@ function answerText(options: string[], indices: number[], ordering: boolean): st
   return ordering ? indices.map((i) => options[i]).join(' → ') : indices.map((i) => `${LETTERS[i]}. ${options[i]}`).join('; ');
 }
 
-function reviewScreen(r: ExamResult): void {
+/** Every answered question of an exam with the correct answer and explanation; `back` returns to where it was opened from. */
+function reviewScreen(review: ReviewItem[], backLabel: string, back: () => void): void {
   const search = h('input', { id: 'review-search', type: 'text', placeholder: 'Search question text' });
   const onlyWrong = h('input', { id: 'review-wrong', type: 'checkbox' });
   const domainSelect = h(
     'select',
     { id: 'review-domain' },
     h('option', { value: '' }, 'All domains'),
-    ...[...new Set(r.review.map((i) => i.domain))].sort((a, b) => a - b).map((d) => h('option', { value: String(d) }, `Domain ${d}: ${domainNames.get(d) ?? ''}`)),
+    ...[...new Set(review.map((i) => i.domain))].sort((a, b) => a - b).map((d) => h('option', { value: String(d) }, `Domain ${d}: ${domainNames.get(d) ?? ''}`)),
   );
   const count = h('span', { class: 'small', id: 'review-count' });
-  const articles = r.review.map((item) => ({
+  const articles = review.map((item) => ({
     item,
     node: h(
       'article',
@@ -1221,7 +1341,7 @@ function reviewScreen(r: ExamResult): void {
   onlyWrong.addEventListener('change', apply);
   domainSelect.addEventListener('change', apply);
   show(
-    h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Answer review'), h('span', {}, `${r.review.filter((i) => i.correct).length} of ${r.review.length} correct`)),
+    h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Answer review'), h('span', {}, `${review.filter((i) => i.correct).length} of ${review.length} correct`)),
     h(
       'main',
       { class: 'page review', id: 'review-list' },
@@ -1229,10 +1349,10 @@ function reviewScreen(r: ExamResult): void {
       empty,
       ...articles.map((a) => a.node),
     ),
-    h('footer', { class: 'bottombar' }, h('button', { onclick: () => resultScreen(r) }, '◀ Score report'), h('button', { id: 'review-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
+    h('footer', { class: 'bottombar' }, h('button', { id: 'review-back', onclick: back }, backLabel), h('button', { id: 'review-home', class: 'primary', onclick: () => void home() }, 'Back to start')),
   );
   apply();
-  backAction = () => resultScreen(r);
+  backAction = back;
 }
 
 // ---------- Training mode ----------
@@ -1255,15 +1375,20 @@ interface PracticeContext {
 
 let practiceTimer: number | undefined;
 
-async function startPractice(options: PracticeOptions): Promise<void> {
+function startPractice(options: PracticeOptions): Promise<void> {
+  return openPractice(api.startPractice(options));
+}
+
+/** Shows the first question of a new training session, or the open question of a resumed one. */
+async function openPractice(starting: Promise<PracticeStart>): Promise<void> {
   let start: PracticeStart;
   try {
-    start = await api.startPractice(options);
+    start = await starting;
   } catch (err) {
     toast(errorText(err));
     return;
   }
-  renderPractice(start.question, null, {
+  renderPractice(start.question, start.feedback, {
     total: start.total,
     seconds: start.secondsPerQuestion,
     bookmarks: new Set(start.bookmarks),
@@ -1271,6 +1396,15 @@ async function startPractice(options: PracticeOptions): Promise<void> {
     states: start.states,
     streak: 0,
   });
+}
+
+/** Saves the session to be resumed later; a session with every question answered just ends with its summary. */
+async function pausePractice(ctx: PracticeContext): Promise<void> {
+  clearInterval(practiceTimer);
+  if (ctx.states.every((s) => s === 'correct' || s === 'wrong' || s === 'timedout')) return practiceSummary();
+  await api.pausePractice();
+  toast('Training paused. Resume it from Paused sessions.');
+  await home();
 }
 
 /** Opens a training question by Skip, Back or the navigator. */
@@ -1471,7 +1605,7 @@ function renderPractice(q: QuestionView, answered: PracticeFeedback | null, ctx:
       { class: 'bottombar practice-bar' },
       h('div', {}, back, h('button', { id: 'practice-stop', onclick: () => void practiceSummary() }, 'Stop'), bookmark),
       h('span', { class: 'small keys' }, q.type === 'ordering' ? 'Enter: Check / Next' : `Keys: A–${LETTERS[q.options.length - 1]} select · Enter: Check / Next`),
-      h('div', {}, skip, button),
+      h('div', {}, h('button', { id: 'practice-pause', onclick: () => void pausePractice(ctx) }, 'Pause'), skip, button),
     ),
   );
   showBookmark();
@@ -1491,8 +1625,9 @@ function renderPractice(q: QuestionView, answered: PracticeFeedback | null, ctx:
     () => { if (go) go.click(); else if (!button.disabled) void check(); },
   );
   backAction = () =>
-    modal('Stop training', 'Stop this training session and see its summary?', [
+    modal('Leave training', 'Pause this session to resume it later, or stop it and see its summary?', [
       { label: 'Keep training', id: 'stop-cancel', onClick: () => undefined },
+      { label: 'Pause', id: 'pause-confirm', onClick: () => void pausePractice(ctx) },
       { label: 'Stop', id: 'stop-confirm', primary: true, onClick: () => void practiceSummary() },
     ]);
 }

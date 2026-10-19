@@ -39,6 +39,14 @@ export interface PracticeVisit {
   feedback: PracticeFeedback | null;
 }
 
+/** Everything a paused training session needs to go on: question order, answers given, skips and the open question. */
+export interface PracticeSnapshot {
+  ids: string[];
+  cursor: number;
+  feedback: (PracticeFeedback | null)[];
+  skipped: number[];
+}
+
 /**
  * Training mode: questions chosen up front, immediate feedback with the explanation after each item.
  * The student may skip a question and open any question again; an answered question stays answered.
@@ -62,6 +70,31 @@ export class PracticeSession {
 
   get ids(): string[] {
     return this.items.map((q) => q.id);
+  }
+
+  /** Number (1-based) of the question on screen. */
+  get position(): number {
+    return this.cursor + 1;
+  }
+
+  /** The session as it stands, to be continued later with `restore`. */
+  snapshot(): PracticeSnapshot {
+    return structuredClone({ ids: this.ids, cursor: this.cursor, feedback: this.feedback, skipped: [...this.skipped] });
+  }
+
+  /** Continues a paused session; throws when the snapshot is damaged or one of its questions is no longer in `bank`. */
+  static restore(bank: readonly Question[], snapshot: PracticeSnapshot): PracticeSession {
+    const { ids, cursor, feedback, skipped } = snapshot;
+    if (!Array.isArray(ids) || !Array.isArray(feedback) || !Array.isArray(skipped) || feedback.length !== ids.length) throw new Error('the paused session is damaged');
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    const items = ids.map((id) => byId.get(id));
+    if (items.some((q) => q === undefined)) throw new Error('some questions of this session are no longer in the question bank');
+    const session = new PracticeSession(items as Question[]);
+    if (!Number.isInteger(cursor) || cursor < 0 || cursor >= ids.length) throw new Error('the paused session is damaged');
+    session.cursor = cursor;
+    feedback.forEach((f, i) => (session.feedback[i] = f ? structuredClone(f) : null));
+    for (const i of skipped) if (Number.isInteger(i) && i >= 0 && i < ids.length && !feedback[i]) session.skipped.add(i);
+    return session;
   }
 
   /** The question on screen, or null once every question is answered. */

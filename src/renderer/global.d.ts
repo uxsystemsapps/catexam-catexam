@@ -20,6 +20,8 @@ declare global {
   type HistoryEntry = Api.HistoryEntry;
   type TrainingEntry = Api.TrainingEntry;
   type BankImportSummary = Api.BankImportSummary;
+  type ReviewItem = Api.ReviewItem;
+  type PausedTraining = Api.PausedTraining;
   interface Window {
     examApi: ExamApi;
   }

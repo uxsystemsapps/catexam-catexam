@@ -20,10 +20,28 @@ import {
   type PracticeOptions,
 } from '../src/engine/profile';
 import { CISSP_CAT, ExamSession } from '../src/engine/session';
-import type { DomainId, Question, QuestionView } from '../src/engine/types';
-import { appendTrainingHistory, deleteHistory, importBanks, loadQuestions, readProfile, readProgress, readTrainingHistory, removeBank, saveProfile, saveProgress } from '../src/core/store';
+import type { DomainId, Question, QuestionView, ReviewItem } from '../src/engine/types';
+import {
+  appendHistory,
+  appendTrainingHistory,
+  deleteHistory,
+  importBanks,
+  listPaused,
+  loadQuestions,
+  readExamReview,
+  readHistory,
+  readPaused,
+  readProfile,
+  readProgress,
+  readTrainingHistory,
+  removeBank,
+  removePaused,
+  saveProfile,
+  savePaused,
+  saveProgress,
+} from '../src/core/store';
 import { folderFiles, fsDir } from '../src/main/fsdir';
-import type { TrainingEntry } from '../src/shared/api';
+import type { HistoryEntry, TrainingEntry } from '../src/shared/api';
 
 function seeded(seed: number): () => number {
   let a = seed >>> 0;
@@ -339,16 +357,93 @@ describe('training mode', () => {
     assert.equal(summarizeProgress(bank, progress, '2026-10-19').weakestDomain, 1);
     assert.equal(summarizeProgress(bank, progress, '2026-10-19').today, 0);
   });
+
+  it('a paused session resumes on the same question with its answers, skips and order', () => {
+    const bank = syntheticBank(3, seeded(8)).slice(0, 4);
+    const ids = bank.map((q) => q.id);
+    const p = new PracticeSession(bank);
+    p.skip(ids[0]);
+    p.answer(ids[1], bank[1].answer);
+    p.goTo(2);
+    const saved = JSON.parse(JSON.stringify(p.snapshot()));
+    const r = PracticeSession.restore([...bank].reverse(), saved);
+    assert.deepEqual([r.ids, r.position, r.states()], [ids, 2, ['skipped', 'correct', 'unanswered', 'unanswered']]);
+    assert.equal(r.goTo(2).feedback?.correct, true);
+    assert.throws(() => r.answer(ids[1], bank[1].answer), /already answered/);
+    r.goTo(3);
+    r.answer(ids[2], bank[2].answer);
+    assert.equal(r.current()?.id, ids[3]);
+    assert.throws(() => PracticeSession.restore(bank.slice(1), saved), /no longer in the question bank/);
+    assert.throws(() => PracticeSession.restore(bank, { ...saved, cursor: 9 }), /damaged/);
+  });
 });
 
 describe('profile and history storage', () => {
   it('replaces invalid profile fields with defaults and clamps numbers', () => {
-    const p = normalizeProfile({ name: '  Ann  ', examDate: '2026-13-45', dailyGoal: -3, theme: 'neon', training: { domains: [2, 9], count: 999, types: [], difficulty: 'hard', secondsPerQuestion: 45.4 } });
+    const p = normalizeProfile({ firstName: '  Ann  ', lastName: 7, examDate: '2026-13-45', dailyGoal: -3, theme: 'neon', setupDone: 'yes', training: { domains: [2, 9], count: 999, types: [], difficulty: 'hard', secondsPerQuestion: 45.4 } });
     assert.deepEqual(
-      [p.name, p.examDate, p.dailyGoal, p.theme, p.textSize, p.training.domains, p.training.count, p.training.types, p.training.difficulty, p.training.secondsPerQuestion],
-      ['Ann', '', 0, 'light', 'normal', [2], 200, DEFAULT_PROFILE.training.types, 'hard', 45],
+      [p.firstName, p.lastName, p.setupDone, p.examDate, p.dailyGoal, p.theme, p.textSize, p.training.domains, p.training.count, p.training.types, p.training.difficulty, p.training.secondsPerQuestion],
+      ['Ann', '', false, '', 0, 'light', 'normal', [2], 200, DEFAULT_PROFILE.training.types, 'hard', 45],
     );
     assert.deepEqual(normalizeProfile('garbage'), DEFAULT_PROFILE);
+  });
+
+  it('splits the single name of older profiles into first and second name', () => {
+    const names = (raw: object): string[] => [normalizeProfile(raw).firstName, normalizeProfile(raw).lastName];
+    assert.deepEqual(names({ name: '  Ann  van der Berg ' }), ['Ann', 'van der Berg']);
+    assert.deepEqual(names({ name: 'Ann' }), ['Ann', '']);
+    assert.deepEqual(names({ name: 'Old', firstName: 'New' }), ['New', '']);
+  });
+
+  it('keeps the answers of each exam apart from the history, and deletes them with their exam', async () => {
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-test-'));
+    const dir = fsDir(tmp);
+    const exam = (date: string): HistoryEntry => ({ date, candidate: 'Ann', passed: true, reason: 'max-items', scaledScore: 720, itemsAnswered: 1, elapsedSeconds: 60, domains: [] });
+    const review = (stem: string): ReviewItem[] => [{ number: 1, id: 'Q', domain: 1, type: 'single', stem, options: ['a', 'b'], response: [0], answer: [1], correct: false, pretest: false, explanation: 'why', optionNotes: [] }];
+    try {
+      await appendHistory(dir, exam('2026-10-19T08:00:00.000Z'), review('first'));
+      await appendHistory(dir, exam('2026-10-19T09:00:00.000Z'), review('second'));
+      assert.deepEqual((await readHistory(dir)).map((e) => e.hasReview), [true, true]);
+      assert.equal((await readExamReview(dir, '2026-10-19T08:00:00.000Z'))[0].stem, 'first');
+      assert.ok(!readFileSync(path.join(tmp, 'history.json'), 'utf8').includes('explanation'), 'the history index holds no questions');
+
+      await deleteHistory(dir, 'exam', ['2026-10-19T08:00:00.000Z']);
+      await assert.rejects(readExamReview(dir, '2026-10-19T08:00:00.000Z'), /not saved/);
+      assert.equal((await readExamReview(dir, '2026-10-19T09:00:00.000Z'))[0].stem, 'second');
+      await deleteHistory(dir, 'exam', null);
+      assert.deepEqual(readdirSync(path.join(tmp, 'history')), []);
+
+      // Beyond 100 exams the oldest is dropped, with its answers.
+      for (let i = 0; i < 101; i++) await appendHistory(dir, exam(`2026-01-01T00:00:${String(i).padStart(3, '0')}Z`), review(String(i)));
+      assert.equal((await readHistory(dir)).length, 100);
+      await assert.rejects(readExamReview(dir, '2026-01-01T00:00:000Z'), /not saved/);
+      assert.equal(readdirSync(path.join(tmp, 'history')).length, 100);
+    } finally {
+      await rm(tmp, { recursive: true, force: true });
+    }
+  });
+
+  it('saves, lists and removes paused training sessions', async () => {
+    const tmp = await mkdtemp(path.join(os.tmpdir(), 'catexam-test-'));
+    const dir = fsDir(tmp);
+    const snapshot = new PracticeSession(syntheticBank(1, seeded(2)).slice(0, 2)).snapshot();
+    const paused = (id: string, pausedAt: string) => ({ id, startedAt: '2026-10-19T08:00:00.000Z', pausedAt, total: 2, answered: 0, correct: 0, options: DEFAULT_PROFILE.training, snapshot });
+    try {
+      assert.deepEqual(await listPaused(dir), []);
+      await savePaused(dir, paused('a', '2026-10-19T09:00:00.000Z'));
+      await savePaused(dir, paused('b', '2026-10-19T10:00:00.000Z'));
+      const list = await listPaused(dir);
+      assert.deepEqual(list.map((s) => s.id), ['b', 'a'], 'last paused first');
+      assert.ok(list.every((s) => !('snapshot' in s)), 'the list leaves the questions out');
+      assert.deepEqual((await readPaused(dir, 'a')).snapshot, snapshot);
+      await removePaused(dir, 'a');
+      await removePaused(dir, 'a');
+      assert.deepEqual((await listPaused(dir)).map((s) => s.id), ['b']);
+      await assert.rejects(readPaused(dir, 'a'), /no longer exists/);
+      await assert.rejects(readPaused(dir, '../profile'), /unknown paused session/);
+    } finally {
+      await rm(tmp, { recursive: true, force: true });
+    }
   });
 
   it('saves the profile and progress, and deletes one or all history entries', async () => {

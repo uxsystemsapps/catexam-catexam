@@ -12,7 +12,7 @@ import {
   type Progress,
 } from '../engine/profile';
 import { ExamSession } from '../engine/session';
-import type { ExamResult, Question } from '../engine/types';
+import type { ExamResult, Question, ReviewItem } from '../engine/types';
 import type {
   AppInfo,
   BankImportSummary,
@@ -26,15 +26,21 @@ import type {
 import {
   appendHistory,
   appendTrainingHistory,
+  dateKey,
   deleteHistory,
   importBanks,
+  listPaused,
   loadQuestions,
+  readExamReview,
   readHistory,
+  readPaused,
   readProfile,
   readProgress,
   readTrainingHistory,
   removeBank,
+  removePaused,
   saveProfile,
+  savePaused,
   saveProgress,
   type DataDir,
   type ImportFile,
@@ -74,6 +80,8 @@ export class CatexamService {
   private practice: PracticeSession | null = null;
   private practiceOptions: PracticeOptions | null = null;
   private practiceSaved = false;
+  /** When the current training session was first started (kept across pause and resume); its paused file id derives from it. */
+  private practiceStartedAt = '';
   private progressWrite: Promise<void> = Promise.resolve();
 
   private constructor(
@@ -124,6 +132,7 @@ export class CatexamService {
       displays: this.host.displays(),
       history: await readHistory(this.host.data),
       trainingHistory: await readTrainingHistory(this.host.data),
+      paused: await listPaused(this.host.data),
       profile: this.profile,
       progress: summarizeProgress(questions, this.progress, today()),
     };
@@ -139,6 +148,11 @@ export class CatexamService {
     if (kind !== 'exam' && kind !== 'training') throw new Error('unknown history');
     const list = Array.isArray(dates) ? dates.filter((d): d is string => typeof d === 'string') : null;
     return deleteHistory(this.host.data, kind, list);
+  }
+
+  examReview(date: unknown): Promise<ReviewItem[]> {
+    if (typeof date !== 'string') throw new Error('unknown exam');
+    return readExamReview(this.host.data, date);
   }
 
   resetProgress(): Promise<void> {
@@ -210,33 +224,74 @@ export class CatexamService {
     const result = this.exam.result();
     clearTimeout(this.examTimer);
     this.examTimer = undefined;
-    await appendHistory(this.host.data, {
-      date: new Date().toISOString(),
-      candidate: this.candidate,
-      passed: result.passed,
-      reason: result.reason,
-      scaledScore: result.scaledScore,
-      itemsAnswered: result.itemsAnswered,
-      elapsedSeconds: result.elapsedSeconds,
-      domains: result.domains,
-    });
+    await appendHistory(
+      this.host.data,
+      {
+        date: new Date().toISOString(),
+        candidate: this.candidate,
+        passed: result.passed,
+        reason: result.reason,
+        scaledScore: result.scaledScore,
+        itemsAnswered: result.itemsAnswered,
+        elapsedSeconds: result.elapsedSeconds,
+        domains: result.domains,
+      },
+      result.review,
+    );
     return result;
   }
 
   startPractice(raw: unknown): PracticeStart {
     const options = normalizePracticeOptions(raw);
-    const practice = new PracticeSession(selectPracticeItems(this.questions, options, this.progress));
+    return this.openPractice(new PracticeSession(selectPracticeItems(this.questions, options, this.progress)), options, new Date().toISOString());
+  }
+
+  private openPractice(practice: PracticeSession, options: PracticeOptions, startedAt: string): PracticeStart {
     this.practice = practice;
     this.practiceOptions = options;
     this.practiceSaved = false;
+    this.practiceStartedAt = startedAt;
+    const visit = practice.goTo(practice.position);
     return {
-      question: practice.current() as PracticeStart['question'],
+      question: visit.question,
+      feedback: visit.feedback,
       total: practice.total,
       secondsPerQuestion: options.secondsPerQuestion,
       bookmarks: [...this.progress.bookmarks],
       ids: practice.ids,
       states: practice.states(),
     };
+  }
+
+  /** Saves the current training session to be resumed later; a resumed session replaces its earlier pause. */
+  async pausePractice(): Promise<void> {
+    const practice = this.activePractice();
+    if (!this.practiceOptions) throw new Error('no practice in progress');
+    const summary = practice.summary();
+    await savePaused(this.host.data, {
+      id: dateKey(this.practiceStartedAt),
+      startedAt: this.practiceStartedAt,
+      pausedAt: new Date().toISOString(),
+      total: practice.total,
+      answered: summary.answered,
+      correct: summary.correct,
+      options: this.practiceOptions,
+      snapshot: practice.snapshot(),
+    });
+    this.practice = null;
+    this.practiceOptions = null;
+  }
+
+  /** Continues a paused session. Its file stays until the session ends, so quitting the app keeps the last pause. */
+  async resumePractice(id: unknown): Promise<PracticeStart> {
+    if (typeof id !== 'string') throw new Error('unknown paused session');
+    const paused = await readPaused(this.host.data, id);
+    return this.openPractice(PracticeSession.restore(this.questions, paused.snapshot), normalizePracticeOptions(paused.options), paused.startedAt);
+  }
+
+  deletePaused(id: unknown): Promise<void> {
+    if (typeof id !== 'string') throw new Error('unknown paused session');
+    return removePaused(this.host.data, id);
   }
 
   private activePractice(): PracticeSession {
@@ -281,6 +336,7 @@ export class CatexamService {
     const practice = this.activePractice();
     if (!this.practiceOptions) throw new Error('no practice in progress');
     const summary = practice.summary();
+    await removePaused(this.host.data, dateKey(this.practiceStartedAt));
     if (!this.practiceSaved && summary.answered > 0) {
       this.practiceSaved = true;
       await appendTrainingHistory(this.host.data, {
