@@ -37,7 +37,24 @@ export type SmokeTarget = { lockdown: Lockdown; mobile?: undefined } | { lockdow
  */
 export async function runSmoke(win: BrowserWindow, target: SmokeTarget): Promise<boolean> {
   const { lockdown, mobile } = target;
-  const js = <T>(code: string): Promise<T> => win.webContents.executeJavaScript(code, true) as Promise<T>;
+  // A crashed or frozen renderer never settles executeJavaScript, so every call is bounded (above the longest wait
+  // below, 75 s) and fails naming the call and what happened to the renderer, instead of hanging the whole run.
+  let rendererTrouble = '';
+  win.webContents.on('render-process-gone', (_e, d) => {
+    rendererTrouble = ` (renderer gone: ${d.reason}, exit code ${d.exitCode})`;
+    console.error(`SMOKE: the renderer is gone: ${d.reason}, exit code ${d.exitCode}`);
+  });
+  win.webContents.on('unresponsive', () => {
+    rendererTrouble ||= ' (renderer unresponsive)';
+    console.error('SMOKE: the window stopped responding');
+  });
+  const js = <T>(code: string): Promise<T> => {
+    let timer: NodeJS.Timeout | undefined;
+    const limit = new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error(`no answer from the window in 90 s${rendererTrouble} to: ${code.replace(/\s+/g, ' ').slice(0, 160)}`)), 90_000);
+    });
+    return Promise.race([win.webContents.executeJavaScript(code, true) as Promise<T>, limit]).finally(() => clearTimeout(timer));
+  };
   const waitFor = (selector: string, ms = 10000): Promise<void> =>
     js(`new Promise((resolve, reject) => {
       const t0 = Date.now();
