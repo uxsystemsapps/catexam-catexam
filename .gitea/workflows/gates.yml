@@ -1,7 +1,15 @@
 # Gates of this product (seeded by the UXSYSTEMS software factory when the product was created).
-# They run on every push, on the factory's runner factory-core-1, each job in a container (runner label `linux` =
-# node:22-bookworm). The factory waits for them after each build: a task is done only with green gates, and the
-# owner's `merge` is refused while they are red.
+# They run on every push, on the factory's runner factory-core-1. The factory waits for them after each build: a task
+# is done only with green gates, and the owner's `merge` is refused while they are red.
+#
+# Every job runs in the CI build image (ci/Dockerfile: JDK 21, Android SDK, Gradle, wine, warm npm/Electron/Gradle
+# caches), so a run downloads almost nothing. The `image` job builds it (kaniko: job containers have no Docker) and
+# pushes it to the Gitea container registry only when ci/Dockerfile, package-lock.json or the Gradle wrapper changed.
+# Order: image, then lint and test, then smoke, then windows-installer and android-apk (the heavy builds never run
+# alongside the smoke test).
+# Registry access: the repository secrets REGISTRY_USER and REGISTRY_TOKEN (a Gitea access token of that user with
+# read and write on packages). The job's own token cannot be used: Gitea 28 gives it no package scope, so the
+# registry's /v2/token answers UNAUTHORIZED. The jobs reach Gitea as gitea:3000; the VM's Docker pulls from 127.0.0.1:3000.
 #
 # PLACEHOLDERS: each job runs the product's own command when the repository has one, and otherwise PASSES WITHOUT
 # CHECKING ANYTHING (it says so in its log). Replace them with the product's real checks as the product grows.
@@ -9,18 +17,59 @@ name: gates
 on: [push]
 
 jobs:
-  lint:
+  image:
     runs-on: linux
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.tag.outputs.image }}
+    env:
+      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: image tag (hash of what the image is built from)
+        id: tag
+        run: |
+          tag=$(cat ci/Dockerfile .dockerignore package-lock.json android/gradle/wrapper/gradle-wrapper.properties | sha256sum | cut -c1-16)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "image=127.0.0.1:3000/catexam/catexam-ci:$tag" >> "$GITHUB_OUTPUT"
+          echo "CI image catexam/catexam-ci:$tag"
+      - name: build and push the image unless the registry has it
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+          DOCKER_CONFIG: /kaniko/.docker
+          SSL_CERT_DIR: /kaniko/ssl/certs
+        run: |
+          [ -n "$REGISTRY_USER" ] && [ -n "$REGISTRY_TOKEN" ] || { echo "set the repository secrets REGISTRY_USER and REGISTRY_TOKEN (Gitea access token with read and write on packages)"; exit 1; }
+          curl -fsSL https://github.com/google/go-containerregistry/releases/download/v0.20.3/go-containerregistry_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin crane
+          crane export gcr.io/kaniko-project/executor:v1.23.2 - | tar -x -C / kaniko
+          printf '{"auths":{"gitea:3000":{"auth":"%s"}}}' "$(printf '%s:%s' "$REGISTRY_USER" "$REGISTRY_TOKEN" | base64 -w0)" > /kaniko/.docker/config.json
+          dest="gitea:3000/catexam/catexam-ci:$TAG"
+          if out=$(crane manifest --insecure "$dest" 2>&1); then
+            echo "$dest is already in the registry; nothing to build"
+            exit 0
+          elif ! grep -qE 'MANIFEST_UNKNOWN|NAME_UNKNOWN|404' <<<"$out"; then
+            echo "cannot read the registry (REGISTRY_USER/REGISTRY_TOKEN need read and write on packages): $out"
+            exit 1
+          fi
+          # kaniko builds in this (throwaway) container's own filesystem; nothing runs in it afterwards.
+          /kaniko/executor --force --context "dir://$PWD" --dockerfile ci/Dockerfile --destination "$dest" \
+            --insecure --snapshot-mode=redo
+
+  lint:
+    needs: image
+    runs-on: linux
+    container:
+      image: ${{ needs.image.outputs.image }}
+      credentials:
+        username: ${{ secrets.REGISTRY_USER }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
-      - name: cache npm downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
       - name: lint (make lint, or npm run lint)
         run: |
           if [ -f Makefile ] && grep -qE '^lint:' Makefile; then
@@ -32,17 +81,17 @@ jobs:
           fi
 
   test:
+    needs: image
     runs-on: linux
+    container:
+      image: ${{ needs.image.outputs.image }}
+      credentials:
+        username: ${{ secrets.REGISTRY_USER }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
-      - name: cache npm downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
       - name: test (make check, npm test, or pytest)
         run: |
           if [ -f Makefile ] && grep -qE '^check:' Makefile; then
@@ -62,56 +111,37 @@ jobs:
     # Starts the real Electron app headless (Xvfb) and drives a full exam, a training session and a game round
     # through the screens (src/main/smoke.ts), then does the same with the Android web app (www/) in a phone-sized
     # window, checking the phone layout. Linux only: no Windows or Android hand exists for this product.
+    needs: [image, lint, test]
     runs-on: linux
+    container:
+      image: ${{ needs.image.outputs.image }}
+      credentials:
+        username: ${{ secrets.REGISTRY_USER }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: cache npm downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
       - name: smoke (npm run smoke under Xvfb)
         run: |
-          apt-get update -qq
-          apt-get install -y -qq xvfb xauth libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libgtk-3-0 \
-            libgbm1 libasound2 libxss1 libxshmfence1 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 >/dev/null
           npm ci
           xvfb-run -a npm run smoke
 
   windows-installer:
     # Builds the Windows NSIS installer on Linux (electron-builder edits the .exe resources through wine) and
     # attaches it to the run as a downloadable artefact. Not run or installed here: no Windows hand exists.
+    needs: [image, smoke]
     runs-on: linux
+    container:
+      image: ${{ needs.image.outputs.image }}
+      credentials:
+        username: ${{ secrets.REGISTRY_USER }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: cache npm downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
-      - name: cache Electron and electron-builder downloads
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/electron
-            ~/.cache/electron-builder
-          key: electron-win-${{ hashFiles('package-lock.json') }}
-          restore-keys: electron-win-
-      - name: install wine (32-bit too; electron-builder runs the 32-bit NSIS uninstaller stub under wine)
-        run: |
-          dpkg --add-architecture i386
-          apt-get update -qq
-          apt-get install -y -qq --no-install-recommends wine wine32 wine64 file >/dev/null
-          wine --version
       - name: build installer (npm run dist:win)
-        env:
-          WINEDEBUG: "-all"
         run: |
           npm ci
-          # electron-builder fetches NSIS/winCodeSign from GitHub, which sometimes times out here (10 min). One retry;
-          # what was downloaded stays in ~/.cache/electron-builder (cached across runs), and the check below still runs.
+          # electron-builder fetches NSIS/winCodeSign from GitHub when the image lacks them (new versions), which
+          # sometimes times out here (10 min). One retry; the check below still runs.
           npm run dist:win -- --publish never || { echo "dist:win failed, retrying once"; npm run dist:win -- --publish never; }
       - name: check installer
         run: |
@@ -130,42 +160,17 @@ jobs:
   android-apk:
     # Builds the Android app (Capacitor, debug-signed APK) on Linux and attaches it to the run as a downloadable
     # artefact. Not installed or run here: no Android hand (device or emulator) exists.
+    needs: [image, smoke]
     runs-on: linux
+    container:
+      image: ${{ needs.image.outputs.image }}
+      credentials:
+        username: ${{ secrets.REGISTRY_USER }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
       - uses: actions/checkout@v4
-      - name: cache npm downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
-      - name: cache Gradle downloads
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ hashFiles('android/**/*.gradle', 'android/gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: gradle-
-      - name: install JDK 21 and the Android SDK (platform 36, build tools 36.0.0)
-        run: |
-          apt-get update -qq
-          apt-get install -y -qq --no-install-recommends unzip >/dev/null
-          mkdir -p /opt/jdk /opt/android-sdk/cmdline-tools
-          curl -fsSL "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse" | tar xz -C /opt/jdk --strip-components=1
-          curl -fsSL -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
-          unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk/cmdline-tools
-          mv /opt/android-sdk/cmdline-tools/cmdline-tools /opt/android-sdk/cmdline-tools/latest
-          export JAVA_HOME=/opt/jdk
-          # The runner uses `set -o pipefail`: `yes | …` fails with SIGPIPE (141) once sdkmanager stops reading.
-          /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses < <(yes) >/dev/null
-          /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;36.0.0" >/dev/null
-          echo "JAVA_HOME=/opt/jdk" >> "$GITHUB_ENV"
-          # apksigner (check APK) runs `java` from PATH, not from JAVA_HOME.
-          echo "/opt/jdk/bin" >> "$GITHUB_PATH"
-          echo "ANDROID_HOME=/opt/android-sdk" >> "$GITHUB_ENV"
       - name: build APK (npm run dist:android)
         run: |
           npm ci
