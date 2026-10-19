@@ -184,6 +184,8 @@ The gates (`.gitea/workflows/gates.yml`) run lint, the tests and the smoke test 
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the
 run as the `CATExam-windows-installer` artefact; the `android-apk` job builds the APK and attaches it as the
 `CATExam-android-apk` artefact: open the run in Gitea → Actions and download them there.
+The jobs cache their npm downloads (`~/.npm`, keyed on `package-lock.json`), `windows-installer` also Electron and
+electron-builder's tools, and `android-apk` Gradle's caches and wrapper (keyed on the `android/` Gradle files).
 There is no Windows runner and no Android device or emulator, so nobody runs the installer, the Windows
 lockdown or the APK automatically; the smoke test checks the Android screens in a phone-sized Chromium
 window instead. Windows SmartScreen warns about the unsigned installer ("More info" → "Run anyway").
