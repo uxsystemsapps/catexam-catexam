@@ -362,7 +362,7 @@ function comboMeter(combo: number, multiplier: number): HTMLElement {
 /** Wraps a game screen: pixel look, the effect level as a data attribute for the CSS, and its music. */
 function gameScreen(track: Track | null, ...nodes: Node[]): void {
   document.getElementById('fx-layer')?.remove();
-  show(...nodes);
+  showClassic(...nodes);
   document.documentElement.dataset.fx = effectLevel();
   playMusic(track);
 }

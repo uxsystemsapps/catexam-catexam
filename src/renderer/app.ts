@@ -35,10 +35,24 @@ function h<K extends keyof HTMLElementTagNameMap>(
   return el;
 }
 
+/** Shows an app screen in the modern look (`html[data-look='modern']` in the CSS). */
 function show(...nodes: Node[]): void {
+  showLook('modern', nodes);
+}
+
+/**
+ * Shows a screen of the exam simulator (NDA, tutorial, questions, score report, answer review) or of the game mode in
+ * its own look (`html[data-look='classic']`): the redesign of the other screens leaves these as they are.
+ */
+function showClassic(...nodes: Node[]): void {
+  showLook('classic', nodes);
+}
+
+function showLook(look: 'modern' | 'classic', nodes: Node[]): void {
   keyHandler = null;
   backAction = null;
   stopGameMusic();
+  document.documentElement.dataset.look = look;
   root.replaceChildren(...nodes);
   root.querySelector('main')?.scrollTo(0, 0);
   root.querySelector('.navigator .current')?.scrollIntoView({ block: 'nearest' });
@@ -874,7 +888,7 @@ async function nda(candidate: string): Promise<void> {
       });
     }
   }, 1000);
-  show(
+  showClassic(
     h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Non-Disclosure Agreement and General Terms of Use'), h('span', {}, 'Time remaining to accept: ', clock)),
     h(
       'main',
@@ -895,7 +909,7 @@ async function nda(candidate: string): Promise<void> {
 }
 
 function tutorial(candidate: string): void {
-  show(
+  showClassic(
     h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Tutorial'), h('span', {}, candidate)),
     h(
       'main',
@@ -1171,7 +1185,7 @@ function renderExamQuestion(state: ExamState, candidate: string, clock: HTMLElem
     }
   };
   const nextButton = h('button', { id: 'next', class: 'primary', onclick: () => void next() }, 'Next ▶');
-  show(
+  showClassic(
     h(
       'header',
       { class: 'topbar question-top' },
@@ -1270,7 +1284,7 @@ const REASONS: Record<string, string> = {
 };
 
 function resultScreen(r: ExamResult): void {
-  show(
+  showClassic(
     h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Examination Score Report'), h('span', {}, 'CISSP (simulation)')),
     h(
       'main',
@@ -1373,7 +1387,7 @@ function reviewScreen(review: ReviewItem[], backLabel: string, back: () => void)
   search.addEventListener('input', apply);
   onlyWrong.addEventListener('change', apply);
   domainSelect.addEventListener('change', apply);
-  show(
+  showClassic(
     h('header', { class: 'topbar' }, h('span', { class: 'brand' }, 'Answer review'), h('span', {}, `${review.filter((i) => i.correct).length} of ${review.length} correct`)),
     h(
       'main',
