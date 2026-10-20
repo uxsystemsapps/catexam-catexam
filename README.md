@@ -15,7 +15,7 @@ and an Android phone app with the same features. Electron + TypeScript; the Andr
 - **Test-centre flow**: NDA (5 minutes to accept), tutorial, one question at a time, every question
   must be answered, no going back, no flagging for review. Right-click strikes out an option. Letter
   keys (A, B, C…) select an option and Enter moves on. Breaks are allowed, but the clock keeps running.
-  "End Exam" asks for confirmation and scores the exam as a fail.
+  "End Exam" asks for confirmation and scores the exam as a fail; with no scored answer the score is 0.
 - **Progress bars** (training aid; the real exam shows only the clock and question number): time used
   out of 3 hours, questions answered against the 100–150 range, and a pace hint ("On pace" / "Behind
   pace by N questions") measured against finishing 150 questions in time (72 s per question). A side panel

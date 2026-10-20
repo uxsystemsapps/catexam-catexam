@@ -274,10 +274,11 @@ describe('CAT exam rules', () => {
     assert.equal(run(120, false).passed, false);
   });
 
-  it('ending the exam early is a fail', () => {
+  it('ending the exam early is a fail; with no scored answer the score is 0, not the 700 standard', () => {
     const exam = new ExamSession(syntheticBank(60, seeded(6)), CISSP_CAT, seeded(6));
     exam.endByCandidate();
     assert.equal(exam.result().passed, false);
+    assert.equal(exam.result().scaledScore, 0);
     assert.equal(exam.current(), null);
   });
 });

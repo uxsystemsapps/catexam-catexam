@@ -155,7 +155,8 @@ export class ExamSession {
     return {
       passed: this.passed(),
       reason: this.finished,
-      scaledScore: scaledScore(this.estimate.theta, this.config.passingTheta),
+      // No scored answer: there is no evidence of ability, so the prior (the passing standard) must not show as 700.
+      scaledScore: scored.length === 0 ? 0 : scaledScore(this.estimate.theta, this.config.passingTheta),
       theta: this.estimate.theta,
       standardError: this.estimate.se,
       itemsAnswered: answered.length,
