@@ -1,16 +1,27 @@
 # Gates of this product (seeded by the UXSYSTEMS software factory when the product was created).
 # They run on every branch push (not on tag pushes: the factory's signed releases create `android-*` tags), on the
 # factory's runner factory-core-1. The factory waits for them after each build: a task
-# is done only with green gates, and the owner's `merge` is refused while they are red.
+# is done only with green gates, and the owner's `merge` is refused while they are red. A skipped job counts as green.
 #
-# Every job runs in the CI build image (ci/Dockerfile: JDK 21, Android SDK, Gradle, wine, warm npm/Electron/Gradle
-# caches), so a run downloads almost nothing. The `image` job builds it (kaniko: job containers have no Docker) and
-# pushes it to the Gitea container registry only when ci/Dockerfile, package-lock.json or the Gradle wrapper changed.
-# Order: image, then lint and test, then smoke, then windows-installer and android-apk (the heavy builds never run
+# CI image (factory decision D24): every job except `tested` runs in 127.0.0.1:3000/catexam/catexam-ci:main
+# (ci/Dockerfile: JDK 21, Android SDK, Gradle, wine, warm npm/Electron/Gradle caches), so a run downloads almost
+# nothing. The factory's publisher builds it from ci/Dockerfile on `main` whenever the hash of
+# `ci/Dockerfile .dockerignore package-lock.json android/gradle/wrapper/gradle-wrapper.properties` changes and
+# pushes it as `:<hash>` and `:main`. The runner pulls it with its own read-only login: no workflow pushes an image
+# or uses a registry secret.
+# A change to the image's inputs is tested on its branch with the CURRENT `:main` image; the new image is published
+# a few minutes after the merge, plus build time. So make CI-image changes their own task and merge them first.
+#
+# Gate-run rules (factory decision D26):
+# - A newer push to the same branch cancels the older run (concurrency).
+# - `tested` runs first. On `main`, when the merge commit holds exactly the tree the pull request's gates passed,
+#   lint, test, smoke and windows-installer are skipped (again=false); android-apk still runs, because the factory
+#   signer signs the APK of the newest successful `main` run.
+# - Path filters: `tested` lists the files this branch changed (against main; on `main` against the previous
+#   commit) and the heavy jobs run only when a path that can affect them changed. On `main`, android-apk runs
+#   whenever the APK can differ from the previous `main`; otherwise the signer keeps the last signed APK.
+# Order: tested, then lint and test, then smoke, then windows-installer and android-apk (the heavy builds never run
 # alongside the smoke test).
-# Registry access: the repository secrets REGISTRY_USER and REGISTRY_TOKEN (a Gitea access token of that user with
-# read and write on packages). The job's own token cannot be used: Gitea 28 gives it no package scope, so the
-# registry's /v2/token answers UNAUTHORIZED. The jobs reach Gitea as gitea:3000; the VM's Docker pulls from 127.0.0.1:3000.
 #
 # PLACEHOLDERS: each job runs the product's own command when the repository has one, and otherwise PASSES WITHOUT
 # CHECKING ANYTHING (it says so in its log). Replace them with the product's real checks as the product grows.
@@ -19,56 +30,78 @@ on:
   push:
     branches: ['**']
 
+concurrency:
+  group: gates-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  image:
+  tested:
+    # Decides what this run has to check (D26). Runs in the runner's default (plain node) image.
     runs-on: linux
-    permissions:
-      contents: read
-      packages: write
     outputs:
-      image: ${{ steps.tag.outputs.image }}
-    env:
-      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
-      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+      again: ${{ steps.again.outputs.again }}
+      smoke: ${{ steps.paths.outputs.smoke }}
+      windows: ${{ steps.paths.outputs.windows }}
+      android: ${{ steps.paths.outputs.android }}
     steps:
       - uses: actions/checkout@v4
-      - name: image tag (hash of what the image is built from)
-        id: tag
-        run: |
-          tag=$(cat ci/Dockerfile .dockerignore package-lock.json android/gradle/wrapper/gradle-wrapper.properties | sha256sum | cut -c1-16)
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          echo "image=127.0.0.1:3000/catexam/catexam-ci:$tag" >> "$GITHUB_OUTPUT"
-          echo "CI image catexam/catexam-ci:$tag"
-      - name: build and push the image unless the registry has it
+        with:
+          fetch-depth: 2
+      - name: already tested? (merge commit with the tree of the pull request's head)
+        id: again
         env:
-          TAG: ${{ steps.tag.outputs.tag }}
-          DOCKER_CONFIG: /kaniko/.docker
-          SSL_CERT_DIR: /kaniko/ssl/certs
+          DEFAULT_REF: refs/heads/${{ github.event.repository.default_branch }}
         run: |
-          [ -n "$REGISTRY_USER" ] && [ -n "$REGISTRY_TOKEN" ] || { echo "set the repository secrets REGISTRY_USER and REGISTRY_TOKEN (Gitea access token with read and write on packages)"; exit 1; }
-          curl -fsSL https://github.com/google/go-containerregistry/releases/download/v0.20.3/go-containerregistry_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin crane
-          crane export gcr.io/kaniko-project/executor:v1.23.2 - | tar -x -C / kaniko
-          printf '{"auths":{"gitea:3000":{"auth":"%s"}}}' "$(printf '%s:%s' "$REGISTRY_USER" "$REGISTRY_TOKEN" | base64 -w0)" > /kaniko/.docker/config.json
-          dest="gitea:3000/catexam/catexam-ci:$TAG"
-          if out=$(crane manifest --insecure "$dest" 2>&1); then
-            echo "$dest is already in the registry; nothing to build"
-            exit 0
-          elif ! grep -qE 'MANIFEST_UNKNOWN|NAME_UNKNOWN|404' <<<"$out"; then
-            echo "cannot read the registry (REGISTRY_USER/REGISTRY_TOKEN need read and write on packages): $out"
-            exit 1
+          again=true
+          if [ "$GITHUB_REF" = "$DEFAULT_REF" ] && git rev-parse -q --verify 'HEAD^2' >/dev/null \
+             && [ "$(git rev-parse 'HEAD^{tree}')" = "$(git rev-parse 'HEAD^2^{tree}')" ]; then
+            again=false
           fi
-          # kaniko builds in this (throwaway) container's own filesystem; nothing runs in it afterwards.
-          /kaniko/executor --force --context "dir://$PWD" --dockerfile ci/Dockerfile --destination "$dest" \
-            --insecure --snapshot-mode=redo
+          echo "again=$again" >> "$GITHUB_OUTPUT"
+          echo "again=$again"
+      - name: changed paths (which heavy jobs can be affected)
+        id: paths
+        env:
+          DEFAULT_REF: refs/heads/${{ github.event.repository.default_branch }}
+        run: |
+          set -o pipefail
+          if [ "$GITHUB_REF" = "$DEFAULT_REF" ]; then
+            range='HEAD^1..HEAD'
+          else
+            git fetch -q --depth=200 origin +refs/heads/main:refs/remotes/origin/main "+$GITHUB_SHA" \
+              || echo "cannot fetch main; the diff below falls back to running every job"
+            range='origin/main...HEAD'
+          fi
+          smoke=false windows=false android=false
+          if ! files=$(git diff --name-only "$range"); then
+            echo "cannot list the changed files ($range); running every job"
+            smoke=true windows=true android=true
+          fi
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            case "$f" in
+              .gitea/workflows/*|ci/*) smoke=true windows=true android=true; continue ;;
+            esac
+            case "$f" in
+              *.md|docs/*) ;;
+              *) smoke=true ;;
+            esac
+            case "$f" in
+              src/*|scripts/*|questions/*|assets/*|electron-builder*|package*.json|tsconfig*.json) windows=true ;;
+            esac
+            case "$f" in
+              android/*|src/*|scripts/*|questions/*|assets/*|capacitor.config.*|package*.json|tsconfig*.json) android=true ;;
+            esac
+          done <<<"$files"
+          printf '%s\n' "$files"
+          printf 'smoke=%s\nwindows=%s\nandroid=%s\n' "$smoke" "$windows" "$android" | tee -a "$GITHUB_OUTPUT"
 
   lint:
-    needs: image
+    needs: tested
+    if: needs.tested.outputs.again == 'true'
     runs-on: linux
     container:
-      image: ${{ needs.image.outputs.image }}
-      credentials:
-        username: ${{ secrets.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
+      image: 127.0.0.1:3000/catexam/catexam-ci:main
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
@@ -84,13 +117,11 @@ jobs:
           fi
 
   test:
-    needs: image
+    needs: tested
+    if: needs.tested.outputs.again == 'true'
     runs-on: linux
     container:
-      image: ${{ needs.image.outputs.image }}
-      credentials:
-        username: ${{ secrets.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
+      image: 127.0.0.1:3000/catexam/catexam-ci:main
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:
@@ -114,13 +145,11 @@ jobs:
     # Starts the real Electron app headless (Xvfb) and drives a full exam, a training session and a game round
     # through the screens (src/main/smoke.ts), then does the same with the Android web app (www/) in a phone-sized
     # window, checking the phone layout. Linux only: no Windows or Android hand exists for this product.
-    needs: [image, lint, test]
+    needs: [tested, lint, test]
+    if: needs.tested.outputs.again == 'true' && needs.tested.outputs.smoke == 'true'
     runs-on: linux
     container:
-      image: ${{ needs.image.outputs.image }}
-      credentials:
-        username: ${{ secrets.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
+      image: 127.0.0.1:3000/catexam/catexam-ci:main
     steps:
       - uses: actions/checkout@v4
       - name: smoke (npm run smoke under Xvfb)
@@ -131,13 +160,11 @@ jobs:
   windows-installer:
     # Builds the Windows NSIS installer on Linux (electron-builder edits the .exe resources through wine) and
     # attaches it to the run as a downloadable artefact. Not run or installed here: no Windows hand exists.
-    needs: [image, smoke]
+    needs: [tested, smoke]
+    if: needs.tested.outputs.again == 'true' && needs.tested.outputs.windows == 'true'
     runs-on: linux
     container:
-      image: ${{ needs.image.outputs.image }}
-      credentials:
-        username: ${{ secrets.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
+      image: 127.0.0.1:3000/catexam/catexam-ci:main
     steps:
       - uses: actions/checkout@v4
       - name: build installer (npm run dist:win)
@@ -164,13 +191,16 @@ jobs:
     # Builds the Android app (Capacitor, unsigned release APK) on Linux and attaches it to the run as a downloadable
     # artefact. Not signed here (no signing secrets in the repository): the factory signs it after merge. Not
     # installed or run here: no Android hand (device or emulator) exists.
-    needs: [image, smoke]
+    # Runs on `main` too (also when smoke was skipped because the pull request's gates passed this tree): the
+    # factory signer signs the APK of the newest successful `main` run.
+    needs: [tested, smoke]
+    if: >-
+      always() && needs.tested.result == 'success' && needs.tested.outputs.android == 'true'
+      && (needs.smoke.result == 'success'
+          || (needs.smoke.result == 'skipped' && needs.tested.outputs.again == 'false'))
     runs-on: linux
     container:
-      image: ${{ needs.image.outputs.image }}
-      credentials:
-        username: ${{ secrets.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
+      image: 127.0.0.1:3000/catexam/catexam-ci:main
     env:
       ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
     steps:

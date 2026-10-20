@@ -210,12 +210,14 @@ smoke test on Linux. The
 `windows-installer` job builds the unsigned NSIS installer on Linux (with wine) and attaches it to the
 run as the `CATExam-windows-installer` artefact; the `android-apk` job builds the unsigned release APK and attaches
 it as the `CATExam-android-unsigned` artefact: open the run in Gitea → Actions and download them there.
-The jobs run in the CI build image `catexam/catexam-ci` (`ci/Dockerfile`: JDK 21, Android SDK, Gradle, wine and
-warm npm/Electron/Gradle caches) from Gitea's container registry. The first job, `image`, builds and pushes it
-(kaniko) only when `ci/Dockerfile`, `package-lock.json` or the Gradle wrapper changed; then lint and test run,
-then smoke, then `windows-installer` and `android-apk`. Registry access needs the repository secrets
-`REGISTRY_USER` and `REGISTRY_TOKEN` (an access token of that user with read and write on packages); the jobs' own
-token cannot use Gitea's container registry.
+The jobs run in the CI build image `catexam/catexam-ci:main` (`ci/Dockerfile`: JDK 21, Android SDK, Gradle, wine and
+warm npm/Electron/Gradle caches). The factory builds and publishes it from `main` whenever `ci/Dockerfile`,
+`.dockerignore`, `package-lock.json` or the Gradle wrapper changed; a branch is always tested with the current `:main`
+image, so make CI-image changes their own task and merge them first. No workflow pushes an image or uses a registry
+secret. The first job, `tested`, decides what runs: a newer push cancels the older run, the heavy jobs run only
+when a path that can affect them changed, and after a merge `main` skips lint, test, smoke and `windows-installer`
+but still builds the APK (when it can differ) for the factory signer. Then lint and test run, then smoke, then
+`windows-installer` and `android-apk`.
 There is no Windows runner and no Android device or emulator, so nobody runs the installer, the Windows
 lockdown or the APK automatically; the smoke test checks the Android screens in a phone-sized Chromium
 window instead. Windows SmartScreen warns about the unsigned installer ("More info" → "Run anyway").
