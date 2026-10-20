@@ -185,7 +185,11 @@ npm run dist:android   # unsigned Android release APK in android/app/build/outpu
 The application logic (question banks, profile, history, exam and training sessions) is in `src/core` and
 `src/engine`. The desktop app runs it in the Electron main process (`src/main`) and stores the profile in
 files; the Android app runs it inside the web view (`src/mobile`) and stores the profile in IndexedDB. Both
-show the same screens (`src/renderer`); the phone layout is the `max-width: 760px` part of `styles.css`.
+show the same screens (`src/renderer`). `styles.css` has two looks: the app's screens (start, training, history,
+settings, setup) use the modern look (`html[data-look='modern']`: colour tokens for light and dark, layouts for
+phones up to 760 px, tablets up to 1100 px and touch screens); the exam simulator (NDA, tutorial, exam questions,
+break, score report, answer review) and the game mode keep the classic look (`showClassic()` in `app.ts`). The
+classic phone layout is the `max-width: 760px` part of `styles.css`.
 `android/` is the Capacitor Android project; `ExamLockPlugin.java` is the exam lock.
 
 The cat icon and the logo are drawn in `assets/icon.svg` and `assets/logo.svg` (the logo's text is in paths,
