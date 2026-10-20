@@ -4,7 +4,10 @@ import { spawn } from 'node:child_process';
 import electron from 'electron';
 
 const args = ['.'];
-if (process.platform === 'linux') args.push('--no-sandbox', '--disable-gpu');
+// --disable-dev-shm-usage: the gates run in a container whose /dev/shm is Docker's 64 MB default; Chromium keeps
+// its shared memory (compositor and raster buffers) there and, once it is full, crashes the renderer (SIGTRAP,
+// exit code 133), as in the animated boss fight. Off /dev/shm, the buffers live in /tmp.
+if (process.platform === 'linux') args.push('--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage');
 
 function run(mode) {
   const { promise, resolve } = Promise.withResolvers();
