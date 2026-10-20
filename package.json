@@ -14,7 +14,7 @@
     "smoke": "npm run build:mobile && node scripts/smoke.mjs",
     "start": "npm run build && electron .",
     "dist:win": "npm run build && electron-builder --win nsis --x64",
-    "dist:android": "npm run build:mobile && cap sync android && cd android && ./gradlew --no-daemon assembleDebug"
+    "dist:android": "npm run build:mobile && cap sync android && cd android && ./gradlew --no-daemon assembleRelease"
   },
   "build": {
     "appId": "com.uxsystems.catexam",
